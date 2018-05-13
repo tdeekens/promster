@@ -7,5 +7,6 @@ exports.version = version;
 exports.Prometheus = Prometheus;
 exports.createMetricTypes = createMetricTypes;
 exports.getSummary = getSummary;
+exports.getContentType = getContentType;
 exports.register = register;
 exports.observe = observe;

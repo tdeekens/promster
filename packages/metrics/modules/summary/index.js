@@ -1,3 +1,4 @@
-const { default: getSummary } = require('./summary');
+const { default: getSummary, getContentType } = require('./summary');
 
 exports.getSummary = getSummary;
+exports.getContentType = getContentType;

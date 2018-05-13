@@ -123,3 +123,21 @@ createServer({ port: 8888 }).then(() =>
   console.log(`@promster/server started on port 8888.`)
 );
 ```
+
+### `@promster/metrics`
+
+You can use the `metrics` package to expose the gathered metrics through your existing server. To do so just:
+
+```js
+const app = require('./your-express-app');
+const { getSummary, getContentType } = require('@promster/metrics');
+
+app.use('/metrics', (req, res) => {
+  req.statusCode = 200;
+
+  res.setHeader('Content-Type', getContentType());
+  res.end(getSummary());
+});
+```
+
+This may slightly depend on the server you are using but should be roughly the same for all.
