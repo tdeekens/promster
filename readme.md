@@ -64,6 +64,18 @@
 [server-dependencies-icon]: https://david-dm.org/tdeekens/promster/status.svg?style=flat-square&
 [server-downloads]: https://img.shields.io/npm/dm/@promster/server.svg
 
+## ❯ Why another Prometheus exporter for Express and Hapi?
+
+> These packages are a combination of observations and experiences I have had with other exporters which I tried to fix.
+
+1.  Use `process.hrtime()` for high-resolution real time in metrics in milliseconds (converting from nanoseconds)
+2.  Allow normalization of all pre-defined label values
+3.  Expose a built-in server to expose metrics quickly (on a different port) while also allowing users to integrate with existing servers
+4.  Define two metrics one histogram for buckets and a summary for percentiles for performant graphs in e.g. Grafana
+5.  One library to integrate with Hapi, Express and potentially more (managed as a mono repository)
+6.  Allow customization of labels while sorting them internally before reporting
+7.  Expose Prometheus client on Express locals or Hapi app to easily allow adding more app metrics
+
 ## ❯ Installation
 
 This is a mono repository maintained using
