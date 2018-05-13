@@ -1,0 +1,87 @@
+aliases:
+  - &working_directory ~/promster
+
+  - &restore_yarn_cache
+    name: Restoring cache
+    keys:
+      - v3-yarn-cache-{{ checksum "yarn.lock" }}
+      - v3-yarn-cache
+
+  - &save_yarn_cache
+    name: Saving cache
+    key: v3-yarn-cache-{{ checksum "yarn.lock" }}
+    paths:
+      - ~/.cache/yarn
+
+  - &install
+    name: Installing
+    # Ignoring scripts (e.g. post-install) to gain more control
+    # in the jobs to only e.g. build when explicitely needed.
+    command: yarn install --pure-lockfile
+
+  - &lint
+    name: Linting
+    command: yarn lint
+
+  - &build
+    name: Building
+    command: yarn build
+
+  - &unit_test
+    name: Unit testing
+    # Limiting the workers of Jest to 10
+    # as the build otherwise dies due to resouce restrictions.
+    command: yarn test:ci --maxWorkers=10
+
+  - &unit_test_with_coverage
+    name: Unit testing (with coverage report)
+    command: yarn test:ci:coverage
+
+node6Environment: &node8Environment
+  docker:
+    - image: circleci/node:8
+  working_directory: *working_directory
+node8Environment: &node10Environment
+  docker:
+    - image: circleci/node:10
+  working_directory: *working_directory
+
+version: 2
+jobs:
+  lint:
+    <<: *node10Environment
+    steps:
+      - checkout
+      - restore_cache: *restore_yarn_cache
+      - run: *install
+      - save_cache: *save_yarn_cache
+      - run: *build
+      - run: *lint
+  build_test_unit_node_8:
+    <<: *node8Environment
+    steps:
+      - checkout
+      - restore_cache: *restore_yarn_cache
+      - run: *install
+      - run: *build
+      - run: *unit_test
+  build_test_unit_node_10:
+    <<: *node10Environment
+    steps:
+      - checkout
+      - restore_cache: *restore_yarn_cache
+      - run: *install
+      - run: *build
+      - run: *unit_test_with_coverage
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - lint
+      - build_test_unit_node_8:
+          requires:
+            - lint
+      - build_test_unit_node_10:
+          requires:
+            - lint
