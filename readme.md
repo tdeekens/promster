@@ -38,6 +38,9 @@
 
 | Package                                 | Version                                             | Dependencies                                                                      | Downloads                                                    |
 | --------------------------------------- | --------------------------------------------------- | --------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| [`promster/hapi`](/packages/hapi)       | [![hapi Version][hapi-icon]][hapi-version]          | [![hapi Dependencies Status][hapi-dependencies-icon]][hapi-dependencies]          | [![hapi Downloads][hapi-downloads]][hapi-downloads]          |
+| [`promster/express`](/packages/express) | [![express Version][express-icon]][express-version] | [![express Dependencies Status][express-dependencies-icon]][express-dependencies] | [![express Downloads][express-downloads]][express-downloads] |
+| [`promster/server`](/packages/server)   | [![server Version][server-icon]][server-version]    | [![server Dependencies Status][server-dependencies-icon]][server-dependencies]    | [![server Downloads][server-downloads]][server-downloads]    |
 | [`promster/metrics`](/packages/metrics) | [![metrics Version][metrics-icon]][metrics-version] | [![metrics Dependencies Status][metrics-dependencies-icon]][metrics-dependencies] | [![metrics Downloads][metrics-downloads]][metrics-downloads] |
 
 [metrics-version]: https://www.npmjs.com/package/@promster/metrics
@@ -45,6 +48,21 @@
 [metrics-dependencies]: https://david-dm.org/tdeekens/promster?path=packages/metrics
 [metrics-dependencies-icon]: https://david-dm.org/tdeekens/promster/status.svg?style=flat-square&
 [metrics-downloads]: https://img.shields.io/npm/dm/@promster/metrics.svg
+[hapi-version]: https://www.npmjs.com/package/@promster/hapi
+[hapi-icon]: https://img.shields.io/npm/v/@promster/hapi.svg?style=flat-square
+[hapi-dependencies]: https://david-dm.org/tdeekens/promster?path=packages/hapi
+[hapi-dependencies-icon]: https://david-dm.org/tdeekens/promster/status.svg?style=flat-square&
+[hapi-downloads]: https://img.shields.io/npm/dm/@promster/hapi.svg
+[express-version]: https://www.npmjs.com/package/@promster/express
+[express-icon]: https://img.shields.io/npm/v/@promster/express.svg?style=flat-square
+[express-dependencies]: https://david-dm.org/tdeekens/promster?path=packages/express
+[express-dependencies-icon]: https://david-dm.org/tdeekens/promster/status.svg?style=flat-square&
+[express-downloads]: https://img.shields.io/npm/dm/@promster/express.svg
+[server-version]: https://www.npmjs.com/package/@promster/server
+[server-icon]: https://img.shields.io/npm/v/@promster/server.svg?style=flat-square
+[server-dependencies]: https://david-dm.org/tdeekens/promster?path=packages/server
+[server-dependencies-icon]: https://david-dm.org/tdeekens/promster/status.svg?style=flat-square&
+[server-downloads]: https://img.shields.io/npm/dm/@promster/server.svg
 
 ## ❯ Installation
 
