@@ -47,3 +47,79 @@
 [metrics-downloads]: https://img.shields.io/npm/dm/@promster/metrics.svg
 
 ## ❯ Installation
+
+This is a mono repository maintained using
+[lerna](https://github.com/lerna/lerna). It currently contains four
+[packages](/packages) in a `metrics`, a `hapi` or
+`express` integration, and a `server` exposing the metrics for you if you do not want to do that via your existing server.
+
+Depending on the preferred integration use:
+
+`yarn add @promster/hapi` or `npm i @promster/express --save`
+
+or
+
+`yarn add @promster/hapi` or `npm i @promster/express --save`
+
+## ❯ Documentation
+
+Promster has to be setup with your server. Either as an Express middleware of an Hapi plugin.
+
+### `@promster/express`
+
+```js
+const app = require('./your-express-app');
+const { createMiddleware } = require('@promster/express');
+
+// Note: This should be done BEFORE other routes
+// Pass 'app' as middleware parameter to additionally expose Prometheus under 'app.locals'
+app.use(createMiddleware(app, options));
+```
+
+Passing the `app` into the `createMiddleware` call attaches the internal `prom-client` to your Express app's locals. This may come in handy as later you can:
+
+```js
+// Create an e.g. custom counter
+const counter = new app.locals.Prometheus.Counter({
+  name: 'metric_name',
+  help: 'metric_help',
+});
+
+// to later increment it
+counter.inc();
+```
+
+### `@promster/hapi`
+
+```js
+const { createPlugin } = require('@promster/hapi');
+const app = require('./your-hapi-app');
+
+app.register(createPlugin(options));
+```
+
+Here you do not have to pass in the `app` into the `createPlugin` call as the internal `prom-client` will be exposed onto Hapi as in:
+
+```js
+// Create an e.g. custom counter
+const counter = new app.Prometheus.Counter({
+  name: 'metric_name',
+  help: 'metric_help',
+});
+
+// to later increment it
+counter.inc();
+```
+
+### `@promster/server`
+
+In some cases you might want to expose the gathered metrics through an individual server. This is useful for instance to not have `GET /metrics` expose internal server and business metrics to the outside world. For this you can use `@promster/server`:
+
+```js
+const { createServer } = require('@promster/server');
+
+// NOTE: The port defaults to `7788`.
+createServer({ port: 8888 }).then(() =>
+  console.log(`@promster/server started on port 8888.`)
+);
+```
