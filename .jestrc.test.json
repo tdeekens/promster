@@ -2,7 +2,6 @@
   "displayName": "test",
   "setupFiles": [],
   "setupTestFrameworkScriptFile": "./jest-runner-test.config.js",
-  "snapshotSerializers": ["enzyme-to-json/serializer"],
   "testRegex": "\\.spec\\.js$",
   "testEnvironment": "node",
   "testPathIgnorePatterns": [

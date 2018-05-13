@@ -8,8 +8,7 @@ const {
 
 const exposePrometheusOnLocals = app =>
   app ? (app.locals.Prometheus = Prometheus) : null;
-const extractPath = req =>
-  (req.route ? req.route.path : req.path).replace(/\?/g, '');
+const extractPath = req => req.originalUrl || req.url;
 
 const createMiddleware = (
   app,
