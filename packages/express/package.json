@@ -1,0 +1,41 @@
+{
+  "name": "@promster/express",
+  "version": "0.0.0",
+  "description": "Express server integrations of promster",
+  "main": "dist/@promster-express.cjs.js",
+  "module": "dist/@promster-express.es.js",
+  "scripts": {
+    "preversion": "npm run build",
+    "prebuild": "rimraf dist/**",
+    "build": "cross-env npm run build:es && npm run build:cjs",
+    "build:watch": "cross-env npm run build:es -- -w",
+    "build:es": "cross-env NODE_ENV=development rollup -c ../../rollup.config.js -f es -i modules/index.js -o dist/@promster-express.es.js",
+    "build:cjs": "cross-env NODE_ENV=development rollup -c ../../rollup.config.js -f cjs -i modules/index.js -o dist/@promster-express.cjs.js"
+  },
+  "files": [
+    "readme.md",
+    "dist/**"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tdeekens/promster.git"
+  },
+  "author": "Tobias Deekens <nerd@tdeekens.name>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tdeekens/promster/issues"
+  },
+  "homepage": "https://github.com/tdeekens/promster#readme",
+  "devDependencies": {
+  },
+  "dependencies": {
+  },
+  "keywords": [
+    "metrics",
+    "continousdelivery",
+    "prometheus"
+  ]
+}
