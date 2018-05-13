@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="Logo" src="https://raw.githubusercontent.com/tdeekens/promster/master/logo.png" /><br /><br />
+  <img alt="Logo" height="150" src="https://raw.githubusercontent.com/tdeekens/promster/master/logo.png" /><br /><br />
 </p>
 
 <h2 align="center">⏰ Promster - Measure metrics from Hapi/Express servers with Prometheus 🚦</h2>
