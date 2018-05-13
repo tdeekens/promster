@@ -148,7 +148,7 @@ You can use the `metrics` package to expose the gathered metrics through your ex
 
 ```js
 const app = require('./your-express-app');
-const { getSummary, getContentType } = require('@promster/metrics');
+const { getSummary, getContentType } = require('@promster/express');
 
 app.use('/metrics', (req, res) => {
   req.statusCode = 200;
