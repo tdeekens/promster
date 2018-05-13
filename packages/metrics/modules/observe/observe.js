@@ -1,6 +1,15 @@
-const {} = require('../types');
+const { createMetricTypes } = require('../types');
 
 const NS_PER_SEC = 1e9;
+
+const sortLabels = unsortedLabels => {
+  return Object.keys(unsortedLabels)
+    .sort((a, b) => a > b)
+    .reduce((sortedLabels, labelName) => {
+      sortedLabels[labelName] = obj[labelName];
+      return sortedLabels;
+    }, {});
+};
 
 const endMeasurmentFrom = start => {
   const [seconds, nanoseconds] = process.hrtime(start);
@@ -10,11 +19,16 @@ const endMeasurmentFrom = start => {
   return Math.round((seconds * NS_PER_SEC + nanoseconds) / 1000);
 };
 
-const observe = (start, options) => {
-  const durationMs = endMeasurmentFrom(start);
+const createObserver = (start, options) => {
+  const metrics = createMetricTypes(options);
 
-  metrics.duration.observe(options.labels, duration);
-  metrics.buckets.observe(options.labels, duration);
+  return (start, options) => {
+    const durationMs = endMeasurmentFrom(start);
+    const labels = sortLabels(options.labels);
+
+    metrics.percentiles.observe(labels, durationMs);
+    metrics.buckets.observe(labels, durationMs);
+  };
 };
 
-exports.default = observe;
+exports.default = createObserver;

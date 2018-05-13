@@ -1,3 +1,3 @@
-const { default: observe } = require('./observe');
+const { default: createObserver } = require('./observe');
 
-exports.observe = observe;
+exports.createObserver = createObserver;
