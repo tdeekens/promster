@@ -24,7 +24,7 @@
 
 <p align="center">
   <a href="https://circleci.com/gh/tdeekens/promster">
-    <img alt="CircleCI Status" src="https://circleci.com/gh/tdeekens/promster.svg?style=shield&circle-token=63ee7a0e1c766b6b76da6f7ba4c7b9f2a7876191">
+    <img alt="CircleCI Status" src="https://circleci.com/gh/tdeekens/promster.svg?style=shield&circle-token=6b914111cae6bac8d92ab82ff1e84fdf64424e78">
   </a>
   <a href="https://codecov.io/gh/tdeekens/promster">
     <img alt="Codecov Coverage Status" src="https://img.shields.io/codecov/c/github/tdeekens/promster.svg?style=flat-square">
