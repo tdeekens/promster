@@ -2,15 +2,11 @@
   "name": "@promster/metrics",
   "version": "0.2.3",
   "description": "Metrics utilities used by all other server integrations",
-  "main": "dist/@promster-metrics.cjs.js",
-  "module": "dist/@promster-metrics.es.js",
+  "main": "modules/index.js",
   "scripts": {
     "preversion": "npm run build",
     "prebuild": "rimraf dist/**",
-    "build": "cross-env npm run build:es && npm run build:cjs",
-    "build:watch": "cross-env npm run build:es -- -w",
-    "build:es": "cross-env NODE_ENV=development rollup -c ../../rollup.config.js -f es -i modules/index.js -o dist/@promster-metrics.es.js",
-    "build:cjs": "cross-env NODE_ENV=development rollup -c ../../rollup.config.js -f cjs -i modules/index.js -o dist/@promster-metrics.cjs.js"
+    "build": "exit 0"
   },
   "files": [
     "readme.md",
