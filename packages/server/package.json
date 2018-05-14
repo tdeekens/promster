@@ -1,6 +1,6 @@
 {
   "name": "@promster/server",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Server exposing metrics under GET /metrics",
   "main": "dist/@promster-express.cjs.js",
   "module": "dist/@promster-express.es.js",
@@ -35,6 +35,6 @@
     "prometheus"
   ],
   "dependencies": {
-    "@promster/metrics": "^0.2.2"
+    "@promster/metrics": "^0.2.3"
   }
 }
