@@ -33,5 +33,8 @@
     "metrics",
     "continousdelivery",
     "prometheus"
-  ]
+  ],
+  "dependencies": {
+    "@promster/metrics": "0.2.0"
+  }
 }

@@ -76,10 +76,5 @@
   ],
   "workspaces": [
     "packages/*"
-  ],
-  "dependencies": {
-    "prom-client": "^11.0.0",
-    "url": "^0.11.0",
-    "url-value-parser": "^1.0.0"
-  }
+  ]
 }
