@@ -3,6 +3,6 @@
   <i>Promster is an Prometheus Exporter for Node.js servers written with Express or Hapi.</i>
 </p>
 
-### `@promster/metrics`
+### `@promster/hapi`
 
 This repository is part of the `promster` mono repository. Please head [here](https://github.com/tdeekens/promster) for more information.

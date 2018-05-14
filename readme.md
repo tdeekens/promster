@@ -15,9 +15,8 @@
   · Prettier
   · Jest
   · ESLint
-  · Babel
   · Lerna
-  · Rollup
+  · Prometheus
   🙏
   </sub>
 </p>
