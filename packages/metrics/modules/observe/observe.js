@@ -6,7 +6,7 @@ const sortLabels = unsortedLabels => {
   return Object.keys(unsortedLabels)
     .sort((a, b) => a > b)
     .reduce((sortedLabels, labelName) => {
-      sortedLabels[labelName] = obj[labelName];
+      sortedLabels[labelName] = unsortedLabels[labelName];
       return sortedLabels;
     }, {});
 };

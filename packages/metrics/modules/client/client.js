@@ -5,7 +5,7 @@ const collectDefaultMetrics = Prometheus.collectDefaultMetrics;
 //       We could create multiple registries with `new Prometheus.registry()`.
 const defaultRegister = Prometheus.register;
 
-collectDefaultMetrics({ register });
+collectDefaultMetrics();
 
 exports.default = Prometheus;
 exports.defaultRegister = defaultRegister;

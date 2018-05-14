@@ -38,7 +38,7 @@ const createPlugin = (
               method: options.normalizeMethod(req.method),
               status_code: options.normalizeStatusCode(extractStatusCode(req)),
             },
-            getLabelValues(req, res)
+            options.getLabelValues(req, res)
           ),
         });
       });

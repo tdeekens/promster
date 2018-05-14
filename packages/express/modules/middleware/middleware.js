@@ -6,8 +6,9 @@ const {
   normalizeMethod,
 } = require('@promster/metrics');
 
-const exposePrometheusOnLocals = app =>
-  app ? (app.locals.Prometheus = Prometheus) : null;
+const exposePrometheusOnLocals = app => {
+  if (app && app.locals) app.locals.Prometheus = Prometheus;
+};
 const extractPath = req => req.originalUrl || req.url;
 
 const createMiddleware = (
@@ -35,7 +36,7 @@ const createMiddleware = (
             status_code: options.normalizeStatusCode(res.statusCode),
             path: options.normalizePath(extractPath(req)),
           },
-          getLabelValues(req, res)
+          options.getLabelValues(req, res)
         ),
       });
     });

@@ -1,7 +1,7 @@
-const { register } = require('../client');
+const { defaultRegister } = require('../client');
 
-const getSummary = () => register.metrics();
-const getContentType = () => register.contentType;
+const getSummary = () => defaultRegister.metrics();
+const getContentType = () => defaultRegister.contentType;
 
 exports.default = getSummary;
 exports.getContentType = getContentType;
