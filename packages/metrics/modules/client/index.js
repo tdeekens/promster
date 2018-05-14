@@ -1,4 +1,4 @@
-const { default: Prometheus, register } = require('./client');
+const { default: Prometheus, defaultRegister } = require('./client');
 
 exports.Prometheus = Prometheus;
-exports.register = register;
+exports.defaultRegister = defaultRegister;

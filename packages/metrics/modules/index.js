@@ -1,5 +1,5 @@
 const { version } = require('../package.json');
-const { Prometheus, register } = require('./client');
+const { Prometheus, defaultRegister } = require('./client');
 const { createMetricTypes } = require('./types');
 const { getSummary } = require('./summary');
 
@@ -8,5 +8,5 @@ exports.Prometheus = Prometheus;
 exports.createMetricTypes = createMetricTypes;
 exports.getSummary = getSummary;
 exports.getContentType = getContentType;
-exports.register = register;
+exports.defaultRegister = defaultRegister;
 exports.observe = observe;

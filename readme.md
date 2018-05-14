@@ -187,3 +187,5 @@ app.use('/metrics', (req, res) => {
 ```
 
 This may slightly depend on the server you are using but should be roughly the same for all.
+
+The `@promster/metrics` package has two other potentially useful exports in `Prometheus` (the actual client) and `defaultRegister` which is the default register of the client.
