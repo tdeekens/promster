@@ -26,11 +26,9 @@ const config = {
       jsnext: true,
       main: true,
       preferBuiltins: true,
-      modulesOnly: true,
     }),
     commonjs({
       ignoreGlobal: true,
-      exclude: ['packages/**'],
     }),
     filesize(),
   ],
