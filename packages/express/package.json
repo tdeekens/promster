@@ -1,6 +1,6 @@
 {
   "name": "@promster/express",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Express server integrations of promster",
   "main": "dist/@promster-express.cjs.js",
   "module": "dist/@promster-express.es.js",
@@ -35,6 +35,6 @@
     "prometheus"
   ],
   "dependencies": {
-    "@promster/metrics": "0.2.0"
+    "@promster/metrics": "^0.2.1"
   }
 }
