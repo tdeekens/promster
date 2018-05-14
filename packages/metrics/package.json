@@ -10,7 +10,7 @@
   },
   "files": [
     "readme.md",
-    "dist/**"
+    "modules/**"
   ],
   "publishConfig": {
     "access": "public"
