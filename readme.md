@@ -98,7 +98,7 @@ The following metrics are exposed:
 
 * `up`: an indication if the server is started: either 0 or 1
 * `http_request_duration_percentiles_microseconds`: a Prometheus summary with request time percentiles in milliseconds (defaults to `[0.5, 0.9, 0.99]`)
-* `http_request_duration_buckets_microseconds`: a Prometheus histogram with request time buckets in milliseconds (defaults to `[0.003, 0.03, 0.1, 0.3, 1.5, 10]`)
+* `http_request_duration_buckets_microseconds`: a Prometheus histogram with request time buckets in milliseconds (defaults to `[ 30000, 50000, 100000, 300000, 500000, 800000, 1500000, 10000000,]`)
 
 on each metric the following default labels are measured: `method`, `status_code` and `path`. You can configure more `labels` (see below).
 

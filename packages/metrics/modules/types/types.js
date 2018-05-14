@@ -18,7 +18,16 @@ const createMetricTypes = (options = { labels: [] }) => {
       name: 'http_request_duration_buckets_microseconds',
       help: 'The HTTP request latencies in microseconds.',
       labelNames: defaultLabels.concat(options.labels).sort(),
-      percentiles: options.buckets || [0.003, 0.03, 0.1, 0.3, 1.5, 10],
+      buckets: options.buckets || [
+        30000,
+        50000,
+        100000,
+        300000,
+        500000,
+        800000,
+        1500000,
+        10000000,
+      ],
     }),
   };
 
