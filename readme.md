@@ -111,7 +111,7 @@ const { createMiddleware } = require('@promster/express');
 
 // Note: This should be done BEFORE other routes
 // Pass 'app' as middleware parameter to additionally expose Prometheus under 'app.locals'
-app.use(createMiddleware(app, options));
+app.use(createMiddleware({ app, options }));
 ```
 
 Passing the `app` into the `createMiddleware` call attaches the internal `prom-client` to your Express app's locals. This may come in handy as later you can:
@@ -133,7 +133,7 @@ counter.inc();
 const { createPlugin } = require('@promster/hapi');
 const app = require('./your-hapi-app');
 
-app.register(createPlugin(options));
+app.register(createPlugin({ options }));
 ```
 
 Here you do not have to pass in the `app` into the `createPlugin` call as the internal `prom-client` will be exposed onto Hapi as in:

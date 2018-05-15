@@ -11,7 +11,7 @@ const exposePrometheusOnLocals = app => {
 };
 const extractPath = req => req.originalUrl || req.url;
 
-const createMiddleware = (
+const createMiddleware = ({
   app,
   options = {
     labels: [],
@@ -19,8 +19,8 @@ const createMiddleware = (
     normalizePath,
     normalizeStatusCode,
     normalizeMethod,
-  }
-) => {
+  },
+}) => {
   const observe = createObserver(options);
 
   exposePrometheusOnLocals(app);

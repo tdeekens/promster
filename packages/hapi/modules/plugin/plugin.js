@@ -10,15 +10,15 @@ const {
 const extractPath = req => req.route.path.replace(/\?/g, '');
 const extractStatusCode = req => (req.response ? req.response.statusCode : '');
 
-const createPlugin = (
+const createPlugin = ({
   options = {
     labels: [],
     getLabelValues: () => ({}),
     normalizePath,
     normalizeStatusCode,
     normalizeMethod,
-  }
-) => {
+  },
+}) => {
   const observe = createObserver(options);
 
   const plugin = {
