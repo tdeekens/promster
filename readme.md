@@ -68,6 +68,7 @@
 > These packages are a combination of observations and experiences I have had with other exporters which I tried to fix.
 
 1.  Use `process.hrtime()` for high-resolution real time in metrics in milliseconds (converting from nanoseconds)
+    * `process.hrtime()` calls libuv's `uv_hrtime`, without system call like `new Date`
 2.  Allow normalization of all pre-defined label values
 3.  Expose a built-in server to expose metrics quickly (on a different port) while also allowing users to integrate with existing servers
 4.  Define two metrics one histogram for buckets and a summary for percentiles for performant graphs in e.g. Grafana
@@ -97,8 +98,8 @@ Promster has to be setup with your server. Either as an Express middleware of an
 The following metrics are exposed:
 
 * `up`: an indication if the server is started: either 0 or 1
-* `http_request_duration_percentiles_microseconds`: a Prometheus summary with request time percentiles in milliseconds (defaults to `[0.5, 0.9, 0.99]`)
-* `http_request_duration_buckets_microseconds`: a Prometheus histogram with request time buckets in milliseconds (defaults to `[ 30000, 50000, 100000, 300000, 500000, 800000, 1500000, 10000000,]`)
+* `http_request_duration_percentiles_milliseconds`: a Prometheus summary with request time percentiles in milliseconds (defaults to `[0.5, 0.9, 0.99]`)
+* `http_request_duration_buckets_milliseconds`: a Prometheus histogram with request time buckets in milliseconds (defaults to `[ 50, 100, 300, 500, 800, 1000, 1500, 3000, 5000, 10000]`)
 
 on each metric the following default labels are measured: `method`, `status_code` and `path`. You can configure more `labels` (see below).
 

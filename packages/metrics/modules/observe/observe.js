@@ -1,6 +1,7 @@
 const { createMetricTypes } = require('../types');
 
 const NS_PER_SEC = 1e9;
+const NS_PER_MS = 1e6;
 
 const sortLabels = unsortedLabels => {
   return Object.keys(unsortedLabels)
@@ -16,7 +17,7 @@ const endMeasurmentFrom = start => {
 
   // NOTE: Math to get a millisecond based duration which is a good
   // default for Prometheus metrics.
-  return Math.round((seconds * NS_PER_SEC + nanoseconds) / 1000);
+  return Math.round((seconds * NS_PER_SEC + nanoseconds) / NS_PER_MS);
 };
 
 const createObserver = (start, options) => {
