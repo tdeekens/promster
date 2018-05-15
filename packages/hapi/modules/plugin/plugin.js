@@ -18,7 +18,7 @@ const createPlugin = ({
     normalizeStatusCode,
     normalizeMethod,
   },
-}) => {
+} = {}) => {
   const observe = createObserver(options);
 
   const plugin = {

@@ -20,7 +20,7 @@ const createMiddleware = ({
     normalizeStatusCode,
     normalizeMethod,
   },
-}) => {
+} = {}) => {
   const observe = createObserver(options);
 
   exposePrometheusOnLocals(app);
