@@ -3,6 +3,7 @@ const { Prometheus } = require('../client');
 const defaultLabels = ['path', 'status_code', 'method'];
 
 const createMetricTypes = (options = { labels: [] }) => {
+  console.log(options);
   const metrics = {
     up: new Prometheus.Gauge({
       name: 'up',

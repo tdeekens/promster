@@ -20,7 +20,7 @@ const endMeasurmentFrom = start => {
   return Math.round((seconds * NS_PER_SEC + nanoseconds) / NS_PER_MS);
 };
 
-const createObserver = (start, options) => {
+const createObserver = options => {
   const metrics = createMetricTypes(options);
 
   return (start, options) => {
