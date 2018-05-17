@@ -11,7 +11,7 @@ const exposePrometheusOnLocals = app => {
 };
 const extractPath = req => req.originalUrl || req.url;
 
-const createMiddleware = ({ app, options }) => {
+const createMiddleware = ({ app, options } = {}) => {
   // NOTE: we need to "spread-default" options as
   // defaulting in argument position will not shallowly merge.
   let defaultedOptions = {
