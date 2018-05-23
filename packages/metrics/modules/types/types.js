@@ -12,7 +12,7 @@ const createMetricTypes = (options = { labels: [] }) => {
       name: 'http_request_duration_percentiles_milliseconds',
       help: 'The HTTP request latencies in milliseconds.',
       labelNames: defaultLabels.concat(options.labels).sort(),
-      percentiles: options.percentiles || [0.5, 0.9, 0.99],
+      percentiles: options.percentiles || [0.5, 0.9, 0.95, 0.98, 0.99],
     }),
     buckets: new Prometheus.Histogram({
       name: 'http_request_duration_buckets_milliseconds',
