@@ -68,7 +68,7 @@
 > These packages are a combination of observations and experiences I have had with other exporters which I tried to fix.
 
 1.  Use `process.hrtime()` for high-resolution real time in metrics in milliseconds (converting from nanoseconds)
-    * `process.hrtime()` calls libuv's `uv_hrtime`, without system call like `new Date`
+    - `process.hrtime()` calls libuv's `uv_hrtime`, without system call like `new Date`
 2.  Allow normalization of all pre-defined label values
 3.  Expose a built-in server to expose metrics quickly (on a different port) while also allowing users to integrate with existing servers
 4.  Define two metrics one histogram for buckets and a summary for percentiles for performant graphs in e.g. Grafana
@@ -97,9 +97,9 @@ Promster has to be setup with your server. Either as an Express middleware of an
 
 The following metrics are exposed:
 
-* `up`: an indication if the server is started: either 0 or 1
-* `http_request_duration_percentiles_milliseconds`: a Prometheus summary with request time percentiles in milliseconds (defaults to `[0.5, 0.9, 0.99]`)
-* `http_request_duration_buckets_milliseconds`: a Prometheus histogram with request time buckets in milliseconds (defaults to `[ 50, 100, 300, 500, 800, 1000, 1500, 3000, 5000, 10000]`)
+- `up`: an indication if the server is started: either 0 or 1
+- `http_request_duration_percentiles_milliseconds`: a Prometheus summary with request time percentiles in milliseconds (defaults to `[0.5, 0.9, 0.99]`)
+- `http_request_duration_buckets_milliseconds`: a Prometheus histogram with request time buckets in milliseconds (defaults to `[ 50, 100, 300, 500, 800, 1000, 1500, 3000, 5000, 10000]`)
 
 on each metric the following default labels are measured: `method`, `status_code` and `path`. You can configure more `labels` (see below).
 
@@ -151,11 +151,11 @@ counter.inc();
 
 When creating either the Express middleware or Hapi plugin the followin options can be passed:
 
-* `labels`: an `Array<String>` of custom labels to be configured both on all metrics mentioned above
-* `getLabelValues`: a function receiving `req` and `res` on reach request. It has to return an object with keys of the configured `labels` above and the respective values
-* `normalizePath`: a function called on each request to normalize the request's path
-* `normalizeStatusCode`: a function called on each request to normalize the respond's status code (e.g. to get 2xx, 5xx codes instead of detailed ones)
-* `normalizeMethod`: a function called on each request to normalize the request's method (to e.g. hide it fully)
+- `labels`: an `Array<String>` of custom labels to be configured both on all metrics mentioned above
+- `getLabelValues`: a function receiving `req` and `res` on reach request. It has to return an object with keys of the configured `labels` above and the respective values
+- `normalizePath`: a function called on each request to normalize the request's path
+- `normalizeStatusCode`: a function called on each request to normalize the respond's status code (e.g. to get 2xx, 5xx codes instead of detailed ones)
+- `normalizeMethod`: a function called on each request to normalize the request's method (to e.g. hide it fully)
 
 ### `@promster/server`
 
