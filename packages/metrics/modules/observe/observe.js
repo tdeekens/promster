@@ -15,20 +15,23 @@ const sortLabels = unsortedLabels => {
 const endMeasurmentFrom = start => {
   const [seconds, nanoseconds] = process.hrtime(start);
 
-  // NOTE: Math to get a millisecond based duration which is a good
-  // default for Prometheus metrics.
-  return Math.round((seconds * NS_PER_SEC + nanoseconds) / NS_PER_MS);
+  return {
+    durationMs: Math.round((seconds * NS_PER_SEC + nanoseconds) / NS_PER_MS),
+    durationS: seconds,
+  };
 };
 
 const createObserver = options => {
   const metrics = createMetricTypes(options);
 
   return (start, options) => {
-    const durationMs = endMeasurmentFrom(start);
+    const { durationMs, durationS } = endMeasurmentFrom(start);
     const labels = sortLabels(options.labels);
 
-    metrics.percentiles.observe(labels, durationMs);
-    metrics.buckets.observe(labels, durationMs);
+    metrics.percentilesInMilliseconds.observe(labels, durationMs);
+    metrics.percentilesInSeconds.observe(labels, durationS);
+    metrics.bucketsInMilliseconds.observe(labels, durationMs);
+    metrics.bucketsInSeconds.observe(labels, durationS);
   };
 };
 

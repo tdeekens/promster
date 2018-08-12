@@ -99,9 +99,16 @@ The following metrics are exposed:
 
 - `up`: an indication if the server is started: either 0 or 1
 - `http_request_duration_percentiles_milliseconds`: a Prometheus summary with request time percentiles in milliseconds (defaults to `[0.5, 0.9, 0.99]`)
-- `http_request_duration_buckets_milliseconds`: a Prometheus histogram with request time buckets in milliseconds (defaults to `[ 50, 100, 300, 500, 800, 1000, 1500, 3000, 5000, 10000]`)
+- `http_request_duration_percentiles_seconds`: a Prometheus summary with request time percentiles in milliseconds (defaults to `[0.5, 0.9, 0.99]`)
+- `http_request_duration_buckets_milliseconds`: a Prometheus histogram with
+- `http_request_duration_buckets_seconds`: a Prometheus histogram with
+  request time buckets in milliseconds (defaults to `[ 0.05, 0.1, 0.3, 0.5, 0.8, 1, 1.5, 2, 3, 5, 10]`)
 
-on each metric the following default labels are measured: `method`, `status_code` and `path`. You can configure more `labels` (see below).
+on each metric the following default labels are measured: `method`,
+`status_code` and `path`. You can configure more `labels` (see below). Be aware
+that the Prometheus community has settled on second accuracy. It is recommended
+to use the second based metric types. Their millisecond counterparts exist for
+backwards compatibility and may be removed in a breaking change release.
 
 ### `@promster/express`
 
