@@ -1,3 +1,4 @@
+const memoize = require('lodash.memoize');
 const { Prometheus } = require('../client');
 
 const defaultRequestLabels = ['path', 'status_code', 'method'];
@@ -9,7 +10,7 @@ const defaultGcLabels = ['gctype'];
  *    started out with milliseconds. To not create a breaking
  *    change now both types are configurable.
  */
-const createMetricTypes = (options = { labels: [] }) => {
+const createMetricTypes = memoize((options = { labels: [] }) => {
   let metrics = {
     up: new Prometheus.Gauge({
       name: 'up',
@@ -96,6 +97,6 @@ const createMetricTypes = (options = { labels: [] }) => {
   }
 
   return metrics;
-};
+});
 
 exports.default = createMetricTypes;
