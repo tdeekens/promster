@@ -1,6 +1,7 @@
 const { Prometheus } = require('../client');
 
-const defaultLabels = ['path', 'status_code', 'method'];
+const defaultRequestLabels = ['path', 'status_code', 'method'];
+const defaultGcLabels = ['gctype'];
 
 /**
  * NOTE:
@@ -13,6 +14,21 @@ const createMetricTypes = (options = { labels: [] }) => {
     up: new Prometheus.Gauge({
       name: 'up',
       help: '1 = up, 0 = not up',
+    }),
+    countOfGcs: new Counter({
+      name: 'nodejs_gc_runs_total',
+      help: 'Count of total garbage collections.',
+      defaultGcLabels,
+    }),
+    durationOfGcs: new Counter({
+      name: 'nodejs_gc_pause_seconds_total',
+      help: 'Time spent in GC Pause in seconds.',
+      defaultGcLabels,
+    }),
+    reclaimedInGb: new Counter({
+      name: 'nodejs_gc_reclaimed_bytes_total',
+      help: 'Total number of bytes reclaimed by GC.',
+      defaultGcLabels,
     }),
   };
 
@@ -27,13 +43,13 @@ const createMetricTypes = (options = { labels: [] }) => {
       percentilesInMilliseconds: new Prometheus.Summary({
         name: 'http_request_duration_percentiles_milliseconds',
         help: 'The HTTP request latencies in milliseconds.',
-        labelNames: defaultLabels.concat(options.labels).sort(),
+        labelNames: defaultRequestLabels.concat(options.labels).sort(),
         percentiles: options.percentiles || [0.5, 0.9, 0.95, 0.98, 0.99],
       }),
       bucketsInMilliseconds: new Prometheus.Histogram({
         name: 'http_request_duration_buckets_milliseconds',
         help: 'The HTTP request latencies in milliseconds.',
-        labelNames: defaultLabels.concat(options.labels).sort(),
+        labelNames: defaultRequestLabels.concat(options.labels).sort(),
         buckets: options.buckets || [
           50,
           100,
@@ -56,13 +72,13 @@ const createMetricTypes = (options = { labels: [] }) => {
       percentilesInSeconds: new Prometheus.Summary({
         name: 'http_request_duration_percentiles_seconds',
         help: 'The HTTP request latencies in seconds.',
-        labelNames: defaultLabels.concat(options.labels).sort(),
+        labelNames: defaultRequestLabels.concat(options.labels).sort(),
         percentiles: options.percentiles || [0.5, 0.9, 0.95, 0.98, 0.99],
       }),
       bucketsInSeconds: new Prometheus.Histogram({
         name: 'http_request_duration_buckets_seconds',
         help: 'The HTTP request latencies in seconds.',
-        labelNames: defaultLabels.concat(options.labels).sort(),
+        labelNames: defaultRequestLabels.concat(options.labels).sort(),
         buckets: options.buckets || [
           0.05,
           0.1,
