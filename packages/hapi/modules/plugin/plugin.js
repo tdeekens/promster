@@ -13,6 +13,7 @@ const extractStatusCode = req => (req.response ? req.response.statusCode : '');
 const createPlugin = ({
   options = {
     labels: [],
+    accuracies: ['s'],
     getLabelValues: () => ({}),
     normalizePath,
     normalizeStatusCode,

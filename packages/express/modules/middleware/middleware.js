@@ -16,6 +16,7 @@ const createMiddleware = ({ app, options } = {}) => {
   // defaulting in argument position will not shallowly merge.
   let defaultedOptions = {
     labels: [],
+    accuracies: ['s'],
     getLabelValues: () => ({}),
     normalizePath: defaultNormalizePath,
     normalizeStatusCode: defaultNormalizeStatusCode,
