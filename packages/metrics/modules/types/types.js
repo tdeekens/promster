@@ -25,7 +25,7 @@ const createMetricTypes = (options = { labels: [] }) => {
       help: 'Time spent in GC Pause in seconds.',
       defaultGcLabels,
     }),
-    reclaimedInGb: new Counter({
+    reclaimedInGc: new Counter({
       name: 'nodejs_gc_reclaimed_bytes_total',
       help: 'Total number of bytes reclaimed by GC.',
       defaultGcLabels,

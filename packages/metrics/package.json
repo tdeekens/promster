@@ -31,6 +31,8 @@
     "prometheus"
   ],
   "dependencies": {
+    "gc-stats": "^1.2.0",
+    "lodash.once": "^4.1.1",
     "prom-client": "11.1.1",
     "url": "0.11.0",
     "url-value-parser": "1.0.0"
