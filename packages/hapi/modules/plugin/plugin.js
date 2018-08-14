@@ -1,7 +1,7 @@
 const pkg = require('../package.json');
 const {
   Prometheus,
-  createObserver,
+  createRequestObserver,
   normalizePath,
   normalizeStatusCode,
   normalizeMethod,
@@ -20,7 +20,7 @@ const createPlugin = ({
     normalizeMethod,
   },
 } = {}) => {
-  const observe = createObserver(options);
+  const observeRequest = createRequestObserver(options);
 
   const plugin = {
     register(server, options, next) {
@@ -30,7 +30,7 @@ const createPlugin = ({
       });
 
       server.on('response', req => {
-        observe(req.promster.start, {
+        observeRequest(req.promster.start, {
           labels: Object.assign(
             {},
             {

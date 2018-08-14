@@ -1,6 +1,6 @@
 const {
   Prometheus,
-  createObserver,
+  createRequestObserver,
   normalizePath: defaultNormalizePath,
   normalizeStatusCode: defaultNormalizeStatusCode,
   normalizeMethod: defaultNormalizeMethod,
@@ -23,14 +23,14 @@ const createMiddleware = ({ app, options } = {}) => {
     normalizeMethod: defaultNormalizeMethod,
     ...options,
   };
-  const observe = createObserver(defaultedOptions);
+  const observeRequest = createRequestObserver(defaultedOptions);
 
   exposePrometheusOnLocals(app);
 
   function middleware(req, res, next) {
     const start = process.hrtime();
     res.on('finish', () => {
-      observe(start, {
+      observeRequest(start, {
         labels: Object.assign(
           {},
           {
