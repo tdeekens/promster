@@ -2,6 +2,7 @@ const pkg = require('../package.json');
 const {
   Prometheus,
   createRequestObserver,
+  createGcObserver,
   normalizePath,
   normalizeStatusCode,
   normalizeMethod,
@@ -21,6 +22,9 @@ const createPlugin = ({
   },
 } = {}) => {
   const observeRequest = createRequestObserver(options);
+  const observeGc = createGcObserver();
+
+  observeGc();
 
   const plugin = {
     register(server, options, next) {
