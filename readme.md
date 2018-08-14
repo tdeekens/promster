@@ -75,6 +75,7 @@
 5.  One library to integrate with Hapi, Express and potentially more (managed as a mono repository)
 6.  Allow customization of labels while sorting them internally before reporting
 7.  Expose Prometheus client on Express locals or Hapi app to easily allow adding more app metrics
+8.  Allow multiple accuracies in seconds (default), milliseconds or both
 
 ## ❯ Installation
 
@@ -98,17 +99,17 @@ Promster has to be setup with your server. Either as an Express middleware of an
 The following metrics are exposed:
 
 - `up`: an indication if the server is started: either 0 or 1
-- `http_request_duration_percentiles_milliseconds`: a Prometheus summary with request time percentiles in milliseconds (defaults to `[0.5, 0.9, 0.99]`)
 - `http_request_duration_percentiles_seconds`: a Prometheus summary with request time percentiles in milliseconds (defaults to `[0.5, 0.9, 0.99]`)
-- `http_request_duration_buckets_milliseconds`: a Prometheus histogram with
-- `http_request_duration_buckets_seconds`: a Prometheus histogram with
-  request time buckets in milliseconds (defaults to `[ 0.05, 0.1, 0.3, 0.5, 0.8, 1, 1.5, 2, 3, 5, 10]`)
+- `http_request_duration_buckets_seconds`: a Prometheus histogram with request time buckets in milliseconds (defaults to `[ 0.05, 0.1, 0.3, 0.5, 0.8, 1, 1.5, 2, 3, 5, 10]`)
 
-on each metric the following default labels are measured: `method`,
-`status_code` and `path`. You can configure more `labels` (see below). Be aware
-that the Prometheus community has settled on second accuracy. It is recommended
-to use the second based metric types. Their millisecond counterparts exist for
-backwards compatibility and may be removed in a breaking change release.
+Given you pass `{ accuracies: ['ms'] }` you would get millisecond based metrics instead.
+
+- `http_request_duration_percentiles_milliseconds`: a Prometheus summary with request time percentiles in milliseconds (defaults to `[0.5, 0.9, 0.99]`)
+- `http_request_duration_buckets_milliseconds`: a Prometheus histogram with
+
+In addition on each metric the following default labels are measured: `method`, `status_code` and `path`. You can configure more `labels` (see below).
+
+Note, that you can also pass `{ accuracies: ['ms', 's'] }`. This can be useful if you need to migrate our dashboards from one accuracy to the other but can not affort to lose metric ingestion in the meantime.
 
 ### `@promster/express`
 
@@ -159,6 +160,7 @@ counter.inc();
 When creating either the Express middleware or Hapi plugin the followin options can be passed:
 
 - `labels`: an `Array<String>` of custom labels to be configured both on all metrics mentioned above
+- `accuracies`: an `Array<String>` containing one of `ms`, `s` or both
 - `getLabelValues`: a function receiving `req` and `res` on reach request. It has to return an object with keys of the configured `labels` above and the respective values
 - `normalizePath`: a function called on each request to normalize the request's path
 - `normalizeStatusCode`: a function called on each request to normalize the respond's status code (e.g. to get 2xx, 5xx codes instead of detailed ones)

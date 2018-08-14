@@ -28,10 +28,14 @@ const createObserver = options => {
     const { durationMs, durationS } = endMeasurmentFrom(start);
     const labels = sortLabels(options.labels);
 
-    metrics.percentilesInMilliseconds.observe(labels, durationMs);
-    metrics.percentilesInSeconds.observe(labels, durationS);
-    metrics.bucketsInMilliseconds.observe(labels, durationMs);
-    metrics.bucketsInSeconds.observe(labels, durationS);
+    if (options.accuracies.includes('ms')) {
+      metrics.percentilesInMilliseconds.observe(labels, durationMs);
+      metrics.percentilesInSeconds.observe(labels, durationS);
+    }
+    if (options.accuracies.includes('s')) {
+      metrics.bucketsInMilliseconds.observe(labels, durationMs);
+      metrics.bucketsInSeconds.observe(labels, durationS);
+    }
   };
 };
 
