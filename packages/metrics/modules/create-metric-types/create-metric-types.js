@@ -9,7 +9,7 @@ const defaultGcLabels = ['gc_type'];
  *    started out with milliseconds. To not create a breaking
  *    change now both types are configurable.
  */
-const createMetricTypes = (options = { labels: [] }) => {
+const createMetricTypes = (options = { labels: [], accuracies: ['s'] }) => {
   let metrics = {
     up: new Prometheus.Gauge({
       name: 'up',

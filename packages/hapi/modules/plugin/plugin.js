@@ -23,7 +23,7 @@ const createPlugin = ({
   },
 } = {}) => {
   const metricTypes = createMetricTypes(defaultedOptions);
-  const observeRequest = createRequestObserver(metricTypes, options);
+  const observeRequest = createRequestObserver(metricTypes, defaultedOptions);
   const observeGc = createGcObserver(metricTypes);
 
   observeGc();

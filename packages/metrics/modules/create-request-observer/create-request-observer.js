@@ -19,7 +19,10 @@ const endMeasurmentFrom = start => {
   };
 };
 
-const createRequestObserver = (metricTypes, options) => {
+const createRequestObserver = (
+  metricTypes,
+  options = { accuracies: ['s'] }
+) => {
   return (start, options) => {
     const { durationMs, durationS } = endMeasurmentFrom(start);
     const labels = sortLabels(options.labels);
