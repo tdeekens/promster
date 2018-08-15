@@ -1,6 +1,6 @@
 const { version } = require('../package.json');
 const { Prometheus, defaultRegister } = require('./client');
-const { createMetricTypes } = require('./types');
+const { createMetricTypes } = require('./create-metric-types');
 const { getSummary, getContentType } = require('./summary');
 const { createRequestObserver } = require('./create-request-observer');
 const { createGcObserver } = require('./create-gc-observer');

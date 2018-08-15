@@ -1,5 +1,6 @@
 const {
   Prometheus,
+  createMetricTypes,
   createRequestObserver,
   createGcObserver,
   normalizePath: defaultNormalizePath,
@@ -24,8 +25,9 @@ const createMiddleware = ({ app, options } = {}) => {
     normalizeMethod: defaultNormalizeMethod,
     ...options,
   };
-  const observeRequest = createRequestObserver(defaultedOptions);
-  const observeGc = createGcObserver();
+  const metricTypes = createMetricTypes(options);
+  const observeRequest = createRequestObserver(metricTypes, defaultedOptions);
+  const observeGc = createGcObserver(metricTypes);
 
   exposePrometheusOnLocals(app);
   observeGc();

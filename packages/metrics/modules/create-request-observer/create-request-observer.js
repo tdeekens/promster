@@ -1,5 +1,3 @@
-const { createMetricTypes } = require('../types');
-
 const NS_PER_SEC = 1e9;
 const NS_PER_MS = 1e6;
 
@@ -21,20 +19,18 @@ const endMeasurmentFrom = start => {
   };
 };
 
-const createRequestObserver = options => {
-  const metrics = createMetricTypes(options);
-
+const createRequestObserver = (metricTypes, options) => {
   return (start, options) => {
     const { durationMs, durationS } = endMeasurmentFrom(start);
     const labels = sortLabels(options.labels);
 
     if (options.accuracies.includes('ms')) {
-      metrics.percentilesInMilliseconds.observe(labels, durationMs);
-      metrics.percentilesInSeconds.observe(labels, durationS);
+      metricTypes.percentilesInMilliseconds.observe(labels, durationMs);
+      metricTypes.percentilesInSeconds.observe(labels, durationS);
     }
     if (options.accuracies.includes('s')) {
-      metrics.bucketsInMilliseconds.observe(labels, durationMs);
-      metrics.bucketsInSeconds.observe(labels, durationS);
+      metricTypes.bucketsInMilliseconds.observe(labels, durationMs);
+      metricTypes.bucketsInSeconds.observe(labels, durationS);
     }
   };
 };

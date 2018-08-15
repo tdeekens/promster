@@ -1,4 +1,3 @@
-const memoize = require('lodash.memoize');
 const { Prometheus } = require('../client');
 
 const defaultRequestLabels = ['path', 'status_code', 'method'];
@@ -10,23 +9,24 @@ const defaultGcLabels = ['gctype'];
  *    started out with milliseconds. To not create a breaking
  *    change now both types are configurable.
  */
-const createMetricTypes = memoize((options = { labels: [] }) => {
+const createMetricTypes = (options = { labels: [] }) => {
+  console.log('getting types');
   let metrics = {
     up: new Prometheus.Gauge({
       name: 'up',
       help: '1 = up, 0 = not up',
     }),
-    countOfGcs: new Counter({
+    countOfGcs: new Prometheus.Counter({
       name: 'nodejs_gc_runs_total',
       help: 'Count of total garbage collections.',
       defaultGcLabels,
     }),
-    durationOfGcs: new Counter({
+    durationOfGcs: new Prometheus.Counter({
       name: 'nodejs_gc_pause_seconds_total',
       help: 'Time spent in GC Pause in seconds.',
       defaultGcLabels,
     }),
-    reclaimedInGc: new Counter({
+    reclaimedInGc: new Prometheus.Counter({
       name: 'nodejs_gc_reclaimed_bytes_total',
       help: 'Total number of bytes reclaimed by GC.',
       defaultGcLabels,
@@ -97,6 +97,6 @@ const createMetricTypes = memoize((options = { labels: [] }) => {
   }
 
   return metrics;
-});
+};
 
 exports.default = createMetricTypes;

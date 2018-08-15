@@ -11,19 +11,19 @@ const gcTypes = {
   15: 'All',
 };
 
-const createGcObserver = once(() => {
-  const metrics = createMetricTypes(options);
-
+const createGcObserver = once(metricTypes => {
   gc().on('stats', stats => {
     const gcType = gcTypes[stats.gctype];
 
-    countOfGcs.labels(gcType).inc();
-    durationOfGcs.labels(gcType).inc(stats.pause / 1e9);
+    metricTypes.countOfGcs.labels(gcType).inc();
+    metricTypes.durationOfGcs.labels(gcType).inc(stats.pause / 1e9);
 
     if (stats.diff.usedHeapSize < 0) {
-      reclaimedInGc.labels(gcType).inc(stats.diff.usedHeapSize * -1);
+      metricTypes.reclaimedInGc
+        .labels(gcType)
+        .inc(stats.diff.usedHeapSize * -1);
     }
   });
 });
 
-exports.default = createObserver;
+exports.default = createGcObserver;
