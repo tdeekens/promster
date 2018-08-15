@@ -10,7 +10,6 @@ const defaultGcLabels = ['gctype'];
  *    change now both types are configurable.
  */
 const createMetricTypes = (options = { labels: [] }) => {
-  console.log('getting types');
   let metrics = {
     up: new Prometheus.Gauge({
       name: 'up',
@@ -19,17 +18,17 @@ const createMetricTypes = (options = { labels: [] }) => {
     countOfGcs: new Prometheus.Counter({
       name: 'nodejs_gc_runs_total',
       help: 'Count of total garbage collections.',
-      defaultGcLabels,
+      labelNames: defaultGcLabels,
     }),
-    durationOfGcs: new Prometheus.Counter({
+    durationOfGc: new Prometheus.Counter({
       name: 'nodejs_gc_pause_seconds_total',
       help: 'Time spent in GC Pause in seconds.',
-      defaultGcLabels,
+      labelNames: defaultGcLabels,
     }),
     reclaimedInGc: new Prometheus.Counter({
       name: 'nodejs_gc_reclaimed_bytes_total',
       help: 'Total number of bytes reclaimed by GC.',
-      defaultGcLabels,
+      labelNames: defaultGcLabels,
     }),
   };
 
