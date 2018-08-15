@@ -40,6 +40,7 @@ const createMiddleware = ({ app, options } = {}) => {
           {},
           {
             method: defaultedOptions.normalizeMethod(req.method),
+            // eslint-disable-next-line camelcase
             status_code: defaultedOptions.normalizeStatusCode(res.statusCode),
             path: defaultedOptions.normalizePath(extractPath(req)),
           },

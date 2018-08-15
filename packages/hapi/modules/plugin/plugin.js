@@ -4,24 +4,25 @@ const {
   createMetricTypes,
   createRequestObserver,
   createGcObserver,
-  normalizePath,
-  normalizeStatusCode,
-  normalizeMethod,
+  normalizePath: defaultNormalizePath,
+  normalizeStatusCode: defaultNormalizeStatusCode,
+  normalizeMethod: defaultNormalizeMethod,
 } = require('@promster/metrics');
 
 const extractPath = req => req.route.path.replace(/\?/g, '');
 const extractStatusCode = req => (req.response ? req.response.statusCode : '');
 
-const createPlugin = ({
-  options = {
+const createPlugin = ({ options } = {}) => {
+  let defaultedOptions = {
     labels: [],
     accuracies: ['s'],
     getLabelValues: () => ({}),
-    normalizePath,
-    normalizeStatusCode,
-    normalizeMethod,
-  },
-} = {}) => {
+    normalizePath: defaultNormalizePath,
+    normalizeStatusCode: defaultNormalizeStatusCode,
+    normalizeMethod: defaultNormalizeMethod,
+    ...options,
+  };
+
   const metricTypes = createMetricTypes(defaultedOptions);
   const observeRequest = createRequestObserver(metricTypes, defaultedOptions);
   const observeGc = createGcObserver(metricTypes);
@@ -40,12 +41,14 @@ const createPlugin = ({
           labels: Object.assign(
             {},
             {
-              method: options.normalizeMethod(req.method),
-              path: options.normalizePath(extractPath(req)),
-              method: options.normalizeMethod(req.method),
-              status_code: options.normalizeStatusCode(extractStatusCode(req)),
+              path: defaultedOptions.normalizePath(extractPath(req)),
+              method: defaultedOptions.normalizeMethod(req.method),
+              // eslint-disable-next-line camelcase
+              status_code: defaultedOptions.normalizeStatusCode(
+                extractStatusCode(req)
+              ),
             },
-            options.getLabelValues(req, res)
+            options.getLabelValues(req, {})
           ),
         });
       });
@@ -56,12 +59,12 @@ const createPlugin = ({
     },
   };
 
-  return plugin;
-};
+  plugin.register.attributes = {
+    name: pkg.name,
+    version: pkg.version,
+  };
 
-plugin.register.attributes = {
-  name: pkg.name,
-  version: pkg.version,
+  return plugin;
 };
 
 exports.default = createPlugin;
