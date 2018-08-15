@@ -1,6 +1,6 @@
 {
   "name": "@promster/hapi",
-  "version": "0.4.1",
+  "version": "1.0.0-beta.1",
   "description": "Hapi server integrations of promster",
   "main": "modules/index.js",
   "scripts": {
@@ -31,6 +31,6 @@
     "prometheus"
   ],
   "dependencies": {
-    "@promster/metrics": "^0.4.1"
+    "@promster/metrics": "^1.0.0-beta.1"
   }
 }
