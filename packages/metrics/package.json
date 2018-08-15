@@ -4,7 +4,6 @@
   "description": "Metrics utilities used by all other server integrations",
   "main": "modules/index.js",
   "scripts": {
-    "preversion": "npm run build",
     "prebuild": "rimraf dist/**",
     "build": "exit 0"
   },

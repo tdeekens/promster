@@ -4,7 +4,6 @@
   "description": "Hapi server integrations of promster",
   "main": "modules/index.js",
   "scripts": {
-    "preversion": "npm run build",
     "prebuild": "rimraf dist/**",
     "build": "exit 0"
   },
