@@ -99,6 +99,9 @@ Promster has to be setup with your server. Either as an Express middleware of an
 The following metrics are exposed:
 
 - `up`: an indication if the server is started: either 0 or 1
+- `nodejs_gc_runs_total`: total garbage collections count
+- `nodejs_gc_pause_seconds_total`: time spent in garbage collection
+- `nodejs_gc_reclaimed_bytes_total`: number of bytes reclaimed by garbage collection
 - `http_request_duration_percentiles_seconds`: a Prometheus summary with request time percentiles in milliseconds (defaults to `[0.5, 0.9, 0.99]`)
 - `http_request_duration_buckets_seconds`: a Prometheus histogram with request time buckets in milliseconds (defaults to `[ 0.05, 0.1, 0.3, 0.5, 0.8, 1, 1.5, 2, 3, 5, 10]`)
 
