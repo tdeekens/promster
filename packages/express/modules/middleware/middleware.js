@@ -25,7 +25,7 @@ const createMiddleware = ({ app, options } = {}) => {
     normalizeMethod: defaultNormalizeMethod,
     ...options,
   };
-  const metricTypes = createMetricTypes(options);
+  const metricTypes = createMetricTypes(defaultedOptions);
   const observeRequest = createRequestObserver(metricTypes, defaultedOptions);
   const observeGc = createGcObserver(metricTypes);
 

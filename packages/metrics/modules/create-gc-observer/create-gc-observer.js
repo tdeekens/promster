@@ -11,7 +11,7 @@ const gcTypes = {
   15: 'All',
 };
 
-const createGcObserver = once(metricTypes => {
+const createGcObserver = once(metricTypes => () => {
   gc().on('stats', stats => {
     const gcType = gcTypes[stats.gctype];
 
