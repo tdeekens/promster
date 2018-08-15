@@ -21,7 +21,7 @@ const endMeasurmentFrom = start => {
   };
 };
 
-const createObserver = options => {
+const createRequestObserver = options => {
   const metrics = createMetricTypes(options);
 
   return (start, options) => {
@@ -39,4 +39,4 @@ const createObserver = options => {
   };
 };
 
-exports.default = createObserver;
+exports.default = createRequestObserver;
