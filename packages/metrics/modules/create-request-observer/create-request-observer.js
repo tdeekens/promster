@@ -21,19 +21,19 @@ const endMeasurmentFrom = start => {
 
 const createRequestObserver = (
   metricTypes,
-  options = { accuracies: ['s'] }
+  observerOptions = { accuracies: ['s'] }
 ) => {
-  return (start, options) => {
+  return (start, recordingOptions) => {
     const { durationMs, durationS } = endMeasurmentFrom(start);
-    const labels = sortLabels(options.labels);
+    const labels = sortLabels(recordingOptions.labels);
 
-    if (options.accuracies.includes('ms')) {
-      metricTypes.percentilesInMilliseconds.observe(labels, durationMs);
-      metricTypes.percentilesInSeconds.observe(labels, durationS);
-    }
-    if (options.accuracies.includes('s')) {
+    if (observerOptions.accuracies.includes('ms')) {
       metricTypes.bucketsInMilliseconds.observe(labels, durationMs);
+      metricTypes.percentilesInMilliseconds.observe(labels, durationMs);
+    }
+    if (observerOptions.accuracies.includes('s')) {
       metricTypes.bucketsInSeconds.observe(labels, durationS);
+      metricTypes.percentilesInSeconds.observe(labels, durationS);
     }
   };
 };
