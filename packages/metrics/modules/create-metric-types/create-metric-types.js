@@ -1,7 +1,7 @@
 const { Prometheus } = require('../client');
 
 const defaultRequestLabels = ['path', 'status_code', 'method'];
-const defaultGcLabels = ['gctype'];
+const defaultGcLabels = ['gc_type'];
 
 /**
  * NOTE:

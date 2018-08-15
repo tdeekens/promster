@@ -103,15 +103,16 @@ The following metrics are exposed:
 - `nodejs_gc_runs_total`: total garbage collections count
 - `nodejs_gc_pause_seconds_total`: time spent in garbage collection
 - `nodejs_gc_reclaimed_bytes_total`: number of bytes reclaimed by garbage collection
-- `http_request_duration_percentiles_seconds`: a Prometheus summary with request time percentiles in milliseconds (defaults to `[0.5, 0.9, 0.99]`)
-- `http_request_duration_buckets_seconds`: a Prometheus histogram with request time buckets in milliseconds (defaults to `[ 0.05, 0.1, 0.3, 0.5, 0.8, 1, 1.5, 2, 3, 5, 10]`)
+- `http_request_duration_percentiles_seconds`: a Prometheus summary with request time percentiles in milliseconds (defaults to `[ 0.5, 0.9, 0.99 ]`)
+- `http_request_duration_buckets_seconds`: a Prometheus histogram with request time buckets in milliseconds (defaults to `[ 0.05, 0.1, 0.3, 0.5, 0.8, 1, 1.5, 2, 3, 5, 10 ]`)
 
 Given you pass `{ accuracies: ['ms'] }` you would get millisecond based metrics instead.
 
-- `http_request_duration_percentiles_milliseconds`: a Prometheus summary with request time percentiles in milliseconds (defaults to `[0.5, 0.9, 0.99]`)
-- `http_request_duration_buckets_milliseconds`: a Prometheus histogram with
+- `http_request_duration_percentiles_milliseconds`: a Prometheus summary with request time percentiles in milliseconds (defaults to `[ 0.5, 0.9, 0.99 ]`)
+- `http_request_duration_buckets_milliseconds`: a Prometheus histogram with request time buckets in milliseconds (defaults to `[ 50, 100, 300, 500, 800, 1000, 1500, 2000, 3000, 5000, 10000 ]`)
 
-In addition on each metric the following default labels are measured: `method`, `status_code` and `path`. You can configure more `labels` (see below).
+In addition with each http request metric the following default labels are measured: `method`, `status_code` and `path`. You can configure more `labels` (see below).
+With all gargabe collection metrics a `gc_type` label with one of: `unknown`, `scavenge`, `mark_sweep_compact`, `scavenge_and_mark_sweep_compact`, `incremental_marking`, `weak_phantom` or `all` will be recored.
 
 Note, that you can also pass `{ accuracies: ['ms', 's'] }`. This can be useful if you need to migrate our dashboards from one accuracy to the other but can not affort to lose metric ingestion in the meantime.
 
