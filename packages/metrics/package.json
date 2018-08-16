@@ -30,11 +30,14 @@
     "prometheus"
   ],
   "dependencies": {
-    "gc-stats": "^1.2.0",
-    "lodash.memoize": "^4.1.2",
-    "lodash.once": "^4.1.1",
+    "optional": "0.1.4",
+    "lodash.memoize": "4.1.2",
+    "lodash.once": "4.1.1",
     "prom-client": "11.1.1",
     "url": "0.11.0",
     "url-value-parser": "2.0.0"
+  },
+  "optionaldDependencies": {
+    "gc-stats": "1.2.0"
   }
 }

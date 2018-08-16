@@ -1,4 +1,5 @@
-const gc = require('gc-stats');
+const requireOptional = require('optional');
+const gc = requireOptional('gc-stats');
 const once = require('lodash.once');
 
 const gcTypes = {
@@ -12,6 +13,10 @@ const gcTypes = {
 };
 
 const createGcObserver = once(metricTypes => () => {
+  if (typeof gc !== 'function') {
+    return;
+  }
+
   gc().on('stats', stats => {
     const gcType = gcTypes[stats.gctype];
 
