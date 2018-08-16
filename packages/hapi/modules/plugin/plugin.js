@@ -30,13 +30,15 @@ const createPlugin = ({ options } = {}) => {
   observeGc();
 
   const plugin = {
-    register(server, options, next) {
-      server.ext('onRequest', (request, reply) => {
+    name: pkg.name,
+    version: pkg.version,
+    register(server) {
+      server.ext('onRequest', (request, h) => {
         request.promster = { start: process.hrtime() };
-        return reply.continue();
+        return h.continue;
       });
 
-      server.on('response', req => {
+      server.events.on('response', req => {
         observeRequest(req.promster.start, {
           labels: Object.assign(
             {},
@@ -48,20 +50,13 @@ const createPlugin = ({ options } = {}) => {
                 extractStatusCode(req)
               ),
             },
-            options.getLabelValues(req, {})
+            defaultedOptions.getLabelValues(req, {})
           ),
         });
       });
 
       server.decorate('server', 'Prometheus', Prometheus);
-
-      return next();
     },
-  };
-
-  plugin.register.attributes = {
-    name: pkg.name,
-    version: pkg.version,
   };
 
   return plugin;
