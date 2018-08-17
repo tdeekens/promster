@@ -33,24 +33,24 @@ const createPlugin = ({ options } = {}) => {
     name: pkg.name,
     version: pkg.version,
     register(server) {
-      server.ext('onRequest', (request, h) => {
+      server.events.on('request', (request, h) => {
         request.promster = { start: process.hrtime() };
         return h.continue;
       });
 
-      server.events.on('response', req => {
-        observeRequest(req.promster.start, {
+      server.events.on('response', request => {
+        observeRequest(request.promster.start, {
           labels: Object.assign(
             {},
             {
-              path: defaultedOptions.normalizePath(extractPath(req)),
-              method: defaultedOptions.normalizeMethod(req.method),
+              path: defaultedOptions.normalizePath(extractPath(request)),
+              method: defaultedOptions.normalizeMethod(request.method),
               // eslint-disable-next-line camelcase
               status_code: defaultedOptions.normalizeStatusCode(
-                extractStatusCode(req)
+                extractStatusCode(request)
               ),
             },
-            defaultedOptions.getLabelValues(req, {})
+            defaultedOptions.getLabelValues(request, {})
           ),
         });
       });
