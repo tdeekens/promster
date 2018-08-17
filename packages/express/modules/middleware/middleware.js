@@ -56,3 +56,5 @@ const createMiddleware = ({ app, options } = {}) => {
 };
 
 exports.default = createMiddleware;
+exports.exposePrometheusOnLocals = exposePrometheusOnLocals;
+exports.extractPath = extractPath;
