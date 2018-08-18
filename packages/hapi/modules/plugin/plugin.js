@@ -9,8 +9,9 @@ const {
   normalizeMethod: defaultNormalizeMethod,
 } = require('@promster/metrics');
 
-const extractPath = req => req.route.path.replace(/\?/g, '');
-const extractStatusCode = req => (req.response ? req.response.statusCode : '');
+const extractPath = request => request.route.path.replace(/\?/g, '');
+const extractStatusCode = request =>
+  request.response ? request.response.statusCode : '';
 
 const createPlugin = ({ options } = {}) => {
   let defaultedOptions = {
