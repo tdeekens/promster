@@ -67,16 +67,16 @@
 
 > These packages are a combination of observations and experiences I have had with other exporters which I tried to fix.
 
-1.  Use `process.hrtime()` for high-resolution real time in metrics in milliseconds (converting from nanoseconds)
+1.  🏎 Use `process.hrtime()` for high-resolution real time in metrics in milliseconds (converting from nanoseconds)
     - `process.hrtime()` calls libuv's `uv_hrtime`, without system call like `new Date`
-2.  Allow normalization of all pre-defined label values
-3.  Expose Garbage Collection among other metric of the Node.js process by default
-4.  Expose a built-in server to expose metrics quickly (on a different port) while also allowing users to integrate with existing servers
-5.  Define two metrics one histogram for buckets and a summary for percentiles for performant graphs in e.g. Grafana
-6.  One library to integrate with Hapi, Express and potentially more (managed as a mono repository)
-7.  Allow customization of labels while sorting them internally before reporting
-8.  Expose Prometheus client on Express locals or Hapi app to easily allow adding more app metrics
-9.  Allow multiple accuracies in seconds (default), milliseconds or both
+2.  ⚔️ Allow normalization of all pre-defined label values
+3.  🖥 Expose Garbage Collection among other metric of the Node.js process by default
+4.  🚨 Expose a built-in server to expose metrics quickly (on a different port) while also allowing users to integrate with existing servers
+5.  📊 Define two metrics one histogram for buckets and a summary for percentiles for performant graphs in e.g. Grafana
+6.  👩‍👩‍👧 One library to integrate with Hapi, Express and potentially more (managed as a mono repository)
+7.  🦄 Allow customization of labels while sorting them internally before reporting
+8.  🐼 Expose Prometheus client on Express locals or Hapi app to easily allow adding more app metrics
+9.  ⏰ Allow multiple accuracies in seconds (default), milliseconds or both
 
 ## ❯ Installation
 
