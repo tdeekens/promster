@@ -1,9 +1,5 @@
 {
- "extends": [
-    "config:base",
-    "group:monorepos",
-    "schedule:weekly"
-  ],
+  "extends": ["config:base", "group:monorepos", "schedule:weekly"],
   "lockFileMaintenance": {
     "enabled": true
   },
