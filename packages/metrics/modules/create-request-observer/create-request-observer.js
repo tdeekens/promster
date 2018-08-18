@@ -39,3 +39,5 @@ const createRequestObserver = (
 };
 
 exports.default = createRequestObserver;
+exports.sortLabels = sortLabels;
+exports.endMeasurmentFrom = endMeasurmentFrom;
