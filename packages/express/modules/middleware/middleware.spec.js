@@ -93,10 +93,11 @@ describe('middleware', () => {
       let onRequest = jest.fn();
 
       beforeEach(() => {
-        req = {};
+        req = {
+          method: 'GET',
+        };
         next = jest.fn();
         res = {
-          method: 'GET',
           statusCode: 200,
           url: 'foo/bar',
           on: onRequest,
@@ -129,8 +130,8 @@ describe('middleware', () => {
               labels: expect.objectContaining({
                 // eslint-disable-next-line camelcase
                 status_code: res.statusCode,
-                method: res.method,
-                url: res.url,
+                method: req.method,
+                path: req.url,
               }),
             })
           );
