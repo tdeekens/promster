@@ -71,9 +71,33 @@ describe('createMetricTypes', () => {
     it('should have `percentilesInSeconds` metric', () => {
       expect(metricTypes).toHaveProperty('percentilesInSeconds');
     });
+  });
+
+  describe('with histogram metric type', () => {
+    beforeEach(() => {
+      metricTypes = createMetricTypes({ metricTypes: ['histogram'] });
+    });
 
     it('should have `bucketsInSeconds` metric', () => {
       expect(metricTypes).toHaveProperty('bucketsInSeconds');
+    });
+
+    it('should not have `percentilesInSeconds` metric', () => {
+      expect(metricTypes).toHaveProperty('percentilesInSeconds', false);
+    });
+  });
+
+  describe('with summary metric type', () => {
+    beforeEach(() => {
+      metricTypes = createMetricTypes({ metricTypes: ['summary'] });
+    });
+
+    it('should have `percentilesInSeconds` metric', () => {
+      expect(metricTypes).toHaveProperty('percentilesInSeconds');
+    });
+
+    it('should not have `bucketsInSeconds` metric', () => {
+      expect(metricTypes).toHaveProperty('bucketsInSeconds', false);
     });
   });
 });

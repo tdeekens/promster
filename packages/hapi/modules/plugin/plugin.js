@@ -16,6 +16,7 @@ const extractStatusCode = request =>
 const createPlugin = ({ options } = {}) => {
   let defaultedOptions = {
     labels: [],
+    metricTypes: ['summary', 'histogram'],
     accuracies: ['s'],
     getLabelValues: () => ({}),
     normalizePath: defaultNormalizePath,
