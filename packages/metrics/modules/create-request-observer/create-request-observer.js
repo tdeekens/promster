@@ -20,7 +20,7 @@ const endMeasurmentFrom = start => {
 };
 
 const defaultOptions = {
-  observerOptions: { accuracies: ['s'] },
+  accuracies: ['s'],
 };
 const createRequestObserver = (
   metricTypes,
