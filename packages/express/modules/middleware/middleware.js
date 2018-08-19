@@ -3,9 +3,7 @@ const {
   createMetricTypes,
   createRequestObserver,
   createGcObserver,
-  normalizePath: defaultNormalizePath,
-  normalizeStatusCode: defaultNormalizeStatusCode,
-  normalizeMethod: defaultNormalizeMethod,
+  defaultNormalizers,
 } = require('@promster/metrics');
 
 const exposePrometheusOnLocals = app => {
@@ -14,18 +12,13 @@ const exposePrometheusOnLocals = app => {
 const extractPath = req => req.originalUrl || req.url;
 
 const createMiddleware = ({ app, options } = {}) => {
-  // NOTE: we need to "spread-default" options as
-  // defaulting in argument position will not shallowly merge.
   let defaultedOptions = {
-    labels: [],
-    metricTypes: ['summary', 'histogram'],
-    accuracies: ['s'],
-    getLabelValues: () => ({}),
-    normalizePath: defaultNormalizePath,
-    normalizeStatusCode: defaultNormalizeStatusCode,
-    normalizeMethod: defaultNormalizeMethod,
+    ...createMetricTypes.defaultedOptions,
+    ...createRequestObserver.defaultedOptions,
+    ...defaultNormalizers,
     ...options,
   };
+
   const metricTypes = createMetricTypes(defaultedOptions);
   const observeRequest = createRequestObserver(metricTypes, defaultedOptions);
   const observeGc = createGcObserver(metricTypes);
@@ -45,7 +38,8 @@ const createMiddleware = ({ app, options } = {}) => {
             status_code: defaultedOptions.normalizeStatusCode(res.statusCode),
             path: defaultedOptions.normalizePath(extractPath(req)),
           },
-          defaultedOptions.getLabelValues(req, res)
+          defaultedOptions.getLabelValues &&
+            defaultedOptions.getLabelValues(req, res)
         ),
       });
     });

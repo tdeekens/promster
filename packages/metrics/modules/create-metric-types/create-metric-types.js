@@ -2,37 +2,44 @@ const { Prometheus } = require('../client');
 
 const defaultRequestLabels = ['path', 'status_code', 'method'];
 const defaultGcLabels = ['gc_type'];
-
-/**
- * NOTE:
- *    Prometheus has settled on second accuracy. Promster
- *    started out with milliseconds. To not create a breaking
- *    change now both types are configurable.
- */
-const createMetricTypes = options => {
+const defaultMetricTypesOptions = {
+  getLabelValues: () => ({}),
+  labels: [],
+  accuracies: ['s'],
+  metricTypes: ['summary', 'histogram'],
+  metricNames: {
+    up: 'up',
+    countOfGcs: 'nodejs_gc_runs_total',
+    durationOfGc: 'nodejs_gc_pause_seconds_total',
+    reclaimedInGc: 'nodejs_gc_reclaimed_bytes_total',
+    percentilesInMilliseconds: 'http_request_duration_percentiles_milliseconds',
+    bucketsInMilliseconds: 'http_request_duration_buckets_milliseconds',
+    percentilesInSeconds: 'http_request_duration_percentiles_seconds',
+    bucketsInSeconds: 'http_request_duration_buckets_seconds',
+  },
+};
+const createMetricTypes = (options = defaultMetricTypesOptions) => {
   let defaultedOptions = {
-    labels: [],
-    accuracies: ['s'],
-    metricTypes: ['summary', 'histogram'],
+    ...defaultMetricTypesOptions,
     ...options,
   };
   let metrics = {
     up: new Prometheus.Gauge({
-      name: 'up',
+      name: defaultedOptions.metricNames.up,
       help: '1 = up, 0 = not up',
     }),
     countOfGcs: new Prometheus.Counter({
-      name: 'nodejs_gc_runs_total',
+      name: defaultedOptions.metricNames.countOfGcs,
       help: 'Count of total garbage collections.',
       labelNames: defaultGcLabels,
     }),
     durationOfGc: new Prometheus.Counter({
-      name: 'nodejs_gc_pause_seconds_total',
+      name: defaultedOptions.metricNames.durationOfGc,
       help: 'Time spent in GC Pause in seconds.',
       labelNames: defaultGcLabels,
     }),
     reclaimedInGc: new Prometheus.Counter({
-      name: 'nodejs_gc_reclaimed_bytes_total',
+      name: defaultedOptions.metricNames.reclaimedInGc,
       help: 'Total number of bytes reclaimed by GC.',
       labelNames: defaultGcLabels,
     }),
@@ -49,7 +56,7 @@ const createMetricTypes = options => {
       percentilesInMilliseconds:
         defaultedOptions.metricTypes.includes('summary') &&
         new Prometheus.Summary({
-          name: 'http_request_duration_percentiles_milliseconds',
+          name: defaultedOptions.metricNames.percentilesInMilliseconds,
           help: 'The HTTP request latencies in milliseconds.',
           labelNames: defaultRequestLabels
             .concat(defaultedOptions.labels)
@@ -65,7 +72,7 @@ const createMetricTypes = options => {
       bucketsInMilliseconds:
         defaultedOptions.metricTypes.includes('histogram') &&
         new Prometheus.Histogram({
-          name: 'http_request_duration_buckets_milliseconds',
+          name: defaultedOptions.metricNames.bucketsInMilliseconds,
           help: 'The HTTP request latencies in milliseconds.',
           labelNames: defaultRequestLabels
             .concat(defaultedOptions.labels)
@@ -92,7 +99,7 @@ const createMetricTypes = options => {
       percentilesInSeconds:
         defaultedOptions.metricTypes.includes('summary') &&
         new Prometheus.Summary({
-          name: 'http_request_duration_percentiles_seconds',
+          name: defaultedOptions.metricNames.percentilesInSeconds,
           help: 'The HTTP request latencies in seconds.',
           labelNames: defaultRequestLabels
             .concat(defaultedOptions.labels)
@@ -108,7 +115,7 @@ const createMetricTypes = options => {
       bucketsInSeconds:
         defaultedOptions.metricTypes.includes('histogram') &&
         new Prometheus.Histogram({
-          name: 'http_request_duration_buckets_seconds',
+          name: defaultedOptions.metricNames.bucketsInSeconds,
           help: 'The HTTP request latencies in seconds.',
           labelNames: defaultRequestLabels
             .concat(defaultedOptions.labels)
@@ -131,5 +138,6 @@ const createMetricTypes = options => {
 
   return metrics;
 };
+createMetricTypes.defaultOptions = defaultMetricTypesOptions;
 
 exports.default = createMetricTypes;
