@@ -2,18 +2,15 @@ const { Prometheus } = require('../client');
 
 const defaultRequestLabels = ['path', 'status_code', 'method'];
 const defaultGcLabels = ['gc_type'];
-
-/**
- * NOTE:
- *    Prometheus has settled on second accuracy. Promster
- *    started out with milliseconds. To not create a breaking
- *    change now both types are configurable.
- */
-const createMetricTypes = options => {
+const defaultMetricTypesOptions = {
+  getLabelValues: () => ({}),
+  labels: [],
+  accuracies: ['s'],
+  metricTypes: ['summary', 'histogram'],
+};
+const createMetricTypes = (options = defaultMetricTypesOptions) => {
   let defaultedOptions = {
-    labels: [],
-    accuracies: ['s'],
-    metricTypes: ['summary', 'histogram'],
+    defaultMetricTypesOptions,
     ...options,
   };
   let metrics = {
@@ -131,5 +128,6 @@ const createMetricTypes = options => {
 
   return metrics;
 };
+createMetricTypes.defaultOptions = defaultMetricTypesOptions;
 
 exports.default = createMetricTypes;

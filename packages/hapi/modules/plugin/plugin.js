@@ -4,9 +4,7 @@ const {
   createMetricTypes,
   createRequestObserver,
   createGcObserver,
-  normalizePath: defaultNormalizePath,
-  normalizeStatusCode: defaultNormalizeStatusCode,
-  normalizeMethod: defaultNormalizeMethod,
+  defaultNormalizers,
 } = require('@promster/metrics');
 
 const extractPath = request => request.route.path.replace(/\?/g, '');
@@ -15,20 +13,15 @@ const extractStatusCode = request =>
 
 const createPlugin = ({ options } = {}) => {
   let defaultedOptions = {
-    labels: [],
-    metricTypes: ['summary', 'histogram'],
-    accuracies: ['s'],
-    getLabelValues: () => ({}),
-    normalizePath: defaultNormalizePath,
-    normalizeStatusCode: defaultNormalizeStatusCode,
-    normalizeMethod: defaultNormalizeMethod,
+    ...createMetricTypes.defaultedOptions,
+    ...createRequestObserver.defaultedOptions,
+    ...defaultNormalizers,
     ...options,
   };
 
   const metricTypes = createMetricTypes(defaultedOptions);
   const observeRequest = createRequestObserver(metricTypes, defaultedOptions);
   const observeGc = createGcObserver(metricTypes);
-
   observeGc();
 
   const plugin = {
@@ -52,7 +45,8 @@ const createPlugin = ({ options } = {}) => {
                 extractStatusCode(request)
               ),
             },
-            defaultedOptions.getLabelValues(request, {})
+            defaultedOptions.getLabelValues &&
+              defaultedOptions.getLabelValues(request, {})
           ),
         });
       });

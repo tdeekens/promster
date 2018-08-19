@@ -13,9 +13,11 @@ jest.mock('@promster/metrics', () => ({
   createMetricTypes: jest.fn(),
   createRequestObserver: jest.fn(() => jest.fn()),
   createGcObserver: jest.fn(() => jest.fn()),
-  normalizePath: jest.fn(_ => _),
-  normalizeStatusCode: jest.fn(_ => _),
-  normalizeMethod: jest.fn(_ => _),
+  defaultNormalizers: {
+    normalizePath: jest.fn(_ => _),
+    normalizeStatusCode: jest.fn(_ => _),
+    normalizeMethod: jest.fn(_ => _),
+  },
 }));
 
 describe('exposing Prometheus', () => {

@@ -19,24 +19,32 @@ const endMeasurmentFrom = start => {
   };
 };
 
+const defaultOptions = {
+  observerOptions: { accuracies: ['s'] },
+};
 const createRequestObserver = (
   metricTypes,
-  observerOptions = { accuracies: ['s'] }
+  observerOptions = defaultOptions
 ) => {
+  const defaultedObserverOptions = {
+    ...defaultOptions,
+    ...observerOptions,
+  };
   return (start, recordingOptions) => {
     const { durationMs, durationS } = endMeasurmentFrom(start);
     const labels = sortLabels(recordingOptions.labels);
 
-    if (observerOptions.accuracies.includes('ms')) {
+    if (defaultedObserverOptions.accuracies.includes('ms')) {
       metricTypes.bucketsInMilliseconds.observe(labels, durationMs);
       metricTypes.percentilesInMilliseconds.observe(labels, durationMs);
     }
-    if (observerOptions.accuracies.includes('s')) {
+    if (defaultedObserverOptions.accuracies.includes('s')) {
       metricTypes.bucketsInSeconds.observe(labels, durationS);
       metricTypes.percentilesInSeconds.observe(labels, durationS);
     }
   };
 };
+createRequestObserver.defaultOptions = defaultOptions;
 
 exports.default = createRequestObserver;
 exports.sortLabels = sortLabels;
