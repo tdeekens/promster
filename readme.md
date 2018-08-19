@@ -166,6 +166,7 @@ When creating either the Express middleware or Hapi plugin the followin options 
 
 - `labels`: an `Array<String>` of custom labels to be configured both on all metrics mentioned above
 - `metricTypes`: an `Array<String>` containing one of `histogram`, `summary` or both
+- `metricNames`: an object containing custom names for one or all metrics with keys of `up, countOfGcs, durationOfGc, reclaimedInGc, percentilesInMilliseconds, bucketsInMilliseconds, percentilesInSeconds, bucketsInSeconds`
 - `accuracies`: an `Array<String>` containing one of `ms`, `s` or both
 - `getLabelValues`: a function receiving `req` and `res` on reach request. It has to return an object with keys of the configured `labels` above and the respective values
 - `normalizePath`: a function called on each request to normalize the request's path
