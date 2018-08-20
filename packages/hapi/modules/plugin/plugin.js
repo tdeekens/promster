@@ -28,7 +28,7 @@ const createPlugin = ({ options } = {}) => {
     name: pkg.name,
     version: pkg.version,
     register(server) {
-      server.events.on('request', (request, h) => {
+      server.ext('onRequest', (request, h) => {
         request.promster = { start: process.hrtime() };
         return h.continue;
       });

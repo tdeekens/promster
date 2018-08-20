@@ -51,9 +51,11 @@ describe('plugin', () => {
       beforeEach(() => {
         server = {
           decorate: jest.fn(),
+          ext: jest.fn((event, cb) => {
+            if (event === 'onRequest') cb(startedRequest, h);
+          }),
           events: {
             on: jest.fn((event, cb) => {
-              if (event === 'request') cb(startedRequest, h);
               if (event === 'response') cb(finishedRequest);
             }),
           },
