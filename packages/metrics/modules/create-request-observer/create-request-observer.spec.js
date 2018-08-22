@@ -48,6 +48,9 @@ describe('createRequestObserver', () => {
     percentilesInSeconds: {
       observe: jest.fn(),
     },
+    requestsTotal: {
+      inc: jest.fn(),
+    },
   });
   const recordingOptions = {
     labels: {
@@ -161,6 +164,20 @@ describe('createRequestObserver', () => {
       expect(
         metricTypes.percentilesInMilliseconds.observe
       ).toHaveBeenCalledWith(recordingOptions.labels, expect.anything());
+    });
+  });
+
+  describe('with request count', () => {
+    beforeEach(() => {
+      requestObserver = createRequestObserver(metricTypes, {
+        metricTypes: ['count'],
+      });
+      requestObserver(start, recordingOptions);
+    });
+    it('should record on requestsCount', () => {
+      expect(metricTypes.requestsTotal.inc).toHaveBeenCalledWith(
+        recordingOptions.labels
+      );
     });
   });
 });
