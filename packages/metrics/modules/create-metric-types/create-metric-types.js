@@ -27,12 +27,14 @@ const areMetricsInMillisecondsEnabled = options =>
 const areSummariesEnabled = options => options.metricTypes.includes('summary');
 const areHistogramsEnabled = options =>
   options.metricTypes.includes('histogram');
+const areRequestsTotalEnabled = options =>
+  options.metricTypes.includes('count');
 
 const defaultOptions = {
   getLabelValues: () => ({}),
   labels: [],
   accuracies: ['s'],
-  metricTypes: ['summary', 'histogram'],
+  metricTypes: ['summary', 'histogram', 'count'],
   metricNames: {
     up: 'up',
     countOfGcs: 'nodejs_gc_runs_total',
@@ -42,6 +44,7 @@ const defaultOptions = {
     bucketsInMilliseconds: 'http_request_duration_buckets_milliseconds',
     percentilesInSeconds: 'http_request_duration_percentiles_seconds',
     bucketsInSeconds: 'http_request_duration_buckets_seconds',
+    requestsTotal: 'http_server_requests_total',
   },
 };
 
@@ -67,7 +70,7 @@ const getDefaultMetrics = options => ({
   }),
 });
 
-const getMetricsInMilliseconds = options => ({
+const getRequestLatencyMetricsInMilliseconds = options => ({
   percentilesInMilliseconds:
     areSummariesEnabled(options) &&
     new Prometheus.Summary({
@@ -87,7 +90,7 @@ const getMetricsInMilliseconds = options => ({
     }),
 });
 
-const getMetricsInSeconds = options => ({
+const getRequestLatencyMetricsInSeconds = options => ({
   percentilesInSeconds:
     areSummariesEnabled(options) &&
     new Prometheus.Summary({
@@ -107,20 +110,37 @@ const getMetricsInSeconds = options => ({
     }),
 });
 
+const getRequestsTotalMetrics = options => ({
+  requestsTotal:
+    areRequestsTotalEnabled(options) &&
+    new Prometheus.Counter({
+      name: options.metricNames.requestsTotal,
+      help: 'The total HTTP requests.',
+      labelNames: defaultRequestLabels.concat(options.labels).sort(),
+    }),
+});
+
 const createMetricTypes = options => {
   const defaultedOptions = { ...defaultOptions, ...options };
 
   const defaultMetrics = getDefaultMetrics(defaultedOptions);
 
-  const metricsInMilliseconds =
+  const latenciesInMilliseconds =
     areMetricsInMillisecondsEnabled(defaultedOptions) &&
-    getMetricsInMilliseconds(defaultedOptions);
+    getRequestLatencyMetricsInMilliseconds(defaultedOptions);
 
-  const metricsInSeconds =
+  const latenciesInSeconds =
     areMetricsInSecondsEnabled(defaultedOptions) &&
-    getMetricsInSeconds(defaultedOptions);
+    getRequestLatencyMetricsInSeconds(defaultedOptions);
 
-  return { ...defaultMetrics, ...metricsInMilliseconds, ...metricsInSeconds };
+  const requestsTotal = getRequestsTotalMetrics(defaultedOptions);
+
+  return {
+    ...defaultMetrics,
+    ...latenciesInMilliseconds,
+    ...latenciesInSeconds,
+    ...requestsTotal,
+  };
 };
 
 createMetricTypes.defaultOptions = defaultOptions;

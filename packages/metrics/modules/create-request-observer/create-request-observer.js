@@ -21,6 +21,7 @@ const endMeasurmentFrom = start => {
 
 const defaultOptions = {
   accuracies: ['s'],
+  metricTypes: ['count'],
 };
 const createRequestObserver = (
   metricTypes,
@@ -41,6 +42,9 @@ const createRequestObserver = (
     if (defaultedObserverOptions.accuracies.includes('s')) {
       metricTypes.bucketsInSeconds.observe(labels, durationS);
       metricTypes.percentilesInSeconds.observe(labels, durationS);
+    }
+    if (defaultedObserverOptions.metricTypes.includes('count')) {
+      metricTypes.requestsTotal.inc(labels);
     }
   };
 };

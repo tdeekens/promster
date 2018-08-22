@@ -100,4 +100,14 @@ describe('createMetricTypes', () => {
       expect(metricTypes).toHaveProperty('bucketsInSeconds', false);
     });
   });
+
+  describe('with count metric type', () => {
+    beforeEach(() => {
+      metricTypes = createMetricTypes({ metricTypes: ['count'] });
+    });
+
+    it('should have `requestsTotal` metric', () => {
+      expect(metricTypes).toHaveProperty('requestsTotal');
+    });
+  });
 });
