@@ -108,7 +108,7 @@ const getMetricsInSeconds = options => ({
 });
 
 const createMetricTypes = options => {
-  let defaultedOptions = { ...defaultOptions, ...options };
+  const defaultedOptions = { ...defaultOptions, ...options };
 
   const defaultMetrics = getDefaultMetrics(defaultedOptions);
 
