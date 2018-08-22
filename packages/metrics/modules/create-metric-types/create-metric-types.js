@@ -1,8 +1,34 @@
 const { Prometheus } = require('../client');
 
+const defaultPercentilesInMillieconds = [0.5, 0.9, 0.95, 0.98, 0.99];
+const defaultBucketsInMilliseconds = [
+  50,
+  100,
+  300,
+  500,
+  800,
+  1000,
+  1500,
+  2000,
+  3000,
+  5000,
+  10000,
+];
+
+const defaultPercentilesInSeconds = [0.5, 0.9, 0.95, 0.98, 0.99];
+const defaultBucketsInSeconds = [0.05, 0.1, 0.3, 0.5, 0.8, 1, 1.5, 2, 3, 10];
+
 const defaultRequestLabels = ['path', 'status_code', 'method'];
 const defaultGcLabels = ['gc_type'];
-const defaultMetricTypesOptions = {
+
+const areMetricsInSecondsEnabled = options => options.accuracies.includes('s');
+const areMetricsInMillisecondsEnabled = options =>
+  options.accuracies.includes('ms');
+const areSummariesEnabled = options => options.metricTypes.includes('summary');
+const areHistogramsEnabled = options =>
+  options.metricTypes.includes('histogram');
+
+const defaultOptions = {
   getLabelValues: () => ({}),
   labels: [],
   accuracies: ['s'],
@@ -18,126 +44,85 @@ const defaultMetricTypesOptions = {
     bucketsInSeconds: 'http_request_duration_buckets_seconds',
   },
 };
-const createMetricTypes = (options = defaultMetricTypesOptions) => {
-  let defaultedOptions = {
-    ...defaultMetricTypesOptions,
-    ...options,
-  };
-  let metrics = {
-    up: new Prometheus.Gauge({
-      name: defaultedOptions.metricNames.up,
-      help: '1 = up, 0 = not up',
-    }),
-    countOfGcs: new Prometheus.Counter({
-      name: defaultedOptions.metricNames.countOfGcs,
-      help: 'Count of total garbage collections.',
-      labelNames: defaultGcLabels,
-    }),
-    durationOfGc: new Prometheus.Counter({
-      name: defaultedOptions.metricNames.durationOfGc,
-      help: 'Time spent in GC Pause in seconds.',
-      labelNames: defaultGcLabels,
-    }),
-    reclaimedInGc: new Prometheus.Counter({
-      name: defaultedOptions.metricNames.reclaimedInGc,
-      help: 'Total number of bytes reclaimed by GC.',
-      labelNames: defaultGcLabels,
-    }),
-  };
 
-  /**
-   * NOTE:
-   *    Both metric types should be possible to allow consumers
-   *    to migrate to either or without a metric gap.
-   */
-  if (defaultedOptions.accuracies.includes('ms')) {
-    metrics = {
-      ...metrics,
-      percentilesInMilliseconds:
-        defaultedOptions.metricTypes.includes('summary') &&
-        new Prometheus.Summary({
-          name: defaultedOptions.metricNames.percentilesInMilliseconds,
-          help: 'The HTTP request latencies in milliseconds.',
-          labelNames: defaultRequestLabels
-            .concat(defaultedOptions.labels)
-            .sort(),
-          percentiles: defaultedOptions.percentiles || [
-            0.5,
-            0.9,
-            0.95,
-            0.98,
-            0.99,
-          ],
-        }),
-      bucketsInMilliseconds:
-        defaultedOptions.metricTypes.includes('histogram') &&
-        new Prometheus.Histogram({
-          name: defaultedOptions.metricNames.bucketsInMilliseconds,
-          help: 'The HTTP request latencies in milliseconds.',
-          labelNames: defaultRequestLabels
-            .concat(defaultedOptions.labels)
-            .sort(),
-          buckets: defaultedOptions.buckets || [
-            50,
-            100,
-            300,
-            500,
-            800,
-            1000,
-            1500,
-            2000,
-            3000,
-            5000,
-            10000,
-          ],
-        }),
-    };
-  }
-  if (defaultedOptions.accuracies.includes('s')) {
-    metrics = {
-      ...metrics,
-      percentilesInSeconds:
-        defaultedOptions.metricTypes.includes('summary') &&
-        new Prometheus.Summary({
-          name: defaultedOptions.metricNames.percentilesInSeconds,
-          help: 'The HTTP request latencies in seconds.',
-          labelNames: defaultRequestLabels
-            .concat(defaultedOptions.labels)
-            .sort(),
-          percentiles: defaultedOptions.percentiles || [
-            0.5,
-            0.9,
-            0.95,
-            0.98,
-            0.99,
-          ],
-        }),
-      bucketsInSeconds:
-        defaultedOptions.metricTypes.includes('histogram') &&
-        new Prometheus.Histogram({
-          name: defaultedOptions.metricNames.bucketsInSeconds,
-          help: 'The HTTP request latencies in seconds.',
-          labelNames: defaultRequestLabels
-            .concat(defaultedOptions.labels)
-            .sort(),
-          buckets: defaultedOptions.buckets || [
-            0.05,
-            0.1,
-            0.3,
-            0.5,
-            0.8,
-            1,
-            1.5,
-            2,
-            3,
-            10,
-          ],
-        }),
-    };
-  }
+const getDefaultMetrics = options => ({
+  up: new Prometheus.Gauge({
+    name: options.metricNames.up,
+    help: '1 = up, 0 = not up',
+  }),
+  countOfGcs: new Prometheus.Counter({
+    name: options.metricNames.countOfGcs,
+    help: 'Count of total garbage collections.',
+    labelNames: defaultGcLabels,
+  }),
+  durationOfGc: new Prometheus.Counter({
+    name: options.metricNames.durationOfGc,
+    help: 'Time spent in GC Pause in seconds.',
+    labelNames: defaultGcLabels,
+  }),
+  reclaimedInGc: new Prometheus.Counter({
+    name: options.metricNames.reclaimedInGc,
+    help: 'Total number of bytes reclaimed by GC.',
+    labelNames: defaultGcLabels,
+  }),
+});
 
-  return metrics;
+const getMetricsInMilliseconds = options => ({
+  percentilesInMilliseconds:
+    areSummariesEnabled(options) &&
+    new Prometheus.Summary({
+      name: options.metricNames.percentilesInMilliseconds,
+      help: 'The HTTP request latencies in milliseconds.',
+      labelNames: defaultRequestLabels.concat(options.labels).sort(),
+      percentiles: options.percentiles || defaultPercentilesInMillieconds,
+    }),
+
+  bucketsInMilliseconds:
+    areHistogramsEnabled(options) &&
+    new Prometheus.Histogram({
+      name: options.metricNames.bucketsInMilliseconds,
+      help: 'The HTTP request latencies in milliseconds.',
+      labelNames: defaultRequestLabels.concat(options.labels).sort(),
+      buckets: options.buckets || defaultBucketsInMilliseconds,
+    }),
+});
+
+const getMetricsInSeconds = options => ({
+  percentilesInSeconds:
+    areSummariesEnabled(options) &&
+    new Prometheus.Summary({
+      name: options.metricNames.percentilesInSeconds,
+      help: 'The HTTP request latencies in seconds.',
+      labelNames: defaultRequestLabels.concat(options.labels).sort(),
+      percentiles: options.percentiles || defaultPercentilesInSeconds,
+    }),
+
+  bucketsInSeconds:
+    areHistogramsEnabled(options) &&
+    new Prometheus.Histogram({
+      name: options.metricNames.bucketsInSeconds,
+      help: 'The HTTP request latencies in seconds.',
+      labelNames: defaultRequestLabels.concat(options.labels).sort(),
+      buckets: options.buckets || defaultBucketsInSeconds,
+    }),
+});
+
+const createMetricTypes = options => {
+  const defaultedOptions = { ...defaultOptions, ...options };
+
+  const defaultMetrics = getDefaultMetrics(defaultedOptions);
+
+  const metricsInMilliseconds =
+    areMetricsInMillisecondsEnabled(defaultedOptions) &&
+    getMetricsInMilliseconds(defaultedOptions);
+
+  const metricsInSeconds =
+    areMetricsInSecondsEnabled(defaultedOptions) &&
+    getMetricsInSeconds(defaultedOptions);
+
+  return { ...defaultMetrics, ...metricsInMilliseconds, ...metricsInSeconds };
 };
-createMetricTypes.defaultOptions = defaultMetricTypesOptions;
+
+createMetricTypes.defaultOptions = defaultOptions;
 
 exports.default = createMetricTypes;
