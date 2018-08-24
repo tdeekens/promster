@@ -170,7 +170,7 @@ describe('createRequestObserver', () => {
   describe('with request count', () => {
     beforeEach(() => {
       requestObserver = createRequestObserver(metricTypes, {
-        metricTypes: ['count'],
+        metricTypes: ['httpRequestsTotal'],
       });
       requestObserver(start, recordingOptions);
     });

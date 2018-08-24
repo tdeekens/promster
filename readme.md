@@ -114,7 +114,7 @@ Given you pass `{ accuracies: ['ms'] }` you would get millisecond based metrics 
 - `http_request_duration_percentiles_milliseconds`: a Prometheus summary with request time percentiles in milliseconds (defaults to `[ 0.5, 0.9, 0.99 ]`)
 - `http_request_duration_buckets_milliseconds`: a Prometheus histogram with request time buckets in milliseconds (defaults to `[ 50, 100, 300, 500, 800, 1000, 1500, 2000, 3000, 5000, 10000 ]`)
 
-You can also opt out of either the Prometheus summary or histogram by passing in `{ metricTypes: ['summary'] }` or `{ metricTypes: ['histogram'] }`. In addition you may also pass `{ accuracies: ['ms', 's'] }`. This can be useful if you need to migrate our dashboards from one accuracy to the other but can not affort to lose metric ingestion in the meantime. These two options should give fine enough control over what accuracy and metric types will be ingested in your Prometheus cluster.
+You can also opt out of either the Prometheus summary or histogram by passing in `{ metricTypes: ['httpRequestsSummary'] }`, `{ metricTypes: ['httpRequestsHistogram'] }` or `{ metricTypes: ['httpRequestsTotal'] }`. In addition you may also pass `{ accuracies: ['ms', 's'] }`. This can be useful if you need to migrate our dashboards from one accuracy to the other but can not affort to lose metric ingestion in the meantime. These two options should give fine enough control over what accuracy and metric types will be ingested in your Prometheus cluster.
 
 ### `@promster/express`
 

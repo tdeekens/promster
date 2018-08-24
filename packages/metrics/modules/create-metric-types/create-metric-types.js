@@ -24,17 +24,22 @@ const defaultGcLabels = ['gc_type'];
 const areMetricsInSecondsEnabled = options => options.accuracies.includes('s');
 const areMetricsInMillisecondsEnabled = options =>
   options.accuracies.includes('ms');
-const areSummariesEnabled = options => options.metricTypes.includes('summary');
+const areSummariesEnabled = options =>
+  options.metricTypes.includes('httpRequestsSummary');
 const areHistogramsEnabled = options =>
-  options.metricTypes.includes('histogram');
+  options.metricTypes.includes('httpRequestsHistogram');
 const areRequestsTotalEnabled = options =>
-  options.metricTypes.includes('count');
+  options.metricTypes.includes('httpRequestsTotal');
 
 const defaultOptions = {
   getLabelValues: () => ({}),
   labels: [],
   accuracies: ['s'],
-  metricTypes: ['summary', 'histogram', 'count'],
+  metricTypes: [
+    'httpRequestsSummary',
+    'httpRequestsHistogram',
+    'httpRequestsTotal',
+  ],
   metricNames: {
     up: 'up',
     countOfGcs: 'nodejs_gc_runs_total',
@@ -44,7 +49,7 @@ const defaultOptions = {
     bucketsInMilliseconds: 'http_request_duration_buckets_milliseconds',
     percentilesInSeconds: 'http_request_duration_percentiles_seconds',
     bucketsInSeconds: 'http_request_duration_buckets_seconds',
-    requestsTotal: 'http_server_requests_total',
+    requestsTotal: 'http_requests_total',
   },
 };
 

@@ -75,7 +75,9 @@ describe('createMetricTypes', () => {
 
   describe('with histogram metric type', () => {
     beforeEach(() => {
-      metricTypes = createMetricTypes({ metricTypes: ['histogram'] });
+      metricTypes = createMetricTypes({
+        metricTypes: ['httpRequestsHistogram'],
+      });
     });
 
     it('should have `bucketsInSeconds` metric', () => {
@@ -89,7 +91,7 @@ describe('createMetricTypes', () => {
 
   describe('with summary metric type', () => {
     beforeEach(() => {
-      metricTypes = createMetricTypes({ metricTypes: ['summary'] });
+      metricTypes = createMetricTypes({ metricTypes: ['httpRequestsSummary'] });
     });
 
     it('should have `percentilesInSeconds` metric', () => {
@@ -103,7 +105,7 @@ describe('createMetricTypes', () => {
 
   describe('with count metric type', () => {
     beforeEach(() => {
-      metricTypes = createMetricTypes({ metricTypes: ['count'] });
+      metricTypes = createMetricTypes({ metricTypes: ['httpRequestsTotal'] });
     });
 
     it('should have `requestsTotal` metric', () => {
