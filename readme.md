@@ -186,9 +186,9 @@ createServer({ port: 8888 }).then(server =>
 );
 ```
 
-### `@promster/metrics`
+### `@promster/{express,hapi}`
 
-You can use the `metrics` package to expose the gathered metrics through your existing server. To do so just:
+You can use the `express` or `hapi` package to expose the gathered metrics through your existing server. To do so just:
 
 ```js
 const app = require('./your-express-app');
@@ -204,4 +204,4 @@ app.use('/metrics', (req, res) => {
 
 This may slightly depend on the server you are using but should be roughly the same for all.
 
-The `@promster/metrics` package has two other potentially useful exports in `Prometheus` (the actual client) and `defaultRegister` which is the default register of the client.
+The packages re-export most things from the `@promster/metrics` package including two other potentially useful exports in `Prometheus` (the actual client) and `defaultRegister` which is the default register of the client. After all you should never really have to install `@promster/metrics` as it is only and interally shared packages between the others.
