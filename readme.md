@@ -211,3 +211,69 @@ app.use('/metrics', (req, res) => {
 This may slightly depend on the server you are using but should be roughly the same for all.
 
 The packages re-export most things from the `@promster/metrics` package including two other potentially useful exports in `Prometheus` (the actual client) and `defaultRegister` which is the default register of the client. After all you should never really have to install `@promster/metrics` as it is only and interally shared packages between the others.
+
+### Example PromQL queries
+
+In the past we have struggled and learned a lot getting appropriate operational insights into our various Node.js based services. PromQL is powerful and a great tool but can have a steep learning curve. Here are a few queries per metric type to maybe flatten that curve. Remember that you may need to configure the `metricTypes: Array<String>` to e.g. `metricTypes: ['httpRequestsTotal', 'httpRequestsSummary', 'httpRequestsHistogram'] }`.
+
+#### `http_requests_total`
+
+> HTTP requests averaged over the last 5 minutes
+
+`rate(http_requests_total[5m])`
+
+> HTTP requests averaged over the last 5 minutes by Kubernetes pod
+
+`sum by (kubernetes_pod_name) (rate(http_requests_total[5m]))`
+
+> Http requests in the last hour
+
+`increase(http_requests_total[1h])`
+
+> Average Http requests by status code over the last 5 minutes
+
+`sum by (status_code) (rate(http_requests_total[5m]))`
+
+> Http error rates as a percentage of the traffic averaged over the last 5 minutes
+
+`rate(http_requests_total{status_code=~"5.*"}[5m]) / rate(http_requests_total[5m])`
+
+#### `http_request_duration_buckets_seconds` (works for \*\_milliseconds too)
+
+> Http requests per proxy target
+
+`sum by (proxied_to) (increase(http_request_duration_buckets_seconds_count{proxied_to!=""}[2m]))`
+
+> 99th percentile of http request latency per proxy target
+
+`histogram_quantile(0.99, sum by (proxied_to,le) (rate(http_request_duration_buckets_seconds_bucket{proxied_to!=""}[5m])))`
+
+#### `http_request_duration_percentiles_seconds` (works for \*\_milliseconds too)
+
+> Maximum 99th percentile of http request latency by Kubernetes pod
+
+`max(http_request_duration_percentiles_seconds{quantile="0.99") by (kubernetes_pod_name)`
+
+#### `nodejs_eventloop_lag_seconds`
+
+> Event loop lag averaged over the last 5 minutes by release
+
+`sum by (release) (rate(nodejs_eventloop_lag_seconds[5m]))`
+
+#### `network_concurrent_connections_count`
+
+> Concurrent network connections
+
+`sum(rate(network_concurrent_connections_count[5m]))`
+
+### `nodejs_gc_reclaimed_bytes_total`
+
+> Bytes reclaimed in gargabe collection by type
+
+`sum by (gc_type) (rate(nodejs_gc_reclaimed_bytes_total[5m]))`
+
+### `nodejs_gc_pause_seconds_total`
+
+> Time spend in gargabe collection by type
+
+`sum by (gc_type) (rate(nodejs_gc_pause_seconds_total[5m]))`
