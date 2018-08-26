@@ -36,11 +36,7 @@ const defaultOptions = {
   getLabelValues: () => ({}),
   labels: [],
   accuracies: ['s'],
-  metricTypes: [
-    'httpRequestsSummary',
-    'httpRequestsHistogram',
-    'httpRequestsTotal',
-  ],
+  metricTypes: ['httpRequestsHistogram', 'httpRequestsTotal'],
   metricNames: {
     up: 'up',
     countOfGcs: 'nodejs_gc_runs_total',

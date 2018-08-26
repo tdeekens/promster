@@ -32,8 +32,16 @@ describe('createMetricTypes', () => {
       expect(metricTypes).toHaveProperty('reclaimedInGc');
     });
 
-    it('should have `percentilesInSeconds` metric', () => {
-      expect(metricTypes).toHaveProperty('percentilesInSeconds');
+    describe('with summary enabled', () => {
+      beforeEach(() => {
+        metricTypes = createMetricTypes({
+          metricTypes: ['httpRequestsSummary'],
+        });
+      });
+
+      it('should have `percentilesInSeconds` metric', () => {
+        expect(metricTypes).toHaveProperty('percentilesInSeconds');
+      });
     });
 
     it('should have `bucketsInSeconds` metric', () => {
@@ -46,12 +54,21 @@ describe('createMetricTypes', () => {
       metricTypes = createMetricTypes({ accuracies: ['ms'] });
     });
 
-    it('should have `percentilesInMilliseconds` metric', () => {
-      expect(metricTypes).toHaveProperty('percentilesInMilliseconds');
-    });
-
     it('should have `bucketsInMilliseconds` metric', () => {
       expect(metricTypes).toHaveProperty('bucketsInMilliseconds');
+    });
+
+    describe('with summary enabled', () => {
+      beforeEach(() => {
+        metricTypes = createMetricTypes({
+          metricTypes: ['httpRequestsSummary'],
+          accuracies: ['ms'],
+        });
+      });
+
+      it('should have `percentilesInMilliseconds` metric', () => {
+        expect(metricTypes).toHaveProperty('percentilesInMilliseconds');
+      });
     });
   });
 

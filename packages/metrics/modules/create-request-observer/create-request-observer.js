@@ -26,11 +26,7 @@ const shouldObserveMetricAccuracy = accuracy => options =>
 
 const defaultOptions = {
   accuracies: ['s'],
-  metricTypes: [
-    'httpRequestsTotal',
-    'httpRequestsHistogram',
-    'httpRequestsSummary',
-  ],
+  metricTypes: ['httpRequestsTotal', 'httpRequestsHistogram'],
 };
 const createRequestObserver = (
   metricTypes,

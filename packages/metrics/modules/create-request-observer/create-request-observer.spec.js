@@ -71,14 +71,14 @@ describe('createRequestObserver', () => {
       requestObserver(start, recordingOptions);
     });
 
-    it('should record on bucketsInSeconds', () => {
+    it('should record on `bucketsInSeconds`', () => {
       expect(metricTypes.bucketsInSeconds.observe).toHaveBeenCalledWith(
         recordingOptions.labels,
         expect.anything()
       );
     });
 
-    it('should record on percentilesInSeconds', () => {
+    it('should record on `percentilesInSeconds`', () => {
       expect(metricTypes.bucketsInSeconds.observe).toHaveBeenCalledWith(
         recordingOptions.labels,
         expect.anything()
@@ -94,14 +94,14 @@ describe('createRequestObserver', () => {
       requestObserver(start, recordingOptions);
     });
 
-    it('should record on bucketsInSeconds', () => {
+    it('should record on `bucketsInSeconds`', () => {
       expect(metricTypes.bucketsInSeconds.observe).toHaveBeenCalledWith(
         recordingOptions.labels,
         expect.anything()
       );
     });
 
-    it('should record on percentilesInSeconds', () => {
+    it('should record on `percentilesInSeconds`', () => {
       expect(metricTypes.bucketsInSeconds.observe).toHaveBeenCalledWith(
         recordingOptions.labels,
         expect.anything()
@@ -117,17 +117,27 @@ describe('createRequestObserver', () => {
       requestObserver(start, recordingOptions);
     });
 
-    it('should record on bucketsInMilliseconds', () => {
+    it('should record on `bucketsInMilliseconds`', () => {
       expect(metricTypes.bucketsInMilliseconds.observe).toHaveBeenCalledWith(
         recordingOptions.labels,
         expect.anything()
       );
     });
 
-    it('should record on percentilesInMilliseconds', () => {
-      expect(
-        metricTypes.percentilesInMilliseconds.observe
-      ).toHaveBeenCalledWith(recordingOptions.labels, expect.anything());
+    describe('with summary enabled', () => {
+      beforeEach(() => {
+        requestObserver = createRequestObserver(metricTypes, {
+          accuracies: ['ms'],
+          metricTypes: ['httpRequestsSummary'],
+        });
+        requestObserver(start, recordingOptions);
+      });
+
+      it('should record on `percentilesInMilliseconds`', () => {
+        expect(
+          metricTypes.percentilesInMilliseconds.observe
+        ).toHaveBeenCalledWith(recordingOptions.labels, expect.anything());
+      });
     });
   });
 
@@ -139,31 +149,41 @@ describe('createRequestObserver', () => {
       requestObserver(start, recordingOptions);
     });
 
-    it('should record on bucketsInSeconds', () => {
+    it('should record on `bucketsInSeconds`', () => {
       expect(metricTypes.bucketsInSeconds.observe).toHaveBeenCalledWith(
         recordingOptions.labels,
         expect.anything()
       );
     });
 
-    it('should record on percentilesInSeconds', () => {
+    it('should record on `percentilesInSeconds`', () => {
       expect(metricTypes.bucketsInSeconds.observe).toHaveBeenCalledWith(
         recordingOptions.labels,
         expect.anything()
       );
     });
 
-    it('should record on bucketsInMilliseconds', () => {
+    it('should record on `bucketsInMilliseconds`', () => {
       expect(metricTypes.bucketsInMilliseconds.observe).toHaveBeenCalledWith(
         recordingOptions.labels,
         expect.anything()
       );
     });
 
-    it('should record on percentilesInMilliseconds', () => {
-      expect(
-        metricTypes.percentilesInMilliseconds.observe
-      ).toHaveBeenCalledWith(recordingOptions.labels, expect.anything());
+    describe('with summary enabled', () => {
+      beforeEach(() => {
+        requestObserver = createRequestObserver(metricTypes, {
+          accuracies: ['s', 'ms'],
+          metricTypes: ['httpRequestsSummary'],
+        });
+        requestObserver(start, recordingOptions);
+      });
+
+      it('should record on `percentilesInMilliseconds`', () => {
+        expect(
+          metricTypes.percentilesInMilliseconds.observe
+        ).toHaveBeenCalledWith(recordingOptions.labels, expect.anything());
+      });
     });
   });
 
@@ -174,7 +194,7 @@ describe('createRequestObserver', () => {
       });
       requestObserver(start, recordingOptions);
     });
-    it('should record on requestsCount', () => {
+    it('should record on `requestsCount`', () => {
       expect(metricTypes.requestsTotal.inc).toHaveBeenCalledWith(
         recordingOptions.labels
       );
