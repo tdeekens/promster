@@ -21,14 +21,15 @@ const defaultBucketsInSeconds = [0.05, 0.1, 0.3, 0.5, 0.8, 1, 1.5, 2, 3, 10];
 const defaultRequestLabels = ['path', 'status_code', 'method'];
 const defaultGcLabels = ['gc_type'];
 
-const areMetricsInSecondsEnabled = options => options.accuracies.includes('s');
-const areMetricsInMillisecondsEnabled = options =>
+const shouldObserveMetricsInSeconds = options =>
+  options.accuracies.includes('s');
+const shouldObserveMetricsInMilliseconds = options =>
   options.accuracies.includes('ms');
-const areSummariesEnabled = options =>
+const shouldObserveHttpRequestsAsSummary = options =>
   options.metricTypes.includes('httpRequestsSummary');
-const areHistogramsEnabled = options =>
+const shouldObserveHttpRequestsAsHistogram = options =>
   options.metricTypes.includes('httpRequestsHistogram');
-const areRequestsTotalEnabled = options =>
+const shouldObserveHttpRequestsAsCounter = options =>
   options.metricTypes.includes('httpRequestsTotal');
 
 const defaultOptions = {
@@ -75,9 +76,9 @@ const getDefaultMetrics = options => ({
   }),
 });
 
-const getRequestLatencyMetricsInMilliseconds = options => ({
+const getHttpRequestLatencyMetricsInMilliseconds = options => ({
   percentilesInMilliseconds:
-    areSummariesEnabled(options) &&
+    shouldObserveHttpRequestsAsSummary(options) &&
     new Prometheus.Summary({
       name: options.metricNames.percentilesInMilliseconds,
       help: 'The HTTP request latencies in milliseconds.',
@@ -86,7 +87,7 @@ const getRequestLatencyMetricsInMilliseconds = options => ({
     }),
 
   bucketsInMilliseconds:
-    areHistogramsEnabled(options) &&
+    shouldObserveHttpRequestsAsHistogram(options) &&
     new Prometheus.Histogram({
       name: options.metricNames.bucketsInMilliseconds,
       help: 'The HTTP request latencies in milliseconds.',
@@ -95,9 +96,9 @@ const getRequestLatencyMetricsInMilliseconds = options => ({
     }),
 });
 
-const getRequestLatencyMetricsInSeconds = options => ({
+const getHttpRequestLatencyMetricsInSeconds = options => ({
   percentilesInSeconds:
-    areSummariesEnabled(options) &&
+    shouldObserveHttpRequestsAsSummary(options) &&
     new Prometheus.Summary({
       name: options.metricNames.percentilesInSeconds,
       help: 'The HTTP request latencies in seconds.',
@@ -106,7 +107,7 @@ const getRequestLatencyMetricsInSeconds = options => ({
     }),
 
   bucketsInSeconds:
-    areHistogramsEnabled(options) &&
+    shouldObserveHttpRequestsAsHistogram(options) &&
     new Prometheus.Histogram({
       name: options.metricNames.bucketsInSeconds,
       help: 'The HTTP request latencies in seconds.',
@@ -115,9 +116,9 @@ const getRequestLatencyMetricsInSeconds = options => ({
     }),
 });
 
-const getRequestsTotalMetrics = options => ({
+const getHttpRequestCounterMetric = options => ({
   requestsTotal:
-    areRequestsTotalEnabled(options) &&
+    shouldObserveHttpRequestsAsCounter(options) &&
     new Prometheus.Counter({
       name: options.metricNames.requestsTotal,
       help: 'The total HTTP requests.',
@@ -127,24 +128,23 @@ const getRequestsTotalMetrics = options => ({
 
 const createMetricTypes = options => {
   const defaultedOptions = { ...defaultOptions, ...options };
-
   const defaultMetrics = getDefaultMetrics(defaultedOptions);
 
-  const latenciesInMilliseconds =
-    areMetricsInMillisecondsEnabled(defaultedOptions) &&
-    getRequestLatencyMetricsInMilliseconds(defaultedOptions);
-
-  const latenciesInSeconds =
-    areMetricsInSecondsEnabled(defaultedOptions) &&
-    getRequestLatencyMetricsInSeconds(defaultedOptions);
-
-  const requestsTotal = getRequestsTotalMetrics(defaultedOptions);
+  const httpRequestLatencyMetricsInMilliseconds =
+    shouldObserveMetricsInMilliseconds(defaultedOptions) &&
+    getHttpRequestLatencyMetricsInMilliseconds(defaultedOptions);
+  const httpRequestLatencyMetricsInSeconds =
+    shouldObserveMetricsInSeconds(defaultedOptions) &&
+    getHttpRequestLatencyMetricsInSeconds(defaultedOptions);
+  const httpRequestCounterMetric = getHttpRequestCounterMetric(
+    defaultedOptions
+  );
 
   return {
     ...defaultMetrics,
-    ...latenciesInMilliseconds,
-    ...latenciesInSeconds,
-    ...requestsTotal,
+    ...httpRequestLatencyMetricsInMilliseconds,
+    ...httpRequestLatencyMetricsInSeconds,
+    ...httpRequestCounterMetric,
   };
 };
 
