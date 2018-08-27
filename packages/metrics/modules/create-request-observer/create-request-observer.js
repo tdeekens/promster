@@ -19,8 +19,14 @@ const endMeasurmentFrom = start => {
   };
 };
 
+const shouldObserveMetricType = metricType => options =>
+  options.metricTypes.includes(metricType);
+const shouldObserveMetricAccuracy = accuracy => options =>
+  options.accuracies.includes(accuracy);
+
 const defaultOptions = {
   accuracies: ['s'],
+  metricTypes: ['httpRequestsTotal', 'httpRequestsHistogram'],
 };
 const createRequestObserver = (
   metricTypes,
@@ -30,17 +36,46 @@ const createRequestObserver = (
     ...defaultOptions,
     ...observerOptions,
   };
+  const shouldObserveInSeconds = shouldObserveMetricAccuracy('s')(
+    defaultedObserverOptions
+  );
+  const shouldObserveInMilliseconds = shouldObserveMetricAccuracy('ms')(
+    defaultedObserverOptions
+  );
+  const shouldObserveInSummary = shouldObserveMetricType('httpRequestsSummary')(
+    defaultedObserverOptions
+  );
+  const shouldObserveInHistogram = shouldObserveMetricType(
+    'httpRequestsHistogram'
+  )(defaultedObserverOptions);
+  const shouldObserveInCounter = shouldObserveMetricType('httpRequestsTotal')(
+    defaultedObserverOptions
+  );
+
   return (start, recordingOptions) => {
     const { durationMs, durationS } = endMeasurmentFrom(start);
     const labels = sortLabels(recordingOptions.labels);
 
-    if (defaultedObserverOptions.accuracies.includes('ms')) {
-      metricTypes.bucketsInMilliseconds.observe(labels, durationMs);
-      metricTypes.percentilesInMilliseconds.observe(labels, durationMs);
+    if (shouldObserveInMilliseconds && shouldObserveInHistogram) {
+      metricTypes.httpRequestDurationInMilliseconds.observe(labels, durationMs);
     }
-    if (defaultedObserverOptions.accuracies.includes('s')) {
-      metricTypes.bucketsInSeconds.observe(labels, durationS);
-      metricTypes.percentilesInSeconds.observe(labels, durationS);
+    if (shouldObserveInMilliseconds && shouldObserveInSummary) {
+      metricTypes.httpRequestDurationPerPercentileInMilliseconds.observe(
+        labels,
+        durationMs
+      );
+    }
+    if (shouldObserveInSeconds && shouldObserveInHistogram) {
+      metricTypes.httpRequestDurationInSeconds.observe(labels, durationS);
+    }
+    if (shouldObserveInSeconds && shouldObserveInSummary) {
+      metricTypes.httpRequestDurationPerPercentileInSeconds.observe(
+        labels,
+        durationS
+      );
+    }
+    if (shouldObserveInCounter) {
+      metricTypes.httpRequestsTotal.inc(labels);
     }
   };
 };

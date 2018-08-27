@@ -103,18 +103,24 @@ The following metrics are exposed:
 - `nodejs_gc_runs_total`: total garbage collections count
 - `nodejs_gc_pause_seconds_total`: time spent in garbage collection
 - `nodejs_gc_reclaimed_bytes_total`: number of bytes reclaimed by garbage collection
-- `http_request_duration_percentiles_seconds`: a Prometheus summary with request time percentiles in milliseconds (defaults to `[ 0.5, 0.9, 0.99 ]`)
-- `http_request_duration_buckets_seconds`: a Prometheus histogram with request time buckets in milliseconds (defaults to `[ 0.05, 0.1, 0.3, 0.5, 0.8, 1, 1.5, 2, 3, 5, 10 ]`)
+- `http_requests_total`: a Prometheus counter for the http request total
+  - This metric is also exposed on the following histogram and summary which both have a `_sum` and `_count` and enabled for ease of use. It can be disabled by configuring with `metricTypes: Array<String>`.
+- `http_request_duration_seconds`: a Prometheus histogram with request time buckets in milliseconds (defaults to `[ 0.05, 0.1, 0.3, 0.5, 0.8, 1, 1.5, 2, 3, 5, 10 ]`)
+  - A summary exposes a `_sum` and `_count` which are a duplicate to the above counter metric.
+  - A summary can be used to compute percentiles with a PromQL query using the `histogram_quantile` function. It is advised to create a Prometheus recording rule for performance.
+- `http_request_duration_per_percentile_seconds`: a Prometheus summary with request time percentiles in milliseconds (defaults to `[ 0.5, 0.9, 0.99 ]`)
+  - This metric is disabled by default and can be enabled by passing `metricTypes: ['httpRequestsSummary]`. It exists for cases in which the above summary is not suffient, slow or recording rules can not be set up.
 
 In addition with each http request metric the following default labels are measured: `method`, `status_code` and `path`. You can configure more `labels` (see below).
 With all gargabe collection metrics a `gc_type` label with one of: `unknown`, `scavenge`, `mark_sweep_compact`, `scavenge_and_mark_sweep_compact`, `incremental_marking`, `weak_phantom` or `all` will be recored.
 
-Given you pass `{ accuracies: ['ms'] }` you would get millisecond based metrics instead.
+Given you pass `{ accuracies: ['ms'], metricTypes: ['httpRequestsTotal', 'httpRequestsSummary', 'httpRequestsHistogram'] }` you would get millisecond based metrics instead.
 
-- `http_request_duration_percentiles_milliseconds`: a Prometheus summary with request time percentiles in milliseconds (defaults to `[ 0.5, 0.9, 0.99 ]`)
-- `http_request_duration_buckets_milliseconds`: a Prometheus histogram with request time buckets in milliseconds (defaults to `[ 50, 100, 300, 500, 800, 1000, 1500, 2000, 3000, 5000, 10000 ]`)
+- `http_requests_total`: a Prometheus counter for the total amount of http requests
+- `http_request_duration_milliseconds`: a Prometheus histogram with request time buckets in milliseconds (defaults to `[ 50, 100, 300, 500, 800, 1000, 1500, 2000, 3000, 5000, 10000 ]`)
+- `http_request_duration_per_percentile_milliseconds`: a Prometheus summary with request time percentiles in milliseconds (defaults to `[ 0.5, 0.9, 0.99 ]`)
 
-You can also opt out of either the Prometheus summary or histogram by passing in `{ metricTypes: ['summary'] }` or `{ metricTypes: ['histogram'] }`. In addition you may also pass `{ accuracies: ['ms', 's'] }`. This can be useful if you need to migrate our dashboards from one accuracy to the other but can not affort to lose metric ingestion in the meantime. These two options should give fine enough control over what accuracy and metric types will be ingested in your Prometheus cluster.
+You can also opt out of either the Prometheus summary or histogram by passing in `{ metricTypes: ['httpRequestsSummary'] }`, `{ metricTypes: ['httpRequestsHistogram'] }` or `{ metricTypes: ['httpRequestsTotal'] }`. In addition you may also pass `{ accuracies: ['ms', 's'] }`. This can be useful if you need to migrate our dashboards from one accuracy to the other but can not affort to lose metric ingestion in the meantime. These two options should give fine enough control over what accuracy and metric types will be ingested in your Prometheus cluster.
 
 ### `@promster/express`
 
@@ -166,7 +172,7 @@ When creating either the Express middleware or Hapi plugin the followin options 
 
 - `labels`: an `Array<String>` of custom labels to be configured both on all metrics mentioned above
 - `metricTypes`: an `Array<String>` containing one of `histogram`, `summary` or both
-- `metricNames`: an object containing custom names for one or all metrics with keys of `up, countOfGcs, durationOfGc, reclaimedInGc, percentilesInMilliseconds, bucketsInMilliseconds, percentilesInSeconds, bucketsInSeconds`
+- `metricNames`: an object containing custom names for one or all metrics with keys of `up, countOfGcs, durationOfGc, reclaimedInGc, httpRequestDurationPerPercentileInMilliseconds, httpRequestDurationInMilliseconds, httpRequestDurationPerPercentileInSeconds, httpRequestDurationInSeconds`
 - `accuracies`: an `Array<String>` containing one of `ms`, `s` or both
 - `getLabelValues`: a function receiving `req` and `res` on reach request. It has to return an object with keys of the configured `labels` above and the respective values
 - `normalizePath`: a function called on each request to normalize the request's path
@@ -205,3 +211,110 @@ app.use('/metrics', (req, res) => {
 This may slightly depend on the server you are using but should be roughly the same for all.
 
 The packages re-export most things from the `@promster/metrics` package including two other potentially useful exports in `Prometheus` (the actual client) and `defaultRegister` which is the default register of the client. After all you should never really have to install `@promster/metrics` as it is only and interally shared packages between the others.
+
+Additionally you can import the default normalizers via `const { defaultNormalizers } = require('@promster/express)` and use `normalizePath`, `normalizeStatusCode` and `normalizeMethod` from you `getLabelValues`. A more involved example with `getLabelValues` could look like:
+
+```js
+app.use(
+  createMiddleware({
+    app,
+    options: {
+      labels: ['proxied_to'],
+      getLabelValues: (req, res) => {
+        if (res.proxyTo === 'someProxyTarget')
+          return {
+            proxied_to: 'someProxyTarget',
+            path: '/',
+          };
+        if (req.get('x-custom-header'))
+          return {
+            path: null,
+            proxied_to: null,
+          };
+      },
+    },
+  })
+);
+```
+
+Note that the same configuration can be passed to `@promster/hapi`.
+
+### Example PromQL queries
+
+In the past we have struggled and learned a lot getting appropriate operational insights into our various Node.js based services. PromQL is powerful and a great tool but can have a steep learning curve. Here are a few queries per metric type to maybe flatten that curve. Remember that you may need to configure the `metricTypes: Array<String>` to e.g. `metricTypes: ['httpRequestsTotal', 'httpRequestsSummary', 'httpRequestsHistogram'] }`.
+
+#### `http_requests_total`
+
+> HTTP requests averaged over the last 5 minutes
+
+`rate(http_requests_total[5m])`
+
+A recording rule for this query could be named `http_requests:rate5m`
+
+> HTTP requests averaged over the last 5 minutes by Kubernetes pod
+
+`sum by (kubernetes_pod_name) (rate(http_requests_total[5m]))`
+
+A recording rule for this query could be named `kubernetes_pod_name:http_requests:rate5m`
+
+> Http requests in the last hour
+
+`increase(http_requests_total[1h])`
+
+> Average Http requests by status code over the last 5 minutes
+
+`sum by (status_code) (rate(http_requests[5m]))`
+
+A recording rule for this query could be named `status_code:http_requests:rate5m`
+
+> Http error rates as a percentage of the traffic averaged over the last 5 minutes
+
+`rate(http_requests_total{status_code=~"5.*"}[5m]) / rate(http_requests_total[5m])`
+
+A recording rule for this query could be named `http_requests_per_status_code5xx:ratio_rate5m`
+
+#### `http_request_duration_seconds` (works for \*\_milliseconds too)
+
+> Http requests per proxy target
+
+`sum by (proxied_to) (increase(http_request_duration_seconds_count{proxied_to!=""}[2m]))`
+
+A recording rule for this query should be named something like `proxied_to_:http_request_duration_milliseconds:increase2m`.
+
+> 99th percentile of http request latency per proxy target
+
+`histogram_quantile(0.99, sum by (proxied_to,le) (rate(http_request_duration_seconds_bucket{proxied_to!=""}[5m])))`
+
+A recording rule for this query could be named `proxied_to_le:http_request_duration_seconds_bucket:p99_rate5m`
+
+#### `http_request_duration_per_percentile_seconds` (works for \*\_milliseconds too)
+
+> Maximum 99th percentile of http request latency by Kubernetes pod
+
+`max(http_request_duration_per_percentile_seconds{quantile="0.99") by (kubernetes_pod_name)`
+
+#### `nodejs_eventloop_lag_seconds`
+
+> Event loop lag averaged over the last 5 minutes by release
+
+`sum by (release) (rate(nodejs_eventloop_lag_seconds[5m]))`
+
+#### `network_concurrent_connections_count`
+
+> Concurrent network connections
+
+`sum(rate(network_concurrent_connections_count[5m]))`
+
+A recording rule for this query could be named `network_concurrent_connections:rate5m`
+
+### `nodejs_gc_reclaimed_bytes_total`
+
+> Bytes reclaimed in gargabe collection by type
+
+`sum by (gc_type) (rate(nodejs_gc_reclaimed_bytes_total[5m]))`
+
+### `nodejs_gc_pause_seconds_total`
+
+> Time spend in gargabe collection by type
+
+`sum by (gc_type) (rate(nodejs_gc_pause_seconds_total[5m]))`

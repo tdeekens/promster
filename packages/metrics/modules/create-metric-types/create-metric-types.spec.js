@@ -32,12 +32,22 @@ describe('createMetricTypes', () => {
       expect(metricTypes).toHaveProperty('reclaimedInGc');
     });
 
-    it('should have `percentilesInSeconds` metric', () => {
-      expect(metricTypes).toHaveProperty('percentilesInSeconds');
+    describe('with summary enabled', () => {
+      beforeEach(() => {
+        metricTypes = createMetricTypes({
+          metricTypes: ['httpRequestsSummary'],
+        });
+      });
+
+      it('should have `httpRequestDurationPerPercentileInSeconds` metric', () => {
+        expect(metricTypes).toHaveProperty(
+          'httpRequestDurationPerPercentileInSeconds'
+        );
+      });
     });
 
-    it('should have `bucketsInSeconds` metric', () => {
-      expect(metricTypes).toHaveProperty('bucketsInSeconds');
+    it('should have `httpRequestDurationInSeconds` metric', () => {
+      expect(metricTypes).toHaveProperty('httpRequestDurationInSeconds');
     });
   });
 
@@ -46,12 +56,23 @@ describe('createMetricTypes', () => {
       metricTypes = createMetricTypes({ accuracies: ['ms'] });
     });
 
-    it('should have `percentilesInMilliseconds` metric', () => {
-      expect(metricTypes).toHaveProperty('percentilesInMilliseconds');
+    it('should have `httpRequestDurationInMilliseconds` metric', () => {
+      expect(metricTypes).toHaveProperty('httpRequestDurationInMilliseconds');
     });
 
-    it('should have `bucketsInMilliseconds` metric', () => {
-      expect(metricTypes).toHaveProperty('bucketsInMilliseconds');
+    describe('with summary enabled', () => {
+      beforeEach(() => {
+        metricTypes = createMetricTypes({
+          metricTypes: ['httpRequestsSummary'],
+          accuracies: ['ms'],
+        });
+      });
+
+      it('should have `httpRequestDurationPerPercentileInMilliseconds` metric', () => {
+        expect(metricTypes).toHaveProperty(
+          'httpRequestDurationPerPercentileInMilliseconds'
+        );
+      });
     });
   });
 
@@ -60,44 +81,65 @@ describe('createMetricTypes', () => {
       metricTypes = createMetricTypes({ accuracies: ['s', 'ms'] });
     });
 
-    it('should have `percentilesInMilliseconds` metric', () => {
-      expect(metricTypes).toHaveProperty('percentilesInMilliseconds');
+    it('should have `httpRequestDurationPerPercentileInMilliseconds` metric', () => {
+      expect(metricTypes).toHaveProperty(
+        'httpRequestDurationPerPercentileInMilliseconds'
+      );
     });
 
-    it('should have `bucketsInMilliseconds` metric', () => {
-      expect(metricTypes).toHaveProperty('bucketsInMilliseconds');
+    it('should have `httpRequestDurationInMilliseconds` metric', () => {
+      expect(metricTypes).toHaveProperty('httpRequestDurationInMilliseconds');
     });
 
-    it('should have `percentilesInSeconds` metric', () => {
-      expect(metricTypes).toHaveProperty('percentilesInSeconds');
+    it('should have `httpRequestDurationPerPercentileInSeconds` metric', () => {
+      expect(metricTypes).toHaveProperty(
+        'httpRequestDurationPerPercentileInSeconds'
+      );
     });
   });
 
   describe('with histogram metric type', () => {
     beforeEach(() => {
-      metricTypes = createMetricTypes({ metricTypes: ['histogram'] });
+      metricTypes = createMetricTypes({
+        metricTypes: ['httpRequestsHistogram'],
+      });
     });
 
-    it('should have `bucketsInSeconds` metric', () => {
-      expect(metricTypes).toHaveProperty('bucketsInSeconds');
+    it('should have `httpRequestDurationInSeconds` metric', () => {
+      expect(metricTypes).toHaveProperty('httpRequestDurationInSeconds');
     });
 
-    it('should not have `percentilesInSeconds` metric', () => {
-      expect(metricTypes).toHaveProperty('percentilesInSeconds', false);
+    it('should not have `httpRequestDurationPerPercentileInSeconds` metric', () => {
+      expect(metricTypes).toHaveProperty(
+        'httpRequestDurationPerPercentileInSeconds',
+        false
+      );
     });
   });
 
   describe('with summary metric type', () => {
     beforeEach(() => {
-      metricTypes = createMetricTypes({ metricTypes: ['summary'] });
+      metricTypes = createMetricTypes({ metricTypes: ['httpRequestsSummary'] });
     });
 
-    it('should have `percentilesInSeconds` metric', () => {
-      expect(metricTypes).toHaveProperty('percentilesInSeconds');
+    it('should have `httpRequestDurationPerPercentileInSeconds` metric', () => {
+      expect(metricTypes).toHaveProperty(
+        'httpRequestDurationPerPercentileInSeconds'
+      );
     });
 
-    it('should not have `bucketsInSeconds` metric', () => {
-      expect(metricTypes).toHaveProperty('bucketsInSeconds', false);
+    it('should not have `httpRequestDurationInSeconds` metric', () => {
+      expect(metricTypes).toHaveProperty('httpRequestDurationInSeconds', false);
+    });
+  });
+
+  describe('with count metric type', () => {
+    beforeEach(() => {
+      metricTypes = createMetricTypes({ metricTypes: ['httpRequestsTotal'] });
+    });
+
+    it('should have `httpRequestsTotal` metric', () => {
+      expect(metricTypes).toHaveProperty('httpRequestsTotal');
     });
   });
 });
