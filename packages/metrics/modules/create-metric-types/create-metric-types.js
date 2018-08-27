@@ -1,7 +1,13 @@
 const { Prometheus } = require('../client');
 
-const defaultPercentilesInMillieconds = [0.5, 0.9, 0.95, 0.98, 0.99];
-const defaultBucketsInMilliseconds = [
+const defaultHttpRequestDurationPercentilesInMillieconds = [
+  0.5,
+  0.9,
+  0.95,
+  0.98,
+  0.99,
+];
+const defaultHttpRequestDurationInMilliseconds = [
   50,
   100,
   300,
@@ -15,8 +21,25 @@ const defaultBucketsInMilliseconds = [
   10000,
 ];
 
-const defaultPercentilesInSeconds = [0.5, 0.9, 0.95, 0.98, 0.99];
-const defaultBucketsInSeconds = [0.05, 0.1, 0.3, 0.5, 0.8, 1, 1.5, 2, 3, 10];
+const defaultHttpRequestDurationPercentileInSeconds = [
+  0.5,
+  0.9,
+  0.95,
+  0.98,
+  0.99,
+];
+const defaultHttpRequestDurationInSeconds = [
+  0.05,
+  0.1,
+  0.3,
+  0.5,
+  0.8,
+  1,
+  1.5,
+  2,
+  3,
+  10,
+];
 
 const defaultRequestLabels = ['path', 'status_code', 'method'];
 const defaultGcLabels = ['gc_type'];
@@ -42,11 +65,13 @@ const defaultOptions = {
     countOfGcs: 'nodejs_gc_runs_total',
     durationOfGc: 'nodejs_gc_pause_seconds_total',
     reclaimedInGc: 'nodejs_gc_reclaimed_bytes_total',
-    percentilesInMilliseconds: 'http_request_duration_percentiles_milliseconds',
-    bucketsInMilliseconds: 'http_request_duration_buckets_milliseconds',
-    percentilesInSeconds: 'http_request_duration_percentiles_seconds',
-    bucketsInSeconds: 'http_request_duration_buckets_seconds',
-    requestsTotal: 'http_requests_total',
+    httpRequestsTotal: 'http_requests_total',
+    httpRequestDurationPerPercentileInMilliseconds:
+      'http_request_duration_per_percentile_milliseconds',
+    httpRequestDurationPerPercentileInSeconds:
+      'http_request_duration_per_percentile_seconds',
+    httpRequestDurationInSeconds: 'http_request_duration_seconds',
+    httpRequestDurationInMilliseconds: 'http_request_duration_milliseconds',
   },
 };
 
@@ -73,50 +98,53 @@ const getDefaultMetrics = options => ({
 });
 
 const getHttpRequestLatencyMetricsInMilliseconds = options => ({
-  percentilesInMilliseconds:
+  httpRequestDurationPerPercentileInMilliseconds:
     shouldObserveHttpRequestsAsSummary(options) &&
     new Prometheus.Summary({
-      name: options.metricNames.percentilesInMilliseconds,
+      name: options.metricNames.httpRequestDurationPerPercentileInMilliseconds,
       help: 'The HTTP request latencies in milliseconds.',
       labelNames: defaultRequestLabels.concat(options.labels).sort(),
-      percentiles: options.percentiles || defaultPercentilesInMillieconds,
+      percentiles:
+        options.percentiles ||
+        defaultHttpRequestDurationPercentilesInMillieconds,
     }),
 
-  bucketsInMilliseconds:
+  httpRequestDurationInMilliseconds:
     shouldObserveHttpRequestsAsHistogram(options) &&
     new Prometheus.Histogram({
-      name: options.metricNames.bucketsInMilliseconds,
+      name: options.metricNames.httpRequestDurationInMilliseconds,
       help: 'The HTTP request latencies in milliseconds.',
       labelNames: defaultRequestLabels.concat(options.labels).sort(),
-      buckets: options.buckets || defaultBucketsInMilliseconds,
+      buckets: options.buckets || defaultHttpRequestDurationInMilliseconds,
     }),
 });
 
 const getHttpRequestLatencyMetricsInSeconds = options => ({
-  percentilesInSeconds:
+  httpRequestDurationPerPercentileInSeconds:
     shouldObserveHttpRequestsAsSummary(options) &&
     new Prometheus.Summary({
-      name: options.metricNames.percentilesInSeconds,
+      name: options.metricNames.httpRequestDurationPerPercentileInSeconds,
       help: 'The HTTP request latencies in seconds.',
       labelNames: defaultRequestLabels.concat(options.labels).sort(),
-      percentiles: options.percentiles || defaultPercentilesInSeconds,
+      percentiles:
+        options.percentiles || defaultHttpRequestDurationPercentileInSeconds,
     }),
 
-  bucketsInSeconds:
+  httpRequestDurationInSeconds:
     shouldObserveHttpRequestsAsHistogram(options) &&
     new Prometheus.Histogram({
-      name: options.metricNames.bucketsInSeconds,
+      name: options.metricNames.httpRequestDurationInSeconds,
       help: 'The HTTP request latencies in seconds.',
       labelNames: defaultRequestLabels.concat(options.labels).sort(),
-      buckets: options.buckets || defaultBucketsInSeconds,
+      buckets: options.buckets || defaultHttpRequestDurationInSeconds,
     }),
 });
 
 const getHttpRequestCounterMetric = options => ({
-  requestsTotal:
+  httpRequestsTotal:
     shouldObserveHttpRequestsAsCounter(options) &&
     new Prometheus.Counter({
-      name: options.metricNames.requestsTotal,
+      name: options.metricNames.httpRequestsTotal,
       help: 'The total HTTP requests.',
       labelNames: defaultRequestLabels.concat(options.labels).sort(),
     }),

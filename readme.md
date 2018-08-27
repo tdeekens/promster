@@ -105,10 +105,10 @@ The following metrics are exposed:
 - `nodejs_gc_reclaimed_bytes_total`: number of bytes reclaimed by garbage collection
 - `http_requests_total`: a Prometheus counter for the http request total
   - This metric is also exposed on the following histogram and summary which both have a `_sum` and `_count` and enabled for ease of use. It can be disabled by configuring with `metricTypes: Array<String>`.
-- `http_request_duration_buckets_seconds`: a Prometheus histogram with request time buckets in milliseconds (defaults to `[ 0.05, 0.1, 0.3, 0.5, 0.8, 1, 1.5, 2, 3, 5, 10 ]`)
+- `http_request_duration_seconds`: a Prometheus histogram with request time buckets in milliseconds (defaults to `[ 0.05, 0.1, 0.3, 0.5, 0.8, 1, 1.5, 2, 3, 5, 10 ]`)
   - A summary exposes a `_sum` and `_count` which are a duplicate to the above counter metric.
   - A summary can be used to compute percentiles with a PromQL query using the `histogram_quantile` function. It is advised to create a Prometheus recording rule for performance.
-- `http_request_duration_percentiles_seconds`: a Prometheus summary with request time percentiles in milliseconds (defaults to `[ 0.5, 0.9, 0.99 ]`)
+- `http_request_duration_per_percentile_seconds`: a Prometheus summary with request time percentiles in milliseconds (defaults to `[ 0.5, 0.9, 0.99 ]`)
   - This metric is disabled by default and can be enabled by passing `metricTypes: ['httpRequestsSummary]`. It exists for cases in which the above summary is not suffient, slow or recording rules can not be set up.
 
 In addition with each http request metric the following default labels are measured: `method`, `status_code` and `path`. You can configure more `labels` (see below).
@@ -117,8 +117,8 @@ With all gargabe collection metrics a `gc_type` label with one of: `unknown`, `s
 Given you pass `{ accuracies: ['ms'], metricTypes: ['httpRequestsTotal', 'httpRequestsSummary', 'httpRequestsHistogram'] }` you would get millisecond based metrics instead.
 
 - `http_requests_total`: a Prometheus counter for the total amount of http requests
-- `http_request_duration_percentiles_milliseconds`: a Prometheus summary with request time percentiles in milliseconds (defaults to `[ 0.5, 0.9, 0.99 ]`)
-- `http_request_duration_buckets_milliseconds`: a Prometheus histogram with request time buckets in milliseconds (defaults to `[ 50, 100, 300, 500, 800, 1000, 1500, 2000, 3000, 5000, 10000 ]`)
+- `http_request_duration_per_percentile_milliseconds`: a Prometheus summary with request time percentiles in milliseconds (defaults to `[ 0.5, 0.9, 0.99 ]`)
+- `http_request_duration_milliseconds`: a Prometheus histogram with request time buckets in milliseconds (defaults to `[ 50, 100, 300, 500, 800, 1000, 1500, 2000, 3000, 5000, 10000 ]`)
 
 You can also opt out of either the Prometheus summary or histogram by passing in `{ metricTypes: ['httpRequestsSummary'] }`, `{ metricTypes: ['httpRequestsHistogram'] }` or `{ metricTypes: ['httpRequestsTotal'] }`. In addition you may also pass `{ accuracies: ['ms', 's'] }`. This can be useful if you need to migrate our dashboards from one accuracy to the other but can not affort to lose metric ingestion in the meantime. These two options should give fine enough control over what accuracy and metric types will be ingested in your Prometheus cluster.
 
@@ -172,7 +172,7 @@ When creating either the Express middleware or Hapi plugin the followin options 
 
 - `labels`: an `Array<String>` of custom labels to be configured both on all metrics mentioned above
 - `metricTypes`: an `Array<String>` containing one of `histogram`, `summary` or both
-- `metricNames`: an object containing custom names for one or all metrics with keys of `up, countOfGcs, durationOfGc, reclaimedInGc, percentilesInMilliseconds, bucketsInMilliseconds, percentilesInSeconds, bucketsInSeconds`
+- `metricNames`: an object containing custom names for one or all metrics with keys of `up, countOfGcs, durationOfGc, reclaimedInGc, httpRequestDurationPerPercentileInMilliseconds, httpRequestDurationInMilliseconds, httpRequestDurationPerPercentileInSeconds, httpRequestDurationInSeconds`
 - `accuracies`: an `Array<String>` containing one of `ms`, `s` or both
 - `getLabelValues`: a function receiving `req` and `res` on reach request. It has to return an object with keys of the configured `labels` above and the respective values
 - `normalizePath`: a function called on each request to normalize the request's path
@@ -246,25 +246,25 @@ A recording rule for this query could be named `status_code:http_requests:rate5m
 
 A recording rule for this query could be named `http_requests_per_status_code5xx:ratio_rate5m`
 
-#### `http_request_duration_buckets_seconds` (works for \*\_milliseconds too)
+#### `http_request_duration_seconds` (works for \*\_milliseconds too)
 
 > Http requests per proxy target
 
-`sum by (proxied_to) (increase(http_request_duration_buckets_seconds_count{proxied_to!=""}[2m]))`
+`sum by (proxied_to) (increase(http_request_duration_seconds_count{proxied_to!=""}[2m]))`
 
-A recording rule for this query should be named something like `proxied_to_:http_request_duration_buckets_milliseconds:increase2m`.
+A recording rule for this query should be named something like `proxied_to_:http_request_duration_milliseconds:increase2m`.
 
 > 99th percentile of http request latency per proxy target
 
-`histogram_quantile(0.99, sum by (proxied_to,le) (rate(http_request_duration_buckets_seconds_bucket{proxied_to!=""}[5m])))`
+`histogram_quantile(0.99, sum by (proxied_to,le) (rate(http_request_duration_seconds_bucket{proxied_to!=""}[5m])))`
 
-A recording rule for this query could be named `proxied_to_le:http_request_duration_buckets_seconds_bucket:p99_rate5m`
+A recording rule for this query could be named `proxied_to_le:http_request_duration_seconds_bucket:p99_rate5m`
 
-#### `http_request_duration_percentiles_seconds` (works for \*\_milliseconds too)
+#### `http_request_duration_per_percentile_seconds` (works for \*\_milliseconds too)
 
 > Maximum 99th percentile of http request latency by Kubernetes pod
 
-`max(http_request_duration_percentiles_seconds{quantile="0.99") by (kubernetes_pod_name)`
+`max(http_request_duration_per_percentile_seconds{quantile="0.99") by (kubernetes_pod_name)`
 
 #### `nodejs_eventloop_lag_seconds`
 

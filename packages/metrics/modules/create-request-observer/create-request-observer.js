@@ -57,19 +57,25 @@ const createRequestObserver = (
     const labels = sortLabels(recordingOptions.labels);
 
     if (shouldObserveInMilliseconds && shouldObserveInHistogram) {
-      metricTypes.bucketsInMilliseconds.observe(labels, durationMs);
+      metricTypes.httpRequestDurationInMilliseconds.observe(labels, durationMs);
     }
     if (shouldObserveInMilliseconds && shouldObserveInSummary) {
-      metricTypes.percentilesInMilliseconds.observe(labels, durationMs);
+      metricTypes.httpRequestDurationPerPercentileInMilliseconds.observe(
+        labels,
+        durationMs
+      );
     }
     if (shouldObserveInSeconds && shouldObserveInHistogram) {
-      metricTypes.bucketsInSeconds.observe(labels, durationS);
+      metricTypes.httpRequestDurationInSeconds.observe(labels, durationS);
     }
     if (shouldObserveInSeconds && shouldObserveInSummary) {
-      metricTypes.percentilesInSeconds.observe(labels, durationS);
+      metricTypes.httpRequestDurationPerPercentileInSeconds.observe(
+        labels,
+        durationS
+      );
     }
     if (shouldObserveInCounter) {
-      metricTypes.requestsTotal.inc(labels);
+      metricTypes.httpRequestsTotal.inc(labels);
     }
   };
 };
