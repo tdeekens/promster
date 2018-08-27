@@ -1,3 +1,4 @@
+const merge = require('merge-options');
 const { Prometheus } = require('../client');
 
 const defaultHttpRequestDurationPercentilesInMillieconds = [
@@ -59,7 +60,7 @@ const defaultOptions = {
   getLabelValues: () => ({}),
   labels: [],
   accuracies: ['s'],
-  metricTypes: ['httpRequestsHistogram', 'httpRequestsTotal'],
+  metricTypes: ['httpRequestsTotal', 'httpRequestsHistogram'],
   metricNames: {
     up: 'up',
     countOfGcs: 'nodejs_gc_runs_total',
@@ -151,7 +152,7 @@ const getHttpRequestCounterMetric = options => ({
 });
 
 const createMetricTypes = options => {
-  const defaultedOptions = { ...defaultOptions, ...options };
+  const defaultedOptions = merge(defaultOptions, options);
   const defaultMetrics = getDefaultMetrics(defaultedOptions);
 
   const httpRequestLatencyMetricsInMilliseconds =

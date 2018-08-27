@@ -1,3 +1,4 @@
+const merge = require('merge-options');
 const pkg = require('../../package.json');
 const {
   Prometheus,
@@ -12,12 +13,12 @@ const extractStatusCode = request =>
   request.response ? request.response.statusCode : '';
 
 const createPlugin = ({ options } = {}) => {
-  let defaultedOptions = {
-    ...createMetricTypes.defaultedOptions,
-    ...createRequestObserver.defaultedOptions,
-    ...defaultNormalizers,
-    ...options,
-  };
+  let defaultedOptions = merge(
+    createMetricTypes.defaultedOptions,
+    createRequestObserver.defaultedOptions,
+    defaultNormalizers,
+    options
+  );
 
   const metricTypes = createMetricTypes(defaultedOptions);
   const observeRequest = createRequestObserver(metricTypes, defaultedOptions);

@@ -1,3 +1,4 @@
+const merge = require('merge-options');
 const {
   Prometheus,
   createMetricTypes,
@@ -12,12 +13,12 @@ const exposePrometheusOnLocals = app => {
 const extractPath = req => req.originalUrl || req.url;
 
 const createMiddleware = ({ app, options } = {}) => {
-  let defaultedOptions = {
-    ...createMetricTypes.defaultedOptions,
-    ...createRequestObserver.defaultedOptions,
-    ...defaultNormalizers,
-    ...options,
-  };
+  let defaultedOptions = merge(
+    createMetricTypes.defaultedOptions,
+    createRequestObserver.defaultedOptions,
+    defaultNormalizers,
+    options
+  );
 
   const metricTypes = createMetricTypes(defaultedOptions);
   const observeRequest = createRequestObserver(metricTypes, defaultedOptions);

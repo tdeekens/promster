@@ -30,6 +30,7 @@
     "prometheus"
   ],
   "dependencies": {
-    "@promster/metrics": "^1.2.0"
+    "@promster/metrics": "^1.2.0",
+    "merge-options": "1.0.1"
   }
 }
