@@ -222,9 +222,13 @@ In the past we have struggled and learned a lot getting appropriate operational 
 
 `rate(http_requests_total[5m])`
 
+A recording rule for this query could be named `http_requests:rate5m`
+
 > HTTP requests averaged over the last 5 minutes by Kubernetes pod
 
 `sum by (kubernetes_pod_name) (rate(http_requests_total[5m]))`
+
+A recording rule for this query could be named `kubernetes_pod_name:http_requests:rate5m`
 
 > Http requests in the last hour
 
@@ -232,11 +236,15 @@ In the past we have struggled and learned a lot getting appropriate operational 
 
 > Average Http requests by status code over the last 5 minutes
 
-`sum by (status_code) (rate(http_requests_total[5m]))`
+`sum by (status_code) (rate(http_requests[5m]))`
+
+A recording rule for this query could be named `status_code:http_requests:rate5m`
 
 > Http error rates as a percentage of the traffic averaged over the last 5 minutes
 
 `rate(http_requests_total{status_code=~"5.*"}[5m]) / rate(http_requests_total[5m])`
+
+A recording rule for this query could be named `http_requests_per_status_code5xx:ratio_rate5m`
 
 #### `http_request_duration_buckets_seconds` (works for \*\_milliseconds too)
 
@@ -244,9 +252,13 @@ In the past we have struggled and learned a lot getting appropriate operational 
 
 `sum by (proxied_to) (increase(http_request_duration_buckets_seconds_count{proxied_to!=""}[2m]))`
 
+A recording rule for this query should be named something like `proxied_to_:http_request_duration_buckets_milliseconds:increase2m`.
+
 > 99th percentile of http request latency per proxy target
 
 `histogram_quantile(0.99, sum by (proxied_to,le) (rate(http_request_duration_buckets_seconds_bucket{proxied_to!=""}[5m])))`
+
+A recording rule for this query could be named `proxied_to_le:http_request_duration_buckets_seconds_bucket:p99_rate5m`
 
 #### `http_request_duration_percentiles_seconds` (works for \*\_milliseconds too)
 
@@ -265,6 +277,8 @@ In the past we have struggled and learned a lot getting appropriate operational 
 > Concurrent network connections
 
 `sum(rate(network_concurrent_connections_count[5m]))`
+
+A recording rule for this query could be named `network_concurrent_connections:rate5m`
 
 ### `nodejs_gc_reclaimed_bytes_total`
 
