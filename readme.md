@@ -273,7 +273,7 @@ A recording rule for this query could be named `status_code:http_requests:rate5m
 
 A recording rule for this query could be named `http_requests_per_status_code5xx:ratio_rate5m`
 
-#### `http_request_duration_seconds` (works for \*\_milliseconds too)
+#### `http_request_duration_seconds` (works for \_milliseconds too)
 
 > Http requests per proxy target
 
@@ -287,7 +287,7 @@ A recording rule for this query should be named something like `proxied_to_:http
 
 A recording rule for this query could be named `proxied_to_le:http_request_duration_seconds_bucket:p99_rate5m`
 
-#### `http_request_duration_per_percentile_seconds` (works for \*\_milliseconds too)
+#### `http_request_duration_per_percentile_seconds` (works for \_milliseconds too)
 
 > Maximum 99th percentile of http request latency by Kubernetes pod
 
@@ -307,13 +307,13 @@ A recording rule for this query could be named `proxied_to_le:http_request_durat
 
 A recording rule for this query could be named `network_concurrent_connections:rate5m`
 
-### `nodejs_gc_reclaimed_bytes_total`
+#### `nodejs_gc_reclaimed_bytes_total`
 
 > Bytes reclaimed in gargabe collection by type
 
 `sum by (gc_type) (rate(nodejs_gc_reclaimed_bytes_total[5m]))`
 
-### `nodejs_gc_pause_seconds_total`
+#### `nodejs_gc_pause_seconds_total`
 
 > Time spend in gargabe collection by type
 
