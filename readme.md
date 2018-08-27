@@ -117,8 +117,8 @@ With all gargabe collection metrics a `gc_type` label with one of: `unknown`, `s
 Given you pass `{ accuracies: ['ms'], metricTypes: ['httpRequestsTotal', 'httpRequestsSummary', 'httpRequestsHistogram'] }` you would get millisecond based metrics instead.
 
 - `http_requests_total`: a Prometheus counter for the total amount of http requests
-- `http_request_duration_per_percentile_milliseconds`: a Prometheus summary with request time percentiles in milliseconds (defaults to `[ 0.5, 0.9, 0.99 ]`)
 - `http_request_duration_milliseconds`: a Prometheus histogram with request time buckets in milliseconds (defaults to `[ 50, 100, 300, 500, 800, 1000, 1500, 2000, 3000, 5000, 10000 ]`)
+- `http_request_duration_per_percentile_milliseconds`: a Prometheus summary with request time percentiles in milliseconds (defaults to `[ 0.5, 0.9, 0.99 ]`)
 
 You can also opt out of either the Prometheus summary or histogram by passing in `{ metricTypes: ['httpRequestsSummary'] }`, `{ metricTypes: ['httpRequestsHistogram'] }` or `{ metricTypes: ['httpRequestsTotal'] }`. In addition you may also pass `{ accuracies: ['ms', 's'] }`. This can be useful if you need to migrate our dashboards from one accuracy to the other but can not affort to lose metric ingestion in the meantime. These two options should give fine enough control over what accuracy and metric types will be ingested in your Prometheus cluster.
 
@@ -211,6 +211,33 @@ app.use('/metrics', (req, res) => {
 This may slightly depend on the server you are using but should be roughly the same for all.
 
 The packages re-export most things from the `@promster/metrics` package including two other potentially useful exports in `Prometheus` (the actual client) and `defaultRegister` which is the default register of the client. After all you should never really have to install `@promster/metrics` as it is only and interally shared packages between the others.
+
+Additionally you can import the default normalizers via `const { defaultNormalizers } = require('@promster/express)` and use `normalizePath`, `normalizeStatusCode` and `normalizeMethod` from you `getLabelValues`. A more involved example with `getLabelValues` could look like:
+
+```js
+app.use(
+  createMiddleware({
+    app,
+    options: {
+      labels: ['proxied_to'],
+      getLabelValues: (req, res) => {
+        if (res.proxyTo === 'someProxyTarget')
+          return {
+            proxied_to: 'someProxyTarget',
+            path: '/',
+          };
+        if (req.get('x-custom-header'))
+          return {
+            path: null,
+            proxied_to: null,
+          };
+      },
+    },
+  })
+);
+```
+
+Note that the same configuration can be passed to `@promster/hapi`.
 
 ### Example PromQL queries
 
