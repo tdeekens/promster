@@ -16,8 +16,8 @@
     "test:ci:coverage": "cross-env NODE_ENV=test npm test -- --no-watchman --coverage && codecov",
     "test:watch": "cross-env NODE_ENV=test npm test -- --watch",
     "test:coverage": "cross-env NODE_ENV=test npm test -- --coverage",
-    "build": "lerna run --parallel build",
-    "build:watch": "lerna run --parallel build:watch",
+    "build": "lerna run build",
+    "build:watch": "lerna run build:watch",
     "release": "npm run build && lerna publish --registry=https://registry.npmjs.org/",
     "commitmsg": "commitlint -e $GIT_PARAMS",
     "precommit": "lint-staged"
