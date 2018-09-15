@@ -97,6 +97,8 @@ or
 
 Promster has to be setup with your server. Either as an Express middleware of an Hapi plugin. You can expose the gathered metrics via a built-in small server or through our own.
 
+> Please, do not be scared by the variety of options. `@promster` can be setup without any additional configuration options and has sensible defaults. However, trying to suit many needs and different existing setups (e.g. metrics in milliseconds or having recording rules over histograms) it comes with all those options listed below.
+
 The following metrics are exposed:
 
 - `up`: an indication if the server is started: either 0 or 1
