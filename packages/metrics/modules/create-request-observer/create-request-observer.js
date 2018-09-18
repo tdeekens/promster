@@ -17,7 +17,7 @@ const endMeasurmentFrom = start => {
 
   return {
     durationMs: Math.round((seconds * NS_PER_SEC + nanoseconds) / NS_PER_MS),
-    durationS: seconds,
+    durationS: (seconds * NS_PER_SEC + nanoseconds) / NS_PER_SEC,
   };
 };
 
