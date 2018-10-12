@@ -1,6 +1,6 @@
 {
   "name": "@promster/express",
-  "version": "2.0.3-alpha.0",
+  "version": "2.0.3",
   "description": "Express server integrations of promster",
   "main": "modules/index.js",
   "scripts": {
@@ -30,7 +30,7 @@
     "prometheus"
   ],
   "dependencies": {
-    "@promster/metrics": "^2.0.3-alpha.0",
+    "@promster/metrics": "^2.0.3",
     "merge-options": "1.0.1"
   }
 }
