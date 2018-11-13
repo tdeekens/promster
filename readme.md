@@ -87,11 +87,11 @@ This is a mono repository maintained using
 
 Depending on the preferred integration use:
 
-`yarn add @promster/hapi` or `npm i @promster/express --save`
+`yarn add @promster/express` or `npm i @promster/express --save`
 
 or
 
-`yarn add @promster/hapi` or `npm i @promster/express --save`
+`yarn add @promster/hapi` or `npm i @promster/hapi --save`
 
 ## ❯ Documentation
 
