@@ -4,12 +4,12 @@ aliases:
   - &restore_yarn_cache
     name: Restoring cache
     keys:
-      - v3-yarn-cache-{{ checksum "yarn.lock" }}
-      - v3-yarn-cache
+      - v4-yarn-cache-{{ checksum "yarn.lock" }}
+      - v4-yarn-cache
 
   - &save_yarn_cache
     name: Saving cache
-    key: v3-yarn-cache-{{ checksum "yarn.lock" }}
+    key: v4-yarn-cache-{{ checksum "yarn.lock" }}
     paths:
       - ~/.cache/yarn
 
@@ -37,13 +37,13 @@ aliases:
     name: Unit testing (with coverage report)
     command: yarn test:ci:coverage
 
-node6Environment: &node8Environment
-  docker:
-    - image: circleci/node:8
-  working_directory: *working_directory
-node8Environment: &node10Environment
+node10Environment: &node10Environment
   docker:
     - image: circleci/node:10
+  working_directory: *working_directory
+node11Environment: &node11Environment
+  docker:
+    - image: circleci/node:11
   working_directory: *working_directory
 
 version: 2
@@ -57,15 +57,15 @@ jobs:
       - save_cache: *save_yarn_cache
       - run: *build
       - run: *lint
-  build_test_unit_node_8:
-    <<: *node8Environment
+  build_test_unit_node_10:
+    <<: *node10Environment
     steps:
       - checkout
       - restore_cache: *restore_yarn_cache
       - run: *install
       - run: *build
       - run: *unit_test
-  build_test_unit_node_10:
+  build_test_unit_node_11:
     <<: *node10Environment
     steps:
       - checkout
@@ -79,9 +79,9 @@ workflows:
   build_and_test:
     jobs:
       - lint
-      - build_test_unit_node_8:
+      - build_test_unit_node_10:
           requires:
             - lint
-      - build_test_unit_node_10:
+      - build_test_unit_node_11:
           requires:
             - lint
