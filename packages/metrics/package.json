@@ -39,6 +39,6 @@
     "url-value-parser": "2.0.0"
   },
   "optionalDependencies": {
-    "gc-stats": "1.2.0"
+    "gc-stats": "1.2.1"
   }
 }
