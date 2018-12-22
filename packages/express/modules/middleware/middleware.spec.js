@@ -1,9 +1,10 @@
 const {
+  Prometheus,
   createRequestObserver,
   createGcObserver,
 } = require('@promster/metrics');
 const {
-  exposePrometheusOnLocals,
+  exposeOnLocals,
   extractPath,
   default: createMiddleware,
 } = require('./middleware.js');
@@ -24,7 +25,7 @@ describe('exposing Prometheus', () => {
   describe('with app and locals', () => {
     let app = { locals: {} };
     beforeEach(() => {
-      exposePrometheusOnLocals(app);
+      exposeOnLocals(app, { key: 'Prometheus', value: Prometheus });
     });
 
     it('should expose Prometheus on app locals', () => {
@@ -35,7 +36,7 @@ describe('exposing Prometheus', () => {
   describe('without app and locals', () => {
     let app = {};
     beforeEach(() => {
-      exposePrometheusOnLocals(app);
+      exposeOnLocals(app, { key: 'Prometheus', value: Prometheus });
     });
 
     it('should not expose Prometheus on app locals', () => {

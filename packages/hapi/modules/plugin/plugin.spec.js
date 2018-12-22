@@ -65,7 +65,7 @@ describe('plugin', () => {
       });
 
       it('should decorate the server', () => {
-        expect(server.decorate).toHaveBeenCalled();
+        expect(server.decorate).toHaveBeenCalledTimes(2);
       });
 
       it('should assign promster start date on request', () => {

@@ -53,6 +53,7 @@ const createPlugin = ({ options } = {}) => {
       });
 
       server.decorate('server', 'Prometheus', Prometheus);
+      server.decorate('server', 'observeRequest', observeRequest);
     },
   };
 

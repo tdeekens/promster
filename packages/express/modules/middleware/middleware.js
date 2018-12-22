@@ -7,8 +7,8 @@ const {
   defaultNormalizers,
 } = require('@promster/metrics');
 
-const exposePrometheusOnLocals = app => {
-  if (app && app.locals) app.locals.Prometheus = Prometheus;
+const exposeOnLocals = (app, { key, value }) => {
+  if (app && app.locals) app.locals[key] = value;
 };
 const extractPath = req => req.originalUrl || req.url;
 
@@ -24,7 +24,9 @@ const createMiddleware = ({ app, options } = {}) => {
   const observeRequest = createRequestObserver(metricTypes, defaultedOptions);
   const observeGc = createGcObserver(metricTypes);
 
-  exposePrometheusOnLocals(app);
+  exposeOnLocals(app, { key: 'Prometheus', value: Prometheus });
+  exposeOnLocals(app, { key: 'observeRequest', value: observeRequest });
+
   observeGc();
 
   function middleware(req, res, next) {
@@ -52,5 +54,5 @@ const createMiddleware = ({ app, options } = {}) => {
 };
 
 exports.default = createMiddleware;
-exports.exposePrometheusOnLocals = exposePrometheusOnLocals;
+exports.exposeOnLocals = exposeOnLocals;
 exports.extractPath = extractPath;
