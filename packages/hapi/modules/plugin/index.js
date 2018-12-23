@@ -1,3 +1,4 @@
-const { default: createPlugin } = require('./plugin');
+const { default: createPlugin, getRequestObserver } = require('./plugin');
 
 exports.createPlugin = createPlugin;
+exports.getRequestObserver = getRequestObserver;

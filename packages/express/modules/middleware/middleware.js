@@ -12,6 +12,9 @@ const exposeOnLocals = (app, { key, value }) => {
 };
 const extractPath = req => req.originalUrl || req.url;
 
+let observeRequest;
+const getRequestObserver = () => observeRequest;
+
 const createMiddleware = ({ app, options } = {}) => {
   let defaultedOptions = merge(
     createMetricTypes.defaultedOptions,
@@ -21,8 +24,8 @@ const createMiddleware = ({ app, options } = {}) => {
   );
 
   const metricTypes = createMetricTypes(defaultedOptions);
-  const observeRequest = createRequestObserver(metricTypes, defaultedOptions);
   const observeGc = createGcObserver(metricTypes);
+  observeRequest = createRequestObserver(metricTypes, defaultedOptions);
 
   exposeOnLocals(app, { key: 'Prometheus', value: Prometheus });
   exposeOnLocals(app, { key: 'observeRequest', value: observeRequest });
@@ -56,3 +59,4 @@ const createMiddleware = ({ app, options } = {}) => {
 exports.default = createMiddleware;
 exports.exposeOnLocals = exposeOnLocals;
 exports.extractPath = extractPath;
+exports.getRequestObserver = getRequestObserver;

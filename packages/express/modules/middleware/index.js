@@ -1,3 +1,7 @@
-const { default: createMiddleware } = require('./middleware');
+const {
+  default: createMiddleware,
+  getRequestObserver,
+} = require('./middleware');
 
 exports.createMiddleware = createMiddleware;
+exports.getRequestObserver = getRequestObserver;

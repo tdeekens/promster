@@ -12,6 +12,9 @@ const extractPath = request => request.route.path.replace(/\?/g, '');
 const extractStatusCode = request =>
   request.response ? request.response.statusCode : '';
 
+let observeRequest;
+const getRequestObserver = () => observeRequest;
+
 const createPlugin = ({ options } = {}) => {
   let defaultedOptions = merge(
     createMetricTypes.defaultedOptions,
@@ -20,8 +23,8 @@ const createPlugin = ({ options } = {}) => {
     options
   );
 
+  observeRequest = createRequestObserver(metricTypes, defaultedOptions);
   const metricTypes = createMetricTypes(defaultedOptions);
-  const observeRequest = createRequestObserver(metricTypes, defaultedOptions);
   const observeGc = createGcObserver(metricTypes);
   observeGc();
 
@@ -61,3 +64,4 @@ const createPlugin = ({ options } = {}) => {
 };
 
 exports.default = createPlugin;
+exports.getRequestObserver = getRequestObserver;

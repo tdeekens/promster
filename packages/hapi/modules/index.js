@@ -1,5 +1,5 @@
 const { version } = require('../package.json');
-const { createPlugin } = require('./plugin');
+const { createPlugin, getRequestObserver } = require('./plugin');
 const {
   getSummary,
   getContentType,
@@ -10,6 +10,7 @@ const {
 
 exports.version = version;
 exports.createPlugin = createPlugin;
+exports.getRequestObserver = getRequestObserver;
 exports.getSummary = getSummary;
 exports.getContentType = getContentType;
 exports.Prometheus = Prometheus;
