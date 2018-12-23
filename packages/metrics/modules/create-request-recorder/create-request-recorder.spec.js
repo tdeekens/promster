@@ -1,8 +1,8 @@
 const {
   sortLabels,
   endMeasurmentFrom,
-  default: createRequestObserver,
-} = require('./create-request-observer');
+  default: createRequestRecorder,
+} = require('./create-request-recorder');
 
 describe('sortLabels', () => {
   const unsorted = { b: 'c', a: 'b' };
@@ -34,7 +34,7 @@ describe('endMeasurmentFrom', () => {
   });
 });
 
-describe('createRequestObserver', () => {
+describe('createRequestRecorder', () => {
   const createMetricTypes = () => ({
     httpRequestDurationInMilliseconds: {
       observe: jest.fn(),
@@ -59,7 +59,7 @@ describe('createRequestObserver', () => {
   };
   const start = [1, 2];
   let metricTypes;
-  let requestObserver;
+  let recordRequest;
 
   beforeEach(() => {
     metricTypes = createMetricTypes();
@@ -67,8 +67,8 @@ describe('createRequestObserver', () => {
 
   describe('without accuracy', () => {
     beforeEach(() => {
-      requestObserver = createRequestObserver(metricTypes);
-      requestObserver(start, recordingOptions);
+      recordRequest = createRequestRecorder(metricTypes);
+      recordRequest(start, recordingOptions);
     });
 
     it('should record on `httpRequestDurationInSeconds`', () => {
@@ -86,10 +86,10 @@ describe('createRequestObserver', () => {
 
   describe('with second accuracy', () => {
     beforeEach(() => {
-      requestObserver = createRequestObserver(metricTypes, {
+      recordRequest = createRequestRecorder(metricTypes, {
         accuracies: ['s'],
       });
-      requestObserver(start, recordingOptions);
+      recordRequest(start, recordingOptions);
     });
 
     it('should record on `httpRequestDurationInSeconds`', () => {
@@ -107,10 +107,10 @@ describe('createRequestObserver', () => {
 
   describe('with millisecond accuracy', () => {
     beforeEach(() => {
-      requestObserver = createRequestObserver(metricTypes, {
+      recordRequest = createRequestRecorder(metricTypes, {
         accuracies: ['ms'],
       });
-      requestObserver(start, recordingOptions);
+      recordRequest(start, recordingOptions);
     });
 
     it('should record on `httpRequestDurationInMilliseconds`', () => {
@@ -121,11 +121,11 @@ describe('createRequestObserver', () => {
 
     describe('with summary enabled', () => {
       beforeEach(() => {
-        requestObserver = createRequestObserver(metricTypes, {
+        recordRequest = createRequestRecorder(metricTypes, {
           accuracies: ['ms'],
           metricTypes: ['httpRequestsSummary'],
         });
-        requestObserver(start, recordingOptions);
+        recordRequest(start, recordingOptions);
       });
 
       it('should record on `httpRequestDurationPerPercentileInMilliseconds`', () => {
@@ -138,10 +138,10 @@ describe('createRequestObserver', () => {
 
   describe('with both second and millisecond accuracy', () => {
     beforeEach(() => {
-      requestObserver = createRequestObserver(metricTypes, {
+      recordRequest = createRequestRecorder(metricTypes, {
         accuracies: ['s', 'ms'],
       });
-      requestObserver(start, recordingOptions);
+      recordRequest(start, recordingOptions);
     });
 
     it('should record on `httpRequestDurationInSeconds`', () => {
@@ -164,11 +164,11 @@ describe('createRequestObserver', () => {
 
     describe('with summary enabled', () => {
       beforeEach(() => {
-        requestObserver = createRequestObserver(metricTypes, {
+        recordRequest = createRequestRecorder(metricTypes, {
           accuracies: ['s', 'ms'],
           metricTypes: ['httpRequestsSummary'],
         });
-        requestObserver(start, recordingOptions);
+        recordRequest(start, recordingOptions);
       });
 
       it('should record on `httpRequestDurationPerPercentileInMilliseconds`', () => {
@@ -181,10 +181,10 @@ describe('createRequestObserver', () => {
 
   describe('with request count', () => {
     beforeEach(() => {
-      requestObserver = createRequestObserver(metricTypes, {
+      recordRequest = createRequestRecorder(metricTypes, {
         metricTypes: ['httpRequestsTotal'],
       });
-      requestObserver(start, recordingOptions);
+      recordRequest(start, recordingOptions);
     });
     it('should record on `requestsCount`', () => {
       expect(metricTypes.httpRequestsTotal.inc).toHaveBeenCalledWith(

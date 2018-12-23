@@ -1,5 +1,5 @@
 const { version } = require('../package.json');
-const { createMiddleware, getRequestObserver } = require('./middleware');
+const { createMiddleware, getRequestRecorder } = require('./middleware');
 const {
   getSummary,
   getContentType,
@@ -10,7 +10,7 @@ const {
 
 exports.version = version;
 exports.createMiddleware = createMiddleware;
-exports.getRequestObserver = getRequestObserver;
+exports.getRequestRecorder = getRequestRecorder;
 exports.getSummary = getSummary;
 exports.getContentType = getContentType;
 exports.Prometheus = Prometheus;

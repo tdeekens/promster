@@ -1,6 +1,6 @@
 const {
   Prometheus,
-  createRequestObserver,
+  createRequestRecorder,
   createGcObserver,
 } = require('@promster/metrics');
 const {
@@ -12,7 +12,7 @@ const {
 jest.mock('@promster/metrics', () => ({
   Prometheus: 'MockPrometheus',
   createMetricTypes: jest.fn(),
-  createRequestObserver: jest.fn(() => jest.fn()),
+  createRequestRecorder: jest.fn(() => jest.fn()),
   createGcObserver: jest.fn(() => jest.fn()),
   defaultNormalizers: {
     normalizePath: jest.fn(_ => _),
@@ -76,11 +76,11 @@ describe('middleware', () => {
   let middleware;
   describe('when creating middleware', () => {
     let observeGc = jest.fn();
-    let observeRequest = jest.fn();
+    let recordRequest = jest.fn();
 
     beforeEach(() => {
       createGcObserver.mockReturnValue(jest.fn(observeGc));
-      createRequestObserver.mockReturnValue(jest.fn(observeRequest));
+      createRequestRecorder.mockReturnValue(jest.fn(recordRequest));
 
       middleware = createMiddleware();
     });
@@ -123,11 +123,11 @@ describe('middleware', () => {
         });
 
         it('should have observed the request', () => {
-          expect(observeRequest).toHaveBeenCalled();
+          expect(recordRequest).toHaveBeenCalled();
         });
 
         it('should pass labels to the observer', () => {
-          expect(observeRequest).toHaveBeenCalledWith(
+          expect(recordRequest).toHaveBeenCalledWith(
             expect.anything(),
             expect.objectContaining({
               labels: expect.objectContaining({

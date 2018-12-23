@@ -2,7 +2,7 @@ const merge = require('merge-options');
 const {
   Prometheus,
   createMetricTypes,
-  createRequestObserver,
+  createRequestRecorder,
   createGcObserver,
   defaultNormalizers,
 } = require('@promster/metrics');
@@ -12,13 +12,13 @@ const exposeOnLocals = (app, { key, value }) => {
 };
 const extractPath = req => req.originalUrl || req.url;
 
-let observeRequest;
-const getRequestObserver = () => observeRequest;
+let recordRequest;
+const getRequestRecorder = () => recordRequest;
 
 const createMiddleware = ({ app, options } = {}) => {
   let defaultedOptions = merge(
     createMetricTypes.defaultedOptions,
-    createRequestObserver.defaultedOptions,
+    createRequestRecorder.defaultedOptions,
     defaultNormalizers,
     options
   );
@@ -26,17 +26,17 @@ const createMiddleware = ({ app, options } = {}) => {
   const metricTypes = createMetricTypes(defaultedOptions);
   const observeGc = createGcObserver(metricTypes);
 
-  observeRequest = createRequestObserver(metricTypes, defaultedOptions);
+  recordRequest = createRequestRecorder(metricTypes, defaultedOptions);
 
   exposeOnLocals(app, { key: 'Prometheus', value: Prometheus });
-  exposeOnLocals(app, { key: 'observeRequest', value: observeRequest });
+  exposeOnLocals(app, { key: 'recordRequest', value: recordRequest });
 
   observeGc();
 
   function middleware(req, res, next) {
     const start = process.hrtime();
     res.on('finish', () => {
-      observeRequest(start, {
+      recordRequest(start, {
         labels: Object.assign(
           {},
           {
@@ -60,4 +60,4 @@ const createMiddleware = ({ app, options } = {}) => {
 exports.default = createMiddleware;
 exports.exposeOnLocals = exposeOnLocals;
 exports.extractPath = extractPath;
-exports.getRequestObserver = getRequestObserver;
+exports.getRequestRecorder = getRequestRecorder;

@@ -2,7 +2,7 @@ const { version } = require('../package.json');
 const { Prometheus, defaultRegister } = require('./client');
 const { createMetricTypes } = require('./create-metric-types');
 const { getSummary, getContentType } = require('./summary');
-const { createRequestObserver } = require('./create-request-observer');
+const { createRequestRecorder } = require('./create-request-recorder');
 const { createGcObserver } = require('./create-gc-observer');
 const {
   defaultNormalizers,
@@ -17,7 +17,7 @@ exports.defaultRegister = defaultRegister;
 exports.createMetricTypes = createMetricTypes;
 exports.getSummary = getSummary;
 exports.getContentType = getContentType;
-exports.createRequestObserver = createRequestObserver;
+exports.createRequestRecorder = createRequestRecorder;
 exports.createGcObserver = createGcObserver;
 exports.defaultNormalizers = defaultNormalizers;
 exports.normalizeStatusCode = normalizeStatusCode;

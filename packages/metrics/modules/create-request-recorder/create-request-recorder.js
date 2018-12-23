@@ -30,25 +30,25 @@ const defaultOptions = {
   accuracies: ['s'],
   metricTypes: ['httpRequestsTotal', 'httpRequestsHistogram'],
 };
-const createRequestObserver = (
+const createRequestRecorder = (
   metricTypes,
-  observerOptions = defaultOptions
+  recorderOptions = defaultOptions
 ) => {
-  const defaultedObserverOptions = merge(defaultOptions, observerOptions);
+  const defaultedRecorderOptions = merge(defaultOptions, recorderOptions);
   const shouldObserveInSeconds = shouldObserveMetricAccuracy('s')(
-    defaultedObserverOptions
+    defaultedRecorderOptions
   );
   const shouldObserveInMilliseconds = shouldObserveMetricAccuracy('ms')(
-    defaultedObserverOptions
+    defaultedRecorderOptions
   );
   const shouldObserveInSummary = shouldObserveMetricType('httpRequestsSummary')(
-    defaultedObserverOptions
+    defaultedRecorderOptions
   );
   const shouldObserveInHistogram = shouldObserveMetricType(
     'httpRequestsHistogram'
-  )(defaultedObserverOptions);
+  )(defaultedRecorderOptions);
   const shouldObserveInCounter = shouldObserveMetricType('httpRequestsTotal')(
-    defaultedObserverOptions
+    defaultedRecorderOptions
   );
 
   return (start, recordingOptions) => {
@@ -78,8 +78,8 @@ const createRequestObserver = (
     }
   };
 };
-createRequestObserver.defaultOptions = defaultOptions;
+createRequestRecorder.defaultOptions = defaultOptions;
 
-exports.default = createRequestObserver;
+exports.default = createRequestRecorder;
 exports.sortLabels = sortLabels;
 exports.endMeasurmentFrom = endMeasurmentFrom;
