@@ -186,7 +186,7 @@ Lastly, both `@promster/hapi` and `@promster/express` expose the request observe
 ```js
 // Note that a getter is exposed as the request observer is only available after initialisation.
 const { getRequestObserver } = require('@promster/express');
-const fetch = request('node-fetch);
+const fetch = request('node-fetch');
 
 const async fetchSomeOtherData = () => {
   const observeRequest = getRequestObserver();
