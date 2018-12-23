@@ -23,9 +23,11 @@ const createPlugin = ({ options } = {}) => {
     options
   );
 
-  observeRequest = createRequestObserver(metricTypes, defaultedOptions);
   const metricTypes = createMetricTypes(defaultedOptions);
   const observeGc = createGcObserver(metricTypes);
+
+  observeRequest = createRequestObserver(metricTypes, defaultedOptions);
+
   observeGc();
 
   const plugin = {

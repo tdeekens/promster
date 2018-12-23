@@ -25,6 +25,7 @@ const createMiddleware = ({ app, options } = {}) => {
 
   const metricTypes = createMetricTypes(defaultedOptions);
   const observeGc = createGcObserver(metricTypes);
+
   observeRequest = createRequestObserver(metricTypes, defaultedOptions);
 
   exposeOnLocals(app, { key: 'Prometheus', value: Prometheus });
