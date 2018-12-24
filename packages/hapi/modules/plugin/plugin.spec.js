@@ -1,5 +1,5 @@
 const {
-  createRequestObserver,
+  createRequestRecorder,
   createGcObserver,
 } = require('@promster/metrics');
 const { default: createPlugin } = require('./plugin.js');
@@ -7,7 +7,7 @@ const { default: createPlugin } = require('./plugin.js');
 jest.mock('@promster/metrics', () => ({
   Prometheus: 'MockPrometheus',
   createMetricTypes: jest.fn(),
-  createRequestObserver: jest.fn(() => jest.fn()),
+  createRequestRecorder: jest.fn(() => jest.fn()),
   createGcObserver: jest.fn(() => jest.fn()),
   defaultNormalizers: {
     normalizePath: jest.fn(_ => _),
@@ -20,11 +20,11 @@ describe('plugin', () => {
   let plugin;
   describe('when creating plugin', () => {
     let observeGc = jest.fn();
-    let observeRequest = jest.fn();
+    let recordRequest = jest.fn();
 
     beforeEach(() => {
       createGcObserver.mockReturnValue(jest.fn(observeGc));
-      createRequestObserver.mockReturnValue(jest.fn(observeRequest));
+      createRequestRecorder.mockReturnValue(jest.fn(recordRequest));
 
       plugin = createPlugin();
     });
@@ -65,7 +65,7 @@ describe('plugin', () => {
       });
 
       it('should decorate the server', () => {
-        expect(server.decorate).toHaveBeenCalled();
+        expect(server.decorate).toHaveBeenCalledTimes(2);
       });
 
       it('should assign promster start date on request', () => {
@@ -74,11 +74,11 @@ describe('plugin', () => {
 
       describe('when the response finishes', () => {
         it('should have observed the request', () => {
-          expect(observeRequest).toHaveBeenCalled();
+          expect(recordRequest).toHaveBeenCalled();
         });
 
         it('should pass labels to the observer', () => {
-          expect(observeRequest).toHaveBeenCalledWith(
+          expect(recordRequest).toHaveBeenCalledWith(
             expect.anything(),
             expect.objectContaining({
               labels: expect.objectContaining({

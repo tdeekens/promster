@@ -3,7 +3,7 @@ const pkg = require('../../package.json');
 const {
   Prometheus,
   createMetricTypes,
-  createRequestObserver,
+  createRequestRecorder,
   createGcObserver,
   defaultNormalizers,
 } = require('@promster/metrics');
@@ -12,17 +12,22 @@ const extractPath = request => request.route.path.replace(/\?/g, '');
 const extractStatusCode = request =>
   request.response ? request.response.statusCode : '';
 
+let recordRequest;
+const getRequestRecorder = () => recordRequest;
+
 const createPlugin = ({ options } = {}) => {
   let defaultedOptions = merge(
     createMetricTypes.defaultedOptions,
-    createRequestObserver.defaultedOptions,
+    createRequestRecorder.defaultedOptions,
     defaultNormalizers,
     options
   );
 
   const metricTypes = createMetricTypes(defaultedOptions);
-  const observeRequest = createRequestObserver(metricTypes, defaultedOptions);
   const observeGc = createGcObserver(metricTypes);
+
+  recordRequest = createRequestRecorder(metricTypes, defaultedOptions);
+
   observeGc();
 
   const plugin = {
@@ -35,7 +40,7 @@ const createPlugin = ({ options } = {}) => {
       });
 
       server.events.on('response', request => {
-        observeRequest(request.promster.start, {
+        recordRequest(request.promster.start, {
           labels: Object.assign(
             {},
             {
@@ -53,6 +58,7 @@ const createPlugin = ({ options } = {}) => {
       });
 
       server.decorate('server', 'Prometheus', Prometheus);
+      server.decorate('server', 'recordRequest', recordRequest);
     },
   };
 
@@ -60,3 +66,4 @@ const createPlugin = ({ options } = {}) => {
 };
 
 exports.default = createPlugin;
+exports.getRequestRecorder = getRequestRecorder;
