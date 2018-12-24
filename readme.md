@@ -188,11 +188,11 @@ Lastly, both `@promster/hapi` and `@promster/express` expose the request recorde
 const { getRequestRecorder } = require('@promster/express');
 const fetch = request('node-fetch');
 
-const async fetchSomeOtherData = () => {
+const async fetchSomeData = () => {
   const recordRequest = getRequestRecorder();
   const start = process.hrtime();
 
-  const data = await fetch('https://another-api.com');
+  const data = await fetch('https://another-api.com').then(res => res.json());
 
   recordRequest(start, {
     other: 'label-values'
