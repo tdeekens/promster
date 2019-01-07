@@ -54,7 +54,7 @@
     "lerna": "3.8.5",
     "lint-staged": "8.1.0",
     "prettier": "1.15.3",
-    "rimraf": "2.6.2"
+    "rimraf": "2.6.3"
   },
   "keywords": [
     "monitoring",
