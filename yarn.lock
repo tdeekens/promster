@@ -90,13 +90,13 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@commitlint/cli@7.3.1":
-  version "7.3.1"
-  resolved "https://registry.yarnpkg.com/@commitlint/cli/-/cli-7.3.1.tgz#3fa4f41b5363c061a4c9f82d32ad1f276e1e675d"
-  integrity sha512-/ySTlSegey0mOpz4TxikTCV1JaAPOpouMiGg18RI10lpL5cgD4FgbZUg5zsSv+ZzsobEBRdpuGAjg8vvCIkiWg==
+"@commitlint/cli@7.3.2":
+  version "7.3.2"
+  resolved "https://registry.yarnpkg.com/@commitlint/cli/-/cli-7.3.2.tgz#61abf30b48861e4fbd521690e6d4a3e1258980bb"
+  integrity sha512-QoVayW3kr6/pkWObaCmI6k8O02l/rOJmQIgy5785f6AVbUeHbLOVnh661XMunzAvDX2Cdz4mN+LenhsrLGsaug==
   dependencies:
     "@commitlint/format" "^7.3.1"
-    "@commitlint/lint" "^7.3.1"
+    "@commitlint/lint" "^7.3.2"
     "@commitlint/load" "^7.3.1"
     "@commitlint/read" "^7.3.1"
     babel-polyfill "6.26.0"
@@ -141,15 +141,16 @@
   dependencies:
     semver "5.6.0"
 
-"@commitlint/lint@^7.3.1":
-  version "7.3.1"
-  resolved "https://registry.yarnpkg.com/@commitlint/lint/-/lint-7.3.1.tgz#ee54c636c0ec7238410ac5d5a6f63e2c7b879182"
-  integrity sha512-aPfjqoOHhXDbA7pb+S7yGv8SsgCgfpOXybzO2NoiqVIvcuWXE+FuqVYDLjmzjvptYGYCB0oDFkewxoeHCzQOzg==
+"@commitlint/lint@^7.3.2":
+  version "7.3.2"
+  resolved "https://registry.yarnpkg.com/@commitlint/lint/-/lint-7.3.2.tgz#e5323ce5b65512e37089ca9e5dfd065849edbf80"
+  integrity sha512-NInm96JP89lMNR77R4zJRj/vaQWc4Ie5vR/5G5auFFiHuwyKmRWfXbGMA7zVYpAylPRgewGaELhuRzNTUW0Log==
   dependencies:
     "@commitlint/is-ignored" "^7.3.1"
     "@commitlint/parse" "^7.3.1"
     "@commitlint/rules" "^7.3.1"
     babel-runtime "^6.23.0"
+    lodash "4.17.11"
 
 "@commitlint/load@^7.3.1":
   version "7.3.1"
@@ -925,7 +926,7 @@ ajv@^6.5.3, ajv@^6.5.5, ajv@^6.6.1:
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
 
-ansi-escapes@^3.0.0:
+ansi-escapes@^3.0.0, ansi-escapes@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/ansi-escapes/-/ansi-escapes-3.1.0.tgz#f73207bb81207d75fd6c83f125af26eea378ca30"
   integrity sha512-UgAb8H9D41AQnu/PbWlCofQVcnV4Gs2bBJi9eZPxfU/hgglFh3SMDMENRIqdr7H6XFnXdoknctFByVsCOotTVw==
@@ -2371,17 +2372,17 @@ eslint-config-prettier@3.4.0:
   dependencies:
     get-stdin "^6.0.0"
 
-eslint-config-xo@0.25.1:
-  version "0.25.1"
-  resolved "https://registry.yarnpkg.com/eslint-config-xo/-/eslint-config-xo-0.25.1.tgz#a921904a10917d7ae2e2c950995388dd743b53a4"
-  integrity sha512-ePb7s4GsmhOn+PSeEka8mltxvimBuPfkq6CSLkdZMJXEOtiDJ5wuHcAEOzqdP/EPZ71X/KGAcaoB8/naPCX/Bw==
+eslint-config-xo@0.26.0:
+  version "0.26.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-xo/-/eslint-config-xo-0.26.0.tgz#19dcfb1e3038dd440f5c5e4b4d11bb3128801b24"
+  integrity sha512-l+93kmBSNr5rMrsqwC6xVWsi8LI4He3z6jSk38e9bAkMNsVsQ8XYO+qzXfJFgFX4i/+hiTswyHtl+nDut9rPaA==
 
-eslint-formatter-pretty@2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-formatter-pretty/-/eslint-formatter-pretty-2.0.0.tgz#7bc011def9a01d457928988c736a8d5b8b13a00c"
-  integrity sha512-FEbP+ntP+b+lYo6xSd2nj8bvME3FKMzLP+FkNP3msPRrEDcm9LEC0T+6Js7ii/yH2hBtqwkXu2S2ttjlFmhOmw==
+eslint-formatter-pretty@2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/eslint-formatter-pretty/-/eslint-formatter-pretty-2.1.0.tgz#dfd1661dcc9d7ec928604fa3c9919a1b0616a7ec"
+  integrity sha512-JdiUvqJeSuxFE1aNa+jlmhzjEZq/U22qIBsNelXf5N4eyLuEBzoqTkEotdP7nqxFsx9O7NLpl3UFmKMEnt3w4Q==
   dependencies:
-    ansi-escapes "^3.0.0"
+    ansi-escapes "^3.1.0"
     chalk "^2.1.0"
     eslint-rule-docs "^1.1.5"
     log-symbols "^2.0.0"
@@ -5866,7 +5867,6 @@ prompts@^0.1.9:
 
 "prompts@git://github.com/terkelg/prompts.git#792824f8e5bfe3d632da0e48be23ab718b8f6646":
   version "0.1.4"
-  uid "792824f8e5bfe3d632da0e48be23ab718b8f6646"
   resolved "git://github.com/terkelg/prompts.git#792824f8e5bfe3d632da0e48be23ab718b8f6646"
   dependencies:
     clorox "^1.0.1"
