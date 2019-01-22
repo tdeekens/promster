@@ -58,26 +58,31 @@ const createRequestRecorder = (
     if (shouldObserveInMilliseconds && shouldObserveInHistogram) {
       metricTypes.httpRequestDurationInMilliseconds.observe(labels, durationMs);
     }
+
     if (shouldObserveInMilliseconds && shouldObserveInSummary) {
       metricTypes.httpRequestDurationPerPercentileInMilliseconds.observe(
         labels,
         durationMs
       );
     }
+
     if (shouldObserveInSeconds && shouldObserveInHistogram) {
       metricTypes.httpRequestDurationInSeconds.observe(labels, durationS);
     }
+
     if (shouldObserveInSeconds && shouldObserveInSummary) {
       metricTypes.httpRequestDurationPerPercentileInSeconds.observe(
         labels,
         durationS
       );
     }
+
     if (shouldObserveInCounter) {
       metricTypes.httpRequestsTotal.inc(labels);
     }
   };
 };
+
 createRequestRecorder.defaultOptions = defaultOptions;
 
 exports.default = createRequestRecorder;

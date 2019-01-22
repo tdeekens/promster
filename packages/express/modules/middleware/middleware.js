@@ -10,6 +10,7 @@ const {
 const exposeOnLocals = (app, { key, value }) => {
   if (app && app.locals) app.locals[key] = value;
 };
+
 const extractPath = req => req.originalUrl || req.url;
 
 let recordRequest;
