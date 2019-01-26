@@ -1,7 +1,7 @@
 {
   "displayName": "test",
   "setupFiles": [],
-  "setupTestFrameworkScriptFile": "./jest-runner-test.config.js",
+  "setupFilesAfterEnv": ["./jest-runner-test.config.js"],
   "testRegex": "\\.spec\\.js$",
   "testEnvironment": "node",
   "testPathIgnorePatterns": [
