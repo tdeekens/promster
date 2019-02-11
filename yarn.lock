@@ -6874,10 +6874,10 @@ url-template@^2.0.8:
   resolved "https://registry.yarnpkg.com/url-template/-/url-template-2.0.8.tgz#fc565a3cccbff7730c775f5641f9555791439f21"
   integrity sha1-/FZaPMy/93MMd19WQflVV5FDnyE=
 
-url-value-parser@2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/url-value-parser/-/url-value-parser-2.0.0.tgz#658f0e67266276a74a684c988d1fa067d49a7290"
-  integrity sha512-UHljhS0U5+3mlzYtAzr6dNhj/js0f5a7yN/Zhl7OxB7PM4Hdj8CrKYWd1bHQ5qM87LrMhwK5QNj9dI+tN2v/tA==
+url-value-parser@2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/url-value-parser/-/url-value-parser-2.0.1.tgz#c8179a095ab9ec1f5aa17ca36af5af396b4e95ed"
+  integrity sha512-bexECeREBIueboLGM3Y1WaAzQkIn+Tca/Xjmjmfd0S/hFHSCEoFkNh0/D0l9G4K74MkEP/lLFRlYnxX3d68Qgw==
 
 url@0.11.0:
   version "0.11.0"
