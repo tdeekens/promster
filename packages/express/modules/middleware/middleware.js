@@ -14,7 +14,10 @@ const exposeOnLocals = (app, { key, value }) => {
 const extractPath = req => req.originalUrl || req.url;
 
 let recordRequest;
+let upMetric;
 const getRequestRecorder = () => recordRequest;
+const signalIsUp = () => upMetric && upMetric.set(1);
+const signalIsNotUp = () => upMetric && upMetric.set(0);
 
 const createMiddleware = ({ app, options } = {}) => {
   let defaultedOptions = merge(
@@ -28,6 +31,7 @@ const createMiddleware = ({ app, options } = {}) => {
   const observeGc = createGcObserver(metricTypes);
 
   recordRequest = createRequestRecorder(metricTypes, defaultedOptions);
+  upMetric = metricTypes && metricTypes.up;
 
   exposeOnLocals(app, { key: 'Prometheus', value: Prometheus });
   exposeOnLocals(app, { key: 'recordRequest', value: recordRequest });
@@ -62,3 +66,5 @@ exports.default = createMiddleware;
 exports.exposeOnLocals = exposeOnLocals;
 exports.extractPath = extractPath;
 exports.getRequestRecorder = getRequestRecorder;
+exports.signalIsUp = signalIsUp;
+exports.signalIsNotUp = signalIsNotUp;

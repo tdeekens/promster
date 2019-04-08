@@ -181,7 +181,7 @@ When creating either the Express middleware or Hapi plugin the followin options 
 - `normalizeStatusCode`: a function called on each request to normalize the respond's status code (e.g. to get 2xx, 5xx codes instead of detailed ones)
 - `normalizeMethod`: a function called on each request to normalize the request's method (to e.g. hide it fully)
 
-Lastly, both `@promster/hapi` and `@promster/express` expose the request recorder configured with the passed options and used to measure request timings. It allows easy tracking of other requests not handled through express or Hapi for instance calls to an external API while using promster's already defined metric types (the `httpRequestsHistogram` etc).
+Moreover, both `@promster/hapi` and `@promster/express` expose the request recorder configured with the passed options and used to measure request timings. It allows easy tracking of other requests not handled through express or Hapi for instance calls to an external API while using promster's already defined metric types (the `httpRequestsHistogram` etc).
 
 ```js
 // Note that a getter is exposed as the request recorder is only available after initialisation.
@@ -201,6 +201,8 @@ const async fetchSomeData = () => {
   return data;
 }
 ```
+
+Lastly, both `@promster/hapi` and `@promster/express` expose setters for the `up` Prometheus gauge. Whenever the server finished booting and is ready you can call `signalIsUp()`. Given the server goes down again you can call `signalIsNotUp()` to set the gauge back to `0`. There is no standard hook in both `express` and `Hapi` to tie this into automatically. Other tools to indicate service health such as `lightship` indicating Kubernetes Pod liveliness and readiness probes also offer setters to alter state.
 
 ### `@promster/server`
 
