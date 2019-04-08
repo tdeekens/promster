@@ -202,7 +202,7 @@ const async fetchSomeData = () => {
 }
 ```
 
-Lastly, both `@promster/hapi` and `@promster/express` expose setters for the `up` Prometheus gauge. Whenever the server finished booting and is ready you can call `setIsUp()`. Given the server goes down again you can call `setIsNotUp()` to set the gauge back to `0`. There is no standard hook in both `express` and `Hapi` to tie this into automatically. Other tools to indicate service health such as `lightship` indicating Kubernetes Pod liveliness and readiness probes also offer setters to alter state.
+Lastly, both `@promster/hapi` and `@promster/express` expose setters for the `up` Prometheus gauge. Whenever the server finished booting and is ready you can call `signalIsUp()`. Given the server goes down again you can call `signalIsNotUp()` to set the gauge back to `0`. There is no standard hook in both `express` and `Hapi` to tie this into automatically. Other tools to indicate service health such as `lightship` indicating Kubernetes Pod liveliness and readiness probes also offer setters to alter state.
 
 ### `@promster/server`
 

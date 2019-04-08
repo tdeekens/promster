@@ -16,8 +16,8 @@ const extractPath = req => req.originalUrl || req.url;
 let recordRequest;
 let upMetric;
 const getRequestRecorder = () => recordRequest;
-const setIsUp = () => upMetric && upMetric.set(1);
-const setIsNotUp = () => upMetric && upMetric.set(0);
+const signalIsUp = () => upMetric && upMetric.set(1);
+const signalIsNotUp = () => upMetric && upMetric.set(0);
 
 const createMiddleware = ({ app, options } = {}) => {
   let defaultedOptions = merge(
@@ -66,5 +66,5 @@ exports.default = createMiddleware;
 exports.exposeOnLocals = exposeOnLocals;
 exports.extractPath = extractPath;
 exports.getRequestRecorder = getRequestRecorder;
-exports.setIsUp = setIsUp;
-exports.setIsNotUp = setIsNotUp;
+exports.signalIsUp = signalIsUp;
+exports.signalIsNotUp = signalIsNotUp;

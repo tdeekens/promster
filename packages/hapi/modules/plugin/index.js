@@ -1,11 +1,11 @@
 const {
   default: createPlugin,
   getRequestRecorder,
-  setIsUp,
-  setIsNotUp,
+  signalIsUp,
+  signalIsNotUp,
 } = require('./plugin');
 
 exports.createPlugin = createPlugin;
 exports.getRequestRecorder = getRequestRecorder;
-exports.setIsUp = setIsUp;
-exports.setIsNotUp = setIsNotUp;
+exports.signalIsUp = signalIsUp;
+exports.signalIsNotUp = signalIsNotUp;

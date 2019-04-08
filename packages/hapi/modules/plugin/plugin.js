@@ -15,8 +15,8 @@ const extractStatusCode = request =>
 let recordRequest;
 let upMetric;
 const getRequestRecorder = () => recordRequest;
-const setIsUp = () => upMetric && upMetric.set(1);
-const setIsNotUp = () => upMetric && upMetric.set(0);
+const signalIsUp = () => upMetric && upMetric.set(1);
+const signalIsNotUp = () => upMetric && upMetric.set(0);
 
 const createPlugin = ({ options } = {}) => {
   let defaultedOptions = merge(
@@ -71,5 +71,5 @@ const createPlugin = ({ options } = {}) => {
 
 exports.default = createPlugin;
 exports.getRequestRecorder = getRequestRecorder;
-exports.setIsUp = setIsUp;
-exports.setIsNotUp = setIsNotUp;
+exports.signalIsUp = signalIsUp;
+exports.signalIsNotUp = signalIsNotUp;

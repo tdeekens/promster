@@ -2,8 +2,8 @@ const { version } = require('../package.json');
 const {
   createMiddleware,
   getRequestRecorder,
-  setIsUp,
-  setIsNotUp,
+  signalIsUp,
+  signalIsNotUp,
 } = require('./middleware');
 const {
   getSummary,
@@ -16,8 +16,8 @@ const {
 exports.version = version;
 exports.createMiddleware = createMiddleware;
 exports.getRequestRecorder = getRequestRecorder;
-exports.setIsUp = setIsUp;
-exports.setIsNotUp = setIsNotUp;
+exports.signalIsUp = signalIsUp;
+exports.signalIsNotUp = signalIsNotUp;
 exports.getSummary = getSummary;
 exports.getContentType = getContentType;
 exports.Prometheus = Prometheus;
