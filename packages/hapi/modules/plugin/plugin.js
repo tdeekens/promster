@@ -13,7 +13,10 @@ const extractStatusCode = request =>
   request.response ? request.response.statusCode : '';
 
 let recordRequest;
+let upMetric;
 const getRequestRecorder = () => recordRequest;
+const setIsUp = () => upMetric && upMetric.set(1);
+const setIsNotUp = () => upMetric && upMetric.set(0);
 
 const createPlugin = ({ options } = {}) => {
   let defaultedOptions = merge(
@@ -27,6 +30,7 @@ const createPlugin = ({ options } = {}) => {
   const observeGc = createGcObserver(metricTypes);
 
   recordRequest = createRequestRecorder(metricTypes, defaultedOptions);
+  upMetric = metricTypes && metricTypes.up;
 
   observeGc();
 
@@ -67,3 +71,5 @@ const createPlugin = ({ options } = {}) => {
 
 exports.default = createPlugin;
 exports.getRequestRecorder = getRequestRecorder;
+exports.setIsUp = setIsUp;
+exports.setIsNotUp = setIsNotUp;
