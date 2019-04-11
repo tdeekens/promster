@@ -2,9 +2,9 @@
   <img alt="Logo" height="150" src="https://raw.githubusercontent.com/tdeekens/promster/master/logo.png" /><br /><br />
 </p>
 
-<h2 align="center">⏰ Promster - Measure metrics from Hapi/express servers with Prometheus 🚦</h2>
+<h2 align="center">⏰ Promster - Measure metrics from Hapi, express or Marble.js servers with Prometheus 🚦</h2>
 <p align="center">
-  <b>Promster is an Prometheus Exporter for Node.js servers written with Express or Hapi.</b>
+  <b>Promster is an Prometheus Exporter for Node.js servers written with Express, Hapi or Marble.js.</b>
 </p>
 
 <p align="center">
@@ -12,6 +12,7 @@
   ❤️
   Hapi
   · Express
+  · Marble.js
   · Prettier
   · Jest
   · ESLint
@@ -35,12 +36,13 @@
 
 ## ❯ Package Status
 
-| Package                                 | Version                                             | Dependencies                                                                      | Downloads                                                    |
-| --------------------------------------- | --------------------------------------------------- | --------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| [`promster/hapi`](/packages/hapi)       | [![hapi Version][hapi-icon]][hapi-version]          | [![hapi Dependencies Status][hapi-dependencies-icon]][hapi-dependencies]          | [![hapi Downloads][hapi-downloads]][hapi-downloads]          |
-| [`promster/express`](/packages/express) | [![express Version][express-icon]][express-version] | [![express Dependencies Status][express-dependencies-icon]][express-dependencies] | [![express Downloads][express-downloads]][express-downloads] |
-| [`promster/server`](/packages/server)   | [![server Version][server-icon]][server-version]    | [![server Dependencies Status][server-dependencies-icon]][server-dependencies]    | [![server Downloads][server-downloads]][server-downloads]    |
-| [`promster/metrics`](/packages/metrics) | [![metrics Version][metrics-icon]][metrics-version] | [![metrics Dependencies Status][metrics-dependencies-icon]][metrics-dependencies] | [![metrics Downloads][metrics-downloads]][metrics-downloads] |
+| Package                                   | Version                                                | Dependencies                                                                         | Downloads                                                       |
+| ----------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------------------------------------ | --------------------------------------------------------------- |
+| [`promster/hapi`](/packages/hapi)         | [![hapi Version][hapi-icon]][hapi-version]             | [![hapi Dependencies Status][hapi-dependencies-icon]][hapi-dependencies]             | [![hapi Downloads][hapi-downloads]][hapi-downloads]             |
+| [`promster/express`](/packages/express)   | [![express Version][express-icon]][express-version]    | [![express Dependencies Status][express-dependencies-icon]][express-dependencies]    | [![express Downloads][express-downloads]][express-downloads]    |
+| [`promster/marblejs`](/packages/marblejs) | [![marblejs Version][marblejs-icon]][marblejs-version] | [![marblejs Dependencies Status][marblejs-dependencies-icon]][marblejs-dependencies] | [![marblejs Downloads][marblejs-downloads]][marblejs-downloads] |
+| [`promster/server`](/packages/server)     | [![server Version][server-icon]][server-version]       | [![server Dependencies Status][server-dependencies-icon]][server-dependencies]       | [![server Downloads][server-downloads]][server-downloads]       |
+| [`promster/metrics`](/packages/metrics)   | [![metrics Version][metrics-icon]][metrics-version]    | [![metrics Dependencies Status][metrics-dependencies-icon]][metrics-dependencies]    | [![metrics Downloads][metrics-downloads]][metrics-downloads]    |
 
 [metrics-version]: https://www.npmjs.com/package/@promster/metrics
 [metrics-icon]: https://img.shields.io/npm/v/@promster/metrics.svg?style=flat-square
@@ -57,6 +59,11 @@
 [express-dependencies]: https://david-dm.org/tdeekens/promster?path=packages/express
 [express-dependencies-icon]: https://david-dm.org/tdeekens/promster/status.svg?style=flat-square&
 [express-downloads]: https://img.shields.io/npm/dm/@promster/express.svg
+[marblejs-version]: https://www.npmjs.com/package/@promster/marblejs
+[marblejs-icon]: https://img.shields.io/npm/v/@promster/marblejs.svg?style=flat-square
+[marblejs-dependencies]: https://david-dm.org/tdeekens/promster?path=packages/marblejs
+[marblejs-dependencies-icon]: https://david-dm.org/tdeekens/promster/status.svg?style=flat-square&
+[marblejs-downloads]: https://img.shields.io/npm/dm/@promster/marblejs.svg
 [server-version]: https://www.npmjs.com/package/@promster/server
 [server-icon]: https://img.shields.io/npm/v/@promster/server.svg?style=flat-square
 [server-dependencies]: https://david-dm.org/tdeekens/promster?path=packages/server
