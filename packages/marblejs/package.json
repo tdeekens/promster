@@ -1,0 +1,37 @@
+{
+  "name": "@promster/marblejs",
+  "version": "2.2.1",
+  "description": "MarbleJs server integrations of promster",
+  "main": "modules/index.js",
+  "scripts": {
+    "prebuild": "rimraf dist/**",
+    "build": "exit 0"
+  },
+  "files": [
+    "readme.md",
+    "modules/**"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tdeekens/promster.git"
+  },
+  "author": "Lukas Sulik <l.nuzky@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tdeekens/promster/issues"
+  },
+  "homepage": "https://github.com/tdeekens/promster#readme",
+  "keywords": [
+    "metrics",
+    "continousdelivery",
+    "prometheus"
+  ],
+  "dependencies": {
+    "@promster/metrics": "^2.2.0",
+    "merge-options": "1.0.1",
+    "rxjs": "^6.4.0"
+  }
+}
