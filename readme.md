@@ -180,23 +180,27 @@ counter.inc();
 ### `@promster/marblejs`
 
 ```js
-const { createMiddleware, getSummary, getContentType } = require('@promster/marblejs');
+const {
+  createMiddleware,
+  getSummary,
+  getContentType,
+} = require('@promster/marblejs');
 
 const middlewares = [
-	createMiddleware(),
-  ...
+  createMiddleware(),
+  //...
 ];
 
 const serveMetrics$ = EffectFactory.matchPath('/metrics')
-	.matchType('GET')
-	.use(req$ =>
-		req$.pipe(
-			mapTo({
-				headers: { 'Content-Type': promster.getContentType() },
-				body: promster.getSummary(),
-			})
-		)
-	);
+  .matchType('GET')
+  .use(req$ =>
+    req$.pipe(
+      mapTo({
+        headers: { 'Content-Type': promster.getContentType() },
+        body: promster.getSummary(),
+      })
+    )
+  );
 ```
 
 When creating either the Express middleware or Hapi plugin the followin options can be passed:
