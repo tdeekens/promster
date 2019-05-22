@@ -1817,18 +1817,17 @@ chardet@^0.7.0:
   resolved "https://registry.yarnpkg.com/chardet/-/chardet-0.7.0.tgz#90094849f0937f2eedc2425d0d28a9e5f0cbad9e"
   integrity sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==
 
-check-node-version@3.3.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/check-node-version/-/check-node-version-3.3.0.tgz#a53d0be9c24e7fd22e029de032863d020362fe32"
-  integrity sha512-OAtp7prQf+8YYKn2UB/fK1Ppb9OT+apW56atoKYUvucYLPq69VozOY0B295okBwCKymk2cictrS3qsdcZwyfzw==
+check-node-version@4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/check-node-version/-/check-node-version-4.0.1.tgz#ae35200e5434c1aae3712c8d9f63b9a2144a10bd"
+  integrity sha512-pWV+uuJJoOGbODDC6+DPUYeprv1CUg/jr1SGKpgkANstGN22f9T0Vn40mdv6hvRZ25KMH/IjkVc0LZH5ms+qEg==
   dependencies:
     chalk "^2.3.0"
     map-values "^1.0.1"
     minimist "^1.2.0"
     object-filter "^1.0.2"
-    object.assign "^4.0.4"
     run-parallel "^1.1.4"
-    semver "^5.0.3"
+    semver "^5.7.0"
 
 chownr@^1.1.1:
   version "1.1.1"
@@ -5344,7 +5343,7 @@ object-filter@^1.0.2:
   resolved "https://registry.yarnpkg.com/object-filter/-/object-filter-1.0.2.tgz#af0b797ffebeaf8a52c6637cedbe8816cfec1bc8"
   integrity sha1-rwt5f/6+r4pSxmN87b6IFs/sG8g=
 
-object-keys@^1.0.11, object-keys@^1.0.12:
+object-keys@^1.0.12:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/object-keys/-/object-keys-1.1.1.tgz#1c47f272df277f3b1daf061677d9c82e2322c60e"
   integrity sha512-NuAESUOUMrlIXOfHKzD6bpPu3tYt3xvjNdRIQ+FeT0lNb4K8WR70CaDxhuNguS2XG+GjkyMwOzsN5ZktImfhLA==
@@ -5355,16 +5354,6 @@ object-visit@^1.0.0:
   integrity sha1-95xEk68MU3e1n+OdOV5BBC3QRbs=
   dependencies:
     isobject "^3.0.0"
-
-object.assign@^4.0.4:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/object.assign/-/object.assign-4.1.0.tgz#968bf1100d7956bb3ca086f006f846b3bc4008da"
-  integrity sha512-exHJeq6kBKj58mqGyTQ9DFvrZC/eR6OwxzoM9YRoGBqrXYonaFyGiFMuc9VZrXf7DarreEwMpurG3dd+CNyW5w==
-  dependencies:
-    define-properties "^1.1.2"
-    function-bind "^1.1.1"
-    has-symbols "^1.0.0"
-    object-keys "^1.0.11"
 
 object.getownpropertydescriptors@^2.0.3:
   version "2.0.3"
@@ -6382,7 +6371,7 @@ semver-compare@^1.0.0:
   resolved "https://registry.yarnpkg.com/semver-compare/-/semver-compare-1.0.0.tgz#0dee216a1c941ab37e9efb1788f6afc5ff5537fc"
   integrity sha1-De4hahyUGrN+nvsXiPavxf9VN/w=
 
-"semver@2 || 3 || 4 || 5", "semver@2.x || 3.x || 4 || 5", semver@^5.0.3, semver@^5.3.0, semver@^5.4.1, semver@^5.5.0, semver@^5.5.1, semver@^5.6.0:
+"semver@2 || 3 || 4 || 5", "semver@2.x || 3.x || 4 || 5", semver@^5.3.0, semver@^5.4.1, semver@^5.5.0, semver@^5.5.1, semver@^5.6.0, semver@^5.7.0:
   version "5.7.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.7.0.tgz#790a7cf6fea5459bac96110b29b60412dc8ff96b"
   integrity sha512-Ya52jSX2u7QKghxeoFGpLwCtGlt7j0oY9DYb5apt9nPlJ42ID+ulTXESnt/qAQcoSERyZ5sl3LDIOw0nAn/5DA==
