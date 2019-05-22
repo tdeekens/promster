@@ -180,14 +180,10 @@ counter.inc();
 ### `@promster/marblejs`
 
 ```js
-const {
-  createMiddleware,
-  getSummary,
-  getContentType,
-} = require('@promster/marblejs');
+const promster = require('@promster/marblejs');
 
 const middlewares = [
-  createMiddleware(),
+  promster.createMiddleware(),
   //...
 ];
 
