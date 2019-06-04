@@ -43,7 +43,7 @@ const createPlugin = ({ options } = {}) => {
         return h.continue;
       });
 
-      server.events.on('response', request => {
+      server.ext('onPreResponse', (request, h) => {
         recordRequest(request.promster.start, {
           labels: Object.assign(
             {},
