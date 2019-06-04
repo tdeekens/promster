@@ -34,7 +34,7 @@
     "lodash.once": "4.1.1",
     "merge-options": "1.0.1",
     "optional": "0.1.4",
-    "prom-client": "11.3.0",
+    "prom-client": "11.4.0",
     "url": "0.11.0",
     "url-value-parser": "2.0.1"
   },
