@@ -69,8 +69,7 @@ const createPlugin = ({ options } = {}) => {
   };
 
   plugin.register.attributes = {
-    name: 'epimetheus',
-    version: '1.0.0'
+    pkg: pkg
   }
 
   return plugin;
