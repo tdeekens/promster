@@ -35,9 +35,14 @@ describe('plugin', () => {
 
     describe('when request starts', () => {
       let server;
-      let startedRequest = {};
+      let startedRequest = {
+        method: 'GET',
+        route: {
+          path: 'foo/bar',
+        },
+      };
       let finishedRequest = {
-        promster: { start: 1 },
+        promster: { start: 2 },
         method: 'GET',
         response: {
           statusCode: 200,
@@ -46,33 +51,59 @@ describe('plugin', () => {
           path: 'foo/bar',
         },
       };
+      let options = {};
+      let done = jest.fn();
       let h = { continue: 'continue' };
 
       beforeEach(() => {
-        server = {
-          decorate: jest.fn(),
-          ext: jest.fn((event, cb) => {
-            if (event === 'onRequest') cb(startedRequest, h);
-          }),
-          events: {
-            on: jest.fn((event, cb) => {
-              if (event === 'response') cb(finishedRequest);
-            }),
-          },
-        };
+        class Server {
+          constructor() {
+            this.version = '17.0.0';
 
-        plugin.register(server);
+            this._handlers = {
+              request: null,
+              response: null,
+            };
+            this.decorate = jest.fn();
+
+            this.events = {
+              on: jest.fn((event, cb) => {
+                if (event === 'request') this._handlers.request = cb;
+                if (event === 'response') this._handlers.response = cb;
+              }),
+            };
+          }
+
+          emit(event, ...args) {
+            this._handlers[event](...args);
+          }
+        }
+        server = new Server();
+
+        plugin.register(server, options, done);
       });
 
       it('should decorate the server', () => {
         expect(server.decorate).toHaveBeenCalledTimes(2);
       });
 
-      it('should assign promster start date on request', () => {
-        expect(startedRequest).toHaveProperty('promster.start');
+      it('should invoke the done callback', () => {
+        expect(done).toHaveBeenCalled();
+      });
+
+      describe('when the request starts', () => {
+        beforeEach(() => {
+          server.emit('request', startedRequest, h);
+        });
+        it('should assign promster start date on request', () => {
+          expect(startedRequest).toHaveProperty('promster.start');
+        });
       });
 
       describe('when the response finishes', () => {
+        beforeEach(() => {
+          server.emit('response', finishedRequest);
+        });
         it('should have observed the request', () => {
           expect(recordRequest).toHaveBeenCalled();
         });
