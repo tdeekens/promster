@@ -1,6 +1,6 @@
 {
   "name": "@promster/hapi",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "Hapi server integrations of promster",
   "main": "modules/index.js",
   "scripts": {
