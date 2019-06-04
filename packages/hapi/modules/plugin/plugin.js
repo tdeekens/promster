@@ -38,7 +38,7 @@ const createPlugin = ({ options } = {}) => {
   const plugin = {
     name: pkg.name,
     version: pkg.version,
-    register(server, options, done) {
+    register(server, options, onDone = () => null) {
       const areServerEventsSupported = Boolean(
         server.version && semiver(server.version, '17.0.x')
       );
@@ -78,7 +78,7 @@ const createPlugin = ({ options } = {}) => {
       server.decorate('server', 'Prometheus', Prometheus);
       server.decorate('server', 'recordRequest', recordRequest);
 
-      return done();
+      return onDone && onDone();
     },
   };
 
