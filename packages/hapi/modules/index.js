@@ -23,3 +23,6 @@ exports.getContentType = getContentType;
 exports.Prometheus = Prometheus;
 exports.defaultRegister = defaultRegister;
 exports.defaultNormalizers = defaultNormalizers;
+exports.instrument = (server, options) => {
+  server.register(createPlugin(options))
+}

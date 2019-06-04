@@ -37,7 +37,7 @@ const createPlugin = ({ options } = {}) => {
   const plugin = {
     name: pkg.name,
     version: pkg.version,
-    register(server) {
+    register(server, o, done) {
       server.ext('onRequest', (request, h) => {
         request.promster = { start: process.hrtime() };
         return h.continue;
@@ -63,8 +63,14 @@ const createPlugin = ({ options } = {}) => {
 
       server.decorate('server', 'Prometheus', Prometheus);
       server.decorate('server', 'recordRequest', recordRequest);
+
+      return done();
     },
   };
+
+  plugin.register.attributes = {
+    pkg: pkg
+  }
 
   return plugin;
 };
