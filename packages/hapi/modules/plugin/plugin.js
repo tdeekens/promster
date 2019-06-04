@@ -1,3 +1,4 @@
+const semiver = require('semiver');
 const merge = require('merge-options');
 const pkg = require('../../package.json');
 const {
@@ -41,9 +42,9 @@ const createPlugin = ({ options } = {}) => {
       server.ext('onRequest', (request, h) => {
         request.promster = { start: process.hrtime() };
         return h.continue;
-      });
+      };
 
-      server.events.on('response', request => {
+      const onResponseHandler = request => {
         recordRequest(request.promster.start, {
           labels: Object.assign(
             {},
@@ -59,7 +60,17 @@ const createPlugin = ({ options } = {}) => {
               defaultedOptions.getLabelValues(request, {})
           ),
         });
-      });
+      };
+
+      // NOTE: This version detection allows us to graceully support
+      // both new and old Hapi APIs.
+      if (areServerEventsSupported) {
+        server.events.on('request', onRequestHandler);
+        server.events.on('response', onResponseHandler);
+      } else {
+        server.ext('onRequest', onRequestHandler);
+        server.ext('onPreResponse', onResponseHandler);
+      }
 
       server.decorate('server', 'Prometheus', Prometheus);
       server.decorate('server', 'recordRequest', recordRequest);
