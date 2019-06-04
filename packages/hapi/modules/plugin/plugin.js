@@ -69,8 +69,8 @@ const createPlugin = ({ options } = {}) => {
   };
 
   plugin.register.attributes = {
-    pkg: pkg
-  }
+    pkg: pkg,
+  };
 
   return plugin;
 };
