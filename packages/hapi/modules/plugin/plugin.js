@@ -64,7 +64,7 @@ const createPlugin = ({ options } = {}) => {
       server.decorate('server', 'Prometheus', Prometheus);
       server.decorate('server', 'recordRequest', recordRequest);
 
-      return done();
+      return (typeof done !== "function") || done();
     },
   };
 
