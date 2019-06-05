@@ -1,4 +1,4 @@
-const semiver = require('semiver');
+const semver = require('semver');
 const merge = require('merge-options');
 const pkg = require('../../package.json');
 const {
@@ -18,6 +18,9 @@ let upMetric;
 const getRequestRecorder = () => recordRequest;
 const signalIsUp = () => upMetric && upMetric.set(1);
 const signalIsNotUp = () => upMetric && upMetric.set(0);
+
+const getAreServerEventsSupported = actualVersion =>
+  Boolean(actualVersion && semver.satisfies(actualVersion, '>= 17.0.0'));
 
 const createPlugin = ({ options } = {}) => {
   let defaultedOptions = merge(
@@ -39,8 +42,8 @@ const createPlugin = ({ options } = {}) => {
     name: pkg.name,
     version: pkg.version,
     register(server, options, onDone = () => null) {
-      const areServerEventsSupported = Boolean(
-        server.version && semiver(server.version, '17.0.x')
+      const areServerEventsSupported = getAreServerEventsSupported(
+        server.version
       );
       const onRequestHandler = (request, h) => {
         request.promster = { start: process.hrtime() };
@@ -93,3 +96,4 @@ exports.default = createPlugin;
 exports.getRequestRecorder = getRequestRecorder;
 exports.signalIsUp = signalIsUp;
 exports.signalIsNotUp = signalIsNotUp;
+exports.getAreServerEventsSupported = getAreServerEventsSupported;
