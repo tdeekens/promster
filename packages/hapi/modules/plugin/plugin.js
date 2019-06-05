@@ -23,7 +23,7 @@ const getAreServerEventsSupported = actualVersion =>
   Boolean(actualVersion && semver.satisfies(actualVersion, '>= 17.0.0'));
 
 const createPlugin = ({ options } = {}) => {
-  let defaultedOptions = merge(
+  const defaultedOptions = merge(
     createMetricTypes.defaultedOptions,
     createRequestRecorder.defaultedOptions,
     defaultNormalizers,
@@ -46,12 +46,12 @@ const createPlugin = ({ options } = {}) => {
         server.version
       );
       const onRequestHandler = (request, h) => {
-        request.promster = { start: process.hrtime() };
+        request.plugins.promster = { start: process.hrtime() };
         return h.continue;
       };
 
       const onResponseHandler = request => {
-        recordRequest(request.promster.start, {
+        recordRequest(request.plugins.promster.start, {
           labels: Object.assign(
             {},
             {
@@ -71,7 +71,7 @@ const createPlugin = ({ options } = {}) => {
       // NOTE: This version detection allows us to graceully support
       // both new and old Hapi APIs.
       if (areServerEventsSupported) {
-        server.events.on('request', onRequestHandler);
+        server.ext('onRequest', onRequestHandler);
         server.events.on('response', onResponseHandler);
       } else {
         server.ext('onRequest', onRequestHandler);
@@ -86,7 +86,7 @@ const createPlugin = ({ options } = {}) => {
   };
 
   plugin.register.attributes = {
-    pkg: pkg,
+    pkg,
   };
 
   return plugin;

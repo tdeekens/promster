@@ -39,13 +39,14 @@ describe('plugin', () => {
     describe('when request starts', () => {
       let server;
       let startedRequest = {
+        plugins: {},
         method: 'GET',
         route: {
           path: 'foo/bar',
         },
       };
       let finishedRequest = {
-        promster: { start: 2 },
+        plugins: { promster: { start: 2 } },
         method: 'GET',
         response: {
           statusCode: 200,
@@ -75,6 +76,9 @@ describe('plugin', () => {
                 if (event === 'response') this._handlers.response = cb;
               }),
             };
+            this.ext = (event, cb) => {
+              if (event === 'onRequest') this._handlers.request = cb;
+            };
           }
 
           emit(event, ...args) {
@@ -99,7 +103,7 @@ describe('plugin', () => {
           server.emit('request', startedRequest, h);
         });
         it('should assign promster start date on request', () => {
-          expect(startedRequest).toHaveProperty('promster.start');
+          expect(startedRequest).toHaveProperty('plugins.promster.start');
         });
       });
 
