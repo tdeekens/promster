@@ -1,4 +1,4 @@
-const semiver = require('semiver');
+const semver = require('semver');
 const merge = require('merge-options');
 const pkg = require('../../package.json');
 const {
@@ -19,8 +19,11 @@ const getRequestRecorder = () => recordRequest;
 const signalIsUp = () => upMetric && upMetric.set(1);
 const signalIsNotUp = () => upMetric && upMetric.set(0);
 
+const getAreServerEventsSupported = actualVersion =>
+  Boolean(actualVersion && semver.satisfies(actualVersion, '>= 17.0.0'));
+
 const createPlugin = ({ options } = {}) => {
-  let defaultedOptions = merge(
+  const defaultedOptions = merge(
     createMetricTypes.defaultedOptions,
     createRequestRecorder.defaultedOptions,
     defaultNormalizers,
@@ -38,15 +41,12 @@ const createPlugin = ({ options } = {}) => {
   const plugin = {
     name: pkg.name,
     version: pkg.version,
-    register(server, o, done) {
-      server.ext('onRequest', (request, h) => {
-        request.promster = { start: process.hrtime() };
+        request.plugins.promster = { start: process.hrtime() };
         return h.continue;
       };
 
       const onResponseHandler = request => {
-        recordRequest(request.promster.start, {
-          labels: Object.assign(
+        recordRequest(request.plugins.promster.start, {
             {},
             {
               path: defaultedOptions.normalizePath(extractPath(request)),
@@ -65,7 +65,7 @@ const createPlugin = ({ options } = {}) => {
       // NOTE: This version detection allows us to graceully support
       // both new and old Hapi APIs.
       if (areServerEventsSupported) {
-        server.events.on('request', onRequestHandler);
+        server.ext('onRequest', onRequestHandler);
         server.events.on('response', onResponseHandler);
       } else {
         server.ext('onRequest', onRequestHandler);
@@ -80,8 +80,13 @@ const createPlugin = ({ options } = {}) => {
   };
 
   plugin.register.attributes = {
+<<<<<<< HEAD
     pkg: pkg
   }
+=======
+    pkg,
+  };
+>>>>>>> upstream/master
 
   return plugin;
 };
@@ -90,3 +95,4 @@ exports.default = createPlugin;
 exports.getRequestRecorder = getRequestRecorder;
 exports.signalIsUp = signalIsUp;
 exports.signalIsNotUp = signalIsNotUp;
+exports.getAreServerEventsSupported = getAreServerEventsSupported;

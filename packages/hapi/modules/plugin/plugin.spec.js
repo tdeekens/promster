@@ -2,7 +2,10 @@ const {
   createRequestRecorder,
   createGcObserver,
 } = require('@promster/metrics');
-const { default: createPlugin } = require('./plugin.js');
+const {
+  default: createPlugin,
+  getAreServerEventsSupported,
+} = require('./plugin.js');
 
 jest.mock('@promster/metrics', () => ({
   Prometheus: 'MockPrometheus',
@@ -36,13 +39,14 @@ describe('plugin', () => {
     describe('when request starts', () => {
       let server;
       let startedRequest = {
+        plugins: {},
         method: 'GET',
         route: {
           path: 'foo/bar',
         },
       };
       let finishedRequest = {
-        promster: { start: 2 },
+        plugins: { promster: { start: 2 } },
         method: 'GET',
         response: {
           statusCode: 200,
@@ -72,6 +76,9 @@ describe('plugin', () => {
                 if (event === 'response') this._handlers.response = cb;
               }),
             };
+            this.ext = (event, cb) => {
+              if (event === 'onRequest') this._handlers.request = cb;
+            };
           }
 
           emit(event, ...args) {
@@ -96,7 +103,7 @@ describe('plugin', () => {
           server.emit('request', startedRequest, h);
         });
         it('should assign promster start date on request', () => {
-          expect(startedRequest).toHaveProperty('promster.start');
+          expect(startedRequest).toHaveProperty('plugins.promster.start');
         });
       });
 
@@ -122,6 +129,23 @@ describe('plugin', () => {
           );
         });
       });
+    });
+  });
+});
+
+describe('getAreServerEventsSupported', () => {
+  describe('when server supports events', () => {
+    it('should return `true`', () => {
+      expect(getAreServerEventsSupported('17.0.0')).toBe(true);
+      expect(getAreServerEventsSupported('17.1.0')).toBe(true);
+      expect(getAreServerEventsSupported('18.0.0')).toBe(true);
+    });
+  });
+
+  describe('when server does not support events', () => {
+    it('should return `false`', () => {
+      expect(getAreServerEventsSupported('16.0.0')).toBe(false);
+      expect(getAreServerEventsSupported('15.4.0')).toBe(false);
     });
   });
 });
