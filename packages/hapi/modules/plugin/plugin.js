@@ -41,12 +41,18 @@ const createPlugin = ({ options } = {}) => {
   const plugin = {
     name: pkg.name,
     version: pkg.version,
+    register(server, o, onDone) {
+      const areServerEventsSupported = getAreServerEventsSupported(
+        server.version
+      );
+      const onRequestHandler = (request, h) => {
         request.plugins.promster = { start: process.hrtime() };
         return h.continue;
       };
 
       const onResponseHandler = request => {
         recordRequest(request.plugins.promster.start, {
+          labels: Object.assign(
             {},
             {
               path: defaultedOptions.normalizePath(extractPath(request)),
@@ -75,18 +81,13 @@ const createPlugin = ({ options } = {}) => {
       server.decorate('server', 'Prometheus', Prometheus);
       server.decorate('server', 'recordRequest', recordRequest);
 
-      return done();
+      return onDone && onDone();
     },
   };
 
   plugin.register.attributes = {
-<<<<<<< HEAD
-    pkg: pkg
-  }
-=======
     pkg,
   };
->>>>>>> upstream/master
 
   return plugin;
 };
