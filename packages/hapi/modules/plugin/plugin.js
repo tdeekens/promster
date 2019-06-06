@@ -2,6 +2,7 @@ const semver = require('semver');
 const merge = require('merge-options');
 const pkg = require('../../package.json');
 const {
+  getSummary,
   Prometheus,
   createMetricTypes,
   createRequestRecorder,
@@ -22,7 +23,7 @@ const signalIsNotUp = () => upMetric && upMetric.set(0);
 const getAreServerEventsSupported = actualVersion =>
   Boolean(actualVersion && semver.satisfies(actualVersion, '>= 17.0.0'));
 
-const createPlugin = ({ options } = {}) => {
+const createPlugin = (options) => {
   const defaultedOptions = merge(
     createMetricTypes.defaultedOptions,
     createRequestRecorder.defaultedOptions,
@@ -41,16 +42,16 @@ const createPlugin = ({ options } = {}) => {
   const plugin = {
     name: pkg.name,
     version: pkg.version,
-    register(server, o, onDone) {
+    register(server, o, done) {
       const areServerEventsSupported = getAreServerEventsSupported(
         server.version
       );
-      const onRequestHandler = (request, h) => {
+      const onRequestHandler = (request, reply) => {
         request.plugins.promster = { start: process.hrtime() };
-        return h.continue;
+        return reply.continue();
       };
 
-      const onResponseHandler = request => {
+      const onResponseHandler = (request, reply) => {
         recordRequest(request.plugins.promster.start, {
           labels: Object.assign(
             {},
@@ -66,6 +67,7 @@ const createPlugin = ({ options } = {}) => {
               defaultedOptions.getLabelValues(request, {})
           ),
         });
+        return reply.continue();
       };
 
       // NOTE: This version detection allows us to graceully support
@@ -81,7 +83,16 @@ const createPlugin = ({ options } = {}) => {
       server.decorate('server', 'Prometheus', Prometheus);
       server.decorate('server', 'recordRequest', recordRequest);
 
-      return onDone && onDone();
+      server.route({
+        method: 'GET',
+        path: options.url,
+        handler: (req, reply) => {
+          const response = reply(getSummary())
+          response.type('text/plain')
+        }
+      });
+
+      return (typeof done !== "function") || done();
     },
   };
 
