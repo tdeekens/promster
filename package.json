@@ -52,7 +52,7 @@
     "jest-plugin-filename": "0.0.1",
     "jest-runner-eslint": "0.7.3",
     "lerna": "3.14.1",
-    "lint-staged": "8.1.7",
+    "lint-staged": "8.2.0",
     "prettier": "1.17.1",
     "rimraf": "2.6.3"
   },
