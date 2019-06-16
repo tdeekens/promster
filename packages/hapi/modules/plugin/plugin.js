@@ -21,13 +21,15 @@ const signalIsNotUp = () => upMetric && upMetric.set(0);
 
 const getAreServerEventsSupported = actualVersion =>
   Boolean(actualVersion && semver.satisfies(actualVersion, '>= 17.0.0'));
+const getDoesReplyNeedInvocation = actualVersion =>
+  Boolean(actualVersion && semver.satisfies(actualVersion, '< 17.0.0'));
 
-const createPlugin = ({ options } = {}) => {
+const createPlugin = ({ options: pluginOptions } = {}) => {
   const defaultedOptions = merge(
     createMetricTypes.defaultedOptions,
     createRequestRecorder.defaultedOptions,
     defaultNormalizers,
-    options
+    pluginOptions
   );
 
   const metricTypes = createMetricTypes(defaultedOptions);
@@ -41,16 +43,19 @@ const createPlugin = ({ options } = {}) => {
   const plugin = {
     name: pkg.name,
     version: pkg.version,
-    register(server, options, onDone = () => null) {
+    register(server, registrationOptions, onRegistrationFinished = () => null) {
       const areServerEventsSupported = getAreServerEventsSupported(
         server.version
       );
-      const onRequestHandler = (request, h) => {
+      const doesReplyNeedInvocation = getDoesReplyNeedInvocation(
+        server.version
+      );
+      const onRequestHandler = (request, reply) => {
         request.plugins.promster = { start: process.hrtime() };
-        return h.continue;
+        return doesReplyNeedInvocation ? reply.continue() : reply.continue;
       };
 
-      const onResponseHandler = request => {
+      const onResponseHandler = (request, reply) => {
         recordRequest(request.plugins.promster.start, {
           labels: Object.assign(
             {},
@@ -66,6 +71,8 @@ const createPlugin = ({ options } = {}) => {
               defaultedOptions.getLabelValues(request, {})
           ),
         });
+
+        return doesReplyNeedInvocation ? reply.continue() : reply.continue;
       };
 
       // NOTE: This version detection allows us to graceully support
@@ -81,7 +88,7 @@ const createPlugin = ({ options } = {}) => {
       server.decorate('server', 'Prometheus', Prometheus);
       server.decorate('server', 'recordRequest', recordRequest);
 
-      return onDone && onDone();
+      return onRegistrationFinished && onRegistrationFinished();
     },
   };
 
@@ -97,3 +104,4 @@ exports.getRequestRecorder = getRequestRecorder;
 exports.signalIsUp = signalIsUp;
 exports.signalIsNotUp = signalIsNotUp;
 exports.getAreServerEventsSupported = getAreServerEventsSupported;
+exports.getDoesReplyNeedInvocation = getDoesReplyNeedInvocation;

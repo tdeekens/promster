@@ -5,6 +5,7 @@ const {
 const {
   default: createPlugin,
   getAreServerEventsSupported,
+  getDoesReplyNeedInvocation,
 } = require('./plugin.js');
 
 jest.mock('@promster/metrics', () => ({
@@ -55,9 +56,11 @@ describe('plugin', () => {
           path: 'foo/bar',
         },
       };
+      let reply = {
+        continue: Promise.resolve(),
+      };
       let options = {};
       let done = jest.fn();
-      let h = { continue: 'continue' };
 
       beforeEach(() => {
         class Server {
@@ -100,7 +103,7 @@ describe('plugin', () => {
 
       describe('when the request starts', () => {
         beforeEach(() => {
-          server.emit('request', startedRequest, h);
+          server.emit('request', startedRequest, reply);
         });
         it('should assign promster start date on request', () => {
           expect(startedRequest).toHaveProperty('plugins.promster.start');
@@ -109,7 +112,7 @@ describe('plugin', () => {
 
       describe('when the response finishes', () => {
         beforeEach(() => {
-          server.emit('response', finishedRequest);
+          server.emit('response', finishedRequest, reply);
         });
         it('should have observed the request', () => {
           expect(recordRequest).toHaveBeenCalled();
@@ -146,6 +149,21 @@ describe('getAreServerEventsSupported', () => {
     it('should return `false`', () => {
       expect(getAreServerEventsSupported('16.0.0')).toBe(false);
       expect(getAreServerEventsSupported('15.4.0')).toBe(false);
+    });
+  });
+});
+
+describe('getDoesReplyNeedInvocation', () => {
+  describe('when server needs reply continue invocation', () => {
+    it('should return `true`', () => {
+      expect(getDoesReplyNeedInvocation('16.0.0')).toBe(true);
+      expect(getDoesReplyNeedInvocation('15.1.0')).toBe(true);
+    });
+  });
+
+  describe('when server does not need reply continue invocation', () => {
+    it('should return `false`', () => {
+      expect(getDoesReplyNeedInvocation('17.0.0')).toBe(false);
     });
   });
 });
