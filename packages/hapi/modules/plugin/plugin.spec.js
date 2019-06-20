@@ -5,7 +5,7 @@ const {
 const {
   default: createPlugin,
   getAreServerEventsSupported,
-  getDoesReplyNeedInvocation,
+  getDoesResponseNeedInvocation,
 } = require('./plugin.js');
 
 jest.mock('@promster/metrics', () => ({
@@ -153,17 +153,17 @@ describe('getAreServerEventsSupported', () => {
   });
 });
 
-describe('getDoesReplyNeedInvocation', () => {
+describe('getDoesResponseNeedInvocation', () => {
   describe('when server needs reply continue invocation', () => {
     it('should return `true`', () => {
-      expect(getDoesReplyNeedInvocation('16.0.0')).toBe(true);
-      expect(getDoesReplyNeedInvocation('15.1.0')).toBe(true);
+      expect(getDoesResponseNeedInvocation('16.0.0')).toBe(true);
+      expect(getDoesResponseNeedInvocation('15.1.0')).toBe(true);
     });
   });
 
   describe('when server does not need reply continue invocation', () => {
     it('should return `false`', () => {
-      expect(getDoesReplyNeedInvocation('17.0.0')).toBe(false);
+      expect(getDoesResponseNeedInvocation('17.0.0')).toBe(false);
     });
   });
 });

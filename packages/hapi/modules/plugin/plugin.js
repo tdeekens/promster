@@ -21,7 +21,7 @@ const signalIsNotUp = () => upMetric && upMetric.set(0);
 
 const getAreServerEventsSupported = actualVersion =>
   Boolean(actualVersion && semver.satisfies(actualVersion, '>= 17.0.0'));
-const getDoesReplyNeedInvocation = actualVersion =>
+const getDoesResponseNeedInvocation = actualVersion =>
   Boolean(actualVersion && semver.satisfies(actualVersion, '< 17.0.0'));
 
 const createPlugin = ({ options: pluginOptions } = {}) => {
@@ -47,15 +47,15 @@ const createPlugin = ({ options: pluginOptions } = {}) => {
       const areServerEventsSupported = getAreServerEventsSupported(
         server.version
       );
-      const doesReplyNeedInvocation = getDoesReplyNeedInvocation(
+      const doesResponseNeedInvocation = getDoesResponseNeedInvocation(
         server.version
       );
       const onRequestHandler = (request, reply) => {
         request.plugins.promster = { start: process.hrtime() };
-        return doesReplyNeedInvocation ? reply.continue() : reply.continue;
+        return doesResponseNeedInvocation ? reply.continue() : reply.continue;
       };
 
-      const onResponseHandler = (request, reply) => {
+      const onResponseHandler = (request, response) => {
         recordRequest(request.plugins.promster.start, {
           labels: Object.assign(
             {},
@@ -72,7 +72,7 @@ const createPlugin = ({ options: pluginOptions } = {}) => {
           ),
         });
 
-        return doesReplyNeedInvocation ? reply.continue() : reply.continue;
+        if (doesResponseNeedInvocation) response.continue();
       };
 
       // NOTE: This version detection allows us to graceully support
@@ -104,4 +104,4 @@ exports.getRequestRecorder = getRequestRecorder;
 exports.signalIsUp = signalIsUp;
 exports.signalIsNotUp = signalIsNotUp;
 exports.getAreServerEventsSupported = getAreServerEventsSupported;
-exports.getDoesReplyNeedInvocation = getDoesReplyNeedInvocation;
+exports.getDoesResponseNeedInvocation = getDoesResponseNeedInvocation;
