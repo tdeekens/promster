@@ -37,7 +37,7 @@
   "devDependencies": {
     "@commitlint/cli": "8.0.0",
     "@commitlint/config-conventional": "8.0.0",
-    "babel-eslint": "10.0.1",
+    "babel-eslint": "10.0.2",
     "check-node-version": "4.0.1",
     "codecov": "3.5.0",
     "cross-env": "5.2.0",
