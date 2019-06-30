@@ -1,6 +1,6 @@
 const { version } = require('../package.json');
 const {
-  promsterPlugin,
+  plugin,
   getRequestRecorder,
   signalIsUp,
   signalIsNotUp,
@@ -14,7 +14,7 @@ const {
 } = require('@promster/metrics');
 
 exports.version = version;
-exports.promsterPlugin = promsterPlugin;
+exports.plugin = plugin;
 exports.getRequestRecorder = getRequestRecorder;
 exports.signalIsUp = signalIsUp;
 exports.signalIsNotUp = signalIsNotUp;

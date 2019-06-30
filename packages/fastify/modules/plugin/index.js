@@ -1,11 +1,11 @@
 const {
-  default: promsterPlugin,
+  default: plugin,
   getRequestRecorder,
   signalIsUp,
   signalIsNotUp,
 } = require('./plugin');
 
-exports.promsterPlugin = promsterPlugin;
+exports.plugin = plugin;
 exports.signalIsUp = signalIsUp;
 exports.signalIsNotUp = signalIsNotUp;
 exports.getRequestRecorder = getRequestRecorder;
