@@ -126,15 +126,5 @@ describe('plugin', () => {
         });
       });
     });
-
-    describe('registers metrics route', () => {
-      it('returns metrics', async () => {
-        await fastify.register(promsterPlugin).ready();
-        const res = await fastify.inject({ method: 'GET', url: '/metrics' });
-
-        expect(res.headers['content-type']).toBe('text');
-        expect(res.body).toBe('metrics');
-      });
-    });
   });
 });

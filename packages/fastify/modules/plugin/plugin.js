@@ -6,14 +6,8 @@ const {
   createRequestRecorder,
   createGcObserver,
   defaultNormalizers,
-  getSummary,
-  getContentType,
 } = require('@promster/metrics');
 const pkg = require('../../package.json');
-
-const defaultRouteOptions = {
-  route: { method: 'GET', url: '/metrics' },
-};
 
 let recordRequest;
 let upMetric;
@@ -28,7 +22,6 @@ const createPlugin = async (fastify, options) => {
     createMetricTypes.defaultedOptions,
     createRequestRecorder.defaultedOptions,
     defaultNormalizers,
-    defaultRouteOptions,
     options
   );
 
@@ -59,16 +52,6 @@ const createPlugin = async (fastify, options) => {
           defaultedOptions.getLabelValues(req, reply)),
       },
     });
-  });
-
-  fastify.route({
-    handler: async function(req, reply) {
-      reply
-        .type(getContentType())
-        .code(200)
-        .send(getSummary());
-    },
-    ...defaultedOptions.route,
   });
 };
 
