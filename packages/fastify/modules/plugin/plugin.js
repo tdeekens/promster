@@ -1,4 +1,4 @@
-const fp = require('fastify-plugin');
+const fastifyPlugin = require('fastify-plugin');
 const merge = require('merge-options');
 const {
   Prometheus,
@@ -9,6 +9,7 @@ const {
   getSummary,
   getContentType,
 } = require('@promster/metrics');
+const pkg = require('../../package.json');
 
 const defaultRouteOptions = {
   route: { method: 'GET', url: '/metrics' },
@@ -71,9 +72,9 @@ const plugin = async function(fastify, options) {
   });
 };
 
-module.exports.default = fp(plugin, {
+module.exports.default = fastifyPlugin(plugin, {
   fastify: '>= 1.6.0',
-  name: '@promster/fastify',
+  name: pkg.name,
 });
 module.exports.getRequestRecorder = getRequestRecorder;
 module.exports.signalIsUp = signalIsUp;
