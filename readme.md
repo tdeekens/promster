@@ -66,6 +66,11 @@
 [marblejs-dependencies]: https://david-dm.org/tdeekens/promster?path=packages/marblejs
 [marblejs-dependencies-icon]: https://david-dm.org/tdeekens/promster/status.svg?style=flat-square&
 [marblejs-downloads]: https://img.shields.io/npm/dm/@promster/marblejs.svg
+[fastify-version]: https://www.npmjs.com/package/@promster/fastify
+[fastify-icon]: https://img.shields.io/npm/v/@promster/fastify.svg?style=flat-square
+[fastify-dependencies]: https://david-dm.org/tdeekens/promster?path=packages/fastify
+[fastify-dependencies-icon]: https://david-dm.org/tdeekens/promster/status.svg?style=flat-square&
+[fastify-downloads]: https://img.shields.io/npm/dm/@promster/fastify.svg
 [server-version]: https://www.npmjs.com/package/@promster/server
 [server-icon]: https://img.shields.io/npm/v/@promster/server.svg?style=flat-square
 [server-dependencies]: https://david-dm.org/tdeekens/promster?path=packages/server
