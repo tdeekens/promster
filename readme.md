@@ -2,9 +2,9 @@
   <img alt="Logo" height="150" src="https://raw.githubusercontent.com/tdeekens/promster/master/logo.png" /><br /><br />
 </p>
 
-<h2 align="center">⏰ Promster - Measure metrics from Hapi, express or Marble.js servers with Prometheus 🚦</h2>
+<h2 align="center">⏰ Promster - Measure metrics from Hapi, express, Marble.js or Fastify servers with Prometheus 🚦</h2>
 <p align="center">
-  <b>Promster is an Prometheus Exporter for Node.js servers written with Express, Hapi or Marble.js.</b>
+  <b>Promster is an Prometheus Exporter for Node.js servers written with Express, Hapi, Marble.js or Fastify.</b>
 </p>
 
 <p align="center">
@@ -13,6 +13,7 @@
   Hapi
   · Express
   · Marble.js
+  · Fastify
   · Prettier
   · Jest
   · ESLint
@@ -41,6 +42,7 @@
 | [`promster/hapi`](/packages/hapi)         | [![hapi Version][hapi-icon]][hapi-version]             | [![hapi Dependencies Status][hapi-dependencies-icon]][hapi-dependencies]             | [![hapi Downloads][hapi-downloads]][hapi-downloads]             |
 | [`promster/express`](/packages/express)   | [![express Version][express-icon]][express-version]    | [![express Dependencies Status][express-dependencies-icon]][express-dependencies]    | [![express Downloads][express-downloads]][express-downloads]    |
 | [`promster/marblejs`](/packages/marblejs) | [![marblejs Version][marblejs-icon]][marblejs-version] | [![marblejs Dependencies Status][marblejs-dependencies-icon]][marblejs-dependencies] | [![marblejs Downloads][marblejs-downloads]][marblejs-downloads] |
+| [`promster/fastify`](/packages/fastify)   | [![fastify Version][fastify-icon]][fastify-version]    | [![fastify Dependencies Status][fastify-dependencies-icon]][fastify-dependencies]    | [![fastify Downloads][fastify-downloads]][fastify-downloads]    |
 | [`promster/server`](/packages/server)     | [![server Version][server-icon]][server-version]       | [![server Dependencies Status][server-dependencies-icon]][server-dependencies]       | [![server Downloads][server-downloads]][server-downloads]       |
 | [`promster/metrics`](/packages/metrics)   | [![metrics Version][metrics-icon]][metrics-version]    | [![metrics Dependencies Status][metrics-dependencies-icon]][metrics-dependencies]    | [![metrics Downloads][metrics-downloads]][metrics-downloads]    |
 
@@ -147,6 +149,28 @@ Passing the `app` into the `createMiddleware` call attaches the internal `prom-c
 ```js
 // Create an e.g. custom counter
 const counter = new app.locals.Prometheus.Counter({
+  name: 'metric_name',
+  help: 'metric_help',
+});
+
+// to later increment it
+counter.inc();
+```
+
+### `@promster/fastify`
+
+```js
+const app = require('./your-fastify-app');
+const { promsterPlugin } = require('@promster/fastify');
+
+fastify.register(promsterPlugin):
+```
+
+Plugin attaches the internal `prom-client` to your Fastify instance. This may come in handy as later you can:
+
+```js
+// Create an e.g. custom counter
+const counter = new fastify.Prometheus.Counter({
   name: 'metric_name',
   help: 'metric_help',
 });
