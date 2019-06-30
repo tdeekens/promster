@@ -23,7 +23,7 @@ const getRequestRecorder = () => recordRequest;
 const signalIsUp = () => upMetric && upMetric.set(1);
 const signalIsNotUp = () => upMetric && upMetric.set(0);
 
-const plugin = async function(fastify, options) {
+const createPlugin = async (fastify, options) => {
   const defaultedOptions = merge(
     createMetricTypes.defaultedOptions,
     createRequestRecorder.defaultedOptions,
@@ -72,7 +72,7 @@ const plugin = async function(fastify, options) {
   });
 };
 
-module.exports.default = fastifyPlugin(plugin, {
+module.exports.default = fastifyPlugin(createPlugin, {
   fastify: '>= 1.6.0',
   name: pkg.name,
 });
