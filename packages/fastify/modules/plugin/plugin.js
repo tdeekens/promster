@@ -42,7 +42,7 @@ const plugin = async function(fastify, options) {
 
   fastify.decorate('Prometheus', Prometheus);
   fastify.decorate('recordRequest', recordRequest);
-  fastify.decorateRequest('__promsterStartTime__', 0);
+  fastify.decorateRequest('__promsterStartTime__', null);
 
   fastify.addHook('onRequest', async (req, _) => {
     req.__promsterStartTime__ = process.hrtime();
