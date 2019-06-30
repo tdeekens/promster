@@ -1,0 +1,40 @@
+{
+  "name": "@promster/fastify",
+  "version": "1.0.0",
+  "description": "Fastify server integrations of promster",
+  "main": "modules/index.js",
+  "scripts": {
+    "prebuild": "rimraf dist/**",
+    "build": "exit 0"
+  },
+  "files": [
+    "readme.md",
+    "modules/**"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tdeekens/promster.git"
+  },
+  "author": "Tobias Deekens <nerd@tdeekens.name>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tdeekens/promster/issues"
+  },
+  "homepage": "https://github.com/tdeekens/promster#readme",
+  "keywords": [
+    "metrics",
+    "continousdelivery",
+    "prometheus"
+  ],
+  "dependencies": {
+    "@promster/metrics": "^2.2.2",
+    "fastify-plugin": "^1.6.0",
+    "merge-options": "1.0.1"
+  },
+  "devDependencies": {
+    "fastify": "^2.6.0"
+  }
+}
