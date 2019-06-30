@@ -161,7 +161,7 @@ counter.inc();
 
 ```js
 const app = require('./your-fastify-app');
-const { promsterPlugin } = require('@promster/fastify');
+const { plugin: promsterPlugin } = require('@promster/fastify');
 
 fastify.register(promsterPlugin):
 ```
