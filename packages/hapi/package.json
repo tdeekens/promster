@@ -32,6 +32,6 @@
   "dependencies": {
     "@promster/metrics": "^2.2.3",
     "merge-options": "1.0.1",
-    "semver": "6.1.2"
+    "semver": "6.2.0"
   }
 }
