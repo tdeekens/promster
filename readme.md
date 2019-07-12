@@ -107,6 +107,10 @@ or
 
 `yarn add @promster/hapi` or `npm i @promster/hapi --save`
 
+Please additionally make sure you have a `prom-client` installed. It is a peer dependency of `@promster` as some projects might already have an existing `prom-client` installed. Which otherwise would result in different default registries.
+
+`yarn add prom-client` or `npm i prom-client --save`
+
 ## ❯ Documentation
 
 Promster has to be setup with your server. Either as an Express middleware of an Hapi plugin. You can expose the gathered metrics via a built-in small server or through our own.
