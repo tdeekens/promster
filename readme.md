@@ -242,6 +242,7 @@ When creating either the Express middleware or Hapi plugin the followin options 
 - `normalizePath`: a function called on each request to normalize the request's path
 - `normalizeStatusCode`: a function called on each request to normalize the respond's status code (e.g. to get 2xx, 5xx codes instead of detailed ones)
 - `normalizeMethod`: a function called on each request to normalize the request's method (to e.g. hide it fully)
+- `skip`: a function called on each response giving the ability to skip a metric. The method receives `req`, `res` and `labels` and returns a boolean: `skip(req, res, labels) => Boolean`
 
 Moreover, both `@promster/hapi` and `@promster/express` expose the request recorder configured with the passed options and used to measure request timings. It allows easy tracking of other requests not handled through express or Hapi for instance calls to an external API while using promster's already defined metric types (the `httpRequestsHistogram` etc).
 

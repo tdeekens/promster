@@ -41,18 +41,23 @@ const createMiddleware = ({ app, options } = {}) => {
   function middleware(req, res, next) {
     const start = process.hrtime();
     res.on('finish', () => {
+      const labels = Object.assign(
+        {},
+        {
+          method: defaultedOptions.normalizeMethod(req.method),
+          // eslint-disable-next-line camelcase
+          status_code: defaultedOptions.normalizeStatusCode(res.statusCode),
+          path: defaultedOptions.normalizePath(extractPath(req)),
+        },
+        defaultedOptions.getLabelValues &&
+          defaultedOptions.getLabelValues(req, res)
+      );
+
+      if (defaultedOptions.skip && defaultedOptions.skip(req, res, labels))
+        return;
+
       recordRequest(start, {
-        labels: Object.assign(
-          {},
-          {
-            method: defaultedOptions.normalizeMethod(req.method),
-            // eslint-disable-next-line camelcase
-            status_code: defaultedOptions.normalizeStatusCode(res.statusCode),
-            path: defaultedOptions.normalizePath(extractPath(req)),
-          },
-          defaultedOptions.getLabelValues &&
-            defaultedOptions.getLabelValues(req, res)
-        ),
+        labels,
       });
     });
 

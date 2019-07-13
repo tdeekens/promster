@@ -56,20 +56,28 @@ const createPlugin = ({ options: pluginOptions } = {}) => {
       };
 
       const onResponseHandler = (request, response) => {
+        const labels = Object.assign(
+          {},
+          {
+            path: defaultedOptions.normalizePath(extractPath(request)),
+            method: defaultedOptions.normalizeMethod(request.method),
+            // eslint-disable-next-line camelcase
+            status_code: defaultedOptions.normalizeStatusCode(
+              extractStatusCode(request)
+            ),
+          },
+          defaultedOptions.getLabelValues &&
+            defaultedOptions.getLabelValues(request, {})
+        );
+
+        if (
+          defaultedOptions.skip &&
+          defaultedOptions.skip(request, response, labels)
+        )
+          return;
+
         recordRequest(request.plugins.promster.start, {
-          labels: Object.assign(
-            {},
-            {
-              path: defaultedOptions.normalizePath(extractPath(request)),
-              method: defaultedOptions.normalizeMethod(request.method),
-              // eslint-disable-next-line camelcase
-              status_code: defaultedOptions.normalizeStatusCode(
-                extractStatusCode(request)
-              ),
-            },
-            defaultedOptions.getLabelValues &&
-              defaultedOptions.getLabelValues(request, {})
-          ),
+          labels,
         });
 
         if (doesResponseNeedInvocation) response.continue();

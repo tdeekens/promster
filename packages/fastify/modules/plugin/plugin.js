@@ -42,15 +42,22 @@ const createPlugin = async (fastify, options) => {
   });
 
   fastify.addHook('onResponse', async (req, reply) => {
-    recordRequest(req.__promsterStartTime__, {
-      labels: {
+    const labels = Object.assign(
+      {},
+      {
         method: defaultedOptions.normalizeMethod(req.raw.method),
         // eslint-disable-next-line camelcase
         status_code: defaultedOptions.normalizeStatusCode(reply.res.statusCode),
         path: defaultedOptions.normalizePath(extractPath(req)),
-        ...(defaultedOptions.getLabelValues &&
-          defaultedOptions.getLabelValues(req, reply)),
       },
+      defaultedOptions.getLabelValues &&
+        defaultedOptions.getLabelValues(req, reply)
+    );
+
+    if (defaultedOptions.skip && defaultedOptions.skip(req, reply)) return;
+
+    recordRequest(req.__promsterStartTime__, {
+      labels,
     });
   });
 };
