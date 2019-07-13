@@ -25,18 +25,22 @@ const recordHandler = (res, opts) => stamp =>
     )
     .subscribe(() => {
       const { req, start } = stamp;
-      recordRequest(start, {
-        labels: Object.assign(
-          {},
-          {
-            method: opts.normalizeMethod(req.method),
-            // eslint-disable-next-line camelcase
-            status_code: opts.normalizeStatusCode(res.statusCode),
-            path: opts.normalizePath(extractPath(req)),
-          },
-          opts.getLabelValues && opts.getLabelValues(req, res)
-        ),
-      });
+      const labels = Object.assign(
+        {},
+        {
+          method: opts.normalizeMethod(req.method),
+          // eslint-disable-next-line camelcase
+          status_code: opts.normalizeStatusCode(res.statusCode),
+          path: opts.normalizePath(extractPath(req)),
+        },
+        opts.getLabelValues && opts.getLabelValues(req, res)
+      );
+
+      if (!opts.skip(req, res, labels)) {
+        recordRequest(start, {
+          labels,
+        });
+      }
     });
 
 const createMiddleware = ({ options } = {}) => {

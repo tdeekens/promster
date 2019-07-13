@@ -29,6 +29,7 @@ const shouldObserveMetricAccuracy = accuracy => options =>
 const defaultOptions = {
   accuracies: ['s'],
   metricTypes: ['httpRequestsTotal', 'httpRequestsHistogram'],
+  skip: () => false,
 };
 const createRequestRecorder = (
   metricTypes,
