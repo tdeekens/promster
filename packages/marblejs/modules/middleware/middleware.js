@@ -36,11 +36,11 @@ const recordHandler = (res, opts) => stamp =>
         opts.getLabelValues && opts.getLabelValues(req, res)
       );
 
-      if (!opts.skip(req, res, labels)) {
-        recordRequest(start, {
-          labels,
-        });
-      }
+      if (opts.skip && opts.skip(req, res, labels)) return;
+
+      recordRequest(start, {
+        labels,
+      });
     });
 
 const createMiddleware = ({ options } = {}) => {

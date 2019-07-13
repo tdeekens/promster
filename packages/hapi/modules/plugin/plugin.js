@@ -70,11 +70,15 @@ const createPlugin = ({ options: pluginOptions } = {}) => {
             defaultedOptions.getLabelValues(request, {})
         );
 
-        if (!defaultedOptions.skip(request, response, labels)) {
-          recordRequest(request.plugins.promster.start, {
-            labels,
-          });
-        }
+        if (
+          defaultedOptions.skip &&
+          defaultedOptions.skip(request, response, labels)
+        )
+          return;
+
+        recordRequest(request.plugins.promster.start, {
+          labels,
+        });
 
         if (doesResponseNeedInvocation) response.continue();
       };

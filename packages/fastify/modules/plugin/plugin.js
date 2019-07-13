@@ -54,11 +54,11 @@ const createPlugin = async (fastify, options) => {
         defaultedOptions.getLabelValues(req, reply)
     );
 
-    if (!defaultedOptions.skip(req, reply)) {
-      recordRequest(req.__promsterStartTime__, {
-        labels,
-      });
-    }
+    if (defaultedOptions.skip && defaultedOptions.skip(req, reply)) return;
+
+    recordRequest(req.__promsterStartTime__, {
+      labels,
+    });
   });
 };
 

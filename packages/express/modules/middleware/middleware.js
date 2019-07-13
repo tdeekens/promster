@@ -53,11 +53,12 @@ const createMiddleware = ({ app, options } = {}) => {
           defaultedOptions.getLabelValues(req, res)
       );
 
-      if (!defaultedOptions.skip(req, res, labels)) {
-        recordRequest(start, {
-          labels,
-        });
-      }
+      if (defaultedOptions.skip && defaultedOptions.skip(req, res, labels))
+        return;
+
+      recordRequest(start, {
+        labels,
+      });
     });
 
     return next();
