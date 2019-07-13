@@ -1,6 +1,6 @@
 {
   "name": "@promster/hapi",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Hapi server integrations of promster",
   "main": "modules/index.js",
   "scripts": {
@@ -30,7 +30,7 @@
     "prometheus"
   ],
   "dependencies": {
-    "@promster/metrics": "^3.0.0",
+    "@promster/metrics": "^3.1.0",
     "merge-options": "1.0.1",
     "semver": "6.2.0"
   }
