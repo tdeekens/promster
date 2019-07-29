@@ -3146,10 +3146,10 @@ fastify-plugin@1.6.0:
   dependencies:
     semver "^6.0.0"
 
-fastify@2.6.0:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/fastify/-/fastify-2.6.0.tgz#45397b760f75278633fe0dcb30fcb4a26d1f66f6"
-  integrity sha512-3GxGV2P8731o2S5T6ng5NMJ9S7vFpZA4mk2mJEbMbhQ5aj1HhNGBOe39TYa2gWRrJVJuXxYYYIlY/5cFhiHpNg==
+fastify@2.7.0:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/fastify/-/fastify-2.7.0.tgz#088f0123f6e85e0d64bdce79fcb577ba6603e213"
+  integrity sha512-TFQoHKMXfE8Of9W/5qH7PUSW0pk98tnS2IWUgYNY4FbiD9U/La1VVlaaV8nXd52Sm+3dD3A0QncoRlPKpWlkiA==
   dependencies:
     abstract-logging "^1.0.0"
     ajv "^6.9.2"
