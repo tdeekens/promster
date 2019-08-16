@@ -59,11 +59,18 @@ const createPlugin = ({ options: pluginOptions } = {}) => {
         const labels = Object.assign(
           {},
           {
-            path: defaultedOptions.normalizePath(extractPath(request)),
-            method: defaultedOptions.normalizeMethod(request.method),
+            path: defaultedOptions.normalizePath(extractPath(request), {
+              request,
+              response,
+            }),
+            method: defaultedOptions.normalizeMethod(request.method, {
+              request,
+              response,
+            }),
             // eslint-disable-next-line camelcase
             status_code: defaultedOptions.normalizeStatusCode(
-              extractStatusCode(request)
+              extractStatusCode(request),
+              { request, response }
             ),
           },
           defaultedOptions.getLabelValues &&

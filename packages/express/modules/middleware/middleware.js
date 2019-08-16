@@ -38,22 +38,34 @@ const createMiddleware = ({ app, options } = {}) => {
 
   observeGc();
 
-  return (req, res, next) => {
+  return (request, response, next) => {
     const start = process.hrtime();
-    res.on('finish', () => {
+    response.on('finish', () => {
       const labels = Object.assign(
         {},
         {
-          method: defaultedOptions.normalizeMethod(req.method),
+          method: defaultedOptions.normalizeMethod(request.method, {
+            req: request,
+            res: response,
+          }),
           // eslint-disable-next-line camelcase
-          status_code: defaultedOptions.normalizeStatusCode(res.statusCode),
-          path: defaultedOptions.normalizePath(extractPath(req)),
+          status_code: defaultedOptions.normalizeStatusCode(
+            response.statusCode,
+            { req: request, res: response }
+          ),
+          path: defaultedOptions.normalizePath(extractPath(request), {
+            req: request,
+            res: response,
+          }),
         },
         defaultedOptions.getLabelValues &&
-          defaultedOptions.getLabelValues(req, res)
+          defaultedOptions.getLabelValues(request, response)
       );
 
-      if (defaultedOptions.skip && defaultedOptions.skip(req, res, labels))
+      if (
+        defaultedOptions.skip &&
+        defaultedOptions.skip(request, response, labels)
+      )
         return;
 
       recordRequest(start, {
