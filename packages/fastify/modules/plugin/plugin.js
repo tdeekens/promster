@@ -37,26 +37,35 @@ const createPlugin = async (fastify, options) => {
   fastify.decorate('recordRequest', recordRequest);
   fastify.decorateRequest('__promsterStartTime__', null);
 
-  fastify.addHook('onRequest', async (req, _) => {
-    req.__promsterStartTime__ = process.hrtime();
+  fastify.addHook('onRequest', async (request, _) => {
+    request.__promsterStartTime__ = process.hrtime();
   });
 
-  fastify.addHook('onResponse', async (req, reply) => {
+  fastify.addHook('onResponse', async (request, reply) => {
     const labels = Object.assign(
       {},
       {
-        method: defaultedOptions.normalizeMethod(req.raw.method),
+        method: defaultedOptions.normalizeMethod(request.raw.method, {
+          request,
+          reply,
+        }),
         // eslint-disable-next-line camelcase
-        status_code: defaultedOptions.normalizeStatusCode(reply.res.statusCode),
-        path: defaultedOptions.normalizePath(extractPath(req)),
+        status_code: defaultedOptions.normalizeStatusCode(
+          reply.res.statusCode,
+          { request, reply }
+        ),
+        path: defaultedOptions.normalizePath(extractPath(request), {
+          request,
+          reply,
+        }),
       },
       defaultedOptions.getLabelValues &&
-        defaultedOptions.getLabelValues(req, reply)
+        defaultedOptions.getLabelValues(request, reply)
     );
 
-    if (defaultedOptions.skip && defaultedOptions.skip(req, reply)) return;
+    if (defaultedOptions.skip && defaultedOptions.skip(request, reply)) return;
 
-    recordRequest(req.__promsterStartTime__, {
+    recordRequest(request.__promsterStartTime__, {
       labels,
     });
   });
