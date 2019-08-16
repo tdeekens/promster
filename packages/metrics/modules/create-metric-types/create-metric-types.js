@@ -165,12 +165,13 @@ const createMetricTypes = options => {
     defaultedOptions
   );
 
-  return {
-    ...defaultMetrics,
-    ...httpRequestLatencyMetricsInMilliseconds,
-    ...httpRequestLatencyMetricsInSeconds,
-    ...httpRequestCounterMetric,
-  };
+  return Object.assign(
+    {},
+    defaultMetrics,
+    httpRequestLatencyMetricsInMilliseconds,
+    httpRequestLatencyMetricsInSeconds,
+    httpRequestCounterMetric
+  );
 };
 
 createMetricTypes.defaultOptions = defaultOptions;

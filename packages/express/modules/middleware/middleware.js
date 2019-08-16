@@ -38,7 +38,7 @@ const createMiddleware = ({ app, options } = {}) => {
 
   observeGc();
 
-  function middleware(req, res, next) {
+  return (req, res, next) => {
     const start = process.hrtime();
     res.on('finish', () => {
       const labels = Object.assign(
@@ -62,9 +62,7 @@ const createMiddleware = ({ app, options } = {}) => {
     });
 
     return next();
-  }
-
-  return middleware;
+  };
 };
 
 exports.default = createMiddleware;
