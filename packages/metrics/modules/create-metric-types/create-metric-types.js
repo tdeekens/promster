@@ -1,4 +1,5 @@
 const merge = require('merge-options');
+const memoize = require('memoize-one');
 const { Prometheus } = require('../client');
 
 const defaultHttpRequestDurationPercentilesInMillieconds = [
@@ -151,7 +152,7 @@ const getHttpRequestCounterMetric = options => ({
     }),
 });
 
-const createMetricTypes = options => {
+const createMetricTypes = memoize(options => {
   const defaultedOptions = merge(defaultOptions, options);
   const defaultMetrics = getDefaultMetrics(defaultedOptions);
 
@@ -172,7 +173,7 @@ const createMetricTypes = options => {
     httpRequestLatencyMetricsInSeconds,
     httpRequestCounterMetric
   );
-};
+});
 
 createMetricTypes.defaultOptions = defaultOptions;
 
