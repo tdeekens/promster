@@ -57,29 +57,46 @@ const createRequestRecorder = (
     const labels = sortLabels(recordingOptions.labels);
 
     if (shouldObserveInMilliseconds && shouldObserveInHistogram) {
-      metricTypes.httpRequestDurationInMilliseconds.observe(labels, durationMs);
+      metricTypes.httpRequestDurationInMilliseconds.forEach(
+        httpRequestDurationInMillisecondsMetricType =>
+          httpRequestDurationInMillisecondsMetricType.observe(
+            labels,
+            durationMs
+          )
+      );
     }
 
     if (shouldObserveInMilliseconds && shouldObserveInSummary) {
-      metricTypes.httpRequestDurationPerPercentileInMilliseconds.observe(
-        labels,
-        durationMs
+      metricTypes.httpRequestDurationPerPercentileInMilliseconds.forEach(
+        httpRequestDurationPerPercentileInMillisecondsMetricType =>
+          httpRequestDurationPerPercentileInMillisecondsMetricType.observe(
+            labels,
+            durationMs
+          )
       );
     }
 
     if (shouldObserveInSeconds && shouldObserveInHistogram) {
-      metricTypes.httpRequestDurationInSeconds.observe(labels, durationS);
+      metricTypes.httpRequestDurationInSeconds.forEach(
+        httpRequestDurationInSecondsMetricType =>
+          httpRequestDurationInSecondsMetricType.observe(labels, durationS)
+      );
     }
 
     if (shouldObserveInSeconds && shouldObserveInSummary) {
-      metricTypes.httpRequestDurationPerPercentileInSeconds.observe(
-        labels,
-        durationS
+      metricTypes.httpRequestDurationPerPercentileInSeconds.forEach(
+        httpRequestDurationPerPercentileInSecondsMetricType =>
+          httpRequestDurationPerPercentileInSecondsMetricType.observe(
+            labels,
+            durationS
+          )
       );
     }
 
     if (shouldObserveInCounter) {
-      metricTypes.httpRequestsTotal.inc(labels);
+      metricTypes.httpRequestsTotal.forEach(httpRequestsTotalMetricType =>
+        httpRequestsTotalMetricType.inc(labels)
+      );
     }
   };
 };

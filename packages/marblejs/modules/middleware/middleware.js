@@ -13,8 +13,10 @@ const extractPath = req => req.originalUrl || req.url;
 let recordRequest;
 let upMetric;
 const getRequestRecorder = () => recordRequest;
-const signalIsUp = () => upMetric && upMetric.set(1);
-const signalIsNotUp = () => upMetric && upMetric.set(0);
+const signalIsUp = () =>
+  upMetric && upMetric.forEach(upMetricType => upMetricType.set(1));
+const signalIsNotUp = () =>
+  upMetric && upMetric.forEach(upMetricType => upMetricType.set(0));
 
 const recordHandler = (res, opts) => stamp =>
   fromEvent(res, 'finish')
