@@ -20,13 +20,17 @@ const createGcObserver = once(metricTypes => () => {
   gc().on('stats', stats => {
     const gcType = gcTypes[stats.gctype];
 
-    metricTypes.countOfGcs.labels(gcType).inc();
-    metricTypes.durationOfGc.labels(gcType).inc(stats.pause / 1e9);
+    metricTypes.countOfGcs.forEach(countOfGcMetricType =>
+      countOfGcMetricType.labels(gcType).inc()
+    );
+    metricTypes.durationOfGc.forEach(durationOfGcMetricType =>
+      durationOfGcMetricType.labels(gcType).inc(stats.pause / 1e9)
+    );
 
     if (stats.diff.usedHeapSize < 0) {
-      metricTypes.reclaimedInGc
-        .labels(gcType)
-        .inc(stats.diff.usedHeapSize * -1);
+      metricTypes.reclaimedInGc.forEach(reclaimedInGcMetricType =>
+        reclaimedInGcMetricType.labels(gcType).inc(stats.diff.usedHeapSize * -1)
+      );
     }
   });
 });

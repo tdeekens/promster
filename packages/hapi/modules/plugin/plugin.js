@@ -16,8 +16,10 @@ const extractStatusCode = request =>
 let recordRequest;
 let upMetric;
 const getRequestRecorder = () => recordRequest;
-const signalIsUp = () => upMetric && upMetric.set(1);
-const signalIsNotUp = () => upMetric && upMetric.set(0);
+const signalIsUp = () =>
+  upMetric && upMetric.forEach(upMetricType => upMetricType.set(1));
+const signalIsNotUp = () =>
+  upMetric && upMetric.forEach(upMetricType => upMetricType.set(0));
 
 const getAreServerEventsSupported = actualVersion =>
   Boolean(actualVersion && semver.satisfies(actualVersion, '>= 17.0.0'));

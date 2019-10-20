@@ -14,8 +14,10 @@ let upMetric;
 
 const extractPath = req => req.raw.originalUrl || req.raw.url;
 const getRequestRecorder = () => recordRequest;
-const signalIsUp = () => upMetric && upMetric.set(1);
-const signalIsNotUp = () => upMetric && upMetric.set(0);
+const signalIsUp = () =>
+  upMetric && upMetric.forEach(upMetricType => upMetricType.set(1));
+const signalIsNotUp = () =>
+  upMetric && upMetric.forEach(upMetricType => upMetricType.set(0));
 
 const createPlugin = async (fastify, options) => {
   const defaultedOptions = merge(
