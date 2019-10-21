@@ -1,5 +1,5 @@
 const merge = require('merge-options');
-const { Prometheus } = require('../client');
+const { configure, Prometheus } = require('../client');
 
 const defaultHttpRequestDurationPercentilesInMillieconds = [
   0.5,
@@ -62,6 +62,7 @@ const defaultOptions = {
   getLabelValues: () => ({}),
   labels: [],
   accuracies: ['s'],
+  metricPrefix: '',
   metricTypes: ['httpRequestsTotal', 'httpRequestsHistogram'],
   metricNames: {
     up: ['up'],
@@ -84,14 +85,14 @@ const getDefaultMetrics = options => ({
   up: asArray(options.metricNames.up).map(
     nameOfUpMetric =>
       new Prometheus.Gauge({
-        name: nameOfUpMetric,
+        name: `${options.metricPrefix}${nameOfUpMetric}`,
         help: '1 = up, 0 = not up',
       })
   ),
   countOfGcs: asArray(options.metricNames.countOfGcs).map(
     nameOfCounfOfGcsMetric =>
       new Prometheus.Counter({
-        name: nameOfCounfOfGcsMetric,
+        name: `${options.metricPrefix}${nameOfCounfOfGcsMetric}`,
         help: 'Count of total garbage collections.',
         labelNames: defaultGcLabels,
       })
@@ -99,7 +100,7 @@ const getDefaultMetrics = options => ({
   durationOfGc: asArray(options.metricNames.durationOfGc).map(
     nameOfDurationOfGcMetric =>
       new Prometheus.Counter({
-        name: nameOfDurationOfGcMetric,
+        name: `${options.metricPrefix}${nameOfDurationOfGcMetric}`,
         help: 'Time spent in GC Pause in seconds.',
         labelNames: defaultGcLabels,
       })
@@ -107,7 +108,7 @@ const getDefaultMetrics = options => ({
   reclaimedInGc: asArray(options.metricNames.reclaimedInGc).map(
     nameOfReclaimedInGcMetric =>
       new Prometheus.Counter({
-        name: nameOfReclaimedInGcMetric,
+        name: `${options.metricPrefix}${nameOfReclaimedInGcMetric}`,
         help: 'Total number of bytes reclaimed by GC.',
         labelNames: defaultGcLabels,
       })
@@ -187,6 +188,11 @@ const getHttpRequestCounterMetric = options => ({
 
 const createMetricTypes = options => {
   const defaultedOptions = merge(defaultOptions, options);
+
+  configure({
+    prefix: defaultedOptions.metricPrefix,
+  });
+
   const defaultMetrics = getDefaultMetrics(defaultedOptions);
 
   const httpRequestLatencyMetricsInMilliseconds =

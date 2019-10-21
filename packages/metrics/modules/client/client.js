@@ -5,7 +5,10 @@ const Prometheus = require('prom-client');
 //   We could create multiple registries with `new Prometheus.registry()`.
 const defaultRegister = Prometheus.register;
 
-Prometheus.collectDefaultMetrics();
+const configure = options => {
+  Prometheus.collectDefaultMetrics(options);
+};
 
 exports.default = Prometheus;
 exports.defaultRegister = defaultRegister;
+exports.configure = configure;

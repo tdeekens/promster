@@ -1,6 +1,7 @@
 const { default: createMetricTypes } = require('./create-metric-types');
 
 jest.mock('../client', () => ({
+  configure: jest.fn(),
   Prometheus: {
     Gauge: jest.fn(),
     Counter: jest.fn(),
