@@ -30,6 +30,6 @@
     "prometheus"
   ],
   "dependencies": {
-    "@promster/metrics": "^3.3.0"
+    "@promster/metrics": "3.3.0"
   }
 }

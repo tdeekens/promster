@@ -30,7 +30,7 @@
     "prometheus"
   ],
   "dependencies": {
-    "@promster/metrics": "^3.3.0",
+    "@promster/metrics": "3.3.0",
     "fastify-plugin": "1.6.0",
     "merge-options": "1.0.1"
   },
