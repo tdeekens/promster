@@ -123,7 +123,7 @@ const getHttpRequestLatencyMetricsInMilliseconds = options => ({
     ).map(
       nameOfHttpRequestDurationPerPercentileInMillisecondsMetric =>
         new Prometheus.Summary({
-          name: nameOfHttpRequestDurationPerPercentileInMillisecondsMetric,
+          name: `${options.metricPrefix}${nameOfHttpRequestDurationPerPercentileInMillisecondsMetric}`,
           help: 'The HTTP request latencies in milliseconds.',
           labelNames: defaultRequestLabels.concat(options.labels).sort(),
           percentiles:
@@ -137,7 +137,7 @@ const getHttpRequestLatencyMetricsInMilliseconds = options => ({
     asArray(options.metricNames.httpRequestDurationInMilliseconds).map(
       nameOfHttpRequestDurationInMillisecondsMetric =>
         new Prometheus.Histogram({
-          name: nameOfHttpRequestDurationInMillisecondsMetric,
+          name: `${options.metricPrefix}${nameOfHttpRequestDurationInMillisecondsMetric}`,
           help: 'The HTTP request latencies in milliseconds.',
           labelNames: defaultRequestLabels.concat(options.labels).sort(),
           buckets: options.buckets || defaultHttpRequestDurationInMilliseconds,
@@ -151,7 +151,7 @@ const getHttpRequestLatencyMetricsInSeconds = options => ({
     asArray(options.metricNames.httpRequestDurationPerPercentileInSeconds).map(
       nameOfHttpRequestDurationPerPercentileInSeconds =>
         new Prometheus.Summary({
-          name: nameOfHttpRequestDurationPerPercentileInSeconds,
+          name: `${options.metricPrefix}${nameOfHttpRequestDurationPerPercentileInSeconds}`,
           help: 'The HTTP request latencies in seconds.',
           labelNames: defaultRequestLabels.concat(options.labels).sort(),
           percentiles:
@@ -165,7 +165,7 @@ const getHttpRequestLatencyMetricsInSeconds = options => ({
     asArray(options.metricNames.httpRequestDurationInSeconds).map(
       nameOfHttpRequestDurationInSecondsMetric =>
         new Prometheus.Histogram({
-          name: nameOfHttpRequestDurationInSecondsMetric,
+          name: `${options.metricPrefix}${nameOfHttpRequestDurationInSecondsMetric}`,
           help: 'The HTTP request latencies in seconds.',
           labelNames: defaultRequestLabels.concat(options.labels).sort(),
           buckets: options.buckets || defaultHttpRequestDurationInSeconds,
