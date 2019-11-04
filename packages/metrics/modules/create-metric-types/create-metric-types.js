@@ -179,7 +179,7 @@ const getHttpRequestCounterMetric = options => ({
     asArray(options.metricNames.httpRequestsTotal).map(
       nameOfHttpRequestsTotalMetric =>
         new Prometheus.Counter({
-          name: nameOfHttpRequestsTotalMetric,
+          name: `${options.metricPrefix}${nameOfHttpRequestsTotalMetric}`,
           help: 'The total HTTP requests.',
           labelNames: defaultRequestLabels.concat(options.labels).sort(),
         })
