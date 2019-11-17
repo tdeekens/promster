@@ -27,7 +27,7 @@
   "author": "Tobias Deekens <nerd@tdeekens.name>",
   "license": "MIT",
   "engines": {
-    "node": ">=8",
+    "node": ">=9",
     "npm": ">=3"
   },
   "bugs": {
