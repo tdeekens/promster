@@ -14,6 +14,10 @@
   "publishConfig": {
     "access": "public"
   },
+  "engines": {
+    "node": ">=9",
+    "npm": ">=3"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tdeekens/promster.git"

@@ -11,6 +11,10 @@
     "readme.md",
     "modules/**"
   ],
+  "engines": {
+    "node": ">=9",
+    "npm": ">=3"
+  },
   "publishConfig": {
     "access": "public"
   },
