@@ -1,6 +1,6 @@
 {
   "name": "@promster/server",
-  "version": "3.4.2",
+  "version": "4.0.0",
   "description": "Server exposing metrics under GET /metrics",
   "main": "modules/index.js",
   "scripts": {
@@ -34,6 +34,6 @@
     "prometheus"
   ],
   "dependencies": {
-    "@promster/metrics": "^3.4.2"
+    "@promster/metrics": "^4.0.0"
   }
 }
