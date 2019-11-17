@@ -14,6 +14,10 @@
   "publishConfig": {
     "access": "public"
   },
+  "engines": {
+    "node": ">=9",
+    "npm": ">=3"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tdeekens/promster.git"
@@ -32,7 +36,7 @@
   "dependencies": {
     "lodash.memoize": "4.1.2",
     "lodash.once": "4.1.1",
-    "merge-options": "1.0.1",
+    "merge-options": "2.0.0",
     "optional": "0.1.4",
     "url": "0.11.0",
     "url-value-parser": "2.0.1"

@@ -14,6 +14,10 @@
   "publishConfig": {
     "access": "public"
   },
+  "engines": {
+    "node": ">=9",
+    "npm": ">=3"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tdeekens/promster.git"
@@ -31,7 +35,7 @@
   ],
   "dependencies": {
     "@promster/metrics": "^3.4.2",
-    "merge-options": "1.0.1",
+    "merge-options": "2.0.0",
     "rxjs": "^6.5.3"
   }
 }

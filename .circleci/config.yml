@@ -41,15 +41,15 @@ node10Environment: &node10Environment
   docker:
     - image: circleci/node:10
   working_directory: *working_directory
-node11Environment: &node11Environment
+node12Environment: &node12Environment
   docker:
-    - image: circleci/node:11
+    - image: circleci/node:12
   working_directory: *working_directory
 
 version: 2
 jobs:
   lint:
-    <<: *node10Environment
+    <<: *node12Environment
     steps:
       - checkout
       - restore_cache: *restore_yarn_cache
@@ -65,8 +65,8 @@ jobs:
       - run: *install
       - run: *build
       - run: *unit_test
-  build_test_unit_node_11:
-    <<: *node10Environment
+  build_test_unit_node_12:
+    <<: *node12Environment
     steps:
       - checkout
       - restore_cache: *restore_yarn_cache
@@ -82,6 +82,6 @@ workflows:
       - build_test_unit_node_10:
           requires:
             - lint
-      - build_test_unit_node_11:
+      - build_test_unit_node_12:
           requires:
             - lint
