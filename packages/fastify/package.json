@@ -1,6 +1,6 @@
 {
   "name": "@promster/fastify",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Fastify server integrations of promster",
   "main": "modules/index.js",
   "scripts": {
