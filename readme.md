@@ -282,6 +282,8 @@ createServer({ port: 8888 }).then(server =>
 );
 ```
 
+Options with their respective defaults are `port: 7788`, `hostname: '0.0.0.0'` and `detectKubernetes: false`. Whenever `detectKubernetes` is passed as `true` and the server will not start locally.
+
 ### `@promster/{express,hapi}`
 
 You can use the `express` or `hapi` package to expose the gathered metrics through your existing server. To do so just:
