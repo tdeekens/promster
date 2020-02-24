@@ -45,6 +45,6 @@
     "gc-stats": "1.4.0"
   },
   "peerDependencies": {
-    "prom-client": "11.5.3"
+    "prom-client": "12.0.0"
   }
 }
