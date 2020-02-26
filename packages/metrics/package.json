@@ -1,6 +1,6 @@
 {
   "name": "@promster/metrics",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "description": "Metrics utilities used by all other server integrations",
   "main": "modules/index.js",
   "scripts": {
