@@ -7,6 +7,7 @@ const {
   createRequestRecorder,
   createGcObserver,
   defaultNormalizers,
+  isRunningInKubernetes,
 } = require('@promster/metrics');
 
 const extractPath = request => request.route.path.replace(/\?/g, '');
@@ -34,13 +35,19 @@ const createPlugin = ({ options: pluginOptions } = {}) => {
     pluginOptions
   );
 
+  const shouldSkipMetricsByEnvironment =
+    defaultedOptions.detectKubernetes === true &&
+    isRunningInKubernetes() === false;
+
   const metricTypes = createMetricTypes(defaultedOptions);
   const observeGc = createGcObserver(metricTypes);
 
   recordRequest = createRequestRecorder(metricTypes, defaultedOptions);
   upMetric = metricTypes && metricTypes.up;
 
-  observeGc();
+  if (!shouldSkipMetricsByEnvironment) {
+    observeGc();
+  }
 
   const plugin = {
     name: pkg.name,
@@ -79,15 +86,15 @@ const createPlugin = ({ options: pluginOptions } = {}) => {
             defaultedOptions.getLabelValues(request, {})
         );
 
-        if (
+        const shouldSkipByRequest =
           defaultedOptions.skip &&
-          defaultedOptions.skip(request, response, labels)
-        )
-          return;
+          defaultedOptions.skip(request, response, labels);
 
-        recordRequest(request.plugins.promster.start, {
-          labels,
-        });
+        if (!shouldSkipByRequest && !shouldSkipMetricsByEnvironment) {
+          recordRequest(request.plugins.promster.start, {
+            labels,
+          });
+        }
 
         if (doesResponseNeedInvocation) response.continue();
       };

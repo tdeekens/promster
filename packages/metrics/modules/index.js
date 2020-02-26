@@ -10,6 +10,7 @@ const {
   normalizePath,
   normalizeMethod,
 } = require('./normalizers');
+const { isRunningInKubernetes } = require('./kubernetes');
 
 exports.version = version;
 exports.Prometheus = Prometheus;
@@ -23,3 +24,4 @@ exports.defaultNormalizers = defaultNormalizers;
 exports.normalizeStatusCode = normalizeStatusCode;
 exports.normalizePath = normalizePath;
 exports.normalizeMethod = normalizeMethod;
+exports.isRunningInKubernetes = isRunningInKubernetes;
