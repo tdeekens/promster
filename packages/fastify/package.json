@@ -1,6 +1,6 @@
 {
   "name": "@promster/fastify",
-  "version": "3.0.1",
+  "version": "3.1.0",
   "description": "Fastify server integrations of promster",
   "main": "modules/index.js",
   "scripts": {
@@ -34,7 +34,7 @@
     "prometheus"
   ],
   "dependencies": {
-    "@promster/metrics": "^4.0.0",
+    "@promster/metrics": "^4.1.0",
     "fastify-plugin": "1.6.1",
     "merge-options": "2.0.0"
   },
