@@ -245,6 +245,7 @@ When creating either the Express middleware or Hapi plugin the followin options 
 - `normalizeStatusCode`: a function called on each request to normalize the respond's status code (e.g. to get 2xx, 5xx codes instead of detailed ones). Invoked with `(statusCode: nummber, { request, response })`
 - `normalizeMethod`: a function called on each request to normalize the request's method (to e.g. hide it fully). Invoked with `(method: string, { request, response })`
 - `skip`: a function called on each response giving the ability to skip a metric. The method receives `req`, `res` and `labels` and returns a boolean: `skip(req, res, labels) => Boolean`
+- `detectKubernetes`: a boolean defaulting to `false`. Whenever `true`is passed the process does not run within Kubernetes any metric intake is skipped (good e.g. during testing).
 
 Moreover, both `@promster/hapi` and `@promster/express` expose the request recorder configured with the passed options and used to measure request timings. It allows easy tracking of other requests not handled through express or Hapi for instance calls to an external API while using promster's already defined metric types (the `httpRequestsHistogram` etc).
 

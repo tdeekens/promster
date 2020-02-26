@@ -1,4 +1,5 @@
 const merge = require('merge-options');
+const { isRunningInKubernetes } = require('../kubernetes');
 
 const NS_PER_SEC = 1e9;
 const NS_PER_MS = 1e6;
@@ -36,6 +37,10 @@ const createRequestRecorder = (
   recorderOptions = defaultOptions
 ) => {
   const defaultedRecorderOptions = merge(defaultOptions, recorderOptions);
+  const shouldSkipMetricsByEnvironment =
+    defaultedRecorderOptions.detectKubernetes === true &&
+    isRunningInKubernetes() === false;
+
   const shouldObserveInSeconds = shouldObserveMetricAccuracy('s')(
     defaultedRecorderOptions
   );
@@ -56,7 +61,11 @@ const createRequestRecorder = (
     const { durationMs, durationS } = endMeasurmentFrom(start);
     const labels = sortLabels(recordingOptions.labels);
 
-    if (shouldObserveInMilliseconds && shouldObserveInHistogram) {
+    if (
+      shouldObserveInMilliseconds &&
+      shouldObserveInHistogram &&
+      !shouldSkipMetricsByEnvironment
+    ) {
       metricTypes.httpRequestDurationInMilliseconds.forEach(
         httpRequestDurationInMillisecondsMetricType =>
           httpRequestDurationInMillisecondsMetricType.observe(
@@ -66,7 +75,11 @@ const createRequestRecorder = (
       );
     }
 
-    if (shouldObserveInMilliseconds && shouldObserveInSummary) {
+    if (
+      shouldObserveInMilliseconds &&
+      shouldObserveInSummary &&
+      !shouldSkipMetricsByEnvironment
+    ) {
       metricTypes.httpRequestDurationPerPercentileInMilliseconds.forEach(
         httpRequestDurationPerPercentileInMillisecondsMetricType =>
           httpRequestDurationPerPercentileInMillisecondsMetricType.observe(
@@ -76,14 +89,22 @@ const createRequestRecorder = (
       );
     }
 
-    if (shouldObserveInSeconds && shouldObserveInHistogram) {
+    if (
+      shouldObserveInSeconds &&
+      shouldObserveInHistogram &&
+      !shouldSkipMetricsByEnvironment
+    ) {
       metricTypes.httpRequestDurationInSeconds.forEach(
         httpRequestDurationInSecondsMetricType =>
           httpRequestDurationInSecondsMetricType.observe(labels, durationS)
       );
     }
 
-    if (shouldObserveInSeconds && shouldObserveInSummary) {
+    if (
+      shouldObserveInSeconds &&
+      shouldObserveInSummary &&
+      !shouldSkipMetricsByEnvironment
+    ) {
       metricTypes.httpRequestDurationPerPercentileInSeconds.forEach(
         httpRequestDurationPerPercentileInSecondsMetricType =>
           httpRequestDurationPerPercentileInSecondsMetricType.observe(
@@ -93,7 +114,7 @@ const createRequestRecorder = (
       );
     }
 
-    if (shouldObserveInCounter) {
+    if (shouldObserveInCounter && !shouldSkipMetricsByEnvironment) {
       metricTypes.httpRequestsTotal.forEach(httpRequestsTotalMetricType =>
         httpRequestsTotalMetricType.inc(labels)
       );

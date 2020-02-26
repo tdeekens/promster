@@ -6,6 +6,7 @@ const {
   createRequestRecorder,
   createGcObserver,
   defaultNormalizers,
+  isRunningInKubernetes,
 } = require('@promster/metrics');
 const pkg = require('../../package.json');
 
@@ -27,13 +28,19 @@ const createPlugin = async (fastify, options) => {
     options
   );
 
+  const shouldSkipMetricsByEnvironment =
+    defaultedOptions.detectKubernetes === true &&
+    isRunningInKubernetes() === false;
+
   const metricTypes = createMetricTypes(defaultedOptions);
   const observeGc = createGcObserver(metricTypes);
 
   recordRequest = createRequestRecorder(metricTypes, defaultedOptions);
   upMetric = metricTypes && metricTypes.up;
 
-  observeGc();
+  if (!shouldSkipMetricsByEnvironment) {
+    observeGc();
+  }
 
   fastify.decorate('Prometheus', Prometheus);
   fastify.decorate('recordRequest', recordRequest);
@@ -65,11 +72,14 @@ const createPlugin = async (fastify, options) => {
         defaultedOptions.getLabelValues(request, reply)
     );
 
-    if (defaultedOptions.skip && defaultedOptions.skip(request, reply)) return;
+    const shouldSkipByRequest =
+      defaultedOptions.skip && defaultedOptions.skip(request, reply);
 
-    recordRequest(request.__promsterStartTime__, {
-      labels,
-    });
+    if (!shouldSkipByRequest && !shouldSkipMetricsByEnvironment) {
+      recordRequest(request.__promsterStartTime__, {
+        labels,
+      });
+    }
   });
 };
 

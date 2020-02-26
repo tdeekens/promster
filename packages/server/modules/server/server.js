@@ -1,9 +1,9 @@
 const http = require('http');
-const { getSummary, getContentType } = require('@promster/metrics');
-
-function isRunningInKubernetes() {
-  return Boolean(process.env.KUBERNETES_SERVICE_HOST);
-}
+const {
+  getSummary,
+  getContentType,
+  isRunningInKubernetes,
+} = require('@promster/metrics');
 
 const createServer = (
   options = { port: 7788, hostname: '0.0.0.0', detectKubernetes: false }

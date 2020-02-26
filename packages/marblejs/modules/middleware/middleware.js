@@ -6,6 +6,7 @@ const {
   createRequestRecorder,
   createGcObserver,
   defaultNormalizers,
+  isRunningInKubernetes,
 } = require('@promster/metrics');
 
 const extractPath = req => req.originalUrl || req.url;
@@ -38,11 +39,13 @@ const recordHandler = (res, opts) => stamp =>
         opts.getLabelValues && opts.getLabelValues(req, res)
       );
 
-      if (opts.skip && opts.skip(req, res, labels)) return;
+      const shouldSkipByRequest = opts.skip && opts.skip(req, res, labels);
 
-      recordRequest(start, {
-        labels,
-      });
+      if (!shouldSkipByRequest && !opts.shouldSkipMetricsByEnvironment) {
+        recordRequest(start, {
+          labels,
+        });
+      }
     });
 
 const createMiddleware = ({ options } = {}) => {
@@ -50,7 +53,13 @@ const createMiddleware = ({ options } = {}) => {
     createMetricTypes.defaultedOptions,
     createRequestRecorder.defaultedOptions,
     defaultNormalizers,
-    options
+    options,
+    {
+      shouldSkipMetricsByEnvironment:
+        options &&
+        options.detectKubernetes === true &&
+        isRunningInKubernetes() === false,
+    }
   );
 
   const metricTypes = createMetricTypes(defaultedOptions);
@@ -59,7 +68,9 @@ const createMiddleware = ({ options } = {}) => {
   recordRequest = createRequestRecorder(metricTypes, defaultedOptions);
   upMetric = metricTypes && metricTypes.up;
 
-  observeGc();
+  if (!defaultedOptions.shouldSkipMetricsByEnvironment) {
+    observeGc();
+  }
 
   function middleware(req$, res) {
     return req$.pipe(

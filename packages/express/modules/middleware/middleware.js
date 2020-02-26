@@ -5,6 +5,7 @@ const {
   createRequestRecorder,
   createGcObserver,
   defaultNormalizers,
+  isRunningInKubernetes,
 } = require('@promster/metrics');
 
 const exposeOnLocals = (app, { key, value }) => {
@@ -29,6 +30,10 @@ const createMiddleware = ({ app, options } = {}) => {
     options
   );
 
+  const shouldSkipMetricsByEnvironment =
+    defaultedOptions.detectKubernetes === true &&
+    isRunningInKubernetes() === false;
+
   const metricTypes = createMetricTypes(defaultedOptions);
   const observeGc = createGcObserver(metricTypes);
 
@@ -38,7 +43,9 @@ const createMiddleware = ({ app, options } = {}) => {
   exposeOnLocals(app, { key: 'Prometheus', value: Prometheus });
   exposeOnLocals(app, { key: 'recordRequest', value: recordRequest });
 
-  observeGc();
+  if (!shouldSkipMetricsByEnvironment) {
+    observeGc();
+  }
 
   return (request, response, next) => {
     const start = process.hrtime();
@@ -64,15 +71,15 @@ const createMiddleware = ({ app, options } = {}) => {
           defaultedOptions.getLabelValues(request, response)
       );
 
-      if (
+      const shouldSkipByRequest =
         defaultedOptions.skip &&
-        defaultedOptions.skip(request, response, labels)
-      )
-        return;
+        defaultedOptions.skip(request, response, labels);
 
-      recordRequest(start, {
-        labels,
-      });
+      if (!shouldSkipByRequest && !shouldSkipMetricsByEnvironment) {
+        recordRequest(start, {
+          labels,
+        });
+      }
     });
 
     return next();
