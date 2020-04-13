@@ -172,7 +172,7 @@ counter.inc();
 const app = require('./your-fastify-app');
 const { plugin: promsterPlugin } = require('@promster/fastify');
 
-fastify.register(promsterPlugin):
+fastify.register(promsterPlugin);
 ```
 
 Plugin attaches the internal `prom-client` to your Fastify instance. This may come in handy as later you can:
