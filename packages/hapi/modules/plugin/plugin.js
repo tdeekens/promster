@@ -10,21 +10,21 @@ const {
   isRunningInKubernetes,
 } = require('@promster/metrics');
 
-const extractPath = request => request.route.path.replace(/\?/g, '');
-const extractStatusCode = request =>
+const extractPath = (request) => request.route.path.replace(/\?/g, '');
+const extractStatusCode = (request) =>
   request.response ? request.response.statusCode : '';
 
 let recordRequest;
 let upMetric;
 const getRequestRecorder = () => recordRequest;
 const signalIsUp = () =>
-  upMetric && upMetric.forEach(upMetricType => upMetricType.set(1));
+  upMetric && upMetric.forEach((upMetricType) => upMetricType.set(1));
 const signalIsNotUp = () =>
-  upMetric && upMetric.forEach(upMetricType => upMetricType.set(0));
+  upMetric && upMetric.forEach((upMetricType) => upMetricType.set(0));
 
-const getAreServerEventsSupported = actualVersion =>
+const getAreServerEventsSupported = (actualVersion) =>
   Boolean(actualVersion && semver.satisfies(actualVersion, '>= 17.0.0'));
-const getDoesResponseNeedInvocation = actualVersion =>
+const getDoesResponseNeedInvocation = (actualVersion) =>
   Boolean(actualVersion && semver.satisfies(actualVersion, '< 17.0.0'));
 
 const createPlugin = ({ options: pluginOptions } = {}) => {

@@ -13,9 +13,9 @@ jest.mock('@promster/metrics', () => ({
   getSummary: jest.fn(() => 'metrics'),
   getContentType: jest.fn(() => 'text'),
   defaultNormalizers: {
-    normalizePath: jest.fn(_ => _),
-    normalizeStatusCode: jest.fn(_ => _),
-    normalizeMethod: jest.fn(_ => _),
+    normalizePath: jest.fn((_) => _),
+    normalizeStatusCode: jest.fn((_) => _),
+    normalizeMethod: jest.fn((_) => _),
   },
 }));
 

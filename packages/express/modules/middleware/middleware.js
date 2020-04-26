@@ -12,15 +12,15 @@ const exposeOnLocals = (app, { key, value }) => {
   if (app && app.locals) app.locals[key] = value;
 };
 
-const extractPath = req => req.originalUrl || req.url;
+const extractPath = (req) => req.originalUrl || req.url;
 
 let recordRequest;
 let upMetric;
 const getRequestRecorder = () => recordRequest;
 const signalIsUp = () =>
-  upMetric && upMetric.forEach(upMetricType => upMetricType.set(1));
+  upMetric && upMetric.forEach((upMetricType) => upMetricType.set(1));
 const signalIsNotUp = () =>
-  upMetric && upMetric.forEach(upMetricType => upMetricType.set(0));
+  upMetric && upMetric.forEach((upMetricType) => upMetricType.set(0));
 
 const createMiddleware = ({ app, options } = {}) => {
   let defaultedOptions = merge(

@@ -222,7 +222,7 @@ const middlewares = [
 
 const serveMetrics$ = EffectFactory.matchPath('/metrics')
   .matchType('GET')
-  .use(req$ =>
+  .use((req$) =>
     req$.pipe(
       mapTo({
         headers: { 'Content-Type': promster.getContentType() },
@@ -278,7 +278,7 @@ In some cases you might want to expose the gathered metrics through an individua
 const { createServer } = require('@promster/server');
 
 // NOTE: The port defaults to `7788`.
-createServer({ port: 8888 }).then(server =>
+createServer({ port: 8888 }).then((server) =>
   console.log(`@promster/server started on port 8888.`)
 );
 ```

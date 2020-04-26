@@ -1,3 +1,3 @@
-const normalizeStatusCode = statusCode => statusCode;
+const normalizeStatusCode = (statusCode) => statusCode;
 
 exports.default = normalizeStatusCode;

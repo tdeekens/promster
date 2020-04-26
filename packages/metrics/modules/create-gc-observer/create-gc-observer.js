@@ -12,23 +12,23 @@ const gcTypes = {
   15: 'all',
 };
 
-const createGcObserver = once(metricTypes => () => {
+const createGcObserver = once((metricTypes) => () => {
   if (typeof gc !== 'function') {
     return;
   }
 
-  gc().on('stats', stats => {
+  gc().on('stats', (stats) => {
     const gcType = gcTypes[stats.gctype];
 
-    metricTypes.countOfGcs.forEach(countOfGcMetricType =>
+    metricTypes.countOfGcs.forEach((countOfGcMetricType) =>
       countOfGcMetricType.labels(gcType).inc()
     );
-    metricTypes.durationOfGc.forEach(durationOfGcMetricType =>
+    metricTypes.durationOfGc.forEach((durationOfGcMetricType) =>
       durationOfGcMetricType.labels(gcType).inc(stats.pause / 1e9)
     );
 
     if (stats.diff.usedHeapSize < 0) {
-      metricTypes.reclaimedInGc.forEach(reclaimedInGcMetricType =>
+      metricTypes.reclaimedInGc.forEach((reclaimedInGcMetricType) =>
         reclaimedInGcMetricType.labels(gcType).inc(stats.diff.usedHeapSize * -1)
       );
     }

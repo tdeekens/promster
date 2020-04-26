@@ -19,7 +19,7 @@ const createServer = (
       res.end(getSummary());
     });
 
-    server.listen(port, options.host, error => {
+    server.listen(port, options.host, (error) => {
       if (error) reject(error);
       else resolve(server);
     });

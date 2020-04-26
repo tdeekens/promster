@@ -1,3 +1,3 @@
-const normalizeMethod = method => method.toLowerCase();
+const normalizeMethod = (method) => method.toLowerCase();
 
 exports.default = normalizeMethod;

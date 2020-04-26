@@ -9,22 +9,22 @@ const {
   isRunningInKubernetes,
 } = require('@promster/metrics');
 
-const extractPath = req => req.originalUrl || req.url;
+const extractPath = (req) => req.originalUrl || req.url;
 
 let recordRequest;
 let upMetric;
 const getRequestRecorder = () => recordRequest;
 const signalIsUp = () =>
-  upMetric && upMetric.forEach(upMetricType => upMetricType.set(1));
+  upMetric && upMetric.forEach((upMetricType) => upMetricType.set(1));
 const signalIsNotUp = () =>
-  upMetric && upMetric.forEach(upMetricType => upMetricType.set(0));
+  upMetric && upMetric.forEach((upMetricType) => upMetricType.set(0));
 
-const recordHandler = (res, opts) => stamp =>
+const recordHandler = (res, opts) => (stamp) =>
   fromEvent(res, 'finish')
     .pipe(
       take(1),
       mapTo(stamp.req),
-      map(req => ({ req, res }))
+      map((req) => ({ req, res }))
     )
     .subscribe(() => {
       const { req, start } = stamp;
@@ -74,7 +74,7 @@ const createMiddleware = ({ options } = {}) => {
 
   function middleware(req$, res) {
     return req$.pipe(
-      map(req => ({ req, start: process.hrtime() })),
+      map((req) => ({ req, start: process.hrtime() })),
       tap(recordHandler(res, defaultedOptions)),
       map(({ req }) => req)
     );

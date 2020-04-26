@@ -12,9 +12,9 @@ jest.mock('@promster/metrics', () => ({
   createRequestRecorder: jest.fn(() => jest.fn()),
   createGcObserver: jest.fn(() => jest.fn()),
   defaultNormalizers: {
-    normalizePath: jest.fn(_ => _),
-    normalizeStatusCode: jest.fn(_ => _),
-    normalizeMethod: jest.fn(_ => _),
+    normalizePath: jest.fn((_) => _),
+    normalizeStatusCode: jest.fn((_) => _),
+    normalizeMethod: jest.fn((_) => _),
   },
 }));
 

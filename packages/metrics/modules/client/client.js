@@ -7,7 +7,7 @@ const { isRunningInKubernetes } = require('../kubernetes');
 //   We could create multiple registries with `new Prometheus.registry()`.
 const defaultRegister = Prometheus.register;
 
-const configure = once(options => {
+const configure = once((options) => {
   const shouldSkipMetricsByEnvironment =
     options.detectKubernetes === true && isRunningInKubernetes() === false;
 
