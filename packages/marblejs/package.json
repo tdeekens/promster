@@ -1,6 +1,6 @@
 {
   "name": "@promster/marblejs",
-  "version": "3.1.7",
+  "version": "3.1.8",
   "description": "MarbleJs server integrations of promster",
   "main": "dist/index.js",
   "typings": "dist/typings/index.d.ts",

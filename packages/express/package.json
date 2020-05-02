@@ -1,6 +1,6 @@
 {
   "name": "@promster/express",
-  "version": "4.1.7",
+  "version": "4.1.8",
   "description": "Express server integrations of promster",
   "main": "dist/index.js",
   "typings": "dist/typings/index.d.ts",
