@@ -1,5 +1,3 @@
-const { createMetricTypes } = require('./create-metric-types');
-
 jest.mock('../client', () => ({
   configure: jest.fn(),
   Prometheus: {
@@ -9,6 +7,8 @@ jest.mock('../client', () => ({
     Histogram: jest.fn(),
   },
 }));
+
+const { createMetricTypes } = require('./create-metric-types');
 
 describe('createMetricTypes', () => {
   let metricTypes;

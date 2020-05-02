@@ -1,14 +1,3 @@
-const {
-  Prometheus,
-  createRequestRecorder,
-  createGcObserver,
-} = require('@promster/metrics');
-const {
-  exposeOnLocals,
-  extractPath,
-  createMiddleware,
-} = require('./middleware');
-
 jest.mock('@promster/metrics', () => ({
   Prometheus: 'MockPrometheus',
   createMetricTypes: jest.fn(),
@@ -20,6 +9,17 @@ jest.mock('@promster/metrics', () => ({
     normalizeMethod: jest.fn((_) => _),
   },
 }));
+
+const {
+  Prometheus,
+  createRequestRecorder,
+  createGcObserver,
+} = require('@promster/metrics');
+const {
+  exposeOnLocals,
+  extractPath,
+  createMiddleware,
+} = require('./middleware');
 
 describe('exposing Prometheus', () => {
   describe('with app and locals', () => {

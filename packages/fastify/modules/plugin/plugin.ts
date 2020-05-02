@@ -21,9 +21,9 @@ let upMetric: TMetricTypes['up'];
 const extractPath = (req: FastifyRequest) => req.raw.originalUrl || req.raw.url;
 const getRequestRecorder = () => recordRequest;
 const signalIsUp = () =>
-  upMetric && upMetric.forEach((upMetricType) => upMetricType.set(1));
+  upMetric?.forEach((upMetricType) => upMetricType.set(1));
 const signalIsNotUp = () =>
-  upMetric && upMetric.forEach((upMetricType) => upMetricType.set(0));
+  upMetric?.forEach((upMetricType) => upMetricType.set(0));
 
 const createPlugin = async (
   fastify: FastifyInstance,
@@ -37,14 +37,13 @@ const createPlugin = async (
   );
 
   const shouldSkipMetricsByEnvironment =
-    defaultedOptions.detectKubernetes === true &&
-    isRunningInKubernetes() === false;
+    defaultedOptions.detectKubernetes === true && !isRunningInKubernetes;
 
   const metricTypes = createMetricTypes(defaultedOptions);
   const observeGc = createGcObserver(metricTypes);
 
   recordRequest = createRequestRecorder(metricTypes, defaultedOptions);
-  upMetric = metricTypes && metricTypes.up;
+  upMetric = metricTypes?.up;
 
   if (!shouldSkipMetricsByEnvironment) {
     observeGc();
@@ -67,7 +66,6 @@ const createPlugin = async (
           request,
           reply,
         }),
-        // eslint-disable-next-line camelcase
         status_code: defaultedOptions.normalizeStatusCode(
           reply.res.statusCode,
           { request, reply }

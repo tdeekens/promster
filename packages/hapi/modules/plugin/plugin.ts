@@ -40,11 +40,13 @@ const getAreServerEventsSupported = (actualVersion: string) =>
 const getDoesResponseNeedInvocation = (actualVersion: string) =>
   Boolean(actualVersion && semver.satisfies(actualVersion, '< 17.0.0'));
 
-const createPlugin = ({
-  options: pluginOptions,
-}: {
-  options?: TPromsterOptions;
-}) => {
+const createPlugin = (
+  {
+    options: pluginOptions,
+  }: {
+    options?: TPromsterOptions;
+  } = { options: {} }
+) => {
   const defaultedOptions = merge(
     createMetricTypes.defaultOptions,
     createRequestRecorder.defaultOptions,

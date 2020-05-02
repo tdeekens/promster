@@ -1,13 +1,3 @@
-const {
-  createRequestRecorder,
-  createGcObserver,
-} = require('@promster/metrics');
-const {
-  createPlugin,
-  getAreServerEventsSupported,
-  getDoesResponseNeedInvocation,
-} = require('./plugin');
-
 jest.mock('@promster/metrics', () => ({
   Prometheus: 'MockPrometheus',
   createMetricTypes: jest.fn(),
@@ -19,6 +9,16 @@ jest.mock('@promster/metrics', () => ({
     normalizeMethod: jest.fn((_) => _),
   },
 }));
+
+const {
+  createRequestRecorder,
+  createGcObserver,
+} = require('@promster/metrics');
+const {
+  createPlugin,
+  getAreServerEventsSupported,
+  getDoesResponseNeedInvocation,
+} = require('./plugin');
 
 describe('plugin', () => {
   let plugin;
