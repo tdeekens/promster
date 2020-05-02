@@ -1,13 +1,9 @@
-const {
+import {
   Prometheus,
   createRequestRecorder,
   createGcObserver,
-} = require('@promster/metrics');
-const {
-  exposeOnLocals,
-  extractPath,
-  default: createMiddleware,
-} = require('./middleware.js');
+} from '@promster/metrics';
+import { exposeOnLocals, extractPath, createMiddleware } from './middleware.js';
 
 jest.mock('@promster/metrics', () => ({
   Prometheus: 'MockPrometheus',
@@ -131,7 +127,6 @@ describe('middleware', () => {
             expect.anything(),
             expect.objectContaining({
               labels: expect.objectContaining({
-                // eslint-disable-next-line camelcase
                 status_code: res.statusCode,
                 method: req.method,
                 path: req.url,

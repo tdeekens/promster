@@ -1,10 +1,7 @@
-const { of } = require('rxjs');
-const {
-  createRequestRecorder,
-  createGcObserver,
-} = require('@promster/metrics');
-const { extractPath, default: createMiddleware } = require('./middleware.js');
-const { EventEmitter } = require('events');
+import { of } from 'rxjs';
+import { createRequestRecorder, createGcObserver } from '@promster/metrics';
+import { extractPath, createMiddleware } from './middleware.js';
+import { EventEmitter } from 'events';
 
 jest.mock('@promster/metrics', () => ({
   Prometheus: 'MockPrometheus',

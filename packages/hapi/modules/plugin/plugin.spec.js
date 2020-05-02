@@ -1,12 +1,9 @@
-const {
-  createRequestRecorder,
-  createGcObserver,
-} = require('@promster/metrics');
-const {
-  default: createPlugin,
+import { createRequestRecorder, createGcObserver } from '@promster/metrics';
+import {
+  createPlugin,
   getAreServerEventsSupported,
   getDoesResponseNeedInvocation,
-} = require('./plugin.js');
+} from './plugin.js';
 
 jest.mock('@promster/metrics', () => ({
   Prometheus: 'MockPrometheus',
