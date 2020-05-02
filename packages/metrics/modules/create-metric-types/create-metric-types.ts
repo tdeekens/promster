@@ -1,10 +1,10 @@
-import type { DeepReadonly, DeepRequired } from 'ts-essentials';
+import type { DeepRequired } from 'ts-essentials';
 import type { TPromsterOptions } from '@promster/types';
 
 import merge from 'merge-options';
 import { configure, Prometheus } from '../client';
 
-type TOptions = DeepReadonly<DeepRequired<TPromsterOptions>>;
+type TOptions = DeepRequired<TPromsterOptions>;
 
 const defaultHttpRequestDurationPercentilesInMillieconds = [
   0.5,
@@ -63,7 +63,7 @@ const shouldObserveHttpRequestsAsHistogram = (options: TOptions) =>
 const shouldObserveHttpRequestsAsCounter = (options: TOptions) =>
   options.metricTypes.includes('httpRequestsTotal');
 
-const defaultOptions: TOptions = {
+const defaultOptions = {
   getLabelValues: () => ({}),
   labels: [],
   accuracies: ['s'],

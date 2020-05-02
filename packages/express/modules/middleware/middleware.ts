@@ -14,7 +14,7 @@ import {
 } from '@promster/metrics';
 
 class TApp extends Server {
-  locals?: {};
+  locals?: Record<string, unknown>;
 }
 
 type TLocaleTarget = {
@@ -23,7 +23,7 @@ type TLocaleTarget = {
   value: typeof Prometheus | TRequestRecorder;
 };
 const exposeOnLocals = ({ app, key, value }: TLocaleTarget) => {
-  if (app && app.locals) app.locals[key] = value;
+  if (app?.locals) app.locals[key] = value;
 };
 
 const extractPath = (req: Request) => req.originalUrl || req.url;
@@ -33,9 +33,9 @@ let upMetric: TMetricTypes['up'];
 
 const getRequestRecorder = () => recordRequest;
 const signalIsUp = () =>
-  upMetric && upMetric.forEach((upMetricType) => upMetricType.set(1));
+  upMetric?.forEach((upMetricType) => upMetricType.set(1));
 const signalIsNotUp = () =>
-  upMetric && upMetric.forEach((upMetricType) => upMetricType.set(0));
+  upMetric?.forEach((upMetricType) => upMetricType.set(0));
 
 type TMiddlewareOptions = {
   app?: TApp;
@@ -52,14 +52,13 @@ const createMiddleware = (
   );
 
   const shouldSkipMetricsByEnvironment =
-    allDefaultedOptions.detectKubernetes === true &&
-    isRunningInKubernetes() === false;
+    allDefaultedOptions.detectKubernetes === true && !isRunningInKubernetes();
 
   const metricTypes = createMetricTypes(allDefaultedOptions);
   const observeGc = createGcObserver(metricTypes);
 
   recordRequest = createRequestRecorder(metricTypes, allDefaultedOptions);
-  upMetric = metricTypes && metricTypes.up;
+  upMetric = metricTypes?.up;
 
   exposeOnLocals({ app, key: 'Prometheus', value: Prometheus });
   exposeOnLocals({ app, key: 'recordRequest', value: recordRequest });
@@ -78,7 +77,6 @@ const createMiddleware = (
             req: request,
             res: response,
           }),
-          // eslint-disable-next-line camelcase
           status_code: allDefaultedOptions.normalizeStatusCode(
             response.statusCode,
             { req: request, res: response }

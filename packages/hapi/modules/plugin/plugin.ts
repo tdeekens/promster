@@ -1,6 +1,6 @@
 import type { TPromsterOptions, TMetricTypes } from '@promster/types';
 import type { TRequestRecorder } from '@promster/metrics';
-import { Plugin, Request, ResponseToolkit } from 'hapi';
+import type { Plugin, Request, ResponseToolkit } from 'hapi';
 
 import semver from 'semver';
 import merge from 'merge-options';
@@ -31,18 +31,20 @@ let recordRequest: TRequestRecorder;
 let upMetric: TMetricTypes['up'];
 const getRequestRecorder = () => recordRequest;
 const signalIsUp = () =>
-  upMetric && upMetric.forEach((upMetricType) => upMetricType.set(1));
+  upMetric?.forEach((upMetricType) => upMetricType.set(1));
 const signalIsNotUp = () =>
-  upMetric && upMetric.forEach((upMetricType) => upMetricType.set(0));
+  upMetric?.forEach((upMetricType) => upMetricType.set(0));
 
 const getAreServerEventsSupported = (actualVersion: string) =>
   Boolean(actualVersion && semver.satisfies(actualVersion, '>= 17.0.0'));
 const getDoesResponseNeedInvocation = (actualVersion: string) =>
   Boolean(actualVersion && semver.satisfies(actualVersion, '< 17.0.0'));
 
-const createPlugin = (
-  { options: pluginOptions }: { options: TPromsterOptions } = { options: null }
-) => {
+const createPlugin = ({
+  options: pluginOptions,
+}: {
+  options?: TPromsterOptions;
+}) => {
   const defaultedOptions = merge(
     createMetricTypes.defaultOptions,
     createRequestRecorder.defaultOptions,
@@ -51,20 +53,19 @@ const createPlugin = (
   );
 
   const shouldSkipMetricsByEnvironment =
-    defaultedOptions.detectKubernetes === true &&
-    isRunningInKubernetes() === false;
+    defaultedOptions.detectKubernetes === true && !isRunningInKubernetes();
 
   const metricTypes = createMetricTypes(defaultedOptions);
   const observeGc = createGcObserver(metricTypes);
 
   recordRequest = createRequestRecorder(metricTypes, defaultedOptions);
-  upMetric = metricTypes && metricTypes.up;
+  upMetric = metricTypes?.up;
 
   if (!shouldSkipMetricsByEnvironment) {
     observeGc();
   }
 
-  const plugin: Plugin<{}> = {
+  const plugin: Plugin<unknown> = {
     name: pkg.name,
     version: pkg.version,
     // @ts-ignore
@@ -100,7 +101,6 @@ const createPlugin = (
               request,
               response,
             }),
-            // eslint-disable-next-line camelcase
             status_code: defaultedOptions.normalizeStatusCode(
               extractStatusCode(request),
               { request, response }
@@ -140,7 +140,7 @@ const createPlugin = (
       server.decorate('server', 'Prometheus', () => Prometheus);
       server.decorate('server', 'recordRequest', recordRequest);
 
-      return onRegistrationFinished && onRegistrationFinished();
+      return onRegistrationFinished?.();
     },
   };
   // @ts-ignore

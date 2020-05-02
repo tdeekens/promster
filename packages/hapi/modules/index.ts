@@ -1,27 +1,34 @@
-const { version } = require('../package.json');
-const {
+import type { TPromsterOptions } from '@promster/types';
+import type { Server } from 'hapi';
+
+import { version } from '../package.json';
+import {
   createPlugin,
   getRequestRecorder,
   signalIsUp,
   signalIsNotUp,
-} = require('./plugin');
-const {
+} from './plugin';
+import {
   getSummary,
   getContentType,
   Prometheus,
   defaultRegister,
   defaultNormalizers,
-} = require('@promster/metrics');
+} from '@promster/metrics';
 
-exports.version = version;
-exports.createPlugin = createPlugin;
-exports.getRequestRecorder = getRequestRecorder;
-exports.signalIsUp = signalIsUp;
-exports.signalIsNotUp = signalIsNotUp;
-exports.getSummary = getSummary;
-exports.getContentType = getContentType;
-exports.Prometheus = Prometheus;
-exports.defaultRegister = defaultRegister;
-exports.defaultNormalizers = defaultNormalizers;
-exports.instrument = (server, options) =>
+const instrument = async (server: Server, options: TPromsterOptions) =>
   server.register(createPlugin({ options }));
+
+export {
+  version,
+  createPlugin,
+  getRequestRecorder,
+  signalIsUp,
+  signalIsNotUp,
+  getSummary,
+  getContentType,
+  Prometheus,
+  defaultRegister,
+  defaultNormalizers,
+  instrument,
+};

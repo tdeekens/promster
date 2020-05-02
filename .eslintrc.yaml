@@ -22,6 +22,7 @@ rules:
   jest/no-identical-title: error
   jest/valid-expect: error
   '@typescript-eslint/restrict-template-expressions': off
+  '@typescript-eslint/prefer-readonly-parameter-types': off
   max-nested-callbacks:
     - error
     - 20

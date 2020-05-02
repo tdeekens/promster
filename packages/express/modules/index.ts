@@ -1,25 +1,27 @@
-const { version } = require('../package.json');
-const {
+import { version } from '../package.json';
+import {
   createMiddleware,
   getRequestRecorder,
   signalIsUp,
   signalIsNotUp,
-} = require('./middleware');
-const {
+} from './middleware';
+import {
   getSummary,
   getContentType,
   Prometheus,
   defaultRegister,
   defaultNormalizers,
-} = require('@promster/metrics');
+} from '@promster/metrics';
 
-exports.version = version;
-exports.createMiddleware = createMiddleware;
-exports.getRequestRecorder = getRequestRecorder;
-exports.signalIsUp = signalIsUp;
-exports.signalIsNotUp = signalIsNotUp;
-exports.getSummary = getSummary;
-exports.getContentType = getContentType;
-exports.Prometheus = Prometheus;
-exports.defaultRegister = defaultRegister;
-exports.defaultNormalizers = defaultNormalizers;
+export {
+  version,
+  createMiddleware,
+  getRequestRecorder,
+  signalIsUp,
+  signalIsNotUp,
+  getSummary,
+  getContentType,
+  Prometheus,
+  defaultRegister,
+  defaultNormalizers,
+};
