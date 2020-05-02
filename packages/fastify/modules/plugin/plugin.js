@@ -22,8 +22,8 @@ const signalIsNotUp = () =>
 
 const createPlugin = async (fastify, options) => {
   const defaultedOptions = merge(
-    createMetricTypes.defaultedOptions,
-    createRequestRecorder.defaultedOptions,
+    createMetricTypes.defaultOptions,
+    createRequestRecorder.defaultOptions,
     defaultNormalizers,
     options
   );

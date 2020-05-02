@@ -23,21 +23,21 @@ const signalIsNotUp = () =>
   upMetric && upMetric.forEach((upMetricType) => upMetricType.set(0));
 
 const createMiddleware = ({ app, options } = {}) => {
-  let defaultedOptions = merge(
-    createMetricTypes.defaultedOptions,
-    createRequestRecorder.defaultedOptions,
+  const allDefaultedOptions = merge(
+    createMetricTypes.defaultOptions,
+    createRequestRecorder.defaultOptions,
     defaultNormalizers,
     options
   );
 
   const shouldSkipMetricsByEnvironment =
-    defaultedOptions.detectKubernetes === true &&
+    allDefaultedOptions.detectKubernetes === true &&
     isRunningInKubernetes() === false;
 
-  const metricTypes = createMetricTypes(defaultedOptions);
+  const metricTypes = createMetricTypes(allDefaultedOptions);
   const observeGc = createGcObserver(metricTypes);
 
-  recordRequest = createRequestRecorder(metricTypes, defaultedOptions);
+  recordRequest = createRequestRecorder(metricTypes, allDefaultedOptions);
   upMetric = metricTypes && metricTypes.up;
 
   exposeOnLocals(app, { key: 'Prometheus', value: Prometheus });
@@ -53,27 +53,27 @@ const createMiddleware = ({ app, options } = {}) => {
       const labels = Object.assign(
         {},
         {
-          method: defaultedOptions.normalizeMethod(request.method, {
+          method: allDefaultedOptions.normalizeMethod(request.method, {
             req: request,
             res: response,
           }),
           // eslint-disable-next-line camelcase
-          status_code: defaultedOptions.normalizeStatusCode(
+          status_code: allDefaultedOptions.normalizeStatusCode(
             response.statusCode,
             { req: request, res: response }
           ),
-          path: defaultedOptions.normalizePath(extractPath(request), {
+          path: allDefaultedOptions.normalizePath(extractPath(request), {
             req: request,
             res: response,
           }),
         },
-        defaultedOptions.getLabelValues &&
-          defaultedOptions.getLabelValues(request, response)
+        allDefaultedOptions.getLabelValues &&
+          allDefaultedOptions.getLabelValues(request, response)
       );
 
       const shouldSkipByRequest =
-        defaultedOptions.skip &&
-        defaultedOptions.skip(request, response, labels);
+        allDefaultedOptions.skip &&
+        allDefaultedOptions.skip(request, response, labels);
 
       if (!shouldSkipByRequest && !shouldSkipMetricsByEnvironment) {
         recordRequest(start, {
