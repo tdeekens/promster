@@ -1,9 +1,9 @@
 import type { TPromsterOptions, TMetricTypes } from '@promster/types';
 import type { TRequestRecorder } from '@promster/metrics';
+import { Plugin, Request, ResponseToolkit } from 'hapi';
 
 import semver from 'semver';
 import merge from 'merge-options';
-import { Plugin, Request, ResponseToolkit } from 'hapi';
 import pkg from '../../package.json';
 import {
   Prometheus,
@@ -13,6 +13,14 @@ import {
   defaultNormalizers,
   isRunningInKubernetes,
 } from '@promster/metrics';
+
+interface TPromsterRequest extends Request {
+  plugins: {
+    promster: {
+      start: [number, number];
+    };
+  };
+}
 
 const extractPath = (request: Request) => request.route.path.replace(/\?/g, '');
 const extractStatusCode = (request: Request) =>
@@ -32,13 +40,6 @@ const getAreServerEventsSupported = (actualVersion: string) =>
 const getDoesResponseNeedInvocation = (actualVersion: string) =>
   Boolean(actualVersion && semver.satisfies(actualVersion, '< 17.0.0'));
 
-interface TPromsterRequest extends Request {
-  plugins: {
-    promster: {
-      start: [number, number];
-    };
-  };
-}
 const createPlugin = (
   { options: pluginOptions }: { options: TPromsterOptions } = { options: null }
 ) => {

@@ -1,28 +1,48 @@
-const merge = require('merge-options');
-const {
+import type { TPromsterOptions, TMetricTypes } from '@promster/types';
+import type { TRequestRecorder } from '@promster/metrics';
+import { Request, Response, NextFunction } from 'express';
+import { Server } from 'http';
+
+import merge from 'merge-options';
+import {
   Prometheus,
   createMetricTypes,
   createRequestRecorder,
   createGcObserver,
   defaultNormalizers,
   isRunningInKubernetes,
-} = require('@promster/metrics');
+} from '@promster/metrics';
 
-const exposeOnLocals = (app, { key, value }) => {
+class TApp extends Server {
+  locals?: {};
+}
+
+type TLocaleTarget = {
+  app?: TApp;
+  key: string;
+  value: typeof Prometheus | TRequestRecorder;
+};
+const exposeOnLocals = ({ app, key, value }: TLocaleTarget) => {
   if (app && app.locals) app.locals[key] = value;
 };
 
-const extractPath = (req) => req.originalUrl || req.url;
+const extractPath = (req: Request) => req.originalUrl || req.url;
 
-let recordRequest;
-let upMetric;
+let recordRequest: TRequestRecorder;
+let upMetric: TMetricTypes['up'];
 const getRequestRecorder = () => recordRequest;
 const signalIsUp = () =>
   upMetric && upMetric.forEach((upMetricType) => upMetricType.set(1));
 const signalIsNotUp = () =>
   upMetric && upMetric.forEach((upMetricType) => upMetricType.set(0));
 
-const createMiddleware = ({ app, options } = {}) => {
+type TMiddlewareOptions = {
+  app?: TApp;
+  options?: TPromsterOptions;
+};
+const createMiddleware = (
+  { app, options }: TMiddlewareOptions = { app: undefined, options: undefined }
+) => {
   const allDefaultedOptions = merge(
     createMetricTypes.defaultOptions,
     createRequestRecorder.defaultOptions,
@@ -40,14 +60,14 @@ const createMiddleware = ({ app, options } = {}) => {
   recordRequest = createRequestRecorder(metricTypes, allDefaultedOptions);
   upMetric = metricTypes && metricTypes.up;
 
-  exposeOnLocals(app, { key: 'Prometheus', value: Prometheus });
-  exposeOnLocals(app, { key: 'recordRequest', value: recordRequest });
+  exposeOnLocals({ app, key: 'Prometheus', value: Prometheus });
+  exposeOnLocals({ app, key: 'recordRequest', value: recordRequest });
 
   if (!shouldSkipMetricsByEnvironment) {
     observeGc();
   }
 
-  return (request, response, next) => {
+  return (request: Request, response: Response, next: NextFunction) => {
     const start = process.hrtime();
     response.on('finish', () => {
       const labels = Object.assign(
@@ -86,9 +106,11 @@ const createMiddleware = ({ app, options } = {}) => {
   };
 };
 
-exports.default = createMiddleware;
-exports.exposeOnLocals = exposeOnLocals;
-exports.extractPath = extractPath;
-exports.getRequestRecorder = getRequestRecorder;
-exports.signalIsUp = signalIsUp;
-exports.signalIsNotUp = signalIsNotUp;
+export {
+  createMiddleware,
+  exposeOnLocals,
+  extractPath,
+  getRequestRecorder,
+  signalIsUp,
+  signalIsNotUp,
+};
