@@ -29,8 +29,8 @@ const getDoesResponseNeedInvocation = (actualVersion) =>
 
 const createPlugin = ({ options: pluginOptions } = {}) => {
   const defaultedOptions = merge(
-    createMetricTypes.defaultedOptions,
-    createRequestRecorder.defaultedOptions,
+    createMetricTypes.defaultOptions,
+    createRequestRecorder.defaultOptions,
     defaultNormalizers,
     pluginOptions
   );

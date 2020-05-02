@@ -50,8 +50,8 @@ const recordHandler = (res, opts) => (stamp) =>
 
 const createMiddleware = ({ options } = {}) => {
   const defaultedOptions = merge(
-    createMetricTypes.defaultedOptions,
-    createRequestRecorder.defaultedOptions,
+    createMetricTypes.defaultOptions,
+    createRequestRecorder.defaultOptions,
     defaultNormalizers,
     options,
     {
