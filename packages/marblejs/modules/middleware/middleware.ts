@@ -1,5 +1,13 @@
+import type {
+  TPromsterOptions,
+  TMetricTypes,
+  TLabelValues,
+} from '@promster/types';
+import type { TRequestRecorder } from '@promster/metrics';
+
 import merge from 'merge-options';
-import { fromEvent } from 'rxjs';
+import { HttpRequest, HttpResponse } from '@marblejs/core';
+import { fromEvent, Observable } from 'rxjs';
 import { tap, map, take, mapTo } from 'rxjs/operators';
 import {
   createMetricTypes,
@@ -9,17 +17,29 @@ import {
   isRunningInKubernetes,
 } from '@promster/metrics';
 
-const extractPath = (req) => req.originalUrl || req.url;
+const extractPath = (req: HttpRequest) => req.originalUrl || req.url;
 
-let recordRequest;
-let upMetric;
+let recordRequest: TRequestRecorder;
+let upMetric: TMetricTypes['up'];
+
 const getRequestRecorder = () => recordRequest;
 const signalIsUp = () =>
   upMetric && upMetric.forEach((upMetricType) => upMetricType.set(1));
 const signalIsNotUp = () =>
   upMetric && upMetric.forEach((upMetricType) => upMetricType.set(0));
 
-const recordHandler = (res, opts) => (stamp) =>
+type TRecordHandlerOps = Required<TPromsterOptions> & {
+  skip: (req: HttpRequest, res: HttpResponse, labels: TLabelValues) => boolean;
+  shouldSkipMetricsByEnvironment: boolean;
+};
+type TStamp = {
+  req: HttpRequest;
+  start: [number, number];
+};
+
+const recordHandler = (res: HttpResponse, opts: TRecordHandlerOps) => (
+  stamp: TStamp
+) =>
   fromEvent(res, 'finish')
     .pipe(
       take(1),
@@ -48,7 +68,10 @@ const recordHandler = (res, opts) => (stamp) =>
       }
     });
 
-const createMiddleware = ({ options } = {}) => {
+type TMiddlewareOptions = {
+  options?: TPromsterOptions;
+};
+const createMiddleware = ({ options }: TMiddlewareOptions = {}) => {
   const defaultedOptions = merge(
     createMetricTypes.defaultOptions,
     createRequestRecorder.defaultOptions,
@@ -72,7 +95,7 @@ const createMiddleware = ({ options } = {}) => {
     observeGc();
   }
 
-  function middleware(req$, res) {
+  function middleware(req$: Observable<HttpRequest>, res: HttpResponse) {
     return req$.pipe(
       map((req) => ({ req, start: process.hrtime() })),
       tap(recordHandler(res, defaultedOptions)),
