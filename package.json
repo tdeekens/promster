@@ -3,6 +3,7 @@
   "name": "promster",
   "description": "Monorepository for promster and its projects e.g. metrics, hapi and express",
   "scripts": {
+    "clean": "lerna exec 'rm -rf dist'",
     "postinstall": "check-node-version --package --print",
     "develop": "jest --projects .jestrc.*.json --watch",
     "lint": "jest --config .jestrc.lint.json",

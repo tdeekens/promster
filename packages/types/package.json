@@ -9,6 +9,8 @@
   },
   "files": [
     "readme.md",
+    "package.json",
+    "LICENSE",
     "dist/**"
   ],
   "publishConfig": {

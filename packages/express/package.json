@@ -11,6 +11,8 @@
   },
   "files": [
     "readme.md",
+    "package.json",
+    "LICENSE",
     "dist/**"
   ],
   "engines": {
