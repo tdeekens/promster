@@ -1,4 +1,5 @@
 import { Gauge, Counter, Summary, Histogram } from 'prom-client';
+
 export type TLabelValues = {
   [key: string]: string | number;
 };
@@ -16,6 +17,8 @@ export type TPromsterOptions = {
   normalizeMethod?: (method: string) => string;
   getLabelValues?: <Q, S>(request: Q, response: S) => TLabelValues;
   detectKubernetes?: boolean;
+  buckets: [number];
+  percentiles: [number];
 };
 
 export type TMetricTypes = {
