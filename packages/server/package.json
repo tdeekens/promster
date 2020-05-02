@@ -3,7 +3,7 @@
   "version": "4.2.3",
   "description": "Server exposing metrics under GET /metrics",
   "main": "dist/modules/index.js",
-  "typings": "dist/typings/index.d.ts",
+  "typings": "dist/typings/modules/index.d.ts",
   "scripts": {
     "prebuild": "rimraf dist/**",
     "build": "cross-env tsc -p tsconfig.json --outDir dist --declarationDir dist/typings"

@@ -12,6 +12,8 @@ import {
 } from './normalizers';
 import { isRunningInKubernetes } from './kubernetes';
 
+export type { TRequestRecorder } from './create-request-recorder';
+
 export {
   version,
   Prometheus,

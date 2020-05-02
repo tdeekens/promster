@@ -16,6 +16,11 @@ type TRequestRecorderOptions = {
 type TRecordingOptions = {
   labels: TLabelValues;
 };
+type TRequestTiming = [number, number];
+export type TRequestRecorder = (
+  start: TRequestTiming,
+  recordingOptions: TRecordingOptions
+) => void;
 
 const NS_PER_SEC = 1e9;
 const NS_PER_MS = 1e6;
@@ -39,7 +44,7 @@ const sortLabels = (unsortedLabels: TLabelValues): TLabelValues => {
     }, {});
 };
 
-const endMeasurmentFrom = (start: [number, number]) => {
+const endMeasurmentFrom = (start: TRequestTiming) => {
   const [seconds, nanoseconds] = process.hrtime(start);
 
   return {
@@ -64,7 +69,7 @@ const defaultOptions: TRequestRecorderOptions = {
 const createRequestRecorder = (
   metricTypes: TMetricTypes,
   options: Partial<TRequestRecorderOptions> = defaultOptions
-) => {
+): TRequestRecorder => {
   const defaultedRecorderOptions = merge(defaultOptions, options);
   const shouldSkipMetricsByEnvironment =
     defaultedRecorderOptions.detectKubernetes === true &&
@@ -86,7 +91,7 @@ const createRequestRecorder = (
     defaultedRecorderOptions
   );
 
-  return (start: [number, number], recordingOptions: TRecordingOptions) => {
+  return (start: TRequestTiming, recordingOptions: TRecordingOptions) => {
     const { durationMs, durationS } = endMeasurmentFrom(start);
     const labels = sortLabels(recordingOptions.labels);
 
