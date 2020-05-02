@@ -1,7 +1,6 @@
 import type { TPromsterOptions } from '@promster/types';
 import type { Server } from 'hapi';
 
-import { version } from '../package.json';
 import {
   createPlugin,
   getRequestRecorder,
@@ -20,7 +19,6 @@ const instrument = async (server: Server, options: TPromsterOptions) =>
   server.register(createPlugin({ options }));
 
 export {
-  version,
   createPlugin,
   getRequestRecorder,
   signalIsUp,

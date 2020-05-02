@@ -6,8 +6,7 @@
   "typings": "dist/typings/index.d.ts",
   "scripts": {
     "prebuild": "rimraf dist/**",
-    "build": "cross-env tsc -p tsconfig.json --outDir dist --declarationDir dist/typings",
-    "postbuild": "cross-env mv dist/typings/modules/* dist/typings/"
+    "build": "cross-env tsc -p tsconfig.json --outDir dist --declarationDir dist/typings"
   },
   "files": [
     "readme.md",

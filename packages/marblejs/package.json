@@ -2,12 +2,11 @@
   "name": "@promster/marblejs",
   "version": "3.1.5",
   "description": "MarbleJs server integrations of promster",
-  "main": "dist/modules/index.js",
+  "main": "dist/middleware/index.js",
   "typings": "dist/typings/index.d.ts",
   "scripts": {
     "prebuild": "rimraf dist/**",
-    "build": "cross-env tsc -p tsconfig.json --outDir dist --declarationDir dist/typings",
-    "postbuild": "cross-env mv dist/typings/modules/* dist/typings/"
+    "build": "cross-env tsc -p tsconfig.json --outDir dist --declarationDir dist/typings"
   },
   "files": [
     "readme.md",

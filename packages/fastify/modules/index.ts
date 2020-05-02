@@ -1,4 +1,3 @@
-import { version } from '../package.json';
 import {
   plugin,
   getRequestRecorder,
@@ -14,7 +13,6 @@ import {
 } from '@promster/metrics';
 
 export {
-  version,
   plugin,
   getRequestRecorder,
   signalIsUp,
