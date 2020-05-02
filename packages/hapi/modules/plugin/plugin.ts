@@ -45,7 +45,7 @@ const createPlugin = (
     options: pluginOptions,
   }: {
     options?: TPromsterOptions;
-  } = { options: {} }
+  } = { options: undefined }
 ) => {
   const defaultedOptions = merge(
     createMetricTypes.defaultOptions,
