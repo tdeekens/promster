@@ -1,5 +1,5 @@
 import once from 'lodash.once';
-import Prometheus, { DefaultMetricsCollectorConfiguration } from 'prom-client';
+import * as Prometheus from 'prom-client';
 import { isRunningInKubernetes } from '../kubernetes';
 
 // NOTE:
@@ -7,13 +7,14 @@ import { isRunningInKubernetes } from '../kubernetes';
 //   We could create multiple registries with `new Prometheus.registry()`.
 const defaultRegister = Prometheus.register;
 
-interface TClientOptions extends DefaultMetricsCollectorConfiguration {
+interface TClientOptions
+  extends Prometheus.DefaultMetricsCollectorConfiguration {
   detectKubernetes?: boolean;
 }
 
 const configure = once((options: TClientOptions) => {
   const shouldSkipMetricsByEnvironment =
-    options.detectKubernetes === true && isRunningInKubernetes() === false;
+    options.detectKubernetes === true && !isRunningInKubernetes();
 
   if (!shouldSkipMetricsByEnvironment) {
     Prometheus.collectDefaultMetrics(options);
