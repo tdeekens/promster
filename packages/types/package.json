@@ -2,7 +2,8 @@
   "name": "@promster/types",
   "version": "0.0.0",
   "description": "Shared types of promster",
-  "main": "dist/@flopflip-types.cjs.js",
+  "main": "dist/typings/index.d.ts",
+  "typings": "dist/typings/index.d.ts",
   "scripts": {
     "prebuild": "rimraf dist/**",
     "build": "cross-env tsc -p tsconfig.json --emitDeclarationOnly --declarationDir dist/typings"

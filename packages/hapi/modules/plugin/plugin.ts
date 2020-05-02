@@ -1,14 +1,14 @@
-const semver = require('semver');
-const merge = require('merge-options');
-const pkg = require('../../package.json');
-const {
+import semver from 'semver';
+import merge from 'merge-options';
+import pkg from '../../package.json';
+import {
   Prometheus,
   createMetricTypes,
   createRequestRecorder,
   createGcObserver,
   defaultNormalizers,
   isRunningInKubernetes,
-} = require('@promster/metrics');
+} from '@promster/metrics';
 
 const extractPath = (request) => request.route.path.replace(/\?/g, '');
 const extractStatusCode = (request) =>
