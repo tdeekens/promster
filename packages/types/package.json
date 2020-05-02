@@ -1,6 +1,6 @@
 {
   "name": "@promster/types",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Shared types of promster",
   "typings": "dist/typings/index.d.ts",
   "scripts": {
