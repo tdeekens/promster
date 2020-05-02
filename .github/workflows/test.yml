@@ -29,6 +29,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Install
         run: yarn install
+      - name: Type check
+        run: yarn type-check
       - name: Build
         run: yarn build
       - name: Lint
