@@ -81,6 +81,7 @@ describe('plugin', () => {
             };
           }
 
+          // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types
           emit(event, ...args) {
             this._handlers[event](...args);
           }
@@ -120,7 +121,6 @@ describe('plugin', () => {
             expect.anything(),
             expect.objectContaining({
               labels: expect.objectContaining({
-                // eslint-disable-next-line camelcase
                 status_code: finishedRequest.response.statusCode,
                 method: finishedRequest.method,
                 path: finishedRequest.route.path,
