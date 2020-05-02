@@ -35,5 +35,8 @@
   ],
   "dependencies": {
     "@promster/metrics": "^4.1.3"
+  },
+  "devDependencies": {
+    "@types/node": "13.13.4"
   }
 }

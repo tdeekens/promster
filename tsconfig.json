@@ -23,10 +23,9 @@
     "strict": true,
     "strictNullChecks": true,
     "stripInternal": true,
-    "allowJs": false
+    "allowJs": true
   },
   "include": [
-    "packages/**/*.ts",
     "packages/**/modules/**/*.ts",
     "packages/**/modules/**/*.js",
     "packages/**/@types/**/*.d.ts"

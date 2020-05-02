@@ -1,5 +1,4 @@
-const { version } = require('../package.json');
-const { createServer } = require('./server');
+import { version } from '../package.json';
+import { createServer } from './server';
 
-exports.version = version;
-exports.createServer = createServer;
+export { createServer, version };
