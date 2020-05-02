@@ -4,7 +4,7 @@
   "description": "Shared types of promster",
   "typings": "dist/typings/index.d.ts",
   "scripts": {
-    "prebuild": "rimraf dist/** && copyfiles package.json dist",
+    "prebuild": "rimraf dist/**",
     "build": "cross-env tsc -p tsconfig.json --emitDeclarationOnly --declarationDir dist/typings"
   },
   "files": [
