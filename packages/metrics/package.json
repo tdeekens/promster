@@ -1,6 +1,6 @@
 {
   "name": "@promster/metrics",
-  "version": "4.1.3",
+  "version": "4.1.4",
   "description": "Metrics utilities used by all other server integrations",
   "main": "dist/modules/index.js",
   "typings": "dist/typings/index.d.ts",
@@ -42,12 +42,12 @@
     "lodash.once": "4.1.1",
     "merge-options": "2.0.0",
     "optional": "0.1.4",
+    "ts-essentials": "6.0.4",
     "url": "0.11.0",
-    "url-value-parser": "2.0.1",
-    "ts-essentials": "6.0.4"
+    "url-value-parser": "2.0.1"
   },
   "devDependencies": {
-    "@promster/types": "0.0.0",
+    "@promster/types": "^1.0.0",
     "@types/lodash": "4.14.150",
     "prom-client": "12.0.0"
   },
