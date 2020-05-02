@@ -1,5 +1,11 @@
 {
   "displayName": "test",
+  "preset": "ts-jest/presets/default",
+  "globals": {
+    "ts-jest": {
+      "isolatedModules": true
+    }
+  },
   "setupFiles": [],
   "setupFilesAfterEnv": ["./jest-runner-test.config.js"],
   "testRegex": "\\.spec\\.js$",
