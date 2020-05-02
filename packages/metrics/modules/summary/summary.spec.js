@@ -1,12 +1,12 @@
-const { defaultRegister } = require('../client');
-const { default: getSummary, getContentType } = require('./summary');
-
 jest.mock('../client', () => ({
   defaultRegister: {
     metrics: jest.fn(() => 'metrics'),
     contentType: 'application/test',
   },
 }));
+
+const { defaultRegister } = require('../client');
+const { getSummary, getContentType } = require('./summary');
 
 describe('getSummary', () => {
   let summary;

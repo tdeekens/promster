@@ -1,7 +1,7 @@
 const {
   sortLabels,
   endMeasurmentFrom,
-  default: createRequestRecorder,
+  createRequestRecorder,
 } = require('./create-request-recorder');
 
 describe('sortLabels', () => {

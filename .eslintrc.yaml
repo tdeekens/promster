@@ -1,14 +1,14 @@
-parser: babel-eslint
 parserOptions:
   sourceType: module
   ecmaVersion: 6
   ecmaFeatures:
-    jsx: true
     modules: true
     experimentalObjectRestSpread: true
 extends:
   - xo
+  - xo-typescript
   - prettier
+  - prettier/@typescript-eslint
   - plugin:jest/recommended
 env:
   es6: true
@@ -17,16 +17,19 @@ plugins:
   - prettier
   - jest
 rules:
-  prettier/prettier:
-    - error
-    - trailingComma: es5
-      singleQuote: true
   jest/no-disabled-tests: warn
   jest/no-focused-tests: error
   jest/no-identical-title: error
   jest/valid-expect: error
+  '@typescript-eslint/restrict-template-expressions': off
+  '@typescript-eslint/prefer-readonly-parameter-types': off
   max-nested-callbacks:
     - error
     - 20
+overrides:
+  - files:
+      - '*.spec.js'
+    rules:
+      '@typescript-eslint/no-var-requires': 0
 globals:
   VERSION: true

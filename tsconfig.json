@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "target": "es6",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "lib": ["es2015"],
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
+    "emitDecoratorMetadata": false,
+    "experimentalDecorators": false,
+    "importHelpers": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": false,
+    "noImplicitReturns": true,
+    "resolveJsonModule": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "pretty": true,
+    "removeComments": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "stripInternal": true,
+    "allowJs": true
+  },
+  "include": [
+    "packages/**/modules/**/*.ts",
+    "packages/**/modules/**/*.js",
+    "packages/**/@types/**/*.d.ts"
+  ],
+  "exclude": ["packages/**/node_modules/*.d.ts", "**/dist/**/*"]
+}

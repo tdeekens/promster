@@ -29,13 +29,12 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Install
         run: yarn install
-      - name: Build
-        run: yarn build
       - name: Lint
         run: yarn lint
+      - name: Build
+        run: yarn build
       - name: Test
-        if: startsWith(matrix.node-version, '10')
         run: yarn test:ci
       - name: Test (with coverage)
-        if: startsWith(matrix.node-version, '12')
+        if: startsWith(matrix.node-version, '14')
         run: yarn test:ci:coverage

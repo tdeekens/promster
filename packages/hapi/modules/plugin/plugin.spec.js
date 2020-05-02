@@ -1,13 +1,3 @@
-const {
-  createRequestRecorder,
-  createGcObserver,
-} = require('@promster/metrics');
-const {
-  default: createPlugin,
-  getAreServerEventsSupported,
-  getDoesResponseNeedInvocation,
-} = require('./plugin.js');
-
 jest.mock('@promster/metrics', () => ({
   Prometheus: 'MockPrometheus',
   createMetricTypes: jest.fn(),
@@ -19,6 +9,16 @@ jest.mock('@promster/metrics', () => ({
     normalizeMethod: jest.fn((_) => _),
   },
 }));
+
+const {
+  createRequestRecorder,
+  createGcObserver,
+} = require('@promster/metrics');
+const {
+  createPlugin,
+  getAreServerEventsSupported,
+  getDoesResponseNeedInvocation,
+} = require('./plugin');
 
 describe('plugin', () => {
   let plugin;
@@ -84,6 +84,7 @@ describe('plugin', () => {
             };
           }
 
+          // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types
           emit(event, ...args) {
             this._handlers[event](...args);
           }
@@ -123,7 +124,6 @@ describe('plugin', () => {
             expect.anything(),
             expect.objectContaining({
               labels: expect.objectContaining({
-                // eslint-disable-next-line camelcase
                 status_code: finishedRequest.response.statusCode,
                 method: finishedRequest.method,
                 path: finishedRequest.route.path,

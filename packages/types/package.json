@@ -1,0 +1,42 @@
+{
+  "name": "@promster/types",
+  "version": "0.0.0",
+  "description": "Shared types of promster",
+  "typings": "dist/typings/index.d.ts",
+  "scripts": {
+    "prebuild": "rimraf dist/** && copyfiles package.json dist",
+    "build": "cross-env tsc -p tsconfig.json --emitDeclarationOnly --declarationDir dist/typings"
+  },
+  "files": [
+    "readme.md",
+    "package.json",
+    "LICENSE",
+    "dist/**"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=9",
+    "npm": ">=3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tdeekens/promster.git"
+  },
+  "author": "Tobias Deekens <nerd@tdeekens.name>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tdeekens/promster/issues"
+  },
+  "homepage": "https://github.com/tdeekens/promster#readme",
+  "keywords": [
+    "metrics",
+    "continousdelivery",
+    "prometheus"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "prom-client": "12.0.0"
+  }
+}

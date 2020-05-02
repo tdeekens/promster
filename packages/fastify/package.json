@@ -2,14 +2,18 @@
   "name": "@promster/fastify",
   "version": "3.1.3",
   "description": "Fastify server integrations of promster",
-  "main": "modules/index.js",
+  "main": "dist/modules/index.js",
+  "typings": "dist/typings/index.d.ts",
   "scripts": {
-    "prebuild": "rimraf dist/**",
-    "build": "exit 0"
+    "prebuild": "rimraf dist/** && copyfiles package.json dist",
+    "build": "cross-env tsc -p tsconfig.json --outDir dist --declarationDir dist/typings",
+    "postbuild": "cross-env mv dist/typings/modules/* dist/typings/"
   },
   "files": [
     "readme.md",
-    "modules/**"
+    "package.json",
+    "LICENSE",
+    "dist/**"
   ],
   "publishConfig": {
     "access": "public"
@@ -36,6 +40,7 @@
   "dependencies": {
     "@promster/metrics": "^4.1.3",
     "fastify-plugin": "1.6.1",
+    "fastify": "2.14.0",
     "merge-options": "2.0.0"
   },
   "devDependencies": {

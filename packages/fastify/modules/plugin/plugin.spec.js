@@ -1,10 +1,3 @@
-const Fastify = require('fastify');
-const {
-  createRequestRecorder,
-  createGcObserver,
-} = require('@promster/metrics');
-const { extractPath, default: promsterPlugin } = require('./plugin');
-
 jest.mock('@promster/metrics', () => ({
   Prometheus: 'MockPrometheus',
   createMetricTypes: jest.fn(),
@@ -18,6 +11,13 @@ jest.mock('@promster/metrics', () => ({
     normalizeMethod: jest.fn((_) => _),
   },
 }));
+
+const Fastify = require('fastify');
+const {
+  createRequestRecorder,
+  createGcObserver,
+} = require('@promster/metrics');
+const { extractPath, plugin } = require('./plugin');
 
 describe('extracting path', () => {
   let extractedPath;
@@ -65,13 +65,13 @@ describe('plugin', () => {
     });
 
     it('should start observing garbage collection', async () => {
-      await fastify.register(promsterPlugin).ready();
+      await fastify.register(plugin).ready();
       expect(observeGc).toHaveBeenCalled();
     });
 
     describe('decorates fastify', () => {
       it('should expose Prometheus on fastify', async () => {
-        await fastify.register(promsterPlugin).ready();
+        await fastify.register(plugin).ready();
 
         expect(fastify).toHaveProperty('Prometheus');
         expect(fastify).toHaveProperty('recordRequest');
@@ -93,7 +93,7 @@ describe('plugin', () => {
             },
           });
 
-          await fastify.register(promsterPlugin).ready();
+          await fastify.register(plugin).ready();
           await fastify.inject({ method, url });
         });
       });
@@ -103,7 +103,7 @@ describe('plugin', () => {
 
         beforeEach(async () => {
           createRequestRecorder.mockReturnValue(jest.fn(recordRequest));
-          await fastify.register(promsterPlugin).ready();
+          await fastify.register(plugin).ready();
           await fastify.inject({ method, url });
         });
 

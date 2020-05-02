@@ -1,0 +1,34 @@
+import type { TPromsterOptions } from '@promster/types';
+import type { Server } from 'hapi';
+
+import { version } from '../package.json';
+import {
+  createPlugin,
+  getRequestRecorder,
+  signalIsUp,
+  signalIsNotUp,
+} from './plugin';
+import {
+  getSummary,
+  getContentType,
+  Prometheus,
+  defaultRegister,
+  defaultNormalizers,
+} from '@promster/metrics';
+
+const instrument = async (server: Server, options: TPromsterOptions) =>
+  server.register(createPlugin({ options }));
+
+export {
+  version,
+  createPlugin,
+  getRequestRecorder,
+  signalIsUp,
+  signalIsNotUp,
+  getSummary,
+  getContentType,
+  Prometheus,
+  defaultRegister,
+  defaultNormalizers,
+  instrument,
+};
