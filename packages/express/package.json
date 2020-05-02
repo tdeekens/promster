@@ -2,14 +2,14 @@
   "name": "@promster/express",
   "version": "4.1.3",
   "description": "Express server integrations of promster",
-  "main": "modules/index.js",
+  "main": "dist/index.js",
   "scripts": {
     "prebuild": "rimraf dist/**",
-    "build": "exit 0"
+    "build": "cross-env tsc -p tsconfig.json --outDir dist --declarationDir dist/typings"
   },
   "files": [
     "readme.md",
-    "modules/**"
+    "dist/**"
   ],
   "engines": {
     "node": ">=9",

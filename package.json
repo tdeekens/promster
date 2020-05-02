@@ -6,6 +6,7 @@
     "postinstall": "check-node-version --package --print",
     "develop": "jest --projects .jestrc.*.json --watch",
     "lint": "jest --config .jestrc.lint.json",
+    "typecheck": "tsc --noEmit",
     "format": "npm run format:md && npm run format:js && npm run format:yaml",
     "format:md": "prettier --parser markdown --write '*.md'",
     "format:yaml": "prettier --parser yaml --write '*.yaml'",
@@ -54,6 +55,7 @@
     "lerna": "3.20.2",
     "lint-staged": "10.2.2",
     "prettier": "2.0.5",
+    "typescript": "3.8.3",
     "rimraf": "3.0.2"
   },
   "keywords": [

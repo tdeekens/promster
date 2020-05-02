@@ -2,14 +2,14 @@
   "name": "@promster/metrics",
   "version": "4.1.3",
   "description": "Metrics utilities used by all other server integrations",
-  "main": "modules/index.js",
+  "main": "dist/index.js",
   "scripts": {
     "prebuild": "rimraf dist/**",
-    "build": "exit 0"
+    "build": "cross-env tsc -p tsconfig.json --outDir dist --declarationDir dist/typings"
   },
   "files": [
     "readme.md",
-    "modules/**"
+    "dist/**"
   ],
   "publishConfig": {
     "access": "public"

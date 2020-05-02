@@ -2,14 +2,14 @@
   "name": "@promster/server",
   "version": "4.2.3",
   "description": "Server exposing metrics under GET /metrics",
-  "main": "modules/index.js",
+  "main": "dist/modules/index.js",
   "scripts": {
     "prebuild": "rimraf dist/**",
-    "build": "exit 0"
+    "build": "cross-env tsc -p tsconfig.json --outDir dist --declarationDir dist/typings"
   },
   "files": [
     "readme.md",
-    "modules/**"
+    "dist/**"
   ],
   "publishConfig": {
     "access": "public"
