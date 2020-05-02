@@ -1,3 +1,7 @@
+import type { TPromsterOptions, TMetricTypes } from '@promster/types';
+import type { TRequestRecorder } from '@promster/metrics';
+import { FastifyInstance, FastifyRequest } from 'fastify';
+
 import fastifyPlugin from 'fastify-plugin';
 import merge from 'merge-options';
 import {
@@ -10,17 +14,21 @@ import {
 } from '@promster/metrics';
 import pkg from '../../package.json';
 
-let recordRequest;
-let upMetric;
+let recordRequest: TRequestRecorder;
+let upMetric: TMetricTypes['up'];
 
-const extractPath = (req) => req.raw.originalUrl || req.raw.url;
+// @ts-ignore
+const extractPath = (req: FastifyRequest) => req.raw.originalUrl || req.raw.url;
 const getRequestRecorder = () => recordRequest;
 const signalIsUp = () =>
   upMetric && upMetric.forEach((upMetricType) => upMetricType.set(1));
 const signalIsNotUp = () =>
   upMetric && upMetric.forEach((upMetricType) => upMetricType.set(0));
 
-const createPlugin = async (fastify, options) => {
+const createPlugin = async (
+  fastify: FastifyInstance,
+  options: TPromsterOptions
+) => {
   const defaultedOptions = merge(
     createMetricTypes.defaultOptions,
     createRequestRecorder.defaultOptions,
@@ -47,6 +55,7 @@ const createPlugin = async (fastify, options) => {
   fastify.decorateRequest('__promsterStartTime__', null);
 
   fastify.addHook('onRequest', async (request, _) => {
+    // @ts-ignore
     request.__promsterStartTime__ = process.hrtime();
   });
 
@@ -76,6 +85,7 @@ const createPlugin = async (fastify, options) => {
       defaultedOptions.skip && defaultedOptions.skip(request, reply);
 
     if (!shouldSkipByRequest && !shouldSkipMetricsByEnvironment) {
+      // @ts-ignore
       recordRequest(request.__promsterStartTime__, {
         labels,
       });

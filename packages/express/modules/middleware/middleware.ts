@@ -30,6 +30,7 @@ const extractPath = (req: Request) => req.originalUrl || req.url;
 
 let recordRequest: TRequestRecorder;
 let upMetric: TMetricTypes['up'];
+
 const getRequestRecorder = () => recordRequest;
 const signalIsUp = () =>
   upMetric && upMetric.forEach((upMetricType) => upMetricType.set(1));
