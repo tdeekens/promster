@@ -7,7 +7,7 @@ const {
   exposeOnLocals,
   extractPath,
   createMiddleware,
-} = require('./middleware.js');
+} = require('./middleware');
 
 jest.mock('@promster/metrics', () => ({
   Prometheus: 'MockPrometheus',
@@ -25,7 +25,7 @@ describe('exposing Prometheus', () => {
   describe('with app and locals', () => {
     let app = { locals: {} };
     beforeEach(() => {
-      exposeOnLocals(app, { key: 'Prometheus', value: Prometheus });
+      exposeOnLocals({ app, key: 'Prometheus', value: Prometheus });
     });
 
     it('should expose Prometheus on app locals', () => {
@@ -36,7 +36,7 @@ describe('exposing Prometheus', () => {
   describe('without app and locals', () => {
     let app = {};
     beforeEach(() => {
-      exposeOnLocals(app, { key: 'Prometheus', value: Prometheus });
+      exposeOnLocals({ app, key: 'Prometheus', value: Prometheus });
     });
 
     it('should not expose Prometheus on app locals', () => {

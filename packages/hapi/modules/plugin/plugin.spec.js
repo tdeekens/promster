@@ -6,7 +6,7 @@ const {
   createPlugin,
   getAreServerEventsSupported,
   getDoesResponseNeedInvocation,
-} = require('./plugin.js');
+} = require('./plugin');
 
 jest.mock('@promster/metrics', () => ({
   Prometheus: 'MockPrometheus',
