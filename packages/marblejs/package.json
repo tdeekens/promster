@@ -1,6 +1,6 @@
 {
   "name": "@promster/marblejs",
-  "version": "3.1.4",
+  "version": "3.1.5",
   "description": "MarbleJs server integrations of promster",
   "main": "dist/modules/index.js",
   "typings": "dist/typings/index.d.ts",
@@ -38,7 +38,7 @@
     "prometheus"
   ],
   "dependencies": {
-    "@promster/metrics": "^4.1.4",
+    "@promster/metrics": "^4.1.5",
     "merge-options": "2.0.0",
     "rxjs": "^6.5.3"
   },
