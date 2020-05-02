@@ -1,4 +1,4 @@
-import type { TMetricTypes } from '@promster/types';
+import type { TPromsterOptions, TMetricTypes } from '@promster/types';
 import type { TRequestRecorder } from '@promster/metrics';
 
 import semver from 'semver';
@@ -39,7 +39,9 @@ interface TPromsterRequest extends Request {
     };
   };
 }
-const createPlugin = ({ options: pluginOptions } = { options: null }) => {
+const createPlugin = (
+  { options: pluginOptions }: { options: TPromsterOptions } = { options: null }
+) => {
   const defaultedOptions = merge(
     createMetricTypes.defaultOptions,
     createRequestRecorder.defaultOptions,
