@@ -15,6 +15,7 @@
   · Marble.js
   · Fastify
   · Prettier
+  · TypeScript
   · Jest
   · ESLint
   · Lerna
