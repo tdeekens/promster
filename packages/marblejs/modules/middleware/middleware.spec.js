@@ -3,7 +3,7 @@ const {
   createRequestRecorder,
   createGcObserver,
 } = require('@promster/metrics');
-const { extractPath, default: createMiddleware } = require('./middleware.js');
+const { extractPath, createMiddleware } = require('./middleware.js');
 const { EventEmitter } = require('events');
 
 jest.mock('@promster/metrics', () => ({

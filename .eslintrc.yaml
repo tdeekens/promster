@@ -25,5 +25,10 @@ rules:
   max-nested-callbacks:
     - error
     - 20
+overrides:
+  - files:
+      - '*.spec.js'
+    rules:
+      '@typescript-eslint/no-var-requires': 0
 globals:
   VERSION: true

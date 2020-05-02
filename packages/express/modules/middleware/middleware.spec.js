@@ -6,7 +6,7 @@ const {
 const {
   exposeOnLocals,
   extractPath,
-  default: createMiddleware,
+  createMiddleware,
 } = require('./middleware.js');
 
 jest.mock('@promster/metrics', () => ({

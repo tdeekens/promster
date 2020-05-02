@@ -3,7 +3,7 @@ const {
   createGcObserver,
 } = require('@promster/metrics');
 const {
-  default: createPlugin,
+  createPlugin,
   getAreServerEventsSupported,
   getDoesResponseNeedInvocation,
 } = require('./plugin.js');

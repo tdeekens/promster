@@ -3,7 +3,7 @@ const {
   createRequestRecorder,
   createGcObserver,
 } = require('@promster/metrics');
-const { extractPath, default: promsterPlugin } = require('./plugin');
+const { extractPath, promsterPlugin } = require('./plugin');
 
 jest.mock('@promster/metrics', () => ({
   Prometheus: 'MockPrometheus',
