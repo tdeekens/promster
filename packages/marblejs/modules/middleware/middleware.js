@@ -1,13 +1,13 @@
-const merge = require('merge-options');
-const { fromEvent } = require('rxjs');
-const { tap, map, take, mapTo } = require('rxjs/operators');
-const {
+import merge from 'merge-options';
+import { fromEvent } from 'rxjs';
+import { tap, map, take, mapTo } from 'rxjs/operators';
+import {
   createMetricTypes,
   createRequestRecorder,
   createGcObserver,
   defaultNormalizers,
   isRunningInKubernetes,
-} = require('@promster/metrics');
+} from '@promster/metrics';
 
 const extractPath = (req) => req.originalUrl || req.url;
 
@@ -83,8 +83,10 @@ const createMiddleware = ({ options } = {}) => {
   return middleware;
 };
 
-exports.default = createMiddleware;
-exports.extractPath = extractPath;
-exports.getRequestRecorder = getRequestRecorder;
-exports.signalIsUp = signalIsUp;
-exports.signalIsNotUp = signalIsNotUp;
+export {
+  createMiddleware,
+  extractPath,
+  getRequestRecorder,
+  signalIsUp,
+  signalIsNotUp,
+};

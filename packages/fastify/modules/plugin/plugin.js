@@ -1,14 +1,14 @@
-const fastifyPlugin = require('fastify-plugin');
-const merge = require('merge-options');
-const {
+import fastifyPlugin from 'fastify-plugin';
+import merge from 'merge-options';
+import {
   Prometheus,
   createMetricTypes,
   createRequestRecorder,
   createGcObserver,
   defaultNormalizers,
   isRunningInKubernetes,
-} = require('@promster/metrics');
-const pkg = require('../../package.json');
+} from '@promster/metrics';
+import pkg from '../../package.json';
 
 let recordRequest;
 let upMetric;
@@ -83,11 +83,9 @@ const createPlugin = async (fastify, options) => {
   });
 };
 
-module.exports.default = fastifyPlugin(createPlugin, {
+const plugin = fastifyPlugin(createPlugin, {
   fastify: '>= 1.6.0',
   name: pkg.name,
 });
-module.exports.getRequestRecorder = getRequestRecorder;
-module.exports.signalIsUp = signalIsUp;
-module.exports.signalIsNotUp = signalIsNotUp;
-module.exports.extractPath = extractPath;
+
+export { plugin, getRequestRecorder, signalIsUp, signalIsNotUp, extractPath };

@@ -1,11 +1,8 @@
-const {
-  default: createMiddleware,
+import {
+  createMiddleware,
   getRequestRecorder,
   signalIsUp,
   signalIsNotUp,
-} = require('./middleware');
+} from './middleware';
 
-exports.createMiddleware = createMiddleware;
-exports.signalIsUp = signalIsUp;
-exports.signalIsNotUp = signalIsNotUp;
-exports.getRequestRecorder = getRequestRecorder;
+export { createMiddleware, signalIsUp, signalIsNotUp, getRequestRecorder };

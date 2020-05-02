@@ -1,11 +1,8 @@
-const {
-  default: plugin,
+import {
+  plugin,
   getRequestRecorder,
   signalIsUp,
   signalIsNotUp,
-} = require('./plugin');
+} from './plugin';
 
-exports.plugin = plugin;
-exports.signalIsUp = signalIsUp;
-exports.signalIsNotUp = signalIsNotUp;
-exports.getRequestRecorder = getRequestRecorder;
+export { plugin, signalIsUp, signalIsNotUp, getRequestRecorder };
