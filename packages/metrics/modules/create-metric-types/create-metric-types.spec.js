@@ -1,4 +1,4 @@
-import { createMetricTypes } from './create-metric-types';
+const { default: createMetricTypes } = require('./create-metric-types');
 
 jest.mock('../client', () => ({
   configure: jest.fn(),

@@ -1,4 +1,4 @@
-import { normalizePath } from './path';
+const { default: normalizePath } = require('./path');
 
 describe('normalizePath', () => {
   let normalizedPath;

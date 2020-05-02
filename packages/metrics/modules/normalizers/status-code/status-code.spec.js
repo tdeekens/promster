@@ -1,4 +1,4 @@
-import { normalizeStatusCode } from './status-code';
+const { default: normalizeStatusCode } = require('./status-code');
 
 describe('normalizeStatusCode', () => {
   let normalizedStatusCode;

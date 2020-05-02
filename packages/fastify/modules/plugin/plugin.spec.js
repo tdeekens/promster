@@ -1,6 +1,9 @@
-import Fastify from 'fastify';
-import { createRequestRecorder, createGcObserver } from '@promster/metrics';
-import { extractPath, promsterPlugin } from './plugin';
+const Fastify = require('fastify');
+const {
+  createRequestRecorder,
+  createGcObserver,
+} = require('@promster/metrics');
+const { extractPath, default: promsterPlugin } = require('./plugin');
 
 jest.mock('@promster/metrics', () => ({
   Prometheus: 'MockPrometheus',

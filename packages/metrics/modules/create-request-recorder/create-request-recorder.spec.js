@@ -1,8 +1,8 @@
-import {
+const {
   sortLabels,
   endMeasurmentFrom,
-  createRequestRecorder,
-} from './create-request-recorder';
+  default: createRequestRecorder,
+} = require('./create-request-recorder');
 
 describe('sortLabels', () => {
   const unsorted = { b: 'c', a: 'b' };

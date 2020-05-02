@@ -1,4 +1,4 @@
-import { normalizeMethod } from './method';
+const { default: normalizeMethod } = require('./method');
 
 describe('normalizeMethod', () => {
   const method = 'GET';
