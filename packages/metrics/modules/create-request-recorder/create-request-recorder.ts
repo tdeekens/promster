@@ -1,19 +1,45 @@
-const merge = require('merge-options');
-const { isRunningInKubernetes } = require('../kubernetes');
+import type { TLabelValues, TMetricTypes } from '@promster/types';
+
+import merge from 'merge-options';
+import { isRunningInKubernetes } from '../kubernetes';
+
+type TRecorderAccuracy = 'ms' | 's';
+type TRecorderMetricType =
+  | 'httpRequestsTotal'
+  | 'httpRequestsHistogram'
+  | 'httpRequestsSummary';
+type TRequestRecorderOptions = {
+  accuracies: TRecorderAccuracy[];
+  metricTypes: TRecorderMetricType[];
+  skip: () => boolean;
+};
+type TRecordingOptions = {
+  labels: TLabelValues;
+};
 
 const NS_PER_SEC = 1e9;
 const NS_PER_MS = 1e6;
 
-const sortLabels = (unsortedLabels) => {
+const sortLabels = (unsortedLabels: TLabelValues): TLabelValues => {
   return Object.keys(unsortedLabels)
-    .sort((a, b) => a > b)
+    .sort((a, b) => {
+      if (a < b) {
+        return -1;
+      }
+
+      if (a > b) {
+        return 1;
+      }
+
+      return 0;
+    })
     .reduce((sortedLabels, labelName) => {
       sortedLabels[labelName] = unsortedLabels[labelName];
       return sortedLabels;
     }, {});
 };
 
-const endMeasurmentFrom = (start) => {
+const endMeasurmentFrom = (start: [number, number]) => {
   const [seconds, nanoseconds] = process.hrtime(start);
 
   return {
@@ -22,21 +48,24 @@ const endMeasurmentFrom = (start) => {
   };
 };
 
-const shouldObserveMetricType = (metricType) => (options) =>
-  options.metricTypes.includes(metricType);
-const shouldObserveMetricAccuracy = (accuracy) => (options) =>
-  options.accuracies.includes(accuracy);
+const shouldObserveMetricType = (metricType: TRecorderMetricType) => (
+  options: TRequestRecorderOptions
+) => options.metricTypes.includes(metricType);
+const shouldObserveMetricAccuracy = (accuracy: TRecorderAccuracy) => (
+  options: TRequestRecorderOptions
+) => options.accuracies.includes(accuracy);
 
-const defaultOptions = {
+const defaultOptions: TRequestRecorderOptions = {
   accuracies: ['s'],
   metricTypes: ['httpRequestsTotal', 'httpRequestsHistogram'],
   skip: () => false,
 };
+
 const createRequestRecorder = (
-  metricTypes,
-  recorderOptions = defaultOptions
+  metricTypes: TMetricTypes,
+  options: Partial<TRequestRecorderOptions> = defaultOptions
 ) => {
-  const defaultedRecorderOptions = merge(defaultOptions, recorderOptions);
+  const defaultedRecorderOptions = merge(defaultOptions, options);
   const shouldSkipMetricsByEnvironment =
     defaultedRecorderOptions.detectKubernetes === true &&
     isRunningInKubernetes() === false;
@@ -57,7 +86,7 @@ const createRequestRecorder = (
     defaultedRecorderOptions
   );
 
-  return (start, recordingOptions) => {
+  return (start: [number, number], recordingOptions: TRecordingOptions) => {
     const { durationMs, durationS } = endMeasurmentFrom(start);
     const labels = sortLabels(recordingOptions.labels);
 
@@ -124,6 +153,4 @@ const createRequestRecorder = (
 
 createRequestRecorder.defaultOptions = defaultOptions;
 
-exports.default = createRequestRecorder;
-exports.sortLabels = sortLabels;
-exports.endMeasurmentFrom = endMeasurmentFrom;
+export { createRequestRecorder, sortLabels, endMeasurmentFrom };

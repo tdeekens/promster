@@ -1,4 +1,5 @@
-type TLabelValues = {
+import { Gauge, Counter, Summary, Histogram } from 'prom-client';
+export type TLabelValues = {
   [key: string]: string | number;
 };
 
@@ -16,3 +17,17 @@ export type TPromsterOptions = {
   getLabelValues?: <Q, S>(request: Q, response: S) => TLabelValues;
   detectKubernetes?: boolean;
 };
+
+export type TMetricTypes = {
+  up: Gauge<string>[];
+  countOfGcs: Counter<string>[];
+  durationOfGc: Counter<string>[];
+  reclaimedInGc: Counter<string>[];
+  httpRequestDurationPerPercentileInMilliseconds: Summary<string>[];
+  httpRequestDurationInMilliseconds: Histogram<string>[];
+  httpRequestDurationPerPercentileInSeconds: Summary<string>[];
+  httpRequestDurationInSeconds: Histogram<string>[];
+  httpRequestsTotal: Counter<string>[];
+};
+
+export type TValueOf<T> = T[keyof T];

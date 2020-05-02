@@ -1,27 +1,29 @@
-const { version } = require('../package.json');
-const { Prometheus, defaultRegister } = require('./client');
-const { createMetricTypes } = require('./create-metric-types');
-const { getSummary, getContentType } = require('./summary');
-const { createRequestRecorder } = require('./create-request-recorder');
-const { createGcObserver } = require('./create-gc-observer');
-const {
+import { version } from '../package.json';
+import { Prometheus, defaultRegister } from './client';
+import { createMetricTypes } from './create-metric-types';
+import { getSummary, getContentType } from './summary';
+import { createRequestRecorder } from './create-request-recorder';
+import { createGcObserver } from './create-gc-observer';
+import {
   defaultNormalizers,
   normalizeStatusCode,
   normalizePath,
   normalizeMethod,
-} = require('./normalizers');
-const { isRunningInKubernetes } = require('./kubernetes');
+} from './normalizers';
+import { isRunningInKubernetes } from './kubernetes';
 
-exports.version = version;
-exports.Prometheus = Prometheus;
-exports.defaultRegister = defaultRegister;
-exports.createMetricTypes = createMetricTypes;
-exports.getSummary = getSummary;
-exports.getContentType = getContentType;
-exports.createRequestRecorder = createRequestRecorder;
-exports.createGcObserver = createGcObserver;
-exports.defaultNormalizers = defaultNormalizers;
-exports.normalizeStatusCode = normalizeStatusCode;
-exports.normalizePath = normalizePath;
-exports.normalizeMethod = normalizeMethod;
-exports.isRunningInKubernetes = isRunningInKubernetes;
+export {
+  version,
+  Prometheus,
+  defaultRegister,
+  createMetricTypes,
+  getSummary,
+  getContentType,
+  createRequestRecorder,
+  createGcObserver,
+  defaultNormalizers,
+  normalizeStatusCode,
+  normalizePath,
+  normalizeMethod,
+  isRunningInKubernetes,
+};

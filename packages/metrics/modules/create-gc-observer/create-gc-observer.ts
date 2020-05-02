@@ -1,6 +1,9 @@
-const requireOptional = require('optional');
+import type { TMetricTypes, TValueOf } from '@promster/types';
+
+import once from 'lodash.once';
+import requireOptional from 'optional';
+
 const gc = requireOptional('gc-stats');
-const once = require('lodash.once');
 
 const gcTypes = {
   0: 'unknown',
@@ -12,12 +15,21 @@ const gcTypes = {
   15: 'all',
 };
 
-const createGcObserver = once((metricTypes) => () => {
+type TGcTypes = TValueOf<typeof gcTypes>;
+type TStats = {
+  gctype: TGcTypes;
+  pause: number;
+  diff: {
+    usedHeapSize: number;
+  };
+};
+
+const createGcObserver = once((metricTypes: TMetricTypes) => () => {
   if (typeof gc !== 'function') {
     return;
   }
 
-  gc().on('stats', (stats) => {
+  gc().on('stats', (stats: TStats) => {
     const gcType = gcTypes[stats.gctype];
 
     metricTypes.countOfGcs.forEach((countOfGcMetricType) =>
@@ -35,4 +47,4 @@ const createGcObserver = once((metricTypes) => () => {
   });
 });
 
-exports.default = createGcObserver;
+export { createGcObserver };
