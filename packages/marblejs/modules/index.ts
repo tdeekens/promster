@@ -1,3 +1,4 @@
+import { version } from '../package.json';
 import {
   createMiddleware,
   getRequestRecorder,
@@ -13,6 +14,7 @@ import {
 } from '@promster/metrics';
 
 export {
+  version,
   createMiddleware,
   getRequestRecorder,
   signalIsUp,
