@@ -49,7 +49,7 @@
   "devDependencies": {
     "@promster/types": "^1.0.3",
     "@types/lodash": "4.14.150",
-    "prom-client": "12.x.x"
+    "prom-client": "12.0.0"
   },
   "optionalDependencies": {
     "gc-stats": "1.4.0"
