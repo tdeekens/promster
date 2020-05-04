@@ -36,7 +36,7 @@
     "prometheus"
   ],
   "devDependencies": {
-    "prom-client": "12.x.x"
+    "prom-client": "12.0.0"
   },
   "peerDependencies": {
     "prom-client": "12.x.x"
