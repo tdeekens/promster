@@ -1353,10 +1353,10 @@
     npmlog "^4.1.2"
     write-file-atomic "^2.3.0"
 
-"@marblejs/core@3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@marblejs/core/-/core-3.1.0.tgz#3f784046f8e7fcec9c703fbf9f79cdb53efcf54a"
-  integrity sha512-J+3YyEZ4VCcF8SGaaBGu8D1Fb6Du9Basg9LXvWxQGB6R6ZiLnhnX1uz3iCPl6kOY0optMUViBjPRuHS/qOfN7w==
+"@marblejs/core@3.1.1":
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/@marblejs/core/-/core-3.1.1.tgz#87f5bd8b93121c0cc6c0ca299bea1d0a21a60016"
+  integrity sha512-2tj2FU2QmO850cJtpHO79sTOGO6UCA7td7IcC/0hjWTmdfDQF89x0ns+nZIMdgiJDVMDXjQ5OiUctb+amrHfXw==
   dependencies:
     "@types/json-schema" "^7.0.3"
     "@types/qs" "^6.9.0"
