@@ -38,7 +38,8 @@
     "prometheus"
   ],
   "dependencies": {
-    "@promster/metrics": "^4.1.8"
+    "@promster/metrics": "^4.1.8",
+    "tslib": "1.11.1"
   },
   "devDependencies": {
     "@types/node": "13.13.4"

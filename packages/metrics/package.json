@@ -44,7 +44,8 @@
     "optional": "0.1.4",
     "ts-essentials": "6.0.4",
     "url": "0.11.0",
-    "url-value-parser": "2.0.1"
+    "url-value-parser": "2.0.1",
+    "tslib": "1.11.1"
   },
   "devDependencies": {
     "@promster/types": "^1.0.3",
