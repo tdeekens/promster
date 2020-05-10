@@ -43,7 +43,7 @@
     "merge-options": "2.0.0",
     "optional": "0.1.4",
     "ts-essentials": "6.0.4",
-    "tslib": "1.11.1",
+    "tslib": "1.11.2",
     "url": "0.11.0",
     "url-value-parser": "2.0.1"
   },
