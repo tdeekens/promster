@@ -5,10 +5,10 @@ export type TLabelValues = {
 };
 
 export type TPromsterOptions = {
-  labels?: Array<string>;
+  labels?: string[];
   accuracies?: Array<'ms' | 's'>;
   metricPrefix?: string;
-  metricTypes?: Array<string>;
+  metricTypes?: string[];
   metricNames?: {
     [key: string]: string | string[];
   };
@@ -22,15 +22,15 @@ export type TPromsterOptions = {
 };
 
 export type TMetricTypes = {
-  up: Gauge<string>[];
-  countOfGcs: Counter<string>[];
-  durationOfGc: Counter<string>[];
-  reclaimedInGc: Counter<string>[];
-  httpRequestDurationPerPercentileInMilliseconds: Summary<string>[];
-  httpRequestDurationInMilliseconds: Histogram<string>[];
-  httpRequestDurationPerPercentileInSeconds: Summary<string>[];
-  httpRequestDurationInSeconds: Histogram<string>[];
-  httpRequestsTotal: Counter<string>[];
+  up: Array<Gauge<string>>;
+  countOfGcs: Array<Counter<string>>;
+  durationOfGc: Array<Counter<string>>;
+  reclaimedInGc: Array<Counter<string>>;
+  httpRequestDurationPerPercentileInMilliseconds: Array<Summary<string>>;
+  httpRequestDurationInMilliseconds: Array<Histogram<string>>;
+  httpRequestDurationPerPercentileInSeconds: Array<Summary<string>>;
+  httpRequestDurationInSeconds: Array<Histogram<string>>;
+  httpRequestsTotal: Array<Counter<string>>;
 };
 
 export type TValueOf<T> = T[keyof T];
