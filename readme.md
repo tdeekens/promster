@@ -18,7 +18,7 @@
   · TypeScript
   · Jest
   · ESLint
-  · Lerna
+  · Changesets
   · Prometheus
   🙏
   </sub>
@@ -96,7 +96,7 @@
 ## ❯ Installation
 
 This is a mono repository maintained using
-[lerna](https://github.com/lerna/lerna). It currently contains four
+[changesets](https://github.com/atlassian/changesets). It currently contains four
 [packages](/packages) in a `metrics`, a `hapi` or
 `express` integration, and a `server` exposing the metrics for you if you do not want to do that via your existing server.
 
