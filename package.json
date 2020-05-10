@@ -18,7 +18,7 @@
     "test:ci:coverage": "cross-env NODE_ENV=test npm test -- --no-watchman --coverage && codecov",
     "test:watch": "cross-env NODE_ENV=test npm test -- --watch",
     "test:coverage": "cross-env NODE_ENV=test npm test -- --coverage",
-    "build": "yarn workspaces run build",
+    "build": "yarn workspace @promster/types build && yarn workspace @promster/metrics build && yarn workspaces run build",
     "build:watch": "yarn workspaces run build:watch",
     "prerelease": "cross-env NODE_ENV=production yarn auth && yarn build",
     "release": "changeset publish"
