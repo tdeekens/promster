@@ -17,7 +17,7 @@ const defaultOptions: TServerOptions = {
   detectKubernetes: false,
 };
 
-const createServer = (
+const createServer = async (
   options: Partial<TServerOptions>
 ): Promise<http.Server> => {
   const defaultedOptions = {
@@ -27,8 +27,7 @@ const createServer = (
 
   return new Promise((resolve, reject) => {
     const skipServerStart =
-      defaultedOptions.detectKubernetes === true &&
-      isRunningInKubernetes() === false;
+      defaultedOptions.detectKubernetes && !isRunningInKubernetes();
 
     const port = skipServerStart ? undefined : defaultedOptions.port;
 

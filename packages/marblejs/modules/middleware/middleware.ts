@@ -24,9 +24,9 @@ let upMetric: TMetricTypes['up'];
 
 const getRequestRecorder = () => recordRequest;
 const signalIsUp = () =>
-  upMetric && upMetric.forEach((upMetricType) => upMetricType.set(1));
+  upMetric?.forEach((upMetricType) => upMetricType.set(1));
 const signalIsNotUp = () =>
-  upMetric && upMetric.forEach((upMetricType) => upMetricType.set(0));
+  upMetric?.forEach((upMetricType) => upMetricType.set(0));
 
 type TRecordHandlerOps = Required<TPromsterOptions> & {
   skip: (req: HttpRequest, res: HttpResponse, labels: TLabelValues) => boolean;
@@ -52,7 +52,6 @@ const recordHandler = (res: HttpResponse, opts: TRecordHandlerOps) => (
         {},
         {
           method: opts.normalizeMethod(req.method),
-          // eslint-disable-next-line camelcase
           status_code: opts.normalizeStatusCode(res.statusCode),
           path: opts.normalizePath(extractPath(req)),
         },
@@ -79,9 +78,7 @@ const createMiddleware = ({ options }: TMiddlewareOptions = {}) => {
     options,
     {
       shouldSkipMetricsByEnvironment:
-        options &&
-        options.detectKubernetes === true &&
-        isRunningInKubernetes() === false,
+        options?.detectKubernetes && !isRunningInKubernetes(),
     }
   );
 
@@ -89,7 +86,7 @@ const createMiddleware = ({ options }: TMiddlewareOptions = {}) => {
   const observeGc = createGcObserver(metricTypes);
 
   recordRequest = createRequestRecorder(metricTypes, defaultedOptions);
-  upMetric = metricTypes && metricTypes.up;
+  upMetric = metricTypes?.up;
 
   if (!defaultedOptions.shouldSkipMetricsByEnvironment) {
     observeGc();
