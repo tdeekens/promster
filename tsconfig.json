@@ -27,6 +27,7 @@
   },
   "include": [
     "packages/**/modules/**/*.ts",
+    "packages/types/index.ts",
     "packages/**/modules/**/*.js",
     "packages/**/@types/**/*.d.ts"
   ],

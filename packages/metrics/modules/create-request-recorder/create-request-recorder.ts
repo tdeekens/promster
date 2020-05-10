@@ -72,8 +72,7 @@ const createRequestRecorder = (
 ): TRequestRecorder => {
   const defaultedRecorderOptions = merge(defaultOptions, options);
   const shouldSkipMetricsByEnvironment =
-    defaultedRecorderOptions.detectKubernetes === true &&
-    isRunningInKubernetes() === false;
+    defaultedRecorderOptions.detectKubernetes && !isRunningInKubernetes();
 
   const shouldObserveInSeconds = shouldObserveMetricAccuracy('s')(
     defaultedRecorderOptions
