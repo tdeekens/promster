@@ -17,7 +17,7 @@ import pkg from '../../package.json';
 let recordRequest: TRequestRecorder;
 let upMetric: TMetricTypes['up'];
 
-// @ts-ignore
+// @ts-expect-error
 const extractPath = (req: FastifyRequest) => req.raw.originalUrl || req.raw.url;
 const getRequestRecorder = () => recordRequest;
 const signalIsUp = () =>
@@ -54,7 +54,7 @@ const createPlugin = async (
   fastify.decorateRequest('__promsterStartTime__', null);
 
   fastify.addHook('onRequest', async (request, _) => {
-    // @ts-ignore
+    // @ts-expect-error
     request.__promsterStartTime__ = process.hrtime();
   });
 
@@ -83,7 +83,7 @@ const createPlugin = async (
       defaultedOptions.skip && defaultedOptions.skip(request, reply);
 
     if (!shouldSkipByRequest && !shouldSkipMetricsByEnvironment) {
-      // @ts-ignore
+      // @ts-expect-error
       recordRequest(request.__promsterStartTime__, {
         labels,
       });
