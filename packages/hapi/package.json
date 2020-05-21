@@ -41,7 +41,7 @@
     "@promster/metrics": "^4.1.10",
     "merge-options": "2.0.0",
     "semver": "7.3.2",
-    "tslib": "1.11.2"
+    "tslib": "2.0.0"
   },
   "devDependencies": {
     "@promster/types": "^1.0.5",
