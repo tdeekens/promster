@@ -24,7 +24,7 @@ interface TPromsterRequest extends Request {
 
 const extractPath = (request: Request) => request.route.path.replace(/\?/g, '');
 const extractStatusCode = (request: Request) =>
-  // @ts-ignore
+  // @ts-expect-error
   request.response ? request.response.statusCode : '';
 
 let recordRequest: TRequestRecorder;
@@ -70,7 +70,7 @@ const createPlugin = (
   const plugin: Plugin<unknown> = {
     name: pkg.name,
     version: pkg.version,
-    // @ts-ignore
+    // @ts-expect-error
     register(
       server,
       _registrationOptions,
@@ -87,7 +87,7 @@ const createPlugin = (
         h: ResponseToolkit
       ) => {
         request.plugins.promster = { start: process.hrtime() };
-        // @ts-ignore
+        // @ts-expect-error
         return doesResponseNeedInvocation ? h.continue() : h.continue;
       };
 
@@ -128,14 +128,14 @@ const createPlugin = (
       // NOTE: This version detection allows us to graceully support both new and old Hapi APIs.
       // This is very hard to type as we would have to import two aliased versions of types.
       if (areServerEventsSupported) {
-        // @ts-ignore
+        // @ts-expect-error
         server.ext('onRequest', onRequestHandler);
-        // @ts-ignore
+        // @ts-expect-error
         server.events.on('response', onResponseHandler);
       } else {
-        // @ts-ignore
+        // @ts-expect-error
         server.ext('onRequest', onRequestHandler);
-        // @ts-ignore
+        // @ts-expect-error
         server.ext('onPreResponse', onResponseHandler);
       }
 
@@ -145,7 +145,7 @@ const createPlugin = (
       return onRegistrationFinished?.();
     },
   };
-  // @ts-ignore
+  // @ts-expect-error
   plugin.register.attributes = {
     pkg,
   };
