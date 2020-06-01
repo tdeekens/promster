@@ -139,7 +139,10 @@ const createPlugin = (
         server.ext('onPreResponse', onResponseHandler);
       }
 
-      server.decorate('server', 'Prometheus', () => Prometheus);
+      // NOTE: The type of the server.decorate only supports a function signature,
+      // even when the docs state that it can also be "other value" in the case of `server`.
+      // @ts-expect-error
+      server.decorate('server', 'Prometheus', Prometheus);
       server.decorate('server', 'recordRequest', recordRequest);
 
       return onRegistrationFinished?.();
