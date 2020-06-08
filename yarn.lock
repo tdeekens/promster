@@ -813,10 +813,10 @@
     globby "^11.0.0"
     read-yaml-file "^1.1.0"
 
-"@marblejs/core@3.1.1":
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/@marblejs/core/-/core-3.1.1.tgz#87f5bd8b93121c0cc6c0ca299bea1d0a21a60016"
-  integrity sha512-2tj2FU2QmO850cJtpHO79sTOGO6UCA7td7IcC/0hjWTmdfDQF89x0ns+nZIMdgiJDVMDXjQ5OiUctb+amrHfXw==
+"@marblejs/core@3.1.2":
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/@marblejs/core/-/core-3.1.2.tgz#994e48416468fb6377f3335ae7460989c75944a4"
+  integrity sha512-kMSEoCzxI745j1zq/3UuLVpedGCQD6zRWlO8cjWSZPMQHF41h8MPWyrQta3ZTQ2A8xgMw27wxGIwn4kswiAjlg==
   dependencies:
     "@types/json-schema" "^7.0.3"
     "@types/qs" "^6.9.0"
