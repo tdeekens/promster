@@ -17,8 +17,8 @@ export type TPromsterOptions = {
   normalizeMethod?: (method: string) => string;
   getLabelValues?: <Q, S>(request: Q, response: S) => TLabelValues;
   detectKubernetes?: boolean;
-  buckets: [number];
-  percentiles: [number];
+  buckets?: [number];
+  percentiles?: [number];
 };
 
 export type TMetricTypes = {
