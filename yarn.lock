@@ -818,16 +818,17 @@
     globby "^11.0.0"
     read-yaml-file "^1.1.0"
 
-"@marblejs/core@3.2.1":
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/@marblejs/core/-/core-3.2.1.tgz#29649370705a4ec1cf13b3ee59ae076e33afdd3e"
-  integrity sha512-KLdYsmbxkTM08+voOcUBUXN7pbHOwvnJObO7dZyQlKUsTjT09f8FMJ70x7YgP218yxokrBK1eP2T/V/x1ahibA==
+"@marblejs/core@3.3.0":
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/@marblejs/core/-/core-3.3.0.tgz#6db6fb8388040ea4f57c65b7d69cd302568361bd"
+  integrity sha512-UysSclMtJE9drQSnukfazoLLGmE6ZZdxwFPBLuHTbs/9T8NxnNiqD+3DQWGC5UgbtGBYdCwMS47MlH/H2Z7mJA==
   dependencies:
     "@types/json-schema" "^7.0.3"
     "@types/qs" "^6.9.0"
     "@types/uuid" "^7.0.0"
     chalk "^3.0.0"
     file-type "^8.0.0"
+    io-ts "^2.2.4"
     mime "^2.4.4"
     path-to-regexp "^6.1.0"
     qs "^6.9.1"
@@ -3428,6 +3429,11 @@ inquirer@^7.0.0:
     string-width "^4.1.0"
     strip-ansi "^6.0.0"
     through "^2.3.6"
+
+io-ts@^2.2.4:
+  version "2.2.7"
+  resolved "https://registry.yarnpkg.com/io-ts/-/io-ts-2.2.7.tgz#5c05477580bff4c0154b474316c8916253e87c44"
+  integrity sha512-kCusyu/Fa0oax5ue2Id/ZqVLEk5JOWyrXHcLbD4kHoVM50MhDEWUtcHlN7RrD94I8OrWILcVltM6OllnZiHJmg==
 
 ip-regex@^2.1.0:
   version "2.1.0"
