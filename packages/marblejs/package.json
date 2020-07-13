@@ -44,7 +44,7 @@
     "tslib": "2.0.0"
   },
   "devDependencies": {
-    "@marblejs/core": "3.2.1",
+    "@marblejs/core": "3.3.0",
     "fp-ts": "2.6.1"
   }
 }
