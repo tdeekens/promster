@@ -48,7 +48,7 @@
     "check-node-version": "4.0.3",
     "codecov": "3.7.1",
     "cross-env": "7.0.2",
-    "eslint": "7.4.0",
+    "eslint": "7.5.0",
     "eslint-config-prettier": "6.11.0",
     "eslint-config-xo": "0.29.1",
     "eslint-config-xo-typescript": "0.29.0",
