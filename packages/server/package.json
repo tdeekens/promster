@@ -42,6 +42,6 @@
     "tslib": "2.0.0"
   },
   "devDependencies": {
-    "@types/node": "13.13.14"
+    "@types/node": "13.13.15"
   }
 }
