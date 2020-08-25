@@ -1,6 +1,7 @@
 import type { TPromsterOptions, TMetricTypes } from '@promster/types';
 import type { TRequestRecorder } from '@promster/metrics';
-import type { Plugin, Request, ResponseToolkit } from 'hapi';
+import type { Plugin, Request, ResponseObject, ResponseToolkit } from 'hapi';
+import type Boom from 'boom';
 
 import semver from 'semver';
 import merge from 'merge-options';
@@ -23,9 +24,26 @@ interface TPromsterRequest extends Request {
 }
 
 const extractPath = (request: Request) => request.route.path.replace(/\?/g, '');
-const extractStatusCode = (request: Request) =>
-  // @ts-expect-error
-  request.response ? request.response.statusCode : '';
+
+/* eslint-disable @typescript-eslint/no-unnecessary-type-arguments */
+type TResponse = ResponseObject | Boom<any>;
+const isBoomResponse = (response: TResponse): response is Boom<any> =>
+  (response as Boom<any>).isBoom;
+/* eslint-enable @typescript-eslint/no-unnecessary-type-arguments */
+
+const extractStatusCode = (request: Request) => {
+  const { response } = request;
+
+  if (!response) {
+    return '';
+  }
+
+  if (isBoomResponse(response)) {
+    return response.output.statusCode;
+  }
+
+  return response.statusCode;
+}
 
 let recordRequest: TRequestRecorder;
 let upMetric: TMetricTypes['up'];
