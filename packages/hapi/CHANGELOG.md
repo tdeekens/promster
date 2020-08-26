@@ -1,5 +1,11 @@
 # @promster/hapi
 
+## 4.2.0
+
+### Minor Changes
+
+- [`68a8aaf`](https://github.com/tdeekens/promster/commit/68a8aaf82ed0e5736240542781e9642efb31869e) [#440](https://github.com/tdeekens/promster/pull/440) Thanks [@todd](https://github.com/todd)! - Use correct status code when Hapi response is a Boom object
+
 ## 4.1.11
 
 ### Patch Changes
