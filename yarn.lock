@@ -931,7 +931,7 @@
     "@types/connect" "*"
     "@types/node" "*"
 
-"@types/boom@*":
+"@types/boom@*", "@types/boom@7.3.0":
   version "7.3.0"
   resolved "https://registry.yarnpkg.com/@types/boom/-/boom-7.3.0.tgz#33280c5552d4cfabc21b8b7e0f6d29292decd985"
   integrity sha512-PH7bfkt1nu4pnlxz+Ws+wwJJF1HE12W3ia+Iace2JT7q56DLH3hbyjOJyNHJYRxk3PkKaC36fHfHKyeG1rMgCA==
