@@ -55,10 +55,10 @@ const recordHandler = (res: HttpResponse, opts: TRecordHandlerOps) => (
           status_code: opts.normalizeStatusCode(res.statusCode),
           path: opts.normalizePath(extractPath(req)),
         },
-        opts.getLabelValues && opts.getLabelValues(req, res)
+        opts.getLabelValues?.(req, res)
       );
 
-      const shouldSkipByRequest = opts.skip && opts.skip(req, res, labels);
+      const shouldSkipByRequest = opts.skip?.(req, res, labels);
 
       if (!shouldSkipByRequest && !opts.shouldSkipMetricsByEnvironment) {
         recordRequest(start, {
