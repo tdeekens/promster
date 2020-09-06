@@ -27,6 +27,7 @@ const extractPath = (request: Request) => request.route.path.replace(/\?/g, '');
 
 /* eslint-disable @typescript-eslint/no-unnecessary-type-arguments */
 type TResponse = ResponseObject | Boom<any>;
+// eslint-disable-next-line no-undef
 const isBoomResponse = (response: TResponse): response is Boom<any> =>
   (response as Boom<any>).isBoom;
 /* eslint-enable @typescript-eslint/no-unnecessary-type-arguments */
@@ -126,13 +127,11 @@ const createPlugin = (
               { request, response }
             ),
           },
-          defaultedOptions.getLabelValues &&
-            defaultedOptions.getLabelValues(request, {})
+          defaultedOptions.getLabelValues?.(request, {})
         );
 
         const shouldSkipByRequest =
-          defaultedOptions.skip &&
-          defaultedOptions.skip(request, response, labels);
+          defaultedOptions.skip?.(request, response, labels);
 
         if (!shouldSkipByRequest && !shouldSkipMetricsByEnvironment) {
           recordRequest(request.plugins.promster.start, {

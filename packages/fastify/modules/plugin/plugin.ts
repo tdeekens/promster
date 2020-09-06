@@ -75,12 +75,11 @@ const createPlugin = async (
           reply,
         }),
       },
-      defaultedOptions.getLabelValues &&
-        defaultedOptions.getLabelValues(request, reply)
+      defaultedOptions.getLabelValues?.(request, reply)
     );
 
     const shouldSkipByRequest =
-      defaultedOptions.skip && defaultedOptions.skip(request, reply);
+      defaultedOptions.skip?.(request, reply);
 
     if (!shouldSkipByRequest && !shouldSkipMetricsByEnvironment) {
       // @ts-expect-error

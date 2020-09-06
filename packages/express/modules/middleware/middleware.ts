@@ -86,13 +86,11 @@ const createMiddleware = (
             res: response,
           }),
         },
-        allDefaultedOptions.getLabelValues &&
-          allDefaultedOptions.getLabelValues(request, response)
+        allDefaultedOptions.getLabelValues?.(request, response)
       );
 
       const shouldSkipByRequest =
-        allDefaultedOptions.skip &&
-        allDefaultedOptions.skip(request, response, labels);
+        allDefaultedOptions.skip?.(request, response, labels);
 
       if (!shouldSkipByRequest && !shouldSkipMetricsByEnvironment) {
         recordRequest(start, {
