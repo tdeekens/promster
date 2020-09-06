@@ -1,5 +1,14 @@
 # @promster/hapi
 
+## 4.2.1
+
+### Patch Changes
+
+- [`7853faa`](https://github.com/tdeekens/promster/commit/7853faa4e140eaae0622fb7c66d8145d258d7f5e) [#447](https://github.com/tdeekens/promster/pull/447) Thanks [@tdeekens](https://github.com/tdeekens)! - chore: update deps
+
+- Updated dependencies [[`7853faa`](https://github.com/tdeekens/promster/commit/7853faa4e140eaae0622fb7c66d8145d258d7f5e)]:
+  - @promster/metrics@4.1.11
+
 ## 4.2.0
 
 ### Minor Changes
