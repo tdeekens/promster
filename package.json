@@ -7,7 +7,7 @@
     "postinstall": "check-node-version --package --print",
     "develop": "jest --projects .jestrc.*.json --watch",
     "lint": "jest --config .jestrc.lint.json",
-    "type-check": "tsc --noEmit",
+    "typecheck": "tsc --noEmit",
     "format": "npm run format:md && npm run format:js && npm run format:yaml",
     "format:md": "prettier --parser markdown --write '*.md'",
     "format:yaml": "prettier --parser yaml --write '*.yaml'",
