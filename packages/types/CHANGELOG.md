@@ -1,5 +1,11 @@
 # @promster/types
 
+## 1.0.7
+
+### Patch Changes
+
+- [`3d1c10c`](https://github.com/tdeekens/promster/commit/3d1c10c4403374b7557ce4e8ab0e92235f869a21) [#460](https://github.com/tdeekens/promster/pull/460) Thanks [@kppullin](https://github.com/kppullin)! - Add `skip` to typedefs
+
 ## 1.0.6
 
 ### Patch Changes
