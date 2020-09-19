@@ -19,6 +19,7 @@ export type TPromsterOptions = {
   detectKubernetes?: boolean;
   buckets?: [number];
   percentiles?: [number];
+  skip?: <Q, S>(request: Q, response: S, labels: TLabelValues) => boolean;
 };
 
 export type TMetricTypes = {
