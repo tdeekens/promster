@@ -1,5 +1,5 @@
 ---
-"@promster/hapi": majof
+"@promster/hapi": major
 ---
 
 breaking(hapi): to bump required node to v12
