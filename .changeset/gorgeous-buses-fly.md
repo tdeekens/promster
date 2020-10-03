@@ -1,6 +1,6 @@
 ---
 "@promster/hapi": patch
-"@promster/exppress": patch
+"@promster/express": patch
 "@promster/fastify": patch
 "@promster/marblejs": patch
 "@promster/metrics": patch
