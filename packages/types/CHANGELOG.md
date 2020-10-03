@@ -1,5 +1,11 @@
 # @promster/types
 
+## 1.0.8
+
+### Patch Changes
+
+- [`158e7b9`](https://github.com/tdeekens/promster/commit/158e7b9af01133db54376bb96dbdccdd96bfa7a3) Thanks [@tdeekens](https://github.com/tdeekens)! - Dependency updates across all packages
+
 ## 1.0.7
 
 ### Patch Changes
