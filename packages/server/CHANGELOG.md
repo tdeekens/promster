@@ -1,5 +1,11 @@
 # @promster/server
 
+## 4.2.15
+
+### Patch Changes
+
+- [`447aa7e`](https://github.com/tdeekens/promster/commit/447aa7ebdf589200e7f1b192f99f781b8ca3031b) [#475](https://github.com/tdeekens/promster/pull/475) Thanks [@tdeekens](https://github.com/tdeekens)! - fix(server): to change import of http
+
 ## 4.2.14
 
 ### Patch Changes
