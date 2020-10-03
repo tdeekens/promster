@@ -1,5 +1,5 @@
 import type { TPromsterOptions } from '@promster/types';
-import type { Server } from 'hapi';
+import type { Server } from '@hapi/hapi';
 
 import {
   createPlugin,

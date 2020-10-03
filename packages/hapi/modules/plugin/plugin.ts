@@ -1,7 +1,7 @@
 import type { TPromsterOptions, TMetricTypes } from '@promster/types';
 import type { TRequestRecorder } from '@promster/metrics';
-import type { Plugin, Request, ResponseObject, ResponseToolkit } from 'hapi';
-import type Boom from 'boom';
+import type { Plugin, Request, ResponseObject, ResponseToolkit } from '@hapi/hapi';
+import type { Boom } from '@hapi/boom';
 
 import semver from 'semver';
 import merge from 'merge-options';
@@ -26,10 +26,10 @@ interface TPromsterRequest extends Request {
 const extractPath = (request: Request) => request.route.path.replace(/\?/g, '');
 
 /* eslint-disable @typescript-eslint/no-unnecessary-type-arguments */
-type TResponse = ResponseObject | Boom<any>;
+type TResponse = ResponseObject | Boom;
 // eslint-disable-next-line no-undef
-const isBoomResponse = (response: TResponse): response is Boom<any> =>
-  (response as Boom<any>).isBoom;
+const isBoomResponse = (response: TResponse): response is Boom =>
+  (response as Boom).isBoom;
 /* eslint-enable @typescript-eslint/no-unnecessary-type-arguments */
 
 const extractStatusCode = (request: Request) => {
