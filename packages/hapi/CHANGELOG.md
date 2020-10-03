@@ -1,5 +1,20 @@
 # @promster/hapi
 
+## 5.0.0
+
+### Major Changes
+
+- [`56fe635`](https://github.com/tdeekens/promster/commit/56fe63515d46e179912f61037c10ebb086bc5324) [#473](https://github.com/tdeekens/promster/pull/473) Thanks [@tdeekens](https://github.com/tdeekens)! - breaking(hapi): to bump required node to v12
+
+  The `@promster/hapi` package now requires at least Node.js v12. This is rooted in the `@hapi/hapi` package being used which were introduced in 18.2.0.
+
+### Patch Changes
+
+- [`158e7b9`](https://github.com/tdeekens/promster/commit/158e7b9af01133db54376bb96dbdccdd96bfa7a3) Thanks [@tdeekens](https://github.com/tdeekens)! - Dependency updates across all packages
+
+- Updated dependencies [[`158e7b9`](https://github.com/tdeekens/promster/commit/158e7b9af01133db54376bb96dbdccdd96bfa7a3)]:
+  - @promster/metrics@4.1.12
+
 ## 4.2.1
 
 ### Patch Changes

@@ -1,5 +1,14 @@
 # @promster/express
 
+## 4.1.13
+
+### Patch Changes
+
+- [`158e7b9`](https://github.com/tdeekens/promster/commit/158e7b9af01133db54376bb96dbdccdd96bfa7a3) Thanks [@tdeekens](https://github.com/tdeekens)! - Dependency updates across all packages
+
+- Updated dependencies [[`158e7b9`](https://github.com/tdeekens/promster/commit/158e7b9af01133db54376bb96dbdccdd96bfa7a3)]:
+  - @promster/metrics@4.1.12
+
 ## 4.1.12
 
 ### Patch Changes
