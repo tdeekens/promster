@@ -45,6 +45,6 @@
   },
   "devDependencies": {
     "@marblejs/core": "3.4.3",
-    "fp-ts": "2.8.2"
+    "fp-ts": "2.8.3"
   }
 }
