@@ -40,7 +40,7 @@
   "dependencies": {
     "lodash.memoize": "4.1.2",
     "lodash.once": "4.1.1",
-    "merge-options": "2.0.0",
+    "merge-options": "3.0.3",
     "optional": "0.1.4",
     "ts-essentials": "7.0.0",
     "tslib": "2.0.3",
