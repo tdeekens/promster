@@ -43,13 +43,13 @@
     "merge-options": "2.0.0",
     "optional": "0.1.4",
     "ts-essentials": "7.0.0",
-    "tslib": "2.0.1",
+    "tslib": "2.0.3",
     "url": "0.11.0",
     "url-value-parser": "2.0.1"
   },
   "devDependencies": {
     "@promster/types": "^1.0.8",
-    "@types/lodash": "4.14.161",
+    "@types/lodash": "4.14.162",
     "prom-client": "12.0.0"
   },
   "optionalDependencies": {
