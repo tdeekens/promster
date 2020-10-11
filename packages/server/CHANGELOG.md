@@ -1,5 +1,14 @@
 # @promster/server
 
+## 4.2.16
+
+### Patch Changes
+
+- [`4c3af06`](https://github.com/tdeekens/promster/commit/4c3af06bc0b65eb067f195591e48839e632375bd) [#483](https://github.com/tdeekens/promster/pull/483) Thanks [@tdeekens](https://github.com/tdeekens)! - chore: update dependencies
+
+- Updated dependencies [[`4c3af06`](https://github.com/tdeekens/promster/commit/4c3af06bc0b65eb067f195591e48839e632375bd)]:
+  - @promster/metrics@4.1.13
+
 ## 4.2.15
 
 ### Patch Changes
