@@ -40,7 +40,7 @@
   "dependencies": {
     "@promster/metrics": "^4.1.13",
     "fastify": "2.15.3",
-    "fastify-plugin": "1.6.1",
+    "fastify-plugin": "2.3.4",
     "merge-options": "3.0.3"
   },
   "devDependencies": {
