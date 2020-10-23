@@ -1,7 +1,6 @@
 import type { TPromsterOptions, TMetricTypes } from '@promster/types';
 import type { TRequestRecorder } from '@promster/metrics';
-import { Request, Response, NextFunction } from 'express';
-import { Server } from 'http';
+import { Application, Request, Response, NextFunction } from 'express';
 
 import merge from 'merge-options';
 import {
@@ -13,8 +12,8 @@ import {
   isRunningInKubernetes,
 } from '@promster/metrics';
 
-class TApp extends Server {
-  locals?: Record<string, unknown>;
+interface TApp extends Application {
+  locals: Record<string, unknown>;
 }
 
 type TLocaleTarget = {
