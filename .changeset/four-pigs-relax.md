@@ -1,5 +1,5 @@
 ---
-'@promster/express': major
+'@promster/express': patch
 ---
 
 changed TApp typing
