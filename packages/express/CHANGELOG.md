@@ -1,5 +1,11 @@
 # @promster/express
 
+## 4.1.15
+
+### Patch Changes
+
+- [`a0dc407`](https://github.com/tdeekens/promster/commit/a0dc407f1ceca1129942b30b7149a0d4e2b5fef8) [#500](https://github.com/tdeekens/promster/pull/500) Thanks [@natoehv](https://github.com/natoehv)! - changed TApp typing
+
 ## 4.1.14
 
 ### Patch Changes
