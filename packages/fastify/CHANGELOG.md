@@ -1,5 +1,11 @@
 # @promster/fastify
 
+## 4.0.0
+
+### Major Changes
+
+- [`b3fc65f`](https://github.com/tdeekens/promster/commit/b3fc65f62c743c9a87bca91c0b306d3cf5a251d0) [#513](https://github.com/tdeekens/promster/pull/513) Thanks [@makepanic](https://github.com/makepanic)! - upgrade @promster/fastify to support fastify@3
+
 ## 3.1.13
 
 ### Patch Changes
