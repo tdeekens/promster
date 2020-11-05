@@ -67,7 +67,7 @@ const createPlugin = async (
           reply,
         }),
         status_code: defaultedOptions.normalizeStatusCode(
-          reply.res.statusCode,
+          reply.statusCode,
           { request, reply }
         ),
         path: defaultedOptions.normalizePath(extractPath(request), {
