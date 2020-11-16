@@ -895,10 +895,10 @@
     globby "^11.0.0"
     read-yaml-file "^1.1.0"
 
-"@marblejs/core@3.4.3":
-  version "3.4.3"
-  resolved "https://registry.yarnpkg.com/@marblejs/core/-/core-3.4.3.tgz#409b9f59faec486ec3b75151c732babff2e5680e"
-  integrity sha512-Wp0Mb0EoWfQRVoBXHgTR1LGW8gPpQwuGzHmk8Ey9xAK6N82FPoreRqsQg2mu5u6nZRSAb3xX0SUffqrEDJMV8w==
+"@marblejs/core@3.4.4":
+  version "3.4.4"
+  resolved "https://registry.yarnpkg.com/@marblejs/core/-/core-3.4.4.tgz#1a578fe203e3ab5e31bc0f72ab2488d2b80ce3c5"
+  integrity sha512-fIU3GD5klPTK17dfRFeS/ypApOk5NtTPgXBVIeyBI+kFjyVh3qhVQ0G1OKj6NtgpdjQDNIFs7P2ugjG5V/XJMQ==
   dependencies:
     "@types/json-schema" "^7.0.3"
     "@types/qs" "^6.9.0"
