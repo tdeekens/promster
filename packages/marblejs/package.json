@@ -2,11 +2,11 @@
   "name": "@promster/marblejs",
   "version": "3.1.14",
   "description": "MarbleJs server integrations of promster",
-  "main": "dist/modules/index.js",
-  "typings": "dist/modules/index.d.ts",
+  "main": "dist/promster-marblejs.cjs.js",
+  "typings": "dist/promster-marblejs.cjs.d.ts",
+  "types": "dist/promster-marblejs.cjs.d.ts",
   "scripts": {
-    "prebuild": "rimraf dist/**",
-    "build": "cross-env tsc -p tsconfig.json --outDir dist --declarationDir dist"
+
   },
   "files": [
     "readme.md",
