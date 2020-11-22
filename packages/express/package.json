@@ -2,11 +2,10 @@
   "name": "@promster/express",
   "version": "4.1.15",
   "description": "Express server integrations of promster",
-  "main": "dist/modules/index.js",
-  "typings": "dist/modules/index.d.ts",
+  "main": "dist/promster-express.cjs.js",
+  "typings": "dist/promster-express.cjs.d.ts",
+  "types": "dist/promster-express.cjs.d.ts",
   "scripts": {
-    "prebuild": "rimraf dist/**",
-    "build": "cross-env tsc -p tsconfig.json --outDir dist --declarationDir dist"
   },
   "files": [
     "readme.md",

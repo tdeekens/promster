@@ -23,13 +23,8 @@
     "strict": true,
     "strictNullChecks": true,
     "stripInternal": true,
-    "allowJs": true
+    "allowJs": true,
+    "types": ["node"]
   },
-  "include": [
-    "packages/**/modules/**/*.ts",
-    "packages/types/index.ts",
-    "packages/**/modules/**/*.js",
-    "packages/**/@types/**/*.d.ts"
-  ],
-  "exclude": ["packages/**/node_modules/*.d.ts", "**/dist/**/*"]
+  "typeRoots": ["@types", "node_modules/@types"]
 }

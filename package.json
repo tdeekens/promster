@@ -4,7 +4,7 @@
   "description": "Monorepository for promster and its projects e.g. metrics, hapi and express",
   "scripts": {
     "auth": "npm_config_registry=https://registry.npmjs.org npm whoami",
-    "postinstall": "check-node-version --package --print",
+    "postinstall": "check-node-version --package --print && preconstruct dev",
     "develop": "jest --projects .jestrc.*.json --watch",
     "lint": "jest --config .jestrc.lint.json",
     "typecheck": "tsc --noEmit",
@@ -18,8 +18,8 @@
     "test:ci:coverage": "cross-env NODE_ENV=test npm test -- --no-watchman --coverage && codecov",
     "test:watch": "cross-env NODE_ENV=test npm test -- --watch",
     "test:coverage": "cross-env NODE_ENV=test npm test -- --coverage",
-    "build": "yarn workspace @promster/types build && yarn workspace @promster/metrics build && yarn workspaces run build",
-    "build:watch": "yarn workspaces run build:watch",
+    "build": "preconstruct build",
+    "build:watch": "preconstruct watch",
     "prerelease": "cross-env NODE_ENV=production yarn auth && yarn build",
     "release": "changeset publish"
   },
@@ -38,6 +38,9 @@
   },
   "homepage": "https://github.com/tdeekens/promster#readme",
   "devDependencies": {
+    "@babel/core": "7.12.7",
+    "@babel/preset-typescript": "7.12.7",
+    "@babel/preset-env": "7.12.7",
     "@changesets/changelog-github": "0.2.7",
     "@changesets/cli": "2.11.2",
     "@commitlint/cli": "11.0.0",
@@ -60,10 +63,16 @@
     "jest-plugin-filename": "0.0.1",
     "jest-runner-eslint": "0.10.0",
     "lint-staged": "10.5.1",
+    "@preconstruct/cli": "2.0.0",
     "prettier": "2.1.2",
     "rimraf": "3.0.2",
     "ts-jest": "26.4.3",
     "typescript": "4.0.3"
+  },
+  "preconstruct": {
+    "packages": [
+      "packages/*"
+    ]
   },
   "keywords": [
     "monitoring",

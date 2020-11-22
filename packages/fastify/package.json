@@ -2,11 +2,11 @@
   "name": "@promster/fastify",
   "version": "4.0.0",
   "description": "Fastify server integrations of promster",
-  "main": "dist/modules/index.js",
-  "typings": "dist/modules/index.d.ts",
+  "main": "dist/promster-fastify.cjs.js",
+  "typings": "dist/promster-fastify.cjs.d.ts",
+  "types": "dist/promster-fastify.cjs.d.ts",
   "scripts": {
-    "prebuild": "rimraf dist/**",
-    "build": "cross-env tsc -p tsconfig.json --outDir dist --declarationDir dist"
+
   },
   "files": [
     "readme.md",
