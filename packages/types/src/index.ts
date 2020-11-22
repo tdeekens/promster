@@ -1,6 +1,6 @@
 import { Gauge, Counter, Summary, Histogram } from 'prom-client';
 
-export type TLabelValues = Record<string, string | number>
+export type TLabelValues = Record<string, string | number>;
 
 export type TPromsterOptions = {
   labels?: string[];

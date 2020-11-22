@@ -66,10 +66,10 @@ const createPlugin = async (
           request,
           reply,
         }),
-        status_code: defaultedOptions.normalizeStatusCode(
-          reply.statusCode,
-          { request, reply }
-        ),
+        status_code: defaultedOptions.normalizeStatusCode(reply.statusCode, {
+          request,
+          reply,
+        }),
         path: defaultedOptions.normalizePath(extractPath(request), {
           request,
           reply,
@@ -78,8 +78,7 @@ const createPlugin = async (
       defaultedOptions.getLabelValues?.(request, reply)
     );
 
-    const shouldSkipByRequest =
-      defaultedOptions.skip?.(request, reply);
+    const shouldSkipByRequest = defaultedOptions.skip?.(request, reply);
 
     if (!shouldSkipByRequest && !shouldSkipMetricsByEnvironment) {
       // @ts-expect-error
