@@ -5,9 +5,7 @@
   "main": "dist/promster-marblejs.cjs.js",
   "typings": "dist/promster-marblejs.cjs.d.ts",
   "types": "dist/promster-marblejs.cjs.d.ts",
-  "scripts": {
-
-  },
+  "scripts": {},
   "files": [
     "readme.md",
     "package.json",
@@ -44,7 +42,7 @@
     "tslib": "2.0.3"
   },
   "devDependencies": {
-    "@marblejs/core": "3.4.4",
+    "@marblejs/core": "3.4.5",
     "fp-ts": "2.8.6"
   }
 }
