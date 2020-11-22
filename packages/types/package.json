@@ -1,12 +1,11 @@
 {
   "name": "@promster/types",
-  "version": "1.0.8",
+  "version": "2.0.0",
   "description": "Shared types of promster",
   "main": "dist/promster-types.cjs.js",
   "typings": "dist/promster-types.cjs.d.ts",
   "types": "dist/promster-types.cjs.d.ts",
-  "scripts": {
-  },
+  "scripts": {},
   "files": [
     "readme.md",
     "package.json",
