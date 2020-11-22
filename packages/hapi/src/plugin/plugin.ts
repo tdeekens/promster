@@ -1,6 +1,11 @@
 import type { TPromsterOptions, TMetricTypes } from '@promster/types';
 import type { TRequestRecorder } from '@promster/metrics';
-import type { Plugin, Request, ResponseObject, ResponseToolkit } from '@hapi/hapi';
+import type {
+  Plugin,
+  Request,
+  ResponseObject,
+  ResponseToolkit,
+} from '@hapi/hapi';
 import type { Boom } from '@hapi/boom';
 
 import semver from 'semver';
@@ -44,7 +49,7 @@ const extractStatusCode = (request: Request) => {
   }
 
   return response.statusCode;
-}
+};
 
 let recordRequest: TRequestRecorder;
 let upMetric: TMetricTypes['up'];
@@ -130,8 +135,11 @@ const createPlugin = (
           defaultedOptions.getLabelValues?.(request, {})
         );
 
-        const shouldSkipByRequest =
-          defaultedOptions.skip?.(request, response, labels);
+        const shouldSkipByRequest = defaultedOptions.skip?.(
+          request,
+          response,
+          labels
+        );
 
         if (!shouldSkipByRequest && !shouldSkipMetricsByEnvironment) {
           recordRequest(request.plugins.promster.start, {

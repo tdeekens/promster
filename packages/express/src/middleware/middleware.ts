@@ -88,8 +88,11 @@ const createMiddleware = (
         allDefaultedOptions.getLabelValues?.(request, response)
       );
 
-      const shouldSkipByRequest =
-        allDefaultedOptions.skip?.(request, response, labels);
+      const shouldSkipByRequest = allDefaultedOptions.skip?.(
+        request,
+        response,
+        labels
+      );
 
       if (!shouldSkipByRequest && !shouldSkipMetricsByEnvironment) {
         recordRequest(start, {
