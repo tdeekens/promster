@@ -44,6 +44,6 @@
   "devDependencies": {
     "@hapi/boom": "9.1.0",
     "@promster/types": "^2.0.0",
-    "@types/hapi__hapi": "20.0.2"
+    "@types/hapi__hapi": "20.0.3"
   }
 }
