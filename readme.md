@@ -223,11 +223,11 @@ const middlewares = [
 
 const serveMetrics$ = EffectFactory.matchPath('/metrics')
   .matchType('GET')
-  .use((req$) =>
+  .use(async (req$) =>
     req$.pipe(
       mapTo({
         headers: { 'Content-Type': promster.getContentType() },
-        body: promster.getSummary(),
+        body: await promster.getSummary(),
       })
     )
   );
@@ -294,11 +294,11 @@ You can use the `express` or `hapi` package to expose the gathered metrics throu
 const app = require('./your-express-app');
 const { getSummary, getContentType } = require('@promster/express');
 
-app.use('/metrics', (req, res) => {
+app.use('/metrics', async (req, res) => {
   req.statusCode = 200;
 
   res.setHeader('Content-Type', getContentType());
-  res.end(getSummary());
+  res.end(await getSummary());
 });
 ```
 

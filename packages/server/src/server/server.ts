@@ -31,9 +31,9 @@ const createServer = async (
 
     const port = skipServerStart ? undefined : defaultedOptions.port;
 
-    const server = http.createServer((_req, res) => {
+    const server = http.createServer(async (_req, res) => {
       res.writeHead(200, 'OK', { 'content-type': getContentType() });
-      res.end(getSummary());
+      res.end(await getSummary());
     });
 
     server.listen(port, defaultedOptions.hostname, () => {

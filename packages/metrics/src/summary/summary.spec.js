@@ -1,6 +1,6 @@
 jest.mock('../client', () => ({
   defaultRegister: {
-    metrics: jest.fn(() => 'metrics'),
+    metrics: jest.fn(async () => Promise.resolve('metrics')),
     contentType: 'application/test',
   },
 }));
@@ -11,8 +11,8 @@ const { getSummary, getContentType } = require('./summary');
 describe('getSummary', () => {
   let summary;
 
-  beforeEach(() => {
-    summary = getSummary();
+  beforeEach(async () => {
+    summary = await getSummary();
   });
 
   it('should invoke metrics on the default register', () => {
