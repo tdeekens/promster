@@ -1,6 +1,6 @@
 {
   "name": "@promster/metrics",
-  "version": "5.0.0",
+  "version": "6.0.0",
   "description": "Metrics utilities used by all other server integrations",
   "main": "dist/promster-metrics.cjs.js",
   "typings": "dist/promster-metrics.cjs.d.ts",
@@ -46,7 +46,7 @@
     "url-value-parser": "2.0.1"
   },
   "devDependencies": {
-    "@promster/types": "^2.0.0",
+    "@promster/types": "^3.0.0",
     "@types/lodash": "4.14.165",
     "prom-client": "13.0.0"
   },

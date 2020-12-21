@@ -1,5 +1,14 @@
 # @promster/hapi
 
+## 6.0.1
+
+### Patch Changes
+
+- [`39dbcfa`](https://github.com/tdeekens/promster/commit/39dbcfab72861d6546b68b96bface3fc2f7d467d) [#553](https://github.com/tdeekens/promster/pull/553) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency @hapi/boom to v9.1.1
+
+- Updated dependencies [[`daf8605`](https://github.com/tdeekens/promster/commit/daf86055e64cb420c83dbc7abbcd5024d449c53f)]:
+  - @promster/metrics@6.0.0
+
 ## 6.0.0
 
 ### Major Changes
