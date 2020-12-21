@@ -42,7 +42,7 @@
     "tslib": "2.0.3"
   },
   "devDependencies": {
-    "@hapi/boom": "9.1.0",
+    "@hapi/boom": "9.1.1",
     "@promster/types": "^2.0.0",
     "@types/hapi__hapi": "20.0.3"
   }
