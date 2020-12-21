@@ -1,7 +1,7 @@
 ---
-"@promster/metrics": patch
-"@promster/server": patch
-"@promster/types": patch
+"@promster/metrics": major
+"@promster/server": major
+"@promster/types": major
 ---
 
 # Breaking Changes
