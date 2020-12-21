@@ -1,5 +1,12 @@
 # @promster/express
 
+## 5.0.1
+
+### Patch Changes
+
+- Updated dependencies [[`daf8605`](https://github.com/tdeekens/promster/commit/daf86055e64cb420c83dbc7abbcd5024d449c53f)]:
+  - @promster/metrics@6.0.0
+
 ## 5.0.0
 
 ### Major Changes
