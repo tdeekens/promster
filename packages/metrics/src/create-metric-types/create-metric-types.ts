@@ -130,7 +130,6 @@ const getHttpRequestLatencyMetricsInMilliseconds = (options: TOptions) => ({
         new Prometheus.Summary({
           name: `${options.metricPrefix}${nameOfHttpRequestDurationPerPercentileInMillisecondsMetric}`,
           help: 'The HTTP request latencies in milliseconds.',
-          // eslint-disable-next-line @typescript-eslint/require-array-sort-compare
           labelNames: defaultRequestLabels.concat(options.labels).sort(),
           percentiles:
             options.percentiles ||
@@ -145,7 +144,6 @@ const getHttpRequestLatencyMetricsInMilliseconds = (options: TOptions) => ({
         new Prometheus.Histogram({
           name: `${options.metricPrefix}${nameOfHttpRequestDurationInMillisecondsMetric}`,
           help: 'The HTTP request latencies in milliseconds.',
-          // eslint-disable-next-line @typescript-eslint/require-array-sort-compare
           labelNames: defaultRequestLabels.concat(options.labels).sort(),
           buckets: options.buckets || defaultHttpRequestDurationInMilliseconds,
         })
@@ -160,7 +158,6 @@ const getHttpRequestLatencyMetricsInSeconds = (options: TOptions) => ({
         new Prometheus.Summary({
           name: `${options.metricPrefix}${nameOfHttpRequestDurationPerPercentileInSeconds}`,
           help: 'The HTTP request latencies in seconds.',
-          // eslint-disable-next-line @typescript-eslint/require-array-sort-compare
           labelNames: defaultRequestLabels.concat(options.labels).sort(),
           percentiles:
             options.percentiles ||
@@ -175,7 +172,6 @@ const getHttpRequestLatencyMetricsInSeconds = (options: TOptions) => ({
         new Prometheus.Histogram({
           name: `${options.metricPrefix}${nameOfHttpRequestDurationInSecondsMetric}`,
           help: 'The HTTP request latencies in seconds.',
-          // eslint-disable-next-line @typescript-eslint/require-array-sort-compare
           labelNames: defaultRequestLabels.concat(options.labels).sort(),
           buckets: options.buckets || defaultHttpRequestDurationInSeconds,
         })
@@ -190,7 +186,6 @@ const getHttpRequestCounterMetric = (options: TOptions) => ({
         new Prometheus.Counter({
           name: `${options.metricPrefix}${nameOfHttpRequestsTotalMetric}`,
           help: 'The total HTTP requests.',
-          // eslint-disable-next-line @typescript-eslint/require-array-sort-compare
           labelNames: defaultRequestLabels.concat(options.labels).sort(),
         })
     ),

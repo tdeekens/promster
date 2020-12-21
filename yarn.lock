@@ -6148,10 +6148,10 @@ progress@^2.0.0:
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
   integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
 
-prom-client@12.0.0:
-  version "12.0.0"
-  resolved "https://registry.yarnpkg.com/prom-client/-/prom-client-12.0.0.tgz#9689379b19bd3f6ab88a9866124db9da3d76c6ed"
-  integrity sha512-JbzzHnw0VDwCvoqf8y1WDtq4wSBAbthMB1pcVI/0lzdqHGJI3KBJDXle70XK+c7Iv93Gihqo0a5LlOn+g8+DrQ==
+prom-client@13.0.0:
+  version "13.0.0"
+  resolved "https://registry.yarnpkg.com/prom-client/-/prom-client-13.0.0.tgz#7e883e1c10c2d471258d3acf2d386197ffc819bd"
+  integrity sha512-M7ZNjIO6x+2R/vjSD13yjJPjpoZA8eEwH2Bp2Re0/PvzozD7azikv+SaBtZes4Q1ca/xHjZ4RSCuTag3YZLg1A==
   dependencies:
     tdigest "^0.1.1"
 
@@ -6165,7 +6165,6 @@ prompts@^2.0.1:
 
 "prompts@git://github.com/terkelg/prompts.git#792824f8e5bfe3d632da0e48be23ab718b8f6646":
   version "0.1.4"
-  uid "792824f8e5bfe3d632da0e48be23ab718b8f6646"
   resolved "git://github.com/terkelg/prompts.git#792824f8e5bfe3d632da0e48be23ab718b8f6646"
   dependencies:
     clorox "^1.0.1"
