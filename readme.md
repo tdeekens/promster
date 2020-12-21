@@ -298,7 +298,7 @@ app.use('/metrics', async (req, res) => {
   req.statusCode = 200;
 
   res.setHeader('Content-Type', getContentType());
-  res.end(async getSummary());
+  res.end(await getSummary());
 });
 ```
 
