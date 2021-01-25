@@ -1257,7 +1257,7 @@
   dependencies:
     "@hapi/boom" "9.x.x"
 
-"@hapi/hoek@9.x.x":
+"@hapi/hoek@9.x.x", "@hapi/hoek@^9.0.0":
   version "9.1.1"
   resolved "https://registry.yarnpkg.com/@hapi/hoek/-/hoek-9.1.1.tgz#9daf5745156fd84b8e9889a2dc721f0c58e894aa"
   integrity sha512-CAEbWH7OIur6jEOzaai83jq3FmKmv4PmX1JYfs9IrYcGEVI/lyL1EXJGCj7eFVJ0bg5QR8LMxBlEtA+xKiLpFw==
@@ -1272,6 +1272,13 @@
     "@hapi/bourne" "2.x.x"
     "@hapi/cryptiles" "5.x.x"
     "@hapi/hoek" "9.x.x"
+
+"@hapi/topo@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@hapi/topo/-/topo-5.0.0.tgz#c19af8577fa393a06e9c77b60995af959be721e7"
+  integrity sha512-tFJlT47db0kMqVm3H4nQYgn6Pwg10GTZHb1pwmSiv1K4ks6drQOtfEF5ZnPjkvC+y4/bUPHK+bc87QvLcL+WMw==
+  dependencies:
+    "@hapi/hoek" "^9.0.0"
 
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.1.0"
@@ -1626,6 +1633,23 @@
     estree-walker "^1.0.1"
     picomatch "^2.2.2"
 
+"@sideway/address@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@sideway/address/-/address-4.1.0.tgz#0b301ada10ac4e0e3fa525c90615e0b61a72b78d"
+  integrity sha512-wAH/JYRXeIFQRsxerIuLjgUu2Xszam+O5xKeatJ4oudShOOirfmsQ1D6LL54XOU2tizpCYku+s1wmU0SYdpoSA==
+  dependencies:
+    "@hapi/hoek" "^9.0.0"
+
+"@sideway/formula@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@sideway/formula/-/formula-3.0.0.tgz#fe158aee32e6bd5de85044be615bc08478a0a13c"
+  integrity sha512-vHe7wZ4NOXVfkoRb8T5otiENVlT7a3IAiw7H5M2+GO+9CDgcVUUsX1zalAztCmwyOr2RUTGJdgB+ZvSVqmdHmg==
+
+"@sideway/pinpoint@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@sideway/pinpoint/-/pinpoint-2.0.0.tgz#cff8ffadc372ad29fd3f78277aeb29e632cc70df"
+  integrity sha512-RNiOoTPkptFtSVzQevY/yWtZwf/RxyVnPy/OcA9HBM3MlGDnBEYL5B41H0MTn0Uec8Hi+2qUtTfG2WWZBmMejQ==
+
 "@sinonjs/commons@^1.7.0":
   version "1.8.1"
   resolved "https://registry.yarnpkg.com/@sinonjs/commons/-/commons-1.8.1.tgz#e7df00f98a203324f6dc7cc606cad9d4a8ab2217"
@@ -1734,10 +1758,10 @@
   resolved "https://registry.yarnpkg.com/@types/hapi__catbox/-/hapi__catbox-10.2.3.tgz#c9279c16d709bf2987491c332e11d18124ae018f"
   integrity sha512-gs6MKMKXzWpSqeYsPaDIDAxD8jLNg7aFxgAJE6Jnc+ns072Z9fuh39/NF5gSk1KNoGCLnIpeZ0etT9gY9QDCKg==
 
-"@types/hapi__hapi@20.0.3":
-  version "20.0.3"
-  resolved "https://registry.yarnpkg.com/@types/hapi__hapi/-/hapi__hapi-20.0.3.tgz#b6a6bd81bb76e95e964b0096462666f4fc540d51"
-  integrity sha512-Jv3J5UhcNWD06NUAoFCyllojIBfXleoL9o5jX7tmuAuFX5uc5n3ynZBb7gewE0iGdlut1qG9KO2UHcOTR4wNzQ==
+"@types/hapi__hapi@20.0.4":
+  version "20.0.4"
+  resolved "https://registry.yarnpkg.com/@types/hapi__hapi/-/hapi__hapi-20.0.4.tgz#d578d8f292fe6f8b4362f7bd87be3aaf6b1c1b68"
+  integrity sha512-a1dFeifz/kMhV35Zyml5Cqxo+dfYxJN9oOMNlz11ct5axiKhmZlUb0SeD3fTE4mL4saE8P21yEMBVbTM6VKGhQ==
   dependencies:
     "@hapi/boom" "^9.0.0"
     "@hapi/iron" "^6.0.0"
@@ -1745,8 +1769,8 @@
     "@types/hapi__mimos" "*"
     "@types/hapi__podium" "*"
     "@types/hapi__shot" "*"
-    "@types/joi" "*"
     "@types/node" "*"
+    joi "^17.3.0"
 
 "@types/hapi__mimos@*":
   version "4.1.3"
@@ -1793,11 +1817,6 @@
   dependencies:
     jest-diff "^26.0.0"
     pretty-format "^26.0.0"
-
-"@types/joi@*":
-  version "14.3.4"
-  resolved "https://registry.yarnpkg.com/@types/joi/-/joi-14.3.4.tgz#eed1e14cbb07716079c814138831a520a725a1e0"
-  integrity sha512-1TQNDJvIKlgYXGNIABfgFp9y0FziDpuGrd799Q5RcnsDu+krD+eeW/0Fs5PHARvWWFelOhIG2OPCo6KbadBM4A==
 
 "@types/json-schema@^7.0.3":
   version "7.0.6"
@@ -4996,6 +5015,17 @@ jest@26.6.3:
     "@jest/core" "^26.6.3"
     import-local "^3.0.2"
     jest-cli "^26.6.3"
+
+joi@^17.3.0:
+  version "17.3.0"
+  resolved "https://registry.yarnpkg.com/joi/-/joi-17.3.0.tgz#f1be4a6ce29bc1716665819ac361dfa139fff5d2"
+  integrity sha512-Qh5gdU6niuYbUIUV5ejbsMiiFmBdw8Kcp8Buj2JntszCkCfxJ9Cz76OtHxOZMPXrt5810iDIXs+n1nNVoquHgg==
+  dependencies:
+    "@hapi/hoek" "^9.0.0"
+    "@hapi/topo" "^5.0.0"
+    "@sideway/address" "^4.1.0"
+    "@sideway/formula" "^3.0.0"
+    "@sideway/pinpoint" "^2.0.0"
 
 js-tokens@^4.0.0:
   version "4.0.0"
