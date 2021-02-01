@@ -1517,10 +1517,10 @@
     globby "^11.0.0"
     read-yaml-file "^1.1.0"
 
-"@marblejs/core@3.4.8":
-  version "3.4.8"
-  resolved "https://registry.yarnpkg.com/@marblejs/core/-/core-3.4.8.tgz#a2d01e70f8ed1a9fdc4a1de3f35621237c8242d5"
-  integrity sha512-pzwHSiwm1GcS9r9cBCY9GQ/z4PvXgEkj9Nm90lgXLc9GDnc5bkNkZEwt/OMeaC8v329KFXIEYjZuFnC6aXrqgQ==
+"@marblejs/core@3.4.9":
+  version "3.4.9"
+  resolved "https://registry.yarnpkg.com/@marblejs/core/-/core-3.4.9.tgz#3bed32567112daf4bd46d7579843fc0805c698ac"
+  integrity sha512-3UZkFG2MBj/o1inR5cTW8MqFwD6DJadaHmg/ocd+g5VvFquGhYppIPTHsgrEGLCs5yW5NjjBd/BilUgMbt4n4Q==
   dependencies:
     "@types/json-schema" "^7.0.3"
     "@types/qs" "^6.9.0"
