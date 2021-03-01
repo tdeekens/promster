@@ -1638,10 +1638,10 @@
     "@nodelib/fs.scandir" "2.1.4"
     fastq "^1.6.0"
 
-"@preconstruct/cli@2.0.4":
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/@preconstruct/cli/-/cli-2.0.4.tgz#de9f6c4648b030b04e52ca01f97bdc006b7b948b"
-  integrity sha512-7kp5eWz+rSR5h7tKs84ROq6RBDbQ1D8SJ+Ca7sI80LchheEfpwwK4FXE7jlGof+ooUgVCpogvMPH6238UGe9fw==
+"@preconstruct/cli@2.0.5":
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/@preconstruct/cli/-/cli-2.0.5.tgz#bd952ecae0fbe5cba37040d7f05c41cab3ac4250"
+  integrity sha512-yWB0GwqZi9tTpSmsEkcVYxnieCT89L9938XR7s9ffjKf59GFMwy8O0G8wMA8Rm6jNjf3ob5zuVWvCaoHppUS8Q==
   dependencies:
     "@babel/code-frame" "^7.5.5"
     "@babel/core" "^7.7.7"
@@ -1652,7 +1652,7 @@
     "@rollup/plugin-commonjs" "^15.0.0"
     "@rollup/plugin-json" "^4.1.0"
     "@rollup/plugin-node-resolve" "^9.0.0"
-    "@rollup/plugin-replace" "^2.3.3"
+    "@rollup/plugin-replace" "^2.4.1"
     builtin-modules "^3.1.0"
     chalk "^4.1.0"
     dataloader "^2.0.0"
@@ -1730,10 +1730,10 @@
     is-module "^1.0.0"
     resolve "^1.17.0"
 
-"@rollup/plugin-replace@^2.3.3":
-  version "2.3.4"
-  resolved "https://registry.yarnpkg.com/@rollup/plugin-replace/-/plugin-replace-2.3.4.tgz#7dd84c17755d62b509577f2db37eb524d7ca88ca"
-  integrity sha512-waBhMzyAtjCL1GwZes2jaE9MjuQ/DQF2BatH3fRivUF3z0JBFrU0U6iBNC/4WR+2rLKhaAhPWDNPYp4mI6RqdQ==
+"@rollup/plugin-replace@^2.4.1":
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/@rollup/plugin-replace/-/plugin-replace-2.4.1.tgz#c411b5ab72809fb1bfc8b487d8d02eef661460d3"
+  integrity sha512-XwC1oK5rrtRJ0tn1ioLHS6OV5JTluJF7QE1J/q1hN3bquwjnVxjtMyY9iCnoyH9DQbf92CxajB3o98wZbP3oAQ==
   dependencies:
     "@rollup/pluginutils" "^3.1.0"
     magic-string "^0.25.7"
