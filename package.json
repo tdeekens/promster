@@ -38,8 +38,8 @@
   },
   "homepage": "https://github.com/tdeekens/promster#readme",
   "devDependencies": {
-    "@babel/core": "7.13.8",
-    "@babel/preset-env": "7.13.9",
+    "@babel/core": "7.13.10",
+    "@babel/preset-env": "7.13.10",
     "@babel/preset-typescript": "7.13.0",
     "@changesets/changelog-github": "0.2.8",
     "@changesets/cli": "2.14.1",
