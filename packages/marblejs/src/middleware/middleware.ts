@@ -23,10 +23,25 @@ let recordRequest: TRequestRecorder;
 let upMetric: TMetricTypes['up'];
 
 const getRequestRecorder = () => recordRequest;
-const signalIsUp = () =>
-  upMetric?.forEach((upMetricType) => upMetricType.set(1));
-const signalIsNotUp = () =>
-  upMetric?.forEach((upMetricType) => upMetricType.set(0));
+const signalIsUp = () => {
+  if (!upMetric) {
+    return;
+  }
+
+  upMetric.forEach((upMetricType) => {
+    upMetricType.set(1);
+  });
+};
+
+const signalIsNotUp = () => {
+  if (!upMetric) {
+    return;
+  }
+
+  upMetric.forEach((upMetricType) => {
+    upMetricType.set(0);
+  });
+};
 
 type TRecordHandlerOps = Required<TPromsterOptions> & {
   skip: (req: HttpRequest, res: HttpResponse, labels: TLabelValues) => boolean;

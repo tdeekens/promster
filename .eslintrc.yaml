@@ -8,7 +8,6 @@ extends:
   - xo
   - xo-typescript
   - prettier
-  - prettier/@typescript-eslint
   - plugin:jest/recommended
 env:
   es6: true

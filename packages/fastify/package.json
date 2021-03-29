@@ -38,9 +38,9 @@
   "dependencies": {
     "@promster/metrics": "^6.0.0",
     "fastify-plugin": "^3.0.0",
-    "merge-options": "3.0.3"
+    "merge-options": "3.0.4"
   },
   "devDependencies": {
-    "fastify": "3.8.0"
+    "fastify": "3.14.1"
   }
 }
