@@ -54,10 +54,25 @@ const extractStatusCode = (request: Request) => {
 let recordRequest: TRequestRecorder;
 let upMetric: TMetricTypes['up'];
 const getRequestRecorder = () => recordRequest;
-const signalIsUp = () =>
-  upMetric?.forEach((upMetricType) => upMetricType.set(1));
-const signalIsNotUp = () =>
-  upMetric?.forEach((upMetricType) => upMetricType.set(0));
+const signalIsUp = () => {
+  if (!upMetric) {
+    return;
+  }
+
+  upMetric.forEach((upMetricType) => {
+    upMetricType.set(1);
+  });
+};
+
+const signalIsNotUp = () => {
+  if (!upMetric) {
+    return;
+  }
+
+  upMetric.forEach((upMetricType) => {
+    upMetricType.set(0);
+  });
+};
 
 const getAreServerEventsSupported = (actualVersion: string) =>
   Boolean(actualVersion && semver.satisfies(actualVersion, '>= 17.0.0'));

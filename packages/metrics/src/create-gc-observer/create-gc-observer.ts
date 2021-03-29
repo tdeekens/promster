@@ -33,15 +33,15 @@ const createGcObserver = once((metricTypes: TMetricTypes) => () => {
     const gcType = gcTypes[stats.gctype];
 
     metricTypes.countOfGcs.forEach((countOfGcMetricType) =>
-      countOfGcMetricType.labels(gcType).inc()
+      { countOfGcMetricType.labels(gcType).inc(); }
     );
     metricTypes.durationOfGc.forEach((durationOfGcMetricType) =>
-      durationOfGcMetricType.labels(gcType).inc(stats.pause / 1e9)
+      { durationOfGcMetricType.labels(gcType).inc(stats.pause / 1e9); }
     );
 
     if (stats.diff.usedHeapSize < 0) {
       metricTypes.reclaimedInGc.forEach((reclaimedInGcMetricType) =>
-        reclaimedInGcMetricType.labels(gcType).inc(stats.diff.usedHeapSize * -1)
+        { reclaimedInGcMetricType.labels(gcType).inc(stats.diff.usedHeapSize * -1); }
       );
     }
   });

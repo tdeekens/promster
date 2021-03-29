@@ -20,10 +20,25 @@ let upMetric: TMetricTypes['up'];
 // @ts-expect-error
 const extractPath = (req: FastifyRequest) => req.raw.originalUrl || req.raw.url;
 const getRequestRecorder = () => recordRequest;
-const signalIsUp = () =>
-  upMetric?.forEach((upMetricType) => upMetricType.set(1));
-const signalIsNotUp = () =>
-  upMetric?.forEach((upMetricType) => upMetricType.set(0));
+const signalIsUp = () => {
+  if (!upMetric) {
+    return;
+  }
+
+  upMetric.forEach((upMetricType) => {
+    upMetricType.set(1);
+  });
+};
+
+const signalIsNotUp = () => {
+  if (!upMetric) {
+    return;
+  }
+
+  upMetric.forEach((upMetricType) => {
+    upMetricType.set(0);
+  });
+};
 
 const createPlugin = async (
   fastify: FastifyInstance,
