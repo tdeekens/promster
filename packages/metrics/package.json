@@ -38,17 +38,17 @@
   "dependencies": {
     "lodash.memoize": "4.1.2",
     "lodash.once": "4.1.1",
-    "merge-options": "3.0.3",
+    "merge-options": "3.0.4",
     "optional": "0.1.4",
     "ts-essentials": "7.0.1",
-    "tslib": "2.0.3",
+    "tslib": "2.1.0",
     "url": "0.11.0",
     "url-value-parser": "2.0.1"
   },
   "devDependencies": {
     "@promster/types": "^3.0.0",
     "@types/lodash": "4.14.168",
-    "prom-client": "13.0.0"
+    "prom-client": "13.1.0"
   },
   "optionalDependencies": {
     "gc-stats": "1.4.0"
