@@ -1,6 +1,6 @@
 {
   "name": "@promster/express",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "description": "Express server integrations of promster",
   "main": "dist/promster-express.cjs.js",
   "typings": "dist/promster-express.cjs.d.ts",
@@ -36,7 +36,7 @@
     "prometheus"
   ],
   "dependencies": {
-    "@promster/metrics": "^6.0.0",
+    "@promster/metrics": "^6.0.1",
     "merge-options": "3.0.4",
     "tslib": "2.1.0"
   },
