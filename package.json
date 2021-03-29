@@ -21,7 +21,8 @@
     "build": "preconstruct build",
     "build:watch": "preconstruct watch",
     "prerelease": "cross-env NODE_ENV=production yarn auth && yarn build",
-    "release": "changeset publish"
+    "release": "changeset publish",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -59,7 +60,7 @@
     "eslint-formatter-pretty": "4.0.0",
     "eslint-plugin-jest": "24.3.2",
     "eslint-plugin-prettier": "3.3.1",
-    "husky": "4.3.0",
+    "husky": "^6.0.0",
     "jest": "26.6.3",
     "jest-plugin-filename": "0.0.1",
     "jest-runner-eslint": "0.10.0",
