@@ -1,5 +1,14 @@
 # @promster/server
 
+## 6.0.1
+
+### Patch Changes
+
+- [#601](https://github.com/tdeekens/promster/pull/601) [`17a24dc`](https://github.com/tdeekens/promster/commit/17a24dc0d735478001524c853b9f54f862153852) Thanks [@tdeekens](https://github.com/tdeekens)! - Update dependencies and apply eslint rule suggestions.
+
+- Updated dependencies [[`17a24dc`](https://github.com/tdeekens/promster/commit/17a24dc0d735478001524c853b9f54f862153852)]:
+  - @promster/metrics@6.0.1
+
 ## 6.0.0
 
 ### Major Changes
