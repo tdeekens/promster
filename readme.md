@@ -25,8 +25,8 @@
 </p>
 
 <p align="center">
-  <a href="https://circleci.com/gh/tdeekens/promster">
-    <img alt="CircleCI Status" src="https://circleci.com/gh/tdeekens/promster.svg?style=shield&circle-token=6b914111cae6bac8d92ab82ff1e84fdf64424e78">
+  <a href="https://github.com/tdeekens/promster/actions/workflows/test.yml">
+    <img alt="Test & build status" src="https://github.com/tdeekens/promster/actions/workflows/test.yml/badge.svg">
   </a>
   <a href="https://codecov.io/gh/tdeekens/promster">
     <img alt="Codecov Coverage Status" src="https://img.shields.io/codecov/c/github/tdeekens/promster.svg?style=flat-square">
