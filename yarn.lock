@@ -1785,10 +1785,10 @@
   resolved "https://registry.yarnpkg.com/@types/hapi__catbox/-/hapi__catbox-10.2.3.tgz#c9279c16d709bf2987491c332e11d18124ae018f"
   integrity sha512-gs6MKMKXzWpSqeYsPaDIDAxD8jLNg7aFxgAJE6Jnc+ns072Z9fuh39/NF5gSk1KNoGCLnIpeZ0etT9gY9QDCKg==
 
-"@types/hapi__hapi@20.0.5":
-  version "20.0.5"
-  resolved "https://registry.yarnpkg.com/@types/hapi__hapi/-/hapi__hapi-20.0.5.tgz#1cc41892a8ada002f4ee45fb8095b0aad0b0c17b"
-  integrity sha512-xzGVjTr2i4xsJKKVrIOxVUq6H2m04ATtDiwOQHXdVBVnuEZoWbkN8tbb0L2S+DRXV7k2Zw5pW73YzDQHhbX5pw==
+"@types/hapi__hapi@20.0.7":
+  version "20.0.7"
+  resolved "https://registry.yarnpkg.com/@types/hapi__hapi/-/hapi__hapi-20.0.7.tgz#c507ae81d49013727715ac4c8ac8f32892408719"
+  integrity sha512-tJcizTio7R5O5uIRIRowAwru6sTjCGxGzRopMjm0Li5kIlSTtJ80z3hxpNZOW/7zfAuLIuh/kgG7kDHajT6AYw==
   dependencies:
     "@hapi/boom" "^9.0.0"
     "@hapi/iron" "^6.0.0"
