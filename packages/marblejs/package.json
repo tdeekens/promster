@@ -39,10 +39,10 @@
     "@promster/metrics": "^6.0.1",
     "merge-options": "3.0.4",
     "rxjs": "^6.5.3",
-    "tslib": "2.1.0"
+    "tslib": "2.2.0"
   },
   "devDependencies": {
     "@marblejs/core": "3.4.9",
-    "fp-ts": "2.9.5"
+    "fp-ts": "2.10.4"
   }
 }
