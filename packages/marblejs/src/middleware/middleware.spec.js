@@ -21,7 +21,7 @@ const { EventEmitter } = require('events');
 describe('extracting path', () => {
   let extractedPath;
   describe('with original url', () => {
-    let req = { originalUrl: 'originalUrl', url: 'nextUrl' };
+    const req = { originalUrl: 'originalUrl', url: 'nextUrl' };
 
     beforeEach(() => {
       extractedPath = extractPath(req);
@@ -33,7 +33,7 @@ describe('extracting path', () => {
   });
 
   describe('with out original url', () => {
-    let req = { url: 'nextUrl' };
+    const req = { url: 'nextUrl' };
 
     beforeEach(() => {
       extractedPath = extractPath(req);
@@ -48,8 +48,8 @@ describe('extracting path', () => {
 describe('middleware', () => {
   let middleware;
   describe('when creating middleware', () => {
-    let observeGc = jest.fn();
-    let recordRequest = jest.fn();
+    const observeGc = jest.fn();
+    const recordRequest = jest.fn();
 
     beforeEach(() => {
       createGcObserver.mockReturnValue(jest.fn(observeGc));
@@ -63,9 +63,9 @@ describe('middleware', () => {
     });
 
     describe('when request starts', () => {
+      const onRequest = jest.fn();
       let req;
       let res;
-      let onRequest = jest.fn();
       let observer;
 
       beforeEach(() => {

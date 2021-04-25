@@ -23,8 +23,8 @@ const {
 describe('plugin', () => {
   let plugin;
   describe('when creating plugin', () => {
-    let observeGc = jest.fn();
-    let recordRequest = jest.fn();
+    const observeGc = jest.fn();
+    const recordRequest = jest.fn();
 
     beforeEach(() => {
       createGcObserver.mockReturnValue(jest.fn(observeGc));
@@ -39,14 +39,14 @@ describe('plugin', () => {
 
     describe('when request starts', () => {
       let server;
-      let startedRequest = {
+      const startedRequest = {
         plugins: {},
         method: 'GET',
         route: {
           path: 'foo/bar',
         },
       };
-      let finishedRequest = {
+      const finishedRequest = {
         plugins: { promster: { start: 2 } },
         method: 'GET',
         response: {
@@ -56,11 +56,11 @@ describe('plugin', () => {
           path: 'foo/bar',
         },
       };
-      let reply = {
+      const reply = {
         continue: Promise.resolve(),
       };
-      let options = {};
-      let done = jest.fn();
+      const options = {};
+      const done = jest.fn();
 
       beforeEach(() => {
         class Server {

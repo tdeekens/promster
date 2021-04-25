@@ -58,7 +58,7 @@ describe('plugin', () => {
   });
 
   describe('when registering plugin', () => {
-    let observeGc = jest.fn();
+    const observeGc = jest.fn();
 
     beforeEach(() => {
       createGcObserver.mockReturnValue(jest.fn(observeGc));
@@ -99,7 +99,7 @@ describe('plugin', () => {
       });
 
       describe('when the response finishes', () => {
-        let recordRequest = jest.fn();
+        const recordRequest = jest.fn();
 
         beforeEach(async () => {
           createRequestRecorder.mockReturnValue(jest.fn(recordRequest));
