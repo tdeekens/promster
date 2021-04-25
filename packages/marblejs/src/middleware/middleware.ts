@@ -17,7 +17,7 @@ import {
   isRunningInKubernetes,
 } from '@promster/metrics';
 
-const extractPath = (req: HttpRequest) => req.originalUrl || req.url;
+const extractPath = (req: HttpRequest): string => req.originalUrl || req.url;
 
 let recordRequest: TRequestRecorder;
 let upMetric: TMetricTypes['up'];
@@ -86,7 +86,7 @@ type TMiddlewareOptions = {
   options?: TPromsterOptions;
 };
 const createMiddleware = ({ options }: TMiddlewareOptions = {}) => {
-  const defaultedOptions = merge(
+  const defaultedOptions: TOptions = merge(
     createMetricTypes.defaultOptions,
     createRequestRecorder.defaultOptions,
     defaultNormalizers,
@@ -97,7 +97,7 @@ const createMiddleware = ({ options }: TMiddlewareOptions = {}) => {
     }
   );
 
-  const metricTypes = createMetricTypes(defaultedOptions);
+  const metricTypes: TMetricTypes = createMetricTypes(defaultedOptions);
   const observeGc = createGcObserver(metricTypes);
 
   recordRequest = createRequestRecorder(metricTypes, defaultedOptions);

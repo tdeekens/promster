@@ -30,19 +30,21 @@ const createGcObserver = once((metricTypes: TMetricTypes) => () => {
   }
 
   gc().on('stats', (stats: TStats) => {
-    const gcType = gcTypes[stats.gctype];
+    const gcType: TGcTypes = gcTypes[stats.gctype];
 
-    metricTypes.countOfGcs.forEach((countOfGcMetricType) =>
-      { countOfGcMetricType.labels(gcType).inc(); }
-    );
-    metricTypes.durationOfGc.forEach((durationOfGcMetricType) =>
-      { durationOfGcMetricType.labels(gcType).inc(stats.pause / 1e9); }
-    );
+    metricTypes.countOfGcs.forEach((countOfGcMetricType) => {
+      countOfGcMetricType.labels(gcType).inc();
+    });
+    metricTypes.durationOfGc.forEach((durationOfGcMetricType) => {
+      durationOfGcMetricType.labels(gcType).inc(stats.pause / 1e9);
+    });
 
     if (stats.diff.usedHeapSize < 0) {
-      metricTypes.reclaimedInGc.forEach((reclaimedInGcMetricType) =>
-        { reclaimedInGcMetricType.labels(gcType).inc(stats.diff.usedHeapSize * -1); }
-      );
+      metricTypes.reclaimedInGc.forEach((reclaimedInGcMetricType) => {
+        reclaimedInGcMetricType
+          .labels(gcType)
+          .inc(stats.diff.usedHeapSize * -1);
+      });
     }
   });
 });

@@ -68,7 +68,7 @@ const createMiddleware = (
   const shouldSkipMetricsByEnvironment =
     allDefaultedOptions.detectKubernetes === true && !isRunningInKubernetes();
 
-  const metricTypes = createMetricTypes(allDefaultedOptions);
+  const metricTypes: TMetricTypes = createMetricTypes(allDefaultedOptions);
   const observeGc = createGcObserver(metricTypes);
 
   recordRequest = createRequestRecorder(metricTypes, allDefaultedOptions);
