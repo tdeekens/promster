@@ -23,7 +23,7 @@ const {
 
 describe('exposing Prometheus', () => {
   describe('with app and locals', () => {
-    let app = { locals: {} };
+    const app = { locals: {} };
     beforeEach(() => {
       exposeOnLocals({ app, key: 'Prometheus', value: Prometheus });
     });
@@ -34,7 +34,7 @@ describe('exposing Prometheus', () => {
   });
 
   describe('without app and locals', () => {
-    let app = {};
+    const app = {};
     beforeEach(() => {
       exposeOnLocals({ app, key: 'Prometheus', value: Prometheus });
     });
@@ -48,7 +48,7 @@ describe('exposing Prometheus', () => {
 describe('extracting path', () => {
   let extractedPath;
   describe('with original url', () => {
-    let req = { originalUrl: 'originalUrl', url: 'nextUrl' };
+    const req = { originalUrl: 'originalUrl', url: 'nextUrl' };
 
     beforeEach(() => {
       extractedPath = extractPath(req);
@@ -60,7 +60,7 @@ describe('extracting path', () => {
   });
 
   describe('with out original url', () => {
-    let req = { url: 'nextUrl' };
+    const req = { url: 'nextUrl' };
 
     beforeEach(() => {
       extractedPath = extractPath(req);
@@ -75,8 +75,8 @@ describe('extracting path', () => {
 describe('middleware', () => {
   let middleware;
   describe('when creating middleware', () => {
-    let observeGc = jest.fn();
-    let recordRequest = jest.fn();
+    const observeGc = jest.fn();
+    const recordRequest = jest.fn();
 
     beforeEach(() => {
       createGcObserver.mockReturnValue(jest.fn(observeGc));
@@ -93,7 +93,7 @@ describe('middleware', () => {
       let req;
       let res;
       let next;
-      let onRequest = jest.fn();
+      const onRequest = jest.fn();
 
       beforeEach(() => {
         req = {
