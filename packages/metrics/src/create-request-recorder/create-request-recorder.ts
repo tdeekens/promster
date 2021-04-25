@@ -103,7 +103,7 @@ const createRequestRecorder = (
       !shouldSkipMetricsByEnvironment
     ) {
       metricTypes.httpRequestDurationInMilliseconds.forEach(
-        httpRequestDurationInMillisecondsMetricType => {
+        (httpRequestDurationInMillisecondsMetricType) => {
           httpRequestDurationInMillisecondsMetricType.observe(
             labels,
             durationMs
@@ -118,7 +118,7 @@ const createRequestRecorder = (
       !shouldSkipMetricsByEnvironment
     ) {
       metricTypes.httpRequestDurationPerPercentileInMilliseconds.forEach(
-        httpRequestDurationPerPercentileInMillisecondsMetricType => {
+        (httpRequestDurationPerPercentileInMillisecondsMetricType) => {
           httpRequestDurationPerPercentileInMillisecondsMetricType.observe(
             labels,
             durationMs
@@ -133,7 +133,7 @@ const createRequestRecorder = (
       !shouldSkipMetricsByEnvironment
     ) {
       metricTypes.httpRequestDurationInSeconds.forEach(
-        httpRequestDurationInSecondsMetricType => {
+        (httpRequestDurationInSecondsMetricType) => {
           httpRequestDurationInSecondsMetricType.observe(labels, durationS);
         }
       );
@@ -145,7 +145,7 @@ const createRequestRecorder = (
       !shouldSkipMetricsByEnvironment
     ) {
       metricTypes.httpRequestDurationPerPercentileInSeconds.forEach(
-        httpRequestDurationPerPercentileInSecondsMetricType => {
+        (httpRequestDurationPerPercentileInSecondsMetricType) => {
           httpRequestDurationPerPercentileInSecondsMetricType.observe(
             labels,
             durationS
@@ -155,7 +155,7 @@ const createRequestRecorder = (
     }
 
     if (shouldObserveInCounter && !shouldSkipMetricsByEnvironment) {
-      metricTypes.httpRequestsTotal.forEach(httpRequestsTotalMetricType => {
+      metricTypes.httpRequestsTotal.forEach((httpRequestsTotalMetricType) => {
         httpRequestsTotalMetricType.inc(labels);
       });
     }

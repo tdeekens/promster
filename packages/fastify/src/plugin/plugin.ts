@@ -18,7 +18,8 @@ let recordRequest: TRequestRecorder;
 let upMetric: TMetricTypes['up'];
 
 // @ts-expect-error
-const extractPath = (req: FastifyRequest): string => req.raw.originalUrl || req.raw.url;
+const extractPath = (req: FastifyRequest): string =>
+  req.raw.originalUrl || req.raw.url;
 const getRequestRecorder = () => recordRequest;
 const signalIsUp = () => {
   if (!upMetric) {

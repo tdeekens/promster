@@ -28,7 +28,7 @@ const signalIsUp = () => {
     return;
   }
 
-  upMetric.forEach(upMetricType => {
+  upMetric.forEach((upMetricType) => {
     upMetricType.set(1);
   });
 };
@@ -38,7 +38,7 @@ const signalIsNotUp = () => {
     return;
   }
 
-  upMetric.forEach(upMetricType => {
+  upMetric.forEach((upMetricType) => {
     upMetricType.set(0);
   });
 };
@@ -59,7 +59,7 @@ const recordHandler = (res: HttpResponse, opts: TRecordHandlerOps) => (
     .pipe(
       take(1),
       mapTo(stamp.req),
-      map(req => ({ req, res }))
+      map((req) => ({ req, res }))
     )
     .subscribe(() => {
       const { req, start } = stamp;
@@ -109,7 +109,7 @@ const createMiddleware = ({ options }: TMiddlewareOptions = {}) => {
 
   function middleware(req$: Observable<HttpRequest>, res: HttpResponse) {
     return req$.pipe(
-      map(req => ({ req, start: process.hrtime() })),
+      map((req) => ({ req, start: process.hrtime() })),
       tap(recordHandler(res, defaultedOptions)),
       map(({ req }) => req)
     );
