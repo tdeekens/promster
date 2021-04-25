@@ -86,7 +86,7 @@ const createPlugin = (
     options?: TPromsterOptions;
   } = { options: undefined }
 ) => {
-  const defaultedOptions = merge(
+  const defaultedOptions: TOptions = merge(
     createMetricTypes.defaultOptions,
     createRequestRecorder.defaultOptions,
     defaultNormalizers,
@@ -96,7 +96,7 @@ const createPlugin = (
   const shouldSkipMetricsByEnvironment =
     defaultedOptions.detectKubernetes === true && !isRunningInKubernetes();
 
-  const metricTypes = createMetricTypes(defaultedOptions);
+  const metricTypes: TMetricTypes = createMetricTypes(defaultedOptions);
   const observeGc = createGcObserver(metricTypes);
 
   recordRequest = createRequestRecorder(metricTypes, defaultedOptions);

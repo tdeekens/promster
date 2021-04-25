@@ -191,8 +191,8 @@ const getHttpRequestCounterMetric = (options: TOptions) => ({
     ),
 });
 
-const createMetricTypes = (options: TOptions) => {
-  const defaultedOptions = merge(defaultOptions, options);
+const createMetricTypes = (options: TOptions): TMetricTypes => {
+  const defaultedOptions: TOptions = merge(defaultOptions, options);
 
   configure({
     prefix: defaultedOptions.metricPrefix,

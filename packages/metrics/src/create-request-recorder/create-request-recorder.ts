@@ -70,7 +70,10 @@ const createRequestRecorder = (
   metricTypes: TMetricTypes,
   options: Partial<TRequestRecorderOptions> = defaultOptions
 ): TRequestRecorder => {
-  const defaultedRecorderOptions = merge(defaultOptions, options);
+  const defaultedRecorderOptions: TRequestRecorderOptions = merge(
+    defaultOptions,
+    options
+  );
   const shouldSkipMetricsByEnvironment =
     defaultedRecorderOptions.detectKubernetes && !isRunningInKubernetes();
 
@@ -100,11 +103,12 @@ const createRequestRecorder = (
       !shouldSkipMetricsByEnvironment
     ) {
       metricTypes.httpRequestDurationInMilliseconds.forEach(
-        (httpRequestDurationInMillisecondsMetricType) =>
-          { httpRequestDurationInMillisecondsMetricType.observe(
+        httpRequestDurationInMillisecondsMetricType => {
+          httpRequestDurationInMillisecondsMetricType.observe(
             labels,
             durationMs
-          ); }
+          );
+        }
       );
     }
 
@@ -114,11 +118,12 @@ const createRequestRecorder = (
       !shouldSkipMetricsByEnvironment
     ) {
       metricTypes.httpRequestDurationPerPercentileInMilliseconds.forEach(
-        (httpRequestDurationPerPercentileInMillisecondsMetricType) =>
-          { httpRequestDurationPerPercentileInMillisecondsMetricType.observe(
+        httpRequestDurationPerPercentileInMillisecondsMetricType => {
+          httpRequestDurationPerPercentileInMillisecondsMetricType.observe(
             labels,
             durationMs
-          ); }
+          );
+        }
       );
     }
 
@@ -128,8 +133,9 @@ const createRequestRecorder = (
       !shouldSkipMetricsByEnvironment
     ) {
       metricTypes.httpRequestDurationInSeconds.forEach(
-        (httpRequestDurationInSecondsMetricType) =>
-          { httpRequestDurationInSecondsMetricType.observe(labels, durationS); }
+        httpRequestDurationInSecondsMetricType => {
+          httpRequestDurationInSecondsMetricType.observe(labels, durationS);
+        }
       );
     }
 
@@ -139,18 +145,19 @@ const createRequestRecorder = (
       !shouldSkipMetricsByEnvironment
     ) {
       metricTypes.httpRequestDurationPerPercentileInSeconds.forEach(
-        (httpRequestDurationPerPercentileInSecondsMetricType) =>
-          { httpRequestDurationPerPercentileInSecondsMetricType.observe(
+        httpRequestDurationPerPercentileInSecondsMetricType => {
+          httpRequestDurationPerPercentileInSecondsMetricType.observe(
             labels,
             durationS
-          ); }
+          );
+        }
       );
     }
 
     if (shouldObserveInCounter && !shouldSkipMetricsByEnvironment) {
-      metricTypes.httpRequestsTotal.forEach((httpRequestsTotalMetricType) =>
-        { httpRequestsTotalMetricType.inc(labels); }
-      );
+      metricTypes.httpRequestsTotal.forEach(httpRequestsTotalMetricType => {
+        httpRequestsTotalMetricType.inc(labels);
+      });
     }
   };
 };

@@ -18,7 +18,7 @@ let recordRequest: TRequestRecorder;
 let upMetric: TMetricTypes['up'];
 
 // @ts-expect-error
-const extractPath = (req: FastifyRequest) => req.raw.originalUrl || req.raw.url;
+const extractPath = (req: FastifyRequest): string => req.raw.originalUrl || req.raw.url;
 const getRequestRecorder = () => recordRequest;
 const signalIsUp = () => {
   if (!upMetric) {
@@ -54,7 +54,7 @@ const createPlugin = async (
   const shouldSkipMetricsByEnvironment =
     defaultedOptions.detectKubernetes === true && !isRunningInKubernetes;
 
-  const metricTypes = createMetricTypes(defaultedOptions);
+  const metricTypes: TMetricTypes = createMetricTypes(defaultedOptions);
   const observeGc = createGcObserver(metricTypes);
 
   recordRequest = createRequestRecorder(metricTypes, defaultedOptions);

@@ -36,7 +36,7 @@ const signalIsUp = () => {
     return;
   }
 
-  upMetric.forEach((upMetricType) => {
+  upMetric.forEach(upMetricType => {
     upMetricType.set(1);
   });
 };
@@ -46,7 +46,7 @@ const signalIsNotUp = () => {
     return;
   }
 
-  upMetric.forEach((upMetricType) => {
+  upMetric.forEach(upMetricType => {
     upMetricType.set(0);
   });
 };
@@ -68,7 +68,7 @@ const createMiddleware = (
   const shouldSkipMetricsByEnvironment =
     allDefaultedOptions.detectKubernetes === true && !isRunningInKubernetes();
 
-  const metricTypes = createMetricTypes(allDefaultedOptions);
+  const metricTypes: TMetricTypes = createMetricTypes(allDefaultedOptions);
   const observeGc = createGcObserver(metricTypes);
 
   recordRequest = createRequestRecorder(metricTypes, allDefaultedOptions);
