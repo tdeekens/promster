@@ -44,7 +44,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn run install --immutable
 
       - name: Creating .npmrc
         run: |

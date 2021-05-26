@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 13.x, 14.x, 15.x]
+        node-version: [14.x, 15.x, 16.x]
 
     steps:
       - name: Checkout
@@ -32,7 +32,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install
-        run: yarn install
+        run: yarn run install
       - name: Lint
         run: yarn lint
       - name: Build
