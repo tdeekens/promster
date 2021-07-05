@@ -39,7 +39,7 @@
     "@promster/metrics": "^6.0.2",
     "merge-options": "3.0.4",
     "semver": "7.3.5",
-    "tslib": "2.2.0"
+    "tslib": "2.3.0"
   },
   "devDependencies": {
     "@hapi/boom": "9.1.3",
