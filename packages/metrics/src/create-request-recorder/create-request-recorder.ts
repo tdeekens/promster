@@ -25,8 +25,8 @@ export type TRequestRecorder = (
 const NS_PER_SEC = 1e9;
 const NS_PER_MS = 1e6;
 
-const sortLabels = (unsortedLabels: TLabelValues): TLabelValues => {
-  return Object.keys(unsortedLabels)
+const sortLabels = (unsortedLabels: TLabelValues): TLabelValues =>
+  Object.keys(unsortedLabels)
     .sort((a, b) => {
       if (a < b) {
         return -1;
@@ -42,7 +42,6 @@ const sortLabels = (unsortedLabels: TLabelValues): TLabelValues => {
       sortedLabels[labelName] = unsortedLabels[labelName];
       return sortedLabels;
     }, {});
-};
 
 const endMeasurmentFrom = (start: TRequestTiming) => {
   const [seconds, nanoseconds] = process.hrtime(start);
@@ -53,12 +52,12 @@ const endMeasurmentFrom = (start: TRequestTiming) => {
   };
 };
 
-const shouldObserveMetricType = (metricType: TRecorderMetricType) => (
-  options: TRequestRecorderOptions
-) => options.metricTypes.includes(metricType);
-const shouldObserveMetricAccuracy = (accuracy: TRecorderAccuracy) => (
-  options: TRequestRecorderOptions
-) => options.accuracies.includes(accuracy);
+const shouldObserveMetricType =
+  (metricType: TRecorderMetricType) => (options: TRequestRecorderOptions) =>
+    options.metricTypes.includes(metricType);
+const shouldObserveMetricAccuracy =
+  (accuracy: TRecorderAccuracy) => (options: TRequestRecorderOptions) =>
+    options.accuracies.includes(accuracy);
 
 const defaultOptions: TRequestRecorderOptions = {
   accuracies: ['s'],
