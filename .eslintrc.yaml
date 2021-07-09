@@ -23,6 +23,11 @@ rules:
   jest/valid-expect: error
   '@typescript-eslint/restrict-template-expressions': off
   '@typescript-eslint/prefer-readonly-parameter-types': off
+  '@typescript-eslint/no-unsafe-call': 0
+  '@typescript-eslint/no-require-imports': 0
+  '@typescript-eslint/no-unsafe-member-access': 0
+  '@typescript-eslint/no-unsafe-assignment': 0
+  '@typescript-eslint/no-unsafe-return': 0
   prefer-object-spread: off
   max-nested-callbacks:
     - error

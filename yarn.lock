@@ -3619,10 +3619,12 @@ eslint-config-prettier@8.3.0:
   resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-8.3.0.tgz#f7471b20b6fe8a9a9254cc684454202886a2dd7a"
   integrity sha512-BgZuLUSeKzvlL/VUjx/Yb787VQ26RU3gGjA3iiFvdsp/2bMfVIWUVP7tjxtjS0e+HP409cPlPvNkQloz8C91ew==
 
-eslint-config-xo-typescript@0.40.0:
-  version "0.40.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-xo-typescript/-/eslint-config-xo-typescript-0.40.0.tgz#394cd441e0cf80d8d00c4d2b7a38a68330576933"
-  integrity sha512-xo4GaWHWgxkzGTfN+KsW8ptzMq0iYV+pr4LbRUQKcSPwvAbzHmW4/RimX2x3eOoNitMJCbpzO02M8SBWQ8C35w==
+eslint-config-xo-typescript@0.43.0:
+  version "0.43.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-xo-typescript/-/eslint-config-xo-typescript-0.43.0.tgz#4d2c4c00bcc2f0beaf0b7869692463d890429194"
+  integrity sha512-8T4O7Dy4c5/TeOPxBOTw7DI8fgS+u5ni0xA6alcJDyiMCuBq7O+FUMsOkz2vAOQ3C3HMkYmkpAXA/gZFX4QUrg==
+  dependencies:
+    typescript ">=4.3"
 
 eslint-config-xo@0.37.0:
   version "0.37.0"
@@ -7599,7 +7601,7 @@ typedarray-to-buffer@^3.1.5:
   dependencies:
     is-typedarray "^1.0.0"
 
-typescript@4.3.5:
+typescript@4.3.5, typescript@>=4.3:
   version "4.3.5"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.3.5.tgz#4d1c37cc16e893973c45a06886b7113234f119f4"
   integrity sha512-DqQgihaQ9cUrskJo9kIyW/+g0Vxsk8cDtZ52a3NGh0YNTfpUSArXSohyUGnvbPazEPLu398C0UxmKSOrPumUzA==
