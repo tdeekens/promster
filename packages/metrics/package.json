@@ -47,7 +47,7 @@
   },
   "devDependencies": {
     "@promster/types": "^3.0.1",
-    "@types/lodash": "4.14.170",
+    "@types/lodash": "4.14.171",
     "prom-client": "13.1.0"
   },
   "optionalDependencies": {
