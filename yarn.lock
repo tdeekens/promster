@@ -3138,17 +3138,17 @@ eslint-config-prettier@8.3.0:
   resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-8.3.0.tgz#f7471b20b6fe8a9a9254cc684454202886a2dd7a"
   integrity sha512-BgZuLUSeKzvlL/VUjx/Yb787VQ26RU3gGjA3iiFvdsp/2bMfVIWUVP7tjxtjS0e+HP409cPlPvNkQloz8C91ew==
 
-eslint-config-xo-typescript@0.43.0:
-  version "0.43.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-xo-typescript/-/eslint-config-xo-typescript-0.43.0.tgz#4d2c4c00bcc2f0beaf0b7869692463d890429194"
-  integrity sha512-8T4O7Dy4c5/TeOPxBOTw7DI8fgS+u5ni0xA6alcJDyiMCuBq7O+FUMsOkz2vAOQ3C3HMkYmkpAXA/gZFX4QUrg==
+eslint-config-xo-typescript@0.44.0:
+  version "0.44.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-xo-typescript/-/eslint-config-xo-typescript-0.44.0.tgz#972285f401ea6b26c5802e177431de8b15851b0f"
+  integrity sha512-/mRj2KHHwnl3ZyM8vn68NSfRoEunkSYagWERGmNnU5UOLo4AY9jjBNZW+/sDOaPYuc5xzYmLxYspDCVCXKLGNQ==
   dependencies:
     typescript ">=4.3"
 
-eslint-config-xo@0.37.0:
-  version "0.37.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-xo/-/eslint-config-xo-0.37.0.tgz#5f2f339a04b7c1207d5a24236e9b4913cb2d39fe"
-  integrity sha512-aOCZ4fDELnhdojORvV5GcyxrjOzDH75UMkRlRD5/eGVekA5PfTiQjW0/E3Tqa4zCnEgB77PO7JCRWhB8dEv7xg==
+eslint-config-xo@0.38.0:
+  version "0.38.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-xo/-/eslint-config-xo-0.38.0.tgz#50cbe676a90d5582e1bbf1de750286e7cf09378e"
+  integrity sha512-G2jL+VyfkcZW8GoTmqLsExvrWssBedSoaQQ11vyhflDeT3csMdBVp0On+AVijrRuvgmkWeDwwUL5Rj0qDRHK6g==
   dependencies:
     confusing-browser-globals "1.0.10"
 
