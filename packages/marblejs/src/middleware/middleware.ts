@@ -52,35 +52,34 @@ type TStamp = {
   start: [number, number];
 };
 
-const recordHandler = (res: HttpResponse, opts: TRecordHandlerOps) => (
-  stamp: TStamp
-) =>
-  fromEvent(res, 'finish')
-    .pipe(
-      take(1),
-      mapTo(stamp.req),
-      map((req) => ({ req, res }))
-    )
-    .subscribe(() => {
-      const { req, start } = stamp;
-      const labels = Object.assign(
-        {},
-        {
-          method: opts.normalizeMethod(req.method),
-          status_code: opts.normalizeStatusCode(res.statusCode),
-          path: opts.normalizePath(extractPath(req)),
-        },
-        opts.getLabelValues?.(req, res)
-      );
+const recordHandler =
+  (res: HttpResponse, opts: TRecordHandlerOps) => (stamp: TStamp) =>
+    fromEvent(res, 'finish')
+      .pipe(
+        take(1),
+        mapTo(stamp.req),
+        map((req) => ({ req, res }))
+      )
+      .subscribe(() => {
+        const { req, start } = stamp;
+        const labels = Object.assign(
+          {},
+          {
+            method: opts.normalizeMethod(req.method),
+            status_code: opts.normalizeStatusCode(res.statusCode),
+            path: opts.normalizePath(extractPath(req)),
+          },
+          opts.getLabelValues?.(req, res)
+        );
 
-      const shouldSkipByRequest = opts.skip?.(req, res, labels);
+        const shouldSkipByRequest = opts.skip?.(req, res, labels);
 
-      if (!shouldSkipByRequest && !opts.shouldSkipMetricsByEnvironment) {
-        recordRequest(start, {
-          labels,
-        });
-      }
-    });
+        if (!shouldSkipByRequest && !opts.shouldSkipMetricsByEnvironment) {
+          recordRequest(start, {
+            labels,
+          });
+        }
+      });
 
 type TMiddlewareOptions = {
   options?: TPromsterOptions;
