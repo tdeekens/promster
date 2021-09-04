@@ -3,7 +3,7 @@ import type { TMetricTypes, TValueOf } from '@promster/types';
 import once from 'lodash.once';
 import requireOptional from 'optional';
 
-const gc = requireOptional('gc-stats');
+const gc = requireOptional('@sematext/gc-stats');
 
 const gcTypes = {
   0: 'unknown',

@@ -51,7 +51,7 @@
     "prom-client": "13.1.0"
   },
   "optionalDependencies": {
-    "gc-stats": "1.4.0"
+    "@sematext/gc-stats": "1.5.3"
   },
   "peerDependencies": {
     "prom-client": "13.x.x"
