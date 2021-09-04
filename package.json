@@ -31,8 +31,8 @@
   "author": "Tobias Deekens <nerd@tdeekens.name>",
   "license": "MIT",
   "engines": {
-    "node": ">=9",
-    "npm": ">=3"
+    "node": ">=14",
+    "npm": ">=6"
   },
   "bugs": {
     "url": "https://github.com/tdeekens/promster/issues"
