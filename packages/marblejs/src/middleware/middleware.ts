@@ -29,7 +29,7 @@ const signalIsUp = () => {
     return;
   }
 
-  upMetric.forEach(upMetricType => {
+  upMetric.forEach((upMetricType) => {
     upMetricType.set(1);
   });
 };
@@ -39,7 +39,7 @@ const signalIsNotUp = () => {
     return;
   }
 
-  upMetric.forEach(upMetricType => {
+  upMetric.forEach((upMetricType) => {
     upMetricType.set(0);
   });
 };
@@ -52,40 +52,42 @@ type TStamp = {
   start: [number, number];
 };
 
-const recordHandler = (
-  res: HttpResponse,
-  shouldSkipMetricsByEnvironment: boolean,
-  opts: TRecordHandlerOps
-) => (stamp: TStamp) =>
-  fromEvent(res, 'finish')
-    .pipe(
-      take(1),
-      mapTo(stamp.req),
-      map(req => ({ req, res }))
-    )
-    .subscribe(() => {
-      const { req, start } = stamp;
-      const labels = Object.assign(
-        {},
-        {
-          method: opts.normalizeMethod(req.method),
-          status_code: opts.normalizeStatusCode(res.statusCode),
-          path: opts.normalizePath(extractPath(req)),
-        },
-        opts.getLabelValues?.(req, res)
-      );
+const recordHandler =
+  (
+    res: HttpResponse,
+    shouldSkipMetricsByEnvironment: boolean,
+    opts: TRecordHandlerOps
+  ) =>
+  (stamp: TStamp) =>
+    fromEvent(res, 'finish')
+      .pipe(
+        take(1),
+        mapTo(stamp.req),
+        map((req) => ({ req, res }))
+      )
+      .subscribe(() => {
+        const { req, start } = stamp;
+        const labels = Object.assign(
+          {},
+          {
+            method: opts.normalizeMethod(req.method),
+            status_code: opts.normalizeStatusCode(res.statusCode),
+            path: opts.normalizePath(extractPath(req)),
+          },
+          opts.getLabelValues?.(req, res)
+        );
 
-      const shouldSkipByRequest = opts.skip?.(req, res, labels);
+        const shouldSkipByRequest = opts.skip?.(req, res, labels);
 
-      const contentLength = Number(res.getHeader('content-length'));
+        const contentLength = Number(res.getHeader('content-length'));
 
-      if (!shouldSkipByRequest && !shouldSkipMetricsByEnvironment) {
-        recordRequest(start, {
-          labels,
-          contentLength,
-        });
-      }
-    });
+        if (!shouldSkipByRequest && !shouldSkipMetricsByEnvironment) {
+          recordRequest(start, {
+            labels,
+            contentLength,
+          });
+        }
+      });
 
 type TMiddlewareOptions = {
   options?: TPromsterOptions;
@@ -112,7 +114,7 @@ const createMiddleware = ({ options }: TMiddlewareOptions = {}) => {
 
   function middleware(req$: Observable<HttpRequest>, res: HttpResponse) {
     return req$.pipe(
-      map(req => ({ req, start: process.hrtime() })),
+      map((req) => ({ req, start: process.hrtime() })),
       tap(recordHandler(res, shouldSkipMetricsByEnvironment, defaultedOptions)),
       map(({ req }) => req)
     );

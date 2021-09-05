@@ -83,19 +83,15 @@ describe('createRequestRecorder', () => {
   describe('with content length', () => {
     beforeEach(() => {
       recordRequest = createRequestRecorder(metricTypes);
-      recordRequest(start, {...recordingOptions, contentLength: 123});
+      recordRequest(start, { ...recordingOptions, contentLength: 123 });
     });
 
     it('should record on `httpContentLengthInBytes`', () => {
-
-
       expect(
         metricTypes.httpContentLengthInBytes[0].observe
-      ).toHaveBeenCalledWith(
-        recordingOptions.labels, 123
-      );
+      ).toHaveBeenCalledWith(recordingOptions.labels, 123);
     });
-  })
+  });
 
   describe('without content length', () => {
     beforeEach(() => {
@@ -108,8 +104,7 @@ describe('createRequestRecorder', () => {
         metricTypes.httpContentLengthInBytes[0].observe
       ).not.toHaveBeenCalled();
     });
-  })
-
+  });
 
   describe('without accuracy', () => {
     beforeEach(() => {

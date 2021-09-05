@@ -1,4 +1,8 @@
-import type { TPromsterOptions, TDefaultedPromsterOptions, TMetricTypes } from '@promster/types';
+import type {
+  TPromsterOptions,
+  TDefaultedPromsterOptions,
+  TMetricTypes,
+} from '@promster/types';
 import type { TRequestRecorder } from '@promster/metrics';
 import type {
   Plugin,
@@ -137,14 +141,16 @@ const createPlugin = (
             path: defaultedOptions.normalizePath(extractPath(request)),
             method: defaultedOptions.normalizeMethod(request.method),
             status_code: defaultedOptions.normalizeStatusCode(
-              extractStatusCode(request),
+              extractStatusCode(request)
             ),
           },
           defaultedOptions.getLabelValues?.(request, {})
         );
 
         // @ts-expect-error
-        const contentLength = Number(request.response.headers['content-length']);
+        const contentLength = Number(
+          request.response.headers['content-length']
+        );
 
         const shouldSkipByRequest = defaultedOptions.skip?.(
           request,
@@ -155,7 +161,7 @@ const createPlugin = (
         if (!shouldSkipByRequest && !shouldSkipMetricsByEnvironment) {
           recordRequest(request.plugins.promster.start, {
             labels,
-            contentLength
+            contentLength,
           });
         }
 

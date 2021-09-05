@@ -78,7 +78,7 @@ describe('middleware', () => {
         res.on = onRequest;
         res.url = 'foo/bar';
         res.method = 'GET';
-        res.getHeader = jest.fn(() => 123)
+        res.getHeader = jest.fn(() => 123);
 
         const result$ = middleware(of(req), res);
         observer = jest.fn();
@@ -114,7 +114,7 @@ describe('middleware', () => {
                 method: req.method,
                 path: req.url,
               }),
-              contentLength: 123
+              contentLength: 123,
             })
           );
         });

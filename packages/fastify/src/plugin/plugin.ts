@@ -18,7 +18,7 @@ let recordRequest: TRequestRecorder;
 let upMetric: TMetricTypes['up'];
 
 const extractPath = (req: FastifyRequest): string =>
-// @ts-expect-error
+  // @ts-expect-error
   req.raw.originalUrl || req.raw.url;
 const getRequestRecorder = () => recordRequest;
 const signalIsUp = () => {
@@ -94,7 +94,7 @@ const createPlugin = async (
       defaultedOptions.getLabelValues?.(request, reply)
     );
 
-    const contentLength = Number(reply.getHeader('content-length'))
+    const contentLength = Number(reply.getHeader('content-length'));
 
     const shouldSkipByRequest = defaultedOptions.skip?.(request, reply);
 
@@ -102,7 +102,7 @@ const createPlugin = async (
       // @ts-expect-error
       recordRequest(request.__promsterStartTime__, {
         labels,
-        contentLength
+        contentLength,
       });
     }
   });

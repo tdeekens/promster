@@ -36,7 +36,7 @@ const signalIsUp = () => {
     return;
   }
 
-  upMetric.forEach(upMetricType => {
+  upMetric.forEach((upMetricType) => {
     upMetricType.set(1);
   });
 };
@@ -46,7 +46,7 @@ const signalIsNotUp = () => {
     return;
   }
 
-  upMetric.forEach(upMetricType => {
+  upMetric.forEach((upMetricType) => {
     upMetricType.set(0);
   });
 };
