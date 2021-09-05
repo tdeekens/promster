@@ -98,7 +98,9 @@ describe('middleware', () => {
       beforeEach(() => {
         req = {
           method: 'GET',
-          getHeader: jest.fn(() => 123),
+          headers: {
+            'content-length': 123
+          }
         };
         next = jest.fn();
         res = {

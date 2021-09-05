@@ -71,6 +71,9 @@ describe('middleware', () => {
       beforeEach(() => {
         req = {
           method: 'GET',
+          headers: {
+            'content-length': 123
+          }
         };
 
         res = new EventEmitter();
@@ -78,7 +81,7 @@ describe('middleware', () => {
         res.on = onRequest;
         res.url = 'foo/bar';
         res.method = 'GET';
-        res.getHeader = jest.fn(() => 123);
+        res.getHeader = jest.fn(() => 456);
 
         const result$ = middleware(of(req), res);
         observer = jest.fn();
@@ -88,6 +91,9 @@ describe('middleware', () => {
       it('should return req', () => {
         expect(observer).toHaveBeenCalledWith({
           method: 'GET',
+          headers: {
+            'content-length': 123
+          }
         });
       });
 
@@ -114,7 +120,8 @@ describe('middleware', () => {
                 method: req.method,
                 path: req.url,
               }),
-              contentLength: 123,
+              requestContentLength: 123,
+              responseContentLength: 456,
             })
           );
         });
