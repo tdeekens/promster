@@ -98,7 +98,7 @@ const createPlugin = (
   );
 
   const shouldSkipMetricsByEnvironment =
-    defaultedOptions.detectKubernetes && !isRunningInKubernetes();
+    defaultedOptions.detectKubernetes === true && !isRunningInKubernetes();
 
   const metricTypes: TMetricTypes = createMetricTypes(defaultedOptions);
   const observeGc = createGcObserver(metricTypes);
