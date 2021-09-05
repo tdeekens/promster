@@ -62,7 +62,7 @@
     "eslint-plugin-prettier": "4.0.0",
     "husky": "7.0.2",
     "jest": "27.1.0",
-    "jest-plugin-filename": "0.0.1",
+    "jest-watch-typeahead": "0.6.4",
     "jest-runner-eslint": "0.10.1",
     "lint-staged": "11.1.2",
     "prettier": "2.3.2",

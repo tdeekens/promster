@@ -17,5 +17,8 @@
   ],
   "modulePathIgnorePatterns": ["/packages/.*/dist"],
   "coveragePathIgnorePatterns": ["/node_modules/"],
-  "watchPlugins": ["jest-plugin-filename"]
+  "watchPlugins": [
+    "jest-watch-typeahead/filename",
+    "jest-watch-typeahead/testname"
+  ]
 }
