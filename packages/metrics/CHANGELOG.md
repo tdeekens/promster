@@ -1,5 +1,33 @@
 # @promster/metrics
 
+## 7.0.0
+
+### Major Changes
+
+- [#703](https://github.com/tdeekens/promster/pull/703) [`e351e91`](https://github.com/tdeekens/promster/commit/e351e91b68ebf3bb13e70e5fa4925aaa96343344) Thanks [@tdeekens](https://github.com/tdeekens)! - Refactor to use fork of `gc-stats` due to `npm audit`.
+
+  The `gc-stats` project seems unmaintained and causes audit warnings as discussed [here](https://github.com/tdeekens/promster/issues/579).
+
+  This is a breaking change is any project having `gc-stats` installed needs to move to `@sematext/gc-stats`. As such the please make the following change in your `package.json`:
+
+  ```diff
+  -"gc-stats": "1.4.0"
+  +"@sematext/gc-stats": "1.5.3"
+  ```
+
+  Any other change is encapsulated in `promster` itself.
+
+### Minor Changes
+
+- [#705](https://github.com/tdeekens/promster/pull/705) [`e2a1595`](https://github.com/tdeekens/promster/commit/e2a15959c4f11191093a0f0fa0e472434207f020) Thanks [@tdeekens](https://github.com/tdeekens)! - Add content length metric for both requests and responses. Both are recorded as Prometheus histograms under the name `http_request_content_length_bytes`
+  and `http_response_content_length_bytes`.
+
+### Patch Changes
+
+- [#703](https://github.com/tdeekens/promster/pull/703) [`e351e91`](https://github.com/tdeekens/promster/commit/e351e91b68ebf3bb13e70e5fa4925aaa96343344) Thanks [@tdeekens](https://github.com/tdeekens)! - Refactor to require Node.js v14 and drop official support for anything below
+
+  The `engines` field of the `package.json` now requires Node.js v14 and not v9 as prior. There are no actual changes in the library however anything smaler v14 will not be officially supported.
+
 ## 6.0.2
 
 ### Patch Changes
