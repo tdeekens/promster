@@ -147,8 +147,8 @@ const createPlugin = (
           defaultedOptions.getLabelValues?.(request, {})
         );
 
-        // @ts-expect-error
         const contentLength = Number(
+          // @ts-expect-error
           request.response.headers['content-length']
         );
 
