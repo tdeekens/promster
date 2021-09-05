@@ -88,7 +88,11 @@ describe('createRequestRecorder', () => {
   describe('with content length', () => {
     beforeEach(() => {
       recordRequest = createRequestRecorder(metricTypes);
-      recordRequest(start, { ...recordingOptions, requestContentLength: 123, responseContentLength: 456 });
+      recordRequest(start, {
+        ...recordingOptions,
+        requestContentLength: 123,
+        responseContentLength: 456,
+      });
     });
 
     it('should record on `httpRequestContentLengthInBytes`', () => {

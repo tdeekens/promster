@@ -4,55 +4,20 @@ import merge from 'merge-options';
 import { configure, Prometheus } from '../client';
 
 const defaultHttpRequestDurationPercentilesInMillieconds = [
-  0.5,
-  0.9,
-  0.95,
-  0.98,
-  0.99,
+  0.5, 0.9, 0.95, 0.98, 0.99,
 ];
 const defaultHttpRequestDurationInMilliseconds = [
-  50,
-  100,
-  300,
-  500,
-  800,
-  1000,
-  1500,
-  2000,
-  3000,
-  5000,
-  10000,
+  50, 100, 300, 500, 800, 1000, 1500, 2000, 3000, 5000, 10000,
 ];
 
 const defaultHttpRequestDurationPercentileInSeconds = [
-  0.5,
-  0.9,
-  0.95,
-  0.98,
-  0.99,
+  0.5, 0.9, 0.95, 0.98, 0.99,
 ];
 const defaultHttpRequestDurationInSeconds = [
-  0.05,
-  0.1,
-  0.3,
-  0.5,
-  0.8,
-  1,
-  1.5,
-  2,
-  3,
-  10,
+  0.05, 0.1, 0.3, 0.5, 0.8, 1, 1.5, 2, 3, 10,
 ];
 const defaultHttpContentLengthInBytes = [
-  100000,
-  200000,
-  500000,
-  1000000,
-  1500000,
-  2000000,
-  3000000,
-  5000000,
-  10000000,
+  100000, 200000, 500000, 1000000, 1500000, 2000000, 3000000, 5000000, 10000000,
 ];
 
 const defaultRequestLabels = ['path', 'status_code', 'method'];
@@ -251,9 +216,8 @@ const createMetricTypes = (
   const httpRequestLatencyMetricsInSeconds =
     shouldObserveMetricsInSeconds(defaultedOptions) &&
     getHttpRequestLatencyMetricsInSeconds(defaultedOptions);
-  const httpRequestCounterMetric = getHttpRequestCounterMetric(
-    defaultedOptions
-  );
+  const httpRequestCounterMetric =
+    getHttpRequestCounterMetric(defaultedOptions);
 
   return Object.assign(
     {},
