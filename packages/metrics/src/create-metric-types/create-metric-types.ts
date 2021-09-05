@@ -1,10 +1,7 @@
-import type { DeepRequired } from 'ts-essentials';
-import type { TPromsterOptions } from '@promster/types';
+import type { TDefaultedPromsterOptions, TMetricTypes } from '@promster/types';
 
 import merge from 'merge-options';
 import { configure, Prometheus } from '../client';
-
-type TOptions = DeepRequired<TPromsterOptions>;
 
 const defaultHttpRequestDurationPercentilesInMillieconds = [
   0.5, 0.9, 0.95, 0.98, 0.99,
@@ -19,22 +16,29 @@ const defaultHttpRequestDurationPercentileInSeconds = [
 const defaultHttpRequestDurationInSeconds = [
   0.05, 0.1, 0.3, 0.5, 0.8, 1, 1.5, 2, 3, 10,
 ];
+const defaultHttpContentLengthInBytes = [
+  100000, 200000, 500000, 1000000, 1500000, 2000000, 3000000, 5000000, 10000000,
+];
 
 const defaultRequestLabels = ['path', 'status_code', 'method'];
 const defaultGcLabels = ['gc_type'];
 const asArray = (maybeArray: Readonly<string[] | string>) =>
   Array.isArray(maybeArray) ? maybeArray : [maybeArray];
 
-const shouldObserveMetricsInSeconds = (options: TOptions) =>
+const shouldObserveMetricsInSeconds = (options: TDefaultedPromsterOptions) =>
   options.accuracies.includes('s');
-const shouldObserveMetricsInMilliseconds = (options: TOptions) =>
-  options.accuracies.includes('ms');
-const shouldObserveHttpRequestsAsSummary = (options: TOptions) =>
-  options.metricTypes.includes('httpRequestsSummary');
-const shouldObserveHttpRequestsAsHistogram = (options: TOptions) =>
-  options.metricTypes.includes('httpRequestsHistogram');
-const shouldObserveHttpRequestsAsCounter = (options: TOptions) =>
-  options.metricTypes.includes('httpRequestsTotal');
+const shouldObserveMetricsInMilliseconds = (
+  options: TDefaultedPromsterOptions
+) => options.accuracies.includes('ms');
+const shouldObserveHttpRequestsAsSummary = (
+  options: TDefaultedPromsterOptions
+) => options.metricTypes.includes('httpRequestsSummary');
+const shouldObserveHttpRequestsAsHistogram = (
+  options: TDefaultedPromsterOptions
+) => options.metricTypes.includes('httpRequestsHistogram');
+const shouldObserveHttpRequestsAsCounter = (
+  options: TDefaultedPromsterOptions
+) => options.metricTypes.includes('httpRequestsTotal');
 
 const defaultOptions = {
   getLabelValues: () => ({}),
@@ -56,10 +60,12 @@ const defaultOptions = {
     ],
     httpRequestDurationInSeconds: ['http_request_duration_seconds'],
     httpRequestDurationInMilliseconds: ['http_request_duration_milliseconds'],
+    httpRequestContentLengthInBytes: ['http_request_content_length_bytes'],
+    httpResponseContentLengthInBytes: ['http_response_content_length_bytes'],
   },
 };
 
-const getDefaultMetrics = (options: TOptions) => ({
+const getDefaultMetrics = (options: TDefaultedPromsterOptions) => ({
   up: asArray(options.metricNames.up).map(
     (nameOfUpMetric: string) =>
       new Prometheus.Gauge({
@@ -91,9 +97,33 @@ const getDefaultMetrics = (options: TOptions) => ({
         labelNames: defaultGcLabels,
       })
   ),
+  httpRequestContentLengthInBytes: asArray(
+    options.metricNames.httpRequestContentLengthInBytes
+  ).map(
+    (nameOfHttpContentLengthMetric: string) =>
+      new Prometheus.Histogram({
+        name: `${options.metricPrefix}${nameOfHttpContentLengthMetric}`,
+        help: 'The HTTP request content length in bytes.',
+        labelNames: defaultRequestLabels.concat(options.labels).sort(),
+        buckets: options.buckets || defaultHttpContentLengthInBytes,
+      })
+  ),
+  httpResponseContentLengthInBytes: asArray(
+    options.metricNames.httpResponseContentLengthInBytes
+  ).map(
+    (nameOfHttpContentLengthMetric: string) =>
+      new Prometheus.Histogram({
+        name: `${options.metricPrefix}${nameOfHttpContentLengthMetric}`,
+        help: 'The HTTP response content length in bytes.',
+        labelNames: defaultRequestLabels.concat(options.labels).sort(),
+        buckets: options.buckets || defaultHttpContentLengthInBytes,
+      })
+  ),
 });
 
-const getHttpRequestLatencyMetricsInMilliseconds = (options: TOptions) => ({
+const getHttpRequestLatencyMetricsInMilliseconds = (
+  options: TDefaultedPromsterOptions
+) => ({
   httpRequestDurationPerPercentileInMilliseconds:
     shouldObserveHttpRequestsAsSummary(options) &&
     asArray(
@@ -123,7 +153,9 @@ const getHttpRequestLatencyMetricsInMilliseconds = (options: TOptions) => ({
     ),
 });
 
-const getHttpRequestLatencyMetricsInSeconds = (options: TOptions) => ({
+const getHttpRequestLatencyMetricsInSeconds = (
+  options: TDefaultedPromsterOptions
+) => ({
   httpRequestDurationPerPercentileInSeconds:
     shouldObserveHttpRequestsAsSummary(options) &&
     asArray(options.metricNames.httpRequestDurationPerPercentileInSeconds).map(
@@ -151,7 +183,7 @@ const getHttpRequestLatencyMetricsInSeconds = (options: TOptions) => ({
     ),
 });
 
-const getHttpRequestCounterMetric = (options: TOptions) => ({
+const getHttpRequestCounterMetric = (options: TDefaultedPromsterOptions) => ({
   httpRequestsTotal:
     shouldObserveHttpRequestsAsCounter(options) &&
     asArray(options.metricNames.httpRequestsTotal).map(
@@ -164,8 +196,13 @@ const getHttpRequestCounterMetric = (options: TOptions) => ({
     ),
 });
 
-const createMetricTypes = (options: TOptions): TMetricTypes => {
-  const defaultedOptions: TOptions = merge(defaultOptions, options);
+const createMetricTypes = (
+  options: TDefaultedPromsterOptions
+): TMetricTypes => {
+  const defaultedOptions: TDefaultedPromsterOptions = merge(
+    defaultOptions,
+    options
+  );
 
   configure({
     prefix: defaultedOptions.metricPrefix,

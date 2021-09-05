@@ -1,4 +1,9 @@
-import type { TLabelValues, TMetricTypes } from '@promster/types';
+import type {
+  TPromsterOptions,
+  TDefaultedPromsterOptions,
+  TLabelValues,
+  TMetricTypes,
+} from '@promster/types';
 
 import merge from 'merge-options';
 import { isRunningInKubernetes } from '../kubernetes';
@@ -8,13 +13,10 @@ type TRecorderMetricType =
   | 'httpRequestsTotal'
   | 'httpRequestsHistogram'
   | 'httpRequestsSummary';
-type TRequestRecorderOptions = {
-  accuracies: TRecorderAccuracy[];
-  metricTypes: TRecorderMetricType[];
-  skip: () => boolean;
-};
 type TRecordingOptions = {
   labels: TLabelValues;
+  requestContentLength?: number;
+  responseContentLength?: number;
 };
 type TRequestTiming = [number, number];
 export type TRequestRecorder = (
@@ -53,23 +55,24 @@ const endMeasurmentFrom = (start: TRequestTiming) => {
 };
 
 const shouldObserveMetricType =
-  (metricType: TRecorderMetricType) => (options: TRequestRecorderOptions) =>
-    options.metricTypes.includes(metricType);
+  (metricType: TRecorderMetricType) => (options: TDefaultedPromsterOptions) =>
+    options.metricTypes?.includes(metricType);
 const shouldObserveMetricAccuracy =
-  (accuracy: TRecorderAccuracy) => (options: TRequestRecorderOptions) =>
-    options.accuracies.includes(accuracy);
+  (accuracy: TRecorderAccuracy) => (options: TDefaultedPromsterOptions) =>
+    options.accuracies?.includes(accuracy);
 
-const defaultOptions: TRequestRecorderOptions = {
+const defaultOptions: TPromsterOptions = {
   accuracies: ['s'],
   metricTypes: ['httpRequestsTotal', 'httpRequestsHistogram'],
   skip: () => false,
+  detectKubernetes: false,
 };
 
 const createRequestRecorder = (
   metricTypes: TMetricTypes,
-  options: Partial<TRequestRecorderOptions> = defaultOptions
+  options: TPromsterOptions = defaultOptions
 ): TRequestRecorder => {
-  const defaultedRecorderOptions: TRequestRecorderOptions = merge(
+  const defaultedRecorderOptions: TDefaultedPromsterOptions = merge(
     defaultOptions,
     options
   );
@@ -157,6 +160,36 @@ const createRequestRecorder = (
       metricTypes.httpRequestsTotal.forEach((httpRequestsTotalMetricType) => {
         httpRequestsTotalMetricType.inc(labels);
       });
+    }
+
+    if (
+      metricTypes.httpRequestContentLengthInBytes &&
+      recordingOptions.requestContentLength
+    ) {
+      metricTypes.httpRequestContentLengthInBytes.forEach(
+        (httpRequestContentLengthInBytesMetricType) => {
+          httpRequestContentLengthInBytesMetricType.observe(
+            labels,
+            // @ts-expect-error
+            recordingOptions.requestContentLength
+          );
+        }
+      );
+    }
+
+    if (
+      metricTypes.httpResponseContentLengthInBytes &&
+      recordingOptions.responseContentLength
+    ) {
+      metricTypes.httpResponseContentLengthInBytes.forEach(
+        (httpResponseContentLengthInBytesMetricType) => {
+          httpResponseContentLengthInBytesMetricType.observe(
+            labels,
+            // @ts-expect-error
+            recordingOptions.responseContentLength
+          );
+        }
+      );
     }
   };
 };

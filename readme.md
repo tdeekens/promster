@@ -130,10 +130,12 @@ The following metrics are exposed:
   - A histogram exposes a `_sum` and `_count` which are a duplicate to the above counter metric.
   - A histogram can be used to compute percentiles with a PromQL query using the `histogram_quantile` function. It is advised to create a Prometheus recording rule for performance.
 - `http_request_duration_per_percentile_seconds`: a Prometheus summary with request time percentiles in milliseconds (defaults to `[ 0.5, 0.9, 0.99 ]`)
-  - This metric is disabled by default and can be enabled by passing `metricTypes: ['httpRequestsSummary]`. It exists for cases in which the above histogram is not suffient, slow or recording rules can not be set up.
+  - This metric is disabled by default and can be enabled by passing `metricTypes: ['httpRequestsSummary]`. It exists for cases in which the above histogram is not sufficient, slow or recording rules can not be set up.
+- `http_request_content_length_bytes`: a Prometheus histogram with the request content length in bytes (defaults to `[ 100000, 200000, 500000, 1000000, 1500000, 2000000, 3000000, 5000000, 10000000, ]`)
+- `http_response_content_length_bytes`: a Prometheus histogram with the request content length in bytes (defaults to `[ 100000, 200000, 500000, 1000000, 1500000, 2000000, 3000000, 5000000, 10000000, ]`)
 
 In addition with each http request metric the following default labels are measured: `method`, `status_code` and `path`. You can configure more `labels` (see below).
-With all gargabe collection metrics a `gc_type` label with one of: `unknown`, `scavenge`, `mark_sweep_compact`, `scavenge_and_mark_sweep_compact`, `incremental_marking`, `weak_phantom` or `all` will be recored.
+With all garbage collection metrics a `gc_type` label with one of: `unknown`, `scavenge`, `mark_sweep_compact`, `scavenge_and_mark_sweep_compact`, `incremental_marking`, `weak_phantom` or `all` will be recored.
 
 Given you pass `{ accuracies: ['ms'], metricTypes: ['httpRequestsTotal', 'httpRequestsSummary', 'httpRequestsHistogram'] }` you would get millisecond based metrics instead.
 
@@ -141,7 +143,7 @@ Given you pass `{ accuracies: ['ms'], metricTypes: ['httpRequestsTotal', 'httpRe
 - `http_request_duration_milliseconds`: a Prometheus histogram with request time buckets in milliseconds (defaults to `[ 50, 100, 300, 500, 800, 1000, 1500, 2000, 3000, 5000, 10000 ]`)
 - `http_request_duration_per_percentile_milliseconds`: a Prometheus summary with request time percentiles in milliseconds (defaults to `[ 0.5, 0.9, 0.99 ]`)
 
-You can also opt out of either the Prometheus summary or histogram by passing in `{ metricTypes: ['httpRequestsSummary'] }`, `{ metricTypes: ['httpRequestsHistogram'] }` or `{ metricTypes: ['httpRequestsTotal'] }`. In addition you may also pass `{ accuracies: ['ms', 's'] }`. This can be useful if you need to migrate our dashboards from one accuracy to the other but can not affort to lose metric ingestion in the meantime. These two options should give fine enough control over what accuracy and metric types will be ingested in your Prometheus cluster.
+You can also opt out of either the Prometheus summary or histogram by passing in `{ metricTypes: ['httpRequestsSummary'] }`, `{ metricTypes: ['httpRequestsHistogram'] }` or `{ metricTypes: ['httpRequestsTotal'] }`. In addition you may also pass `{ accuracies: ['ms', 's'] }`. This can be useful if you need to migrate our dashboards from one accuracy to the other but can not afford to lose metric ingestion in the meantime. These two options should give fine enough control over what accuracy and metric types will be ingested in your Prometheus cluster.
 
 ### `@promster/express`
 
@@ -233,7 +235,7 @@ const serveMetrics$ = EffectFactory.matchPath('/metrics')
   );
 ```
 
-When creating either the Express middleware or Hapi plugin the followin options can be passed:
+When creating either the Express middleware or Hapi plugin the following options can be passed:
 
 - `labels`: an `Array<String>` of custom labels to be configured both on all metrics mentioned above
 - `metricPrefix`: a prefix applied to all metrics. The prom-client's default metrics and the request metrics
@@ -304,7 +306,7 @@ app.use('/metrics', async (req, res) => {
 
 This may slightly depend on the server you are using but should be roughly the same for all.
 
-The packages re-export most things from the `@promster/metrics` package including two other potentially useful exports in `Prometheus` (the actual client) and `defaultRegister` which is the default register of the client. After all you should never really have to install `@promster/metrics` as it is only and interally shared packages between the others.
+The packages re-export most things from the `@promster/metrics` package including two other potentially useful exports in `Prometheus` (the actual client) and `defaultRegister` which is the default register of the client. After all you should never really have to install `@promster/metrics` as it is only and internally shared packages between the others.
 
 Additionally you can import the default normalizers via `const { defaultNormalizers } = require('@promster/express)` and use `normalizePath`, `normalizeStatusCode` and `normalizeMethod` from you `getLabelValues`. A more involved example with `getLabelValues` could look like:
 
@@ -403,12 +405,12 @@ A recording rule for this query could be named `network_concurrent_connections:r
 
 #### `nodejs_gc_reclaimed_bytes_total`
 
-> Bytes reclaimed in gargabe collection by type
+> Bytes reclaimed in garbage collection by type
 
 `sum by (gc_type) (rate(nodejs_gc_reclaimed_bytes_total[5m]))`
 
 #### `nodejs_gc_pause_seconds_total`
 
-> Time spend in gargabe collection by type
+> Time spend in garbage collection by type
 
 `sum by (gc_type) (rate(nodejs_gc_pause_seconds_total[5m]))`

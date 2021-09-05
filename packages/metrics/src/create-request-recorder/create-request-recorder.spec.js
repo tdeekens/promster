@@ -61,6 +61,16 @@ describe('createRequestRecorder', () => {
         inc: jest.fn(),
       },
     ],
+    httpRequestContentLengthInBytes: [
+      {
+        observe: jest.fn(),
+      },
+    ],
+    httpResponseContentLengthInBytes: [
+      {
+        observe: jest.fn(),
+      },
+    ],
   });
   const recordingOptions = {
     labels: {
@@ -73,6 +83,48 @@ describe('createRequestRecorder', () => {
 
   beforeEach(() => {
     metricTypes = createMetricTypes();
+  });
+
+  describe('with content length', () => {
+    beforeEach(() => {
+      recordRequest = createRequestRecorder(metricTypes);
+      recordRequest(start, {
+        ...recordingOptions,
+        requestContentLength: 123,
+        responseContentLength: 456,
+      });
+    });
+
+    it('should record on `httpRequestContentLengthInBytes`', () => {
+      expect(
+        metricTypes.httpRequestContentLengthInBytes[0].observe
+      ).toHaveBeenCalledWith(recordingOptions.labels, 123);
+    });
+
+    it('should record on `httpResponseContentLengthInBytes`', () => {
+      expect(
+        metricTypes.httpResponseContentLengthInBytes[0].observe
+      ).toHaveBeenCalledWith(recordingOptions.labels, 456);
+    });
+  });
+
+  describe('without content length', () => {
+    beforeEach(() => {
+      recordRequest = createRequestRecorder(metricTypes);
+      recordRequest(start, recordingOptions);
+    });
+
+    it('should not record on `httpRequestContentLengthInBytes`', () => {
+      expect(
+        metricTypes.httpRequestContentLengthInBytes[0].observe
+      ).not.toHaveBeenCalled();
+    });
+
+    it('should not record on `httpResponseContentLengthInBytes`', () => {
+      expect(
+        metricTypes.httpResponseContentLengthInBytes[0].observe
+      ).not.toHaveBeenCalled();
+    });
   });
 
   describe('without accuracy', () => {
@@ -196,7 +248,7 @@ describe('createRequestRecorder', () => {
       });
       recordRequest(start, recordingOptions);
     });
-    it('should record on `requestsCount`', () => {
+    it('should record on `httpRequestsTotal`', () => {
       expect(metricTypes.httpRequestsTotal[0].inc).toHaveBeenCalledWith(
         recordingOptions.labels
       );

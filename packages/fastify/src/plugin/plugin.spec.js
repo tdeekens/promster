@@ -121,6 +121,7 @@ describe('plugin', () => {
                 method,
                 path: url,
               }),
+              responseContentLength: 80,
             })
           );
         });
