@@ -36,7 +36,7 @@ const signalIsUp = () => {
     return;
   }
 
-  upMetric.forEach((upMetricType) => {
+  upMetric.forEach(upMetricType => {
     upMetricType.set(1);
   });
 };
@@ -46,7 +46,7 @@ const signalIsNotUp = () => {
     return;
   }
 
-  upMetric.forEach((upMetricType) => {
+  upMetric.forEach(upMetricType => {
     upMetricType.set(0);
   });
 };
@@ -109,12 +109,16 @@ const createMiddleware = (
         labels
       );
 
-      const contentLength = Number(response.getHeader('content-length'));
+      const requestContentLength = Number(request.headers['content-length']);
+      const responseContentLength = Number(
+        response.getHeader('content-length')
+      );
 
       if (!shouldSkipByRequest && !shouldSkipMetricsByEnvironment) {
         recordRequest(start, {
           labels,
-          contentLength,
+          requestContentLength,
+          responseContentLength,
         });
       }
     });

@@ -47,12 +47,15 @@ describe('plugin', () => {
         },
       };
       const finishedRequest = {
+        headers: {
+          'content-length': 123,
+        },
         plugins: { promster: { start: 2 } },
         method: 'GET',
         response: {
           statusCode: 200,
           headers: {
-            'content-length': 123,
+            'content-length': 456,
           },
         },
         route: {
@@ -131,7 +134,8 @@ describe('plugin', () => {
                 method: finishedRequest.method,
                 path: finishedRequest.route.path,
               }),
-              contentLength: 123,
+              requestContentLength: 123,
+              responseContentLength: 456,
             })
           );
         });

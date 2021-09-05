@@ -98,13 +98,14 @@ describe('middleware', () => {
       beforeEach(() => {
         req = {
           method: 'GET',
+          getHeader: jest.fn(() => 123),
         };
         next = jest.fn();
         res = {
           statusCode: 200,
           url: 'foo/bar',
           on: onRequest,
-          getHeader: jest.fn(() => 123),
+          getHeader: jest.fn(() => 456),
         };
 
         middleware(req, res, next);
@@ -137,7 +138,8 @@ describe('middleware', () => {
                 method: req.method,
                 path: req.url,
               }),
-              contentLength: 123,
+              requestContentLength: 123,
+              responseContentLength: 456,
             })
           );
         });

@@ -61,7 +61,12 @@ describe('createRequestRecorder', () => {
         inc: jest.fn(),
       },
     ],
-    httpContentLengthInBytes: [
+    httpRequestContentLengthInBytes: [
+      {
+        observe: jest.fn(),
+      },
+    ],
+    httpResponseContentLengthInBytes: [
       {
         observe: jest.fn(),
       },
@@ -83,13 +88,19 @@ describe('createRequestRecorder', () => {
   describe('with content length', () => {
     beforeEach(() => {
       recordRequest = createRequestRecorder(metricTypes);
-      recordRequest(start, { ...recordingOptions, contentLength: 123 });
+      recordRequest(start, { ...recordingOptions, requestContentLength: 123, responseContentLength: 456 });
     });
 
-    it('should record on `httpContentLengthInBytes`', () => {
+    it('should record on `httpRequestContentLengthInBytes`', () => {
       expect(
-        metricTypes.httpContentLengthInBytes[0].observe
+        metricTypes.httpRequestContentLengthInBytes[0].observe
       ).toHaveBeenCalledWith(recordingOptions.labels, 123);
+    });
+
+    it('should record on `httpResponseContentLengthInBytes`', () => {
+      expect(
+        metricTypes.httpResponseContentLengthInBytes[0].observe
+      ).toHaveBeenCalledWith(recordingOptions.labels, 456);
     });
   });
 
@@ -99,9 +110,15 @@ describe('createRequestRecorder', () => {
       recordRequest(start, recordingOptions);
     });
 
-    it('should not record on `httpContentLengthInBytes`', () => {
+    it('should not record on `httpRequestContentLengthInBytes`', () => {
       expect(
-        metricTypes.httpContentLengthInBytes[0].observe
+        metricTypes.httpRequestContentLengthInBytes[0].observe
+      ).not.toHaveBeenCalled();
+    });
+
+    it('should not record on `httpResponseContentLengthInBytes`', () => {
+      expect(
+        metricTypes.httpResponseContentLengthInBytes[0].observe
       ).not.toHaveBeenCalled();
     });
   });

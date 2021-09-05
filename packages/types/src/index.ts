@@ -30,7 +30,8 @@ export type TMetricTypes = {
   httpRequestDurationPerPercentileInSeconds: Array<Summary<string>>;
   httpRequestDurationInSeconds: Array<Histogram<string>>;
   httpRequestsTotal: Array<Counter<string>>;
-  httpContentLengthInBytes: Array<Histogram<string>>;
+  httpRequestContentLengthInBytes: Array<Histogram<string>>;
+  httpResponseContentLengthInBytes: Array<Histogram<string>>;
 };
 
 export type TValueOf<T> = T[keyof T];

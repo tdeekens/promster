@@ -4,20 +4,55 @@ import merge from 'merge-options';
 import { configure, Prometheus } from '../client';
 
 const defaultHttpRequestDurationPercentilesInMillieconds = [
-  0.5, 0.9, 0.95, 0.98, 0.99,
+  0.5,
+  0.9,
+  0.95,
+  0.98,
+  0.99,
 ];
 const defaultHttpRequestDurationInMilliseconds = [
-  50, 100, 300, 500, 800, 1000, 1500, 2000, 3000, 5000, 10000,
+  50,
+  100,
+  300,
+  500,
+  800,
+  1000,
+  1500,
+  2000,
+  3000,
+  5000,
+  10000,
 ];
 
 const defaultHttpRequestDurationPercentileInSeconds = [
-  0.5, 0.9, 0.95, 0.98, 0.99,
+  0.5,
+  0.9,
+  0.95,
+  0.98,
+  0.99,
 ];
 const defaultHttpRequestDurationInSeconds = [
-  0.05, 0.1, 0.3, 0.5, 0.8, 1, 1.5, 2, 3, 10,
+  0.05,
+  0.1,
+  0.3,
+  0.5,
+  0.8,
+  1,
+  1.5,
+  2,
+  3,
+  10,
 ];
 const defaultHttpContentLengthInBytes = [
-  100000, 200000, 500000, 1000000, 1500000, 2000000, 3000000, 5000000, 10000000,
+  100000,
+  200000,
+  500000,
+  1000000,
+  1500000,
+  2000000,
+  3000000,
+  5000000,
+  10000000,
 ];
 
 const defaultRequestLabels = ['path', 'status_code', 'method'];
@@ -60,7 +95,8 @@ const defaultOptions = {
     ],
     httpRequestDurationInSeconds: ['http_request_duration_seconds'],
     httpRequestDurationInMilliseconds: ['http_request_duration_milliseconds'],
-    httpContentLengthInBytes: ['http_content_length_bytes'],
+    httpRequestContentLengthInBytes: ['http_request_content_length_bytes'],
+    httpResponseContentLengthInBytes: ['http_response_content_length_bytes'],
   },
 };
 
@@ -96,13 +132,24 @@ const getDefaultMetrics = (options: TDefaultedPromsterOptions) => ({
         labelNames: defaultGcLabels,
       })
   ),
-  httpContentLengthInBytes: asArray(
-    options.metricNames.httpContentLengthInBytes
+  httpRequestContentLengthInBytes: asArray(
+    options.metricNames.httpRequestContentLengthInBytes
   ).map(
     (nameOfHttpContentLengthMetric: string) =>
       new Prometheus.Histogram({
         name: `${options.metricPrefix}${nameOfHttpContentLengthMetric}`,
-        help: 'The HTTP content length in bytes.',
+        help: 'The HTTP request content length in bytes.',
+        labelNames: defaultRequestLabels.concat(options.labels).sort(),
+        buckets: options.buckets || defaultHttpContentLengthInBytes,
+      })
+  ),
+  httpResponseContentLengthInBytes: asArray(
+    options.metricNames.httpResponseContentLengthInBytes
+  ).map(
+    (nameOfHttpContentLengthMetric: string) =>
+      new Prometheus.Histogram({
+        name: `${options.metricPrefix}${nameOfHttpContentLengthMetric}`,
+        help: 'The HTTP response content length in bytes.',
         labelNames: defaultRequestLabels.concat(options.labels).sort(),
         buckets: options.buckets || defaultHttpContentLengthInBytes,
       })
@@ -204,8 +251,9 @@ const createMetricTypes = (
   const httpRequestLatencyMetricsInSeconds =
     shouldObserveMetricsInSeconds(defaultedOptions) &&
     getHttpRequestLatencyMetricsInSeconds(defaultedOptions);
-  const httpRequestCounterMetric =
-    getHttpRequestCounterMetric(defaultedOptions);
+  const httpRequestCounterMetric = getHttpRequestCounterMetric(
+    defaultedOptions
+  );
 
   return Object.assign(
     {},

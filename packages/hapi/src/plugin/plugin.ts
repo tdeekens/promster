@@ -147,7 +147,10 @@ const createPlugin = (
           defaultedOptions.getLabelValues?.(request, {})
         );
 
-        const contentLength = Number(
+        const requestContentLength = Number(
+          request.headers['content-length']
+        );
+        const responseContentLength = Number(
           // @ts-expect-error
           request.response.headers['content-length']
         );
@@ -161,7 +164,8 @@ const createPlugin = (
         if (!shouldSkipByRequest && !shouldSkipMetricsByEnvironment) {
           recordRequest(request.plugins.promster.start, {
             labels,
-            contentLength,
+            requestContentLength,
+            responseContentLength,
           });
         }
 

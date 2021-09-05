@@ -15,7 +15,8 @@ type TRecorderMetricType =
   | 'httpRequestsSummary';
 type TRecordingOptions = {
   labels: TLabelValues;
-  contentLength?: number;
+  requestContentLength?: number;
+  responseContentLength?: number;
 };
 type TRequestTiming = [number, number];
 export type TRequestRecorder = (
@@ -162,15 +163,30 @@ const createRequestRecorder = (
     }
 
     if (
-      metricTypes.httpContentLengthInBytes &&
-      recordingOptions.contentLength
+      metricTypes.httpRequestContentLengthInBytes &&
+      recordingOptions.requestContentLength
     ) {
-      metricTypes.httpContentLengthInBytes.forEach(
-        (httpContentLengthInBytesMetricType) => {
-          httpContentLengthInBytesMetricType.observe(
+      metricTypes.httpRequestContentLengthInBytes.forEach(
+        (httpRequestContentLengthInBytesMetricType) => {
+          httpRequestContentLengthInBytesMetricType.observe(
             labels,
             // @ts-expect-error
-            recordingOptions.contentLength
+            recordingOptions.requestContentLength
+          );
+        }
+      );
+    }
+
+    if (
+      metricTypes.httpResponseContentLengthInBytes &&
+      recordingOptions.responseContentLength
+    ) {
+      metricTypes.httpResponseContentLengthInBytes.forEach(
+        (httpResponseContentLengthInBytesMetricType) => {
+          httpResponseContentLengthInBytesMetricType.observe(
+            labels,
+            // @ts-expect-error
+            recordingOptions.responseContentLength
           );
         }
       );

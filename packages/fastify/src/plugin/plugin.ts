@@ -94,7 +94,8 @@ const createPlugin = async (
       defaultedOptions.getLabelValues?.(request, reply)
     );
 
-    const contentLength = Number(reply.getHeader('content-length'));
+    const requestContentLength = Number(request.headers['content-length']);
+    const responseContentLength = Number(reply.getHeader('content-length'));
 
     const shouldSkipByRequest = defaultedOptions.skip?.(request, reply);
 
@@ -102,7 +103,8 @@ const createPlugin = async (
       // @ts-expect-error
       recordRequest(request.__promsterStartTime__, {
         labels,
-        contentLength,
+        requestContentLength,
+        responseContentLength,
       });
     }
   });

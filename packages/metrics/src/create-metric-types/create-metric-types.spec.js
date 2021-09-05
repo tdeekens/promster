@@ -33,8 +33,12 @@ describe('createMetricTypes', () => {
       expect(metricTypes).toHaveProperty('reclaimedInGc');
     });
 
-    it('should have `httpContentLength` metric', () => {
-      expect(metricTypes).toHaveProperty('httpContentLengthInBytes');
+    it('should have `httpRequestContentLength` metric', () => {
+      expect(metricTypes).toHaveProperty('httpRequestContentLengthInBytes');
+    });
+
+    it('should have `httpResponseContentLength` metric', () => {
+      expect(metricTypes).toHaveProperty('httpResponseContentLengthInBytes');
     });
 
     describe('with summary enabled', () => {
