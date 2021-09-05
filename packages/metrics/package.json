@@ -40,7 +40,7 @@
     "lodash.once": "4.1.1",
     "merge-options": "3.0.4",
     "optional": "0.1.4",
-    "ts-essentials": "7.0.3",
+    "ts-essentials": "8.1.0",
     "tslib": "2.3.1",
     "url": "0.11.0",
     "url-value-parser": "2.0.3"
@@ -48,10 +48,10 @@
   "devDependencies": {
     "@promster/types": "^3.0.1",
     "@types/lodash": "4.14.172",
-    "prom-client": "13.1.0"
+    "prom-client": "13.2.0"
   },
   "optionalDependencies": {
-    "gc-stats": "1.4.0"
+    "@sematext/gc-stats": "1.5.3"
   },
   "peerDependencies": {
     "prom-client": "13.x.x"
