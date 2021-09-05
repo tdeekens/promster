@@ -33,6 +33,10 @@ describe('createMetricTypes', () => {
       expect(metricTypes).toHaveProperty('reclaimedInGc');
     });
 
+    it('should have `httpContentLength` metric', () => {
+      expect(metricTypes).toHaveProperty('httpContentLengthInBytes');
+    });
+
     describe('with summary enabled', () => {
       beforeEach(() => {
         metricTypes = createMetricTypes({

@@ -1,4 +1,4 @@
-import type { TLabelValues, TMetricTypes } from '@promster/types';
+import type { TPromsterOptions, TDefaultedPromsterOptions, TLabelValues, TMetricTypes } from '@promster/types';
 
 import merge from 'merge-options';
 import { isRunningInKubernetes } from '../kubernetes';
@@ -8,13 +8,9 @@ type TRecorderMetricType =
   | 'httpRequestsTotal'
   | 'httpRequestsHistogram'
   | 'httpRequestsSummary';
-type TRequestRecorderOptions = {
-  accuracies: TRecorderAccuracy[];
-  metricTypes: TRecorderMetricType[];
-  skip: () => boolean;
-};
 type TRecordingOptions = {
   labels: TLabelValues;
+  contentLength?: number;
 };
 type TRequestTiming = [number, number];
 export type TRequestRecorder = (
@@ -52,24 +48,25 @@ const endMeasurmentFrom = (start: TRequestTiming) => {
   };
 };
 
-const shouldObserveMetricType =
-  (metricType: TRecorderMetricType) => (options: TRequestRecorderOptions) =>
-    options.metricTypes.includes(metricType);
-const shouldObserveMetricAccuracy =
-  (accuracy: TRecorderAccuracy) => (options: TRequestRecorderOptions) =>
-    options.accuracies.includes(accuracy);
+const shouldObserveMetricType = (metricType: TRecorderMetricType) => (
+  options: TDefaultedPromsterOptions
+) => options.metricTypes?.includes(metricType);
+const shouldObserveMetricAccuracy = (accuracy: TRecorderAccuracy) => (
+  options: TDefaultedPromsterOptions
+) => options.accuracies?.includes(accuracy);
 
-const defaultOptions: TRequestRecorderOptions = {
+const defaultOptions: TPromsterOptions = {
   accuracies: ['s'],
   metricTypes: ['httpRequestsTotal', 'httpRequestsHistogram'],
   skip: () => false,
+  detectKubernetes: false
 };
 
 const createRequestRecorder = (
   metricTypes: TMetricTypes,
-  options: Partial<TRequestRecorderOptions> = defaultOptions
+  options: TPromsterOptions = defaultOptions
 ): TRequestRecorder => {
-  const defaultedRecorderOptions: TRequestRecorderOptions = merge(
+  const defaultedRecorderOptions: TDefaultedPromsterOptions = merge(
     defaultOptions,
     options
   );
@@ -102,7 +99,7 @@ const createRequestRecorder = (
       !shouldSkipMetricsByEnvironment
     ) {
       metricTypes.httpRequestDurationInMilliseconds.forEach(
-        (httpRequestDurationInMillisecondsMetricType) => {
+        httpRequestDurationInMillisecondsMetricType => {
           httpRequestDurationInMillisecondsMetricType.observe(
             labels,
             durationMs
@@ -117,7 +114,7 @@ const createRequestRecorder = (
       !shouldSkipMetricsByEnvironment
     ) {
       metricTypes.httpRequestDurationPerPercentileInMilliseconds.forEach(
-        (httpRequestDurationPerPercentileInMillisecondsMetricType) => {
+        httpRequestDurationPerPercentileInMillisecondsMetricType => {
           httpRequestDurationPerPercentileInMillisecondsMetricType.observe(
             labels,
             durationMs
@@ -132,7 +129,7 @@ const createRequestRecorder = (
       !shouldSkipMetricsByEnvironment
     ) {
       metricTypes.httpRequestDurationInSeconds.forEach(
-        (httpRequestDurationInSecondsMetricType) => {
+        httpRequestDurationInSecondsMetricType => {
           httpRequestDurationInSecondsMetricType.observe(labels, durationS);
         }
       );
@@ -144,7 +141,7 @@ const createRequestRecorder = (
       !shouldSkipMetricsByEnvironment
     ) {
       metricTypes.httpRequestDurationPerPercentileInSeconds.forEach(
-        (httpRequestDurationPerPercentileInSecondsMetricType) => {
+        httpRequestDurationPerPercentileInSecondsMetricType => {
           httpRequestDurationPerPercentileInSecondsMetricType.observe(
             labels,
             durationS
@@ -154,9 +151,24 @@ const createRequestRecorder = (
     }
 
     if (shouldObserveInCounter && !shouldSkipMetricsByEnvironment) {
-      metricTypes.httpRequestsTotal.forEach((httpRequestsTotalMetricType) => {
+      metricTypes.httpRequestsTotal.forEach(httpRequestsTotalMetricType => {
         httpRequestsTotalMetricType.inc(labels);
       });
+    }
+
+    if (
+      metricTypes.httpContentLengthInBytes &&
+      recordingOptions.contentLength
+    ) {
+      metricTypes.httpContentLengthInBytes.forEach(
+        httpContentLengthInBytesMetricType => {
+          httpContentLengthInBytesMetricType.observe(
+            labels,
+            // @ts-expect-error
+            recordingOptions.contentLength
+          );
+        }
+      );
     }
   };
 };

@@ -1,4 +1,4 @@
-import type { TPromsterOptions, TMetricTypes } from '@promster/types';
+import type { TPromsterOptions, TDefaultedPromsterOptions, TMetricTypes } from '@promster/types';
 import type { TRequestRecorder } from '@promster/metrics';
 import type {
   Plugin,
@@ -41,7 +41,7 @@ const extractStatusCode = (request: Request) => {
   const { response } = request;
 
   if (!response) {
-    return '';
+    return 0;
   }
 
   if (isBoomResponse(response)) {
@@ -86,7 +86,7 @@ const createPlugin = (
     options?: TPromsterOptions;
   } = { options: undefined }
 ) => {
-  const defaultedOptions: TOptions = merge(
+  const defaultedOptions: TDefaultedPromsterOptions = merge(
     createMetricTypes.defaultOptions,
     createRequestRecorder.defaultOptions,
     defaultNormalizers,
@@ -134,21 +134,17 @@ const createPlugin = (
         const labels = Object.assign(
           {},
           {
-            path: defaultedOptions.normalizePath(extractPath(request), {
-              request,
-              response,
-            }),
-            method: defaultedOptions.normalizeMethod(request.method, {
-              request,
-              response,
-            }),
+            path: defaultedOptions.normalizePath(extractPath(request)),
+            method: defaultedOptions.normalizeMethod(request.method),
             status_code: defaultedOptions.normalizeStatusCode(
               extractStatusCode(request),
-              { request, response }
             ),
           },
           defaultedOptions.getLabelValues?.(request, {})
         );
+
+        // @ts-expect-error
+        const contentLength = Number(request.response.headers['content-length']);
 
         const shouldSkipByRequest = defaultedOptions.skip?.(
           request,
@@ -159,6 +155,7 @@ const createPlugin = (
         if (!shouldSkipByRequest && !shouldSkipMetricsByEnvironment) {
           recordRequest(request.plugins.promster.start, {
             labels,
+            contentLength
           });
         }
 

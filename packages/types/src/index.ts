@@ -1,3 +1,4 @@
+import type { DeepRequired } from 'ts-essentials';
 import { Gauge, Counter, Summary, Histogram } from 'prom-client';
 
 export type TLabelValues = Record<string, string | number>;
@@ -17,6 +18,7 @@ export type TPromsterOptions = {
   percentiles?: [number];
   skip?: <Q, S>(request: Q, response: S, labels: TLabelValues) => boolean;
 };
+export type TDefaultedPromsterOptions = DeepRequired<TPromsterOptions>;
 
 export type TMetricTypes = {
   up: Array<Gauge<string>>;
@@ -28,6 +30,7 @@ export type TMetricTypes = {
   httpRequestDurationPerPercentileInSeconds: Array<Summary<string>>;
   httpRequestDurationInSeconds: Array<Histogram<string>>;
   httpRequestsTotal: Array<Counter<string>>;
+  httpContentLengthInBytes: Array<Histogram<string>>;
 };
 
 export type TValueOf<T> = T[keyof T];

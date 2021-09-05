@@ -51,6 +51,9 @@ describe('plugin', () => {
         method: 'GET',
         response: {
           statusCode: 200,
+          headers: {
+            'content-length': 123
+          }
         },
         route: {
           path: 'foo/bar',
@@ -128,6 +131,7 @@ describe('plugin', () => {
                 method: finishedRequest.method,
                 path: finishedRequest.route.path,
               }),
+              contentLength: 123
             })
           );
         });

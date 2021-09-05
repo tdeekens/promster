@@ -104,6 +104,7 @@ describe('middleware', () => {
           statusCode: 200,
           url: 'foo/bar',
           on: onRequest,
+          getHeader: jest.fn(() => 123)
         };
 
         middleware(req, res, next);
@@ -136,6 +137,7 @@ describe('middleware', () => {
                 method: req.method,
                 path: req.url,
               }),
+              contentLength: 123
             })
           );
         });

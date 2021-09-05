@@ -61,6 +61,11 @@ describe('createRequestRecorder', () => {
         inc: jest.fn(),
       },
     ],
+    httpContentLengthInBytes: [
+      {
+        observe: jest.fn(),
+      },
+    ],
   });
   const recordingOptions = {
     labels: {
@@ -74,6 +79,37 @@ describe('createRequestRecorder', () => {
   beforeEach(() => {
     metricTypes = createMetricTypes();
   });
+
+  describe('with content length', () => {
+    beforeEach(() => {
+      recordRequest = createRequestRecorder(metricTypes);
+      recordRequest(start, {...recordingOptions, contentLength: 123});
+    });
+
+    it('should record on `httpContentLengthInBytes`', () => {
+
+
+      expect(
+        metricTypes.httpContentLengthInBytes[0].observe
+      ).toHaveBeenCalledWith(
+        recordingOptions.labels, 123
+      );
+    });
+  })
+
+  describe('without content length', () => {
+    beforeEach(() => {
+      recordRequest = createRequestRecorder(metricTypes);
+      recordRequest(start, recordingOptions);
+    });
+
+    it('should not record on `httpContentLengthInBytes`', () => {
+      expect(
+        metricTypes.httpContentLengthInBytes[0].observe
+      ).not.toHaveBeenCalled();
+    });
+  })
+
 
   describe('without accuracy', () => {
     beforeEach(() => {
@@ -196,7 +232,7 @@ describe('createRequestRecorder', () => {
       });
       recordRequest(start, recordingOptions);
     });
-    it('should record on `requestsCount`', () => {
+    it('should record on `httpRequestsTotal`', () => {
       expect(metricTypes.httpRequestsTotal[0].inc).toHaveBeenCalledWith(
         recordingOptions.labels
       );
