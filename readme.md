@@ -135,7 +135,7 @@ The following metrics are exposed:
 - `http_response_content_length_bytes`: a Prometheus histogram with the request content length in bytes (defaults to `[ 100000, 200000, 500000, 1000000, 1500000, 2000000, 3000000, 5000000, 10000000, ]`)
 
 In addition with each http request metric the following default labels are measured: `method`, `status_code` and `path`. You can configure more `labels` (see below).
-With all garbage collection metrics a `gc_type` label with one of: `unknown`, `scavenge`, `mark_sweep_compact`, `scavenge_and_mark_sweep_compact`, `incremental_marking`, `weak_phantom` or `all` will be recored.
+With all garbage collection metrics a `gc_type` label with one of: `unknown`, `scavenge`, `mark_sweep_compact`, `scavenge_and_mark_sweep_compact`, `incremental_marking`, `weak_phantom` or `all` will be recorded.
 
 Given you pass `{ accuracies: ['ms'], metricTypes: ['httpRequestsTotal', 'httpRequestsSummary', 'httpRequestsHistogram'] }` you would get millisecond based metrics instead.
 
@@ -245,7 +245,7 @@ When creating either the Express middleware or Hapi plugin the following options
 - `accuracies`: an `Array<String>` containing one of `ms`, `s` or both
 - `getLabelValues`: a function receiving `req` and `res` on reach request. It has to return an object with keys of the configured `labels` above and the respective values
 - `normalizePath`: a function called on each request to normalize the request's path. Invoked with `(path: string, { request, response })`
-- `normalizeStatusCode`: a function called on each request to normalize the respond's status code (e.g. to get 2xx, 5xx codes instead of detailed ones). Invoked with `(statusCode: nummber, { request, response })`
+- `normalizeStatusCode`: a function called on each request to normalize the respond's status code (e.g. to get 2xx, 5xx codes instead of detailed ones). Invoked with `(statusCode: number, { request, response })`
 - `normalizeMethod`: a function called on each request to normalize the request's method (to e.g. hide it fully). Invoked with `(method: string, { request, response })`
 - `skip`: a function called on each response giving the ability to skip a metric. The method receives `req`, `res` and `labels` and returns a boolean: `skip(req, res, labels) => Boolean`
 - `detectKubernetes`: a boolean defaulting to `false`. Whenever `true`is passed the process does not run within Kubernetes any metric intake is skipped (good e.g. during testing).

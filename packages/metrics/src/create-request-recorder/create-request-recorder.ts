@@ -45,7 +45,7 @@ const sortLabels = (unsortedLabels: TLabelValues): TLabelValues =>
       return sortedLabels;
     }, {});
 
-const endMeasurmentFrom = (start: TRequestTiming) => {
+const endMeasurementFrom = (start: TRequestTiming) => {
   const [seconds, nanoseconds] = process.hrtime(start);
 
   return {
@@ -96,7 +96,7 @@ const createRequestRecorder = (
   );
 
   return (start: TRequestTiming, recordingOptions: TRecordingOptions) => {
-    const { durationMs, durationS } = endMeasurmentFrom(start);
+    const { durationMs, durationS } = endMeasurementFrom(start);
     const labels = sortLabels(recordingOptions.labels);
 
     if (
@@ -196,4 +196,4 @@ const createRequestRecorder = (
 
 createRequestRecorder.defaultOptions = defaultOptions;
 
-export { createRequestRecorder, sortLabels, endMeasurmentFrom };
+export { createRequestRecorder, sortLabels, endMeasurementFrom };
