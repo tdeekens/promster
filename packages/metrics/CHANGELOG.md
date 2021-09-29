@@ -1,5 +1,11 @@
 # @promster/metrics
 
+## 7.0.1
+
+### Patch Changes
+
+- [`cbc12c7`](https://github.com/tdeekens/promster/commit/cbc12c76ce1414f08f914ceb5ecd9747d497b71d) Thanks [@tdeekens](https://github.com/tdeekens)! - Update dependencies and added spell check as a GitHub Action
+
 ## 7.0.0
 
 ### Major Changes

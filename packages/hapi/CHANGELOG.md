@@ -1,5 +1,16 @@
 # @promster/hapi
 
+## 6.1.1
+
+### Patch Changes
+
+- [#727](https://github.com/tdeekens/promster/pull/727) [`5fc1326`](https://github.com/tdeekens/promster/commit/5fc1326a5e3c25f052819be4dbb04489969345aa) Thanks [@tdeekens](https://github.com/tdeekens)! - fix(hapi): accessing non-existing headers
+
+* [`cbc12c7`](https://github.com/tdeekens/promster/commit/cbc12c76ce1414f08f914ceb5ecd9747d497b71d) Thanks [@tdeekens](https://github.com/tdeekens)! - Update dependencies and added spell check as a GitHub Action
+
+* Updated dependencies [[`cbc12c7`](https://github.com/tdeekens/promster/commit/cbc12c76ce1414f08f914ceb5ecd9747d497b71d)]:
+  - @promster/metrics@7.0.1
+
 ## 6.1.0
 
 ### Minor Changes

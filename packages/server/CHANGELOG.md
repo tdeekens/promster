@@ -1,5 +1,14 @@
 # @promster/server
 
+## 6.0.4
+
+### Patch Changes
+
+- [`cbc12c7`](https://github.com/tdeekens/promster/commit/cbc12c76ce1414f08f914ceb5ecd9747d497b71d) Thanks [@tdeekens](https://github.com/tdeekens)! - Update dependencies and added spell check as a GitHub Action
+
+- Updated dependencies [[`cbc12c7`](https://github.com/tdeekens/promster/commit/cbc12c76ce1414f08f914ceb5ecd9747d497b71d)]:
+  - @promster/metrics@7.0.1
+
 ## 6.0.3
 
 ### Patch Changes
