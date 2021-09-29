@@ -147,11 +147,18 @@ const createPlugin = (
           defaultedOptions.getLabelValues?.(request, {})
         );
 
-        const requestContentLength = Number(request.headers['content-length']);
-        const responseContentLength = Number(
-          // @ts-expect-error
-          request.response.headers['content-length']
-        );
+        let requestContentLength;
+        if (request?.headers?.['content-length']) {
+          requestContentLength = Number(request.headers['content-length']);
+        }
+
+        let responseContentLength;
+        if (request?.response?.headers?.['content-length']) {
+          responseContentLength = Number(
+            // @ts-expect-error
+            request.response.headers['content-length']
+          );
+        }
 
         const shouldSkipByRequest = defaultedOptions.skip?.(
           request,
