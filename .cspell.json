@@ -1,0 +1,22 @@
+{
+  "words": [
+    "changesets",
+    "codecov",
+    "eventloop",
+    "fastify",
+    "gctype",
+    "grafana",
+    "hrtime",
+    "initialisation",
+    "kubernetes",
+    "libuv",
+    "makepanic",
+    "marblejs",
+    "middlewares",
+    "promster",
+    "proxied",
+    "quantile",
+    "sematext"
+  ],
+  "ignorePaths": ["**/CHANGELOG.md"]
+}

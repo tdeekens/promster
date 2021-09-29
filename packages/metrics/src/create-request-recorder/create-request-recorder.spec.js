@@ -1,6 +1,6 @@
 const {
   sortLabels,
-  endMeasurmentFrom,
+  endMeasurementFrom,
   createRequestRecorder,
 } = require('./create-request-recorder');
 
@@ -17,12 +17,12 @@ describe('sortLabels', () => {
   });
 });
 
-describe('endMeasurmentFrom', () => {
+describe('endMeasurementFrom', () => {
   const start = [1, 2];
   let measurement;
 
   beforeEach(() => {
-    measurement = endMeasurmentFrom(start);
+    measurement = endMeasurementFrom(start);
   });
 
   it('should have millisecond duration', () => {

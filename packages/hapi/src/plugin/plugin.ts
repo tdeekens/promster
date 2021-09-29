@@ -170,7 +170,7 @@ const createPlugin = (
         if (doesResponseNeedInvocation) response.continue();
       };
 
-      // NOTE: This version detection allows us to graceully support both new and old Hapi APIs.
+      // NOTE: This version detection allows us to gracefully support both new and old Hapi APIs.
       // This is very hard to type as we would have to import two aliased versions of types.
       if (areServerEventsSupported) {
         // @ts-expect-error

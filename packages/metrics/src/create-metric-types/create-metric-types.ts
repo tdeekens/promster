@@ -74,9 +74,9 @@ const getDefaultMetrics = (options: TDefaultedPromsterOptions) => ({
       })
   ),
   countOfGcs: asArray(options.metricNames.countOfGcs).map(
-    (nameOfCounfOfGcsMetric: string) =>
+    (nameOfCountOfGcsMetric: string) =>
       new Prometheus.Counter({
-        name: `${options.metricPrefix}${nameOfCounfOfGcsMetric}`,
+        name: `${options.metricPrefix}${nameOfCountOfGcsMetric}`,
         help: 'Count of total garbage collections.',
         labelNames: defaultGcLabels,
       })
