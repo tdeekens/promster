@@ -1,5 +1,11 @@
 # @promster/metrics
 
+## 7.0.2
+
+### Patch Changes
+
+- [`a24f38f`](https://github.com/tdeekens/promster/commit/a24f38ff070220a28da5bf64d7d9e3a3167d1152) Thanks [@tdeekens](https://github.com/tdeekens)! - Update all dependencies including gc-stats
+
 ## 7.0.1
 
 ### Patch Changes

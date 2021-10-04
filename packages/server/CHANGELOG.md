@@ -1,5 +1,14 @@
 # @promster/server
 
+## 6.0.5
+
+### Patch Changes
+
+- [`a24f38f`](https://github.com/tdeekens/promster/commit/a24f38ff070220a28da5bf64d7d9e3a3167d1152) Thanks [@tdeekens](https://github.com/tdeekens)! - Update all dependencies including gc-stats
+
+- Updated dependencies [[`a24f38f`](https://github.com/tdeekens/promster/commit/a24f38ff070220a28da5bf64d7d9e3a3167d1152)]:
+  - @promster/metrics@7.0.2
+
 ## 6.0.4
 
 ### Patch Changes
