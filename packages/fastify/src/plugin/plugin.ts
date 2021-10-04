@@ -94,8 +94,10 @@ const createPlugin = async (
       defaultedOptions.getLabelValues?.(request, reply)
     );
 
-    const requestContentLength = Number(request.headers['content-length']);
-    const responseContentLength = Number(reply.getHeader('content-length'));
+    const requestContentLength = Number(request.headers['content-length'] ?? 0);
+    const responseContentLength = Number(
+      reply.getHeader('content-length') ?? 0
+    );
 
     const shouldSkipByRequest = defaultedOptions.skip?.(request, reply);
 

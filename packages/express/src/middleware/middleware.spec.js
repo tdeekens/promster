@@ -99,8 +99,8 @@ describe('middleware', () => {
         req = {
           method: 'GET',
           headers: {
-            'content-length': 123
-          }
+            'content-length': 123,
+          },
         };
         next = jest.fn();
         res = {

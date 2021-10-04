@@ -72,8 +72,8 @@ describe('middleware', () => {
         req = {
           method: 'GET',
           headers: {
-            'content-length': 123
-          }
+            'content-length': 123,
+          },
         };
 
         res = new EventEmitter();
@@ -92,8 +92,8 @@ describe('middleware', () => {
         expect(observer).toHaveBeenCalledWith({
           method: 'GET',
           headers: {
-            'content-length': 123
-          }
+            'content-length': 123,
+          },
         });
       });
 

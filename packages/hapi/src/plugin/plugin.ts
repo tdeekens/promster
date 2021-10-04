@@ -98,7 +98,7 @@ const createPlugin = (
   );
 
   const shouldSkipMetricsByEnvironment =
-    defaultedOptions.detectKubernetes === true && !isRunningInKubernetes();
+    defaultedOptions.detectKubernetes && !isRunningInKubernetes();
 
   const metricTypes: TMetricTypes = createMetricTypes(defaultedOptions);
   const observeGc = createGcObserver(metricTypes);
@@ -147,18 +147,13 @@ const createPlugin = (
           defaultedOptions.getLabelValues?.(request, {})
         );
 
-        let requestContentLength;
-        if (request?.headers?.['content-length']) {
-          requestContentLength = Number(request.headers['content-length']);
-        }
-
-        let responseContentLength;
-        if (request?.response?.headers?.['content-length']) {
-          responseContentLength = Number(
-            // @ts-expect-error
-            request.response.headers['content-length']
-          );
-        }
+        const requestContentLength = Number(
+          request?.headers?.['content-length'] ?? 0
+        );
+        const responseContentLength = Number(
+          // @ts-expect-error
+          request?.response?.headers?.['content-length'] ?? 0
+        );
 
         const shouldSkipByRequest = defaultedOptions.skip?.(
           request,
