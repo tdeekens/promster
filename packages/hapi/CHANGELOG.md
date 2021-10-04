@@ -1,5 +1,16 @@
 # @promster/hapi
 
+## 6.1.2
+
+### Patch Changes
+
+- [#740](https://github.com/tdeekens/promster/pull/740) [`08b8029`](https://github.com/tdeekens/promster/commit/08b802983337ca55a95aad887abbf43e6469830b) Thanks [@tdeekens](https://github.com/tdeekens)! - Fix ontent-length mentric to default to 0
+
+* [`a24f38f`](https://github.com/tdeekens/promster/commit/a24f38ff070220a28da5bf64d7d9e3a3167d1152) Thanks [@tdeekens](https://github.com/tdeekens)! - Update all dependencies including gc-stats
+
+* Updated dependencies [[`a24f38f`](https://github.com/tdeekens/promster/commit/a24f38ff070220a28da5bf64d7d9e3a3167d1152)]:
+  - @promster/metrics@7.0.2
+
 ## 6.1.1
 
 ### Patch Changes
