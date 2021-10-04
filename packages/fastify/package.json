@@ -41,6 +41,6 @@
     "merge-options": "3.0.4"
   },
   "devDependencies": {
-    "fastify": "3.21.6"
+    "fastify": "3.22.0"
   }
 }
