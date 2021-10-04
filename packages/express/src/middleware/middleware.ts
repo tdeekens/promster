@@ -109,9 +109,11 @@ const createMiddleware = (
         labels
       );
 
-      const requestContentLength = Number(request.headers['content-length']);
+      const requestContentLength = Number(
+        request.headers['content-length'] ?? 0
+      );
       const responseContentLength = Number(
-        response.getHeader('content-length')
+        response.getHeader('content-length') ?? 0
       );
 
       if (!shouldSkipByRequest && !shouldSkipMetricsByEnvironment) {
