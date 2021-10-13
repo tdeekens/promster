@@ -1,5 +1,11 @@
 # @promster/metrics
 
+## 7.0.3
+
+### Patch Changes
+
+- [`2c726ca`](https://github.com/tdeekens/promster/commit/2c726ca44eb7eb614b801f626a872fba48b7f3fa) Thanks [@renovate[bot]](https://github.com/renovate%5Bbot%5D)! - Added support for `prom-client` v14
+
 ## 7.0.2
 
 ### Patch Changes
