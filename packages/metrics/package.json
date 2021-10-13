@@ -48,12 +48,12 @@
   "devDependencies": {
     "@promster/types": "^3.1.2",
     "@types/lodash": "4.14.175",
-    "prom-client": "13.2.0"
+    "prom-client": "14.0.0"
   },
   "optionalDependencies": {
     "@sematext/gc-stats": "1.5.5"
   },
   "peerDependencies": {
-    "prom-client": "13.x.x"
+    "prom-client": "13.x.x || 14.x"
   }
 }
