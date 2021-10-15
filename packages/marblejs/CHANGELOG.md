@@ -1,5 +1,16 @@
 # @promster/marblejs
 
+## 4.1.2
+
+### Patch Changes
+
+- [#755](https://github.com/tdeekens/promster/pull/755) [`84435d4`](https://github.com/tdeekens/promster/commit/84435d46f295ad2e80d40328c95852a1e7beb0de) Thanks [@tdeekens](https://github.com/tdeekens)! - Update dependencies and release all packages
+
+* [#752](https://github.com/tdeekens/promster/pull/752) [`86c7fe0`](https://github.com/tdeekens/promster/commit/86c7fe085f564b395b386b03c6f2cb755a51f897) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency fp-ts to v2.11.5
+
+* Updated dependencies [[`84435d4`](https://github.com/tdeekens/promster/commit/84435d46f295ad2e80d40328c95852a1e7beb0de)]:
+  - @promster/metrics@7.0.4
+
 ## 4.1.1
 
 ### Patch Changes

@@ -1,5 +1,14 @@
 # @promster/hapi
 
+## 6.1.3
+
+### Patch Changes
+
+- [#755](https://github.com/tdeekens/promster/pull/755) [`84435d4`](https://github.com/tdeekens/promster/commit/84435d46f295ad2e80d40328c95852a1e7beb0de) Thanks [@tdeekens](https://github.com/tdeekens)! - Update dependencies and release all packages
+
+- Updated dependencies [[`84435d4`](https://github.com/tdeekens/promster/commit/84435d46f295ad2e80d40328c95852a1e7beb0de)]:
+  - @promster/metrics@7.0.4
+
 ## 6.1.2
 
 ### Patch Changes
