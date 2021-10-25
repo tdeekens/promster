@@ -17,8 +17,8 @@
     "access": "public"
   },
   "engines": {
-    "node": ">=9",
-    "npm": ">=3"
+    "node": ">=14",
+    "npm": ">=6"
   },
   "repository": {
     "type": "git",
@@ -41,6 +41,6 @@
     "merge-options": "3.0.4"
   },
   "devDependencies": {
-    "fastify": "3.22.0"
+    "fastify": "3.22.1"
   }
 }
