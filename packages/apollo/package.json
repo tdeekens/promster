@@ -1,0 +1,45 @@
+{
+  "name": "@promster/apollo",
+  "version": "0.0.0",
+  "description": "Apollo server integrations of promster",
+  "main": "dist/promster-apollo.cjs.js",
+  "typings": "dist/promster-apollo.cjs.d.ts",
+  "types": "dist/promster-apollo.cjs.d.ts",
+  "scripts": {},
+  "files": [
+    "readme.md",
+    "package.json",
+    "LICENSE",
+    "dist/**",
+    "modules/**"
+  ],
+  "engines": {
+    "node": ">=14",
+    "npm": ">=6"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tdeekens/promster.git"
+  },
+  "author": "Tobias Deekens <nerd@tdeekens.name>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tdeekens/promster/issues"
+  },
+  "homepage": "https://github.com/tdeekens/promster#readme",
+  "keywords": [
+    "metrics",
+    "continousdelivery",
+    "prometheus"
+  ],
+  "dependencies": {
+    "@promster/metrics": "^7.0.4",
+    "merge-options": "3.0.4",
+    "tslib": "2.3.1",
+    "apollo-server-plugin-base": "3.3.0"
+  },
+  "devDependencies": {}
+}
