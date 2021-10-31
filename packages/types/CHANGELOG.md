@@ -1,5 +1,15 @@
 # @promster/types
 
+## 3.1.5
+
+### Patch Changes
+
+- [#758](https://github.com/tdeekens/promster/pull/758) [`f02e6fe`](https://github.com/tdeekens/promster/commit/f02e6fe9950070d7df3cc0854f407cabe10d2aea) Thanks [@tdeekens](https://github.com/tdeekens)! - We droped support for Node.js `< 14` via the `engines` field of the respective `package.json` files.
+
+  We didn't make any changes to our code to prevent e.g. Node.js v9 to work but will not claim to officially support it any longer.
+
+* [#762](https://github.com/tdeekens/promster/pull/762) [`92cdf28`](https://github.com/tdeekens/promster/commit/92cdf281ff57f901835f14d474ae9cc1fb6fe2b2) Thanks [@tdeekens](https://github.com/tdeekens)! - Update dependencies
+
 ## 3.1.4
 
 ### Patch Changes
