@@ -90,7 +90,6 @@ describe('plugin', () => {
             };
           }
 
-          // eslint-disable-next-line @typescript-eslint/prefer-readonly-parameter-types
           emit(event, ...args) {
             this._handlers[event](...args);
           }

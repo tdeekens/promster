@@ -132,7 +132,9 @@ The following metrics are exposed:
 - `http_request_duration_per_percentile_seconds`: a Prometheus summary with request time percentiles in milliseconds (defaults to `[ 0.5, 0.9, 0.99 ]`)
   - This metric is disabled by default and can be enabled by passing `metricTypes: ['httpRequestsSummary]`. It exists for cases in which the above histogram is not sufficient, slow or recording rules can not be set up.
 - `http_request_content_length_bytes`: a Prometheus histogram with the request content length in bytes (defaults to `[ 100000, 200000, 500000, 1000000, 1500000, 2000000, 3000000, 5000000, 10000000, ]`)
+  - This metric is disabled by default and can be enabled by passing `metricTypes: ['httpContentLengthHistogram]`.
 - `http_response_content_length_bytes`: a Prometheus histogram with the request content length in bytes (defaults to `[ 100000, 200000, 500000, 1000000, 1500000, 2000000, 3000000, 5000000, 10000000, ]`)
+  - This metric is disabled by default and can be enabled by passing `metricTypes: ['httpContentLengthHistogram]`.
 
 In addition with each http request metric the following default labels are measured: `method`, `status_code` and `path`. You can configure more `labels` (see below).
 With all garbage collection metrics a `gc_type` label with one of: `unknown`, `scavenge`, `mark_sweep_compact`, `scavenge_and_mark_sweep_compact`, `incremental_marking`, `weak_phantom` or `all` will be recorded.

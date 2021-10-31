@@ -87,7 +87,9 @@ describe('createRequestRecorder', () => {
 
   describe('with content length', () => {
     beforeEach(() => {
-      recordRequest = createRequestRecorder(metricTypes);
+      recordRequest = createRequestRecorder(metricTypes, {
+        metricTypes: ['httpContentLengthHistogram'],
+      });
       recordRequest(start, {
         ...recordingOptions,
         requestContentLength: 123,

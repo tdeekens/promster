@@ -34,12 +34,9 @@ interface TPromsterRequest extends Request {
 
 const extractPath = (request: Request) => request.route.path.replace(/\?/g, '');
 
-/* eslint-disable @typescript-eslint/no-unnecessary-type-arguments */
 type TResponse = ResponseObject | Boom;
-// eslint-disable-next-line no-undef
 const isBoomResponse = (response: TResponse): response is Boom =>
   (response as Boom).isBoom;
-/* eslint-enable @typescript-eslint/no-unnecessary-type-arguments */
 
 const extractStatusCode = (request: Request) => {
   const { response } = request;

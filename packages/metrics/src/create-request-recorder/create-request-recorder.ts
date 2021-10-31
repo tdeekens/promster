@@ -12,7 +12,8 @@ type TRecorderAccuracy = 'ms' | 's';
 type TRecorderMetricType =
   | 'httpRequestsTotal'
   | 'httpRequestsHistogram'
-  | 'httpRequestsSummary';
+  | 'httpRequestsSummary'
+  | 'httpContentLengthHistogram';
 type TRecordingOptions = {
   labels: TLabelValues;
   requestContentLength?: number;
@@ -94,7 +95,11 @@ const createRequestRecorder = (
   const shouldObserveInCounter = shouldObserveMetricType('httpRequestsTotal')(
     defaultedRecorderOptions
   );
+  const shouldObserveContentLengthInHistogram = shouldObserveMetricType(
+    'httpContentLengthHistogram'
+  )(defaultedRecorderOptions);
 
+  // eslint-disable-next-line complexity
   return (start: TRequestTiming, recordingOptions: TRecordingOptions) => {
     const { durationMs, durationS } = endMeasurementFrom(start);
     const labels = sortLabels(recordingOptions.labels);
@@ -163,7 +168,8 @@ const createRequestRecorder = (
     }
 
     if (
-      metricTypes.httpRequestContentLengthInBytes &&
+      !shouldSkipMetricsByEnvironment &&
+      shouldObserveContentLengthInHistogram &&
       recordingOptions.requestContentLength
     ) {
       metricTypes.httpRequestContentLengthInBytes.forEach(
@@ -178,7 +184,8 @@ const createRequestRecorder = (
     }
 
     if (
-      metricTypes.httpResponseContentLengthInBytes &&
+      !shouldSkipMetricsByEnvironment &&
+      shouldObserveContentLengthInHistogram &&
       recordingOptions.responseContentLength
     ) {
       metricTypes.httpResponseContentLengthInBytes.forEach(

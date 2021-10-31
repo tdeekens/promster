@@ -116,7 +116,6 @@ describe('plugin', () => {
             expect.anything(),
             expect.objectContaining({
               labels: expect.objectContaining({
-                // eslint-disable-next-line camelcase
                 status_code: 404,
                 method,
                 path: url,
