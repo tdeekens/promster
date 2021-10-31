@@ -12,7 +12,7 @@ type TRecorderAccuracy = 'ms' | 's';
 type TRecorderMetricType =
   | 'httpRequestsTotal'
   | 'httpRequestsHistogram'
-  | 'httpRequestsSummary';
+  | 'httpRequestsSummary'
   | 'httpContentLengthHistogram';
 type TRecordingOptions = {
   labels: TLabelValues;
