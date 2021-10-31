@@ -135,7 +135,6 @@ describe('middleware', () => {
             expect.anything(),
             expect.objectContaining({
               labels: expect.objectContaining({
-                // eslint-disable-next-line camelcase
                 status_code: res.statusCode,
                 method: req.method,
                 path: req.url,
