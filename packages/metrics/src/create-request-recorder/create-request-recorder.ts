@@ -13,6 +13,7 @@ type TRecorderMetricType =
   | 'httpRequestsTotal'
   | 'httpRequestsHistogram'
   | 'httpRequestsSummary';
+  | 'httpContentLengthHistogram';
 type TRecordingOptions = {
   labels: TLabelValues;
   requestContentLength?: number;
@@ -94,6 +95,9 @@ const createRequestRecorder = (
   const shouldObserveInCounter = shouldObserveMetricType('httpRequestsTotal')(
     defaultedRecorderOptions
   );
+  const shouldObserveContentLengthInHistogram = shouldObserveMetricType(
+    'httpContentLengthHistogram'
+  )(defaultedRecorderOptions);
 
   return (start: TRequestTiming, recordingOptions: TRecordingOptions) => {
     const { durationMs, durationS } = endMeasurementFrom(start);
@@ -161,9 +165,9 @@ const createRequestRecorder = (
         httpRequestsTotalMetricType.inc(labels);
       });
     }
-
     if (
-      metricTypes.httpRequestContentLengthInBytes &&
+      !shouldSkipMetricsByEnvironment &&
+      shouldObserveContentLengthInHistogram &&
       recordingOptions.requestContentLength
     ) {
       metricTypes.httpRequestContentLengthInBytes.forEach(
@@ -178,7 +182,8 @@ const createRequestRecorder = (
     }
 
     if (
-      metricTypes.httpResponseContentLengthInBytes &&
+      !shouldSkipMetricsByEnvironment &&
+      shouldObserveContentLengthInHistogram &&
       recordingOptions.responseContentLength
     ) {
       metricTypes.httpResponseContentLengthInBytes.forEach(

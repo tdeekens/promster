@@ -33,11 +33,11 @@ describe('createMetricTypes', () => {
       expect(metricTypes).toHaveProperty('reclaimedInGc');
     });
 
-    it('should have `httpRequestContentLength` metric', () => {
+    it('should not have `httpRequestContentLengthInBytes` metric', () => {
       expect(metricTypes).toHaveProperty('httpRequestContentLengthInBytes');
     });
 
-    it('should have `httpResponseContentLength` metric', () => {
+    it('should not have `httpResponseContentLengthInBytes` metric', () => {
       expect(metricTypes).toHaveProperty('httpResponseContentLengthInBytes');
     });
 
@@ -149,6 +149,22 @@ describe('createMetricTypes', () => {
 
     it('should have `httpRequestsTotal` metric', () => {
       expect(metricTypes).toHaveProperty('httpRequestsTotal');
+    });
+  });
+
+  describe('with content length type', () => {
+    beforeEach(() => {
+      metricTypes = createMetricTypes({
+        metricTypes: ['httpContentLengthHistogram'],
+      });
+    });
+
+    it('should have `httpRequestContentLengthInBytes` metric', () => {
+      expect(metricTypes).toHaveProperty('httpRequestContentLengthInBytes');
+    });
+
+    it('should have `httpResponseContentLengthInBytes` metric', () => {
+      expect(metricTypes).toHaveProperty('httpResponseContentLengthInBytes');
     });
   });
 });
