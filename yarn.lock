@@ -1843,10 +1843,10 @@
     semver "^7.3.5"
     tar "^6.1.11"
 
-"@marblejs/core@3.5.1":
-  version "3.5.1"
-  resolved "https://registry.yarnpkg.com/@marblejs/core/-/core-3.5.1.tgz#ceff82b7451a48ba237b012d9cb9577aaf803356"
-  integrity sha512-C4RH3tALjFb8zpZkwicJRnE/5BZslU9UYvHzPvx1IJ7oLXeT3ek8kEtESOUDKTa/f7pk5oHqubJrjIasBjQ6WA==
+"@marblejs/core@3.5.2":
+  version "3.5.2"
+  resolved "https://registry.yarnpkg.com/@marblejs/core/-/core-3.5.2.tgz#ab38492378424ec380c10d3d301213cf2395376b"
+  integrity sha512-odIHWAlL/O5PD3TIRvVEkjDXPHy98okejpPk1Z+9YVnrcKTIuMeuFhNT143NtQY937pl2cWCOg/CYHxVhvGgHg==
   dependencies:
     "@types/json-schema" "^7.0.3"
     "@types/qs" "^6.9.0"
