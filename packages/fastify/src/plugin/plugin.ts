@@ -10,7 +10,7 @@ import {
   createRequestRecorder,
   createGcObserver,
   defaultNormalizers,
-  isRunningInKubernetes,
+  skipMetricsInEnvironment,
 } from '@promster/metrics';
 import pkg from '../../package.json';
 
@@ -53,7 +53,7 @@ const createPlugin = async (
   );
 
   const shouldSkipMetricsByEnvironment =
-    defaultedOptions.detectKubernetes === true && !isRunningInKubernetes;
+    skipMetricsInEnvironment(defaultedOptions);
 
   const metricTypes: TMetricTypes = createMetricTypes(defaultedOptions);
   const observeGc = createGcObserver(metricTypes);

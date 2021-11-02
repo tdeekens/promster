@@ -9,7 +9,7 @@ import {
   createRequestRecorder,
   createGcObserver,
   defaultNormalizers,
-  isRunningInKubernetes,
+  skipMetricsInEnvironment,
 } from '@promster/metrics';
 
 interface TApp extends Application {
@@ -66,7 +66,7 @@ const createMiddleware = (
   );
 
   const shouldSkipMetricsByEnvironment =
-    allDefaultedOptions.detectKubernetes === true && !isRunningInKubernetes();
+    skipMetricsInEnvironment(allDefaultedOptions);
 
   const metricTypes: TMetricTypes = createMetricTypes(allDefaultedOptions);
   const observeGc = createGcObserver(metricTypes);

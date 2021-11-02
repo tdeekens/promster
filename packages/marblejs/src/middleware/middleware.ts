@@ -15,7 +15,7 @@ import {
   createRequestRecorder,
   createGcObserver,
   defaultNormalizers,
-  isRunningInKubernetes,
+  skipMetricsInEnvironment,
 } from '@promster/metrics';
 
 const extractPath = (req: HttpRequest): string => req.originalUrl || req.url;
@@ -107,7 +107,7 @@ const createMiddleware = ({ options }: TMiddlewareOptions = {}) => {
   const metricTypes: TMetricTypes = createMetricTypes(defaultedOptions);
   const observeGc = createGcObserver(metricTypes);
   const shouldSkipMetricsByEnvironment =
-    defaultedOptions.detectKubernetes && !isRunningInKubernetes();
+    skipMetricsInEnvironment(defaultedOptions);
 
   recordRequest = createRequestRecorder(metricTypes, defaultedOptions);
   upMetric = metricTypes?.up;

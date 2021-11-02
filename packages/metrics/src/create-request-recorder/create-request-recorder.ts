@@ -6,7 +6,7 @@ import type {
 } from '@promster/types';
 
 import merge from 'merge-options';
-import { isRunningInKubernetes } from '../kubernetes';
+import { skipMetricsInEnvironment } from '../environment';
 
 type TRecorderAccuracy = 'ms' | 's';
 type TRecorderMetricType =
@@ -77,8 +77,9 @@ const createRequestRecorder = (
     defaultOptions,
     options
   );
-  const shouldSkipMetricsByEnvironment =
-    defaultedRecorderOptions.detectKubernetes && !isRunningInKubernetes();
+  const shouldSkipMetricsByEnvironment = skipMetricsInEnvironment(
+    defaultedRecorderOptions
+  );
 
   const shouldObserveInSeconds = shouldObserveMetricAccuracy('s')(
     defaultedRecorderOptions

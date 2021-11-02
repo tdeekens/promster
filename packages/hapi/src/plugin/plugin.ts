@@ -21,7 +21,7 @@ import {
   createRequestRecorder,
   createGcObserver,
   defaultNormalizers,
-  isRunningInKubernetes,
+  skipMetricsInEnvironment,
 } from '@promster/metrics';
 
 interface TPromsterRequest extends Request {
@@ -95,7 +95,7 @@ const createPlugin = (
   );
 
   const shouldSkipMetricsByEnvironment =
-    defaultedOptions.detectKubernetes && !isRunningInKubernetes();
+    skipMetricsInEnvironment(defaultedOptions);
 
   const metricTypes: TMetricTypes = createMetricTypes(defaultedOptions);
   const observeGc = createGcObserver(metricTypes);

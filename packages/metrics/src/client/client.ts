@@ -1,6 +1,6 @@
 import once from 'lodash.once';
 import * as Prometheus from 'prom-client';
-import { isRunningInKubernetes } from '../kubernetes';
+import { skipMetricsInEnvironment } from '../environment';
 
 // NOTE:
 //   This is the `globalRegistry` provided by the `prom-client`
@@ -13,8 +13,7 @@ interface TClientOptions
 }
 
 const configure = once((options: TClientOptions) => {
-  const shouldSkipMetricsByEnvironment =
-    options.detectKubernetes === true && !isRunningInKubernetes();
+  const shouldSkipMetricsByEnvironment = skipMetricsInEnvironment(options);
 
   if (!shouldSkipMetricsByEnvironment) {
     Prometheus.collectDefaultMetrics(options);

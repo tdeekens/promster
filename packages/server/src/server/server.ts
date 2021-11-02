@@ -2,7 +2,7 @@ import * as http from 'http';
 import {
   getSummary,
   getContentType,
-  isRunningInKubernetes,
+  skipMetricsInEnvironment,
 } from '@promster/metrics';
 
 type TServerOptions = {
@@ -26,8 +26,9 @@ const createServer = async (
   };
 
   return new Promise((resolve, reject) => {
-    const skipServerStart =
-      defaultedOptions.detectKubernetes && !isRunningInKubernetes();
+    const skipServerStart = skipMetricsInEnvironment(
+      defaultedOptions.detectKubernetes
+    );
 
     const port = skipServerStart ? undefined : defaultedOptions.port;
 
