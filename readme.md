@@ -225,7 +225,8 @@ const middlewares = [
   //...
 ];
 
-const serveMetrics$ = EffectFactory.matchPath('/metrics')
+const serveMetrics$ = r
+  .matchPath('/metrics')
   .matchType('GET')
   .use(async (req$) =>
     req$.pipe(
