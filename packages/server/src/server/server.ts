@@ -26,9 +26,7 @@ const createServer = async (
   };
 
   return new Promise((resolve, reject) => {
-    const skipServerStart = skipMetricsInEnvironment(
-      defaultedOptions.detectKubernetes
-    );
+    const skipServerStart = skipMetricsInEnvironment(defaultedOptions);
 
     const port = skipServerStart ? undefined : defaultedOptions.port;
 
