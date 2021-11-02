@@ -39,13 +39,34 @@ const signalIsNotUp = () => {
 type TPluginOptions = {
   options?: TPromsterOptions;
 };
+
+const NS_PER_SEC = 1e9;
+const NS_PER_MS = 1e6;
+const endMeasurementFrom = (start: TRequestTiming) => {
+  const [seconds, nanoseconds] = process.hrtime(start);
+
+  return {
+    durationMs: Math.round((seconds * NS_PER_SEC + nanoseconds) / NS_PER_MS),
+  };
+};
+
 const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
   const allDefaultedOptions = merge(
     createMetricTypes.defaultOptions,
     createRequestRecorder.defaultOptions,
     defaultNormalizers,
+    {
+      labels: ['operation_name'],
+    },
     options
   );
+
+  const graphQlParsingTimeHistogram = new Prometheus.Histogram({
+    name: `${allDefaultedOptions.metricPrefix}graphql_parsing_duration_milliseconds`,
+    help: 'The GraphQL request parsing time in milliseconds.',
+    buckets: [0.5, 0.9, 0.95, 0.98, 0.99],
+    labelNames: ['operation_name'],
+  });
 
   const shouldSkipMetricsByEnvironment =
     allDefaultedOptions.detectKubernetes && !isRunningInKubernetes();
@@ -72,9 +93,29 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
     },
 
     async requestDidStart() {
-      const start = process.hrtime();
+      const requestStart = process.hrtime();
 
       return {
+        async parsingDidStart(requestContext) {
+          const parsingStart = process.hrtime();
+
+          return async () => {
+            const { durationMs } = endMeasurementFrom(parsingStart);
+            const labels = Object.assign(
+              {},
+              {
+                operation_name: requestContext.request.operationName,
+              },
+              allDefaultedOptions.getLabelValues?.(
+                requestContext.request,
+                requestContext.response
+              )
+            );
+
+            graphQlParsingTimeHistogram.observe(labels, durationMs);
+          };
+        },
+
         async willSendResponse(requestContext) {
           const requestContentLength =
             requestContext.request.http?.headers.get('content-length') ?? 0;
@@ -83,7 +124,9 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
 
           const labels = Object.assign(
             {},
-            {},
+            {
+              operation_name: requestContext.request.operationName,
+            },
             allDefaultedOptions.getLabelValues?.(
               requestContext.request,
               requestContext.response
@@ -96,17 +139,19 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
             labels
           );
 
-          recordRequest(start, {
-            labels,
-            requestContentLength,
-            responseContentLength,
-          });
+          if (!shouldSkipByRequest && !shouldSkipMetricsByEnvironment) {
+            recordRequest(requestStart, {
+              labels,
+              requestContentLength,
+              responseContentLength,
+            });
+          }
         },
       };
     },
   };
 
-  return;
+  return plugin;
 };
 
 export { createPlugin, getRequestRecorder, signalIsUp, signalIsNotUp };
