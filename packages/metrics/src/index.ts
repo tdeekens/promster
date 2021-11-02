@@ -9,7 +9,7 @@ import {
   normalizePath,
   normalizeMethod,
 } from './normalizers';
-import { isRunningInKubernetes } from './kubernetes';
+import { isRunningInKubernetes, skipMetricsInEnvironment } from './environment';
 
 export type { TRequestRecorder } from './create-request-recorder';
 
@@ -26,4 +26,5 @@ export {
   normalizePath,
   normalizeMethod,
   isRunningInKubernetes,
+  skipMetricsInEnvironment,
 };

@@ -10,6 +10,7 @@ jest.mock('@promster/metrics', () => ({
     normalizeStatusCode: jest.fn((_) => _),
     normalizeMethod: jest.fn((_) => _),
   },
+  skipMetricsInEnvironment: jest.fn(() => false),
 }));
 
 const Fastify = require('fastify');
