@@ -17,6 +17,7 @@ export type TPromsterOptions = {
   buckets?: [number];
   percentiles?: [number];
   skip?: <Q, S>(request: Q, response: S, labels: TLabelValues) => boolean;
+  disableGcMetrics?: boolean;
 };
 export type TDefaultedPromsterOptions = DeepRequired<TPromsterOptions>;
 

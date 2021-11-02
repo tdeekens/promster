@@ -97,19 +97,20 @@ type TMiddlewareOptions = {
   options?: TPromsterOptions;
 };
 const createMiddleware = ({ options }: TMiddlewareOptions = {}) => {
-  const defaultedOptions: TDefaultedPromsterOptions = merge(
+  const allDefaultedOptions: TDefaultedPromsterOptions = merge(
     createMetricTypes.defaultOptions,
     createRequestRecorder.defaultOptions,
+    createGcObserver.defaultOptions,
     defaultNormalizers,
     options
   );
 
-  const metricTypes: TMetricTypes = createMetricTypes(defaultedOptions);
-  const observeGc = createGcObserver(metricTypes);
+  const metricTypes: TMetricTypes = createMetricTypes(allDefaultedOptions);
+  const observeGc = createGcObserver(allDefaultedOptions, metricTypes);
   const shouldSkipMetricsByEnvironment =
-    skipMetricsInEnvironment(defaultedOptions);
+    skipMetricsInEnvironment(allDefaultedOptions);
 
-  recordRequest = createRequestRecorder(metricTypes, defaultedOptions);
+  recordRequest = createRequestRecorder(metricTypes, allDefaultedOptions);
   upMetric = metricTypes?.up;
 
   if (!shouldSkipMetricsByEnvironment) {
@@ -119,7 +120,9 @@ const createMiddleware = ({ options }: TMiddlewareOptions = {}) => {
   function middleware(req$: Observable<HttpRequest>, res: HttpResponse) {
     return req$.pipe(
       map((req) => ({ req, start: process.hrtime() })),
-      tap(recordHandler(res, shouldSkipMetricsByEnvironment, defaultedOptions)),
+      tap(
+        recordHandler(res, shouldSkipMetricsByEnvironment, allDefaultedOptions)
+      ),
       map(({ req }) => req)
     );
   }
