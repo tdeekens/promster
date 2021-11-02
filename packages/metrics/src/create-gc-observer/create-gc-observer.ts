@@ -1,4 +1,4 @@
-import type { TMetricTypes, TValueOf } from '@promster/types';
+import type { TPromsterOptions, TMetricTypes, TValueOf } from '@promster/types';
 
 import once from 'lodash.once';
 import requireOptional from 'optional';
@@ -24,29 +24,39 @@ type TStats = {
   };
 };
 
-const createGcObserver = once((metricTypes: TMetricTypes) => () => {
-  if (typeof gc !== 'function') {
-    return;
-  }
+const defaultOptions = {
+  disableGcMetrics: false,
+};
 
-  gc().on('stats', (stats: TStats) => {
-    const gcType: TGcTypes = gcTypes[stats.gctype];
-
-    metricTypes.countOfGcs.forEach((countOfGcMetricType) => {
-      countOfGcMetricType.labels(gcType).inc();
-    });
-    metricTypes.durationOfGc.forEach((durationOfGcMetricType) => {
-      durationOfGcMetricType.labels(gcType).inc(stats.pause / 1e9);
-    });
-
-    if (stats.diff.usedHeapSize < 0) {
-      metricTypes.reclaimedInGc.forEach((reclaimedInGcMetricType) => {
-        reclaimedInGcMetricType
-          .labels(gcType)
-          .inc(stats.diff.usedHeapSize * -1);
-      });
+const createGcObserver = once(
+  (options: TPromsterOptions, metricTypes: TMetricTypes) => () => {
+    if (typeof gc !== 'function') {
+      return;
     }
-  });
-});
+
+    if (options.disableGcMetrics) return;
+
+    gc().on('stats', (stats: TStats) => {
+      const gcType: TGcTypes = gcTypes[stats.gctype];
+
+      metricTypes.countOfGcs.forEach((countOfGcMetricType) => {
+        countOfGcMetricType.labels(gcType).inc();
+      });
+      metricTypes.durationOfGc.forEach((durationOfGcMetricType) => {
+        durationOfGcMetricType.labels(gcType).inc(stats.pause / 1e9);
+      });
+
+      if (stats.diff.usedHeapSize < 0) {
+        metricTypes.reclaimedInGc.forEach((reclaimedInGcMetricType) => {
+          reclaimedInGcMetricType
+            .labels(gcType)
+            .inc(stats.diff.usedHeapSize * -1);
+        });
+      }
+    });
+  }
+);
+
+createGcObserver.defaultOptions = defaultOptions;
 
 export { createGcObserver };

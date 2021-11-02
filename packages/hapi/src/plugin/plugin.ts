@@ -87,20 +87,21 @@ const createPlugin = (
     options?: TPromsterOptions;
   } = { options: undefined }
 ) => {
-  const defaultedOptions: TDefaultedPromsterOptions = merge(
+  const allDefaultedOptions: TDefaultedPromsterOptions = merge(
     createMetricTypes.defaultOptions,
     createRequestRecorder.defaultOptions,
+    createGcObserver.defaultOptions,
     defaultNormalizers,
     pluginOptions
   );
 
   const shouldSkipMetricsByEnvironment =
-    skipMetricsInEnvironment(defaultedOptions);
+    skipMetricsInEnvironment(allDefaultedOptions);
 
-  const metricTypes: TMetricTypes = createMetricTypes(defaultedOptions);
-  const observeGc = createGcObserver(metricTypes);
+  const metricTypes: TMetricTypes = createMetricTypes(allDefaultedOptions);
+  const observeGc = createGcObserver(allDefaultedOptions, metricTypes);
 
-  recordRequest = createRequestRecorder(metricTypes, defaultedOptions);
+  recordRequest = createRequestRecorder(metricTypes, allDefaultedOptions);
   upMetric = metricTypes?.up;
 
   if (!shouldSkipMetricsByEnvironment) {
@@ -135,13 +136,13 @@ const createPlugin = (
         const labels = Object.assign(
           {},
           {
-            path: defaultedOptions.normalizePath(extractPath(request)),
-            method: defaultedOptions.normalizeMethod(request.method),
-            status_code: defaultedOptions.normalizeStatusCode(
+            path: allDefaultedOptions.normalizePath(extractPath(request)),
+            method: allDefaultedOptions.normalizeMethod(request.method),
+            status_code: allDefaultedOptions.normalizeStatusCode(
               extractStatusCode(request)
             ),
           },
-          defaultedOptions.getLabelValues?.(request, {})
+          allDefaultedOptions.getLabelValues?.(request, {})
         );
 
         const requestContentLength = Number(
@@ -152,7 +153,7 @@ const createPlugin = (
           request?.response?.headers?.['content-length'] ?? 0
         );
 
-        const shouldSkipByRequest = defaultedOptions.skip?.(
+        const shouldSkipByRequest = allDefaultedOptions.skip?.(
           request,
           response,
           labels

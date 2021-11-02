@@ -61,6 +61,7 @@ const createMiddleware = (
   const allDefaultedOptions = merge(
     createMetricTypes.defaultOptions,
     createRequestRecorder.defaultOptions,
+    createGcObserver.defaultOptions,
     defaultNormalizers,
     options
   );
@@ -69,7 +70,7 @@ const createMiddleware = (
     skipMetricsInEnvironment(allDefaultedOptions);
 
   const metricTypes: TMetricTypes = createMetricTypes(allDefaultedOptions);
-  const observeGc = createGcObserver(metricTypes);
+  const observeGc = createGcObserver(allDefaultedOptions, metricTypes);
 
   recordRequest = createRequestRecorder(metricTypes, allDefaultedOptions);
   upMetric = metricTypes?.up;

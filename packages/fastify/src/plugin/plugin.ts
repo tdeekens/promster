@@ -45,20 +45,21 @@ const createPlugin = async (
   fastify: FastifyInstance,
   options: TPromsterOptions
 ) => {
-  const defaultedOptions = merge(
+  const allDefaultedOptions = merge(
     createMetricTypes.defaultOptions,
     createRequestRecorder.defaultOptions,
+    createGcObserver.defaultOptions,
     defaultNormalizers,
     options
   );
 
   const shouldSkipMetricsByEnvironment =
-    skipMetricsInEnvironment(defaultedOptions);
+    skipMetricsInEnvironment(allDefaultedOptions);
 
-  const metricTypes: TMetricTypes = createMetricTypes(defaultedOptions);
-  const observeGc = createGcObserver(metricTypes);
+  const metricTypes: TMetricTypes = createMetricTypes(allDefaultedOptions);
+  const observeGc = createGcObserver(allDefaultedOptions, metricTypes);
 
-  recordRequest = createRequestRecorder(metricTypes, defaultedOptions);
+  recordRequest = createRequestRecorder(metricTypes, allDefaultedOptions);
   upMetric = metricTypes?.up;
 
   if (!shouldSkipMetricsByEnvironment) {
@@ -78,20 +79,20 @@ const createPlugin = async (
     const labels = Object.assign(
       {},
       {
-        method: defaultedOptions.normalizeMethod(request.raw.method, {
+        method: allDefaultedOptions.normalizeMethod(request.raw.method, {
           request,
           reply,
         }),
-        status_code: defaultedOptions.normalizeStatusCode(reply.statusCode, {
+        status_code: allDefaultedOptions.normalizeStatusCode(reply.statusCode, {
           request,
           reply,
         }),
-        path: defaultedOptions.normalizePath(extractPath(request), {
+        path: allDefaultedOptions.normalizePath(extractPath(request), {
           request,
           reply,
         }),
       },
-      defaultedOptions.getLabelValues?.(request, reply)
+      allDefaultedOptions.getLabelValues?.(request, reply)
     );
 
     const requestContentLength = Number(request.headers['content-length'] ?? 0);
@@ -99,7 +100,7 @@ const createPlugin = async (
       reply.getHeader('content-length') ?? 0
     );
 
-    const shouldSkipByRequest = defaultedOptions.skip?.(request, reply);
+    const shouldSkipByRequest = allDefaultedOptions.skip?.(request, reply);
 
     if (!shouldSkipByRequest && !shouldSkipMetricsByEnvironment) {
       // @ts-expect-error
