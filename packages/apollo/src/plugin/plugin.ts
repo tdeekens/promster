@@ -13,6 +13,7 @@ import {
   createGcObserver,
   defaultNormalizers,
   isRunningInKubernetes,
+  endMeasurementFrom,
 } from '@promster/metrics';
 
 let recordRequest: TRequestRecorder;
@@ -41,15 +42,6 @@ const signalIsNotUp = () => {
 
 type TPluginOptions = {
   options?: TPromsterOptions;
-};
-
-const NS_PER_SEC = 1e9;
-const endMeasurementFrom = (start: TRequestTiming) => {
-  const [seconds, nanoseconds] = process.hrtime(start);
-
-  return {
-    durationS: (seconds * NS_PER_SEC + nanoseconds) / NS_PER_SEC,
-  };
 };
 
 const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
