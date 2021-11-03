@@ -11,6 +11,8 @@ import {
   normalizeMethod,
 } from './normalizers';
 import { isRunningInKubernetes, skipMetricsInEnvironment } from './environment';
+import { endMeasurementFrom } from './end-measurement-from';
+import { sortLabels } from './sort-labels';
 
 export type { TRequestRecorder } from './create-request-recorder';
 
@@ -29,4 +31,6 @@ export {
   normalizeMethod,
   isRunningInKubernetes,
   skipMetricsInEnvironment,
+  endMeasurementFrom,
+  sortLabels,
 };

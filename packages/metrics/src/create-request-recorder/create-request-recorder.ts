@@ -3,10 +3,13 @@ import type {
   TDefaultedPromsterOptions,
   TLabelValues,
   THttpMetrics,
+  TRequestTiming,
 } from '@promster/types';
 
 import merge from 'merge-options';
 import { skipMetricsInEnvironment } from '../environment';
+import { sortLabels } from '../sort-labels';
+import { endMeasurementFrom } from '../end-measurement-from';
 
 type TRecorderAccuracy = 'ms' | 's';
 type TRecorderMetricType =
@@ -19,41 +22,11 @@ type TRecordingOptions = {
   requestContentLength?: number;
   responseContentLength?: number;
 };
-type TRequestTiming = [number, number];
+
 export type TRequestRecorder = (
   start: TRequestTiming,
   recordingOptions: TRecordingOptions
 ) => void;
-
-const NS_PER_SEC = 1e9;
-const NS_PER_MS = 1e6;
-
-const sortLabels = (unsortedLabels: TLabelValues): TLabelValues =>
-  Object.keys(unsortedLabels)
-    .sort((a, b) => {
-      if (a < b) {
-        return -1;
-      }
-
-      if (a > b) {
-        return 1;
-      }
-
-      return 0;
-    })
-    .reduce((sortedLabels, labelName) => {
-      sortedLabels[labelName] = unsortedLabels[labelName];
-      return sortedLabels;
-    }, {});
-
-const endMeasurementFrom = (start: TRequestTiming) => {
-  const [seconds, nanoseconds] = process.hrtime(start);
-
-  return {
-    durationMs: Math.round((seconds * NS_PER_SEC + nanoseconds) / NS_PER_MS),
-    durationS: (seconds * NS_PER_SEC + nanoseconds) / NS_PER_SEC,
-  };
-};
 
 const shouldObserveMetricType =
   (metricType: TRecorderMetricType) => (options: TDefaultedPromsterOptions) =>

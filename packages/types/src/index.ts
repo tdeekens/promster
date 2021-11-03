@@ -38,3 +38,5 @@ export type TGcMetrics = {
 };
 
 export type TValueOf<T> = T[keyof T];
+
+export type TRequestTiming = [number, number];
