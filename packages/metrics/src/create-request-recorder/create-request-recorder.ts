@@ -2,7 +2,7 @@ import type {
   TPromsterOptions,
   TDefaultedPromsterOptions,
   TLabelValues,
-  TMetricTypes,
+  THttpMetrics,
 } from '@promster/types';
 
 import merge from 'merge-options';
@@ -70,7 +70,7 @@ const defaultOptions: TPromsterOptions = {
 };
 
 const createRequestRecorder = (
-  metricTypes: TMetricTypes,
+  metrics: THttpMetrics,
   options: TPromsterOptions = defaultOptions
 ): TRequestRecorder => {
   const defaultedRecorderOptions: TDefaultedPromsterOptions = merge(
@@ -110,7 +110,7 @@ const createRequestRecorder = (
       shouldObserveInHistogram &&
       !shouldSkipMetricsByEnvironment
     ) {
-      metricTypes.httpRequestDurationInMilliseconds.forEach(
+      metrics.httpRequestDurationInMilliseconds.forEach(
         (httpRequestDurationInMillisecondsMetricType) => {
           httpRequestDurationInMillisecondsMetricType.observe(
             labels,
@@ -125,7 +125,7 @@ const createRequestRecorder = (
       shouldObserveInSummary &&
       !shouldSkipMetricsByEnvironment
     ) {
-      metricTypes.httpRequestDurationPerPercentileInMilliseconds.forEach(
+      metrics.httpRequestDurationPerPercentileInMilliseconds.forEach(
         (httpRequestDurationPerPercentileInMillisecondsMetricType) => {
           httpRequestDurationPerPercentileInMillisecondsMetricType.observe(
             labels,
@@ -140,7 +140,7 @@ const createRequestRecorder = (
       shouldObserveInHistogram &&
       !shouldSkipMetricsByEnvironment
     ) {
-      metricTypes.httpRequestDurationInSeconds.forEach(
+      metrics.httpRequestDurationInSeconds.forEach(
         (httpRequestDurationInSecondsMetricType) => {
           httpRequestDurationInSecondsMetricType.observe(labels, durationS);
         }
@@ -152,7 +152,7 @@ const createRequestRecorder = (
       shouldObserveInSummary &&
       !shouldSkipMetricsByEnvironment
     ) {
-      metricTypes.httpRequestDurationPerPercentileInSeconds.forEach(
+      metrics.httpRequestDurationPerPercentileInSeconds.forEach(
         (httpRequestDurationPerPercentileInSecondsMetricType) => {
           httpRequestDurationPerPercentileInSecondsMetricType.observe(
             labels,
@@ -163,7 +163,7 @@ const createRequestRecorder = (
     }
 
     if (shouldObserveInCounter && !shouldSkipMetricsByEnvironment) {
-      metricTypes.httpRequestsTotal.forEach((httpRequestsTotalMetricType) => {
+      metrics.httpRequestsTotal.forEach((httpRequestsTotalMetricType) => {
         httpRequestsTotalMetricType.inc(labels);
       });
     }
@@ -173,7 +173,7 @@ const createRequestRecorder = (
       shouldObserveContentLengthInHistogram &&
       recordingOptions.requestContentLength
     ) {
-      metricTypes.httpRequestContentLengthInBytes.forEach(
+      metrics.httpRequestContentLengthInBytes.forEach(
         (httpRequestContentLengthInBytesMetricType) => {
           httpRequestContentLengthInBytesMetricType.observe(
             labels,
@@ -189,7 +189,7 @@ const createRequestRecorder = (
       shouldObserveContentLengthInHistogram &&
       recordingOptions.responseContentLength
     ) {
-      metricTypes.httpResponseContentLengthInBytes.forEach(
+      metrics.httpResponseContentLengthInBytes.forEach(
         (httpResponseContentLengthInBytesMetricType) => {
           httpResponseContentLengthInBytesMetricType.observe(
             labels,

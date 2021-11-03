@@ -13,9 +13,9 @@ interface TClientOptions
 }
 
 const configure = once((options: TClientOptions) => {
-  const shouldSkipMetricsByEnvironment = skipMetricsInEnvironment(options);
+  const shouldSkipMetricsInEnvironment = skipMetricsInEnvironment(options);
 
-  if (!shouldSkipMetricsByEnvironment) {
+  if (!shouldSkipMetricsInEnvironment) {
     Prometheus.collectDefaultMetrics(options);
   }
 });

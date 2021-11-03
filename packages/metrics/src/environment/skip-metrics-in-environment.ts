@@ -1,7 +1,11 @@
 import type { TPromsterOptions } from '@promster/types';
 import { isRunningInKubernetes } from './kubernetes';
 
-const skipMetricsInEnvironment = (options: TPromsterOptions) =>
+type TSkipMetricsInEnvironmentOptions = {
+  detectKubernetes?: TPromsterOptions['detectKubernetes'];
+};
+
+const skipMetricsInEnvironment = (options: TSkipMetricsInEnvironmentOptions) =>
   options.detectKubernetes === true && !isRunningInKubernetes();
 
 export { skipMetricsInEnvironment };

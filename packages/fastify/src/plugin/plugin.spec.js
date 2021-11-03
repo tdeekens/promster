@@ -1,6 +1,7 @@
 jest.mock('@promster/metrics', () => ({
   Prometheus: 'MockPrometheus',
-  createMetricTypes: jest.fn(),
+  createHttpMetrics: jest.fn(),
+  createGcMetrics: jest.fn(),
   createRequestRecorder: jest.fn(() => jest.fn()),
   createGcObserver: jest.fn(() => jest.fn()),
   getSummary: jest.fn(() => 'metrics'),

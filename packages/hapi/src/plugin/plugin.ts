@@ -1,7 +1,8 @@
 import type {
   TPromsterOptions,
   TDefaultedPromsterOptions,
-  TMetricTypes,
+  THttpMetrics,
+  TGcMetrics,
 } from '@promster/types';
 import type { TRequestRecorder } from '@promster/metrics';
 import type {
@@ -17,7 +18,8 @@ import merge from 'merge-options';
 import pkg from '../../package.json';
 import {
   Prometheus,
-  createMetricTypes,
+  createHttpMetrics,
+  createGcMetrics,
   createRequestRecorder,
   createGcObserver,
   defaultNormalizers,
@@ -53,7 +55,7 @@ const extractStatusCode = (request: Request) => {
 };
 
 let recordRequest: TRequestRecorder;
-let upMetric: TMetricTypes['up'];
+let upMetric: TGcMetrics['up'];
 const getRequestRecorder = () => recordRequest;
 const signalIsUp = () => {
   if (!upMetric) {
@@ -88,7 +90,8 @@ const createPlugin = (
   } = { options: undefined }
 ) => {
   const allDefaultedOptions: TDefaultedPromsterOptions = merge(
-    createMetricTypes.defaultOptions,
+    createHttpMetrics.defaultOptions,
+    createGcMetrics.defaultOptions,
     createRequestRecorder.defaultOptions,
     createGcObserver.defaultOptions,
     defaultNormalizers,
@@ -98,11 +101,13 @@ const createPlugin = (
   const shouldSkipMetricsByEnvironment =
     skipMetricsInEnvironment(allDefaultedOptions);
 
-  const metricTypes: TMetricTypes = createMetricTypes(allDefaultedOptions);
-  const observeGc = createGcObserver(allDefaultedOptions, metricTypes);
+  const httpMetrics: THttpMetrics = createHttpMetrics(allDefaultedOptions);
+  const gcMetrics: TGcMetrics = createGcMetrics(allDefaultedOptions);
 
-  recordRequest = createRequestRecorder(metricTypes, allDefaultedOptions);
-  upMetric = metricTypes?.up;
+  const observeGc = createGcObserver(gcMetrics, allDefaultedOptions);
+
+  recordRequest = createRequestRecorder(httpMetrics, allDefaultedOptions);
+  upMetric = gcMetrics?.up;
 
   if (!shouldSkipMetricsByEnvironment) {
     observeGc();

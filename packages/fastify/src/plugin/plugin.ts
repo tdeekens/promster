@@ -1,4 +1,8 @@
-import type { TPromsterOptions, TMetricTypes } from '@promster/types';
+import type {
+  TPromsterOptions,
+  THttpMetrics,
+  TGcMetrics,
+} from '@promster/types';
 import type { TRequestRecorder } from '@promster/metrics';
 import { FastifyInstance, FastifyRequest } from 'fastify';
 
@@ -6,7 +10,8 @@ import fastifyPlugin from 'fastify-plugin';
 import merge from 'merge-options';
 import {
   Prometheus,
-  createMetricTypes,
+  createHttpMetrics,
+  createGcMetrics,
   createRequestRecorder,
   createGcObserver,
   defaultNormalizers,
@@ -15,7 +20,7 @@ import {
 import pkg from '../../package.json';
 
 let recordRequest: TRequestRecorder;
-let upMetric: TMetricTypes['up'];
+let upMetric: TGcMetrics['up'];
 
 const extractPath = (req: FastifyRequest): string =>
   // @ts-expect-error
@@ -46,7 +51,8 @@ const createPlugin = async (
   options: TPromsterOptions
 ) => {
   const allDefaultedOptions = merge(
-    createMetricTypes.defaultOptions,
+    createHttpMetrics.defaultOptions,
+    createGcMetrics.defaultOptions,
     createRequestRecorder.defaultOptions,
     createGcObserver.defaultOptions,
     defaultNormalizers,
@@ -56,11 +62,13 @@ const createPlugin = async (
   const shouldSkipMetricsByEnvironment =
     skipMetricsInEnvironment(allDefaultedOptions);
 
-  const metricTypes: TMetricTypes = createMetricTypes(allDefaultedOptions);
-  const observeGc = createGcObserver(allDefaultedOptions, metricTypes);
+  const httpMetrics: THttpMetrics = createHttpMetrics(allDefaultedOptions);
+  const gcMetrics: TGcMetrics = createGcMetrics(allDefaultedOptions);
 
-  recordRequest = createRequestRecorder(metricTypes, allDefaultedOptions);
-  upMetric = metricTypes?.up;
+  const observeGc = createGcObserver(gcMetrics, allDefaultedOptions);
+
+  recordRequest = createRequestRecorder(httpMetrics, allDefaultedOptions);
+  upMetric = gcMetrics?.up;
 
   if (!shouldSkipMetricsByEnvironment) {
     observeGc();

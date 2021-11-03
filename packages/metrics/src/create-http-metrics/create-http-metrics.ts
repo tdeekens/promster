@@ -1,4 +1,4 @@
-import type { TDefaultedPromsterOptions, TMetricTypes } from '@promster/types';
+import type { TDefaultedPromsterOptions, THttpMetrics } from '@promster/types';
 
 import merge from 'merge-options';
 import { configure, Prometheus } from '../client';
@@ -20,8 +20,7 @@ const defaultHttpContentLengthInBytes = [
   100000, 200000, 500000, 1000000, 1500000, 2000000, 3000000, 5000000, 10000000,
 ];
 
-const defaultRequestLabels = ['path', 'status_code', 'method'];
-const defaultGcLabels = ['gc_type'];
+const defaultLabels = ['path', 'status_code', 'method'];
 const asArray = (maybeArray: Readonly<string[] | string>) =>
   Array.isArray(maybeArray) ? maybeArray : [maybeArray];
 
@@ -50,10 +49,6 @@ const defaultOptions = {
   metricPrefix: '',
   metricTypes: ['httpRequestsTotal', 'httpRequestsHistogram'],
   metricNames: {
-    up: ['up'],
-    countOfGcs: ['nodejs_gc_runs_total'],
-    durationOfGc: ['nodejs_gc_pause_seconds_total'],
-    reclaimedInGc: ['nodejs_gc_reclaimed_bytes_total'],
     httpRequestsTotal: ['http_requests_total'],
     httpRequestDurationPerPercentileInMilliseconds: [
       'http_request_duration_per_percentile_milliseconds',
@@ -68,38 +63,7 @@ const defaultOptions = {
   },
 };
 
-const getDefaultMetrics = (options: TDefaultedPromsterOptions) => ({
-  up: asArray(options.metricNames.up).map(
-    (nameOfUpMetric: string) =>
-      new Prometheus.Gauge({
-        name: `${options.metricPrefix}${nameOfUpMetric}`,
-        help: '1 = up, 0 = not up',
-      })
-  ),
-  countOfGcs: asArray(options.metricNames.countOfGcs).map(
-    (nameOfCountOfGcsMetric: string) =>
-      new Prometheus.Counter({
-        name: `${options.metricPrefix}${nameOfCountOfGcsMetric}`,
-        help: 'Count of total garbage collections.',
-        labelNames: defaultGcLabels,
-      })
-  ),
-  durationOfGc: asArray(options.metricNames.durationOfGc).map(
-    (nameOfDurationOfGcMetric: string) =>
-      new Prometheus.Counter({
-        name: `${options.metricPrefix}${nameOfDurationOfGcMetric}`,
-        help: 'Time spent in GC Pause in seconds.',
-        labelNames: defaultGcLabels,
-      })
-  ),
-  reclaimedInGc: asArray(options.metricNames.reclaimedInGc).map(
-    (nameOfReclaimedInGcMetric: string) =>
-      new Prometheus.Counter({
-        name: `${options.metricPrefix}${nameOfReclaimedInGcMetric}`,
-        help: 'Total number of bytes reclaimed by GC.',
-        labelNames: defaultGcLabels,
-      })
-  ),
+const getMetrics = (options: TDefaultedPromsterOptions) => ({
   httpRequestContentLengthInBytes:
     shouldObserveHttpContentLengthAsHistogram(options) &&
     asArray(options.metricNames.httpRequestContentLengthInBytes).map(
@@ -107,7 +71,7 @@ const getDefaultMetrics = (options: TDefaultedPromsterOptions) => ({
         new Prometheus.Histogram({
           name: `${options.metricPrefix}${nameOfHttpContentLengthMetric}`,
           help: 'The HTTP request content length in bytes.',
-          labelNames: defaultRequestLabels.concat(options.labels).sort(),
+          labelNames: defaultLabels.concat(options.labels).sort(),
           buckets: options.buckets || defaultHttpContentLengthInBytes,
         })
     ),
@@ -118,7 +82,7 @@ const getDefaultMetrics = (options: TDefaultedPromsterOptions) => ({
         new Prometheus.Histogram({
           name: `${options.metricPrefix}${nameOfHttpContentLengthMetric}`,
           help: 'The HTTP response content length in bytes.',
-          labelNames: defaultRequestLabels.concat(options.labels).sort(),
+          labelNames: defaultLabels.concat(options.labels).sort(),
           buckets: options.buckets || defaultHttpContentLengthInBytes,
         })
     ),
@@ -136,7 +100,7 @@ const getHttpRequestLatencyMetricsInMilliseconds = (
         new Prometheus.Summary({
           name: `${options.metricPrefix}${nameOfHttpRequestDurationPerPercentileInMillisecondsMetric}`,
           help: 'The HTTP request latencies in milliseconds.',
-          labelNames: defaultRequestLabels.concat(options.labels).sort(),
+          labelNames: defaultLabels.concat(options.labels).sort(),
           percentiles:
             options.percentiles ||
             defaultHttpRequestDurationPercentilesInMillieconds,
@@ -150,7 +114,7 @@ const getHttpRequestLatencyMetricsInMilliseconds = (
         new Prometheus.Histogram({
           name: `${options.metricPrefix}${nameOfHttpRequestDurationInMillisecondsMetric}`,
           help: 'The HTTP request latencies in milliseconds.',
-          labelNames: defaultRequestLabels.concat(options.labels).sort(),
+          labelNames: defaultLabels.concat(options.labels).sort(),
           buckets: options.buckets || defaultHttpRequestDurationInMilliseconds,
         })
     ),
@@ -166,7 +130,7 @@ const getHttpRequestLatencyMetricsInSeconds = (
         new Prometheus.Summary({
           name: `${options.metricPrefix}${nameOfHttpRequestDurationPerPercentileInSeconds}`,
           help: 'The HTTP request latencies in seconds.',
-          labelNames: defaultRequestLabels.concat(options.labels).sort(),
+          labelNames: defaultLabels.concat(options.labels).sort(),
           percentiles:
             options.percentiles ||
             defaultHttpRequestDurationPercentileInSeconds,
@@ -180,7 +144,7 @@ const getHttpRequestLatencyMetricsInSeconds = (
         new Prometheus.Histogram({
           name: `${options.metricPrefix}${nameOfHttpRequestDurationInSecondsMetric}`,
           help: 'The HTTP request latencies in seconds.',
-          labelNames: defaultRequestLabels.concat(options.labels).sort(),
+          labelNames: defaultLabels.concat(options.labels).sort(),
           buckets: options.buckets || defaultHttpRequestDurationInSeconds,
         })
     ),
@@ -194,14 +158,14 @@ const getHttpRequestCounterMetric = (options: TDefaultedPromsterOptions) => ({
         new Prometheus.Counter({
           name: `${options.metricPrefix}${nameOfHttpRequestsTotalMetric}`,
           help: 'The total HTTP requests.',
-          labelNames: defaultRequestLabels.concat(options.labels).sort(),
+          labelNames: defaultLabels.concat(options.labels).sort(),
         })
     ),
 });
 
-const createMetricTypes = (
+const createHttpMetrics = (
   options: TDefaultedPromsterOptions
-): TMetricTypes => {
+): THttpMetrics => {
   const defaultedOptions: TDefaultedPromsterOptions = merge(
     defaultOptions,
     options
@@ -211,7 +175,7 @@ const createMetricTypes = (
     prefix: defaultedOptions.metricPrefix,
   });
 
-  const defaultMetrics = getDefaultMetrics(defaultedOptions);
+  const metrics = getMetrics(defaultedOptions);
 
   const httpRequestLatencyMetricsInMilliseconds =
     shouldObserveMetricsInMilliseconds(defaultedOptions) &&
@@ -224,13 +188,13 @@ const createMetricTypes = (
 
   return Object.assign(
     {},
-    defaultMetrics,
+    metrics,
     httpRequestLatencyMetricsInMilliseconds,
     httpRequestLatencyMetricsInSeconds,
     httpRequestCounterMetric
   );
 };
 
-createMetricTypes.defaultOptions = defaultOptions;
+createHttpMetrics.defaultOptions = defaultOptions;
 
-export { createMetricTypes };
+export { createHttpMetrics };

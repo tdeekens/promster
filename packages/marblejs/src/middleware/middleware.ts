@@ -1,7 +1,8 @@
 import type {
   TDefaultedPromsterOptions,
   TPromsterOptions,
-  TMetricTypes,
+  THttpMetrics,
+  TGcMetrics,
   TLabelValues,
 } from '@promster/types';
 import type { TRequestRecorder } from '@promster/metrics';
@@ -11,7 +12,8 @@ import { HttpRequest, HttpResponse } from '@marblejs/core';
 import { fromEvent, Observable } from 'rxjs';
 import { tap, map, take, mapTo } from 'rxjs/operators';
 import {
-  createMetricTypes,
+  createHttpMetrics,
+  createGcMetrics,
   createRequestRecorder,
   createGcObserver,
   defaultNormalizers,
@@ -21,7 +23,7 @@ import {
 const extractPath = (req: HttpRequest): string => req.originalUrl || req.url;
 
 let recordRequest: TRequestRecorder;
-let upMetric: TMetricTypes['up'];
+let upMetric: TGcMetrics['up'];
 
 const getRequestRecorder = () => recordRequest;
 const signalIsUp = () => {
@@ -98,20 +100,23 @@ type TMiddlewareOptions = {
 };
 const createMiddleware = ({ options }: TMiddlewareOptions = {}) => {
   const allDefaultedOptions: TDefaultedPromsterOptions = merge(
-    createMetricTypes.defaultOptions,
+    createHttpMetrics.defaultOptions,
+    createGcMetrics.defaultOptions,
     createRequestRecorder.defaultOptions,
     createGcObserver.defaultOptions,
     defaultNormalizers,
     options
   );
 
-  const metricTypes: TMetricTypes = createMetricTypes(allDefaultedOptions);
-  const observeGc = createGcObserver(allDefaultedOptions, metricTypes);
+  const httpMetrics: THttpMetrics = createHttpMetrics(allDefaultedOptions);
+  const gcMetrics: TGcMetrics = createGcMetrics(allDefaultedOptions);
+
+  const observeGc = createGcObserver(gcMetrics, allDefaultedOptions);
   const shouldSkipMetricsByEnvironment =
     skipMetricsInEnvironment(allDefaultedOptions);
 
-  recordRequest = createRequestRecorder(metricTypes, allDefaultedOptions);
-  upMetric = metricTypes?.up;
+  recordRequest = createRequestRecorder(httpMetrics, allDefaultedOptions);
+  upMetric = gcMetrics?.up;
 
   if (!shouldSkipMetricsByEnvironment) {
     observeGc();
