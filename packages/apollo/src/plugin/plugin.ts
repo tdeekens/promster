@@ -1,4 +1,7 @@
-import type { ApolloServerPlugin } from 'apollo-server-plugin-base';
+import type {
+  ApolloServerPlugin,
+  GraphQLRequestContext,
+} from 'apollo-server-plugin-base';
 import type { TPromsterOptions, TGcMetrics } from '@promster/types';
 import type { TRequestRecorder } from '@promster/metrics';
 
@@ -41,7 +44,6 @@ type TPluginOptions = {
 };
 
 const NS_PER_SEC = 1e9;
-const NS_PER_MS = 1e6;
 const endMeasurementFrom = (start: TRequestTiming) => {
   const [seconds, nanoseconds] = process.hrtime(start);
 
@@ -104,7 +106,9 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
     observeGc();
   }
 
-  function getDefaultLabelsOrSkipMeasurement(requestContext) {
+  function getDefaultLabelsOrSkipMeasurement(
+    requestContext: GraphQLRequestContext
+  ): Record<string, string> {
     const labels = Object.assign(
       {},
       {
@@ -123,14 +127,14 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
     );
 
     if (shouldSkipByRequest || shouldSkipMetricsByEnvironment) {
-      return;
+      return {};
     }
 
     return labels;
   }
 
   const plugin: ApolloServerPlugin = {
-    serverWillStart() {
+    async serverWillStart() {
       signalIsUp();
 
       return {
@@ -172,10 +176,10 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
 
         async executionDidStart(executionRequestContext) {
           return {
-            willResolveField({ source, args, context, info }) {
+            willResolveField({ info }) {
               const fieldResolveStart = process.hrtime();
 
-              return (error, result) => {
+              return () => {
                 const { durationS } = endMeasurementFrom(fieldResolveStart);
 
                 const defaultLabels = getDefaultLabelsOrSkipMeasurement(
