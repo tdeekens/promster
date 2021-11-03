@@ -1,11 +1,11 @@
 import type { ApolloServerPlugin } from 'apollo-server-plugin-base';
-import type { TPromsterOptions, TMetricTypes } from '@promster/types';
+import type { TPromsterOptions, TGcMetrics } from '@promster/types';
 import type { TRequestRecorder } from '@promster/metrics';
 
 import merge from 'merge-options';
 import {
   Prometheus,
-  createMetricTypes,
+  createGcMetrics,
   createRequestRecorder,
   createGcObserver,
   defaultNormalizers,
@@ -13,7 +13,7 @@ import {
 } from '@promster/metrics';
 
 let recordRequest: TRequestRecorder;
-let upMetric: TMetricTypes['up'];
+let upMetric: TGcMetrics['up'];
 
 const getRequestRecorder = () => recordRequest;
 const signalIsUp = () => {
@@ -46,13 +46,13 @@ const endMeasurementFrom = (start: TRequestTiming) => {
   const [seconds, nanoseconds] = process.hrtime(start);
 
   return {
-    durationMs: Math.round((seconds * NS_PER_SEC + nanoseconds) / NS_PER_MS),
+    durationS: (seconds * NS_PER_SEC + nanoseconds) / NS_PER_SEC,
   };
 };
 
 const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
   const allDefaultedOptions = merge(
-    createMetricTypes.defaultOptions,
+    createGcMetrics.defaultOptions,
     createRequestRecorder.defaultOptions,
     defaultNormalizers,
     {
@@ -61,21 +61,38 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
     options
   );
 
-  const graphQlParsingTimeHistogram = new Prometheus.Histogram({
-    name: `${allDefaultedOptions.metricPrefix}graphql_parsing_duration_milliseconds`,
-    help: 'The GraphQL request parsing time in milliseconds.',
+  const graphQlParseTimeHistogram = new Prometheus.Histogram({
+    name: `${allDefaultedOptions.metricPrefix}graphql_parse_duration_seconds`,
+    help: 'The GraphQL request parse time in seconds.',
     buckets: [0.5, 0.9, 0.95, 0.98, 0.99],
+    labelNames: ['operation_name'],
+  });
+  const graphQlFieldResolveTimeHistogram = new Prometheus.Histogram({
+    name: `${allDefaultedOptions.metricPrefix}graphql_field_resolve_duration_seconds`,
+    help: 'The GraphQL request parse time in seconds.',
+    buckets: [0.5, 0.9, 0.95, 0.98, 0.99],
+    labelNames: ['operation_name', 'field_name'],
+  });
+  const graphQlRequestDurationHistogram = new Prometheus.Histogram({
+    name: `${allDefaultedOptions.metricPrefix}graphql_request_duration_seconds`,
+    help: 'The GraphQL request duration time in seconds.',
+    buckets: [0.5, 0.9, 0.95, 0.98, 0.99],
+    labelNames: ['operation_name'],
+  });
+  const graphQlErrorsCounter = new Prometheus.Counter({
+    name: `${allDefaultedOptions.metricPrefix}graphql_errors_total`,
+    help: 'Count of errors while parsing, validating, or executing a GraphQL operation.',
     labelNames: ['operation_name'],
   });
 
   const shouldSkipMetricsByEnvironment =
     allDefaultedOptions.detectKubernetes && !isRunningInKubernetes();
 
-  const metricTypes: TMetricTypes = createMetricTypes(allDefaultedOptions);
-  const observeGc = createGcObserver(metricTypes);
+  const gcMetrics: TGcMetrics = createGcMetrics(allDefaultedOptions);
 
-  recordRequest = createRequestRecorder(metricTypes, allDefaultedOptions);
-  upMetric = metricTypes?.up;
+  const observeGc = createGcObserver(gcMetrics, allDefaultedOptions);
+
+  upMetric = gcMetrics?.up;
 
   if (!shouldSkipMetricsByEnvironment && !options?.disableGcMetrics) {
     observeGc();
@@ -96,56 +113,123 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
       const requestStart = process.hrtime();
 
       return {
-        async parsingDidStart(requestContext) {
-          const parsingStart = process.hrtime();
+        async parsingDidStart(parsingRequestContext) {
+          const parseStart = process.hrtime();
 
           return async () => {
-            const { durationMs } = endMeasurementFrom(parsingStart);
+            const { durationS } = endMeasurementFrom(parseStart);
             const labels = Object.assign(
               {},
               {
-                operation_name: requestContext.request.operationName,
+                operation_name: parsingRequestContext.request.operationName,
               },
               allDefaultedOptions.getLabelValues?.(
-                requestContext.request,
-                requestContext.response
+                parsingRequestContext.request,
+                parsingRequestContext.response
               )
             );
 
-            graphQlParsingTimeHistogram.observe(labels, durationMs);
+            const shouldSkipByRequest = allDefaultedOptions.skip?.(
+              parsingRequestContext.request,
+              parsingRequestContext.response,
+              labels
+            );
+
+            if (shouldSkipByRequest || shouldSkipMetricsByEnvironment) {
+              return;
+            }
+
+            graphQlParseTimeHistogram.observe(labels, durationS);
           };
         },
 
-        async willSendResponse(requestContext) {
+        async executionDidStart(executionRequestContext) {
+          return {
+            willResolveField({ source, args, context, info }) {
+              const fieldResolveStart = process.hrtime();
+
+              return (error, result) => {
+                const { durationS } = endMeasurementFrom(fieldResolveStart);
+
+                const labels = Object.assign(
+                  {},
+                  {
+                    operation_name:
+                      executionRequestContext.request.operationName,
+                    field_name: info.fieldName,
+                  },
+                  allDefaultedOptions.getLabelValues?.(
+                    executionRequestContext.request,
+                    executionRequestContext.response
+                  )
+                );
+
+                const shouldSkipByRequest = allDefaultedOptions.skip?.(
+                  executionRequestContext.request,
+                  executionRequestContext.response,
+                  labels
+                );
+
+                if (shouldSkipByRequest || shouldSkipMetricsByEnvironment) {
+                  return;
+                }
+
+                graphQlFieldResolveTimeHistogram.observe(labels, durationS);
+              };
+            },
+          };
+        },
+
+        async willSendResponse(responseRequestContext) {
+          const { durationS } = endMeasurementFrom(requestStart);
+
           const requestContentLength =
-            requestContext.request.http?.headers.get('content-length') ?? 0;
+            responseRequestContext.request.http?.headers.get(
+              'content-length'
+            ) ?? 0;
           const responseContentLength =
-            requestContext.response.http?.headers.get('content-length') ?? 0;
+            responseRequestContext.response.http?.headers.get(
+              'content-length'
+            ) ?? 0;
 
           const labels = Object.assign(
             {},
             {
-              operation_name: requestContext.request.operationName,
+              operation_name: responseRequestContext.request.operationName,
             },
             allDefaultedOptions.getLabelValues?.(
-              requestContext.request,
-              requestContext.response
+              responseRequestContext.request,
+              responseRequestContext.response
             )
           );
 
           const shouldSkipByRequest = allDefaultedOptions.skip?.(
-            requestContext.request,
-            requestContext.response,
+            responseRequestContext.request,
+            responseRequestContext.response,
             labels
           );
 
-          if (!shouldSkipByRequest && !shouldSkipMetricsByEnvironment) {
-            recordRequest(requestStart, {
-              labels,
-              requestContentLength,
-              responseContentLength,
-            });
+          if (shouldSkipByRequest || shouldSkipMetricsByEnvironment) {
+            return;
           }
+
+          graphQlRequestDurationHistogram.observe(labels, durationS);
+        },
+
+        async didEncounterErrors(errorsContext) {
+          const labels = Object.assign(
+            {},
+            {
+              operation_name: errorsContext.request.operationName,
+            },
+            allDefaultedOptions.getLabelValues?.(
+              errorsContext.request,
+              errorsContext.response
+            )
+          );
+
+          // TODO: add phase?
+          graphQlErrorsCounter.inc(labels);
         },
       };
     },
