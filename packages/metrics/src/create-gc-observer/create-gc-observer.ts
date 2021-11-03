@@ -1,4 +1,4 @@
-import type { TPromsterOptions, TMetricTypes, TValueOf } from '@promster/types';
+import type { TPromsterOptions, TGcMetrics, TValueOf } from '@promster/types';
 
 import once from 'lodash.once';
 import requireOptional from 'optional';
@@ -29,7 +29,7 @@ const defaultOptions = {
 };
 
 const createGcObserver = once(
-  (options: TPromsterOptions, metricTypes: TMetricTypes) => () => {
+  (metrics: TGcMetrics, options: TPromsterOptions) => () => {
     if (typeof gc !== 'function') {
       return;
     }
@@ -39,15 +39,15 @@ const createGcObserver = once(
     gc().on('stats', (stats: TStats) => {
       const gcType: TGcTypes = gcTypes[stats.gctype];
 
-      metricTypes.countOfGcs.forEach((countOfGcMetricType) => {
+      metrics.countOfGcs.forEach((countOfGcMetricType) => {
         countOfGcMetricType.labels(gcType).inc();
       });
-      metricTypes.durationOfGc.forEach((durationOfGcMetricType) => {
+      metrics.durationOfGc.forEach((durationOfGcMetricType) => {
         durationOfGcMetricType.labels(gcType).inc(stats.pause / 1e9);
       });
 
       if (stats.diff.usedHeapSize < 0) {
-        metricTypes.reclaimedInGc.forEach((reclaimedInGcMetricType) => {
+        metrics.reclaimedInGc.forEach((reclaimedInGcMetricType) => {
           reclaimedInGcMetricType
             .labels(gcType)
             .inc(stats.diff.usedHeapSize * -1);

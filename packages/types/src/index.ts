@@ -21,11 +21,7 @@ export type TPromsterOptions = {
 };
 export type TDefaultedPromsterOptions = DeepRequired<TPromsterOptions>;
 
-export type TMetricTypes = {
-  up: Array<Gauge<string>>;
-  countOfGcs: Array<Counter<string>>;
-  durationOfGc: Array<Counter<string>>;
-  reclaimedInGc: Array<Counter<string>>;
+export type THttpMetrics = {
   httpRequestDurationPerPercentileInMilliseconds: Array<Summary<string>>;
   httpRequestDurationInMilliseconds: Array<Histogram<string>>;
   httpRequestDurationPerPercentileInSeconds: Array<Summary<string>>;
@@ -33,6 +29,12 @@ export type TMetricTypes = {
   httpRequestsTotal: Array<Counter<string>>;
   httpRequestContentLengthInBytes: Array<Histogram<string>>;
   httpResponseContentLengthInBytes: Array<Histogram<string>>;
+};
+export type TGcMetrics = {
+  up: Array<Gauge<string>>;
+  countOfGcs: Array<Counter<string>>;
+  durationOfGc: Array<Counter<string>>;
+  reclaimedInGc: Array<Counter<string>>;
 };
 
 export type TValueOf<T> = T[keyof T];

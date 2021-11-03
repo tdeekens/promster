@@ -1,6 +1,7 @@
 jest.mock('@promster/metrics', () => ({
   Prometheus: 'MockPrometheus',
-  createMetricTypes: jest.fn(),
+  createHttpMetrics: jest.fn(),
+  createGcMetrics: jest.fn(),
   createRequestRecorder: jest.fn(() => jest.fn()),
   createGcObserver: jest.fn(() => jest.fn()),
   defaultNormalizers: {
@@ -116,7 +117,6 @@ describe('middleware', () => {
             expect.anything(),
             expect.objectContaining({
               labels: expect.objectContaining({
-                // eslint-disable-next-line camelcase
                 status_code: 200,
                 method: req.method,
                 path: req.url,

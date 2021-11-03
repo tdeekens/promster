@@ -1,11 +1,16 @@
-import type { TPromsterOptions, TMetricTypes } from '@promster/types';
+import type {
+  TPromsterOptions,
+  THttpMetrics,
+  TGcMetrics,
+} from '@promster/types';
 import type { TRequestRecorder } from '@promster/metrics';
 import { Application, Request, Response, NextFunction } from 'express';
 
 import merge from 'merge-options';
 import {
   Prometheus,
-  createMetricTypes,
+  createHttpMetrics,
+  createGcMetrics,
   createRequestRecorder,
   createGcObserver,
   defaultNormalizers,
@@ -28,7 +33,7 @@ const exposeOnLocals = ({ app, key, value }: TLocaleTarget) => {
 const extractPath = (req: Request) => req.originalUrl || req.url;
 
 let recordRequest: TRequestRecorder;
-let upMetric: TMetricTypes['up'];
+let upMetric: TGcMetrics['up'];
 
 const getRequestRecorder = () => recordRequest;
 const signalIsUp = () => {
@@ -59,7 +64,8 @@ const createMiddleware = (
   { app, options }: TMiddlewareOptions = { app: undefined, options: undefined }
 ) => {
   const allDefaultedOptions = merge(
-    createMetricTypes.defaultOptions,
+    createHttpMetrics.defaultOptions,
+    createGcMetrics.defaultOptions,
     createRequestRecorder.defaultOptions,
     createGcObserver.defaultOptions,
     defaultNormalizers,
@@ -69,11 +75,12 @@ const createMiddleware = (
   const shouldSkipMetricsByEnvironment =
     skipMetricsInEnvironment(allDefaultedOptions);
 
-  const metricTypes: TMetricTypes = createMetricTypes(allDefaultedOptions);
-  const observeGc = createGcObserver(allDefaultedOptions, metricTypes);
+  const httpMetrics: THttpMetrics = createHttpMetrics(allDefaultedOptions);
+  const gcMetrics: TGcMetrics = createGcMetrics(allDefaultedOptions);
+  const observeGc = createGcObserver(gcMetrics, allDefaultedOptions);
 
-  recordRequest = createRequestRecorder(metricTypes, allDefaultedOptions);
-  upMetric = metricTypes?.up;
+  recordRequest = createRequestRecorder(httpMetrics, allDefaultedOptions);
+  upMetric = gcMetrics?.up;
 
   exposeOnLocals({ app, key: 'Prometheus', value: Prometheus });
   exposeOnLocals({ app, key: 'recordRequest', value: recordRequest });
