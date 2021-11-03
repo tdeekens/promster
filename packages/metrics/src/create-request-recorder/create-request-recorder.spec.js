@@ -1,38 +1,4 @@
-const {
-  sortLabels,
-  endMeasurementFrom,
-  createRequestRecorder,
-} = require('./create-request-recorder');
-
-describe('sortLabels', () => {
-  const unsorted = { b: 'c', a: 'b' };
-  let sorted;
-
-  beforeEach(() => {
-    sorted = sortLabels(unsorted);
-  });
-
-  it('should sort the labels in accending order', () => {
-    expect(sorted).toEqual({ a: 'b', b: 'c' });
-  });
-});
-
-describe('endMeasurementFrom', () => {
-  const start = [1, 2];
-  let measurement;
-
-  beforeEach(() => {
-    measurement = endMeasurementFrom(start);
-  });
-
-  it('should have millisecond duration', () => {
-    expect(measurement).toHaveProperty('durationMs');
-  });
-
-  it('should have second duration', () => {
-    expect(measurement).toHaveProperty('durationS');
-  });
-});
+const { createRequestRecorder } = require('./create-request-recorder');
 
 describe('createRequestRecorder', () => {
   const createHttpMetrics = () => ({
