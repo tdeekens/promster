@@ -1,5 +1,6 @@
 import { Prometheus, defaultRegister } from './client';
 import { createHttpMetrics } from './create-http-metrics';
+import { createGraphQlMetrics } from './create-graphql-metrics';
 import { createGcMetrics } from './create-gc-metrics';
 import { getSummary, getContentType } from './summary';
 import { createRequestRecorder } from './create-request-recorder';
@@ -20,6 +21,7 @@ export {
   Prometheus,
   defaultRegister,
   createHttpMetrics,
+  createGraphQlMetrics,
   createGcMetrics,
   getSummary,
   getContentType,

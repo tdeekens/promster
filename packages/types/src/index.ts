@@ -36,6 +36,13 @@ export type TGcMetrics = {
   durationOfGc: Array<Counter<string>>;
   reclaimedInGc: Array<Counter<string>>;
 };
+export type TGraphQlMetrics = {
+  graphQlParseDurationHistogram: Array<Summary<string>>;
+  graphQlValidationDurationHistogram: Array<Histogram<string>>;
+  graphQlResolveFieldDurationHistogram: Array<Summary<string>>;
+  graphQlRequestDurationHistogram: Array<Histogram<string>>;
+  graphQlErrorsTotal: Array<Counter<string>>;
+};
 
 export type TValueOf<T> = T[keyof T];
 

@@ -9,7 +9,7 @@ import merge from 'merge-options';
 import {
   Prometheus,
   createGcMetrics,
-  createRequestRecorder,
+  createGraphQlMetrics,
   createGcObserver,
   defaultNormalizers,
   isRunningInKubernetes,
@@ -47,7 +47,7 @@ type TPluginOptions = {
 const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
   const allDefaultedOptions = merge(
     createGcMetrics.defaultOptions,
-    createRequestRecorder.defaultOptions,
+    createGraphQlMetrics.defaultOptions,
     defaultNormalizers,
     {
       labels: ['operation_name'],
@@ -55,40 +55,12 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
     options
   );
 
-  const graphQlParseTimeHistogram = new Prometheus.Histogram({
-    name: `${allDefaultedOptions.metricPrefix}graphql_parse_duration_seconds`,
-    help: 'The GraphQL request parse time in seconds.',
-    buckets: [0.5, 0.9, 0.95, 0.98, 0.99],
-    labelNames: ['operation_name'],
-  });
-  const graphQlValidationTimeHistogram = new Prometheus.Histogram({
-    name: `${allDefaultedOptions.metricPrefix}graphql_validation_duration_seconds`,
-    help: 'The GraphQL request validation time in seconds.',
-    buckets: [0.5, 0.9, 0.95, 0.98, 0.99],
-    labelNames: ['operation_name'],
-  });
-  const graphQlResolveFieldTimeHistogram = new Prometheus.Histogram({
-    name: `${allDefaultedOptions.metricPrefix}graphql_resolve_field_duration_seconds`,
-    help: 'The GraphQL field resolving time in seconds.',
-    buckets: [0.5, 0.9, 0.95, 0.98, 0.99],
-    labelNames: ['operation_name', 'field_name'],
-  });
-  const graphQlRequestDurationHistogram = new Prometheus.Histogram({
-    name: `${allDefaultedOptions.metricPrefix}graphql_request_duration_seconds`,
-    help: 'The GraphQL request duration time in seconds.',
-    buckets: [0.5, 0.9, 0.95, 0.98, 0.99],
-    labelNames: ['operation_name'],
-  });
-  const graphQlErrorsCounter = new Prometheus.Counter({
-    name: `${allDefaultedOptions.metricPrefix}graphql_errors_total`,
-    help: 'Count of errors while parsing, validating, or executing a GraphQL operation.',
-    labelNames: ['operation_name'],
-  });
-
   const shouldSkipMetricsByEnvironment =
     allDefaultedOptions.detectKubernetes && !isRunningInKubernetes();
 
   const gcMetrics: TGcMetrics = createGcMetrics(allDefaultedOptions);
+  const graphQlMetrics: TGraphQlMetrics =
+    createGraphQlMetrics(allDefaultedOptions);
 
   const observeGc = createGcObserver(gcMetrics, allDefaultedOptions);
 
@@ -149,7 +121,9 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
               parsingRequestContext
             );
 
-            graphQlParseTimeHistogram.observe(labels, durationS);
+            graphQlMetrics.graphQlParseDuration.forEach((metric) =>
+              metric.observe(labels, durationS)
+            );
           };
         },
 
@@ -162,7 +136,9 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
               validationRequestContext
             );
 
-            graphQlValidationTimeHistogram.observe(labels, durationS);
+            graphQlMetrics.graphQlValidationDuration.forEach((metric) =>
+              metric.observe(labels, durationS)
+            );
           };
         },
 
@@ -181,7 +157,9 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
                   field_name: info.fieldName,
                 });
 
-                graphQlResolveFieldTimeHistogram.observe(labels, durationS);
+                graphQlMetrics.graphQlResolveFieldDuration.forEach((metric) =>
+                  metric.observe(labels, durationS)
+                );
               };
             },
           };
@@ -194,13 +172,17 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
             responseRequestContext
           );
 
-          graphQlRequestDurationHistogram.observe(labels, durationS);
+          graphQlMetrics.graphQlRequestDuration.forEach((metric) =>
+            metric.observe(labels, durationS)
+          );
         },
 
         async didEncounterErrors(errorsContext) {
           const labels = getDefaultLabelsOrSkipMeasurement(errorsContext);
 
-          graphQlErrorsCounter.inc(labels);
+          graphQlMetrics.graphQlErrorsTotal.forEach((metric) =>
+            metric.inc(labels)
+          );
         },
       };
     },
