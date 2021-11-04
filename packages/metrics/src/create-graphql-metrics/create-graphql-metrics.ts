@@ -111,7 +111,10 @@ const getMetrics = (options: TDefaultedPromsterOptions) => ({
           new Prometheus.Counter({
             name: `${options.metricPrefix}${nameOfGraphQlErrorsCount}`,
             help: 'Count of errors while parsing, validating, or executing a GraphQL operation.',
-            labelNames: defaultLabels.concat(options.labels).sort(),
+            labelNames: defaultLabels
+              .concat(['phase'])
+              .concat(options.labels)
+              .sort(),
           })
       )
     : undefined,

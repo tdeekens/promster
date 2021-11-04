@@ -4,8 +4,10 @@ import type {
 } from 'apollo-server-plugin-base';
 import type {
   TPromsterOptions,
+  TDefaultedPromsterOptions,
   TGcMetrics,
   TGraphQlMetrics,
+  TLabelValues,
 } from '@promster/types';
 import type { TRequestRecorder } from '@promster/metrics';
 
@@ -48,7 +50,7 @@ type TPluginOptions = {
 };
 
 const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
-  const allDefaultedOptions: TPluginOptions = merge(
+  const allDefaultedOptions: TDefaultedPromsterOptions = merge(
     createGcMetrics.defaultOptions,
     createGraphQlMetrics.defaultOptions,
     defaultNormalizers,
@@ -75,7 +77,7 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
 
   function getDefaultLabelsOrSkipMeasurement(
     requestContext: GraphQLRequestContext
-  ): Record<string, string> {
+  ): TLabelValues {
     const labels = Object.assign(
       {},
       {
@@ -118,7 +120,7 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
         async parsingDidStart(parsingRequestContext) {
           const parseStart = process.hrtime();
 
-          return async () => {
+          return async (error) => {
             const { durationS } = endMeasurementFrom(parseStart);
             const labels = getDefaultLabelsOrSkipMeasurement(
               parsingRequestContext
@@ -127,13 +129,19 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
             graphQlMetrics.graphQlParseDuration?.forEach((metric) => {
               metric.observe(labels, durationS);
             });
+
+            if (error) {
+              graphQlMetrics.graphQlErrorsTotal?.forEach((metric) => {
+                metric.inc(Object.assign({}, labels, { phase: 'parsing' }));
+              });
+            }
           };
         },
 
         async validationDidStart(validationRequestContext) {
           const validationStart = process.hrtime();
 
-          return async () => {
+          return async (error) => {
             const { durationS } = endMeasurementFrom(validationStart);
             const labels = getDefaultLabelsOrSkipMeasurement(
               validationRequestContext
@@ -142,6 +150,12 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
             graphQlMetrics.graphQlValidationDuration?.forEach((metric) => {
               metric.observe(labels, durationS);
             });
+
+            if (error) {
+              graphQlMetrics.graphQlErrorsTotal?.forEach((metric) => {
+                metric.inc(Object.assign({}, labels, { phase: 'validation' }));
+              });
+            }
           };
         },
 
@@ -150,7 +164,7 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
             willResolveField({ info }) {
               const fieldResolveStart = process.hrtime();
 
-              return () => {
+              return (error) => {
                 const { durationS } = endMeasurementFrom(fieldResolveStart);
 
                 const defaultLabels = getDefaultLabelsOrSkipMeasurement(
@@ -165,6 +179,14 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
                     metric.observe(labels, durationS);
                   }
                 );
+
+                if (error) {
+                  graphQlMetrics.graphQlErrorsTotal?.forEach((metric) => {
+                    metric.inc(
+                      Object.assign({}, labels, { phase: 'execution' })
+                    );
+                  });
+                }
               };
             },
           };
@@ -179,14 +201,6 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
 
           graphQlMetrics.graphQlRequestDuration?.forEach((metric) => {
             metric.observe(labels, durationS);
-          });
-        },
-
-        async didEncounterErrors(errorsContext) {
-          const labels = getDefaultLabelsOrSkipMeasurement(errorsContext);
-
-          graphQlMetrics.graphQlErrorsTotal?.forEach((metric) => {
-            metric.inc(labels);
           });
         },
       };
