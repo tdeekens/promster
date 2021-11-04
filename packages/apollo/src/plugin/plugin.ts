@@ -2,12 +2,15 @@ import type {
   ApolloServerPlugin,
   GraphQLRequestContext,
 } from 'apollo-server-plugin-base';
-import type { TPromsterOptions, TGcMetrics } from '@promster/types';
+import type {
+  TPromsterOptions,
+  TGcMetrics,
+  TGraphQlMetrics,
+} from '@promster/types';
 import type { TRequestRecorder } from '@promster/metrics';
 
 import merge from 'merge-options';
 import {
-  Prometheus,
   createGcMetrics,
   createGraphQlMetrics,
   createGcObserver,
@@ -121,7 +124,7 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
               parsingRequestContext
             );
 
-            graphQlMetrics.graphQlParseDuration.forEach((metric) =>
+            graphQlMetrics.graphQlParseDuration?.forEach((metric) =>
               metric.observe(labels, durationS)
             );
           };
@@ -136,7 +139,7 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
               validationRequestContext
             );
 
-            graphQlMetrics.graphQlValidationDuration.forEach((metric) =>
+            graphQlMetrics.graphQlValidationDuration?.forEach((metric) =>
               metric.observe(labels, durationS)
             );
           };
@@ -157,7 +160,7 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
                   field_name: info.fieldName,
                 });
 
-                graphQlMetrics.graphQlResolveFieldDuration.forEach((metric) =>
+                graphQlMetrics.graphQlResolveFieldDuration?.forEach((metric) =>
                   metric.observe(labels, durationS)
                 );
               };
@@ -172,7 +175,7 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
             responseRequestContext
           );
 
-          graphQlMetrics.graphQlRequestDuration.forEach((metric) =>
+          graphQlMetrics.graphQlRequestDuration?.forEach((metric) =>
             metric.observe(labels, durationS)
           );
         },
@@ -180,7 +183,7 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
         async didEncounterErrors(errorsContext) {
           const labels = getDefaultLabelsOrSkipMeasurement(errorsContext);
 
-          graphQlMetrics.graphQlErrorsTotal.forEach((metric) =>
+          graphQlMetrics.graphQlErrorsTotal?.forEach((metric) =>
             metric.inc(labels)
           );
         },

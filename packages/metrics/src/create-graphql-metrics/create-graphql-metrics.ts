@@ -1,4 +1,7 @@
-import type { TDefaultedPromsterOptions, THttpMetrics } from '@promster/types';
+import type {
+  TDefaultedPromsterOptions,
+  TGraphQlMetrics,
+} from '@promster/types';
 
 import merge from 'merge-options';
 import { configure, Prometheus } from '../client';
@@ -46,72 +49,77 @@ const defaultOptions = {
 };
 
 const getMetrics = (options: TDefaultedPromsterOptions) => ({
-  graphQlParseDuration:
-    shouldObserveGraphQlParseDurationAsHistogram(options) &&
-    asArray(options.metricNames.graphQlParseDuration).map(
-      (nameOfGraphQlParseDuration: string) =>
-        new Prometheus.Histogram({
-          name: `${options.metricPrefix}${nameOfGraphQlParseDuration}`,
-          help: 'The GraphQL request parse time in seconds.',
-          labelNames: defaultLabels.concat(options.labels).sort(),
-          buckets: options.buckets || defaultGraphQlPercentiles,
-        })
-    ),
+  graphQlParseDuration: shouldObserveGraphQlParseDurationAsHistogram(options)
+    ? asArray(options.metricNames.graphQlParseDuration).map(
+        (nameOfGraphQlParseDuration: string) =>
+          new Prometheus.Histogram({
+            name: `${options.metricPrefix}${nameOfGraphQlParseDuration}`,
+            help: 'The GraphQL request parse time in seconds.',
+            labelNames: defaultLabels.concat(options.labels).sort(),
+            buckets: options.buckets || defaultGraphQlPercentiles,
+          })
+      )
+    : undefined,
 
-  graphQlValidationDuration:
-    shouldObserveGraphQlValidationDurationAsHistogram(options) &&
-    asArray(options.metricNames.graphQlValidationDuration).map(
-      (nameOfGraphQlValidationDuration: string) =>
-        new Prometheus.Histogram({
-          name: `${options.metricPrefix}${nameOfGraphQlValidationDuration}`,
-          help: 'The GraphQL request validation time in seconds.',
-          labelNames: defaultLabels.concat(options.labels).sort(),
-          buckets: options.buckets || defaultGraphQlPercentiles,
-        })
-    ),
+  graphQlValidationDuration: shouldObserveGraphQlValidationDurationAsHistogram(
+    options
+  )
+    ? asArray(options.metricNames.graphQlValidationDuration).map(
+        (nameOfGraphQlValidationDuration: string) =>
+          new Prometheus.Histogram({
+            name: `${options.metricPrefix}${nameOfGraphQlValidationDuration}`,
+            help: 'The GraphQL request validation time in seconds.',
+            labelNames: defaultLabels.concat(options.labels).sort(),
+            buckets: options.buckets || defaultGraphQlPercentiles,
+          })
+      )
+    : undefined,
 
   graphQlResolveFieldDuration:
-    shouldObserveGraphQlResolveFieldDurationAsHistogram(options) &&
-    asArray(options.metricNames.graphQlResolveFieldDuration).map(
-      (nameOfGraphQlResolveFieldDuration: string) =>
-        new Prometheus.Histogram({
-          name: `${options.metricPrefix}${nameOfGraphQlResolveFieldDuration}`,
-          help: 'The GraphQL field resolving time in seconds.',
-          labelNames: defaultLabels
-            .concat(['field_name'])
-            .concat(options.labels)
-            .sort(),
-          buckets: options.buckets || defaultGraphQlPercentiles,
-        })
-    ),
+    shouldObserveGraphQlResolveFieldDurationAsHistogram(options)
+      ? asArray(options.metricNames.graphQlResolveFieldDuration).map(
+          (nameOfGraphQlResolveFieldDuration: string) =>
+            new Prometheus.Histogram({
+              name: `${options.metricPrefix}${nameOfGraphQlResolveFieldDuration}`,
+              help: 'The GraphQL field resolving time in seconds.',
+              labelNames: defaultLabels
+                .concat(['field_name'])
+                .concat(options.labels)
+                .sort(),
+              buckets: options.buckets || defaultGraphQlPercentiles,
+            })
+        )
+      : undefined,
 
-  graphQlRequestDuration:
-    shouldObserveGraphQlResolveFieldDurationAsHistogram(options) &&
-    asArray(options.metricNames.graphQlRequestDuration).map(
-      (nameOfGraphQlRequestDuration: string) =>
-        new Prometheus.Histogram({
-          name: `${options.metricPrefix}${nameOfGraphQlRequestDuration}`,
-          help: 'The GraphQL request duration time in seconds.',
-          labelNames: defaultLabels.concat(options.labels).sort(),
-          buckets: options.buckets || defaultGraphQlPercentiles,
-        })
-    ),
+  graphQlRequestDuration: shouldObserveGraphQlRequestDurationAsHistogram(
+    options
+  )
+    ? asArray(options.metricNames.graphQlRequestDuration).map(
+        (nameOfGraphQlRequestDuration: string) =>
+          new Prometheus.Histogram({
+            name: `${options.metricPrefix}${nameOfGraphQlRequestDuration}`,
+            help: 'The GraphQL request duration time in seconds.',
+            labelNames: defaultLabels.concat(options.labels).sort(),
+            buckets: options.buckets || defaultGraphQlPercentiles,
+          })
+      )
+    : undefined,
 
-  graphQlErrorsTotal:
-    shouldObserveGraphQlErrorsTotalAsCounter(options) &&
-    asArray(options.metricNames.graphQlErrorsTotal).map(
-      (nameOfGraphQlErrorsCount: string) =>
-        new Prometheus.Counter({
-          name: `${options.metricPrefix}${nameOfGraphQlErrorsCount}`,
-          help: 'Count of errors while parsing, validating, or executing a GraphQL operation.',
-          labelNames: defaultLabels.concat(options.labels).sort(),
-        })
-    ),
+  graphQlErrorsTotal: shouldObserveGraphQlErrorsTotalAsCounter(options)
+    ? asArray(options.metricNames.graphQlErrorsTotal).map(
+        (nameOfGraphQlErrorsCount: string) =>
+          new Prometheus.Counter({
+            name: `${options.metricPrefix}${nameOfGraphQlErrorsCount}`,
+            help: 'Count of errors while parsing, validating, or executing a GraphQL operation.',
+            labelNames: defaultLabels.concat(options.labels).sort(),
+          })
+      )
+    : undefined,
 });
 
 const createGraphQlMetrics = (
   options: TDefaultedPromsterOptions
-): THttpMetrics => {
+): TGraphQlMetrics => {
   const defaultedOptions: TDefaultedPromsterOptions = merge(
     defaultOptions,
     options
