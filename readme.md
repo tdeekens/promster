@@ -39,20 +39,18 @@
 
 ## ❯ Package Status
 
-| Package                                   | Version                                                | Dependencies                                                                         | Downloads                                                       |
-| ----------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------------------------------------ | --------------------------------------------------------------- |
-| [`promster/hapi`](/packages/hapi)         | [![hapi Version][hapi-icon]][hapi-version]             | [![hapi Dependencies Status][hapi-dependencies-icon]][hapi-dependencies]             | [![hapi Downloads][hapi-downloads]][hapi-downloads]             |
-| [`promster/express`](/packages/express)   | [![express Version][express-icon]][express-version]    | [![express Dependencies Status][express-dependencies-icon]][express-dependencies]    | [![express Downloads][express-downloads]][express-downloads]    |
-| [`promster/marblejs`](/packages/marblejs) | [![marblejs Version][marblejs-icon]][marblejs-version] | [![marblejs Dependencies Status][marblejs-dependencies-icon]][marblejs-dependencies] | [![marblejs Downloads][marblejs-downloads]][marblejs-downloads] |
-| [`promster/fastify`](/packages/fastify)   | [![fastify Version][fastify-icon]][fastify-version]    | [![fastify Dependencies Status][fastify-dependencies-icon]][fastify-dependencies]    | [![fastify Downloads][fastify-downloads]][fastify-downloads]    |
-| [`promster/apollo`](/packages/apollo)     | [![apollo Version][apollo-icon]][apollo-version]       | [![apollo Dependencies Status][apollo-dependencies-icon]][apollo-dependencies]       | [![apollo Downloads][apollo-downloads]][apollo-downloads]       |
-| [`promster/server`](/packages/server)     | [![server Version][server-icon]][server-version]       | [![server Dependencies Status][server-dependencies-icon]][server-dependencies]       | [![server Downloads][server-downloads]][server-downloads]       |
-| [`promster/metrics`](/packages/metrics)   | [![metrics Version][metrics-icon]][metrics-version]    | [![metrics Dependencies Status][metrics-dependencies-icon]][metrics-dependencies]    | [![metrics Downloads][metrics-downloads]][metrics-downloads]    |
+| Package                                   | Version                                                |                                                                 | Downloads |
+| ----------------------------------------- | ------------------------------------------------------ | --------------------------------------------------------------- | --------- |
+| [`promster/hapi`](/packages/hapi)         | [![hapi Version][hapi-icon]][hapi-version]             | [![hapi Downloads][hapi-downloads]][hapi-downloads]             |
+| [`promster/express`](/packages/express)   | [![express Version][express-icon]][express-version]    | [![express Downloads][express-downloads]][express-downloads]    |
+| [`promster/marblejs`](/packages/marblejs) | [![marblejs Version][marblejs-icon]][marblejs-version] | [![marblejs Downloads][marblejs-downloads]][marblejs-downloads] |
+| [`promster/fastify`](/packages/fastify)   | [![fastify Version][fastify-icon]][fastify-version]    | [![fastify Downloads][fastify-downloads]][fastify-downloads]    |
+| [`promster/apollo`](/packages/apollo)     | [![apollo Version][apollo-icon]][apollo-version]       | [![apollo Downloads][apollo-downloads]][apollo-downloads]       |
+| [`promster/server`](/packages/server)     | [![server Version][server-icon]][server-version]       | [![server Downloads][server-downloads]][server-downloads]       |
+| [`promster/metrics`](/packages/metrics)   | [![metrics Version][metrics-icon]][metrics-version]    | [![metrics Downloads][metrics-downloads]][metrics-downloads]    |
 
 [metrics-version]: https://www.npmjs.com/package/@promster/metrics
 [metrics-icon]: https://img.shields.io/npm/v/@promster/metrics.svg?style=flat-square
-[metrics-dependencies]: https://david-dm.org/tdeekens/promster?path=packages/metrics
-[metrics-dependencies-icon]: https://david-dm.org/tdeekens/promster/status.svg?style=flat-square&
 [metrics-downloads]: https://img.shields.io/npm/dm/@promster/metrics.svg
 [hapi-version]: https://www.npmjs.com/package/@promster/hapi
 [hapi-icon]: https://img.shields.io/npm/v/@promster/hapi.svg?style=flat-square
@@ -61,28 +59,18 @@
 [hapi-downloads]: https://img.shields.io/npm/dm/@promster/hapi.svg
 [express-version]: https://www.npmjs.com/package/@promster/express
 [express-icon]: https://img.shields.io/npm/v/@promster/express.svg?style=flat-square
-[express-dependencies]: https://david-dm.org/tdeekens/promster?path=packages/express
-[express-dependencies-icon]: https://david-dm.org/tdeekens/promster/status.svg?style=flat-square&
 [express-downloads]: https://img.shields.io/npm/dm/@promster/express.svg
 [marblejs-version]: https://www.npmjs.com/package/@promster/marblejs
 [marblejs-icon]: https://img.shields.io/npm/v/@promster/marblejs.svg?style=flat-square
-[marblejs-dependencies]: https://david-dm.org/tdeekens/promster?path=packages/marblejs
-[marblejs-dependencies-icon]: https://david-dm.org/tdeekens/promster/status.svg?style=flat-square&
 [marblejs-downloads]: https://img.shields.io/npm/dm/@promster/marblejs.svg
 [fastify-version]: https://www.npmjs.com/package/@promster/fastify
 [fastify-icon]: https://img.shields.io/npm/v/@promster/fastify.svg?style=flat-square
-[fastify-dependencies]: https://david-dm.org/tdeekens/promster?path=packages/fastify
-[fastify-dependencies-icon]: https://david-dm.org/tdeekens/promster/status.svg?style=flat-square&
 [fastify-downloads]: https://img.shields.io/npm/dm/@promster/fastify.svg
 [apollo-version]: https://www.npmjs.com/package/@promster/apollo
 [apollo-icon]: https://img.shields.io/npm/v/@promster/apollo.svg?style=flat-square
-[apollo-dependencies]: https://david-dm.org/tdeekens/promster?path=packages/apollo
-[apollo-dependencies-icon]: https://david-dm.org/tdeekens/promster/status.svg?style=flat-square&
 [apollo-downloads]: https://img.shields.io/npm/dm/@promster/apollo.svg
 [server-version]: https://www.npmjs.com/package/@promster/server
 [server-icon]: https://img.shields.io/npm/v/@promster/server.svg?style=flat-square
-[server-dependencies]: https://david-dm.org/tdeekens/promster?path=packages/server
-[server-dependencies-icon]: https://david-dm.org/tdeekens/promster/status.svg?style=flat-square&
 [server-downloads]: https://img.shields.io/npm/dm/@promster/server.svg
 
 ## ❯ Why another Prometheus exporter for Express and Hapi?
