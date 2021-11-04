@@ -48,7 +48,7 @@ type TPluginOptions = {
 };
 
 const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
-  const allDefaultedOptions = merge(
+  const allDefaultedOptions: TPluginOptions = merge(
     createGcMetrics.defaultOptions,
     createGraphQlMetrics.defaultOptions,
     defaultNormalizers,
@@ -124,9 +124,9 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
               parsingRequestContext
             );
 
-            graphQlMetrics.graphQlParseDuration?.forEach((metric) =>
-              metric.observe(labels, durationS)
-            );
+            graphQlMetrics.graphQlParseDuration?.forEach((metric) => {
+              metric.observe(labels, durationS);
+            });
           };
         },
 
@@ -139,9 +139,9 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
               validationRequestContext
             );
 
-            graphQlMetrics.graphQlValidationDuration?.forEach((metric) =>
-              metric.observe(labels, durationS)
-            );
+            graphQlMetrics.graphQlValidationDuration?.forEach((metric) => {
+              metric.observe(labels, durationS);
+            });
           };
         },
 
@@ -160,8 +160,10 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
                   field_name: info.fieldName,
                 });
 
-                graphQlMetrics.graphQlResolveFieldDuration?.forEach((metric) =>
-                  metric.observe(labels, durationS)
+                graphQlMetrics.graphQlResolveFieldDuration?.forEach(
+                  (metric) => {
+                    metric.observe(labels, durationS);
+                  }
                 );
               };
             },
@@ -175,17 +177,17 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
             responseRequestContext
           );
 
-          graphQlMetrics.graphQlRequestDuration?.forEach((metric) =>
-            metric.observe(labels, durationS)
-          );
+          graphQlMetrics.graphQlRequestDuration?.forEach((metric) => {
+            metric.observe(labels, durationS);
+          });
         },
 
         async didEncounterErrors(errorsContext) {
           const labels = getDefaultLabelsOrSkipMeasurement(errorsContext);
 
-          graphQlMetrics.graphQlErrorsTotal?.forEach((metric) =>
-            metric.inc(labels)
-          );
+          graphQlMetrics.graphQlErrorsTotal?.forEach((metric) => {
+            metric.inc(labels);
+          });
         },
       };
     },
