@@ -1,9 +1,4 @@
-import {
-  createPlugin,
-  getRequestRecorder,
-  signalIsUp,
-  signalIsNotUp,
-} from './plugin';
+import { createPlugin, signalIsUp, signalIsNotUp } from './plugin';
 import {
   getSummary,
   getContentType,
@@ -14,7 +9,6 @@ import {
 
 export {
   createPlugin,
-  getRequestRecorder,
   signalIsUp,
   signalIsNotUp,
   getSummary,

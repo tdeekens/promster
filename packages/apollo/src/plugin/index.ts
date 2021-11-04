@@ -1,8 +1,3 @@
-import {
-  createPlugin,
-  getRequestRecorder,
-  signalIsUp,
-  signalIsNotUp,
-} from './plugin';
+import { createPlugin, signalIsUp, signalIsNotUp } from './plugin';
 
-export { createPlugin, signalIsUp, signalIsNotUp, getRequestRecorder };
+export { createPlugin, signalIsUp, signalIsNotUp };

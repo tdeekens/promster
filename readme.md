@@ -2,9 +2,9 @@
   <img alt="Logo" height="150" src="https://raw.githubusercontent.com/tdeekens/promster/main/logo.png" /><br /><br />
 </p>
 
-<h2 align="center">⏰ Promster - Measure metrics from Hapi, express, Marble.js or Fastify servers with Prometheus 🚦</h2>
+<h2 align="center">⏰ Promster - Measure metrics from Hapi, express, Marble.js, Apollo or Fastify servers with Prometheus 🚦</h2>
 <p align="center">
-  <b>Promster is an Prometheus Exporter for Node.js servers written with Express, Hapi, Marble.js or Fastify.</b>
+  <b>Promster is an Prometheus Exporter for Node.js servers written for Express, Hapi, Marble.js, Apollo or Fastify.</b>
 </p>
 
 <p align="center">
@@ -14,6 +14,7 @@
   · Express
   · Marble.js
   · Fastify
+  · Apollo
   · Prettier
   · TypeScript
   · Jest
@@ -44,6 +45,7 @@
 | [`promster/express`](/packages/express)   | [![express Version][express-icon]][express-version]    | [![express Dependencies Status][express-dependencies-icon]][express-dependencies]    | [![express Downloads][express-downloads]][express-downloads]    |
 | [`promster/marblejs`](/packages/marblejs) | [![marblejs Version][marblejs-icon]][marblejs-version] | [![marblejs Dependencies Status][marblejs-dependencies-icon]][marblejs-dependencies] | [![marblejs Downloads][marblejs-downloads]][marblejs-downloads] |
 | [`promster/fastify`](/packages/fastify)   | [![fastify Version][fastify-icon]][fastify-version]    | [![fastify Dependencies Status][fastify-dependencies-icon]][fastify-dependencies]    | [![fastify Downloads][fastify-downloads]][fastify-downloads]    |
+| [`promster/apollo`](/packages/apollo)     | [![apollo Version][apollo-icon]][apollo-version]       | [![apollo Dependencies Status][apollo-dependencies-icon]][apollo-dependencies]       | [![apollo Downloads][apollo-downloads]][apollo-downloads]       |
 | [`promster/server`](/packages/server)     | [![server Version][server-icon]][server-version]       | [![server Dependencies Status][server-dependencies-icon]][server-dependencies]       | [![server Downloads][server-downloads]][server-downloads]       |
 | [`promster/metrics`](/packages/metrics)   | [![metrics Version][metrics-icon]][metrics-version]    | [![metrics Dependencies Status][metrics-dependencies-icon]][metrics-dependencies]    | [![metrics Downloads][metrics-downloads]][metrics-downloads]    |
 
@@ -72,6 +74,11 @@
 [fastify-dependencies]: https://david-dm.org/tdeekens/promster?path=packages/fastify
 [fastify-dependencies-icon]: https://david-dm.org/tdeekens/promster/status.svg?style=flat-square&
 [fastify-downloads]: https://img.shields.io/npm/dm/@promster/fastify.svg
+[apollo-version]: https://www.npmjs.com/package/@promster/apollo
+[apollo-icon]: https://img.shields.io/npm/v/@promster/apollo.svg?style=flat-square
+[apollo-dependencies]: https://david-dm.org/tdeekens/promster?path=packages/apollo
+[apollo-dependencies-icon]: https://david-dm.org/tdeekens/promster/status.svg?style=flat-square&
+[apollo-downloads]: https://img.shields.io/npm/dm/@promster/apollo.svg
 [server-version]: https://www.npmjs.com/package/@promster/server
 [server-icon]: https://img.shields.io/npm/v/@promster/server.svg?style=flat-square
 [server-dependencies]: https://david-dm.org/tdeekens/promster?path=packages/server
@@ -118,12 +125,19 @@ Promster has to be setup with your server. Either as an Express middleware of an
 
 > Please, do not be scared by the variety of options. `@promster` can be setup without any additional configuration options and has sensible defaults. However, trying to suit many needs and different existing setups (e.g. metrics in milliseconds or having recording rules over histograms) it comes with all those options listed below.
 
-The following metrics are exposed:
+## The following metrics are exposed
+
+### Garbage Collection
 
 - `up`: an indication if the server is started: either 0 or 1
 - `nodejs_gc_runs_total`: total garbage collections count
 - `nodejs_gc_pause_seconds_total`: time spent in garbage collection
 - `nodejs_gc_reclaimed_bytes_total`: number of bytes reclaimed by garbage collection
+
+With all garbage collection metrics a `gc_type` label with one of: `unknown`, `scavenge`, `mark_sweep_compact`, `scavenge_and_mark_sweep_compact`, `incremental_marking`, `weak_phantom` or `all` will be recorded.
+
+### HTTP Timings (Hapi, Express, Marble.js and Fastify)
+
 - `http_requests_total`: a Prometheus counter for the http request total
   - This metric is also exposed on the following histogram and summary which both have a `_sum` and `_count` and enabled for ease of use. It can be disabled by configuring with `metricTypes: Array<String>`.
 - `http_request_duration_seconds`: a Prometheus histogram with request time buckets in milliseconds (defaults to `[ 0.05, 0.1, 0.3, 0.5, 0.8, 1, 1.5, 2, 3, 5, 10 ]`)
@@ -137,7 +151,6 @@ The following metrics are exposed:
   - This metric is disabled by default and can be enabled by passing `metricTypes: ['httpContentLengthHistogram]`.
 
 In addition with each http request metric the following default labels are measured: `method`, `status_code` and `path`. You can configure more `labels` (see below).
-With all garbage collection metrics a `gc_type` label with one of: `unknown`, `scavenge`, `mark_sweep_compact`, `scavenge_and_mark_sweep_compact`, `incremental_marking`, `weak_phantom` or `all` will be recorded.
 
 Given you pass `{ accuracies: ['ms'], metricTypes: ['httpRequestsTotal', 'httpRequestsSummary', 'httpRequestsHistogram'] }` you would get millisecond based metrics instead.
 
@@ -146,6 +159,16 @@ Given you pass `{ accuracies: ['ms'], metricTypes: ['httpRequestsTotal', 'httpRe
 - `http_request_duration_per_percentile_milliseconds`: a Prometheus summary with request time percentiles in milliseconds (defaults to `[ 0.5, 0.9, 0.99 ]`)
 
 You can also opt out of either the Prometheus summary or histogram by passing in `{ metricTypes: ['httpRequestsSummary'] }`, `{ metricTypes: ['httpRequestsHistogram'] }` or `{ metricTypes: ['httpRequestsTotal'] }`. In addition you may also pass `{ accuracies: ['ms', 's'] }`. This can be useful if you need to migrate our dashboards from one accuracy to the other but can not afford to lose metric ingestion in the meantime. These two options should give fine enough control over what accuracy and metric types will be ingested in your Prometheus cluster.
+
+### GraphQL Timings (Apollo)
+
+- `graphql_parse_duration_seconds`: a Prometheus histogram with the request parse duration in seconds.
+- `graphql_validation_duration_seconds`: a Prometheus histogram with the request validation duration in seconds.
+- `graphql_resolve_field_duration_seconds`: a Prometheus histogram with the field resolving duration in seconds.
+- `graphql_request_duration_seconds`: a Prometheus histogram with the request duration in seconds.
+- `graphql_errors_total`: a Prometheus counter with the errors occurred during parsing, validation or field resolving.
+
+In addition with each GraphQL request metric the following default labels are measured: `operation_name` and `field_name`. For errors a `phase` label is present.
 
 ### `@promster/express`
 
@@ -236,6 +259,20 @@ const serveMetrics$ = r
       })
     )
   );
+```
+
+### `@promster/apollo`
+
+```js
+const { createPlugin } = require('@promster/apollo');
+
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  plugins: [createPromsterMetricsPlugin()],
+});
+
+await server.listen();
 ```
 
 When creating either the Express middleware or Hapi plugin the following options can be passed:
