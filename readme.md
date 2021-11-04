@@ -39,8 +39,8 @@
 
 ## ❯ Package Status
 
-| Package                                   | Version                                                |                                                                 | Downloads |
-| ----------------------------------------- | ------------------------------------------------------ | --------------------------------------------------------------- | --------- |
+| Package                                   | Version                                                | Downloads                                                       |
+| ----------------------------------------- | ------------------------------------------------------ | --------------------------------------------------------------- |
 | [`promster/hapi`](/packages/hapi)         | [![hapi Version][hapi-icon]][hapi-version]             | [![hapi Downloads][hapi-downloads]][hapi-downloads]             |
 | [`promster/express`](/packages/express)   | [![express Version][express-icon]][express-version]    | [![express Downloads][express-downloads]][express-downloads]    |
 | [`promster/marblejs`](/packages/marblejs) | [![marblejs Version][marblejs-icon]][marblejs-version] | [![marblejs Downloads][marblejs-downloads]][marblejs-downloads] |
