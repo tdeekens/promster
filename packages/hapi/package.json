@@ -5,7 +5,6 @@
   "main": "dist/promster-hapi.cjs.js",
   "typings": "dist/promster-hapi.cjs.d.ts",
   "types": "dist/promster-hapi.cjs.d.ts",
-  "scripts": {},
   "files": [
     "readme.md",
     "package.json",

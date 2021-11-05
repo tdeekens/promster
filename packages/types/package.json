@@ -5,7 +5,6 @@
   "main": "dist/promster-types.cjs.js",
   "typings": "dist/promster-types.cjs.d.ts",
   "types": "dist/promster-types.cjs.d.ts",
-  "scripts": {},
   "files": [
     "readme.md",
     "package.json",

@@ -5,7 +5,6 @@
   "main": "dist/promster-marblejs.cjs.js",
   "typings": "dist/promster-marblejs.cjs.d.ts",
   "types": "dist/promster-marblejs.cjs.d.ts",
-  "scripts": {},
   "files": [
     "readme.md",
     "package.json",

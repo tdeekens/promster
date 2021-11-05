@@ -5,7 +5,6 @@
   "main": "dist/promster-fastify.cjs.js",
   "typings": "dist/promster-fastify.cjs.d.ts",
   "types": "dist/promster-fastify.cjs.d.ts",
-  "scripts": {},
   "files": [
     "readme.md",
     "package.json",

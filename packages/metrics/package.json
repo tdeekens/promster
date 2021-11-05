@@ -5,7 +5,6 @@
   "main": "dist/promster-metrics.cjs.js",
   "typings": "dist/promster-metrics.cjs.d.ts",
   "types": "dist/promster-metrics.cjs.d.ts",
-  "scripts": {},
   "files": [
     "readme.md",
     "package.json",
