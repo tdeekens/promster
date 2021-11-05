@@ -25,10 +25,6 @@
     "prerelease": "cross-env NODE_ENV=production yarn auth && yarn build",
     "release": "changeset publish"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/tdeekens/promster.git"
-  },
   "author": "Tobias Deekens <nerd@tdeekens.name>",
   "engines": {
     "node": ">=14",
