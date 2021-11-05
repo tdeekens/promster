@@ -21,7 +21,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tdeekens/promster.git"
+    "url": "https://github.com/commercetools/test-data.git",
+    "directory": "packages/express"
   },
   "author": "Tobias Deekens <nerd@tdeekens.name>",
   "license": "MIT",

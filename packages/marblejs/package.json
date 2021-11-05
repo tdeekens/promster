@@ -21,7 +21,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tdeekens/promster.git"
+    "url": "https://github.com/commercetools/test-data.git",
+    "directory": "packages/marblejs"
   },
   "author": "Lukas Sulik <l.nuzky@gmail.com>",
   "license": "MIT",
