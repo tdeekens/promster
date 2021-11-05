@@ -5,7 +5,6 @@
   "main": "dist/promster-fastify.cjs.js",
   "typings": "dist/promster-fastify.cjs.d.ts",
   "types": "dist/promster-fastify.cjs.d.ts",
-  "scripts": {},
   "files": [
     "readme.md",
     "package.json",
@@ -22,7 +21,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tdeekens/promster.git"
+    "url": "https://github.com/commercetools/test-data.git",
+    "directory": "packages/fastify"
   },
   "author": "Tobias Deekens <nerd@tdeekens.name>",
   "license": "MIT",
