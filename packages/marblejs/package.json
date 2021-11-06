@@ -43,6 +43,7 @@
   },
   "devDependencies": {
     "@marblejs/core": "4.0.1",
+    "@marblejs/http": "4.0.1",
     "fp-ts": "2.11.5"
   }
 }
