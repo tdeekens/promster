@@ -10,7 +10,7 @@ const {
   getDoesResponseNeedInvocation,
 } = require('./plugin');
 
-async function startServer() {
+async function startServers() {
   const server = new Hapi.Server({
     port: 3000,
     debug: { request: ['error'] },
@@ -48,18 +48,15 @@ async function startServer() {
           });
         }),
       ]),
-    app,
   };
 }
 
-let app;
 let closeServers;
 
 beforeAll(async () => {
-  const startedServer = await startServer();
+  const startedServers = await startServers();
 
-  app = startedServer.app;
-  closeServers = startedServer.close;
+  closeServers = startedServers.close;
 });
 
 afterAll(async () => {

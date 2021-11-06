@@ -2687,6 +2687,7 @@ __metadata:
     fastify: 3.23.0
     fastify-plugin: ^3.0.0
     merge-options: 3.0.4
+    parse-prometheus-text-format: 1.1.1
   languageName: unknown
   linkType: soft
 
@@ -2700,6 +2701,7 @@ __metadata:
     "@promster/types": ^3.1.5
     "@types/hapi__hapi": 20.0.9
     merge-options: 3.0.4
+    parse-prometheus-text-format: 1.1.1
     semver: 7.3.5
     tslib: 2.3.1
   languageName: unknown
