@@ -3,13 +3,6 @@ import type { TDefaultedPromsterOptions, THttpMetrics } from '@promster/types';
 import merge from 'merge-options';
 import { configure, Prometheus } from '../client';
 
-const defaultHttpRequestDurationPercentilesInMillieconds = [
-  0.5, 0.9, 0.95, 0.98, 0.99,
-];
-const defaultHttpRequestDurationInMilliseconds = [
-  50, 100, 300, 500, 800, 1000, 1500, 2000, 3000, 5000, 10000,
-];
-
 const defaultHttpRequestDurationPercentileInSeconds = [
   0.5, 0.9, 0.95, 0.98, 0.99,
 ];
@@ -24,11 +17,6 @@ const defaultLabels = ['path', 'status_code', 'method'];
 const asArray = (maybeArray: Readonly<string[] | string>) =>
   Array.isArray(maybeArray) ? maybeArray : [maybeArray];
 
-const shouldObserveMetricsInSeconds = (options: TDefaultedPromsterOptions) =>
-  options.accuracies.includes('s');
-const shouldObserveMetricsInMilliseconds = (
-  options: TDefaultedPromsterOptions
-) => options.accuracies.includes('ms');
 const shouldObserveHttpRequestsAsSummary = (
   options: TDefaultedPromsterOptions
 ) => options.metricTypes.includes('httpRequestsSummary');
@@ -45,19 +33,14 @@ const shouldObserveHttpContentLengthAsHistogram = (
 const defaultOptions = {
   getLabelValues: () => ({}),
   labels: [],
-  accuracies: ['s'],
   metricPrefix: '',
   metricTypes: ['httpRequestsTotal', 'httpRequestsHistogram'],
   metricNames: {
     httpRequestsTotal: ['http_requests_total'],
-    httpRequestDurationPerPercentileInMilliseconds: [
-      'http_request_duration_per_percentile_milliseconds',
-    ],
     httpRequestDurationPerPercentileInSeconds: [
       'http_request_duration_per_percentile_seconds',
     ],
     httpRequestDurationInSeconds: ['http_request_duration_seconds'],
-    httpRequestDurationInMilliseconds: ['http_request_duration_milliseconds'],
     httpRequestContentLengthInBytes: ['http_request_content_length_bytes'],
     httpResponseContentLengthInBytes: ['http_response_content_length_bytes'],
   },
@@ -88,44 +71,6 @@ const getMetrics = (options: TDefaultedPromsterOptions) => ({
             help: 'The HTTP response content length in bytes.',
             labelNames: defaultLabels.concat(options.labels).sort(),
             buckets: options.buckets || defaultHttpContentLengthInBytes,
-          })
-      )
-    : undefined,
-});
-
-const getHttpRequestLatencyMetricsInMilliseconds = (
-  options: TDefaultedPromsterOptions
-) => ({
-  httpRequestDurationPerPercentileInMilliseconds:
-    shouldObserveHttpRequestsAsSummary(options)
-      ? asArray(
-          options.metricNames.httpRequestDurationPerPercentileInMilliseconds
-        ).map(
-          (
-            nameOfHttpRequestDurationPerPercentileInMillisecondsMetric: string
-          ) =>
-            new Prometheus.Summary({
-              name: `${options.metricPrefix}${nameOfHttpRequestDurationPerPercentileInMillisecondsMetric}`,
-              help: 'The HTTP request latencies in milliseconds.',
-              labelNames: defaultLabels.concat(options.labels).sort(),
-              percentiles:
-                options.percentiles ||
-                defaultHttpRequestDurationPercentilesInMillieconds,
-            })
-        )
-      : undefined,
-
-  httpRequestDurationInMilliseconds: shouldObserveHttpRequestsAsHistogram(
-    options
-  )
-    ? asArray(options.metricNames.httpRequestDurationInMilliseconds).map(
-        (nameOfHttpRequestDurationInMillisecondsMetric: string) =>
-          new Prometheus.Histogram({
-            name: `${options.metricPrefix}${nameOfHttpRequestDurationInMillisecondsMetric}`,
-            help: 'The HTTP request latencies in milliseconds.',
-            labelNames: defaultLabels.concat(options.labels).sort(),
-            buckets:
-              options.buckets || defaultHttpRequestDurationInMilliseconds,
           })
       )
     : undefined,
@@ -192,11 +137,7 @@ const createHttpMetrics = (
 
   const metrics = getMetrics(defaultedOptions);
 
-  const httpRequestLatencyMetricsInMilliseconds =
-    shouldObserveMetricsInMilliseconds(defaultedOptions) &&
-    getHttpRequestLatencyMetricsInMilliseconds(defaultedOptions);
   const httpRequestLatencyMetricsInSeconds =
-    shouldObserveMetricsInSeconds(defaultedOptions) &&
     getHttpRequestLatencyMetricsInSeconds(defaultedOptions);
   const httpRequestCounterMetric =
     getHttpRequestCounterMetric(defaultedOptions);
@@ -204,7 +145,6 @@ const createHttpMetrics = (
   return Object.assign(
     {},
     metrics,
-    httpRequestLatencyMetricsInMilliseconds,
     httpRequestLatencyMetricsInSeconds,
     httpRequestCounterMetric
   );
