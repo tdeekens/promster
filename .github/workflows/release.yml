@@ -14,6 +14,7 @@ jobs:
         run: echo "$GITHUB_CONTEXT"
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
+
       - name: Checkout
         if: github.ref == 'refs/heads/main'
         uses: actions/checkout@v2
@@ -43,6 +44,7 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
+
       - name: Install dependencies
         run: yarn install --immutable
 
@@ -55,12 +57,19 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+      - name: Verify NPM user
+        run: yarn auth
+
+      - name: Building packages
+        run: yarn build
+
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@master
         with:
           title: 'ci(changesets): version packages'
           commit: 'ci(changesets): version packages'
-          publish: yarn release
+          publish: yarn changeset publish
+          version: yarn changeset:version-and-format
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
