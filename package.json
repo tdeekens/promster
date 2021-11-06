@@ -3,9 +3,8 @@
   "name": "promster",
   "description": "Monorepository for promster and its projects e.g. metrics, hapi and express",
   "scripts": {
-    "setup": "husky install && preconstruct dev && manypkg check",
+    "setup": "husky install && preconstruct dev && manypkg check && check-node-version --package --print",
     "auth": "npm_config_registry=https://registry.npmjs.org npm whoami",
-    "postinstall": "check-node-version --package --print && preconstruct dev",
     "develop": "jest --projects .jestrc.*.json --watch",
     "clean": "manypkg exec rm -rf build dist",
     "lint": "jest --config .jestrc.lint.json",

@@ -2,6 +2,7 @@ import type {
   TPromsterOptions,
   THttpMetrics,
   TGcMetrics,
+  TDefaultedPromsterOptions,
 } from '@promster/types';
 import type { TRequestRecorder } from '@promster/metrics';
 import { Application, Request, Response, NextFunction } from 'express';
@@ -63,7 +64,7 @@ type TMiddlewareOptions = {
 const createMiddleware = (
   { app, options }: TMiddlewareOptions = { app: undefined, options: undefined }
 ) => {
-  const allDefaultedOptions = merge(
+  const allDefaultedOptions: TDefaultedPromsterOptions = merge(
     createHttpMetrics.defaultOptions,
     createGcMetrics.defaultOptions,
     createRequestRecorder.defaultOptions,

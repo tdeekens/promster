@@ -2,6 +2,8 @@ import type {
   TPromsterOptions,
   THttpMetrics,
   TGcMetrics,
+  TDefaultedPromsterOptions,
+  TRequestTiming,
 } from '@promster/types';
 import type { TRequestRecorder } from '@promster/metrics';
 import { FastifyInstance, FastifyRequest } from 'fastify';
@@ -50,7 +52,7 @@ const createPlugin = async (
   fastify: FastifyInstance,
   options: TPromsterOptions
 ) => {
-  const allDefaultedOptions = merge(
+  const allDefaultedOptions: TDefaultedPromsterOptions = merge(
     createHttpMetrics.defaultOptions,
     createGcMetrics.defaultOptions,
     createRequestRecorder.defaultOptions,
@@ -76,7 +78,7 @@ const createPlugin = async (
 
   fastify.decorate('Prometheus', Prometheus);
   fastify.decorate('recordRequest', recordRequest);
-  fastify.decorateRequest('__promsterStartTime__', null);
+  fastify.decorateRequest<TRequestTiming | null>('__promsterStartTime__', null);
 
   fastify.addHook('onRequest', async (request, _) => {
     // @ts-expect-error
@@ -87,17 +89,17 @@ const createPlugin = async (
     const labels = Object.assign(
       {},
       {
-        method: allDefaultedOptions.normalizeMethod(request.raw.method, {
-          request,
-          reply,
+        method: allDefaultedOptions.normalizeMethod(request.raw.method || '', {
+          req: request,
+          res: reply,
         }),
         status_code: allDefaultedOptions.normalizeStatusCode(reply.statusCode, {
-          request,
-          reply,
+          req: request,
+          res: reply,
         }),
         path: allDefaultedOptions.normalizePath(extractPath(request), {
-          request,
-          reply,
+          req: request,
+          res: reply,
         }),
       },
       allDefaultedOptions.getLabelValues?.(request, reply)
@@ -108,11 +110,15 @@ const createPlugin = async (
       reply.getHeader('content-length') ?? 0
     );
 
-    const shouldSkipByRequest = allDefaultedOptions.skip?.(request, reply);
+    const shouldSkipByRequest = allDefaultedOptions.skip?.(
+      request,
+      reply,
+      labels
+    );
 
     if (!shouldSkipByRequest && !shouldSkipMetricsByEnvironment) {
       // @ts-expect-error
-      recordRequest(request.__promsterStartTime__, {
+      recordRequest(request.__promsterStartTime__ as TRequestTiming, {
         labels,
         requestContentLength,
         responseContentLength,

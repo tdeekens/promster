@@ -3,15 +3,18 @@ import { Gauge, Counter, Summary, Histogram } from 'prom-client';
 
 export type TLabelValues = Record<string, string | number>;
 
+type TContext<Q, S> = {
+  req: Q;
+  res: S;
+};
 export type TPromsterOptions = {
   labels?: string[];
-  accuracies?: Array<'ms' | 's'>;
   metricPrefix?: string;
   metricTypes?: string[];
   metricNames?: Record<string, string | string[]>;
-  normalizePath?: (path: string) => string;
-  normalizeStatusCode?: (code: number) => number;
-  normalizeMethod?: (method: string) => string;
+  normalizePath?: <Q, S>(path: string, context: TContext<Q, S>) => string;
+  normalizeStatusCode?: <Q, S>(code: number, context: TContext<Q, S>) => number;
+  normalizeMethod?: <Q, S>(method: string, context: TContext<Q, S>) => string;
   getLabelValues?: <Q, S>(request: Q, response: S) => TLabelValues;
   detectKubernetes?: boolean;
   buckets?: [number];

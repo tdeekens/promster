@@ -72,9 +72,9 @@ const recordHandler =
         const labels = Object.assign(
           {},
           {
-            method: opts.normalizeMethod(req.method),
-            status_code: opts.normalizeStatusCode(res.statusCode),
-            path: opts.normalizePath(extractPath(req)),
+            method: opts.normalizeMethod(req.method, { res, req }),
+            status_code: opts.normalizeStatusCode(res.statusCode, { res, req }),
+            path: opts.normalizePath(extractPath(req), { res, req }),
           },
           opts.getLabelValues?.(req, res)
         );

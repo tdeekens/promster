@@ -86,7 +86,6 @@
 6.  👩‍👩‍👧 One library to integrate with Hapi, Express and potentially more (managed as a mono repository)
 7.  🦄 Allow customization of labels while sorting them internally before reporting
 8.  🐼 Expose Prometheus client on Express locals or Hapi app to easily allow adding more app metrics
-9.  ⏰ Allow multiple accuracies in seconds (default), milliseconds or both
 
 ## ❯ Installation
 
@@ -140,13 +139,11 @@ With all garbage collection metrics a `gc_type` label with one of: `unknown`, `s
 
 In addition with each http request metric the following default labels are measured: `method`, `status_code` and `path`. You can configure more `labels` (see below).
 
-Given you pass `{ accuracies: ['ms'], metricTypes: ['httpRequestsTotal', 'httpRequestsSummary', 'httpRequestsHistogram'] }` you would get millisecond based metrics instead.
-
 - `http_requests_total`: a Prometheus counter for the total amount of http requests
 - `http_request_duration_milliseconds`: a Prometheus histogram with request time buckets in milliseconds (defaults to `[ 50, 100, 300, 500, 800, 1000, 1500, 2000, 3000, 5000, 10000 ]`)
 - `http_request_duration_per_percentile_milliseconds`: a Prometheus summary with request time percentiles in milliseconds (defaults to `[ 0.5, 0.9, 0.99 ]`)
 
-You can also opt out of either the Prometheus summary or histogram by passing in `{ metricTypes: ['httpRequestsSummary'] }`, `{ metricTypes: ['httpRequestsHistogram'] }` or `{ metricTypes: ['httpRequestsTotal'] }`. In addition you may also pass `{ accuracies: ['ms', 's'] }`. This can be useful if you need to migrate our dashboards from one accuracy to the other but can not afford to lose metric ingestion in the meantime. These two options should give fine enough control over what accuracy and metric types will be ingested in your Prometheus cluster.
+You can also opt out of either the Prometheus summary or histogram by passing in `{ metricTypes: ['httpRequestsSummary'] }`, `{ metricTypes: ['httpRequestsHistogram'] }` or `{ metricTypes: ['httpRequestsTotal'] }`.
 
 ### GraphQL Timings (Apollo)
 
@@ -270,7 +267,6 @@ When creating either the Express middleware or Hapi plugin the following options
 - `metricTypes`: an `Array<String>` containing one of `histogram`, `summary` or both
 - `metricNames`: an object containing custom names for one or all metrics with keys of `up, countOfGcs, durationOfGc, reclaimedInGc, httpRequestDurationPerPercentileInMilliseconds, httpRequestDurationInMilliseconds, httpRequestDurationPerPercentileInSeconds, httpRequestDurationInSeconds`
   - Note that each value can be an `Array<String>` so `httpRequestDurationInMilliseconds: ['deprecated_name', 'next_name']` which helps when migrated metrics without having gaps in their intake. In such a case `deprecated_name` would be removed after e.g. Recording Rules and dashboards have been adjusted to use `next_name`. During the transition each metric will be captured/recorded twice.
-- `accuracies`: an `Array<String>` containing one of `ms`, `s` or both
 - `getLabelValues`: a function receiving `req` and `res` on reach request. It has to return an object with keys of the configured `labels` above and the respective values
 - `normalizePath`: a function called on each request to normalize the request's path. Invoked with `(path: string, { request, response })`
 - `normalizeStatusCode`: a function called on each request to normalize the respond's status code (e.g. to get 2xx, 5xx codes instead of detailed ones). Invoked with `(statusCode: number, { request, response })`

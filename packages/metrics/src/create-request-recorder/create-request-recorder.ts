@@ -39,7 +39,6 @@ const createRequestRecorder = (
     defaultedRecorderOptions
   );
 
-  // eslint-disable-next-line complexity
   return (start: TRequestTiming, recordingOptions: TRecordingOptions) => {
     const { durationMs, durationS } = endMeasurementFrom(start);
     const labels = sortLabels(recordingOptions.labels);

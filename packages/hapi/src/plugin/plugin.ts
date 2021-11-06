@@ -141,10 +141,20 @@ const createPlugin = (
         const labels = Object.assign(
           {},
           {
-            path: allDefaultedOptions.normalizePath(extractPath(request)),
-            method: allDefaultedOptions.normalizeMethod(request.method),
+            path: allDefaultedOptions.normalizePath(extractPath(request), {
+              req: request,
+              res: response,
+            }),
+            method: allDefaultedOptions.normalizeMethod(request.method, {
+              req: request,
+              res: response,
+            }),
             status_code: allDefaultedOptions.normalizeStatusCode(
-              extractStatusCode(request)
+              extractStatusCode(request),
+              {
+                req: request,
+                res: response,
+              }
             ),
           },
           allDefaultedOptions.getLabelValues?.(request, {})

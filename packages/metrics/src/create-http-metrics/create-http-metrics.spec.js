@@ -45,53 +45,6 @@ describe('createHttpMetrics', () => {
     });
   });
 
-  describe('with millisecond accuracy', () => {
-    beforeEach(() => {
-      metrics = createHttpMetrics({ accuracies: ['ms'] });
-    });
-
-    it('should have `httpRequestDurationInMilliseconds` metric', () => {
-      expect(metrics).toHaveProperty('httpRequestDurationInMilliseconds');
-    });
-
-    describe('with summary enabled', () => {
-      beforeEach(() => {
-        metrics = createHttpMetrics({
-          metricTypes: ['httpRequestsSummary'],
-          accuracies: ['ms'],
-        });
-      });
-
-      it('should have `httpRequestDurationPerPercentileInMilliseconds` metric', () => {
-        expect(metrics).toHaveProperty(
-          'httpRequestDurationPerPercentileInMilliseconds'
-        );
-      });
-    });
-  });
-
-  describe('with both second and millisecond accuracy', () => {
-    beforeEach(() => {
-      metrics = createHttpMetrics({ accuracies: ['s', 'ms'] });
-    });
-
-    it('should have `httpRequestDurationPerPercentileInMilliseconds` metric', () => {
-      expect(metrics).toHaveProperty(
-        'httpRequestDurationPerPercentileInMilliseconds'
-      );
-    });
-
-    it('should have `httpRequestDurationInMilliseconds` metric', () => {
-      expect(metrics).toHaveProperty('httpRequestDurationInMilliseconds');
-    });
-
-    it('should have `httpRequestDurationPerPercentileInSeconds` metric', () => {
-      expect(metrics).toHaveProperty(
-        'httpRequestDurationPerPercentileInSeconds'
-      );
-    });
-  });
-
   describe('with histogram metric type', () => {
     beforeEach(() => {
       metrics = createHttpMetrics({

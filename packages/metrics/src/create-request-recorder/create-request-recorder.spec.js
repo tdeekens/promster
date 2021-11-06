@@ -116,9 +116,7 @@ describe('createRequestRecorder', () => {
 
   describe('with second accuracy', () => {
     beforeEach(() => {
-      recordRequest = createRequestRecorder(metrics, {
-        accuracies: ['s'],
-      });
+      recordRequest = createRequestRecorder(metrics, {});
       recordRequest(start, recordingOptions);
     });
 
@@ -132,80 +130,6 @@ describe('createRequestRecorder', () => {
       expect(
         metrics.httpRequestDurationInSeconds[0].observe
       ).toHaveBeenCalledWith(recordingOptions.labels, expect.anything());
-    });
-  });
-
-  describe('with millisecond accuracy', () => {
-    beforeEach(() => {
-      recordRequest = createRequestRecorder(metrics, {
-        accuracies: ['ms'],
-      });
-      recordRequest(start, recordingOptions);
-    });
-
-    it('should record on `httpRequestDurationInMilliseconds`', () => {
-      expect(
-        metrics.httpRequestDurationInMilliseconds[0].observe
-      ).toHaveBeenCalledWith(recordingOptions.labels, expect.anything());
-    });
-
-    describe('with summary enabled', () => {
-      beforeEach(() => {
-        recordRequest = createRequestRecorder(metrics, {
-          accuracies: ['ms'],
-          metricTypes: ['httpRequestsSummary'],
-        });
-        recordRequest(start, recordingOptions);
-      });
-
-      it('should record on `httpRequestDurationPerPercentileInMilliseconds`', () => {
-        expect(
-          metrics.httpRequestDurationPerPercentileInMilliseconds[0].observe
-        ).toHaveBeenCalledWith(recordingOptions.labels, expect.anything());
-      });
-    });
-  });
-
-  describe('with both second and millisecond accuracy', () => {
-    beforeEach(() => {
-      recordRequest = createRequestRecorder(metrics, {
-        accuracies: ['s', 'ms'],
-      });
-      recordRequest(start, recordingOptions);
-    });
-
-    it('should record on `httpRequestDurationInSeconds`', () => {
-      expect(
-        metrics.httpRequestDurationInSeconds[0].observe
-      ).toHaveBeenCalledWith(recordingOptions.labels, expect.anything());
-    });
-
-    it('should record on `httpRequestDurationPerPercentileInSeconds`', () => {
-      expect(
-        metrics.httpRequestDurationInSeconds[0].observe
-      ).toHaveBeenCalledWith(recordingOptions.labels, expect.anything());
-    });
-
-    it('should record on `httpRequestDurationInMilliseconds`', () => {
-      expect(
-        metrics.httpRequestDurationInMilliseconds[0].observe
-      ).toHaveBeenCalledWith(recordingOptions.labels, expect.anything());
-    });
-
-    describe('with summary enabled', () => {
-      beforeEach(() => {
-        recordRequest = createRequestRecorder(metrics, {
-          accuracies: ['s', 'ms'],
-          metricTypes: ['httpRequestsSummary'],
-        });
-        recordRequest(start, recordingOptions);
-      });
-
-      it('should record on `httpRequestDurationPerPercentileInMilliseconds`', () => {
-        expect(
-          metrics.httpRequestDurationPerPercentileInMilliseconds[0].observe
-        ).toHaveBeenCalledWith(recordingOptions.labels, expect.anything());
-      });
     });
   });
 
