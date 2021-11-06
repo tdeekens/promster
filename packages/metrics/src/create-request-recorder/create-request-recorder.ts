@@ -40,30 +40,8 @@ const createRequestRecorder = (
   );
 
   return (start: TRequestTiming, recordingOptions: TRecordingOptions) => {
-    const { durationMs, durationS } = endMeasurementFrom(start);
+    const { durationS } = endMeasurementFrom(start);
     const labels = sortLabels(recordingOptions.labels);
-
-    if (!shouldSkipMetricsByEnvironment) {
-      metrics.httpRequestDurationInMilliseconds?.forEach(
-        (httpRequestDurationInMillisecondsMetricType) => {
-          httpRequestDurationInMillisecondsMetricType.observe(
-            labels,
-            durationMs
-          );
-        }
-      );
-    }
-
-    if (!shouldSkipMetricsByEnvironment) {
-      metrics.httpRequestDurationPerPercentileInMilliseconds?.forEach(
-        (httpRequestDurationPerPercentileInMillisecondsMetricType) => {
-          httpRequestDurationPerPercentileInMillisecondsMetricType.observe(
-            labels,
-            durationMs
-          );
-        }
-      );
-    }
 
     if (!shouldSkipMetricsByEnvironment) {
       metrics.httpRequestDurationInSeconds?.forEach(

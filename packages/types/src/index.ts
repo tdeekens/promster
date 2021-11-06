@@ -25,8 +25,6 @@ export type TPromsterOptions = {
 export type TDefaultedPromsterOptions = DeepRequired<TPromsterOptions>;
 
 export type THttpMetrics = {
-  httpRequestDurationPerPercentileInMilliseconds?: Array<Summary<string>>;
-  httpRequestDurationInMilliseconds?: Array<Histogram<string>>;
   httpRequestDurationPerPercentileInSeconds?: Array<Summary<string>>;
   httpRequestDurationInSeconds?: Array<Histogram<string>>;
   httpRequestsTotal?: Array<Counter<string>>;

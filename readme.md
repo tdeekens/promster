@@ -77,7 +77,7 @@
 
 > These packages are a combination of observations and experiences I have had with other exporters which I tried to fix.
 
-1.  🏎 Use `process.hrtime()` for high-resolution real time in metrics in milliseconds (converting from nanoseconds)
+1.  🏎 Use `process.hrtime()` for high-resolution real time in metrics in seconds (converting from nanoseconds)
     - `process.hrtime()` calls libuv's `uv_hrtime`, without system call like `new Date`
 2.  ⚔️ Allow normalization of all pre-defined label values
 3.  🖥 Expose Garbage Collection among other metric of the Node.js process by default
@@ -110,7 +110,7 @@ Please additionally make sure you have a `prom-client` installed. It is a peer d
 
 Promster has to be setup with your server. Either as an Express middleware of an Hapi plugin. You can expose the gathered metrics via a built-in small server or through our own.
 
-> Please, do not be scared by the variety of options. `@promster` can be setup without any additional configuration options and has sensible defaults. However, trying to suit many needs and different existing setups (e.g. metrics in milliseconds or having recording rules over histograms) it comes with all those options listed below.
+> Please, do not be scared by the variety of options. `@promster` can be setup without any additional configuration options and has sensible defaults. However, trying to suit many needs and different existing setups (e.g. metrics having recording rules over histograms) it comes with all those options listed below.
 
 ## The following metrics are exposed
 
@@ -127,10 +127,10 @@ With all garbage collection metrics a `gc_type` label with one of: `unknown`, `s
 
 - `http_requests_total`: a Prometheus counter for the http request total
   - This metric is also exposed on the following histogram and summary which both have a `_sum` and `_count` and enabled for ease of use. It can be disabled by configuring with `metricTypes: Array<String>`.
-- `http_request_duration_seconds`: a Prometheus histogram with request time buckets in milliseconds (defaults to `[ 0.05, 0.1, 0.3, 0.5, 0.8, 1, 1.5, 2, 3, 5, 10 ]`)
+- `http_request_duration_seconds`: a Prometheus histogram with request time buckets in seconds (defaults to `[ 0.05, 0.1, 0.3, 0.5, 0.8, 1, 1.5, 2, 3, 5, 10 ]`)
   - A histogram exposes a `_sum` and `_count` which are a duplicate to the above counter metric.
   - A histogram can be used to compute percentiles with a PromQL query using the `histogram_quantile` function. It is advised to create a Prometheus recording rule for performance.
-- `http_request_duration_per_percentile_seconds`: a Prometheus summary with request time percentiles in milliseconds (defaults to `[ 0.5, 0.9, 0.99 ]`)
+- `http_request_duration_per_percentile_seconds`: a Prometheus summary with request time percentiles in seconds (defaults to `[ 0.5, 0.9, 0.99 ]`)
   - This metric is disabled by default and can be enabled by passing `metricTypes: ['httpRequestsSummary]`. It exists for cases in which the above histogram is not sufficient, slow or recording rules can not be set up.
 - `http_request_content_length_bytes`: a Prometheus histogram with the request content length in bytes (defaults to `[ 100000, 200000, 500000, 1000000, 1500000, 2000000, 3000000, 5000000, 10000000, ]`)
   - This metric is disabled by default and can be enabled by passing `metricTypes: ['httpContentLengthHistogram]`.
@@ -140,8 +140,6 @@ With all garbage collection metrics a `gc_type` label with one of: `unknown`, `s
 In addition with each http request metric the following default labels are measured: `method`, `status_code` and `path`. You can configure more `labels` (see below).
 
 - `http_requests_total`: a Prometheus counter for the total amount of http requests
-- `http_request_duration_milliseconds`: a Prometheus histogram with request time buckets in milliseconds (defaults to `[ 50, 100, 300, 500, 800, 1000, 1500, 2000, 3000, 5000, 10000 ]`)
-- `http_request_duration_per_percentile_milliseconds`: a Prometheus summary with request time percentiles in milliseconds (defaults to `[ 0.5, 0.9, 0.99 ]`)
 
 You can also opt out of either the Prometheus summary or histogram by passing in `{ metricTypes: ['httpRequestsSummary'] }`, `{ metricTypes: ['httpRequestsHistogram'] }` or `{ metricTypes: ['httpRequestsTotal'] }`.
 
@@ -265,8 +263,8 @@ When creating either the Express middleware or Hapi plugin the following options
 - `labels`: an `Array<String>` of custom labels to be configured both on all metrics mentioned above
 - `metricPrefix`: a prefix applied to all metrics. The prom-client's default metrics and the request metrics
 - `metricTypes`: an `Array<String>` containing one of `histogram`, `summary` or both
-- `metricNames`: an object containing custom names for one or all metrics with keys of `up, countOfGcs, durationOfGc, reclaimedInGc, httpRequestDurationPerPercentileInMilliseconds, httpRequestDurationInMilliseconds, httpRequestDurationPerPercentileInSeconds, httpRequestDurationInSeconds`
-  - Note that each value can be an `Array<String>` so `httpRequestDurationInMilliseconds: ['deprecated_name', 'next_name']` which helps when migrated metrics without having gaps in their intake. In such a case `deprecated_name` would be removed after e.g. Recording Rules and dashboards have been adjusted to use `next_name`. During the transition each metric will be captured/recorded twice.
+- `metricNames`: an object containing custom names for one or all metrics with keys of `up, countOfGcs, durationOfGc, reclaimedInGc, httpRequestDurationPerPercentileInSeconds, httpRequestDurationInSeconds`
+  - Note that each value can be an `Array<String>` so `httpRequestDurationInSeconds: ['deprecated_name', 'next_name']` which helps when migrated metrics without having gaps in their intake. In such a case `deprecated_name` would be removed after e.g. Recording Rules and dashboards have been adjusted to use `next_name`. During the transition each metric will be captured/recorded twice.
 - `getLabelValues`: a function receiving `req` and `res` on reach request. It has to return an object with keys of the configured `labels` above and the respective values
 - `normalizePath`: a function called on each request to normalize the request's path. Invoked with `(path: string, { request, response })`
 - `normalizeStatusCode`: a function called on each request to normalize the respond's status code (e.g. to get 2xx, 5xx codes instead of detailed ones). Invoked with `(statusCode: number, { request, response })`
@@ -394,13 +392,13 @@ A recording rule for this query could be named `status_code:http_requests:rate5m
 
 A recording rule for this query could be named `http_requests_per_status_code5xx:ratio_rate5m`
 
-#### `http_request_duration_seconds` (works for \_milliseconds too)
+#### `http_request_duration_seconds`
 
 > Http requests per proxy target
 
 `sum by (proxied_to) (increase(http_request_duration_seconds_count{proxied_to!=""}[2m]))`
 
-A recording rule for this query should be named something like `proxied_to_:http_request_duration_milliseconds:increase2m`.
+A recording rule for this query should be named something like `proxied_to_:http_request_duration_seconds:increase2m`.
 
 > 99th percentile of http request latency per proxy target
 
@@ -408,7 +406,7 @@ A recording rule for this query should be named something like `proxied_to_:http
 
 A recording rule for this query could be named `proxied_to_le:http_request_duration_seconds_bucket:p99_rate5m`
 
-#### `http_request_duration_per_percentile_seconds` (works for \_milliseconds too)
+#### `http_request_duration_per_percentile_seconds`
 
 > Maximum 99th percentile of http request latency by Kubernetes pod
 
