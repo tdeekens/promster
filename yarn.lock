@@ -2511,7 +2511,7 @@ __metadata:
     lodash.once: 4.1.1
     merge-options: 3.0.4
     optional: 0.1.4
-    prom-client: 14.0.0
+    prom-client: 14.0.1
     ts-essentials: 9.0.0
     tslib: 2.3.1
     typescript: 4.4.4
@@ -2539,7 +2539,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@promster/types@workspace:packages/types"
   dependencies:
-    prom-client: 14.0.0
+    prom-client: 14.0.1
   peerDependencies:
     prom-client: 13.x.x || 14.x
   languageName: unknown
@@ -9484,12 +9484,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prom-client@npm:14.0.0":
-  version: 14.0.0
-  resolution: "prom-client@npm:14.0.0"
+"prom-client@npm:14.0.1":
+  version: 14.0.1
+  resolution: "prom-client@npm:14.0.1"
   dependencies:
     tdigest: ^0.1.1
-  checksum: fb77121b45803b330399f2826a9f558308022a4e403abf6995fa9df05a5573eee8b77be81e04adc2706c6dac00e489475122e75bda90acccdccd27af6dacd827
+  checksum: 864c19b7086eda8fae652385bc8b8aeb155f85922e58672d07a64918a603341e120e65e08f9d77ccab546518dc18930284da8743c2aac3c968f626d7063d6bba
   languageName: node
   linkType: hard
 
