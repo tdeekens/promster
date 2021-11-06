@@ -43,4 +43,4 @@ const createServer = async (
   });
 };
 
-export { createServer as default };
+export { createServer };

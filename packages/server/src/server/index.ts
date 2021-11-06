@@ -1,3 +1,3 @@
-import { default as createServer } from './server';
+import { createServer } from './server';
 
 export { createServer };

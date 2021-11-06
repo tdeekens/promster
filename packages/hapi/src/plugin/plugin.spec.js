@@ -1,148 +1,192 @@
-jest.mock('@promster/metrics', () => ({
-  Prometheus: 'MockPrometheus',
-  createHttpMetrics: jest.fn(),
-  createGcMetrics: jest.fn(),
-  createRequestRecorder: jest.fn(() => jest.fn()),
-  createGcObserver: jest.fn(() => jest.fn()),
-  defaultNormalizers: {
-    normalizePath: jest.fn((_) => _),
-    normalizeStatusCode: jest.fn((_) => _),
-    normalizeMethod: jest.fn((_) => _),
-  },
-  skipMetricsInEnvironment: jest.fn(() => false),
-}));
-
+const Hapi = require('@hapi/hapi');
+const fetch = require('node-fetch');
+const parsePrometheusTextFormat = require('parse-prometheus-text-format');
 const {
-  createRequestRecorder,
-  createGcObserver,
-} = require('@promster/metrics');
+  createServer: createPrometheusMetricsServer,
+} = require('@promster/server');
 const {
   createPlugin,
   getAreServerEventsSupported,
   getDoesResponseNeedInvocation,
 } = require('./plugin');
 
-describe('plugin', () => {
-  let plugin;
-  describe('when creating plugin', () => {
-    const observeGc = jest.fn();
-    const recordRequest = jest.fn();
-
-    beforeEach(() => {
-      createGcObserver.mockReturnValue(jest.fn(observeGc));
-      createRequestRecorder.mockReturnValue(jest.fn(recordRequest));
-
-      plugin = createPlugin();
-    });
-
-    it('should start observing garbage collection', () => {
-      expect(observeGc).toHaveBeenCalled();
-    });
-
-    describe('when request starts', () => {
-      let server;
-      const startedRequest = {
-        plugins: {},
-        method: 'GET',
-        route: {
-          path: 'foo/bar',
-        },
-      };
-      const finishedRequest = {
-        headers: {
-          'content-length': 123,
-        },
-        plugins: { promster: { start: 2 } },
-        method: 'GET',
-        response: {
-          statusCode: 200,
-          headers: {
-            'content-length': 456,
-          },
-        },
-        route: {
-          path: 'foo/bar',
-        },
-      };
-      const reply = {
-        continue: Promise.resolve(),
-      };
-      const options = {};
-      const done = jest.fn();
-
-      beforeEach(() => {
-        class Server {
-          constructor() {
-            this.version = '17.0.0';
-
-            this._handlers = {
-              request: null,
-              response: null,
-            };
-            this.decorate = jest.fn();
-
-            this.events = {
-              on: jest.fn((event, cb) => {
-                if (event === 'request') this._handlers.request = cb;
-                if (event === 'response') this._handlers.response = cb;
-              }),
-            };
-            this.ext = (event, cb) => {
-              if (event === 'onRequest') this._handlers.request = cb;
-            };
-          }
-
-          emit(event, ...args) {
-            this._handlers[event](...args);
-          }
-        }
-        server = new Server();
-
-        plugin.register(server, options, done);
-      });
-
-      it('should decorate the server', () => {
-        expect(server.decorate).toHaveBeenCalledTimes(2);
-      });
-
-      it('should invoke the done callback', () => {
-        expect(done).toHaveBeenCalled();
-      });
-
-      describe('when the request starts', () => {
-        beforeEach(() => {
-          server.emit('request', startedRequest, reply);
-        });
-        it('should assign promster start date on request', () => {
-          expect(startedRequest).toHaveProperty('plugins.promster.start');
-        });
-      });
-
-      describe('when the response finishes', () => {
-        beforeEach(() => {
-          server.emit('response', finishedRequest, reply);
-        });
-        it('should have observed the request', () => {
-          expect(recordRequest).toHaveBeenCalled();
-        });
-
-        it('should pass labels to the observer', () => {
-          expect(recordRequest).toHaveBeenCalledWith(
-            expect.anything(),
-            expect.objectContaining({
-              labels: expect.objectContaining({
-                status_code: finishedRequest.response.statusCode,
-                method: finishedRequest.method,
-                path: finishedRequest.route.path,
-              }),
-              requestContentLength: 123,
-              responseContentLength: 456,
-            })
-          );
-        });
-      });
-    });
+async function startServers() {
+  const server = new Hapi.Server({
+    port: 3000,
+    debug: { request: ['error'] },
   });
+
+  const prometheusMetricsServer = await createPrometheusMetricsServer({
+    port: 1337,
+    detectKubernetes: false,
+  });
+
+  await server.register(createPlugin());
+
+  server.route({
+    method: 'GET',
+    path: '/',
+    config: { auth: false },
+    handler: () => ({ status: 'ok' }),
+  });
+
+  await server.start();
+
+  return {
+    close: async () =>
+      Promise.all([
+        server.stop(),
+        new Promise((resolve, reject) => {
+          prometheusMetricsServer.close((err) => {
+            if (err) {
+              reject(err);
+
+              return;
+            }
+
+            resolve();
+          });
+        }),
+      ]),
+  };
+}
+
+let closeServers;
+
+beforeAll(async () => {
+  const startedServers = await startServers();
+
+  closeServers = startedServers.close;
+});
+
+afterAll(async () => {
+  await closeServers();
+});
+
+it('should up metric', async () => {
+  const response = await fetch('http://0.0.0.0:1337');
+  const rawMetrics = await response.text();
+
+  const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
+
+  expect(parsedMetrics).toEqual(
+    expect.arrayContaining([
+      expect.objectContaining({
+        name: 'up',
+      }),
+    ])
+  );
+});
+
+it('should expose garbage collection metrics', async () => {
+  const response = await fetch('http://0.0.0.0:1337');
+  const rawMetrics = await response.text();
+
+  const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
+
+  expect(parsedMetrics).toEqual(
+    expect.arrayContaining([
+      expect.objectContaining({
+        name: 'process_cpu_user_seconds_total',
+      }),
+      expect.objectContaining({
+        name: 'process_cpu_system_seconds_total',
+      }),
+      expect.objectContaining({
+        name: 'process_cpu_seconds_total',
+      }),
+      expect.objectContaining({
+        name: 'process_start_time_seconds',
+      }),
+      expect.objectContaining({
+        name: 'process_resident_memory_bytes',
+      }),
+      expect.objectContaining({
+        name: 'nodejs_eventloop_lag_seconds',
+      }),
+      expect.objectContaining({
+        name: 'nodejs_gc_runs_total',
+      }),
+      expect.objectContaining({
+        name: 'nodejs_gc_duration_seconds',
+      }),
+      expect.objectContaining({
+        name: 'nodejs_eventloop_lag_max_seconds',
+      }),
+      expect.objectContaining({
+        name: 'nodejs_eventloop_lag_p50_seconds',
+      }),
+      expect.objectContaining({
+        name: 'nodejs_version_info',
+      }),
+    ])
+  );
+});
+
+it('should expose http metrics', async () => {
+  const response = await fetch('http://0.0.0.0:1337');
+  const rawMetrics = await response.text();
+
+  const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
+
+  expect(parsedMetrics).toEqual(
+    expect.arrayContaining([
+      expect.objectContaining({
+        name: 'http_requests_total',
+      }),
+      expect.objectContaining({
+        name: 'http_request_duration_seconds',
+      }),
+    ])
+  );
+});
+
+it('should record http metrics', async () => {
+  await fetch('http://0.0.0.0:3000');
+  const response = await fetch('http://0.0.0.0:1337');
+  const rawMetrics = await response.text();
+
+  const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
+  const httpRequestsTotal = parsedMetrics.find(
+    (metric) => metric.name === 'http_requests_total'
+  ).metrics;
+
+  expect(httpRequestsTotal).toMatchInlineSnapshot(`
+    Array [
+      Object {
+        "labels": Object {
+          "method": "get",
+          "path": "/",
+          "status_code": "200",
+        },
+        "value": "1",
+      },
+    ]
+  `);
+
+  const httpRequestDurationSeconds = parsedMetrics.find(
+    (metric) => metric.name === 'http_request_duration_seconds'
+  ).metrics;
+
+  expect(httpRequestDurationSeconds).toMatchInlineSnapshot(`
+    Array [
+      Object {
+        "buckets": Object {
+          "+Inf": "1",
+          "0.05": "1",
+          "0.1": "1",
+          "0.3": "1",
+          "0.5": "1",
+          "0.8": "1",
+          "1": "1",
+          "1.5": "1",
+          "10": "1",
+          "2": "1",
+          "3": "1",
+        },
+      },
+    ]
+  `);
 });
 
 describe('getAreServerEventsSupported', () => {

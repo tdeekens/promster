@@ -1,132 +1,193 @@
-jest.mock('@promster/metrics', () => ({
-  Prometheus: 'MockPrometheus',
-  createHttpMetrics: jest.fn(),
-  createGcMetrics: jest.fn(),
-  createRequestRecorder: jest.fn(() => jest.fn()),
-  createGcObserver: jest.fn(() => jest.fn()),
-  getSummary: jest.fn(() => 'metrics'),
-  getContentType: jest.fn(() => 'text'),
-  defaultNormalizers: {
-    normalizePath: jest.fn((_) => _),
-    normalizeStatusCode: jest.fn((_) => _),
-    normalizeMethod: jest.fn((_) => _),
-  },
-  skipMetricsInEnvironment: jest.fn(() => false),
-}));
-
-const Fastify = require('fastify');
+const fetch = require('node-fetch');
+const parsePrometheusTextFormat = require('parse-prometheus-text-format');
 const {
-  createRequestRecorder,
-  createGcObserver,
-} = require('@promster/metrics');
-const { extractPath, plugin } = require('./plugin');
+  createServer: createPrometheusMetricsServer,
+} = require('@promster/server');
+const Fastify = require('fastify');
+const { plugin } = require('./plugin');
 
-describe('extracting path', () => {
-  let extractedPath;
-  describe('with original url', () => {
-    const req = { raw: { originalUrl: 'originalUrl', url: 'nextUrl' } };
-
-    beforeEach(() => {
-      extractedPath = extractPath(req);
-    });
-
-    it('should extract original url', () => {
-      expect(extractedPath).toEqual(req.raw.originalUrl);
-    });
+async function startServers() {
+  // eslint-disable-next-line new-cap
+  const fastify = Fastify({
+    logger: false,
   });
 
-  describe('with out original url', () => {
-    const req = { raw: { url: 'nextUrl' } };
-
-    beforeEach(() => {
-      extractedPath = extractPath(req);
-    });
-
-    it('should extract url', () => {
-      expect(extractedPath).toEqual(req.raw.url);
-    });
+  const prometheusMetricsServer = await createPrometheusMetricsServer({
+    port: 1337,
+    detectKubernetes: false,
   });
+
+  fastify.register(plugin);
+
+  fastify.get('/', (request, reply) => {
+    reply.send({ status: 'ok' });
+  });
+
+  fastify.listen(3000, '0.0.0.0');
+
+  return {
+    close: async () =>
+      Promise.all([
+        new Promise((resolve, reject) => {
+          fastify.close((err) => {
+            if (err) {
+              reject(err);
+
+              return;
+            }
+
+            resolve();
+          });
+        }),
+        new Promise((resolve, reject) => {
+          prometheusMetricsServer.close((err) => {
+            if (err) {
+              reject(err);
+
+              return;
+            }
+
+            resolve();
+          });
+        }),
+      ]),
+  };
+}
+
+let closeServers;
+
+beforeAll(async () => {
+  const startedServer = await startServers();
+
+  closeServers = startedServer.close;
 });
 
-describe('plugin', () => {
-  let fastify;
+afterAll(async () => {
+  await closeServers();
+});
 
-  beforeEach(async () => {
-    fastify = new Fastify();
-  });
+it('should up metric', async () => {
+  const response = await fetch('http://0.0.0.0:1337');
+  const rawMetrics = await response.text();
 
-  afterEach(async () => {
-    await fastify.close();
-  });
+  const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
 
-  describe('when registering plugin', () => {
-    const observeGc = jest.fn();
+  expect(parsedMetrics).toEqual(
+    expect.arrayContaining([
+      expect.objectContaining({
+        name: 'up',
+      }),
+    ])
+  );
+});
 
-    beforeEach(() => {
-      createGcObserver.mockReturnValue(jest.fn(observeGc));
-    });
+it('should expose garbage collection metrics', async () => {
+  const response = await fetch('http://0.0.0.0:1337');
+  const rawMetrics = await response.text();
 
-    it('should start observing garbage collection', async () => {
-      await fastify.register(plugin).ready();
-      expect(observeGc).toHaveBeenCalled();
-    });
+  const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
 
-    describe('decorates fastify', () => {
-      it('should expose Prometheus on fastify', async () => {
-        await fastify.register(plugin).ready();
+  expect(parsedMetrics).toEqual(
+    expect.arrayContaining([
+      expect.objectContaining({
+        name: 'process_cpu_user_seconds_total',
+      }),
+      expect.objectContaining({
+        name: 'process_cpu_system_seconds_total',
+      }),
+      expect.objectContaining({
+        name: 'process_cpu_seconds_total',
+      }),
+      expect.objectContaining({
+        name: 'process_start_time_seconds',
+      }),
+      expect.objectContaining({
+        name: 'process_resident_memory_bytes',
+      }),
+      expect.objectContaining({
+        name: 'nodejs_eventloop_lag_seconds',
+      }),
+      expect.objectContaining({
+        name: 'nodejs_gc_runs_total',
+      }),
+      expect.objectContaining({
+        name: 'nodejs_gc_duration_seconds',
+      }),
+      expect.objectContaining({
+        name: 'nodejs_eventloop_lag_max_seconds',
+      }),
+      expect.objectContaining({
+        name: 'nodejs_eventloop_lag_p50_seconds',
+      }),
+      expect.objectContaining({
+        name: 'nodejs_version_info',
+      }),
+    ])
+  );
+});
 
-        expect(fastify).toHaveProperty('Prometheus');
-        expect(fastify).toHaveProperty('recordRequest');
-      });
-    });
+it('should expose http metrics', async () => {
+  const response = await fetch('http://0.0.0.0:1337');
+  const rawMetrics = await response.text();
 
-    describe('when request starts', () => {
-      const method = 'GET';
-      const url = '/promster';
+  const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
 
-      describe('decorates fastify request', () => {
-        it('should have __promsterStartTime__ on request', async () => {
-          fastify.route({
-            url,
-            method,
-            handler: (req, reply) => {
-              expect(req).toHaveProperty('__promsterStartTime__');
-              reply.send();
-            },
-          });
+  expect(parsedMetrics).toEqual(
+    expect.arrayContaining([
+      expect.objectContaining({
+        name: 'http_requests_total',
+      }),
+      expect.objectContaining({
+        name: 'http_request_duration_seconds',
+      }),
+    ])
+  );
+});
 
-          await fastify.register(plugin).ready();
-          await fastify.inject({ method, url });
-        });
-      });
+it('should record http metrics', async () => {
+  await fetch('http://0.0.0.0:3000');
+  const response = await fetch('http://0.0.0.0:1337');
+  const rawMetrics = await response.text();
 
-      describe('when the response finishes', () => {
-        const recordRequest = jest.fn();
+  const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
+  const httpRequestsTotal = parsedMetrics.find(
+    (metric) => metric.name === 'http_requests_total'
+  ).metrics;
 
-        beforeEach(async () => {
-          createRequestRecorder.mockReturnValue(jest.fn(recordRequest));
-          await fastify.register(plugin).ready();
-          await fastify.inject({ method, url });
-        });
+  expect(httpRequestsTotal).toMatchInlineSnapshot(`
+    Array [
+      Object {
+        "labels": Object {
+          "method": "get",
+          "path": "/",
+          "status_code": "200",
+        },
+        "value": "1",
+      },
+    ]
+  `);
 
-        it('should have observed the request', async () => {
-          expect(recordRequest).toHaveBeenCalled();
-        });
+  const httpRequestDurationSeconds = parsedMetrics.find(
+    (metric) => metric.name === 'http_request_duration_seconds'
+  ).metrics;
 
-        it('should pass labels to the observer', async () => {
-          expect(recordRequest).toHaveBeenCalledWith(
-            expect.anything(),
-            expect.objectContaining({
-              labels: expect.objectContaining({
-                status_code: 404,
-                method,
-                path: url,
-              }),
-              responseContentLength: 80,
-            })
-          );
-        });
-      });
-    });
-  });
+  expect(httpRequestDurationSeconds).toMatchInlineSnapshot(`
+    Array [
+      Object {
+        "buckets": Object {
+          "+Inf": "1",
+          "0.05": "1",
+          "0.1": "1",
+          "0.3": "1",
+          "0.5": "1",
+          "0.8": "1",
+          "1": "1",
+          "1.5": "1",
+          "10": "1",
+          "2": "1",
+          "3": "1",
+        },
+      },
+    ]
+  `);
 });
