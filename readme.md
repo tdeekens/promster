@@ -247,7 +247,9 @@ const serveMetrics$ = r
 ### `@promster/apollo`
 
 ```js
-const { createPlugin } = require('@promster/apollo');
+const {
+  createPlugin: createPromsterMetricsPlugin,
+} = require('@promster/apollo');
 
 const server = new ApolloServer({
   typeDefs,
