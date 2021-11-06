@@ -2,16 +2,6 @@ const { createRequestRecorder } = require('./create-request-recorder');
 
 describe('createRequestRecorder', () => {
   const createHttpMetrics = () => ({
-    httpRequestDurationInMilliseconds: [
-      {
-        observe: jest.fn(),
-      },
-    ],
-    httpRequestDurationPerPercentileInMilliseconds: [
-      {
-        observe: jest.fn(),
-      },
-    ],
     httpRequestDurationInSeconds: [
       {
         observe: jest.fn(),

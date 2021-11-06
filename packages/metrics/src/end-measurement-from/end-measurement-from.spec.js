@@ -8,10 +8,6 @@ describe('endMeasurementFrom', () => {
     measurement = endMeasurementFrom(start);
   });
 
-  it('should have millisecond duration', () => {
-    expect(measurement).toHaveProperty('durationMs');
-  });
-
   it('should have second duration', () => {
     expect(measurement).toHaveProperty('durationS');
   });
