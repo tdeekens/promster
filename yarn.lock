@@ -2224,12 +2224,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@manypkg/cli@npm:0.18.0":
-  version: 0.18.0
-  resolution: "@manypkg/cli@npm:0.18.0"
+"@manypkg/cli@npm:0.19.0":
+  version: 0.19.0
+  resolution: "@manypkg/cli@npm:0.19.0"
   dependencies:
     "@babel/runtime": ^7.5.5
-    "@manypkg/get-packages": ^1.1.1
+    "@manypkg/get-packages": ^1.1.2
     chalk: ^2.4.2
     detect-indent: ^6.0.0
     find-up: ^4.1.0
@@ -2245,7 +2245,7 @@ __metadata:
     validate-npm-package-name: ^3.0.0
   bin:
     manypkg: bin.js
-  checksum: 801589af8bd9e3b7ce1e25942e5ea0f8348dd6bb17325cf75caffc62ab7f458566179c8cd06a028edbf4754e238a5cfeaecdc8261bc44e3b02fd76271e0f5570
+  checksum: 434062caad74c4072f5956301f6c41b12dfda58e89be72212ff874b69e060b76eb12b3a6031a42fd2a34c2822d4154e9891b1828444743d6ba089573a599b55e
   languageName: node
   linkType: hard
 
@@ -2261,7 +2261,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@manypkg/get-packages@npm:^1.0.1, @manypkg/get-packages@npm:^1.1.1":
+"@manypkg/get-packages@npm:^1.0.1, @manypkg/get-packages@npm:^1.1.2":
   version: 1.1.2
   resolution: "@manypkg/get-packages@npm:1.1.2"
   dependencies:
@@ -9533,7 +9533,7 @@ __metadata:
     "@changesets/cli": 2.17.0
     "@commitlint/cli": 13.2.1
     "@commitlint/config-conventional": 13.2.0
-    "@manypkg/cli": 0.18.0
+    "@manypkg/cli": 0.19.0
     "@preconstruct/cli": 2.1.5
     "@typescript-eslint/eslint-plugin": 5.2.0
     "@typescript-eslint/parser": 5.2.0
