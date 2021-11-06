@@ -122,7 +122,7 @@ it('should expose garbage collection metrics', async () => {
   );
 });
 
-xit('should record http metrics', async () => {
+it.skip('should record http metrics', async () => {
   await fetch('http://0.0.0.0:3000');
   const response = await fetch('http://0.0.0.0:1337');
   const rawMetrics = await response.text();
