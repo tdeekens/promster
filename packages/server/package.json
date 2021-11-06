@@ -1,6 +1,6 @@
 {
   "name": "@promster/server",
-  "version": "7.0.0",
+  "version": "7.0.1",
   "description": "Server exposing metrics under GET /metrics",
   "main": "dist/promster-server.cjs.js",
   "typings": "dist/promster-server.cjs.d.ts",
@@ -36,7 +36,7 @@
     "prometheus"
   ],
   "dependencies": {
-    "@promster/metrics": "^8.0.0",
+    "@promster/metrics": "^9.0.0",
     "tslib": "2.3.1"
   },
   "devDependencies": {
