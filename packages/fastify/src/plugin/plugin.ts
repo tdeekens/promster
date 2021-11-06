@@ -89,7 +89,7 @@ const createPlugin = async (
     const labels = Object.assign(
       {},
       {
-        method: allDefaultedOptions.normalizeMethod(request.raw.method || '', {
+        method: allDefaultedOptions.normalizeMethod(request.raw.method ?? '', {
           req: request,
           res: reply,
         }),
