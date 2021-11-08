@@ -1829,13 +1829,13 @@ __metadata:
   linkType: hard
 
 "@graphql-tools/utils@npm:^8.0.0, @graphql-tools/utils@npm:^8.5.1":
-  version: 8.5.2
-  resolution: "@graphql-tools/utils@npm:8.5.2"
+  version: 8.5.3
+  resolution: "@graphql-tools/utils@npm:8.5.3"
   dependencies:
     tslib: ~2.3.0
   peerDependencies:
     graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
-  checksum: 62501747aa2c83ce5eb41552fe98092eb96433076d693218531de23ea26d25299bdd440340245bd01a7fd520b3e17d58c2b16d045596dd8b0d6d2c9577cf6a65
+  checksum: f5f8e82c46f205c0d48c2d6d160e28183706a86755e7ea31db6e54b32da7db9eecf988d0935538e27cc3706b5031b75798dc85532e11724fdb4578a9a1b00450
   languageName: node
   linkType: hard
 
