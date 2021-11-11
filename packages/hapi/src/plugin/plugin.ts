@@ -29,7 +29,7 @@ import {
 interface TPromsterRequest extends Request {
   plugins: {
     promster: {
-      start: [number, number];
+      start: bigint;
     };
   };
 }
@@ -132,7 +132,7 @@ const createPlugin = (
         request: TPromsterRequest,
         h: ResponseToolkit
       ) => {
-        request.plugins.promster = { start: process.hrtime() };
+        request.plugins.promster = { start: process.hrtime.bigint() };
         // @ts-expect-error
         return doesResponseNeedInvocation ? h.continue() : h.continue;
       };

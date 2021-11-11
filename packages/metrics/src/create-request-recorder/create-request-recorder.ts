@@ -18,7 +18,7 @@ type TRecordingOptions = {
 };
 
 export type TRequestRecorder = (
-  start: TRequestTiming,
+  startTime: TRequestTiming,
   recordingOptions: TRecordingOptions
 ) => void;
 
@@ -39,8 +39,8 @@ const createRequestRecorder = (
     defaultedRecorderOptions
   );
 
-  return (start: TRequestTiming, recordingOptions: TRecordingOptions) => {
-    const { durationS } = endMeasurementFrom(start);
+  return (startTime: TRequestTiming, recordingOptions: TRecordingOptions) => {
+    const { durationS } = endMeasurementFrom(startTime);
     const labels = sortLabels(recordingOptions.labels);
 
     if (!shouldSkipMetricsByEnvironment) {

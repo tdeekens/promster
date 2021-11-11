@@ -1,12 +1,12 @@
 import type { TRequestTiming } from '@promster/types';
 
-const NS_PER_SEC = 1e9;
+const NS_PER_SEC = BigInt(1e9);
 
-function endMeasurementFrom(start: TRequestTiming) {
-  const [seconds, nanoseconds] = process.hrtime(start);
+function endMeasurementFrom(startTime: TRequestTiming) {
+  const endTime = process.hrtime.bigint();
 
   return {
-    durationS: (seconds * NS_PER_SEC + nanoseconds) / NS_PER_SEC,
+    durationS: Number((endTime - startTime) / NS_PER_SEC),
   };
 }
 

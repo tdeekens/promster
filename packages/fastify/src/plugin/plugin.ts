@@ -82,7 +82,7 @@ const createPlugin = async (
 
   fastify.addHook('onRequest', async (request, _) => {
     // @ts-expect-error
-    request.__promsterStartTime__ = process.hrtime();
+    request.__promsterStartTime__ = process.hrtime.bigint();
   });
 
   fastify.addHook('onResponse', async (request, reply) => {

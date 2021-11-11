@@ -51,7 +51,7 @@ type TRecordHandlerOps = TDefaultedPromsterOptions & {
 };
 type TStamp = {
   req: HttpRequest;
-  start: [number, number];
+  start: bigint;
 };
 
 const recordHandler =
@@ -124,7 +124,7 @@ const createMiddleware = ({ options }: TMiddlewareOptions = {}) => {
 
   function middleware(req$: Observable<HttpRequest>, res: HttpResponse) {
     return req$.pipe(
-      map((req) => ({ req, start: process.hrtime() })),
+      map((req) => ({ req, start: process.hrtime.bigint() })),
       tap(
         recordHandler(res, shouldSkipMetricsByEnvironment, allDefaultedOptions)
       ),

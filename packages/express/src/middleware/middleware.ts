@@ -91,7 +91,8 @@ const createMiddleware = (
   }
 
   return (request: Request, response: Response, next: NextFunction) => {
-    const start = process.hrtime();
+    const start = process.hrtime.bigint();
+
     response.on('finish', () => {
       const labels = Object.assign(
         {},

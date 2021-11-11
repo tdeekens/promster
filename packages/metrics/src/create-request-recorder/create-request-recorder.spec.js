@@ -33,7 +33,7 @@ describe('createRequestRecorder', () => {
       a: 'b',
     },
   };
-  const start = [1, 2];
+  const start = BigInt(1232768515903650n);
   let metrics;
   let recordRequest;
 

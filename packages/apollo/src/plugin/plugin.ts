@@ -114,11 +114,11 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
     },
 
     async requestDidStart() {
-      const requestStart = process.hrtime();
+      const requestStart = process.hrtime.bigint();
 
       return {
         async parsingDidStart(parsingRequestContext) {
-          const parseStart = process.hrtime();
+          const parseStart = process.hrtime.bigint();
 
           return async (error) => {
             const { durationS } = endMeasurementFrom(parseStart);
@@ -139,7 +139,7 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
         },
 
         async validationDidStart(validationRequestContext) {
-          const validationStart = process.hrtime();
+          const validationStart = process.hrtime.bigint();
 
           return async (error) => {
             const { durationS } = endMeasurementFrom(validationStart);
@@ -162,7 +162,7 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
         async executionDidStart(executionRequestContext) {
           return {
             willResolveField({ info }) {
-              const fieldResolveStart = process.hrtime();
+              const fieldResolveStart = process.hrtime.bigint();
 
               return (error) => {
                 const { durationS } = endMeasurementFrom(fieldResolveStart);

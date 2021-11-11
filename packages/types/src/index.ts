@@ -47,4 +47,4 @@ export type TGraphQlMetrics = {
 
 export type TValueOf<T> = T[keyof T];
 
-export type TRequestTiming = [number, number];
+export type TRequestTiming = bigint;

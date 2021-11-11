@@ -77,8 +77,8 @@
 
 > These packages are a combination of observations and experiences I have had with other exporters which I tried to fix.
 
-1.  🏎 Use `process.hrtime()` for high-resolution real time in metrics in seconds (converting from nanoseconds)
-    - `process.hrtime()` calls libuv's `uv_hrtime`, without system call like `new Date`
+1.  🏎 Use `process.hrtime.bigint()` for high-resolution real time in metrics in seconds (converting from nanoseconds)
+    - `process.hrtime.bigint()` calls libuv's `uv_hrtime`, without system call like `new Date`
 2.  ⚔️ Allow normalization of all pre-defined label values
 3.  🖥 Expose Garbage Collection among other metric of the Node.js process by default
 4.  🚨 Expose a built-in server to expose metrics quickly (on a different port) while also allowing users to integrate with existing servers
@@ -284,7 +284,7 @@ const fetch = request('node-fetch');
 
 const async fetchSomeData = () => {
   const recordRequest = getRequestRecorder();
-  const start = process.hrtime();
+  const start = process.hrtime.bigint();
 
   const data = await fetch('https://another-api.com').then(res => res.json());
 
