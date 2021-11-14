@@ -1,5 +1,30 @@
 # @promster/apollo
 
+## 1.0.1
+
+### Patch Changes
+
+- [#791](https://github.com/tdeekens/promster/pull/791) [`7f44d2e`](https://github.com/tdeekens/promster/commit/7f44d2e16b506cb53ff0009f4f74a8ccef192ce0) Thanks [@tdeekens](https://github.com/tdeekens)! - Refactor to use `process.hrtime.bigint()` over `process.hrtime()`.
+
+  The [Node.js documentation](https://nodejs.org/api/process.html#processhrtimetime) lists `process.hrtime([time])` as a [legacy feature](https://nodejs.org/api/documentation.html#stability-index). It is no longer recommended for use, and should be avoided. As such it is recommended to use `process.hrtime.bigint()` which works slightly different.
+
+  This change is backwards compatible. A new `timing` module was added to `@promster/metrics` which encapsulates timings so you never have to worry about the details.
+
+  ```diff
+  import { getRequestRecorder } = require('@promster/express');
+  +import { timing } = require('@promster/express');
+
+  +const requestTiming = timing.start();
+  -const requestTiming = process.hrtime();
+
+  recordRequest(requestTiming);
+  ```
+
+  We recommend to change all explicit calls to `process.hrtime()` with calls to `timing.start()` over time. The `recordRequest` function will continue to accept a `[number, number]` as the return of `process.hrtime()` so you can change code as you work with it.
+
+- Updated dependencies [[`7f44d2e`](https://github.com/tdeekens/promster/commit/7f44d2e16b506cb53ff0009f4f74a8ccef192ce0)]:
+  - @promster/metrics@9.1.0
+
 ## 1.0.0
 
 ### Major Changes
