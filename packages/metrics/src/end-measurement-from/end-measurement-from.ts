@@ -1,8 +1,6 @@
-import type { TRequestTiming } from '@promster/types';
-
 const NS_PER_SEC = 1e9;
 
-function endMeasurementFrom(start: TRequestTiming) {
+function endMeasurementFrom(start: [number, number]) {
   const [seconds, nanoseconds] = process.hrtime(start);
 
   return {

@@ -14,8 +14,10 @@ import {
 import { isRunningInKubernetes, skipMetricsInEnvironment } from './environment';
 import { endMeasurementFrom } from './end-measurement-from';
 import { sortLabels } from './sort-labels';
+import { timing } from './timing';
 
 export type { TRequestRecorder } from './create-request-recorder';
+export type { Timing as TPromsterTiming } from './timing';
 
 export {
   Prometheus,
@@ -35,4 +37,5 @@ export {
   skipMetricsInEnvironment,
   endMeasurementFrom,
   sortLabels,
+  timing,
 };

@@ -4,7 +4,7 @@ import type {
   THttpMetrics,
   TGcMetrics,
 } from '@promster/types';
-import type { TRequestRecorder } from '@promster/metrics';
+import type { TRequestRecorder, TPromsterTiming } from '@promster/metrics';
 import type {
   Plugin,
   Request,
@@ -24,12 +24,13 @@ import {
   createGcObserver,
   defaultNormalizers,
   skipMetricsInEnvironment,
+  timing,
 } from '@promster/metrics';
 
 interface TPromsterRequest extends Request {
   plugins: {
     promster: {
-      start: [number, number];
+      timing: TPromsterTiming;
     };
   };
 }
@@ -132,7 +133,7 @@ const createPlugin = (
         request: TPromsterRequest,
         h: ResponseToolkit
       ) => {
-        request.plugins.promster = { start: process.hrtime() };
+        request.plugins.promster = { timing: timing.start() };
         // @ts-expect-error
         return doesResponseNeedInvocation ? h.continue() : h.continue;
       };
@@ -175,7 +176,7 @@ const createPlugin = (
         );
 
         if (!shouldSkipByRequest && !shouldSkipMetricsByEnvironment) {
-          recordRequest(request.plugins.promster.start, {
+          recordRequest(request.plugins.promster.timing, {
             labels,
             requestContentLength,
             responseContentLength,

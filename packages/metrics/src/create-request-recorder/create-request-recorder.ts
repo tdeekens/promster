@@ -3,13 +3,13 @@ import type {
   TDefaultedPromsterOptions,
   TLabelValues,
   THttpMetrics,
-  TRequestTiming,
 } from '@promster/types';
 
 import merge from 'merge-options';
 import { skipMetricsInEnvironment } from '../environment';
 import { sortLabels } from '../sort-labels';
 import { endMeasurementFrom } from '../end-measurement-from';
+import { Timing } from '../timing';
 
 type TRecordingOptions = {
   labels: TLabelValues;
@@ -17,8 +17,9 @@ type TRecordingOptions = {
   responseContentLength?: number;
 };
 
+type TLegacyTiming = [number, number];
 export type TRequestRecorder = (
-  start: TRequestTiming,
+  timing: Timing | TLegacyTiming,
   recordingOptions: TRecordingOptions
 ) => void;
 
@@ -26,6 +27,10 @@ const defaultOptions: TPromsterOptions = {
   skip: () => false,
   detectKubernetes: false,
 };
+
+function isTiming(timing: Timing | TLegacyTiming): timing is Timing {
+  return !Array.isArray(timing);
+}
 
 const createRequestRecorder = (
   metrics: THttpMetrics,
@@ -39,11 +44,17 @@ const createRequestRecorder = (
     defaultedRecorderOptions
   );
 
-  return (start: TRequestTiming, recordingOptions: TRecordingOptions) => {
-    const { durationS } = endMeasurementFrom(start);
+  return (
+    timing: Timing | TLegacyTiming,
+    recordingOptions: TRecordingOptions
+  ) => {
+    const durationS = isTiming(timing)
+      ? timing.end().value().seconds
+      : endMeasurementFrom(timing).durationS;
+
     const labels = sortLabels(recordingOptions.labels);
 
-    if (!shouldSkipMetricsByEnvironment) {
+    if (!shouldSkipMetricsByEnvironment && durationS !== undefined) {
       metrics.httpRequestDurationInSeconds?.forEach(
         (httpRequestDurationInSecondsMetricType) => {
           httpRequestDurationInSecondsMetricType.observe(labels, durationS);
@@ -51,7 +62,7 @@ const createRequestRecorder = (
       );
     }
 
-    if (!shouldSkipMetricsByEnvironment) {
+    if (!shouldSkipMetricsByEnvironment && durationS !== undefined) {
       metrics.httpRequestDurationPerPercentileInSeconds?.forEach(
         (httpRequestDurationPerPercentileInSecondsMetricType) => {
           httpRequestDurationPerPercentileInSecondsMetricType.observe(
@@ -62,7 +73,7 @@ const createRequestRecorder = (
       );
     }
 
-    if (!shouldSkipMetricsByEnvironment) {
+    if (!shouldSkipMetricsByEnvironment && durationS !== undefined) {
       metrics.httpRequestsTotal?.forEach((httpRequestsTotalMetricType) => {
         httpRequestsTotalMetricType.inc(labels);
       });

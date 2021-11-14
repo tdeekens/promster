@@ -3,9 +3,8 @@ import type {
   THttpMetrics,
   TGcMetrics,
   TDefaultedPromsterOptions,
-  TRequestTiming,
 } from '@promster/types';
-import type { TRequestRecorder } from '@promster/metrics';
+import type { TRequestRecorder, TPromsterTiming } from '@promster/metrics';
 import { FastifyInstance, FastifyRequest } from 'fastify';
 
 import fastifyPlugin from 'fastify-plugin';
@@ -18,6 +17,7 @@ import {
   createGcObserver,
   defaultNormalizers,
   skipMetricsInEnvironment,
+  timing,
 } from '@promster/metrics';
 import pkg from '../../package.json';
 
@@ -78,11 +78,11 @@ const createPlugin = async (
 
   fastify.decorate('Prometheus', Prometheus);
   fastify.decorate('recordRequest', recordRequest);
-  fastify.decorateRequest<TRequestTiming | null>('__promsterStartTime__', null);
+  fastify.decorateRequest<TPromsterTiming | null>('__promsterTiming__', null);
 
   fastify.addHook('onRequest', async (request, _) => {
     // @ts-expect-error
-    request.__promsterStartTime__ = process.hrtime();
+    request.__promsterTiming__ = timing.start();
   });
 
   fastify.addHook('onResponse', async (request, reply) => {
@@ -118,7 +118,7 @@ const createPlugin = async (
 
     if (!shouldSkipByRequest && !shouldSkipMetricsByEnvironment) {
       // @ts-expect-error
-      recordRequest(request.__promsterStartTime__ as TRequestTiming, {
+      recordRequest(request.__promsterTiming__, {
         labels,
         requestContentLength,
         responseContentLength,

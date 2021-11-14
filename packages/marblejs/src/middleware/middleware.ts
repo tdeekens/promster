@@ -5,7 +5,7 @@ import type {
   TGcMetrics,
   TLabelValues,
 } from '@promster/types';
-import type { TRequestRecorder } from '@promster/metrics';
+import type { TRequestRecorder, TPromsterTiming } from '@promster/metrics';
 
 import merge from 'merge-options';
 import { HttpRequest, HttpResponse } from '@marblejs/core';
@@ -18,6 +18,7 @@ import {
   createGcObserver,
   defaultNormalizers,
   skipMetricsInEnvironment,
+  timing,
 } from '@promster/metrics';
 
 const extractPath = (req: HttpRequest): string => req.originalUrl || req.url;
@@ -51,7 +52,7 @@ type TRecordHandlerOps = TDefaultedPromsterOptions & {
 };
 type TStamp = {
   req: HttpRequest;
-  start: [number, number];
+  timing: TPromsterTiming;
 };
 
 const recordHandler =
@@ -68,7 +69,7 @@ const recordHandler =
         map((req) => ({ req, res }))
       )
       .subscribe(() => {
-        const { req, start } = stamp;
+        const { req, timing } = stamp;
         const labels = Object.assign(
           {},
           {
@@ -87,7 +88,7 @@ const recordHandler =
         const requestContentLength = Number(req.headers['content-length'] ?? 0);
 
         if (!shouldSkipByRequest && !shouldSkipMetricsByEnvironment) {
-          recordRequest(start, {
+          recordRequest(timing, {
             labels,
             requestContentLength,
             responseContentLength,
@@ -124,7 +125,7 @@ const createMiddleware = ({ options }: TMiddlewareOptions = {}) => {
 
   function middleware(req$: Observable<HttpRequest>, res: HttpResponse) {
     return req$.pipe(
-      map((req) => ({ req, start: process.hrtime() })),
+      map((req) => ({ req, timing: timing.start() })),
       tap(
         recordHandler(res, shouldSkipMetricsByEnvironment, allDefaultedOptions)
       ),
