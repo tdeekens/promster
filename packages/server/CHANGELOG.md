@@ -1,5 +1,14 @@
 # @promster/server
 
+## 7.0.2
+
+### Patch Changes
+
+- [#793](https://github.com/tdeekens/promster/pull/793) [`af32132`](https://github.com/tdeekens/promster/commit/af32132edab21bb9d9a46741448a16021d25b1b9) Thanks [@tdeekens](https://github.com/tdeekens)! - chore: update dependencies
+
+- Updated dependencies [[`7f44d2e`](https://github.com/tdeekens/promster/commit/7f44d2e16b506cb53ff0009f4f74a8ccef192ce0)]:
+  - @promster/metrics@9.1.0
+
 ## 7.0.1
 
 ### Patch Changes
