@@ -1,5 +1,14 @@
 # @promster/express
 
+## 7.0.2
+
+### Patch Changes
+
+- [#794](https://github.com/tdeekens/promster/pull/794) [`06cf42b`](https://github.com/tdeekens/promster/commit/06cf42b46bd216f6c3c182452d6badfe1029c7d3) Thanks [@tdeekens](https://github.com/tdeekens)! - Fix package names from `yarn@3` migration
+
+- Updated dependencies [[`06cf42b`](https://github.com/tdeekens/promster/commit/06cf42b46bd216f6c3c182452d6badfe1029c7d3)]:
+  - @promster/metrics@9.1.1
+
 ## 7.0.1
 
 ### Patch Changes

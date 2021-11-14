@@ -1,5 +1,11 @@
 # @promster/types
 
+## 3.2.2
+
+### Patch Changes
+
+- [#794](https://github.com/tdeekens/promster/pull/794) [`06cf42b`](https://github.com/tdeekens/promster/commit/06cf42b46bd216f6c3c182452d6badfe1029c7d3) Thanks [@tdeekens](https://github.com/tdeekens)! - Fix package names from `yarn@3` migration
+
 ## 3.2.1
 
 ### Patch Changes
