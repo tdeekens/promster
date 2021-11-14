@@ -18,7 +18,7 @@ import {
   createGcObserver,
   defaultNormalizers,
   isRunningInKubernetes,
-  endMeasurementFrom,
+  timing,
 } from '@promster/metrics';
 
 let recordRequest: TRequestRecorder;
@@ -114,20 +114,21 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
     },
 
     async requestDidStart() {
-      const requestStart = process.hrtime.bigint();
+      const requestTiming = timing.start();
 
       return {
         async parsingDidStart(parsingRequestContext) {
-          const parseStart = process.hrtime.bigint();
+          const parseTiming = timing.start();
 
           return async (error) => {
-            const { durationS } = endMeasurementFrom(parseStart);
+            const { seconds: parseDurationSeconds } = parseTiming.end().value();
+
             const labels = getDefaultLabelsOrSkipMeasurement(
               parsingRequestContext
             );
 
             graphQlMetrics.graphQlParseDuration?.forEach((metric) => {
-              metric.observe(labels, durationS);
+              metric.observe(labels, parseDurationSeconds);
             });
 
             if (error) {
@@ -139,16 +140,18 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
         },
 
         async validationDidStart(validationRequestContext) {
-          const validationStart = process.hrtime.bigint();
+          const validationTiming = timing.start();
 
           return async (error) => {
-            const { durationS } = endMeasurementFrom(validationStart);
+            const { seconds: validationDurationSeconds } = validationTiming
+              .end()
+              .value();
             const labels = getDefaultLabelsOrSkipMeasurement(
               validationRequestContext
             );
 
             graphQlMetrics.graphQlValidationDuration?.forEach((metric) => {
-              metric.observe(labels, durationS);
+              metric.observe(labels, validationDurationSeconds);
             });
 
             if (error) {
@@ -162,10 +165,11 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
         async executionDidStart(executionRequestContext) {
           return {
             willResolveField({ info }) {
-              const fieldResolveStart = process.hrtime.bigint();
+              const fieldResolveTiming = timing.start();
 
               return (error) => {
-                const { durationS } = endMeasurementFrom(fieldResolveStart);
+                const { seconds: fieldResolveDurationSeconds } =
+                  fieldResolveTiming.end().value();
 
                 const defaultLabels = getDefaultLabelsOrSkipMeasurement(
                   executionRequestContext
@@ -176,7 +180,7 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
 
                 graphQlMetrics.graphQlResolveFieldDuration?.forEach(
                   (metric) => {
-                    metric.observe(labels, durationS);
+                    metric.observe(labels, fieldResolveDurationSeconds);
                   }
                 );
 
@@ -193,14 +197,16 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
         },
 
         async willSendResponse(responseRequestContext) {
-          const { durationS } = endMeasurementFrom(requestStart);
+          const { seconds: requestDurationSeconds } = requestTiming
+            .end()
+            .value();
 
           const labels = getDefaultLabelsOrSkipMeasurement(
             responseRequestContext
           );
 
           graphQlMetrics.graphQlRequestDuration?.forEach((metric) => {
-            metric.observe(labels, durationS);
+            metric.observe(labels, requestDurationSeconds);
           });
         },
       };

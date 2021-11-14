@@ -5,6 +5,7 @@ import {
   Prometheus,
   defaultRegister,
   defaultNormalizers,
+  timing,
 } from '@promster/metrics';
 
 export {
@@ -16,4 +17,5 @@ export {
   Prometheus,
   defaultRegister,
   defaultNormalizers,
+  timing,
 };

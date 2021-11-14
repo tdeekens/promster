@@ -1,4 +1,5 @@
 const { createRequestRecorder } = require('./create-request-recorder');
+const { timing } = require('../timing');
 
 describe('createRequestRecorder', () => {
   const createHttpMetrics = () => ({
@@ -33,7 +34,7 @@ describe('createRequestRecorder', () => {
       a: 'b',
     },
   };
-  const start = BigInt(1232768515903650n);
+  const testTiming = timing.start();
   let metrics;
   let recordRequest;
 
@@ -46,7 +47,7 @@ describe('createRequestRecorder', () => {
       recordRequest = createRequestRecorder(metrics, {
         metricTypes: ['httpContentLengthHistogram'],
       });
-      recordRequest(start, {
+      recordRequest(testTiming, {
         ...recordingOptions,
         requestContentLength: 123,
         responseContentLength: 456,
@@ -69,7 +70,7 @@ describe('createRequestRecorder', () => {
   describe('without content length', () => {
     beforeEach(() => {
       recordRequest = createRequestRecorder(metrics);
-      recordRequest(start, recordingOptions);
+      recordRequest(testTiming, recordingOptions);
     });
 
     it('should not record on `httpRequestContentLengthInBytes`', () => {
@@ -88,7 +89,7 @@ describe('createRequestRecorder', () => {
   describe('without accuracy', () => {
     beforeEach(() => {
       recordRequest = createRequestRecorder(metrics);
-      recordRequest(start, recordingOptions);
+      recordRequest(testTiming, recordingOptions);
     });
 
     it('should record on `httpRequestDurationInSeconds`', () => {
@@ -107,7 +108,7 @@ describe('createRequestRecorder', () => {
   describe('with second accuracy', () => {
     beforeEach(() => {
       recordRequest = createRequestRecorder(metrics, {});
-      recordRequest(start, recordingOptions);
+      recordRequest(testTiming, recordingOptions);
     });
 
     it('should record on `httpRequestDurationInSeconds`', () => {
@@ -128,7 +129,7 @@ describe('createRequestRecorder', () => {
       recordRequest = createRequestRecorder(metrics, {
         metricTypes: ['httpRequestsTotal'],
       });
-      recordRequest(start, recordingOptions);
+      recordRequest(testTiming, recordingOptions);
     });
     it('should record on `httpRequestsTotal`', () => {
       expect(metrics.httpRequestsTotal[0].inc).toHaveBeenCalledWith(

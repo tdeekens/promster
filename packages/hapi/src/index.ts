@@ -13,6 +13,7 @@ import {
   Prometheus,
   defaultRegister,
   defaultNormalizers,
+  timing,
 } from '@promster/metrics';
 
 const instrument = async (server: Server, options: TPromsterOptions) =>
@@ -29,4 +30,5 @@ export {
   defaultRegister,
   defaultNormalizers,
   instrument,
+  timing,
 };

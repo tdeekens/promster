@@ -1,7 +1,7 @@
 const { endMeasurementFrom } = require('./end-measurement-from');
 
 describe('endMeasurementFrom', () => {
-  const start = process.hrtime.bigint();
+  const start = [1, 2];
   let measurement;
 
   beforeEach(() => {

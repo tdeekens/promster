@@ -16,6 +16,7 @@ import {
   createGcObserver,
   defaultNormalizers,
   skipMetricsInEnvironment,
+  timing,
 } from '@promster/metrics';
 
 interface TApp extends Application {
@@ -91,7 +92,7 @@ const createMiddleware = (
   }
 
   return (request: Request, response: Response, next: NextFunction) => {
-    const start = process.hrtime.bigint();
+    const requestTiming = timing.start();
 
     response.on('finish', () => {
       const labels = Object.assign(
@@ -127,7 +128,7 @@ const createMiddleware = (
       );
 
       if (!shouldSkipByRequest && !shouldSkipMetricsByEnvironment) {
-        recordRequest(start, {
+        recordRequest(requestTiming, {
           labels,
           requestContentLength,
           responseContentLength,
