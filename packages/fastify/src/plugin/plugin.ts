@@ -118,7 +118,7 @@ const createPlugin = async (
 
     if (!shouldSkipByRequest && !shouldSkipMetricsByEnvironment) {
       // @ts-expect-error
-      recordRequest(request.__promsterTiming__, {
+      recordRequest(request.__promsterTiming__ as TPromsterTiming, {
         labels,
         requestContentLength,
         responseContentLength,

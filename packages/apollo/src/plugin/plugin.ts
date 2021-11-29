@@ -127,9 +127,11 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
               parsingRequestContext
             );
 
-            graphQlMetrics.graphQlParseDuration?.forEach((metric) => {
-              metric.observe(labels, parseDurationSeconds);
-            });
+            if (parseDurationSeconds !== undefined) {
+              graphQlMetrics.graphQlParseDuration?.forEach((metric) => {
+                metric.observe(labels, parseDurationSeconds);
+              });
+            }
 
             if (error) {
               graphQlMetrics.graphQlErrorsTotal?.forEach((metric) => {
@@ -150,9 +152,11 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
               validationRequestContext
             );
 
-            graphQlMetrics.graphQlValidationDuration?.forEach((metric) => {
-              metric.observe(labels, validationDurationSeconds);
-            });
+            if (validationDurationSeconds !== undefined) {
+              graphQlMetrics.graphQlValidationDuration?.forEach((metric) => {
+                metric.observe(labels, validationDurationSeconds);
+              });
+            }
 
             if (error) {
               graphQlMetrics.graphQlErrorsTotal?.forEach((metric) => {
@@ -178,11 +182,13 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
                   field_name: info.fieldName,
                 });
 
-                graphQlMetrics.graphQlResolveFieldDuration?.forEach(
-                  (metric) => {
-                    metric.observe(labels, fieldResolveDurationSeconds);
-                  }
-                );
+                if (fieldResolveDurationSeconds !== undefined) {
+                  graphQlMetrics.graphQlResolveFieldDuration?.forEach(
+                    (metric) => {
+                      metric.observe(labels, fieldResolveDurationSeconds);
+                    }
+                  );
+                }
 
                 if (error) {
                   graphQlMetrics.graphQlErrorsTotal?.forEach((metric) => {
@@ -205,9 +211,11 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
             responseRequestContext
           );
 
-          graphQlMetrics.graphQlRequestDuration?.forEach((metric) => {
-            metric.observe(labels, requestDurationSeconds);
-          });
+          if (requestDurationSeconds !== undefined) {
+            graphQlMetrics.graphQlRequestDuration?.forEach((metric) => {
+              metric.observe(labels, requestDurationSeconds);
+            });
+          }
         },
       };
     },
