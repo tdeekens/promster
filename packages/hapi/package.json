@@ -44,7 +44,7 @@
   "devDependencies": {
     "@hapi/boom": "9.1.4",
     "@hapi/hapi": "20.2.1",
-    "@promster/types": "^3.2.2",
+    "@promster/types": "3.2.2",
     "@types/hapi__hapi": "20.0.9",
     "parse-prometheus-text-format": "1.1.1"
   }
