@@ -127,7 +127,7 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
               parsingRequestContext
             );
 
-            if (parseDurationSeconds) {
+            if (parseDurationSeconds !== undefined) {
               graphQlMetrics.graphQlParseDuration?.forEach((metric) => {
                 metric.observe(labels, parseDurationSeconds);
               });
@@ -152,7 +152,7 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
               validationRequestContext
             );
 
-            if (validationDurationSeconds) {
+            if (validationDurationSeconds !== undefined) {
               graphQlMetrics.graphQlValidationDuration?.forEach((metric) => {
                 metric.observe(labels, validationDurationSeconds);
               });
@@ -182,7 +182,7 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
                   field_name: info.fieldName,
                 });
 
-                if (fieldResolveDurationSeconds) {
+                if (fieldResolveDurationSeconds !== undefined) {
                   graphQlMetrics.graphQlResolveFieldDuration?.forEach(
                     (metric) => {
                       metric.observe(labels, fieldResolveDurationSeconds);
@@ -211,7 +211,7 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
             responseRequestContext
           );
 
-          if (requestDurationSeconds) {
+          if (requestDurationSeconds !== undefined) {
             graphQlMetrics.graphQlRequestDuration?.forEach((metric) => {
               metric.observe(labels, requestDurationSeconds);
             });
