@@ -2478,9 +2478,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@marblejs/http@npm:4.0.1":
-  version: 4.0.1
-  resolution: "@marblejs/http@npm:4.0.1"
+"@marblejs/http@npm:4.0.2":
+  version: 4.0.2
+  resolution: "@marblejs/http@npm:4.0.2"
   dependencies:
     "@types/json-schema": ^7.0.3
     "@types/qs": ^6.9.0
@@ -2495,7 +2495,7 @@ __metadata:
     "@marblejs/core": ^4.0.0
     fp-ts: ^2.4.2
     rxjs: ^7.1.0
-  checksum: ffe013b4a046b29b50f50f4338d71ebe90f137de0392a9227626655bb38f4daca63a27d467995665837de6980eff6d400130c9453642b5a215d038a4abff2fcc
+  checksum: d5dd81faa4e5b9bb45965f6c69600d14898a7e04b1a3a8abff3e2a362bd2cafdd566895a4f6c6c6f3e1957400e1bccec2cdeaa9c3a6ae461e8190d0f7d57672d
   languageName: node
   linkType: hard
 
@@ -2685,7 +2685,7 @@ __metadata:
   resolution: "@promster/marblejs@workspace:packages/marblejs"
   dependencies:
     "@marblejs/core": 4.0.2
-    "@marblejs/http": 4.0.1
+    "@marblejs/http": 4.0.2
     "@promster/metrics": ^9.1.1
     fp-ts: 2.11.5
     merge-options: 3.0.4
