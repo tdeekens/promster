@@ -43,7 +43,7 @@
     "ts-essentials": "9.0.0",
     "tslib": "2.3.1",
     "url": "0.11.0",
-    "url-value-parser": "2.0.3"
+    "url-value-parser": "2.1.0"
   },
   "devDependencies": {
     "@promster/types": "^3.2.2",

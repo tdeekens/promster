@@ -2906,7 +2906,7 @@ __metadata:
     tslib: 2.3.1
     typescript: 4.5.2
     url: 0.11.0
-    url-value-parser: 2.0.3
+    url-value-parser: 2.1.0
   peerDependencies:
     prom-client: 13.x.x || 14.x
   dependenciesMeta:
@@ -11878,10 +11878,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"url-value-parser@npm:2.0.3":
-  version: 2.0.3
-  resolution: "url-value-parser@npm:2.0.3"
-  checksum: f13a2693b633896329956372a58a1c0f6666d72b87c85dff05564a132c1a5d2a698ca3097a481bf06afc1f5007c08ec67499136736c25c38f3ee84e877d72732
+"url-value-parser@npm:2.1.0":
+  version: 2.1.0
+  resolution: "url-value-parser@npm:2.1.0"
+  checksum: 6a63eb10a76d10ce6b56c1b33184e105d1fd4f9da43ac401cf638afd7b95874049f8534b0d74d5090dd5ddf41a9a7d203bdd0cc9822c8859db7d7529e954a903
   languageName: node
   linkType: hard
 
