@@ -1,5 +1,11 @@
 # @promster/metrics
 
+## 9.1.2
+
+### Patch Changes
+
+- [#804](https://github.com/tdeekens/promster/pull/804) [`9a1827d`](https://github.com/tdeekens/promster/commit/9a1827da3d4983ce141e77a0e7ea05f11f2bcee6) Thanks [@tdeekens](https://github.com/tdeekens)! - chore: update deps
+
 ## 9.1.1
 
 ### Patch Changes
