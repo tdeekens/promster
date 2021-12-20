@@ -2685,7 +2685,7 @@ __metadata:
     "@hapi/hapi": 20.2.1
     "@promster/metrics": ^9.1.1
     "@promster/types": ^3.2.2
-    "@types/hapi__hapi": 20.0.9
+    "@types/hapi__hapi": 20.0.10
     merge-options: 3.0.4
     parse-prometheus-text-format: 1.1.1
     semver: 7.3.5
@@ -3150,9 +3150,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/hapi__hapi@npm:20.0.9":
-  version: 20.0.9
-  resolution: "@types/hapi__hapi@npm:20.0.9"
+"@types/hapi__hapi@npm:20.0.10":
+  version: 20.0.10
+  resolution: "@types/hapi__hapi@npm:20.0.10"
   dependencies:
     "@hapi/boom": ^9.0.0
     "@hapi/iron": ^6.0.0
@@ -3162,7 +3162,7 @@ __metadata:
     "@types/hapi__shot": "*"
     "@types/node": "*"
     joi: ^17.3.0
-  checksum: 3d70e62e261817ad850dcd4abc53703c0c636bed46b3171f2ae5b8bc73148417fcf4afdb9e7dcc985771f0bcf829fe7902ef78b7507298a2c212a2e0a27f8a6b
+  checksum: 6a8c02367a946b66c5decccee98ae14dbbc68ab022f613eab31d055501da89f265755019f940d62da9072c5f8355d3a9f027635f8d354e9b7d572265885afb81
   languageName: node
   linkType: hard
 
