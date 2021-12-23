@@ -1,6 +1,7 @@
 const { ApolloServer, gql } = require('apollo-server');
 const {
   createPlugin: createPromsterMetricsPlugin,
+  signalIsUp,
 } = require('@promster/apollo');
 const {
   createServer: createPrometheusMetricsServer,
@@ -50,6 +51,8 @@ async function launchServer() {
     console.log(`🚀  Apollo Server ready at ${url}`);
 
     console.log(`Prometheus metrics available on http://localhost:8080`);
+
+    signalIsUp();
   });
 }
 
