@@ -2457,7 +2457,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mapbox/node-pre-gyp@npm:^1.0.5":
+"@mapbox/node-pre-gyp@npm:^1.0.8":
   version: 1.0.8
   resolution: "@mapbox/node-pre-gyp@npm:1.0.8"
   dependencies:
@@ -2713,7 +2713,7 @@ __metadata:
   resolution: "@promster/metrics@workspace:packages/metrics"
   dependencies:
     "@promster/types": ^3.2.2
-    "@sematext/gc-stats": 1.5.5
+    "@sematext/gc-stats": 1.5.6
     "@types/lodash": 4.14.178
     lodash.memoize: 4.1.2
     lodash.once: 4.1.1
@@ -2906,13 +2906,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sematext/gc-stats@npm:1.5.5":
-  version: 1.5.5
-  resolution: "@sematext/gc-stats@npm:1.5.5"
+"@sematext/gc-stats@npm:1.5.6":
+  version: 1.5.6
+  resolution: "@sematext/gc-stats@npm:1.5.6"
   dependencies:
-    "@mapbox/node-pre-gyp": ^1.0.5
+    "@mapbox/node-pre-gyp": ^1.0.8
     nan: ^2.15.0
-  checksum: 2a188a23d72dc9214c8f280b1b3ac5b1a4d6f9a40266eace4f379e4ce8c3339a23836b7d045f1aad16e40111ce7f4225fd7e2cc47300289320560209e3ae777a
+  checksum: 1b4634f5aa05bde94c205adb941853ffa00612e9ac0c51f7955b42d893647a9d4826a04005863be3f831060ff730d140df5045079d830fa8d1f96574cc22bae6
   languageName: node
   linkType: hard
 
