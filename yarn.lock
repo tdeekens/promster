@@ -2701,7 +2701,7 @@ __metadata:
     "@marblejs/core": 4.0.2
     "@marblejs/http": 4.0.2
     "@promster/metrics": ^9.1.1
-    fp-ts: 2.11.6
+    fp-ts: 2.11.7
     merge-options: 3.0.4
     parse-prometheus-text-format: 1.1.1
     rxjs: ^6.6.7
@@ -6323,10 +6323,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fp-ts@npm:2.11.6":
-  version: 2.11.6
-  resolution: "fp-ts@npm:2.11.6"
-  checksum: 0301a6065d5228aab5687a22c774e553eb341b668d1ed68027011fd37ac0722e3b79764d168a0de403adeeb6be972f74d390c2411889a832aec5230dcd9b2ec3
+"fp-ts@npm:2.11.7":
+  version: 2.11.7
+  resolution: "fp-ts@npm:2.11.7"
+  checksum: 8d841e19cc4f9c799bb633b137af322e90f11d0176583ffa7c351f33be01b683bfa2f044f7d07893b2f9c6fe7baed8e0bce5c5346f10bae0237a28252d71f357
   languageName: node
   linkType: hard
 
