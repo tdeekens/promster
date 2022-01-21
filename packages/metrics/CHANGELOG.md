@@ -1,5 +1,13 @@
 # @promster/metrics
 
+## 9.1.3
+
+### Patch Changes
+
+- [#846](https://github.com/tdeekens/promster/pull/846) [`defcae7`](https://github.com/tdeekens/promster/commit/defcae775e7280a5746db4c2e75226353d7bdf40) Thanks [@dhs3000](https://github.com/dhs3000)! - Use Node.js provided url module instead of external module to prevent deprecation warning
+
+* [#848](https://github.com/tdeekens/promster/pull/848) [`0e033fa`](https://github.com/tdeekens/promster/commit/0e033fa7ac414dc3692ceedf54eca6cfc2370ff0) Thanks [@tdeekens](https://github.com/tdeekens)! - Update dependencies
+
 ## 9.1.2
 
 ### Patch Changes
