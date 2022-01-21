@@ -1,5 +1,11 @@
 # @promster/types
 
+## 3.2.3
+
+### Patch Changes
+
+- [#848](https://github.com/tdeekens/promster/pull/848) [`0e033fa`](https://github.com/tdeekens/promster/commit/0e033fa7ac414dc3692ceedf54eca6cfc2370ff0) Thanks [@tdeekens](https://github.com/tdeekens)! - Update dependencies
+
 ## 3.2.2
 
 ### Patch Changes
