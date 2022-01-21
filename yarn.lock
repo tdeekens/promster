@@ -2724,7 +2724,6 @@ __metadata:
     ts-essentials: 9.0.0
     tslib: 2.3.1
     typescript: 4.5.4
-    url: 0.11.0
     url-value-parser: 2.1.0
   peerDependencies:
     prom-client: 13.x.x || 14.x
@@ -9803,13 +9802,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"punycode@npm:1.3.2":
-  version: 1.3.2
-  resolution: "punycode@npm:1.3.2"
-  checksum: b8807fd594b1db33335692d1f03e8beeddde6fda7fbb4a2e32925d88d20a3aa4cd8dcc0c109ccaccbd2ba761c208dfaaada83007087ea8bfb0129c9ef1b99ed6
-  languageName: node
-  linkType: hard
-
 "punycode@npm:^1.3.2":
   version: 1.4.1
   resolution: "punycode@npm:1.4.1"
@@ -9844,13 +9836,6 @@ __metadata:
   dependencies:
     side-channel: ^1.0.4
   checksum: 0fac5e6c7191d0295a96d0e83c851aeb015df7e990e4d3b093897d3ac6c94e555dbd0a599739c84d7fa46d7fee282d94ba76943983935cf33bba6769539b8019
-  languageName: node
-  linkType: hard
-
-"querystring@npm:0.2.0":
-  version: 0.2.0
-  resolution: "querystring@npm:0.2.0"
-  checksum: 8258d6734f19be27e93f601758858c299bdebe71147909e367101ba459b95446fbe5b975bf9beb76390156a592b6f4ac3a68b6087cea165c259705b8b4e56a69
   languageName: node
   linkType: hard
 
@@ -11674,16 +11659,6 @@ __metadata:
   version: 2.1.0
   resolution: "url-value-parser@npm:2.1.0"
   checksum: 6a63eb10a76d10ce6b56c1b33184e105d1fd4f9da43ac401cf638afd7b95874049f8534b0d74d5090dd5ddf41a9a7d203bdd0cc9822c8859db7d7529e954a903
-  languageName: node
-  linkType: hard
-
-"url@npm:0.11.0":
-  version: 0.11.0
-  resolution: "url@npm:0.11.0"
-  dependencies:
-    punycode: 1.3.2
-    querystring: 0.2.0
-  checksum: 50d100d3dd2d98b9fe3ada48cadb0b08aa6be6d3ac64112b867b56b19be4bfcba03c2a9a0d7922bfd7ac17d4834e88537749fe182430dfd9b68e520175900d90
   languageName: node
   linkType: hard
 
