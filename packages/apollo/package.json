@@ -37,13 +37,13 @@
   ],
   "dependencies": {
     "@promster/metrics": "^9.1.2",
-    "apollo-server-plugin-base": "3.4.0",
+    "apollo-server-plugin-base": "3.5.1",
     "merge-options": "3.0.4",
     "tslib": "2.3.1"
   },
   "devDependencies": {
-    "apollo-server": "3.5.0",
-    "graphql": "16.1.0",
+    "apollo-server": "3.6.2",
+    "graphql": "16.2.0",
     "node-fetch": "2.6.7",
     "parse-prometheus-text-format": "1.1.1"
   }
