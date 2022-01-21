@@ -1,6 +1,6 @@
 {
   "name": "@promster/metrics",
-  "version": "9.1.3",
+  "version": "9.1.2",
   "description": "Metrics utilities used by all other server integrations",
   "main": "dist/promster-metrics.cjs.js",
   "typings": "dist/promster-metrics.cjs.d.ts",
