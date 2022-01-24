@@ -5620,14 +5620,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-xo-typescript@npm:0.47.1":
-  version: 0.47.1
-  resolution: "eslint-config-xo-typescript@npm:0.47.1"
+"eslint-config-xo-typescript@npm:0.49.0":
+  version: 0.49.0
+  resolution: "eslint-config-xo-typescript@npm:0.49.0"
   peerDependencies:
-    "@typescript-eslint/eslint-plugin": ">=5.0.0"
+    "@typescript-eslint/eslint-plugin": ">=5.8.0"
     eslint: ">=8.0.0"
     typescript: ">=4.4"
-  checksum: 5445639884b9a6b9b8a58a9f09143afc99222ff7faa88b1f89cae2553ac1365a21114708b808d772fb39bde297b5892f7d5317947f2815dbce0859604ff58dfd
+  checksum: 607b8ac8437f56389da6019e2a01bb2beefd257cbcbce999d2519f47f625d48b1d45d674ce986797930b8dfbf045823053be5e24ee182ec8eda2729cf25e24ca
   languageName: node
   linkType: hard
 
@@ -9763,7 +9763,7 @@ __metadata:
     eslint: 8.7.0
     eslint-config-prettier: 8.3.0
     eslint-config-xo: 0.39.0
-    eslint-config-xo-typescript: 0.47.1
+    eslint-config-xo-typescript: 0.49.0
     eslint-formatter-pretty: 4.1.0
     eslint-plugin-jest: 25.7.0
     eslint-plugin-prettier: 4.0.0
