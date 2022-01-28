@@ -78,6 +78,7 @@ const createPlugin = async (
 
   fastify.decorate('Prometheus', Prometheus);
   fastify.decorate('recordRequest', recordRequest);
+  // eslint-disable-next-line @typescript-eslint/ban-types
   fastify.decorateRequest<TPromsterTiming | null>('__promsterTiming__', null);
 
   fastify.addHook('onRequest', async (request, _) => {

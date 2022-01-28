@@ -4,6 +4,6 @@ import UrlValueParser from 'url-value-parser';
 const urlValueParser = new UrlValueParser();
 
 const normalizePath = (path: string): string =>
-  urlValueParser.replacePathValues(url.parse(path).pathname);
+  urlValueParser.replacePathValues(url.parse(path).pathname, '#val');
 
 export { normalizePath };
