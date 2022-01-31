@@ -2493,9 +2493,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@marblejs/core@npm:4.0.2":
-  version: 4.0.2
-  resolution: "@marblejs/core@npm:4.0.2"
+"@marblejs/core@npm:4.0.3":
+  version: 4.0.3
+  resolution: "@marblejs/core@npm:4.0.3"
   dependencies:
     "@types/uuid": ^7.0.0
     chalk: ^3.0.0
@@ -2504,7 +2504,7 @@ __metadata:
   peerDependencies:
     fp-ts: ^2.4.2
     rxjs: ^7.1.0
-  checksum: c3b694b17ac3d6a452ab4660384ad33b54f42412595d543beb1a7e11b04483f640760536ba8aac368c20290ff28cdea1d12b61b33ac3c12d822d677c0ebab338
+  checksum: f6b61fdca9fd4993e4c2f20ef3fe6c6c507464015fdfa66cf960fb2a051e348c280f777d3fa1dbd7585e06919b7c3ad4ef54ca94b808a576d3bd12c85c2a2fb3
   languageName: node
   linkType: hard
 
@@ -2714,7 +2714,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@promster/marblejs@workspace:packages/marblejs"
   dependencies:
-    "@marblejs/core": 4.0.2
+    "@marblejs/core": 4.0.3
     "@marblejs/http": 4.0.2
     "@promster/metrics": ^9.1.3
     fp-ts: 2.11.8
