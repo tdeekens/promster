@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "@marblejs/core": "4.0.3",
-    "@marblejs/http": "4.0.2",
+    "@marblejs/http": "4.0.3",
     "fp-ts": "2.11.8",
     "parse-prometheus-text-format": "1.1.1"
   }
