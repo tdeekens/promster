@@ -1,5 +1,14 @@
 # @promster/hapi
 
+## 8.0.4
+
+### Patch Changes
+
+- [#865](https://github.com/tdeekens/promster/pull/865) [`abc0df1`](https://github.com/tdeekens/promster/commit/abc0df1a08e46c36659165938b62b3764501cf6d) Thanks [@tdeekens](https://github.com/tdeekens)! - Fix timing to not truncate fractional numbers.
+
+- Updated dependencies [[`abc0df1`](https://github.com/tdeekens/promster/commit/abc0df1a08e46c36659165938b62b3764501cf6d)]:
+  - @promster/metrics@9.1.4
+
 ## 8.0.3
 
 ### Patch Changes
