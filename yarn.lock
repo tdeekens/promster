@@ -2689,7 +2689,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@promster/apollo@workspace:packages/apollo"
   dependencies:
-    "@promster/metrics": ^9.1.3
+    "@promster/metrics": ^9.1.4
     apollo-server: 3.6.3
     apollo-server-plugin-base: 3.5.1
     graphql: 16.3.0
@@ -2704,8 +2704,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@promster/express@workspace:packages/express"
   dependencies:
-    "@promster/metrics": ^9.1.3
-    "@promster/server": 7.0.5
+    "@promster/metrics": ^9.1.4
+    "@promster/server": 7.0.6
     "@types/express": 4.17.13
     express: 4.17.2
     merge-options: 3.0.4
@@ -2719,7 +2719,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@promster/fastify@workspace:packages/fastify"
   dependencies:
-    "@promster/metrics": ^9.1.3
+    "@promster/metrics": ^9.1.4
     fastify: 3.27.1
     fastify-plugin: ^3.0.1
     merge-options: 3.0.4
@@ -2733,7 +2733,7 @@ __metadata:
   dependencies:
     "@hapi/boom": 9.1.4
     "@hapi/hapi": 20.2.1
-    "@promster/metrics": ^9.1.3
+    "@promster/metrics": ^9.1.4
     "@promster/types": ^3.2.3
     "@types/hapi__hapi": 20.0.10
     merge-options: 3.0.4
@@ -2758,7 +2758,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@promster/metrics@^9.1.3, @promster/metrics@workspace:packages/metrics":
+"@promster/metrics@^9.1.3, @promster/metrics@^9.1.4, @promster/metrics@workspace:packages/metrics":
   version: 0.0.0-use.local
   resolution: "@promster/metrics@workspace:packages/metrics"
   dependencies:
@@ -2782,11 +2782,11 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@promster/server@7.0.5, @promster/server@workspace:packages/server":
+"@promster/server@7.0.6, @promster/server@workspace:packages/server":
   version: 0.0.0-use.local
   resolution: "@promster/server@workspace:packages/server"
   dependencies:
-    "@promster/metrics": ^9.1.3
+    "@promster/metrics": ^9.1.4
     "@types/node": 17.0.18
     tslib: 2.3.1
   languageName: unknown
