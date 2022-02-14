@@ -37,7 +37,7 @@
   ],
   "dependencies": {
     "@promster/metrics": "^9.1.3",
-    "fastify-plugin": "^3.0.0",
+    "fastify-plugin": "^3.0.1",
     "merge-options": "3.0.4",
     "parse-prometheus-text-format": "1.1.1"
   },
