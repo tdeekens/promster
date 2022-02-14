@@ -2786,7 +2786,7 @@ __metadata:
   resolution: "@promster/metrics@workspace:packages/metrics"
   dependencies:
     "@promster/types": ^3.2.3
-    "@sematext/gc-stats": 1.5.6
+    "@sematext/gc-stats": 1.5.7
     "@types/lodash": 4.14.178
     lodash.memoize: 4.1.2
     lodash.once: 4.1.1
@@ -2978,13 +2978,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sematext/gc-stats@npm:1.5.6":
-  version: 1.5.6
-  resolution: "@sematext/gc-stats@npm:1.5.6"
+"@sematext/gc-stats@npm:1.5.7":
+  version: 1.5.7
+  resolution: "@sematext/gc-stats@npm:1.5.7"
   dependencies:
     "@mapbox/node-pre-gyp": ^1.0.8
     nan: ^2.15.0
-  checksum: 1b4634f5aa05bde94c205adb941853ffa00612e9ac0c51f7955b42d893647a9d4826a04005863be3f831060ff730d140df5045079d830fa8d1f96574cc22bae6
+  checksum: c52d95d7f90ba7651b600a8c21c61e8e50ceebba085aba0dac4616e1303f3344139dd01f4f1a33805dec5f1492c90e8ba7aea556eb74c7789d6a43cab493be74
   languageName: node
   linkType: hard
 
