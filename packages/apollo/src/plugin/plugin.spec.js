@@ -5,27 +5,53 @@ const { createPlugin: createPromsterMetricsPlugin } = require('./plugin');
 const {
   createServer: createPrometheusMetricsServer,
 } = require('@promster/server');
+const { getDirective, mapSchema, MapperKind } = require('@graphql-tools/utils');
+const { makeExecutableSchema } = require('@graphql-tools/schema');
+
+function throwErrorDirectiveTransformer(schema, directiveName = 'error') {
+  return mapSchema(schema, {
+    [MapperKind.OBJECT_FIELD]: (fieldConfig) => {
+      const directive = getDirective(schema, fieldConfig, directiveName);
+
+      const errorDirective = directive?.[0];
+
+      if (errorDirective) {
+        fieldConfig.resolve = () => {
+          throw new Error('test');
+        };
+      }
+      return fieldConfig;
+    },
+  });
+}
 
 async function startServer() {
-  const typeDefs = gql`
-    type Book {
-      title: String
-      author: String
-    }
+  const typeDefs = [
+    gql`
+      directive @error(reason: String = "test") on FIELD_DEFINITION
 
-    type Query {
-      books: [Book]
-    }
-  `;
+      type Book {
+        title: String
+        author: String
+        isbn: String @error
+      }
+
+      type Query {
+        books: [Book]
+      }
+    `,
+  ];
 
   const books = [
     {
       title: 'The Awakening',
       author: 'Kate Chopin',
+      isbn: '9780393044348',
     },
     {
       title: 'City of Glass',
       author: 'Paul Auster',
+      isbn: '9788433970831',
     },
   ];
 
@@ -35,9 +61,11 @@ async function startServer() {
     },
   };
 
+  let schema = makeExecutableSchema({ typeDefs, resolvers });
+  schema = throwErrorDirectiveTransformer(schema);
+
   const server = new ApolloServer({
-    typeDefs,
-    resolvers,
+    schema,
     plugins: [createPromsterMetricsPlugin()],
   });
 
@@ -231,7 +259,7 @@ it('should record GraphQL metrics for successful requests', async () => {
   `);
 });
 
-it('should record GraphQL metrics for failed requests', async () => {
+it('should record GraphQL metrics for failed requests in validation phase', async () => {
   await fetch('http://0.0.0.0:3000', {
     method: 'POST',
     headers: {
@@ -264,6 +292,52 @@ it('should record GraphQL metrics for failed requests', async () => {
           "phase": "validation",
         },
         "value": "1",
+      },
+    ]
+  `);
+});
+
+it('should record GraphQL metrics for failed requests in execute phase', async () => {
+  await fetch('http://0.0.0.0:3000', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      query: `
+          query MyBooks {
+            books {
+              isbn
+            }
+          }
+        `,
+    }),
+  });
+
+  const response = await fetch('http://0.0.0.0:1337');
+  const rawMetrics = await response.text();
+
+  const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
+  const graphQlErrorsTotal = parsedMetrics.find(
+    (metric) => metric.name === 'graphql_errors_total'
+  ).metrics;
+
+  expect(graphQlErrorsTotal).toMatchInlineSnapshot(`
+    Array [
+      Object {
+        "labels": Object {
+          "operation_name": "undefined",
+          "phase": "validation",
+        },
+        "value": "1",
+      },
+      Object {
+        "labels": Object {
+          "field_name": "isbn",
+          "operation_name": "undefined",
+          "phase": "execution",
+        },
+        "value": "2",
       },
     ]
   `);

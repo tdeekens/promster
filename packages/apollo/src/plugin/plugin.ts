@@ -55,7 +55,7 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
     createGraphQlMetrics.defaultOptions,
     defaultNormalizers,
     {
-      labels: ['operation_name'],
+      labels: ['operation_name', 'field_name'],
     },
     options
   );
