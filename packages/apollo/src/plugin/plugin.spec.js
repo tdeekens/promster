@@ -20,6 +20,7 @@ function throwErrorDirectiveTransformer(schema, directiveName = 'error') {
           throw new Error('test');
         };
       }
+      
       return fieldConfig;
     },
   });
