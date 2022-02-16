@@ -13,9 +13,9 @@ function throwErrorDirectiveTransformer(schema, directiveName = 'error') {
     [MapperKind.OBJECT_FIELD]: (fieldConfig) => {
       const directive = getDirective(schema, fieldConfig, directiveName);
 
-      const errorDirective = directive?.[0];
+      const firstErrorDirective = directive?.[0];
 
-      if (errorDirective) {
+      if (firstErrorDirective) {
         fieldConfig.resolve = () => {
           throw new Error('test');
         };
