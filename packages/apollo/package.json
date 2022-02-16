@@ -1,6 +1,6 @@
 {
   "name": "@promster/apollo",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Apollo server integrations of promster",
   "main": "dist/promster-apollo.cjs.js",
   "typings": "dist/promster-apollo.cjs.d.ts",

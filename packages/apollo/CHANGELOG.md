@@ -1,5 +1,18 @@
 # @promster/apollo
 
+## 1.0.6
+
+### Patch Changes
+
+- [#868](https://github.com/tdeekens/promster/pull/868) [`7a084f2`](https://github.com/tdeekens/promster/commit/7a084f214ef7f7d81e8c06f04b5a7abdbf78c456) Thanks [@earnubs](https://github.com/earnubs)! - ## Fix GraphQL execution error counting
+
+  This fixes a bug which caused GraphQL errors thrown were not counted when
+  encountered in GraphQL execution phase.
+
+  During the execution phase GraphQL request are fulfilled and can result in data or an error.
+
+  Additionally, the any error not handled would threw a plugin error due to a missing label `field_name` in the intial label set.
+
 ## 1.0.5
 
 ### Patch Changes
