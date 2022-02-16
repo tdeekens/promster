@@ -2,11 +2,11 @@
 '@promster/apollo': patch
 ---
 
-Fix a bug where some GraphQL errors thrown were not counted when
+## Fix GraphQL execution error counting
+
+This fixes a bug which caused GraphQL errors thrown were not counted when
 encountered in GraphQL execution phase.
 
-GraphQL execution phase is where a GraphQL request is fulfilled, and
-can result in data or an error.
+During the execution phase GraphQL request are fulfilled and can result in data or an error.
 
-Error state could not be handled, and threw a plugin error, due to a
-missing label `field_name` in the intial labelset.
+Additionally, the any error not handled would threw a plugin error due to a missing label `field_name` in the intial label set.
