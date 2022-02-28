@@ -2745,7 +2745,7 @@ __metadata:
   resolution: "@promster/fastify@workspace:packages/fastify"
   dependencies:
     "@promster/metrics": ^9.1.4
-    fastify: 3.27.1
+    fastify: 3.27.2
     fastify-plugin: ^3.0.1
     merge-options: 3.0.4
     parse-prometheus-text-format: 1.1.1
@@ -6158,9 +6158,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fastify@npm:3.27.1":
-  version: 3.27.1
-  resolution: "fastify@npm:3.27.1"
+"fastify@npm:3.27.2":
+  version: 3.27.2
+  resolution: "fastify@npm:3.27.2"
   dependencies:
     "@fastify/ajv-compiler": ^1.0.0
     abstract-logging: ^2.0.0
@@ -6176,8 +6176,8 @@ __metadata:
     rfdc: ^1.1.4
     secure-json-parse: ^2.0.0
     semver: ^7.3.2
-    tiny-lru: ^7.0.0
-  checksum: a5ff30eac0ab882afe9cea9956b9b93d74c5e345eb6f6218a51d34df3b18dedc17551586aecb16524676d68238110dec7f14005a5c70b9f185a09a1a3ad34837
+    tiny-lru: ^8.0.1
+  checksum: cf52f1f0d9fd94ffc09c1cc0787df5454d806da1affc40f4823d6f252bc9ef79e7ed32cb84e6224bac7be05e51fee1d550695b6329d80e8afd454f25c88bb454
   languageName: node
   linkType: hard
 
@@ -11136,10 +11136,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tiny-lru@npm:^7.0.0":
-  version: 7.0.6
-  resolution: "tiny-lru@npm:7.0.6"
-  checksum: 36a786a9111a3a358a698c9404783ad3f5396f6ed891672ffa4cd7dec4617abb8dfed6af7611bbaf8a3942a9475534c8b80f9bd58d7efa9aa594f395c9805f09
+"tiny-lru@npm:^8.0.1":
+  version: 8.0.1
+  resolution: "tiny-lru@npm:8.0.1"
+  checksum: 189181b35992ff131f2947515bc53782aab1e39d50c6a8f102dc4c63a755609d39bf341c498a0cd6e4a1a6b24fbbee778e0de1ff5ded0ef8e243d66a38ee7f41
   languageName: node
   linkType: hard
 
