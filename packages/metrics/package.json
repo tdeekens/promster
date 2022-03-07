@@ -48,7 +48,7 @@
     "@promster/types": "^3.2.3",
     "@types/lodash": "4.14.179",
     "prom-client": "14.0.1",
-    "typescript": "4.5.5"
+    "typescript": "4.6.2"
   },
   "optionalDependencies": {
     "@sematext/gc-stats": "1.5.7"

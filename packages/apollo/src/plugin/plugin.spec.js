@@ -10,7 +10,7 @@ const { makeExecutableSchema } = require('@graphql-tools/schema');
 
 function throwErrorDirectiveTransformer(schema, directiveName = 'error') {
   return mapSchema(schema, {
-    [MapperKind.OBJECT_FIELD]: (fieldConfig) => {
+    [MapperKind.OBJECT_FIELD](fieldConfig) {
       const directive = getDirective(schema, fieldConfig, directiveName);
 
       const firstErrorDirective = directive?.[0];
@@ -20,7 +20,7 @@ function throwErrorDirectiveTransformer(schema, directiveName = 'error') {
           throw new Error('test');
         };
       }
-      
+
       return fieldConfig;
     },
   });
