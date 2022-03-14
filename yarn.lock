@@ -2732,7 +2732,7 @@ __metadata:
   resolution: "@promster/fastify@workspace:packages/fastify"
   dependencies:
     "@promster/metrics": ^9.1.4
-    fastify: 3.27.3
+    fastify: 3.27.4
     fastify-plugin: ^3.0.1
     merge-options: 3.0.4
     parse-prometheus-text-format: 1.1.1
@@ -6141,9 +6141,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fastify@npm:3.27.3":
-  version: 3.27.3
-  resolution: "fastify@npm:3.27.3"
+"fastify@npm:3.27.4":
+  version: 3.27.4
+  resolution: "fastify@npm:3.27.4"
   dependencies:
     "@fastify/ajv-compiler": ^1.0.0
     abstract-logging: ^2.0.0
@@ -6160,7 +6160,7 @@ __metadata:
     secure-json-parse: ^2.0.0
     semver: ^7.3.2
     tiny-lru: ^8.0.1
-  checksum: a527f82304b3c3a1d2145ebc06ed9746c4def764b5cbdc857ae1a388c49283b3759ffc2506990327d3af115c70a27946a652694bd2bbe4ae69d8e7bc7cd2ced5
+  checksum: 1f5e84c133398946d66a1a94c4070a0fdf9ae49ba20b3f922608b9f230a3e9c13856feba2b3438f9088698eec3e90ddf4d3d85c7ea9b5b0b7456f78e7feb2385
   languageName: node
   linkType: hard
 
