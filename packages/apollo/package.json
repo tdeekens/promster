@@ -37,7 +37,7 @@
   ],
   "dependencies": {
     "@promster/metrics": "^9.1.4",
-    "apollo-server-plugin-base": "3.5.1",
+    "apollo-server-plugin-base": "3.5.2",
     "merge-options": "3.0.4",
     "tslib": "2.3.1"
   },
