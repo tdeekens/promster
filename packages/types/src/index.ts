@@ -17,7 +17,7 @@ export type TPromsterOptions = {
   normalizeMethod?: <Q, S>(method: string, context: TContext<Q, S>) => string;
   getLabelValues?: <Q, S>(request: Q, response: S) => TLabelValues;
   detectKubernetes?: boolean;
-  buckets?: [number];
+  buckets?: number[];
   percentiles?: [number];
   skip?: <Q, S>(request: Q, response: S, labels: TLabelValues) => boolean;
   disableGcMetrics?: boolean;
