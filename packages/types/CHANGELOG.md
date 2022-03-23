@@ -1,5 +1,13 @@
 # @promster/types
 
+## 3.2.4
+
+### Patch Changes
+
+- [#890](https://github.com/tdeekens/promster/pull/890) [`734f471`](https://github.com/tdeekens/promster/commit/734f471ee44c5d49baae423efbba333b0717ef08) Thanks [@tdeekens](https://github.com/tdeekens)! - Fix types for buckets and percentiles to be an array of numbers.
+
+* [`5d4842e`](https://github.com/tdeekens/promster/commit/5d4842e5d60136effcff1905b06b6bae06063c3b) Thanks [@tdeekens](https://github.com/tdeekens)! - Update all dependencies
+
 ## 3.2.3
 
 ### Patch Changes

@@ -1,5 +1,14 @@
 # @promster/apollo
 
+## 1.0.7
+
+### Patch Changes
+
+- [`5d4842e`](https://github.com/tdeekens/promster/commit/5d4842e5d60136effcff1905b06b6bae06063c3b) Thanks [@tdeekens](https://github.com/tdeekens)! - Update all dependencies
+
+- Updated dependencies [[`5d4842e`](https://github.com/tdeekens/promster/commit/5d4842e5d60136effcff1905b06b6bae06063c3b)]:
+  - @promster/metrics@9.1.5
+
 ## 1.0.6
 
 ### Patch Changes
