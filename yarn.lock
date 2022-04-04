@@ -2776,7 +2776,7 @@ __metadata:
   dependencies:
     "@promster/types": ^3.2.4
     "@sematext/gc-stats": 1.5.7
-    "@types/lodash": 4.14.180
+    "@types/lodash": 4.14.181
     lodash.memoize: 4.1.2
     lodash.once: 4.1.1
     merge-options: 3.0.4
@@ -3309,10 +3309,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash@npm:4.14.180":
-  version: 4.14.180
-  resolution: "@types/lodash@npm:4.14.180"
-  checksum: fc42ae3473695cac6e91553f832fef8eb51a31c1c0381cafa81b00dc3efe18e279786bdda77caf0b90a8340ba2ba7aa46ae6541d69870565f775d04c89128bc1
+"@types/lodash@npm:4.14.181":
+  version: 4.14.181
+  resolution: "@types/lodash@npm:4.14.181"
+  checksum: 0d1863d8383fd2f8bb42e9e3fc1d6255bb88ff034d6df848941063698944313dae944fc1270315613e3d303fae7c7a9a86085ad3235ed6204c56c4b0b3699aa9
   languageName: node
   linkType: hard
 
