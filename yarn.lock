@@ -1851,6 +1851,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@graphql-tools/merge@npm:8.2.7":
+  version: 8.2.7
+  resolution: "@graphql-tools/merge@npm:8.2.7"
+  dependencies:
+    "@graphql-tools/utils": 8.6.6
+    tslib: ~2.3.0
+  peerDependencies:
+    graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
+  checksum: 9561cfdfa9ed430e593d0524052854bd0f7a3ac1c39111e2690170e84f40f7afdee9001cf71284b78af0a83f44b03549046e191683e77c3a9c0b2b9bc8fa247a
+  languageName: node
+  linkType: hard
+
 "@graphql-tools/mock@npm:^8.1.2":
   version: 8.6.2
   resolution: "@graphql-tools/mock@npm:8.6.2"
@@ -1879,6 +1891,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@graphql-tools/schema@npm:8.3.7":
+  version: 8.3.7
+  resolution: "@graphql-tools/schema@npm:8.3.7"
+  dependencies:
+    "@graphql-tools/merge": 8.2.7
+    "@graphql-tools/utils": 8.6.6
+    tslib: ~2.3.0
+    value-or-promise: 1.0.11
+  peerDependencies:
+    graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
+  checksum: a6105d5e403e91fa853bdaee729ff0cc41623ccad100f6373c9b8210256afc2b2564ff70246f3df2ca3114b19d5325ada50bc87446e625800d907ee6ff4bdcb9
+  languageName: node
+  linkType: hard
+
 "@graphql-tools/utils@npm:8.6.4":
   version: 8.6.4
   resolution: "@graphql-tools/utils@npm:8.6.4"
@@ -1887,6 +1913,17 @@ __metadata:
   peerDependencies:
     graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
   checksum: 51a77fdbdf9f8909e5b42aef388c4a00f3e455dc7e9c1285f5149b53b0494dc5e078b1fff1273cf15bfe876e50fd8c6bc190120e0f0041fa436776cf14956b28
+  languageName: node
+  linkType: hard
+
+"@graphql-tools/utils@npm:8.6.6":
+  version: 8.6.6
+  resolution: "@graphql-tools/utils@npm:8.6.6"
+  dependencies:
+    tslib: ~2.3.0
+  peerDependencies:
+    graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
+  checksum: fe9d81ba59efb0fc7e08ff0367f907b5e57dbabcd4131ad3bb5f4f0744c005ff498005d8a4f4f93957cd210020f6085ebb8154db059f1ab87a5686eb0e43c5fd
   languageName: node
   linkType: hard
 
@@ -2701,8 +2738,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@promster/apollo@workspace:packages/apollo"
   dependencies:
-    "@graphql-tools/schema": 8.3.4
-    "@graphql-tools/utils": 8.6.4
+    "@graphql-tools/schema": 8.3.7
+    "@graphql-tools/utils": 8.6.6
     "@promster/metrics": ^9.1.5
     apollo-server: 3.6.7
     apollo-server-plugin-base: 3.5.2
