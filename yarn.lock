@@ -2050,9 +2050,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hapi/hapi@npm:20.2.1":
-  version: 20.2.1
-  resolution: "@hapi/hapi@npm:20.2.1"
+"@hapi/hapi@npm:20.2.2":
+  version: 20.2.2
+  resolution: "@hapi/hapi@npm:20.2.2"
   dependencies:
     "@hapi/accept": ^5.0.1
     "@hapi/ammo": ^5.0.1
@@ -2067,12 +2067,12 @@ __metadata:
     "@hapi/podium": ^4.1.1
     "@hapi/shot": ^5.0.5
     "@hapi/somever": ^3.0.0
-    "@hapi/statehood": ^7.0.3
+    "@hapi/statehood": ^7.0.4
     "@hapi/subtext": ^7.0.3
-    "@hapi/teamwork": ^5.1.0
+    "@hapi/teamwork": ^5.1.1
     "@hapi/topo": ^5.0.0
     "@hapi/validate": ^1.1.1
-  checksum: 5334b125b5b12f0cafa3a47238c51b1108e6ebe9d17b833de450b58f7265434f7bd785f16b127ec34d0b546cb236ccd2ac189e733d8034917830d74394be9366
+  checksum: b515fcf9ce02e8baa959dca0f8ebc7746769d134ad81985376751adaa211f5994f17be43d9a5eef818e53673f913c44e9cfc9131b8f4fdcc507e347d44120bba
   languageName: node
   linkType: hard
 
@@ -2171,9 +2171,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hapi/statehood@npm:^7.0.3":
-  version: 7.0.3
-  resolution: "@hapi/statehood@npm:7.0.3"
+"@hapi/statehood@npm:^7.0.4":
+  version: 7.0.4
+  resolution: "@hapi/statehood@npm:7.0.4"
   dependencies:
     "@hapi/boom": 9.x.x
     "@hapi/bounce": 2.x.x
@@ -2182,7 +2182,7 @@ __metadata:
     "@hapi/hoek": 9.x.x
     "@hapi/iron": 6.x.x
     "@hapi/validate": 1.x.x
-  checksum: 6b8f43104bf3d694bde838f604d86923c346eb8b885519239ae4b8555b8bcd10ca6d2239e9dbdae2d7fcfd9e93735634b534c835a69eeb5951b1a855e015b00e
+  checksum: e221a440b0788724b0729664245ff72d87557aabf0dcffce517a97042864a471a26be7b51c1137862ba7a26e63a85f049a08a1f4b4a48b22a15e03bc0ea16b22
   languageName: node
   linkType: hard
 
@@ -2201,7 +2201,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hapi/teamwork@npm:5.x.x, @hapi/teamwork@npm:^5.1.0":
+"@hapi/teamwork@npm:5.x.x, @hapi/teamwork@npm:^5.1.1":
   version: 5.1.1
   resolution: "@hapi/teamwork@npm:5.1.1"
   checksum: f679aff66b432f5fe3daa72a0659c4280de8f6e109e0c547ed24e7ea60149b182c406c4c02426a8bcfd87a79889b180f6d5f5a95690489e5607cc044c3c2defb
@@ -2795,7 +2795,7 @@ __metadata:
   resolution: "@promster/hapi@workspace:packages/hapi"
   dependencies:
     "@hapi/boom": 9.1.4
-    "@hapi/hapi": 20.2.1
+    "@hapi/hapi": 20.2.2
     "@promster/metrics": ^9.1.5
     "@promster/types": ^3.2.4
     "@types/hapi__hapi": 20.0.10
