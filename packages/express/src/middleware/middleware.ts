@@ -32,7 +32,7 @@ const exposeOnLocals = ({ app, key, value }: TLocaleTarget) => {
   if (app?.locals) app.locals[key] = value;
 };
 
-const extractPath = (req: Request) => req.originalUrl || req.url;
+const extractPath = (req: Request) => req.route.path;
 
 let recordRequest: TRequestRecorder;
 let upMetric: TGcMetrics['up'];
