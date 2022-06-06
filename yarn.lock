@@ -2849,7 +2849,7 @@ __metadata:
     "@types/hapi__hapi": 20.0.12
     merge-options: 3.0.4
     parse-prometheus-text-format: 1.1.1
-    semver: 7.3.5
+    semver: 7.3.7
     tslib: 2.3.1
   languageName: unknown
   linkType: soft
@@ -10688,17 +10688,6 @@ __metadata:
   bin:
     semver: bin/semver.js
   checksum: 272c11bf8d083274ef79fe40a81c55c184dff84dd58e3c325299d0927ba48cece1f020793d138382b85f89bab5002a35a5ba59a3a68a7eebbb597eb733838778
-  languageName: node
-  linkType: hard
-
-"semver@npm:7.3.5":
-  version: 7.3.5
-  resolution: "semver@npm:7.3.5"
-  dependencies:
-    lru-cache: ^6.0.0
-  bin:
-    semver: bin/semver.js
-  checksum: 5eafe6102bea2a7439897c1856362e31cc348ccf96efd455c8b5bc2c61e6f7e7b8250dc26b8828c1d76a56f818a7ee907a36ae9fb37a599d3d24609207001d60
   languageName: node
   linkType: hard
 
