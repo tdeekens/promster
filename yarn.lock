@@ -8106,9 +8106,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-runner-eslint@npm:1.0.0":
-  version: 1.0.0
-  resolution: "jest-runner-eslint@npm:1.0.0"
+"jest-runner-eslint@npm:1.0.1":
+  version: 1.0.1
+  resolution: "jest-runner-eslint@npm:1.0.1"
   dependencies:
     chalk: ^3.0.0
     cosmiconfig: ^6.0.0
@@ -8116,8 +8116,8 @@ __metadata:
     dot-prop: ^5.3.0
   peerDependencies:
     eslint: ^6 || ^7 || ^8
-    jest: ^25.1 || ^26 || ^27
-  checksum: 2969532d67e8a3049b22a143a23b40226dc552e602b8cae060bf6427728dc2c13c0f95c3cf54981b0a551403c876e30d2881c96e6a42d29df1f4891e870427c9
+    jest: ^25.1 || ^26 || ^27 || ^28
+  checksum: 409d76526765d49d3b5ee7a536012956677707c486265214ade165b777f0160d514ece253dc376dbf4e106c11af010a459011340d7b5d29dd24363ecd083f52b
   languageName: node
   linkType: hard
 
@@ -10065,7 +10065,7 @@ __metadata:
     eslint-plugin-prettier: 4.0.0
     husky: 7.0.4
     jest: 27.5.1
-    jest-runner-eslint: 1.0.0
+    jest-runner-eslint: 1.0.1
     jest-watch-typeahead: 1.0.0
     lint-staged: 12.3.7
     prettier: 2.6.0
