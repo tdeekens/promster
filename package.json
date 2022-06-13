@@ -56,7 +56,7 @@
     "@babel/core": "7.17.9",
     "@babel/preset-env": "7.16.11",
     "@babel/preset-typescript": "7.16.7",
-    "@changesets/changelog-github": "0.4.4",
+    "@changesets/changelog-github": "0.4.5",
     "@changesets/cli": "2.21.1",
     "@commitlint/cli": "16.2.3",
     "@commitlint/config-conventional": "16.2.1",
