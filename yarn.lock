@@ -2843,9 +2843,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@preconstruct/cli@npm:2.1.6":
-  version: 2.1.6
-  resolution: "@preconstruct/cli@npm:2.1.6"
+"@preconstruct/cli@npm:2.1.8":
+  version: 2.1.8
+  resolution: "@preconstruct/cli@npm:2.1.8"
   dependencies:
     "@babel/code-frame": ^7.5.5
     "@babel/core": ^7.7.7
@@ -2886,7 +2886,7 @@ __metadata:
     v8-compile-cache: ^2.1.1
   bin:
     preconstruct: bin.js
-  checksum: f4bc2f9f3a76b174ee0f588eebf5a64c5da40c72b775ab24711586d2819328036eb4bc0490180c312ed6af010fe90e95946c33eac6a8fd8ad735d7fc0b0dbc40
+  checksum: 6da067d6d99fb43d4623d1be6de6f8233ec9151fa7c3f64128ff2275c63426155d8c684059cdeaf63a4a1bb2c06cb2ad9ea6cc080185a2faee7219d126dd8dcb
   languageName: node
   linkType: hard
 
@@ -10034,7 +10034,7 @@ __metadata:
     "@commitlint/cli": 16.2.3
     "@commitlint/config-conventional": 16.2.1
     "@manypkg/cli": 0.19.1
-    "@preconstruct/cli": 2.1.6
+    "@preconstruct/cli": 2.1.8
     "@typescript-eslint/eslint-plugin": 5.16.0
     "@typescript-eslint/parser": 5.16.0
     babel-eslint: 10.1.0
