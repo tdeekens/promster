@@ -2911,7 +2911,7 @@ __metadata:
     "@promster/metrics": ^9.1.5
     apollo-server: 3.9.0
     apollo-server-plugin-base: 3.5.2
-    graphql: 16.3.0
+    graphql: 16.5.0
     merge-options: 3.0.4
     node-fetch: 2.6.7
     parse-prometheus-text-format: 1.1.1
@@ -7037,10 +7037,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graphql@npm:16.3.0":
-  version: 16.3.0
-  resolution: "graphql@npm:16.3.0"
-  checksum: ba540641e9cd2a8de5b989ff1433b015f232fa73aaef478d6709c1339cd43113347917acb965a5799c004667687852fc8ff0cfaa935eb26374c91c1fd7fdaeb1
+"graphql@npm:16.5.0":
+  version: 16.5.0
+  resolution: "graphql@npm:16.5.0"
+  checksum: a82a926d085818934d04fdf303a269af170e79de943678bd2726370a96194f9454ade9d6d76c2de69afbd7b9f0b4f8061619baecbbddbe82125860e675ac219e
   languageName: node
   linkType: hard
 
