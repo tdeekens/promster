@@ -1799,13 +1799,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/cli@npm:16.2.3":
-  version: 16.2.3
-  resolution: "@commitlint/cli@npm:16.2.3"
+"@commitlint/cli@npm:16.3.0":
+  version: 16.3.0
+  resolution: "@commitlint/cli@npm:16.3.0"
   dependencies:
     "@commitlint/format": ^16.2.1
-    "@commitlint/lint": ^16.2.1
-    "@commitlint/load": ^16.2.3
+    "@commitlint/lint": ^16.2.4
+    "@commitlint/load": ^16.3.0
     "@commitlint/read": ^16.2.1
     "@commitlint/types": ^16.2.1
     lodash: ^4.17.19
@@ -1814,16 +1814,16 @@ __metadata:
     yargs: ^17.0.0
   bin:
     commitlint: cli.js
-  checksum: e74a83389a736a87593cdc3665c820f1f8e837c9e834883d3e041b65cd6af85410fa65c1b0b8b1909d31eab3eadf4997e31a309af0fa0d211b6db21dc6fb917e
+  checksum: 4fa791cd21fc4c61212de28cd4e64adc3de6d3a4f10ef89955d5382af6be95871d1a7cf210c6a7d74a8a6d75f008a52f7616bdc881776b292f45004ec2ced21a
   languageName: node
   linkType: hard
 
-"@commitlint/config-conventional@npm:16.2.1":
-  version: 16.2.1
-  resolution: "@commitlint/config-conventional@npm:16.2.1"
+"@commitlint/config-conventional@npm:16.2.4":
+  version: 16.2.4
+  resolution: "@commitlint/config-conventional@npm:16.2.4"
   dependencies:
     conventional-changelog-conventionalcommits: ^4.3.1
-  checksum: 23dac76a8fbe5624433e1c948bc53eaf0a60b77f418fe7f94eea8e17abf9605d7ae9418188d8c1a38c2e6d5cb865c8e2d0894826c3eb41fb052af95e79bc02d3
+  checksum: 211a322967c1eeee961eb0be9752782d16c025213520b7ada173d6b16050efe477778103f32b62361ad595b79ff6703694569d99705469cb2be0ac5ffba6465e
   languageName: node
   linkType: hard
 
@@ -1874,7 +1874,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/lint@npm:^16.2.1":
+"@commitlint/lint@npm:^16.2.4":
   version: 16.2.4
   resolution: "@commitlint/lint@npm:16.2.4"
   dependencies:
@@ -1886,7 +1886,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/load@npm:^16.2.3":
+"@commitlint/load@npm:^16.3.0":
   version: 16.3.0
   resolution: "@commitlint/load@npm:16.3.0"
   dependencies:
@@ -10082,8 +10082,8 @@ __metadata:
     "@babel/preset-typescript": 7.18.6
     "@changesets/changelog-github": 0.4.6
     "@changesets/cli": 2.21.1
-    "@commitlint/cli": 16.2.3
-    "@commitlint/config-conventional": 16.2.1
+    "@commitlint/cli": 16.3.0
+    "@commitlint/config-conventional": 16.2.4
     "@manypkg/cli": 0.19.1
     "@preconstruct/cli": 2.1.8
     "@typescript-eslint/eslint-plugin": 5.16.0
