@@ -2889,7 +2889,7 @@ __metadata:
   resolution: "@promster/apollo@workspace:packages/apollo"
   dependencies:
     "@graphql-tools/schema": 8.5.1
-    "@graphql-tools/utils": 8.9.0
+    "@graphql-tools/utils": 8.10.0
     "@promster/metrics": ^9.1.5
     apollo-server: 3.10.1
     apollo-server-plugin-base: 3.5.2
