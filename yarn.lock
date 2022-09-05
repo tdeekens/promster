@@ -2030,17 +2030,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-tools/utils@npm:8.10.0":
-  version: 8.10.0
-  resolution: "@graphql-tools/utils@npm:8.10.0"
-  dependencies:
-    tslib: ^2.4.0
-  peerDependencies:
-    graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
-  checksum: 1070959ab24c23510d70e8a557d1d2a90d2c041f2f7b1458e18158cede172b1964d50a803e3d206add73cb843998aaa434713f7c89e2e174974815385a3cad70
-  languageName: node
-  linkType: hard
-
 "@graphql-tools/utils@npm:8.10.1":
   version: 8.10.1
   resolution: "@graphql-tools/utils@npm:8.10.1"
@@ -2923,7 +2912,7 @@ __metadata:
   resolution: "@promster/apollo@workspace:packages/apollo"
   dependencies:
     "@graphql-tools/schema": 8.5.1
-    "@graphql-tools/utils": 8.10.0
+    "@graphql-tools/utils": 8.10.1
     "@promster/metrics": ^9.1.5
     apollo-server: 3.10.1
     apollo-server-plugin-base: 3.5.2
