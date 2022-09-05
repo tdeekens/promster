@@ -2914,7 +2914,7 @@ __metadata:
     "@graphql-tools/schema": 8.5.1
     "@graphql-tools/utils": 8.10.1
     "@promster/metrics": ^9.1.5
-    apollo-server: 3.10.1
+    apollo-server: 3.10.2
     apollo-server-plugin-base: 3.5.2
     graphql: 16.5.0
     merge-options: 3.0.4
@@ -4108,7 +4108,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"apollo-server-core@npm:^3.10.1, apollo-server-core@npm:^3.10.2":
+"apollo-server-core@npm:^3.10.2":
   version: 3.10.2
   resolution: "apollo-server-core@npm:3.10.2"
   dependencies:
@@ -4158,7 +4158,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"apollo-server-express@npm:^3.10.1":
+"apollo-server-express@npm:^3.10.2":
   version: 3.10.2
   resolution: "apollo-server-express@npm:3.10.2"
   dependencies:
@@ -4216,17 +4216,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"apollo-server@npm:3.10.1":
-  version: 3.10.1
-  resolution: "apollo-server@npm:3.10.1"
+"apollo-server@npm:3.10.2":
+  version: 3.10.2
+  resolution: "apollo-server@npm:3.10.2"
   dependencies:
     "@types/express": 4.17.13
-    apollo-server-core: ^3.10.1
-    apollo-server-express: ^3.10.1
+    apollo-server-core: ^3.10.2
+    apollo-server-express: ^3.10.2
     express: ^4.17.1
   peerDependencies:
     graphql: ^15.3.0 || ^16.0.0
-  checksum: 83a4733aa1c787cb06d31c80a7dfffb3b9da6c4429e31570d7ad06a1b9c8b732dcc52f46e6a87592a7875ff41d7788f152b7b23bffca4ed53e6fb33c20b7f76e
+  checksum: 9f3c22ed1d4275a8bd5559b276dadab26758c3b4ae90b454d86aeccfa1a0da90d1201f627676e36ec84b8d581f767f24037d682a58615247b393930aca850324
   languageName: node
   linkType: hard
 
