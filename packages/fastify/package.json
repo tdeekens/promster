@@ -42,6 +42,6 @@
     "parse-prometheus-text-format": "1.1.1"
   },
   "devDependencies": {
-    "fastify": "3.29.2"
+    "fastify": "3.29.3"
   }
 }
