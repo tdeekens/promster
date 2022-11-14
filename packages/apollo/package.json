@@ -45,7 +45,7 @@
     "@graphql-tools/schema": "8.5.1",
     "@graphql-tools/utils": "8.13.1",
     "apollo-server": "3.11.1",
-    "graphql": "16.5.0",
+    "graphql": "16.6.0",
     "node-fetch": "2.6.7",
     "parse-prometheus-text-format": "1.1.1"
   }
