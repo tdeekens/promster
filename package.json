@@ -51,7 +51,7 @@
   "workspaces": [
     "packages/*"
   ],
-  "packageManager": "yarn@3.2.4",
+  "packageManager": "yarn@3.3.0",
   "dependencies": {
     "@babel/core": "7.18.10",
     "@babel/preset-env": "7.18.10",
