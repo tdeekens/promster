@@ -40,18 +40,18 @@
     "lodash.once": "4.1.1",
     "merge-options": "3.0.4",
     "optional": "0.1.4",
-    "ts-essentials": "9.1.2",
-    "tslib": "2.3.1",
+    "ts-essentials": "9.3.0",
+    "tslib": "2.4.1",
     "url-value-parser": "2.1.0"
   },
   "devDependencies": {
     "@promster/types": "^3.2.4",
     "@types/lodash": "4.14.191",
     "prom-client": "14.1.0",
-    "typescript": "4.9.3"
+    "typescript": "4.9.4"
   },
   "optionalDependencies": {
-    "@sematext/gc-stats": "1.5.7"
+    "@sematext/gc-stats": "1.5.8"
   },
   "peerDependencies": {
     "prom-client": "13.x.x || 14.x"

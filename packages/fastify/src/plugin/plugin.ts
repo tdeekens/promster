@@ -5,7 +5,7 @@ import type {
   TDefaultedPromsterOptions,
 } from '@promster/types';
 import type { TRequestRecorder, TPromsterTiming } from '@promster/metrics';
-import { FastifyInstance, FastifyRequest } from 'fastify';
+import type { FastifyInstance, FastifyRequest } from 'fastify';
 
 import fastifyPlugin from 'fastify-plugin';
 import merge from 'merge-options';

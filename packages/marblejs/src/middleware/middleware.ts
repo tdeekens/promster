@@ -8,8 +8,8 @@ import type {
 import type { TRequestRecorder, TPromsterTiming } from '@promster/metrics';
 
 import merge from 'merge-options';
-import { HttpRequest, HttpResponse } from '@marblejs/core';
-import { fromEvent, Observable } from 'rxjs';
+import type { HttpRequest, HttpResponse } from '@marblejs/core';
+import { fromEvent, type Observable } from 'rxjs';
 import { tap, map, take, mapTo } from 'rxjs/operators';
 import {
   createHttpMetrics,

@@ -4,12 +4,12 @@ import type {
   TLabelValues,
   THttpMetrics,
 } from '@promster/types';
+import type { Timing } from '../timing';
 
 import merge from 'merge-options';
 import { skipMetricsInEnvironment } from '../environment';
 import { sortLabels } from '../sort-labels';
 import { endMeasurementFrom } from '../end-measurement-from';
-import { Timing } from '../timing';
 
 type TRecordingOptions = {
   labels: TLabelValues;
