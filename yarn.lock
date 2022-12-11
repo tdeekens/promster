@@ -3101,7 +3101,7 @@ __metadata:
   dependencies:
     "@graphql-tools/schema": 9.0.12
     "@graphql-tools/utils": 9.1.3
-    "@promster/metrics": ^9.1.5
+    "@promster/metrics": ^9.1.6
     apollo-server: 3.11.1
     apollo-server-plugin-base: 3.7.1
     graphql: 16.6.0
@@ -3116,8 +3116,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@promster/express@workspace:packages/express"
   dependencies:
-    "@promster/metrics": ^9.1.5
-    "@promster/server": 7.0.7
+    "@promster/metrics": ^9.1.6
+    "@promster/server": 7.0.8
     "@types/express": 4.17.14
     express: 4.18.2
     merge-options: 3.0.4
@@ -3131,7 +3131,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@promster/fastify@workspace:packages/fastify"
   dependencies:
-    "@promster/metrics": ^9.1.5
+    "@promster/metrics": ^9.1.6
     fastify: 4.10.2
     fastify-plugin: ^4.4.0
     merge-options: 3.0.4
@@ -3145,8 +3145,8 @@ __metadata:
   dependencies:
     "@hapi/boom": 9.1.4
     "@hapi/hapi": 20.2.2
-    "@promster/metrics": ^9.1.5
-    "@promster/types": ^3.2.4
+    "@promster/metrics": ^9.1.6
+    "@promster/types": ^3.2.5
     "@types/hapi__hapi": 20.0.13
     merge-options: 3.0.4
     parse-prometheus-text-format: 1.1.1
@@ -3161,7 +3161,7 @@ __metadata:
   dependencies:
     "@marblejs/core": 4.0.3
     "@marblejs/http": 4.0.3
-    "@promster/metrics": ^9.1.5
+    "@promster/metrics": ^9.1.6
     fp-ts: 2.13.1
     merge-options: 3.0.4
     parse-prometheus-text-format: 1.1.1
@@ -3170,11 +3170,11 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@promster/metrics@^9.1.5, @promster/metrics@workspace:packages/metrics":
+"@promster/metrics@^9.1.6, @promster/metrics@workspace:packages/metrics":
   version: 0.0.0-use.local
   resolution: "@promster/metrics@workspace:packages/metrics"
   dependencies:
-    "@promster/types": ^3.2.4
+    "@promster/types": ^3.2.5
     "@sematext/gc-stats": 1.5.8
     "@types/lodash": 4.14.191
     lodash.memoize: 4.1.2
@@ -3194,17 +3194,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@promster/server@7.0.7, @promster/server@workspace:packages/server":
+"@promster/server@7.0.8, @promster/server@workspace:packages/server":
   version: 0.0.0-use.local
   resolution: "@promster/server@workspace:packages/server"
   dependencies:
-    "@promster/metrics": ^9.1.5
+    "@promster/metrics": ^9.1.6
     "@types/node": 18.11.13
     tslib: 2.4.1
   languageName: unknown
   linkType: soft
 
-"@promster/types@^3.2.4, @promster/types@workspace:packages/types":
+"@promster/types@^3.2.5, @promster/types@workspace:packages/types":
   version: 0.0.0-use.local
   resolution: "@promster/types@workspace:packages/types"
   dependencies:

@@ -1,5 +1,14 @@
 # @promster/apollo
 
+## 1.0.8
+
+### Patch Changes
+
+- [#1006](https://github.com/tdeekens/promster/pull/1006) [`8df4fe6`](https://github.com/tdeekens/promster/commit/8df4fe6a4cd6ff86260ce546411200d7e4d98802) Thanks [@tdeekens](https://github.com/tdeekens)! - chore: update deps
+
+- Updated dependencies [[`58ffa97`](https://github.com/tdeekens/promster/commit/58ffa977892fa97f47fdbf208f76bd0ef2b8b2ee), [`8df4fe6`](https://github.com/tdeekens/promster/commit/8df4fe6a4cd6ff86260ce546411200d7e4d98802)]:
+  - @promster/metrics@9.1.6
+
 ## 1.0.7
 
 ### Patch Changes

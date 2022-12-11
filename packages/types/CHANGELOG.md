@@ -1,5 +1,13 @@
 # @promster/types
 
+## 3.2.5
+
+### Patch Changes
+
+- [#993](https://github.com/tdeekens/promster/pull/993) [`58ffa97`](https://github.com/tdeekens/promster/commit/58ffa977892fa97f47fdbf208f76bd0ef2b8b2ee) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependency prom-client to v14.1.0
+
+- [#1006](https://github.com/tdeekens/promster/pull/1006) [`8df4fe6`](https://github.com/tdeekens/promster/commit/8df4fe6a4cd6ff86260ce546411200d7e4d98802) Thanks [@tdeekens](https://github.com/tdeekens)! - chore: update deps
+
 ## 3.2.4
 
 ### Patch Changes
