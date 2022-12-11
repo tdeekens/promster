@@ -27,6 +27,7 @@ import {
   timing,
 } from '@promster/metrics';
 
+// eslint-disable-next-line @typescript-eslint/consistent-type-definitions
 interface TPromsterRequest extends Request {
   plugins: {
     promster: {

@@ -226,9 +226,9 @@ it('should record GraphQL metrics for successful requests', async () => {
   ).metrics;
 
   expect(graphQlRequestDurationSeconds).toMatchInlineSnapshot(`
-    Array [
-      Object {
-        "buckets": Object {
+    [
+      {
+        "buckets": {
           "+Inf": "1",
           "0.5": "1",
           "0.9": "1",
@@ -245,9 +245,9 @@ it('should record GraphQL metrics for successful requests', async () => {
   ).metrics;
 
   expect(graphQlResolveFieldDurationSeconds).toMatchInlineSnapshot(`
-    Array [
-      Object {
-        "buckets": Object {
+    [
+      {
+        "buckets": {
           "+Inf": "2",
           "0.5": "2",
           "0.9": "2",
@@ -286,9 +286,9 @@ it('should record GraphQL metrics for failed requests in validation phase', asyn
   ).metrics;
 
   expect(graphQlErrorsTotal).toMatchInlineSnapshot(`
-    Array [
-      Object {
-        "labels": Object {
+    [
+      {
+        "labels": {
           "operation_name": "undefined",
           "phase": "validation",
         },
@@ -324,16 +324,16 @@ it('should record GraphQL metrics for failed requests in execute phase', async (
   ).metrics;
 
   expect(graphQlErrorsTotal).toMatchInlineSnapshot(`
-    Array [
-      Object {
-        "labels": Object {
+    [
+      {
+        "labels": {
           "operation_name": "undefined",
           "phase": "validation",
         },
         "value": "1",
       },
-      Object {
-        "labels": Object {
+      {
+        "labels": {
           "field_name": "isbn",
           "operation_name": "undefined",
           "phase": "execution",

@@ -5,7 +5,7 @@ import type {
   TDefaultedPromsterOptions,
 } from '@promster/types';
 import type { TRequestRecorder } from '@promster/metrics';
-import { Application, Request, Response, NextFunction } from 'express';
+import type { Application, Request, Response, NextFunction } from 'express';
 
 import merge from 'merge-options';
 import {
@@ -19,6 +19,7 @@ import {
   timing,
 } from '@promster/metrics';
 
+// eslint-disable-next-line @typescript-eslint/consistent-type-definitions
 interface TApp extends Application {
   locals: Record<string, unknown>;
 }

@@ -152,9 +152,9 @@ it('should record http metrics', async () => {
   ).metrics;
 
   expect(httpRequestsTotal).toMatchInlineSnapshot(`
-    Array [
-      Object {
-        "labels": Object {
+    [
+      {
+        "labels": {
           "method": "get",
           "path": "/",
           "status_code": "200",
@@ -169,9 +169,9 @@ it('should record http metrics', async () => {
   ).metrics;
 
   expect(httpRequestDurationSeconds).toMatchInlineSnapshot(`
-    Array [
-      Object {
-        "buckets": Object {
+    [
+      {
+        "buckets": {
           "+Inf": "1",
           "0.05": "1",
           "0.1": "1",

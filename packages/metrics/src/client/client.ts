@@ -7,6 +7,7 @@ import { skipMetricsInEnvironment } from '../environment';
 //   We could create multiple registries with `new Prometheus.registry()`.
 const defaultRegister = Prometheus.register;
 
+// eslint-disable-next-line @typescript-eslint/consistent-type-definitions
 interface TClientOptions
   extends Prometheus.DefaultMetricsCollectorConfiguration {
   detectKubernetes?: boolean;
