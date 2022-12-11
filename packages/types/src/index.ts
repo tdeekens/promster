@@ -25,24 +25,24 @@ export type TPromsterOptions = {
 export type TDefaultedPromsterOptions = DeepRequired<TPromsterOptions>;
 
 export type THttpMetrics = {
-  httpRequestDurationPerPercentileInSeconds?: Array<Summary<string>>;
-  httpRequestDurationInSeconds?: Array<Histogram<string>>;
-  httpRequestsTotal?: Array<Counter<string>>;
-  httpRequestContentLengthInBytes?: Array<Histogram<string>>;
-  httpResponseContentLengthInBytes?: Array<Histogram<string>>;
+  httpRequestDurationPerPercentileInSeconds?: Summary[];
+  httpRequestDurationInSeconds?: Histogram[];
+  httpRequestsTotal?: Counter[];
+  httpRequestContentLengthInBytes?: Histogram[];
+  httpResponseContentLengthInBytes?: Histogram[];
 };
 export type TGcMetrics = {
-  up: Array<Gauge<string>>;
-  countOfGcs: Array<Counter<string>>;
-  durationOfGc: Array<Counter<string>>;
-  reclaimedInGc: Array<Counter<string>>;
+  up: Gauge[];
+  countOfGcs: Counter[];
+  durationOfGc: Counter[];
+  reclaimedInGc: Counter[];
 };
 export type TGraphQlMetrics = {
-  graphQlParseDuration?: Array<Histogram<string>>;
-  graphQlValidationDuration?: Array<Histogram<string>>;
-  graphQlResolveFieldDuration?: Array<Histogram<string>>;
-  graphQlRequestDuration?: Array<Histogram<string>>;
-  graphQlErrorsTotal?: Array<Counter<string>>;
+  graphQlParseDuration?: Histogram[];
+  graphQlValidationDuration?: Histogram[];
+  graphQlResolveFieldDuration?: Histogram[];
+  graphQlRequestDuration?: Histogram[];
+  graphQlErrorsTotal?: Counter[];
 };
 
 export type TValueOf<T> = T[keyof T];
