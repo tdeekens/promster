@@ -160,11 +160,40 @@ it('should record http metrics', async () => {
     (metric) => metric.name === 'http_requests_total'
   ).metrics;
 
-  expect(httpRequestsTotal).toMatchInlineSnapshot(`[]`);
+  expect(httpRequestsTotal).toMatchInlineSnapshot(`
+    [
+      {
+        "labels": {
+          "method": "get",
+          "path": "/",
+          "status_code": "200",
+        },
+        "value": "1",
+      },
+    ]
+  `);
 
   const httpRequestDurationSeconds = parsedMetrics.find(
     (metric) => metric.name === 'http_request_duration_seconds'
   ).metrics;
 
-  expect(httpRequestDurationSeconds).toMatchInlineSnapshot(`[]`);
+  expect(httpRequestDurationSeconds).toMatchInlineSnapshot(`
+    [
+      {
+        "buckets": {
+          "+Inf": "1",
+          "0.05": "1",
+          "0.1": "1",
+          "0.3": "1",
+          "0.5": "1",
+          "0.8": "1",
+          "1": "1",
+          "1.5": "1",
+          "10": "1",
+          "2": "1",
+          "3": "1",
+        },
+      },
+    ]
+  `);
 });
