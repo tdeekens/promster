@@ -185,26 +185,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/core@npm:7.20.5":
-  version: 7.20.5
-  resolution: "@babel/core@npm:7.20.5"
+"@babel/core@npm:7.20.12":
+  version: 7.20.12
+  resolution: "@babel/core@npm:7.20.12"
   dependencies:
     "@ampproject/remapping": ^2.1.0
     "@babel/code-frame": ^7.18.6
-    "@babel/generator": ^7.20.5
-    "@babel/helper-compilation-targets": ^7.20.0
-    "@babel/helper-module-transforms": ^7.20.2
-    "@babel/helpers": ^7.20.5
-    "@babel/parser": ^7.20.5
-    "@babel/template": ^7.18.10
-    "@babel/traverse": ^7.20.5
-    "@babel/types": ^7.20.5
+    "@babel/generator": ^7.20.7
+    "@babel/helper-compilation-targets": ^7.20.7
+    "@babel/helper-module-transforms": ^7.20.11
+    "@babel/helpers": ^7.20.7
+    "@babel/parser": ^7.20.7
+    "@babel/template": ^7.20.7
+    "@babel/traverse": ^7.20.12
+    "@babel/types": ^7.20.7
     convert-source-map: ^1.7.0
     debug: ^4.1.0
     gensync: ^1.0.0-beta.2
-    json5: ^2.2.1
+    json5: ^2.2.2
     semver: ^6.3.0
-  checksum: 9547f1e6364bc58c3621e3b17ec17f0d034ff159e5a520091d9381608d40af3be4042dd27c20ad7d3e938422d75850ac56a3758d6801d65df701557af4bd244b
+  checksum: 62e6c3e2149a70b5c9729ef5f0d3e2e97e9dcde89fc039c8d8e3463d5d7ba9b29ee84d10faf79b61532ac1645aa62f2bd42338320617e6e3a8a4d8e2a27076e7
   languageName: node
   linkType: hard
 
@@ -231,7 +231,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/generator@npm:^7.20.5, @babel/generator@npm:^7.20.7, @babel/generator@npm:^7.7.2":
+"@babel/generator@npm:^7.20.7, @babel/generator@npm:^7.7.2":
   version: 7.20.7
   resolution: "@babel/generator@npm:7.20.7"
   dependencies:
@@ -374,7 +374,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/helper-module-transforms@npm:^7.18.6, @babel/helper-module-transforms@npm:^7.20.11, @babel/helper-module-transforms@npm:^7.20.2, @babel/helper-module-transforms@npm:^7.20.7":
+"@babel/helper-module-transforms@npm:^7.18.6, @babel/helper-module-transforms@npm:^7.20.11, @babel/helper-module-transforms@npm:^7.20.7":
   version: 7.20.11
   resolution: "@babel/helper-module-transforms@npm:7.20.11"
   dependencies:
@@ -494,7 +494,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/helpers@npm:^7.20.5, @babel/helpers@npm:^7.20.7":
+"@babel/helpers@npm:^7.20.7":
   version: 7.20.7
   resolution: "@babel/helpers@npm:7.20.7"
   dependencies:
@@ -516,7 +516,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/parser@npm:^7.1.0, @babel/parser@npm:^7.14.7, @babel/parser@npm:^7.20.5, @babel/parser@npm:^7.20.7, @babel/parser@npm:^7.7.0":
+"@babel/parser@npm:^7.1.0, @babel/parser@npm:^7.14.7, @babel/parser@npm:^7.20.7, @babel/parser@npm:^7.7.0":
   version: 7.20.7
   resolution: "@babel/parser@npm:7.20.7"
   bin:
@@ -1487,6 +1487,24 @@ __metadata:
     debug: ^4.1.0
     globals: ^11.1.0
   checksum: 8e36dfc76b8f7aafa01b98130c0257e3148eb7132e4b599be565bddae5faec7e20a0f92786a829a8d962a0bf5652fe0019cadd85716d70d140785dec640ff6f7
+  languageName: node
+  linkType: hard
+
+"@babel/traverse@npm:^7.20.12":
+  version: 7.20.12
+  resolution: "@babel/traverse@npm:7.20.12"
+  dependencies:
+    "@babel/code-frame": ^7.18.6
+    "@babel/generator": ^7.20.7
+    "@babel/helper-environment-visitor": ^7.18.9
+    "@babel/helper-function-name": ^7.19.0
+    "@babel/helper-hoist-variables": ^7.18.6
+    "@babel/helper-split-export-declaration": ^7.18.6
+    "@babel/parser": ^7.20.7
+    "@babel/types": ^7.20.7
+    debug: ^4.1.0
+    globals: ^11.1.0
+  checksum: d758b355ab4f1e87984524b67785fa23d74e8a45d2ceb8bcf4d5b2b0cd15ee160db5e68c7078808542805774ca3802e2eafb1b9638afa4cd7f9ecabd0ca7fd56
   languageName: node
   linkType: hard
 
@@ -8232,7 +8250,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"json5@npm:^2.2.1":
+"json5@npm:^2.2.1, json5@npm:^2.2.2":
   version: 2.2.3
   resolution: "json5@npm:2.2.3"
   bin:
@@ -9758,7 +9776,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "promster@workspace:."
   dependencies:
-    "@babel/core": 7.20.5
+    "@babel/core": 7.20.12
     "@babel/preset-env": 7.20.2
     "@babel/preset-typescript": 7.18.6
     "@changesets/changelog-github": 0.4.7
