@@ -3083,7 +3083,7 @@ __metadata:
     apollo-server-plugin-base: 3.7.1
     graphql: 16.6.0
     merge-options: 3.0.4
-    node-fetch: 2.6.7
+    node-fetch: 2.6.8
     parse-prometheus-text-format: 1.1.1
     tslib: 2.4.1
   languageName: unknown
@@ -3098,7 +3098,7 @@ __metadata:
     "@types/express": 4.17.15
     express: 4.18.2
     merge-options: 3.0.4
-    node-fetch: 2.6.7
+    node-fetch: 2.6.8
     parse-prometheus-text-format: 1.1.1
     tslib: 2.4.1
   languageName: unknown
@@ -9100,7 +9100,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-fetch@npm:2.6.7, node-fetch@npm:^2.5.0, node-fetch@npm:^2.6.1, node-fetch@npm:^2.6.7":
+"node-fetch@npm:2.6.8":
+  version: 2.6.8
+  resolution: "node-fetch@npm:2.6.8"
+  dependencies:
+    whatwg-url: ^5.0.0
+  peerDependencies:
+    encoding: ^0.1.0
+  peerDependenciesMeta:
+    encoding:
+      optional: true
+  checksum: 91f57be68e29f9b1382750693619e199733a6936998e6d618f1aa779853ad8fc4a2facf170db7957bf1d2510bad33449edf74b5802713d81b63de5986fa3be00
+  languageName: node
+  linkType: hard
+
+"node-fetch@npm:^2.5.0, node-fetch@npm:^2.6.1, node-fetch@npm:^2.6.7":
   version: 2.6.7
   resolution: "node-fetch@npm:2.6.7"
   dependencies:
