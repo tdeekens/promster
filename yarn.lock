@@ -1530,14 +1530,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@changesets/changelog-github@npm:0.4.7":
-  version: 0.4.7
-  resolution: "@changesets/changelog-github@npm:0.4.7"
+"@changesets/changelog-github@npm:0.4.8":
+  version: 0.4.8
+  resolution: "@changesets/changelog-github@npm:0.4.8"
   dependencies:
-    "@changesets/get-github-info": ^0.5.1
-    "@changesets/types": ^5.2.0
+    "@changesets/get-github-info": ^0.5.2
+    "@changesets/types": ^5.2.1
     dotenv: ^8.1.0
-  checksum: 911b2ca3fc52d9f883001d2aa6122208ca9daa884201eae77d2a5f4cce34df685e443ee49aa88f89a913bf8ac6b0129a12d18f36517b118962f18ba9c5163173
+  checksum: 8a357cc08757e0eeca267ee05141f68bef936582abef8b78a5d30d99f5a86e41b7d3debba70992b73b2f57b0fc6201ec1cc3c65116930167ee3197b427b865c5
   languageName: node
   linkType: hard
 
@@ -1621,7 +1621,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@changesets/get-github-info@npm:^0.5.1":
+"@changesets/get-github-info@npm:^0.5.2":
   version: 0.5.2
   resolution: "@changesets/get-github-info@npm:0.5.2"
   dependencies:
@@ -9864,7 +9864,7 @@ __metadata:
     "@babel/core": 7.20.12
     "@babel/preset-env": 7.20.2
     "@babel/preset-typescript": 7.18.6
-    "@changesets/changelog-github": 0.4.7
+    "@changesets/changelog-github": 0.4.8
     "@changesets/cli": 2.25.2
     "@commitlint/cli": 17.3.0
     "@commitlint/config-conventional": 17.3.0
