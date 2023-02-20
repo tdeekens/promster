@@ -2040,18 +2040,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-tools/merge@npm:8.3.15":
-  version: 8.3.15
-  resolution: "@graphql-tools/merge@npm:8.3.15"
-  dependencies:
-    "@graphql-tools/utils": 9.1.4
-    tslib: ^2.4.0
-  peerDependencies:
-    graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
-  checksum: 7823d3b3a2bb7a661826eb8fce8a4fcb17439224818aa08ca814d7b25324b66b790cf8e7fa083dfa9f41b2213355fb1f0db88d1e7334788347a6d69c8f5555e9
-  languageName: node
-  linkType: hard
-
 "@graphql-tools/merge@npm:8.3.18":
   version: 8.3.18
   resolution: "@graphql-tools/merge@npm:8.3.18"
@@ -2075,20 +2063,6 @@ __metadata:
   peerDependencies:
     graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
   checksum: bd5186d22f756e2cb977dd0635287fad51c9bcf2e2733f1c681e932d7440b42bc1c9d30d8cd36d32ab2966a28ae1d3ecc81bae0a3c4ed8d938eea0a4bd79d5e0
-  languageName: node
-  linkType: hard
-
-"@graphql-tools/schema@npm:9.0.13":
-  version: 9.0.13
-  resolution: "@graphql-tools/schema@npm:9.0.13"
-  dependencies:
-    "@graphql-tools/merge": 8.3.15
-    "@graphql-tools/utils": 9.1.4
-    tslib: ^2.4.0
-    value-or-promise: 1.0.12
-  peerDependencies:
-    graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
-  checksum: fa5c5033c79e3ab210207c68bf80729448f0ae0bf071e029a218043d952dec8352b0d4ad467ca789a08e292d60c1ee111d266a2193bd50759c9eb82e8f9ad586
   languageName: node
   linkType: hard
 
@@ -2128,17 +2102,6 @@ __metadata:
   peerDependencies:
     graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
   checksum: 8d1d8a11722e211dc8723cd3fd7a97fa5401ab22146e4240a0f9d45547792476c34814ff914524578beec961db7b0ff23a6ddff8fe059764537e594cff35c906
-  languageName: node
-  linkType: hard
-
-"@graphql-tools/utils@npm:9.1.4":
-  version: 9.1.4
-  resolution: "@graphql-tools/utils@npm:9.1.4"
-  dependencies:
-    tslib: ^2.4.0
-  peerDependencies:
-    graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
-  checksum: 467135297a07b21bdd706ca03385354931db85fcf2accc514d69b7415c8cb0fb9e551e4bba0870278eab58bf4de757d354d53c88fd0f55b52d8562dbcba71869
   languageName: node
   linkType: hard
 
@@ -3147,8 +3110,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@promster/apollo@workspace:packages/apollo"
   dependencies:
-    "@graphql-tools/schema": 9.0.13
-    "@graphql-tools/utils": 9.1.4
+    "@graphql-tools/schema": 9.0.16
+    "@graphql-tools/utils": 9.2.1
     "@promster/metrics": ^9.1.6
     apollo-server: 3.11.1
     apollo-server-plugin-base: 3.7.1
