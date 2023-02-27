@@ -2126,7 +2126,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hapi/accept@npm:^6.0.0":
+"@hapi/accept@npm:^6.0.1":
   version: 6.0.1
   resolution: "@hapi/accept@npm:6.0.1"
   dependencies:
@@ -2136,7 +2136,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hapi/ammo@npm:^6.0.0":
+"@hapi/ammo@npm:^6.0.1":
   version: 6.0.1
   resolution: "@hapi/ammo@npm:6.0.1"
   dependencies:
@@ -2163,12 +2163,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hapi/boom@npm:10.0.0":
-  version: 10.0.0
-  resolution: "@hapi/boom@npm:10.0.0"
+"@hapi/boom@npm:10.0.1, @hapi/boom@npm:^10.0.0, @hapi/boom@npm:^10.0.1":
+  version: 10.0.1
+  resolution: "@hapi/boom@npm:10.0.1"
   dependencies:
-    "@hapi/hoek": 10.x.x
-  checksum: ea2b234fa1c76667b73a541f51e83251233a6f1db2a3f6ade9beb5174ce0ed2b55eea4d8a2a9fd0329bba31e1969c41bdb3af9218bef3abac58a30ea28e3d43e
+    "@hapi/hoek": ^11.0.2
+  checksum: c80f76e86386c65fb5e3f2aae489e82c318615b52c1462af913b1db3d05ebf1564336e2cd88f1ee79d66a8b6f48fa075089c617bfe93ad88e6e1a695d0cde499
   languageName: node
   linkType: hard
 
@@ -2181,16 +2181,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hapi/boom@npm:^10.0.0, @hapi/boom@npm:^10.0.1":
-  version: 10.0.1
-  resolution: "@hapi/boom@npm:10.0.1"
-  dependencies:
-    "@hapi/hoek": ^11.0.2
-  checksum: c80f76e86386c65fb5e3f2aae489e82c318615b52c1462af913b1db3d05ebf1564336e2cd88f1ee79d66a8b6f48fa075089c617bfe93ad88e6e1a695d0cde499
-  languageName: node
-  linkType: hard
-
-"@hapi/bounce@npm:^3.0.0, @hapi/bounce@npm:^3.0.1":
+"@hapi/bounce@npm:^3.0.1":
   version: 3.0.1
   resolution: "@hapi/bounce@npm:3.0.1"
   dependencies:
@@ -2214,7 +2205,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hapi/call@npm:^9.0.0":
+"@hapi/call@npm:^9.0.1":
   version: 9.0.1
   resolution: "@hapi/call@npm:9.0.1"
   dependencies:
@@ -2224,7 +2215,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hapi/catbox-memory@npm:^6.0.0":
+"@hapi/catbox-memory@npm:^6.0.1":
   version: 6.0.1
   resolution: "@hapi/catbox-memory@npm:6.0.1"
   dependencies:
@@ -2234,7 +2225,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hapi/catbox@npm:^12.0.0":
+"@hapi/catbox@npm:^12.1.1":
   version: 12.1.1
   resolution: "@hapi/catbox@npm:12.1.1"
   dependencies:
@@ -2280,33 +2271,33 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hapi/hapi@npm:21.1.0":
-  version: 21.1.0
-  resolution: "@hapi/hapi@npm:21.1.0"
+"@hapi/hapi@npm:21.3.0":
+  version: 21.3.0
+  resolution: "@hapi/hapi@npm:21.3.0"
   dependencies:
-    "@hapi/accept": ^6.0.0
-    "@hapi/ammo": ^6.0.0
-    "@hapi/boom": ^10.0.0
-    "@hapi/bounce": ^3.0.0
-    "@hapi/call": ^9.0.0
-    "@hapi/catbox": ^12.0.0
-    "@hapi/catbox-memory": ^6.0.0
-    "@hapi/heavy": ^8.0.0
-    "@hapi/hoek": ^10.0.0
-    "@hapi/mimos": ^7.0.0
-    "@hapi/podium": ^5.0.0
-    "@hapi/shot": ^6.0.0
-    "@hapi/somever": ^4.1.0
-    "@hapi/statehood": ^8.0.0
-    "@hapi/subtext": ^8.0.0
+    "@hapi/accept": ^6.0.1
+    "@hapi/ammo": ^6.0.1
+    "@hapi/boom": ^10.0.1
+    "@hapi/bounce": ^3.0.1
+    "@hapi/call": ^9.0.1
+    "@hapi/catbox": ^12.1.1
+    "@hapi/catbox-memory": ^6.0.1
+    "@hapi/heavy": ^8.0.1
+    "@hapi/hoek": ^11.0.2
+    "@hapi/mimos": ^7.0.1
+    "@hapi/podium": ^5.0.1
+    "@hapi/shot": ^6.0.1
+    "@hapi/somever": ^4.1.1
+    "@hapi/statehood": ^8.0.1
+    "@hapi/subtext": ^8.1.0
     "@hapi/teamwork": ^6.0.0
-    "@hapi/topo": ^6.0.0
-    "@hapi/validate": ^2.0.0
-  checksum: d6522acfcd01783f5a7dbd2e3862884c71cffe249c62d781bc1ccaf4ef927d3664ea600a686d51b3facfdf4210797a72807dea0df536df9eef2c6568229171b5
+    "@hapi/topo": ^6.0.1
+    "@hapi/validate": ^2.0.1
+  checksum: e4a5077b5e72bab0a2aab85a01af204142bb59a6387c1841a85605d58659cb380752cbd1c12dd8ed7f3ce5cc6316e7ce0415cb0697dbe94e7e19f865e677ad24
   languageName: node
   linkType: hard
 
-"@hapi/heavy@npm:^8.0.0":
+"@hapi/heavy@npm:^8.0.1":
   version: 8.0.1
   resolution: "@hapi/heavy@npm:8.0.1"
   dependencies:
@@ -2314,13 +2305,6 @@ __metadata:
     "@hapi/hoek": ^11.0.2
     "@hapi/validate": ^2.0.1
   checksum: 4dee0af41dfdb75cc2b2fe67c051e473181617fe5a6f5a7e52c6d77eec141655128ecac85f21a207d46257774f3d9811f10ffe5ee6818ffbf674bd644b0690c2
-  languageName: node
-  linkType: hard
-
-"@hapi/hoek@npm:10.x.x, @hapi/hoek@npm:^10.0.0":
-  version: 10.0.1
-  resolution: "@hapi/hoek@npm:10.0.1"
-  checksum: 6dbcd7ae138fc751b2d81169516668bc6e4b878bb2bfdfab5eb3d51fdfd361544cc791ff12375587bf71dbeb801810cd62105f5d744dfa457140fb1709bbea6f
   languageName: node
   linkType: hard
 
@@ -2364,7 +2348,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hapi/mimos@npm:^7.0.0":
+"@hapi/mimos@npm:^7.0.1":
   version: 7.0.1
   resolution: "@hapi/mimos@npm:7.0.1"
   dependencies:
@@ -2384,16 +2368,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hapi/pez@npm:^6.0.1":
-  version: 6.0.1
-  resolution: "@hapi/pez@npm:6.0.1"
+"@hapi/pez@npm:^6.1.0":
+  version: 6.1.0
+  resolution: "@hapi/pez@npm:6.1.0"
   dependencies:
     "@hapi/b64": ^6.0.1
     "@hapi/boom": ^10.0.1
     "@hapi/content": ^6.0.0
     "@hapi/hoek": ^11.0.2
     "@hapi/nigel": ^5.0.1
-  checksum: 95f45549f2e6d9c3a9d597d0f88ea3c049181e25b9c781c517182716186220d61c9c085b6a354a901fbdaab45dad4104fdf6ea3091104fc2ab27102afb11aeb5
+  checksum: ae3cfede61189e865bb05ea438e947c93695ce3de05b2fb168fa621c220eec86554a7f5905243b940ca19ccd4a8111fc142963ce7819654284404203a303519d
   languageName: node
   linkType: hard
 
@@ -2408,7 +2392,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hapi/podium@npm:^5.0.0":
+"@hapi/podium@npm:^5.0.0, @hapi/podium@npm:^5.0.1":
   version: 5.0.1
   resolution: "@hapi/podium@npm:5.0.1"
   dependencies:
@@ -2419,7 +2403,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hapi/shot@npm:^6.0.0":
+"@hapi/shot@npm:^6.0.1":
   version: 6.0.1
   resolution: "@hapi/shot@npm:6.0.1"
   dependencies:
@@ -2429,7 +2413,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hapi/somever@npm:^4.1.0":
+"@hapi/somever@npm:^4.1.1":
   version: 4.1.1
   resolution: "@hapi/somever@npm:4.1.1"
   dependencies:
@@ -2439,7 +2423,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hapi/statehood@npm:^8.0.0":
+"@hapi/statehood@npm:^8.0.1":
   version: 8.0.1
   resolution: "@hapi/statehood@npm:8.0.1"
   dependencies:
@@ -2454,18 +2438,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hapi/subtext@npm:^8.0.0":
-  version: 8.0.1
-  resolution: "@hapi/subtext@npm:8.0.1"
+"@hapi/subtext@npm:^8.1.0":
+  version: 8.1.0
+  resolution: "@hapi/subtext@npm:8.1.0"
   dependencies:
     "@hapi/boom": ^10.0.1
     "@hapi/bourne": ^3.0.0
     "@hapi/content": ^6.0.0
     "@hapi/file": ^3.0.0
     "@hapi/hoek": ^11.0.2
-    "@hapi/pez": ^6.0.1
+    "@hapi/pez": ^6.1.0
     "@hapi/wreck": ^18.0.1
-  checksum: bdbac32d6602026265bb8ba4e365cb8f9af9a5504fd9e17ec9310149ce69485679dc7ea92301dd412f828d1bd6a2c73cdd5ed6aa913c13f597f1f86182ca7239
+  checksum: 7f1697e9b4cefe4553b411b18b402dce2f01ae4873a1e7f06e91125cfce22a25e468749651c17b5dcd1fc416ae853c4ba954beee9ceacb56662c895bb9661a5b
   languageName: node
   linkType: hard
 
@@ -2492,7 +2476,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hapi/topo@npm:^6.0.0, @hapi/topo@npm:^6.0.1":
+"@hapi/topo@npm:^6.0.1":
   version: 6.0.1
   resolution: "@hapi/topo@npm:6.0.1"
   dependencies:
@@ -2511,7 +2495,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hapi/validate@npm:^2.0.0, @hapi/validate@npm:^2.0.1":
+"@hapi/validate@npm:^2.0.1":
   version: 2.0.1
   resolution: "@hapi/validate@npm:2.0.1"
   dependencies:
@@ -3154,8 +3138,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@promster/hapi@workspace:packages/hapi"
   dependencies:
-    "@hapi/boom": 10.0.0
-    "@hapi/hapi": 21.1.0
+    "@hapi/boom": 10.0.1
+    "@hapi/hapi": 21.3.0
     "@promster/metrics": ^9.1.6
     "@promster/types": ^3.2.5
     "@types/hapi__hapi": 20.0.13
