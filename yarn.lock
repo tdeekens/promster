@@ -2435,9 +2435,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hapi/hapi@npm:21.3.0":
-  version: 21.3.0
-  resolution: "@hapi/hapi@npm:21.3.0"
+"@hapi/hapi@npm:21.3.1":
+  version: 21.3.1
+  resolution: "@hapi/hapi@npm:21.3.1"
   dependencies:
     "@hapi/accept": ^6.0.1
     "@hapi/ammo": ^6.0.1
@@ -2457,7 +2457,7 @@ __metadata:
     "@hapi/teamwork": ^6.0.0
     "@hapi/topo": ^6.0.1
     "@hapi/validate": ^2.0.1
-  checksum: e4a5077b5e72bab0a2aab85a01af204142bb59a6387c1841a85605d58659cb380752cbd1c12dd8ed7f3ce5cc6316e7ce0415cb0697dbe94e7e19f865e677ad24
+  checksum: faa2db2b5b47a3bae02edcdc15ca632581afc42927d727bf7cb138d7c9b1b793549f907177a301b886bcdfcd190719ff7c0607ae28eea17ea5b1705428c86ddb
   languageName: node
   linkType: hard
 
@@ -3303,7 +3303,7 @@ __metadata:
   resolution: "@promster/hapi@workspace:packages/hapi"
   dependencies:
     "@hapi/boom": 10.0.1
-    "@hapi/hapi": 21.3.0
+    "@hapi/hapi": 21.3.1
     "@promster/metrics": ^9.1.6
     "@promster/types": ^3.2.5
     "@types/hapi__hapi": 20.0.13
