@@ -2444,9 +2444,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hapi/hapi@npm:21.3.1":
-  version: 21.3.1
-  resolution: "@hapi/hapi@npm:21.3.1"
+"@hapi/hapi@npm:21.3.2":
+  version: 21.3.2
+  resolution: "@hapi/hapi@npm:21.3.2"
   dependencies:
     "@hapi/accept": ^6.0.1
     "@hapi/ammo": ^6.0.1
@@ -2461,12 +2461,12 @@ __metadata:
     "@hapi/podium": ^5.0.1
     "@hapi/shot": ^6.0.1
     "@hapi/somever": ^4.1.1
-    "@hapi/statehood": ^8.0.1
+    "@hapi/statehood": ^8.1.1
     "@hapi/subtext": ^8.1.0
     "@hapi/teamwork": ^6.0.0
     "@hapi/topo": ^6.0.1
     "@hapi/validate": ^2.0.1
-  checksum: faa2db2b5b47a3bae02edcdc15ca632581afc42927d727bf7cb138d7c9b1b793549f907177a301b886bcdfcd190719ff7c0607ae28eea17ea5b1705428c86ddb
+  checksum: 8eee86905b4e5fcc0824c860a90ed921c2dd78a82a1b3d11139784a58a47b25d780071a37cd72c56637451c7480556e2ba908012e2168d0b8a5a770191fe9e0b
   languageName: node
   linkType: hard
 
@@ -2596,9 +2596,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hapi/statehood@npm:^8.0.1":
-  version: 8.0.1
-  resolution: "@hapi/statehood@npm:8.0.1"
+"@hapi/statehood@npm:^8.1.1":
+  version: 8.1.1
+  resolution: "@hapi/statehood@npm:8.1.1"
   dependencies:
     "@hapi/boom": ^10.0.1
     "@hapi/bounce": ^3.0.1
@@ -2607,7 +2607,7 @@ __metadata:
     "@hapi/hoek": ^11.0.2
     "@hapi/iron": ^7.0.1
     "@hapi/validate": ^2.0.1
-  checksum: 463e75ec74ff1a8d7c2c3f5f4e3baec49d5c40bde27045a56873bce7ea7acd6940c411a2a98d563bed7f51e773286802ee6d0cd5ab8b6b94b71fb7bb0c45ef22
+  checksum: d371efa9144d29c43c120dc1372382ce7226db8724320d002c14e0e3931f9e2070b122c11dc20423425662e909ebf15c03dc7fd32a979d277c513ce0505b6bd7
   languageName: node
   linkType: hard
 
@@ -3316,7 +3316,7 @@ __metadata:
   resolution: "@promster/hapi@workspace:packages/hapi"
   dependencies:
     "@hapi/boom": 10.0.1
-    "@hapi/hapi": 21.3.1
+    "@hapi/hapi": 21.3.2
     "@promster/metrics": ^9.1.6
     "@promster/types": ^3.2.5
     "@types/hapi__hapi": 20.0.13
