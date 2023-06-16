@@ -85,9 +85,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@apollo/server@npm:4.7.1":
-  version: 4.7.1
-  resolution: "@apollo/server@npm:4.7.1"
+"@apollo/server@npm:4.7.4":
+  version: 4.7.4
+  resolution: "@apollo/server@npm:4.7.4"
   dependencies:
     "@apollo/cache-control-types": ^1.0.2
     "@apollo/server-gateway-interface": ^1.1.0
@@ -97,7 +97,7 @@ __metadata:
     "@apollo/utils.isnodelike": ^2.0.0
     "@apollo/utils.keyvaluecache": ^2.1.0
     "@apollo/utils.logger": ^2.0.0
-    "@apollo/utils.usagereporting": ^2.0.0
+    "@apollo/utils.usagereporting": ^2.1.0
     "@apollo/utils.withrequired": ^2.0.0
     "@graphql-tools/schema": ^9.0.0
     "@josephg/resolvable": ^1.0.0
@@ -117,7 +117,7 @@ __metadata:
     whatwg-mimetype: ^3.0.0
   peerDependencies:
     graphql: ^16.6.0
-  checksum: 6c8bdd240a4c688641bfec0520375db0eb78d2495286f30f962d7b6e97d7db70f105c09364e56103e1b93543e5760621666655eaa8ae7218312ac54ca7200d4b
+  checksum: 8cdde1ead8b0cae3ce6063ae8ca979c0a56c35b474a52a9b76b14eb9f95ecd715d40a760b9c1ec4d3690ea5b6cac71fb4cd990b4b76fbeeed4d62b963d5510eb
   languageName: node
   linkType: hard
 
@@ -298,11 +298,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@apollo/utils.usagereporting@npm:^2.0.0":
-  version: 2.0.1
-  resolution: "@apollo/utils.usagereporting@npm:2.0.1"
+"@apollo/utils.usagereporting@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "@apollo/utils.usagereporting@npm:2.1.0"
   dependencies:
-    "@apollo/usage-reporting-protobuf": ^4.0.0
+    "@apollo/usage-reporting-protobuf": ^4.1.0
     "@apollo/utils.dropunuseddefinitions": ^2.0.1
     "@apollo/utils.printwithreducedwhitespace": ^2.0.1
     "@apollo/utils.removealiases": 2.0.1
@@ -310,7 +310,7 @@ __metadata:
     "@apollo/utils.stripsensitiveliterals": ^2.0.1
   peerDependencies:
     graphql: 14.x || 15.x || 16.x
-  checksum: caf7af517ae500d765034daae4713a73fa4b7b1707e40e06d5aa79af1af53f46947bb74857963004934129ced11e4854add1583c8aca0ba09c85a4dd37bf8489
+  checksum: 7a676f9b519563955d105264a93668e3897108d937115063c4cd3df310f32be29b8d7bdfe12eeca8d5966558d8c7f07742bcfd9ebb844c48b6ad1acee620183f
   languageName: node
   linkType: hard
 
@@ -3332,7 +3332,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@promster/apollo@workspace:packages/apollo"
   dependencies:
-    "@apollo/server": 4.7.1
+    "@apollo/server": 4.7.4
     "@graphql-tools/schema": 9.0.19
     "@graphql-tools/utils": 9.2.1
     "@promster/metrics": ^9.1.6
