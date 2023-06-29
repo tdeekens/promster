@@ -2551,7 +2551,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fastify/ajv-compiler@npm:^3.3.1":
+"@fastify/ajv-compiler@npm:^3.5.0":
   version: 3.5.0
   resolution: "@fastify/ajv-compiler@npm:3.5.0"
   dependencies:
@@ -2569,14 +2569,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fastify/error@npm:^3.0.0":
-  version: 3.2.0
-  resolution: "@fastify/error@npm:3.2.0"
-  checksum: e538ef76fd2dedd0584691e0c891997321a2050092b11089a70090f5a0edab0dc8ab069747aa6025782280824e2348548e051c8e77558baec699bd44e581e187
+"@fastify/error@npm:^3.2.0":
+  version: 3.3.0
+  resolution: "@fastify/error@npm:3.3.0"
+  checksum: 202507c8c7f49922cac2f5afc82802151b0bd9c583ca1c2850bf43d0f4cd97eedb3a3388b9016da74f8a01b517a5861d1f666c506dd64fd22995e559bc139264
   languageName: node
   linkType: hard
 
-"@fastify/fast-json-stringify-compiler@npm:^4.1.0":
+"@fastify/fast-json-stringify-compiler@npm:^4.3.0":
   version: 4.3.0
   resolution: "@fastify/fast-json-stringify-compiler@npm:4.3.0"
   dependencies:
@@ -3704,7 +3704,7 @@ __metadata:
   resolution: "@promster/fastify@workspace:packages/fastify"
   dependencies:
     "@promster/metrics": ^9.1.6
-    fastify: 4.10.2
+    fastify: 4.18.0
     fastify-plugin: ^4.4.0
     merge-options: 3.0.4
     parse-prometheus-text-format: 1.1.1
@@ -5282,7 +5282,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"avvio@npm:^8.2.0":
+"avvio@npm:^8.2.1":
   version: 8.2.1
   resolution: "avvio@npm:8.2.1"
   dependencies:
@@ -6033,7 +6033,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"content-type@npm:^1.0.4, content-type@npm:~1.0.4, content-type@npm:~1.0.5":
+"content-type@npm:~1.0.4, content-type@npm:~1.0.5":
   version: 1.0.5
   resolution: "content-type@npm:1.0.5"
   checksum: 566271e0a251642254cde0f845f9dd4f9856e52d988f4eb0d0dcffbb7a1f8ec98de7a5215fc628f3bce30fe2fb6fd2bc064b562d721658c59b544e2d34ea2766
@@ -7130,6 +7130,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fast-content-type-parse@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "fast-content-type-parse@npm:1.0.0"
+  checksum: 9e9187be17bea18a2ee715c5737b983181cbe84f286a291db0595e421e04b578da10ca10845639be08664a4db6a793f7709822935cf38cfdf9ecba38d84ead9e
+  languageName: node
+  linkType: hard
+
 "fast-decode-uri-component@npm:^1.0.1":
   version: 1.0.1
   resolution: "fast-decode-uri-component@npm:1.0.1"
@@ -7238,26 +7245,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fastify@npm:4.10.2":
-  version: 4.10.2
-  resolution: "fastify@npm:4.10.2"
+"fastify@npm:4.18.0":
+  version: 4.18.0
+  resolution: "fastify@npm:4.18.0"
   dependencies:
-    "@fastify/ajv-compiler": ^3.3.1
-    "@fastify/error": ^3.0.0
-    "@fastify/fast-json-stringify-compiler": ^4.1.0
+    "@fastify/ajv-compiler": ^3.5.0
+    "@fastify/error": ^3.2.0
+    "@fastify/fast-json-stringify-compiler": ^4.3.0
     abstract-logging: ^2.0.1
-    avvio: ^8.2.0
-    content-type: ^1.0.4
-    find-my-way: ^7.3.0
-    light-my-request: ^5.6.1
-    pino: ^8.5.0
-    process-warning: ^2.0.0
+    avvio: ^8.2.1
+    fast-content-type-parse: ^1.0.0
+    fast-json-stringify: ^5.7.0
+    find-my-way: ^7.6.0
+    light-my-request: ^5.9.1
+    pino: ^8.12.0
+    process-warning: ^2.2.0
     proxy-addr: ^2.0.7
     rfdc: ^1.3.0
     secure-json-parse: ^2.5.0
-    semver: ^7.3.7
-    tiny-lru: ^10.0.0
-  checksum: 1050bb361051b5fa5593dc1ea9a1fdff35980444d29e74fb13d94face47b38be6cb047e61d87b6a1f6337e3e0afb4873dbff342a3ae02f0ea7bf60fec51e8f1f
+    semver: ^7.5.0
+    tiny-lru: ^11.0.1
+  checksum: 14dc83e3cc46edf4c0c8874eec2d9e95c96980acd3dfa0114d40cf0b27e09f1c01e4956d5bdb412be955c59e4e1e4a9c28a31659dfb26e8c1d0e2d77af4d926e
   languageName: node
   linkType: hard
 
@@ -7319,7 +7327,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"find-my-way@npm:^7.3.0":
+"find-my-way@npm:^7.6.0":
   version: 7.6.2
   resolution: "find-my-way@npm:7.6.2"
   dependencies:
@@ -9244,14 +9252,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"light-my-request@npm:^5.6.1":
-  version: 5.9.1
-  resolution: "light-my-request@npm:5.9.1"
+"light-my-request@npm:^5.9.1":
+  version: 5.10.0
+  resolution: "light-my-request@npm:5.10.0"
   dependencies:
     cookie: ^0.5.0
     process-warning: ^2.0.0
     set-cookie-parser: ^2.4.1
-  checksum: d501924ed3b4e04819145d6577c778a04573305762d6e6e8606307e6253a77a5c71e0ca60d79f37b76232d7cb9ccda11d47ca9969ee5934ca69179c7ee97c07f
+  checksum: 50450afd155c8a8800435d568b118ea24b0367d36defaf0467fc49f5e7591c3f8c90b97641f67792d3f25190d53c988c6bc03dd389dfec9dcdfd1907f01ff36f
   languageName: node
   linkType: hard
 
@@ -10567,7 +10575,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pino@npm:^8.5.0":
+"pino@npm:^8.12.0":
   version: 8.14.1
   resolution: "pino@npm:8.14.1"
   dependencies:
@@ -10688,7 +10696,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"process-warning@npm:^2.0.0":
+"process-warning@npm:^2.0.0, process-warning@npm:^2.2.0":
   version: 2.2.0
   resolution: "process-warning@npm:2.2.0"
   checksum: 394ae451c2622ee7d014a7196d36658fc1a5d5cc9f3bfeb54aadd5b77fcfecc89a30a25db259ae76ff49fde3f3f3dd7031dcdfb4da2e5445dac795549352e5d0
@@ -11443,6 +11451,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"semver@npm:^7.5.0":
+  version: 7.5.3
+  resolution: "semver@npm:7.5.3"
+  dependencies:
+    lru-cache: ^6.0.0
+  bin:
+    semver: bin/semver.js
+  checksum: 9d58db16525e9f749ad0a696a1f27deabaa51f66e91d2fa2b0db3de3e9644e8677de3b7d7a03f4c15bc81521e0c3916d7369e0572dbde250d9bedf5194e2a8a7
+  languageName: node
+  linkType: hard
+
 "send@npm:0.18.0":
   version: 0.18.0
   resolution: "send@npm:0.18.0"
@@ -12148,10 +12167,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tiny-lru@npm:^10.0.0":
-  version: 10.4.1
-  resolution: "tiny-lru@npm:10.4.1"
-  checksum: ec2ce11278ff5ecd094823d9d6fcc16fe0aa250bf25cb533d40b997452a113a9ecd9cccbf503ac459a17bb812d94c5ef05cbdfe94b5b8ad03d7cf4fadb78a905
+"tiny-lru@npm:^11.0.1":
+  version: 11.0.1
+  resolution: "tiny-lru@npm:11.0.1"
+  checksum: 709ab58a454028eae15dd249518a1e348520e22514e52fd625ef89ba04a42599522e9f6cc89f50f76d3809cc46cac352bd0b63f052d23562e7adafe3e728531a
   languageName: node
   linkType: hard
 
