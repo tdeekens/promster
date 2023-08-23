@@ -17,13 +17,13 @@ async function startServers() {
     detectKubernetes: false,
   });
 
-  fastify.register(plugin);
+  await fastify.register(plugin);
 
-  fastify.get('/', (request, reply) => {
-    reply.send({ status: 'ok' });
+  fastify.get('/', async (request, reply) => {
+    await reply.send({ status: 'ok' });
   });
 
-  fastify.listen(3000, '0.0.0.0');
+  await fastify.listen(3000, '0.0.0.0');
 
   return {
     close: async () =>
