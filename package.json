@@ -6,7 +6,7 @@
     "auth": "npm_config_registry=https://registry.npmjs.org npm whoami",
     "build:watch": "preconstruct watch",
     "build": "preconstruct build",
-    "changeset:version-and-format": "changeset version && prettier --write --parser json '**/package.json' && YARN_ENABLE_IMMUTABLE_INSTALLS=false yarn install",
+    "changeset:version-and-format": "changeset version && prettier --write --parser json '**/package.json' && pnpm install",
     "changeset": "changeset",
     "clean": "manypkg exec rm -rf build dist",
     "develop": "jest --projects .jestrc.*.json --watch",
@@ -16,7 +16,7 @@
     "format:yaml": "prettier --parser yaml --write '*.yaml'",
     "format": "npm run format:md && npm run format:js && npm run format:yaml",
     "lint": "jest --config .jestrc.lint.json",
-    "prerelease": "cross-env NODE_ENV=production yarn auth && yarn build",
+    "prerelease": "cross-env NODE_ENV=production pnpm auth && pnpm build",
     "release": "changeset publish",
     "setup": "husky install && preconstruct dev && manypkg check && check-node-version --package --print",
     "test:ci:coverage": "cross-env NODE_ENV=test npm test -- --no-watchman --coverage && codecov",
@@ -30,7 +30,7 @@
   "engines": {
     "node": ">=16",
     "npm": ">=8",
-    "yarn": ">=3"
+    "pnpm": ">=8"
   },
   "bugs": {
     "url": "https://github.com/tdeekens/promster/issues"
@@ -48,10 +48,7 @@
     "metrics",
     "continousdelivery"
   ],
-  "workspaces": [
-    "packages/*"
-  ],
-  "packageManager": "yarn@3.6.2",
+  "packageManager": "pnpm@8.6.11",
   "dependencies": {
     "@babel/core": "7.22.10",
     "@babel/eslint-parser": "7.22.10",
