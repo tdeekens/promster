@@ -3789,7 +3789,7 @@ __metadata:
   resolution: "@promster/server@workspace:packages/server"
   dependencies:
     "@promster/metrics": ^9.1.6
-    "@types/node": 18.16.18
+    "@types/node": 18.17.8
     tslib: 2.4.1
   languageName: unknown
   linkType: soft
@@ -4387,10 +4387,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:18.16.18":
-  version: 18.16.18
-  resolution: "@types/node@npm:18.16.18"
-  checksum: d32d8a0a04cd3f5ecb361bcb42f3a07623881ac90d680e06bf626defb3c663a94860d11690babe607cfe67265eceeb8a59ba5fe40c0e49f5a1b01e0088640469
+"@types/node@npm:18.17.8":
+  version: 18.17.8
+  resolution: "@types/node@npm:18.17.8"
+  checksum: ebb71526368c9c58f03e2c2408bfda4aa686c13d84226e2c9b48d9c4aee244fb82e672aaf4aa8ccb6e4993b4274d5f4b2b3d52d0a2e57ab187ae653903376411
   languageName: node
   linkType: hard
 
