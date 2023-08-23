@@ -17,35 +17,36 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: yarn cache directory
-        id: yarn-cache
-        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
-      - name: Setup node_modules cache
-        uses: actions/cache@v3
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.2.4
         with:
-          path: ${{ steps.yarn-cache.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
+          run_install: false
+
       - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+          cache: pnpm
+
       - name: Install
-        run: yarn install --immutable
-      - name: Check for unmet constraints (fix w/ "yarn constraints --fix")
-        run: yarn constraints
+        run: pnpm install
+
       - name: Lint
-        run: yarn lint
+        run: pnpm lint
+
       - name: Spell check
         uses: streetsidesoftware/cspell-action@main
         with:
           files: '**/*.{md,ts}'
+
       - name: Build
-        run: yarn build
+        run: pnpm build
+
       - name: Test
         if: startsWith(matrix.node-version , '19') != true
-        run: yarn test:ci
+        run: pnpm test:ci
+
       - name: Test (with coverage)
         if: startsWith(matrix.node-version, '19')
-        run: yarn test:ci:coverage
+        run: pnpm test:ci:coverage
