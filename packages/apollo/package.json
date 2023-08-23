@@ -47,6 +47,7 @@
     "apollo-server": "3.12.0",
     "graphql": "16.7.1",
     "node-fetch": "2.6.11",
-    "parse-prometheus-text-format": "1.1.1"
+    "parse-prometheus-text-format": "1.1.1",
+    "@promster/server": "workspace:*"
   }
 }

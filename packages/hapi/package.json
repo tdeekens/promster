@@ -46,6 +46,7 @@
     "@hapi/hapi": "21.3.2",
     "@promster/types": "^3.2.5",
     "@types/hapi__hapi": "20.0.13",
-    "parse-prometheus-text-format": "1.1.1"
+    "parse-prometheus-text-format": "1.1.1",
+    "@promster/server": "workspace:*"
   }
 }

@@ -123,6 +123,9 @@ importers:
       '@graphql-tools/utils':
         specifier: 9.2.1
         version: 9.2.1(graphql@16.7.1)
+      '@promster/server':
+        specifier: workspace:*
+        version: link:../server
       apollo-server:
         specifier: 3.12.0
         version: 3.12.0(graphql@16.7.1)
@@ -149,7 +152,7 @@ importers:
         version: 2.4.1
     devDependencies:
       '@promster/server':
-        specifier: 7.0.8
+        specifier: workspace:*
         version: link:../server
       '@types/express':
         specifier: 4.17.17
@@ -169,6 +172,9 @@ importers:
       '@promster/metrics':
         specifier: ^9.1.6
         version: link:../metrics
+      '@promster/server':
+        specifier: workspace:*
+        version: link:../server
       fastify-plugin:
         specifier: ^4.4.0
         version: 4.4.0
@@ -204,6 +210,9 @@ importers:
       '@hapi/hapi':
         specifier: 21.3.2
         version: 21.3.2
+      '@promster/server':
+        specifier: workspace:*
+        version: link:../server
       '@promster/types':
         specifier: ^3.2.5
         version: link:../types
@@ -235,6 +244,9 @@ importers:
       '@marblejs/http':
         specifier: 4.1.0
         version: 4.1.0(@marblejs/core@4.1.0)(fp-ts@2.16.0)(rxjs@6.6.7)
+      '@promster/server':
+        specifier: workspace:*
+        version: link:../server
       fp-ts:
         specifier: 2.16.0
         version: 2.16.0
