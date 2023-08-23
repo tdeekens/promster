@@ -25,6 +25,11 @@ jobs:
       - name: Fetch all tags (for releases)
         run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.2.4
+        with:
+          run_install: false
+
       - name: Setup Node (uses version in .nvmrc)
         uses: actions/setup-node@v3
         with:
