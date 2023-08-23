@@ -51,7 +51,7 @@
   "workspaces": [
     "packages/*"
   ],
-  "packageManager": "yarn@3.6.0",
+  "packageManager": "yarn@3.6.2",
   "dependencies": {
     "@babel/core": "7.22.5",
     "@babel/eslint-parser": "7.22.5",
