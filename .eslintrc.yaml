@@ -31,6 +31,7 @@ rules:
   '@typescript-eslint/ban-ts-comment': 0
   '@typescript-eslint/no-unnecessary-boolean-literal-compare': warn
   '@typescript-eslint/naming-convention': 0
+  '@typescript-eslint/no-redundant-type-constituents': 0
   prefer-object-spread: off
   max-nested-callbacks:
     - error
