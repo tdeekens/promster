@@ -61,7 +61,7 @@
     "@changesets/cli": "2.25.2",
     "@commitlint/cli": "17.6.6",
     "@commitlint/config-conventional": "17.6.6",
-    "@manypkg/cli": "0.19.2",
+    "@manypkg/cli": "0.21.0",
     "@preconstruct/cli": "2.2.2",
     "@typescript-eslint/eslint-plugin": "5.46.0",
     "@typescript-eslint/parser": "5.46.0",
