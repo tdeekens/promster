@@ -1,5 +1,15 @@
 # @promster/types
 
+## 4.0.0
+
+### Major Changes
+
+- [#1088](https://github.com/tdeekens/promster/pull/1088) [`7cfd21c`](https://github.com/tdeekens/promster/commit/7cfd21c2cd4d402cabd454cdc67f76ecce104fb0) Thanks [@tdeekens](https://github.com/tdeekens)! - Breaking droping support for Node.js v14
+
+### Patch Changes
+
+- [#1090](https://github.com/tdeekens/promster/pull/1090) [`31b82fd`](https://github.com/tdeekens/promster/commit/31b82fd59139f0faf273c8e70e63f4bd5e0b4af7) Thanks [@tdeekens](https://github.com/tdeekens)! - Replace yarn with pnpm.
+
 ## 3.2.5
 
 ### Patch Changes

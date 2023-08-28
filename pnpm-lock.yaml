@@ -108,7 +108,7 @@ importers:
         specifier: 4.9.1
         version: 4.9.1(graphql@16.7.1)
       '@promster/metrics':
-        specifier: ^9.1.6
+        specifier: ^10.0.0
         version: link:../metrics
       merge-options:
         specifier: 3.0.4
@@ -142,7 +142,7 @@ importers:
   packages/express:
     dependencies:
       '@promster/metrics':
-        specifier: ^9.1.6
+        specifier: ^10.0.0
         version: link:../metrics
       merge-options:
         specifier: 3.0.4
@@ -170,7 +170,7 @@ importers:
   packages/fastify:
     dependencies:
       '@promster/metrics':
-        specifier: ^9.1.6
+        specifier: ^10.0.0
         version: link:../metrics
       '@promster/server':
         specifier: workspace:*
@@ -192,7 +192,7 @@ importers:
   packages/hapi:
     dependencies:
       '@promster/metrics':
-        specifier: ^9.1.6
+        specifier: ^10.0.0
         version: link:../metrics
       merge-options:
         specifier: 3.0.4
@@ -214,7 +214,7 @@ importers:
         specifier: workspace:*
         version: link:../server
       '@promster/types':
-        specifier: ^3.2.5
+        specifier: ^4.0.0
         version: link:../types
       '@types/hapi__hapi':
         specifier: 20.0.13
@@ -226,7 +226,7 @@ importers:
   packages/marblejs:
     dependencies:
       '@promster/metrics':
-        specifier: ^9.1.6
+        specifier: ^10.0.0
         version: link:../metrics
       merge-options:
         specifier: 3.0.4
@@ -283,7 +283,7 @@ importers:
         version: 1.5.9
     devDependencies:
       '@promster/types':
-        specifier: ^3.2.5
+        specifier: ^4.0.0
         version: link:../types
       '@types/lodash':
         specifier: 4.14.197
@@ -298,7 +298,7 @@ importers:
   packages/server:
     dependencies:
       '@promster/metrics':
-        specifier: ^9.1.6
+        specifier: ^10.0.0
         version: link:../metrics
       tslib:
         specifier: 2.4.1
