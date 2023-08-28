@@ -48,7 +48,7 @@
     "metrics",
     "continousdelivery"
   ],
-  "packageManager": "pnpm@8.6.11",
+  "packageManager": "pnpm@8.7.0",
   "dependencies": {
     "@babel/core": "7.22.10",
     "@babel/eslint-parser": "7.22.10",
