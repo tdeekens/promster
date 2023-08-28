@@ -116,7 +116,7 @@ Promster has to be setup with your server. Either as an Express middleware of an
 
 ### Garbage Collection
 
-- `up`: an indication if the server is started: either 0 or 1
+- `nodejs_up`: an indication if the nodejs server is started: either 0 (not up) or 1 (up)
 - `nodejs_gc_runs_total`: total garbage collections count
 - `nodejs_gc_pause_seconds_total`: time spent in garbage collection
 - `nodejs_gc_reclaimed_bytes_total`: number of bytes reclaimed by garbage collection

@@ -71,7 +71,7 @@ it('should up metric', async () => {
   expect(parsedMetrics).toEqual(
     expect.arrayContaining([
       expect.objectContaining({
-        name: 'up',
+        name: 'nodejs_up',
       }),
     ])
   );

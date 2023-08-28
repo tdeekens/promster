@@ -12,7 +12,7 @@ const defaultOptions = {
   labels: [],
   metricPrefix: '',
   metricNames: {
-    up: ['up'],
+    up: ['nodejs_up'],
     countOfGcs: ['nodejs_gc_runs_total'],
     durationOfGc: ['nodejs_gc_pause_seconds_total'],
     reclaimedInGc: ['nodejs_gc_reclaimed_bytes_total'],
@@ -24,7 +24,7 @@ const getMetrics = (options: TDefaultedPromsterOptions) => ({
     (nameOfUpMetric: string) =>
       new Prometheus.Gauge({
         name: `${options.metricPrefix}${nameOfUpMetric}`,
-        help: '1 = up, 0 = not up',
+        help: '1 = nodejs server is up, 0 = nodejs server is not up',
       })
   ),
   countOfGcs: asArray(options.metricNames.countOfGcs).map(
