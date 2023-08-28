@@ -37,6 +37,7 @@
   ],
   "dependencies": {
     "@promster/metrics": "^10.0.0",
+    "@promster/types": "^4.0.0",
     "tslib": "2.4.1"
   },
   "devDependencies": {
