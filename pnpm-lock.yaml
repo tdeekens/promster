@@ -110,6 +110,9 @@ importers:
       '@promster/metrics':
         specifier: ^10.0.0
         version: link:../metrics
+      '@promster/types':
+        specifier: ^4.0.0
+        version: link:../types
       merge-options:
         specifier: 3.0.4
         version: 3.0.4
@@ -144,6 +147,9 @@ importers:
       '@promster/metrics':
         specifier: ^10.0.0
         version: link:../metrics
+      '@promster/types':
+        specifier: ^4.0.0
+        version: link:../types
       merge-options:
         specifier: 3.0.4
         version: 3.0.4
@@ -175,6 +181,9 @@ importers:
       '@promster/server':
         specifier: workspace:*
         version: link:../server
+      '@promster/types':
+        specifier: ^4.0.0
+        version: link:../types
       fastify-plugin:
         specifier: ^4.4.0
         version: 4.5.1
@@ -194,6 +203,9 @@ importers:
       '@promster/metrics':
         specifier: ^10.0.0
         version: link:../metrics
+      '@promster/types':
+        specifier: ^4.0.0
+        version: link:../types
       merge-options:
         specifier: 3.0.4
         version: 3.0.4
@@ -213,9 +225,6 @@ importers:
       '@promster/server':
         specifier: workspace:*
         version: link:../server
-      '@promster/types':
-        specifier: ^4.0.0
-        version: link:../types
       '@types/hapi__hapi':
         specifier: 20.0.13
         version: 20.0.13
@@ -228,6 +237,9 @@ importers:
       '@promster/metrics':
         specifier: ^10.0.0
         version: link:../metrics
+      '@promster/types':
+        specifier: ^4.0.0
+        version: link:../types
       merge-options:
         specifier: 3.0.4
         version: 3.0.4
@@ -256,6 +268,9 @@ importers:
 
   packages/metrics:
     dependencies:
+      '@promster/types':
+        specifier: ^4.0.0
+        version: link:../types
       lodash.memoize:
         specifier: 4.1.2
         version: 4.1.2
@@ -282,12 +297,6 @@ importers:
         specifier: 1.5.9
         version: 1.5.9
     devDependencies:
-      '@promster/types':
-        specifier: ^4.0.0
-        version: link:../types
-      '@types/lodash':
-        specifier: 4.14.197
-        version: 4.14.197
       prom-client:
         specifier: 14.2.0
         version: 14.2.0
@@ -300,6 +309,9 @@ importers:
       '@promster/metrics':
         specifier: ^10.0.0
         version: link:../metrics
+      '@promster/types':
+        specifier: ^4.0.0
+        version: link:../types
       tslib:
         specifier: 2.4.1
         version: 2.4.1
@@ -3518,10 +3530,6 @@ packages:
     dependencies:
       '@types/node': 18.17.12
     dev: false
-
-  /@types/lodash@4.14.197:
-    resolution: {integrity: sha512-BMVOiWs0uNxHVlHBgzTIqJYmj+PgCo4euloGF+5m4okL3rEYzM2EEv78mw8zWSMM57dM7kVIgJ2QDvwHSoCI5g==}
-    dev: true
 
   /@types/long@4.0.2:
     resolution: {integrity: sha512-MqTGEo5bj5t157U6fA/BiDynNkn0YknVdh48CMPkTSpFTVmvao5UQmm7uEF6xBEo7qIMAlY/JSleYaE6VOdpaA==}

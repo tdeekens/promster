@@ -37,6 +37,7 @@
   ],
   "dependencies": {
     "@promster/metrics": "^10.0.0",
+    "@promster/types": "^4.0.0",
     "merge-options": "3.0.4",
     "semver": "7.5.4",
     "tslib": "2.4.1"
@@ -44,7 +45,6 @@
   "devDependencies": {
     "@hapi/boom": "10.0.1",
     "@hapi/hapi": "21.3.2",
-    "@promster/types": "^4.0.0",
     "@types/hapi__hapi": "20.0.13",
     "parse-prometheus-text-format": "1.1.1",
     "@promster/server": "workspace:*"
