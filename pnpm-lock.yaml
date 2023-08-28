@@ -286,8 +286,8 @@ importers:
         specifier: ^3.2.5
         version: link:../types
       '@types/lodash':
-        specifier: 4.14.195
-        version: 4.14.195
+        specifier: 4.14.197
+        version: 4.14.197
       prom-client:
         specifier: 14.2.0
         version: 14.2.0
@@ -3519,8 +3519,8 @@ packages:
       '@types/node': 18.17.12
     dev: false
 
-  /@types/lodash@4.14.195:
-    resolution: {integrity: sha512-Hwx9EUgdwf2GLarOjQp5ZH8ZmblzcbTBC2wtQWNKARBSxM9ezRIAUpeDTgoQRAFB0+8CNWXVA9+MaSOzOF3nPg==}
+  /@types/lodash@4.14.197:
+    resolution: {integrity: sha512-BMVOiWs0uNxHVlHBgzTIqJYmj+PgCo4euloGF+5m4okL3rEYzM2EEv78mw8zWSMM57dM7kVIgJ2QDvwHSoCI5g==}
     dev: true
 
   /@types/long@4.0.2:
