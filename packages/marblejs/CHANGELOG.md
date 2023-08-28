@@ -1,5 +1,32 @@
 # @promster/marblejs
 
+## 7.0.0
+
+### Major Changes
+
+- [#1088](https://github.com/tdeekens/promster/pull/1088) [`7cfd21c`](https://github.com/tdeekens/promster/commit/7cfd21c2cd4d402cabd454cdc67f76ecce104fb0) Thanks [@tdeekens](https://github.com/tdeekens)! - Breaking droping support for Node.js v14
+
+- [#1087](https://github.com/tdeekens/promster/pull/1087) [`2e848c1`](https://github.com/tdeekens/promster/commit/2e848c13be1053ad22b0aa2210bcbb677b66ed62) Thanks [@roumigus](https://github.com/roumigus)! - The `up` metric of each server integrating `@promster` has been renamed to `nodejs_up`. This is to avoid a collision with the existing `up` metric [Prometheus uses](https://prometheus.io/docs/concepts/jobs_instances/#automatically-generated-labels-and-time-series).
+
+  You can still rename this metric to anything you prefer when condfigurating `@promster/express` for instance like this:
+
+  ```js
+  const prometheusMetricsMiddleware = createPrometheusMetricsMiddleware({
+    options: {
+      metricNames: {
+        up: ['service_name_up'],
+      },
+    },
+  });
+  ```
+
+### Patch Changes
+
+- [#1090](https://github.com/tdeekens/promster/pull/1090) [`31b82fd`](https://github.com/tdeekens/promster/commit/31b82fd59139f0faf273c8e70e63f4bd5e0b4af7) Thanks [@tdeekens](https://github.com/tdeekens)! - Replace yarn with pnpm.
+
+- Updated dependencies [[`31b82fd`](https://github.com/tdeekens/promster/commit/31b82fd59139f0faf273c8e70e63f4bd5e0b4af7), [`7cfd21c`](https://github.com/tdeekens/promster/commit/7cfd21c2cd4d402cabd454cdc67f76ecce104fb0), [`2e848c1`](https://github.com/tdeekens/promster/commit/2e848c13be1053ad22b0aa2210bcbb677b66ed62)]:
+  - @promster/metrics@10.0.0
+
 ## 6.0.5
 
 ### Patch Changes
