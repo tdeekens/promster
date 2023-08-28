@@ -37,7 +37,10 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies
-        run: pnpm install
+        run: |
+          echo "pnpm version"
+          pnpm version
+          pnpm install
 
       - name: Creating .npmrc
         run: |
@@ -56,7 +59,7 @@ jobs:
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
-        uses: changesets/action@v1
+        uses: changesets/action@v1.4.5
         with:
           title: 'ci(changesets): version packages'
           commit: 'ci(changesets): version packages'
