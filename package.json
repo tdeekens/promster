@@ -6,7 +6,7 @@
     "auth": "npm_config_registry=https://registry.npmjs.org npm whoami",
     "build:watch": "preconstruct watch",
     "build": "preconstruct build",
-    "changeset:version-and-format": "changeset version && prettier --write --parser json '**/package.json' && pnpm install",
+    "changeset:version-and-format": "changeset version && prettier --write --parser json '**/package.json' && pnpm install --no-frozen-lockfile",
     "changeset": "changeset",
     "clean": "manypkg exec rm -rf build dist",
     "develop": "jest --projects .jestrc.*.json --watch",
