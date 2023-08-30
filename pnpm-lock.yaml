@@ -105,8 +105,8 @@ importers:
   packages/apollo:
     dependencies:
       '@apollo/server':
-        specifier: 4.9.1
-        version: 4.9.1(graphql@16.7.1)
+        specifier: 4.9.3
+        version: 4.9.3(graphql@16.7.1)
       '@promster/metrics':
         specifier: ^10.0.0
         version: link:../metrics
@@ -399,8 +399,8 @@ packages:
       graphql: 16.7.1
     dev: false
 
-  /@apollo/server@4.9.1(graphql@16.7.1):
-    resolution: {integrity: sha512-uUzkHt7DU/NEdwMvkb4GZq8ho2EYJAJXTiBq0HUhhjOuxMVfZ7fbKgOIcSF33Ur7c67fLdWwulXMAvv89Cyv0w==}
+  /@apollo/server@4.9.3(graphql@16.7.1):
+    resolution: {integrity: sha512-U56Sx/UmzR3Es344hQ/Ptf2EJrH+kV4ZPoLmgGjWoiwf2wYQ/pRSvkSXgjOvoyE34wSa8Gh7f92ljfLfY+6q1w==}
     engines: {node: '>=14.16.0'}
     peerDependencies:
       graphql: ^16.6.0
