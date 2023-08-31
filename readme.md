@@ -153,6 +153,36 @@ You can also opt out of either the Prometheus summary or histogram by passing in
 
 In addition with each GraphQL request metric the following default labels are measured: `operation_name` and `field_name`. For errors a `phase` label is present.
 
+### Customizing buckets and percentiles
+
+Each Prometheus histogram or summary can be customized in regard to its bucket or percentile values. While `@promster` offers some defaults, these might not always match your needs. To customize the metrics you can pass a `metricBuckets` or `metricPercentiles` object whose key is the metric name you intend to customize the the value is the `percentile` or `bucket` value passed to the underlying Prometheus metric.
+
+To illustrate this, we can use the `@promster/express` middleware:
+
+```js
+const middleware = createMiddleware({
+  app,
+  options: {
+    metricBuckets: {
+      httpRequestContentLengthInBytes: [
+        100000, 200000, 500000, 1000000, 1500000, 2000000, 3000000, 5000000,
+        10000000,
+      ],
+      httpRequestDurationInSeconds: [
+        0.05, 0.1, 0.3, 0.5, 0.8, 1, 1.5, 2, 3, 10,
+      ],
+    },
+    metricPercentiles: {
+      httpRequestDurationPerPercentileInSeconds: [0.5, 0.9, 0.95, 0.98, 0.99],
+      httpResponseContentLengthInBytes: [
+        100000, 200000, 500000, 1000000, 1500000, 2000000, 3000000, 5000000,
+        10000000,
+      ],
+    },
+  },
+});
+```
+
 ### `@promster/express`
 
 ```js

@@ -46,6 +46,13 @@ const defaultOptions = {
     graphQlRequestDuration: ['graphql_request_duration_seconds'],
     graphQlErrorsTotal: ['graphql_errors_total'],
   },
+  metricPercentiles: {
+    graphQlParseDuration: defaultGraphQlPercentiles,
+    graphQlValidationDuration: defaultGraphQlPercentiles,
+    graphQlResolveFieldDuration: defaultGraphQlPercentiles,
+    graphQlRequestDuration: defaultGraphQlPercentiles,
+    graphQlErrorsTotal: defaultGraphQlPercentiles,
+  },
 };
 
 const getMetrics = (options: TDefaultedPromsterOptions) => ({
@@ -56,7 +63,9 @@ const getMetrics = (options: TDefaultedPromsterOptions) => ({
             name: `${options.metricPrefix}${nameOfGraphQlParseDuration}`,
             help: 'The GraphQL request parse time in seconds.',
             labelNames: defaultLabels.concat(options.labels).sort(),
-            buckets: options.buckets || defaultGraphQlPercentiles,
+            buckets:
+              options.metricPercentiles?.graphQlParseDuration ||
+              defaultGraphQlPercentiles,
           })
       )
     : undefined,
@@ -70,7 +79,9 @@ const getMetrics = (options: TDefaultedPromsterOptions) => ({
             name: `${options.metricPrefix}${nameOfGraphQlValidationDuration}`,
             help: 'The GraphQL request validation time in seconds.',
             labelNames: defaultLabels.concat(options.labels).sort(),
-            buckets: options.buckets || defaultGraphQlPercentiles,
+            buckets:
+              options.metricPercentiles?.graphQlValidationDuration ||
+              defaultGraphQlPercentiles,
           })
       )
     : undefined,
@@ -86,7 +97,9 @@ const getMetrics = (options: TDefaultedPromsterOptions) => ({
                 .concat(['field_name'])
                 .concat(options.labels)
                 .sort(),
-              buckets: options.buckets || defaultGraphQlPercentiles,
+              buckets:
+                options.metricPercentiles?.graphQlResolveFieldDuration ||
+                defaultGraphQlPercentiles,
             })
         )
       : undefined,
@@ -100,7 +113,9 @@ const getMetrics = (options: TDefaultedPromsterOptions) => ({
             name: `${options.metricPrefix}${nameOfGraphQlRequestDuration}`,
             help: 'The GraphQL request duration time in seconds.',
             labelNames: defaultLabels.concat(options.labels).sort(),
-            buckets: options.buckets || defaultGraphQlPercentiles,
+            buckets:
+              options.metricPercentiles?.graphQlRequestDuration ||
+              defaultGraphQlPercentiles,
           })
       )
     : undefined,
