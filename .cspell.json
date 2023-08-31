@@ -16,6 +16,7 @@
     "promster",
     "proxied",
     "quantile",
+    "camelcase",
     "sematext"
   ],
   "ignorePaths": ["**/CHANGELOG.md"]

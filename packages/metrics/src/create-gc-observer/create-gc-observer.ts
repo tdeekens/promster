@@ -1,6 +1,11 @@
-import type { TPromsterOptions, TGcMetrics, TValueOf } from '@promster/types';
+import {
+  type TOptionalPromsterOptions,
+  type TGcMetrics,
+  type TValueOf,
+} from '@promster/types';
 
 import once from 'lodash.once';
+// @ts-expect-error
 import requireOptional from 'optional';
 
 const gc = requireOptional('@sematext/gc-stats');
@@ -13,7 +18,7 @@ const gcTypes = {
   4: 'incremental_marking',
   8: 'weak_phantom',
   15: 'all',
-};
+} as const;
 
 type TGcTypes = TValueOf<typeof gcTypes>;
 type TStats = {
@@ -29,7 +34,7 @@ const defaultOptions = {
 };
 
 const createGcObserver = once(
-  (metrics: TGcMetrics, options: TPromsterOptions) => () => {
+  (metrics: TGcMetrics, options: TOptionalPromsterOptions) => () => {
     if (typeof gc !== 'function') {
       return;
     }
@@ -37,6 +42,7 @@ const createGcObserver = once(
     if (options.disableGcMetrics) return;
 
     gc().on('stats', (stats: TStats) => {
+      // @ts-expect-error
       const gcType: TGcTypes = gcTypes[stats.gctype];
 
       metrics.countOfGcs.forEach((countOfGcMetricType) => {
@@ -57,6 +63,7 @@ const createGcObserver = once(
   }
 );
 
+// @ts-expect-error
 createGcObserver.defaultOptions = defaultOptions;
 
 export { createGcObserver };

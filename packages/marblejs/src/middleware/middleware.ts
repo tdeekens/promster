@@ -1,14 +1,13 @@
-import type {
-  TDefaultedPromsterOptions,
-  TPromsterOptions,
-  THttpMetrics,
-  TGcMetrics,
-  TLabelValues,
+import {
+  type TDefaultedPromsterOptions,
+  type TOptionalPromsterOptions,
+  type THttpMetrics,
+  type TGcMetrics,
+  type TLabelValues,
 } from '@promster/types';
-import type { TRequestRecorder, TPromsterTiming } from '@promster/metrics';
-
+import { type TRequestRecorder, type TPromsterTiming } from '@promster/metrics';
 import merge from 'merge-options';
-import type { HttpRequest, HttpResponse } from '@marblejs/core';
+import { type HttpRequest, type HttpResponse } from '@marblejs/http';
 import { fromEvent, type Observable } from 'rxjs';
 import { tap, map, take, mapTo } from 'rxjs/operators';
 import {
@@ -47,8 +46,13 @@ const signalIsNotUp = () => {
   });
 };
 
-type TRecordHandlerOps = TDefaultedPromsterOptions & {
-  skip: (req: HttpRequest, res: HttpResponse, labels: TLabelValues) => boolean;
+type TSkipFunction = (
+  _req: HttpRequest,
+  _res: HttpResponse,
+  _labels: TLabelValues
+) => boolean;
+type THandlerOptions = TDefaultedPromsterOptions & {
+  skip?: TSkipFunction;
 };
 type TStamp = {
   req: HttpRequest;
@@ -59,7 +63,7 @@ const recordHandler =
   (
     res: HttpResponse,
     shouldSkipMetricsByEnvironment: boolean,
-    opts: TRecordHandlerOps
+    opts: THandlerOptions
   ) =>
   (stamp: TStamp) =>
     fromEvent(res, 'finish')
@@ -74,6 +78,7 @@ const recordHandler =
           {},
           {
             method: opts.normalizeMethod(req.method, { res, req }),
+            // eslint-disable-next-line camelcase
             status_code: opts.normalizeStatusCode(res.statusCode, { res, req }),
             path: opts.normalizePath(extractPath(req), { res, req }),
           },
@@ -96,14 +101,15 @@ const recordHandler =
         }
       });
 
-type TMiddlewareOptions = {
-  options?: TPromsterOptions;
+export type TPromsterOptions = {
+  options?: TOptionalPromsterOptions & { skip?: TSkipFunction };
 };
-const createMiddleware = ({ options }: TMiddlewareOptions = {}) => {
+const createMiddleware = ({ options }: TPromsterOptions = {}) => {
   const allDefaultedOptions: TDefaultedPromsterOptions = merge(
     createHttpMetrics.defaultOptions,
     createGcMetrics.defaultOptions,
     createRequestRecorder.defaultOptions,
+    // @ts-expect-error
     createGcObserver.defaultOptions,
     defaultNormalizers,
     options

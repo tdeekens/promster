@@ -1,30 +1,33 @@
 {
+  "extends": "./tsconfig-base.json",
   "compilerOptions": {
-    "module": "commonjs",
-    "esModuleInterop": true,
-    "target": "es6",
-    "moduleResolution": "node",
-    "sourceMap": true,
-    "lib": ["es2015"],
-    "allowSyntheticDefaultImports": true,
-    "declaration": true,
-    "emitDecoratorMetadata": false,
-    "experimentalDecorators": false,
-    "importHelpers": true,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitAny": false,
-    "noImplicitReturns": true,
-    "resolveJsonModule": true,
-    "noImplicitThis": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "pretty": true,
-    "removeComments": true,
-    "strict": true,
-    "strictNullChecks": true,
-    "stripInternal": true,
-    "allowJs": true,
-    "types": ["node"]
+    "declarationDir": "./ts-build-cache/",
+    "strictNullChecks": true
   },
-  "typeRoots": ["@types", "node_modules/@types"]
+  "references": [
+    {
+      "path": "packages/apollo"
+    },
+    {
+      "path": "packages/express"
+    },
+    {
+      "path": "packages/fastify"
+    },
+    {
+      "path": "packages/hapi"
+    },
+    {
+      "path": "packages/marblejs"
+    },
+    {
+      "path": "packages/server"
+    },
+    {
+      "path": "packages/metrics"
+    },
+    {
+      "path": "packages/types"
+    }
+  ]
 }

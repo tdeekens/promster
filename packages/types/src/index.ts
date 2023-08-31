@@ -1,5 +1,10 @@
-import type { DeepRequired } from 'ts-essentials';
-import type { Gauge, Counter, Summary, Histogram } from 'prom-client';
+import { type DeepRequired } from 'ts-essentials';
+import {
+  type Gauge,
+  type Counter,
+  type Summary,
+  type Histogram,
+} from 'prom-client';
 
 export type TLabelValues = Record<string, string | number>;
 
@@ -7,7 +12,7 @@ type TContext<Q, S> = {
   req: Q;
   res: S;
 };
-export type TPromsterOptions = {
+export type TOptionalPromsterOptions = {
   labels?: string[];
   metricPrefix?: string;
   metricTypes?: string[];
@@ -19,10 +24,9 @@ export type TPromsterOptions = {
   detectKubernetes?: boolean;
   buckets?: number[];
   percentiles?: number[];
-  skip?: <Q, S>(request: Q, response: S, labels: TLabelValues) => boolean;
   disableGcMetrics?: boolean;
 };
-export type TDefaultedPromsterOptions = DeepRequired<TPromsterOptions>;
+export type TDefaultedPromsterOptions = DeepRequired<TOptionalPromsterOptions>;
 
 export type THttpMetrics = {
   httpRequestDurationPerPercentileInSeconds?: Summary[];

@@ -1,4 +1,7 @@
-import type { TDefaultedPromsterOptions, TGcMetrics } from '@promster/types';
+import {
+  type TDefaultedPromsterOptions,
+  type TGcMetrics,
+} from '@promster/types';
 
 import merge from 'merge-options';
 import { configure, Prometheus } from '../client';

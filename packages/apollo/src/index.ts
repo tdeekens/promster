@@ -1,4 +1,9 @@
-import { createPlugin, signalIsUp, signalIsNotUp } from './plugin';
+import {
+  type TPromsterOptions,
+  createPlugin,
+  signalIsUp,
+  signalIsNotUp,
+} from './plugin';
 import {
   getSummary,
   getContentType,
@@ -9,6 +14,7 @@ import {
 } from '@promster/metrics';
 
 export {
+  type TPromsterOptions,
   createPlugin,
   signalIsUp,
   signalIsNotUp,

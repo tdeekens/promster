@@ -1,7 +1,7 @@
-import type { TPromsterOptions } from '@promster/types';
-import type { Server } from '@hapi/hapi';
+import { type Server } from '@hapi/hapi';
 
 import {
+  type TPromsterOptions,
   createPlugin,
   getRequestRecorder,
   signalIsUp,
@@ -20,6 +20,7 @@ const instrument = async (server: Server, options: TPromsterOptions) =>
   server.register(createPlugin({ options }));
 
 export {
+  type TPromsterOptions,
   createPlugin,
   getRequestRecorder,
   signalIsUp,

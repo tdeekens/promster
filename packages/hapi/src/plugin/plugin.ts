@@ -1,20 +1,22 @@
-import type {
-  TPromsterOptions,
-  TDefaultedPromsterOptions,
-  THttpMetrics,
-  TGcMetrics,
+import {
+  type TOptionalPromsterOptions,
+  type TDefaultedPromsterOptions,
+  type THttpMetrics,
+  type TGcMetrics,
+  type TLabelValues,
 } from '@promster/types';
-import type { TRequestRecorder, TPromsterTiming } from '@promster/metrics';
-import type {
-  Plugin,
-  Request,
-  ResponseObject,
-  ResponseToolkit,
+import { type TRequestRecorder, type TPromsterTiming } from '@promster/metrics';
+import {
+  type Plugin,
+  type Request,
+  type ResponseObject,
+  type ResponseToolkit,
 } from '@hapi/hapi';
-import type { Boom } from '@hapi/boom';
+import { type Boom } from '@hapi/boom';
 
 import semver from 'semver';
 import merge from 'merge-options';
+// @ts-expect-error
 import pkg from '../../package.json';
 import {
   Prometheus,
@@ -84,6 +86,14 @@ const getAreServerEventsSupported = (actualVersion: string) =>
 const getDoesResponseNeedInvocation = (actualVersion: string) =>
   Boolean(actualVersion && semver.satisfies(actualVersion, '< 17.0.0'));
 
+type TSkipFunction = (
+  _req: Request,
+  _res: ResponseObject,
+  _labels: TLabelValues
+) => boolean;
+export type TPromsterOptions = TOptionalPromsterOptions & {
+  skip?: TSkipFunction;
+};
 const createPlugin = (
   {
     options: pluginOptions,
@@ -91,10 +101,13 @@ const createPlugin = (
     options?: TPromsterOptions;
   } = { options: undefined }
 ) => {
-  const allDefaultedOptions: TDefaultedPromsterOptions = merge(
+  const allDefaultedOptions: TDefaultedPromsterOptions & {
+    skip?: TSkipFunction;
+  } = merge(
     createHttpMetrics.defaultOptions,
     createGcMetrics.defaultOptions,
     createRequestRecorder.defaultOptions,
+    // @ts-expect-error
     createGcObserver.defaultOptions,
     defaultNormalizers,
     pluginOptions
@@ -139,7 +152,10 @@ const createPlugin = (
         return doesResponseNeedInvocation ? h.continue() : h.continue;
       };
 
-      const onResponseHandler = (request: TPromsterRequest, response: any) => {
+      const onResponseHandler = (
+        request: TPromsterRequest,
+        response: ResponseObject
+      ) => {
         const labels = Object.assign(
           {},
           {
@@ -151,6 +167,7 @@ const createPlugin = (
               req: request,
               res: response,
             }),
+            // eslint-disable-next-line camelcase
             status_code: allDefaultedOptions.normalizeStatusCode(
               extractStatusCode(request),
               {
@@ -184,6 +201,7 @@ const createPlugin = (
           });
         }
 
+        // @ts-expect-error - this is the older Hapi version
         if (doesResponseNeedInvocation) response.continue();
       };
 

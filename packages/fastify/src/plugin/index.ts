@@ -1,8 +1,15 @@
 import {
+  type TPromsterOptions,
   plugin,
   getRequestRecorder,
   signalIsUp,
   signalIsNotUp,
 } from './plugin';
 
-export { plugin, signalIsUp, signalIsNotUp, getRequestRecorder };
+export {
+  type TPromsterOptions,
+  plugin,
+  signalIsUp,
+  signalIsNotUp,
+  getRequestRecorder,
+};

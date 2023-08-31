@@ -1,10 +1,10 @@
-import type {
-  TPromsterOptions,
-  TDefaultedPromsterOptions,
-  TLabelValues,
-  THttpMetrics,
+import {
+  type TOptionalPromsterOptions,
+  type TDefaultedPromsterOptions,
+  type TLabelValues,
+  type THttpMetrics,
 } from '@promster/types';
-import type { Timing } from '../timing';
+import { type Timing } from '../timing';
 
 import merge from 'merge-options';
 import { skipMetricsInEnvironment } from '../environment';
@@ -19,12 +19,11 @@ type TRecordingOptions = {
 
 type TLegacyTiming = [number, number];
 export type TRequestRecorder = (
-  timing: Timing | TLegacyTiming,
-  recordingOptions: TRecordingOptions
+  _timing: Timing | TLegacyTiming,
+  _recordingOptions: TRecordingOptions
 ) => void;
 
-const defaultOptions: TPromsterOptions = {
-  skip: () => false,
+const defaultOptions: TOptionalPromsterOptions = {
   detectKubernetes: false,
 };
 
@@ -34,7 +33,7 @@ function isTiming(timing: Timing | TLegacyTiming): timing is Timing {
 
 const createRequestRecorder = (
   metrics: THttpMetrics,
-  options: TPromsterOptions = defaultOptions
+  options: TOptionalPromsterOptions = defaultOptions
 ): TRequestRecorder => {
   const defaultedRecorderOptions: TDefaultedPromsterOptions = merge(
     defaultOptions,
