@@ -47,6 +47,15 @@ const defaultOptions = {
     httpRequestContentLengthInBytes: ['http_request_content_length_bytes'],
     httpResponseContentLengthInBytes: ['http_response_content_length_bytes'],
   },
+  metricBuckets: {
+    httpRequestContentLengthInBytes: defaultHttpContentLengthInBytes,
+    httpRequestDurationInSeconds: defaultHttpRequestDurationInSeconds,
+  },
+  metricPercentiles: {
+    httpRequestDurationPerPercentileInSeconds:
+      defaultHttpRequestDurationPercentileInSeconds,
+    httpResponseContentLengthInBytes: defaultHttpContentLengthInBytes,
+  },
 };
 
 const getMetrics = (options: TDefaultedPromsterOptions) => ({
@@ -59,7 +68,9 @@ const getMetrics = (options: TDefaultedPromsterOptions) => ({
             name: `${options.metricPrefix}${nameOfHttpContentLengthMetric}`,
             help: 'The HTTP request content length in bytes.',
             labelNames: defaultLabels.concat(options.labels).sort(),
-            buckets: options.buckets || defaultHttpContentLengthInBytes,
+            buckets:
+              options.metricBuckets?.httpRequestContentLengthInBytes ||
+              defaultHttpContentLengthInBytes,
           })
       )
     : undefined,
@@ -73,7 +84,9 @@ const getMetrics = (options: TDefaultedPromsterOptions) => ({
             name: `${options.metricPrefix}${nameOfHttpContentLengthMetric}`,
             help: 'The HTTP response content length in bytes.',
             labelNames: defaultLabels.concat(options.labels).sort(),
-            buckets: options.buckets || defaultHttpContentLengthInBytes,
+            buckets:
+              options.metricBuckets?.httpResponseContentLengthInBytes ||
+              defaultHttpContentLengthInBytes,
           })
       )
     : undefined,
@@ -94,7 +107,8 @@ const getHttpRequestLatencyMetricsInSeconds = (
             help: 'The HTTP request latencies in seconds.',
             labelNames: defaultLabels.concat(options.labels).sort(),
             percentiles:
-              options.percentiles ||
+              options.metricPercentiles
+                ?.httpRequestDurationPerPercentileInSeconds ||
               defaultHttpRequestDurationPercentileInSeconds,
           })
       )
@@ -107,7 +121,9 @@ const getHttpRequestLatencyMetricsInSeconds = (
             name: `${options.metricPrefix}${nameOfHttpRequestDurationInSecondsMetric}`,
             help: 'The HTTP request latencies in seconds.',
             labelNames: defaultLabels.concat(options.labels).sort(),
-            buckets: options.buckets || defaultHttpRequestDurationInSeconds,
+            buckets:
+              options.metricBuckets?.httpRequestDurationInSeconds ||
+              defaultHttpRequestDurationInSeconds,
           })
       )
     : undefined,

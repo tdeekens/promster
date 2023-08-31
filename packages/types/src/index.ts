@@ -22,8 +22,8 @@ export type TOptionalPromsterOptions = {
   normalizeMethod?: <Q, S>(method: string, context: TContext<Q, S>) => string;
   getLabelValues?: <Q, S>(request: Q, response: S) => TLabelValues;
   detectKubernetes?: boolean;
-  buckets?: number[];
-  percentiles?: number[];
+  metricBuckets?: Record<string, number[]>;
+  metricPercentiles?: Record<string, number[]>;
   disableGcMetrics?: boolean;
 };
 export type TDefaultedPromsterOptions = DeepRequired<TOptionalPromsterOptions>;
