@@ -155,7 +155,7 @@ In addition with each GraphQL request metric the following default labels are me
 
 ### Customizing buckets and percentiles
 
-Each Prometheus histogram or summary can be customized in regard to its bucket or percentile values. While `@promster` offers some defaults, these might not always match your needs. To cutomize the metrics you can pass a `metricBuckets` or `metricPercentiles` object whose key is the metric name you intend to customize the the value is the `percentile` or `bucket` value passed to the underlying Promtheus metric.
+Each Prometheus histogram or summary can be customized in regard to its bucket or percentile values. While `@promster` offers some defaults, these might not always match your needs. To customize the metrics you can pass a `metricBuckets` or `metricPercentiles` object whose key is the metric name you intend to customize the the value is the `percentile` or `bucket` value passed to the underlying Prometheus metric.
 
 To illustrate this, we can use the `@promster/express` middleware:
 
