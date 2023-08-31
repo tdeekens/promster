@@ -41,7 +41,7 @@
     "lodash.once": "4.1.1",
     "merge-options": "3.0.4",
     "optional": "0.1.4",
-    "tslib": "2.4.1",
+    "tslib": "2.6.2",
     "url-value-parser": "2.2.0"
   },
   "devDependencies": {
