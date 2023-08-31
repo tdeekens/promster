@@ -40,14 +40,14 @@
     "@promster/metrics": "^10.0.0",
     "@promster/types": "^4.0.0",
     "merge-options": "3.0.4",
-    "tslib": "2.4.1",
+    "tslib": "2.6.2",
     "apollo-server-plugin-base": "3.7.2"
   },
   "devDependencies": {
     "@graphql-tools/schema": "9.0.19",
     "@graphql-tools/utils": "9.2.1",
     "apollo-server": "3.12.0",
-    "graphql": "16.7.1",
+    "graphql": "16.8.0",
     "node-fetch": "2.6.11",
     "parse-prometheus-text-format": "1.1.1",
     "@promster/server": "workspace:*"

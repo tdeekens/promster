@@ -44,6 +44,6 @@
     "@promster/server": "workspace:*"
   },
   "devDependencies": {
-    "fastify": "4.21.0"
+    "fastify": "4.22.0"
   }
 }
