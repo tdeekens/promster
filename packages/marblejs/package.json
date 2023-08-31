@@ -45,7 +45,7 @@
   "devDependencies": {
     "@marblejs/core": "4.1.0",
     "@marblejs/http": "4.1.0",
-    "fp-ts": "2.16.0",
+    "fp-ts": "2.16.1",
     "parse-prometheus-text-format": "1.1.1",
     "@promster/server": "workspace:*"
   }
