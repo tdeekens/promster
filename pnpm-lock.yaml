@@ -122,9 +122,6 @@ importers:
       '@promster/types':
         specifier: ^4.0.0
         version: link:../types
-      apollo-server-plugin-base:
-        specifier: 3.7.2
-        version: 3.7.2(graphql@16.8.0)
       merge-options:
         specifier: 3.0.4
         version: 3.0.4
@@ -389,6 +386,7 @@ packages:
       '@types/long': 4.0.2
       '@types/node': 10.17.60
       long: 4.0.0
+    dev: true
 
   /@apollo/protobufjs@1.2.7:
     resolution: {integrity: sha512-Lahx5zntHPZia35myYDBRuF58tlwPskwHc5CWBZC/4bMKB6siTBWwtMrkqXcsNwQiFSzSx5hKdRPUmemrEp3Gg==}
@@ -504,6 +502,7 @@ packages:
     dependencies:
       '@apollo/utils.logger': 1.0.1
       lru-cache: 7.13.1
+    dev: true
 
   /@apollo/utils.keyvaluecache@2.1.1:
     resolution: {integrity: sha512-qVo5PvUUMD8oB9oYvq4ViCjYAMWnZ5zZwEjNF37L2m1u528x5mueMlU+Cr1UinupCgdB78g+egA1G98rbJ03Vw==}
@@ -515,6 +514,7 @@ packages:
 
   /@apollo/utils.logger@1.0.1:
     resolution: {integrity: sha512-XdlzoY7fYNK4OIcvMD2G94RoFZbzTQaNP0jozmqqMudmaGo2I/2Jx71xlDJ801mWA/mbYRihyaw6KJii7k5RVA==}
+    dev: true
 
   /@apollo/utils.logger@2.0.1:
     resolution: {integrity: sha512-YuplwLHaHf1oviidB7MxnCXAdHp3IqYV8n0momZ3JfLniae92eYqMIx+j5qJFX6WKJPs6q7bczmV4lXIsTu5Pg==}
@@ -3674,6 +3674,7 @@ packages:
 
   /@types/node@10.17.60:
     resolution: {integrity: sha512-F0KIgDJfy2nA3zMLmWGKxcH2ZVEtCZXHHdOQs2gSaQ27+lNeEfGxzkIw90aXswATX7AZ33tahPbzy6KAfUreVw==}
+    dev: true
 
   /@types/node@12.20.55:
     resolution: {integrity: sha512-J8xLz7q2OFulZ2cyGTLE1TbbZcjpno7FaN6zdJNrgAdrJ+DZzh/uFR6YrTb4C+nXakvud8Q4+rbhoIWlYQbUFQ==}
@@ -4178,6 +4179,7 @@ packages:
     deprecated: The `apollo-reporting-protobuf` package is part of Apollo Server v2 and v3, which are now deprecated (end-of-life October 22nd 2023 and October 22nd 2024, respectively). This package's functionality is now found in the `@apollo/usage-reporting-protobuf` package. See https://www.apollographql.com/docs/apollo-server/previous-versions/ for more details.
     dependencies:
       '@apollo/protobufjs': 1.2.6
+    dev: true
 
   /apollo-server-core@3.12.1(graphql@16.8.0):
     resolution: {integrity: sha512-9SF5WAkkV0FZQ2HVUWI9Jada1U0jg7e8NCN9EklbtvaCeUlOLyXyM+KCWuZ7+dqHxjshbtcwylPHutt3uzoNkw==}
@@ -4222,6 +4224,7 @@ packages:
       node-fetch: 2.6.11
     transitivePeerDependencies:
       - encoding
+    dev: true
 
   /apollo-server-errors@3.3.1(graphql@16.8.0):
     resolution: {integrity: sha512-xnZJ5QWs6FixHICXHxUfm+ZWqqxrNuPlQ+kj5m6RtEgIpekOPssH/SD9gf2B4HuWV0QozorrygwZnux8POvyPA==}
@@ -4270,6 +4273,7 @@ packages:
       graphql: 16.8.0
     transitivePeerDependencies:
       - encoding
+    dev: true
 
   /apollo-server-types@3.8.0(graphql@16.8.0):
     resolution: {integrity: sha512-ZI/8rTE4ww8BHktsVpb91Sdq7Cb71rdSkXELSwdSR0eXu600/sY+1UXhTWdiJvk+Eq5ljqoHLwLbY2+Clq2b9A==}
@@ -4285,6 +4289,7 @@ packages:
       graphql: 16.8.0
     transitivePeerDependencies:
       - encoding
+    dev: true
 
   /apollo-server@3.12.1(graphql@16.8.0):
     resolution: {integrity: sha512-wgxx+J8KPTkhepi4qI9qY1xNoYzJfmvRKVUdFmFCZ3lyPO2j/+oOnAnyEVruAIQU5gquK10B0jdwVyvese9J/g==}
@@ -7810,6 +7815,7 @@ packages:
   /lru-cache@7.13.1:
     resolution: {integrity: sha512-CHqbAq7NFlW3RSnoWXLJBxCWaZVBrfa9UEHId2M3AW8iEBurbqduNexEUCGc3SHc6iCYXNJCDi903LajSVAEPQ==}
     engines: {node: '>=12'}
+    dev: true
 
   /lru-cache@7.18.3:
     resolution: {integrity: sha512-jumlc0BIUrS3qJGgIkWZsyfAM7NCWiBcCDhnd+3NNM5KbBmLTgHVfWBcg6W+rLUsIpzpERPsvwUP7CckAQSOoA==}
