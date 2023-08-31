@@ -148,8 +148,8 @@ importers:
         specifier: 16.8.0
         version: 16.8.0
       node-fetch:
-        specifier: 2.6.13
-        version: 2.6.13
+        specifier: 2.6.11
+        version: 2.6.11
       parse-prometheus-text-format:
         specifier: 1.1.1
         version: 1.1.1
@@ -179,8 +179,8 @@ importers:
         specifier: 4.18.2
         version: 4.18.2
       node-fetch:
-        specifier: 2.6.13
-        version: 2.6.13
+        specifier: 2.6.11
+        version: 2.6.11
       parse-prometheus-text-format:
         specifier: 1.1.1
         version: 1.1.1
@@ -450,7 +450,7 @@ packages:
       lru-cache: 7.18.3
       negotiator: 0.6.3
       node-abort-controller: 3.1.1
-      node-fetch: 2.6.13
+      node-fetch: 2.6.11
       uuid: 9.0.0
       whatwg-mimetype: 3.0.0
     transitivePeerDependencies:
@@ -2019,7 +2019,7 @@ packages:
     resolution: {integrity: sha512-JppheLu7S114aEs157fOZDjFqUDpm7eHdq5E8SSR0gUBTEK0cNSHsrSR5a66xs0z3RWuo46QvA3vawp8BxDHvg==}
     dependencies:
       dataloader: 1.4.0
-      node-fetch: 2.6.13
+      node-fetch: 2.6.11
     transitivePeerDependencies:
       - encoding
     dev: false
@@ -3091,7 +3091,7 @@ packages:
       detect-libc: 2.0.2
       https-proxy-agent: 5.0.1
       make-dir: 3.1.0
-      node-fetch: 2.6.13
+      node-fetch: 2.6.11
       nopt: 5.0.0
       npmlog: 5.0.1
       rimraf: 3.0.2
@@ -4182,7 +4182,7 @@ packages:
     engines: {node: '>=12.0'}
     deprecated: The `apollo-server-env` package is part of Apollo Server v2 and v3, which are now deprecated (end-of-life October 22nd 2023 and October 22nd 2024, respectively). This package's functionality is now found in the `@apollo/utils.fetcher` package. See https://www.apollographql.com/docs/apollo-server/previous-versions/ for more details.
     dependencies:
-      node-fetch: 2.6.13
+      node-fetch: 2.6.11
     transitivePeerDependencies:
       - encoding
 
@@ -8067,8 +8067,8 @@ packages:
   /node-abort-controller@3.1.1:
     resolution: {integrity: sha512-AGK2yQKIjRuqnc6VkX2Xj5d+QW8xZ87pa1UK6yA6ouUyuxfHuMP6umE5QK7UmTeOAymo+Zx1Fxiuw9rVx8taHQ==}
 
-  /node-fetch@2.6.13:
-    resolution: {integrity: sha512-StxNAxh15zr77QvvkmveSQ8uCQ4+v5FkvNTj0OESmiHu+VRi/gXArXtkWMElOsOUNLtUEvI4yS+rdtOHZTwlQA==}
+  /node-fetch@2.6.11:
+    resolution: {integrity: sha512-4I6pdBY1EthSqDmJkiNk3JIT8cswwR9nfeW/cPdUagJYEQG7R95WRH74wpz7ma8Gh/9dI9FP+OU+0E4FvtA55w==}
     engines: {node: 4.x || >=6.0.0}
     peerDependencies:
       encoding: ^0.1.0
@@ -9446,7 +9446,7 @@ packages:
     dependencies:
       http-proxy-agent: 4.0.1
       https-proxy-agent: 5.0.1
-      node-fetch: 2.6.13
+      node-fetch: 2.6.11
       stream-events: 1.0.5
       uuid: 8.3.2
     transitivePeerDependencies:
