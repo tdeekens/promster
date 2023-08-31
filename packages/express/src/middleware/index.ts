@@ -1,8 +1,15 @@
 import {
+  type TPromsterOptions,
   createMiddleware,
   getRequestRecorder,
   signalIsUp,
   signalIsNotUp,
 } from './middleware';
 
-export { createMiddleware, signalIsUp, signalIsNotUp, getRequestRecorder };
+export {
+  type TPromsterOptions,
+  createMiddleware,
+  signalIsUp,
+  signalIsNotUp,
+  getRequestRecorder,
+};

@@ -1,15 +1,15 @@
-import type {
-  ApolloServerPlugin,
-  GraphQLRequestContext,
+import {
+  type ApolloServerPlugin,
+  type GraphQLRequestContext,
 } from 'apollo-server-plugin-base';
-import type {
-  TPromsterOptions,
-  TDefaultedPromsterOptions,
-  TGcMetrics,
-  TGraphQlMetrics,
-  TLabelValues,
+import {
+  type TOptionalPromsterOptions,
+  type TDefaultedPromsterOptions,
+  type TGcMetrics,
+  type TGraphQlMetrics,
+  type TLabelValues,
 } from '@promster/types';
-import type { TRequestRecorder } from '@promster/metrics';
+import { type TRequestRecorder } from '@promster/metrics';
 
 import merge from 'merge-options';
 import {
@@ -45,12 +45,21 @@ const signalIsNotUp = () => {
   });
 };
 
-type TPluginOptions = {
-  options?: TPromsterOptions;
+type TSkipFunction = (
+  _req: GraphQLRequestContext['request'],
+  _res: GraphQLRequestContext['response'],
+  _labels: TLabelValues
+) => boolean;
+export type TPromsterOptions = {
+  options?: TOptionalPromsterOptions & { skip?: TSkipFunction };
 };
 
-const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
-  const allDefaultedOptions: TDefaultedPromsterOptions = merge(
+const createPlugin = (
+  { options }: TPromsterOptions = { options: undefined }
+) => {
+  const allDefaultedOptions: TDefaultedPromsterOptions & {
+    skip?: TSkipFunction;
+  } = merge(
     createGcMetrics.defaultOptions,
     createGraphQlMetrics.defaultOptions,
     defaultNormalizers,
@@ -81,6 +90,7 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
     const labels = Object.assign(
       {},
       {
+        // eslint-disable-next-line camelcase
         operation_name: requestContext.request.operationName,
       },
       allDefaultedOptions.getLabelValues?.(
@@ -179,6 +189,7 @@ const createPlugin = ({ options }: TPluginOptions = { options: undefined }) => {
                   executionRequestContext
                 );
                 const labels = Object.assign({}, defaultLabels, {
+                  // eslint-disable-next-line camelcase
                   field_name: info.fieldName,
                 });
 

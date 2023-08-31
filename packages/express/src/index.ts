@@ -1,4 +1,5 @@
 import {
+  type TPromsterOptions,
   createMiddleware,
   getRequestRecorder,
   signalIsUp,
@@ -14,6 +15,7 @@ import {
 } from '@promster/metrics';
 
 export {
+  type TPromsterOptions,
   createMiddleware,
   getRequestRecorder,
   signalIsUp,

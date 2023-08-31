@@ -1,11 +1,17 @@
-import type {
-  TPromsterOptions,
-  THttpMetrics,
-  TGcMetrics,
-  TDefaultedPromsterOptions,
+import {
+  type TOptionalPromsterOptions,
+  type THttpMetrics,
+  type TGcMetrics,
+  type TDefaultedPromsterOptions,
+  type TLabelValues,
 } from '@promster/types';
-import type { TRequestRecorder } from '@promster/metrics';
-import type { Application, Request, Response, NextFunction } from 'express';
+import { type TRequestRecorder } from '@promster/metrics';
+import {
+  type Application,
+  type Request,
+  type Response,
+  type NextFunction,
+} from 'express';
 
 import merge from 'merge-options';
 import {
@@ -59,6 +65,14 @@ const signalIsNotUp = () => {
   });
 };
 
+type TSkipFunction = (
+  _req: Request,
+  _res: Response,
+  _labels: TLabelValues
+) => boolean;
+export type TPromsterOptions = TOptionalPromsterOptions & {
+  skip?: TSkipFunction;
+};
 type TMiddlewareOptions = {
   app?: TApp;
   options?: TPromsterOptions;
@@ -66,10 +80,13 @@ type TMiddlewareOptions = {
 const createMiddleware = (
   { app, options }: TMiddlewareOptions = { app: undefined, options: undefined }
 ) => {
-  const allDefaultedOptions: TDefaultedPromsterOptions = merge(
+  const allDefaultedOptions: TDefaultedPromsterOptions & {
+    skip?: TSkipFunction;
+  } = merge(
     createHttpMetrics.defaultOptions,
     createGcMetrics.defaultOptions,
     createRequestRecorder.defaultOptions,
+    // @ts-expect-error
     createGcObserver.defaultOptions,
     defaultNormalizers,
     options
@@ -103,6 +120,7 @@ const createMiddleware = (
             req: request,
             res: response,
           }),
+          // eslint-disable-next-line camelcase
           status_code: allDefaultedOptions.normalizeStatusCode(
             response.statusCode,
             { req: request, res: response }

@@ -1,12 +1,16 @@
-import type {
-  TPromsterOptions,
-  THttpMetrics,
-  TGcMetrics,
-  TDefaultedPromsterOptions,
+import {
+  type TOptionalPromsterOptions,
+  type THttpMetrics,
+  type TGcMetrics,
+  type TDefaultedPromsterOptions,
+  type TLabelValues,
 } from '@promster/types';
-import type { TRequestRecorder, TPromsterTiming } from '@promster/metrics';
-import type { FastifyInstance, FastifyRequest } from 'fastify';
-
+import { type TRequestRecorder, type TPromsterTiming } from '@promster/metrics';
+import {
+  type FastifyInstance,
+  type FastifyRequest,
+  type FastifyReply,
+} from 'fastify';
 import fastifyPlugin from 'fastify-plugin';
 import merge from 'merge-options';
 import {
@@ -19,6 +23,7 @@ import {
   skipMetricsInEnvironment,
   timing,
 } from '@promster/metrics';
+// @ts-expect-error
 import pkg from '../../package.json';
 
 let recordRequest: TRequestRecorder;
@@ -48,14 +53,26 @@ const signalIsNotUp = () => {
   });
 };
 
+type TSkipFunction = (
+  _req: FastifyRequest,
+  _res: FastifyReply,
+  _labels: TLabelValues
+) => boolean;
+
+export type TPromsterOptions = TOptionalPromsterOptions & {
+  skip?: TSkipFunction;
+};
 const createPlugin = async (
   fastify: FastifyInstance,
   options: TPromsterOptions
 ) => {
-  const allDefaultedOptions: TDefaultedPromsterOptions = merge(
+  const allDefaultedOptions: TDefaultedPromsterOptions & {
+    skip?: TSkipFunction;
+  } = merge(
     createHttpMetrics.defaultOptions,
     createGcMetrics.defaultOptions,
     createRequestRecorder.defaultOptions,
+    // @ts-expect-error
     createGcObserver.defaultOptions,
     defaultNormalizers,
     options
@@ -94,6 +111,7 @@ const createPlugin = async (
           req: request,
           res: reply,
         }),
+        // eslint-disable-next-line camelcase
         status_code: allDefaultedOptions.normalizeStatusCode(reply.statusCode, {
           req: request,
           res: reply,

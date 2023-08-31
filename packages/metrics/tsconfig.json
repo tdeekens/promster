@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig-base.json",
+  "compilerOptions": {
+    "declarationDir": "./ts-build-cache/"
+  },
+  "references": [
+    {
+      "path": "../types"
+    }
+  ]
+}

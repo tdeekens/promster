@@ -1,3 +1,8 @@
-import { createPlugin, signalIsUp, signalIsNotUp } from './plugin';
+import {
+  type TPromsterOptions,
+  createPlugin,
+  signalIsUp,
+  signalIsNotUp,
+} from './plugin';
 
-export { createPlugin, signalIsUp, signalIsNotUp };
+export { type TPromsterOptions, createPlugin, signalIsUp, signalIsNotUp };

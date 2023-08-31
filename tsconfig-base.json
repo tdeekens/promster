@@ -1,0 +1,18 @@
+{
+  "extends": "@tsconfig/node18/tsconfig.json",
+  "compilerOptions": {
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "target": "ESNext",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "strictNullChecks": true,
+    "strict": true,
+    "composite": true,
+    "typeRoots": ["@types", "@types-extensions", "node_modules/@types"],
+    "lib": ["ESNext"]
+  },
+  "include": ["packages/**/src/*"],
+  "exclude": ["**/ts-build-cache/**/*", "packages/**/dist/*"]
+}

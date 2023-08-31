@@ -1,4 +1,7 @@
-import type { TDefaultedPromsterOptions, THttpMetrics } from '@promster/types';
+import {
+  type TDefaultedPromsterOptions,
+  type THttpMetrics,
+} from '@promster/types';
 
 import merge from 'merge-options';
 import { configure, Prometheus } from '../client';

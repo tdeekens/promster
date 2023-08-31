@@ -1,4 +1,5 @@
 import {
+  type TPromsterOptions,
   plugin,
   getRequestRecorder,
   signalIsUp,
@@ -14,6 +15,7 @@ import {
 } from '@promster/metrics';
 
 export {
+  type TPromsterOptions,
   plugin,
   getRequestRecorder,
   signalIsUp,

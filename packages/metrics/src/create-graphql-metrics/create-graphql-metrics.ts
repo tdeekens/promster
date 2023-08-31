@@ -1,6 +1,6 @@
-import type {
-  TDefaultedPromsterOptions,
-  TGraphQlMetrics,
+import {
+  type TDefaultedPromsterOptions,
+  type TGraphQlMetrics,
 } from '@promster/types';
 
 import merge from 'merge-options';

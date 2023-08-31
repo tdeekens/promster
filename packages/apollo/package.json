@@ -40,7 +40,8 @@
     "@promster/metrics": "^10.0.0",
     "@promster/types": "^4.0.0",
     "merge-options": "3.0.4",
-    "tslib": "2.4.1"
+    "tslib": "2.4.1",
+    "apollo-server-plugin-base": "3.7.2"
   },
   "devDependencies": {
     "@graphql-tools/schema": "9.0.19",

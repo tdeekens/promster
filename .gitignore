@@ -38,3 +38,6 @@ jspm_packages
 dist
 
 coverage
+
+ts-build-cache
+tsconfig.tsbuildinfo

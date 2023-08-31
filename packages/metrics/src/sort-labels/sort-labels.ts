@@ -1,4 +1,4 @@
-import type { TLabelValues } from '@promster/types';
+import { type TLabelValues } from '@promster/types';
 
 function sortLabels(unsortedLabels: TLabelValues): TLabelValues {
   return Object.keys(unsortedLabels)
@@ -13,7 +13,7 @@ function sortLabels(unsortedLabels: TLabelValues): TLabelValues {
 
       return 0;
     })
-    .reduce((sortedLabels, labelName) => {
+    .reduce<TLabelValues>((sortedLabels, labelName) => {
       sortedLabels[labelName] = unsortedLabels[labelName];
       return sortedLabels;
     }, {});

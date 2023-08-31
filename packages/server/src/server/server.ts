@@ -1,4 +1,9 @@
-import * as http from 'http';
+import {
+  createServer as createHttpServer,
+  type IncomingMessage,
+  type ServerResponse,
+  type Server,
+} from 'http';
 import {
   getSummary,
   getContentType,
@@ -19,21 +24,23 @@ const defaultOptions: TServerOptions = {
 
 const createServer = async (
   options: Partial<TServerOptions>
-): Promise<http.Server> => {
+): Promise<Server> => {
   const defaultedOptions = {
     ...defaultOptions,
     ...options,
   };
 
+  const server = createHttpServer(
+    async (_req: IncomingMessage, res: ServerResponse) => {
+      res.writeHead(200, 'OK', { 'content-type': getContentType() });
+      res.end(await getSummary());
+    }
+  );
+
   return new Promise((resolve, reject) => {
     const skipServerStart = skipMetricsInEnvironment(defaultedOptions);
 
     const port = skipServerStart ? undefined : defaultedOptions.port;
-
-    const server = http.createServer(async (_req, res) => {
-      res.writeHead(200, 'OK', { 'content-type': getContentType() });
-      res.end(await getSummary());
-    });
 
     server.listen(port, defaultedOptions.hostname, () => {
       server.on('error', reject);

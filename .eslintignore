@@ -1,3 +1,6 @@
 node_modules/
 coverage/
 dist/
+.eslintrc.cjs
+packages/**/index.ts
+**/ts-build-cache
