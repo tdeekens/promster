@@ -44,9 +44,9 @@
     "apollo-server-plugin-base": "3.7.2"
   },
   "devDependencies": {
-    "@graphql-tools/schema": "9.0.19",
-    "@graphql-tools/utils": "9.2.1",
-    "apollo-server": "3.12.0",
+    "@graphql-tools/schema": "10.0.0",
+    "@graphql-tools/utils": "10.0.5",
+    "apollo-server": "3.12.1",
     "graphql": "16.8.0",
     "node-fetch": "2.6.11",
     "parse-prometheus-text-format": "1.1.1",

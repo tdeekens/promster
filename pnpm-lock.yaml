@@ -36,8 +36,8 @@ importers:
         specifier: 0.21.0
         version: 0.21.0
       '@preconstruct/cli':
-        specifier: 2.2.2
-        version: 2.2.2
+        specifier: 2.8.1
+        version: 2.8.1
       '@tsconfig/node18':
         specifier: 18.2.1
         version: 18.2.1
@@ -133,17 +133,17 @@ importers:
         version: 2.6.2
     devDependencies:
       '@graphql-tools/schema':
-        specifier: 9.0.19
-        version: 9.0.19(graphql@16.8.0)
+        specifier: 10.0.0
+        version: 10.0.0(graphql@16.8.0)
       '@graphql-tools/utils':
-        specifier: 9.2.1
-        version: 9.2.1(graphql@16.8.0)
+        specifier: 10.0.5
+        version: 10.0.5(graphql@16.8.0)
       '@promster/server':
         specifier: workspace:*
         version: link:../server
       apollo-server:
-        specifier: 3.12.0
-        version: 3.12.0(graphql@16.8.0)
+        specifier: 3.12.1
+        version: 3.12.1(graphql@16.8.0)
       graphql:
         specifier: 16.8.0
         version: 16.8.0
@@ -267,16 +267,16 @@ importers:
     devDependencies:
       '@marblejs/core':
         specifier: 4.1.0
-        version: 4.1.0(fp-ts@2.16.0)(rxjs@6.6.7)
+        version: 4.1.0(fp-ts@2.16.1)(rxjs@6.6.7)
       '@marblejs/http':
         specifier: 4.1.0
-        version: 4.1.0(@marblejs/core@4.1.0)(fp-ts@2.16.0)(rxjs@6.6.7)
+        version: 4.1.0(@marblejs/core@4.1.0)(fp-ts@2.16.1)(rxjs@6.6.7)
       '@promster/server':
         specifier: workspace:*
         version: link:../server
       fp-ts:
-        specifier: 2.16.0
-        version: 2.16.0
+        specifier: 2.16.1
+        version: 2.16.1
       parse-prometheus-text-format:
         specifier: 1.1.1
         version: 1.1.1
@@ -310,8 +310,8 @@ importers:
         version: 1.5.9
     devDependencies:
       '@types/lodash.once':
-        specifier: 4.1.2
-        version: 4.1.2
+        specifier: 4.1.7
+        version: 4.1.7
       '@types/node':
         specifier: 18.17.12
         version: 18.17.12
@@ -2359,6 +2359,17 @@ packages:
       graphql: 16.8.0
       tslib: 2.6.2
 
+  /@graphql-tools/merge@9.0.0(graphql@16.8.0):
+    resolution: {integrity: sha512-J7/xqjkGTTwOJmaJQJ2C+VDBDOWJL3lKrHJN4yMaRLAJH3PosB7GiPRaSDZdErs0+F77sH2MKs2haMMkywzx7Q==}
+    engines: {node: '>=16.0.0'}
+    peerDependencies:
+      graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
+    dependencies:
+      '@graphql-tools/utils': 10.0.5(graphql@16.8.0)
+      graphql: 16.8.0
+      tslib: 2.6.2
+    dev: true
+
   /@graphql-tools/mock@8.7.20(graphql@16.8.0):
     resolution: {integrity: sha512-ljcHSJWjC/ZyzpXd5cfNhPI7YljRVvabKHPzKjEs5ElxWu2cdlLGvyNYepApXDsM/OJG/2xuhGM+9GWu5gEAPQ==}
     peerDependencies:
@@ -2369,6 +2380,19 @@ packages:
       fast-json-stable-stringify: 2.1.0
       graphql: 16.8.0
       tslib: 2.6.2
+    dev: true
+
+  /@graphql-tools/schema@10.0.0(graphql@16.8.0):
+    resolution: {integrity: sha512-kf3qOXMFcMs2f/S8Y3A8fm/2w+GaHAkfr3Gnhh2LOug/JgpY/ywgFVxO3jOeSpSEdoYcDKLcXVjMigNbY4AdQg==}
+    engines: {node: '>=16.0.0'}
+    peerDependencies:
+      graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
+    dependencies:
+      '@graphql-tools/merge': 9.0.0(graphql@16.8.0)
+      '@graphql-tools/utils': 10.0.5(graphql@16.8.0)
+      graphql: 16.8.0
+      tslib: 2.6.2
+      value-or-promise: 1.0.12
     dev: true
 
   /@graphql-tools/schema@8.5.1(graphql@16.8.0):
@@ -2393,6 +2417,18 @@ packages:
       graphql: 16.8.0
       tslib: 2.6.2
       value-or-promise: 1.0.12
+
+  /@graphql-tools/utils@10.0.5(graphql@16.8.0):
+    resolution: {integrity: sha512-ZTioQqg9z9eCG3j+KDy54k1gp6wRIsLqkx5yi163KVvXVkfjsrdErCyZjrEug21QnKE9piP4tyxMpMMOT1RuRw==}
+    engines: {node: '>=16.0.0'}
+    peerDependencies:
+      graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
+    dependencies:
+      '@graphql-typed-document-node/core': 3.2.0(graphql@16.8.0)
+      dset: 3.1.2
+      graphql: 16.8.0
+      tslib: 2.6.2
+    dev: true
 
   /@graphql-tools/utils@8.9.0(graphql@16.8.0):
     resolution: {integrity: sha512-pjJIWH0XOVnYGXCqej8g/u/tsfV4LvLlj0eATKQu5zwnxd/TiTHq7Cg313qUPTFFHZ3PP5wJ15chYVtLDwaymg==}
@@ -3103,7 +3139,7 @@ packages:
     dev: false
     optional: true
 
-  /@marblejs/core@4.1.0(fp-ts@2.16.0)(rxjs@6.6.7):
+  /@marblejs/core@4.1.0(fp-ts@2.16.1)(rxjs@6.6.7):
     resolution: {integrity: sha512-h32/PpqLdzA9L9LUGfsc1de6Rvn869AEG4oGOUB/6hA2ESAfND5BV2xRFEwlX82Sl8hovJQebtnYFpyEE1t+Pg==}
     engines: {node: '>= 8.0.0', npm: '>= 5.0.0', yarn: '>= 1.7.0'}
     peerDependencies:
@@ -3112,13 +3148,13 @@ packages:
     dependencies:
       '@types/uuid': 7.0.5
       chalk: 3.0.0
-      fp-ts: 2.16.0
-      io-ts: 2.2.20(fp-ts@2.16.0)
+      fp-ts: 2.16.1
+      io-ts: 2.2.20(fp-ts@2.16.1)
       rxjs: 6.6.7
       uuid: 7.0.3
     dev: true
 
-  /@marblejs/http@4.1.0(@marblejs/core@4.1.0)(fp-ts@2.16.0)(rxjs@6.6.7):
+  /@marblejs/http@4.1.0(@marblejs/core@4.1.0)(fp-ts@2.16.1)(rxjs@6.6.7):
     resolution: {integrity: sha512-2J2kGGJbijJiX6q3XQ/T1RMJJF24CxdtjZhj7FEWmZzcpov7FQMsZCMfC77L6S93YB0LW82scYZDC1EQctHGqQ==}
     engines: {node: '>= 8.0.0', npm: '>= 5.0.0', yarn: '>= 1.7.0'}
     peerDependencies:
@@ -3126,13 +3162,13 @@ packages:
       fp-ts: ^2.13.1
       rxjs: ^7.5.7
     dependencies:
-      '@marblejs/core': 4.1.0(fp-ts@2.16.0)(rxjs@6.6.7)
+      '@marblejs/core': 4.1.0(fp-ts@2.16.1)(rxjs@6.6.7)
       '@types/json-schema': 7.0.12
       '@types/qs': 6.9.7
       '@types/uuid': 7.0.5
       chalk: 3.0.0
       file-type: 8.1.0
-      fp-ts: 2.16.0
+      fp-ts: 2.16.1
       mime: 2.6.0
       path-to-regexp: 6.2.1
       qs: 6.11.2
@@ -3186,8 +3222,8 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /@preconstruct/cli@2.2.2:
-    resolution: {integrity: sha512-7Zk8g/G+SPusoL1Ir3oslj19QDoFuAKeQO8B6fnNkRRgvIntxnylGZyC4wdKVX/eeDHwca1LNLT/GyjXx1f1nA==}
+  /@preconstruct/cli@2.8.1:
+    resolution: {integrity: sha512-PX5w+au06iY/QaT+9RLmRlIfavRCRoMTC/krwtNrgPEnubR9e6P+QlywrKmwiEvkzbR9AEzGnRZL8uNRDDMzrQ==}
     hasBin: true
     dependencies:
       '@babel/code-frame': 7.22.10
@@ -3212,7 +3248,7 @@ packages:
       is-ci: 2.0.0
       is-reference: 1.2.1
       jest-worker: 26.6.2
-      magic-string: 0.25.9
+      magic-string: 0.30.3
       meow: 7.1.1
       ms: 2.1.3
       normalize-path: 3.0.0
@@ -3227,6 +3263,7 @@ packages:
       semver: 7.5.4
       terser: 5.19.2
       v8-compile-cache: 2.4.0
+      zod: 3.22.2
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -3595,8 +3632,8 @@ packages:
       '@types/node': 18.17.12
     dev: false
 
-  /@types/lodash.once@4.1.2:
-    resolution: {integrity: sha512-hfN1GFCDjQVJRNAdmGxqGPD2ChSyvnS14Zg77Z5623gqtuQN4Q4A857gKg64izEKp0/kFBWIF3Vp2AjV1q6JRg==}
+  /@types/lodash.once@4.1.7:
+    resolution: {integrity: sha512-XWhnXzWkxoleOoXKmzUtep8vT+wiiQQgmPD+wzG0yO0bdlszmnqHRb2WiY5hK/8V0DTet1+z9DJj9cnbdAhWng==}
     dependencies:
       '@types/lodash': 4.14.197
     dev: true
@@ -4142,8 +4179,8 @@ packages:
     dependencies:
       '@apollo/protobufjs': 1.2.6
 
-  /apollo-server-core@3.12.0(graphql@16.8.0):
-    resolution: {integrity: sha512-hq7iH6Cgldgmnjs9FVSZeKWRpi0/ZR+iJ1arzeD2VXGxxgk1mAm/cz1Tx0TYgegZI+FvvrRl0UhKEx7sLnIxIg==}
+  /apollo-server-core@3.12.1(graphql@16.8.0):
+    resolution: {integrity: sha512-9SF5WAkkV0FZQ2HVUWI9Jada1U0jg7e8NCN9EklbtvaCeUlOLyXyM+KCWuZ7+dqHxjshbtcwylPHutt3uzoNkw==}
     engines: {node: '>=12.0'}
     deprecated: The `apollo-server-core` package is part of Apollo Server v2 and v3, which are now deprecated (end-of-life October 22nd 2023 and October 22nd 2024, respectively). This package's functionality is now found in the `@apollo/server` package. See https://www.apollographql.com/docs/apollo-server/previous-versions/ for more details.
     peerDependencies:
@@ -4196,8 +4233,8 @@ packages:
       graphql: 16.8.0
     dev: true
 
-  /apollo-server-express@3.12.0(express@4.18.2)(graphql@16.8.0):
-    resolution: {integrity: sha512-m8FaGPUfDOEGSm7QRWRmUUGjG/vqvpQoorkId9/FXkC57fz/A59kEdrzkMt9538Xgsa5AV+X4MEWLJhTvlW3LQ==}
+  /apollo-server-express@3.12.1(express@4.18.2)(graphql@16.8.0):
+    resolution: {integrity: sha512-5A9efrhEXqDx08BnORWf0zPYCABENqur47VZZW8osQpSSnMINqzJiV5RMrzz8wIznecRRhEcz+BqLdiexqZdgg==}
     engines: {node: '>=12.0'}
     deprecated: The `apollo-server-express` package is part of Apollo Server v2 and v3, which are now deprecated (end-of-life October 22nd 2023 and October 22nd 2024, respectively). This package's functionality is now found in the `@apollo/server` package. See https://www.apollographql.com/docs/apollo-server/previous-versions/ for more details.
     peerDependencies:
@@ -4210,7 +4247,7 @@ packages:
       '@types/express': 4.17.14
       '@types/express-serve-static-core': 4.17.31
       accepts: 1.3.8
-      apollo-server-core: 3.12.0(graphql@16.8.0)
+      apollo-server-core: 3.12.1(graphql@16.8.0)
       apollo-server-types: 3.8.0(graphql@16.8.0)
       body-parser: 1.20.2
       cors: 2.8.5
@@ -4249,15 +4286,15 @@ packages:
     transitivePeerDependencies:
       - encoding
 
-  /apollo-server@3.12.0(graphql@16.8.0):
-    resolution: {integrity: sha512-wZHLgBoIdGxr/YpPTG5RwNnS+B2y70T/nCegCnU6Yl+H3PXB92OIguLMhdJIZVjukIOhiQT12dNIehqLQ+1hMQ==}
+  /apollo-server@3.12.1(graphql@16.8.0):
+    resolution: {integrity: sha512-wgxx+J8KPTkhepi4qI9qY1xNoYzJfmvRKVUdFmFCZ3lyPO2j/+oOnAnyEVruAIQU5gquK10B0jdwVyvese9J/g==}
     deprecated: The `apollo-server` package is part of Apollo Server v2 and v3, which are now deprecated (end-of-life October 22nd 2023 and October 22nd 2024, respectively). This package's functionality is now found in the `@apollo/server` package. See https://www.apollographql.com/docs/apollo-server/previous-versions/ for more details.
     peerDependencies:
       graphql: ^15.3.0 || ^16.0.0
     dependencies:
       '@types/express': 4.17.14
-      apollo-server-core: 3.12.0(graphql@16.8.0)
-      apollo-server-express: 3.12.0(express@4.18.2)(graphql@16.8.0)
+      apollo-server-core: 3.12.1(graphql@16.8.0)
+      apollo-server-express: 3.12.1(express@4.18.2)(graphql@16.8.0)
       express: 4.18.2
       graphql: 16.8.0
     transitivePeerDependencies:
@@ -5375,6 +5412,11 @@ packages:
     engines: {node: '>=10'}
     dev: false
 
+  /dset@3.1.2:
+    resolution: {integrity: sha512-g/M9sqy3oHe477Ar4voQxWtaPIFw1jTdKZuomOjhCcBx9nHUNn0pu6NopuFFrTh/TRZIKEj+76vLWFu9BNKk+Q==}
+    engines: {node: '>=4'}
+    dev: true
+
   /duplexer3@0.1.5:
     resolution: {integrity: sha512-1A8za6ws41LQgv9HrE/66jyC5yuSjQ3L/KOpFtoBilsAK2iA2wuS5rTt1OCzIvtS2V7nVmedsUU+DGRcjBmOYA==}
     dev: false
@@ -6086,8 +6128,8 @@ packages:
     resolution: {integrity: sha512-buRG0fpBtRHSTCOASe6hD258tEubFoRLb4ZNA6NxMVHNw2gOcwHo9wyablzMzOA5z9xA9L1KNjk/Nt6MT9aYow==}
     engines: {node: '>= 0.6'}
 
-  /fp-ts@2.16.0:
-    resolution: {integrity: sha512-bLq+KgbiXdTEoT1zcARrWEpa5z6A/8b7PcDW7Gef3NSisQ+VS7ll2Xbf1E+xsgik0rWub/8u0qP/iTTjj+PhxQ==}
+  /fp-ts@2.16.1:
+    resolution: {integrity: sha512-by7U5W8dkIzcvDofUcO42yl9JbnHTEDBrzu3pt5fKT+Z4Oy85I21K80EYJYdjQGC2qum4Vo55Ag57iiIK4FYuA==}
     dev: true
 
   /fresh@0.5.2:
@@ -6619,12 +6661,12 @@ packages:
       side-channel: 1.0.4
     dev: false
 
-  /io-ts@2.2.20(fp-ts@2.16.0):
+  /io-ts@2.2.20(fp-ts@2.16.1):
     resolution: {integrity: sha512-Rq2BsYmtwS5vVttie4rqrOCIfHCS9TgpRLFpKQCM1wZBBRY9nWVGmEvm2FnDbSE2un1UE39DvFpTR5UL47YDcA==}
     peerDependencies:
       fp-ts: ^2.5.0
     dependencies:
-      fp-ts: 2.16.0
+      fp-ts: 2.16.1
     dev: true
 
   /ipaddr.js@1.9.1:
@@ -7787,7 +7829,6 @@ packages:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: false
-    optional: true
 
   /make-dir@3.1.0:
     resolution: {integrity: sha512-g3FeP20LNwhALb/6Cz6Dd4F2ngze0jz7tbzrD2wAV+o9FeNHe4rL+yK2md0J/fiSf1sa1ADhXqi5+oVwOM/eGw==}
@@ -10156,4 +10197,8 @@ packages:
   /yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+    dev: false
+
+  /zod@3.22.2:
+    resolution: {integrity: sha512-wvWkphh5WQsJbVk1tbx1l1Ly4yg+XecD+Mq280uBGt9wa5BKSWf4Mhp6GmrkPixhMxmabYY7RbzlwVP32pbGCg==}
     dev: false
