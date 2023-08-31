@@ -152,7 +152,10 @@ const createPlugin = (
         return doesResponseNeedInvocation ? h.continue() : h.continue;
       };
 
-      const onResponseHandler = (request: TPromsterRequest, response: any) => {
+      const onResponseHandler = (
+        request: TPromsterRequest,
+        response: ResponseObject
+      ) => {
         const labels = Object.assign(
           {},
           {
@@ -198,6 +201,7 @@ const createPlugin = (
           });
         }
 
+        // @ts-expect-error - this is the older Hapi version
         if (doesResponseNeedInvocation) response.continue();
       };
 

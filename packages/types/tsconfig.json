@@ -1,7 +1,10 @@
 {
   "extends": "../../tsconfig-base.json",
   "compilerOptions": {
-    "declarationDir": "./ts-build-cache/"
+    "emitDeclarationOnly": false,
+    "outDir": "dist",
+    "rootDir": "."
   },
+  "include": ["./src/**/*"],
   "references": []
 }

@@ -5,7 +5,7 @@ import {
 } from '@promster/types';
 
 import once from 'lodash.once';
-//@ts-ignore not typed
+// @ts-expect-error
 import requireOptional from 'optional';
 
 const gc = requireOptional('@sematext/gc-stats');
@@ -63,7 +63,7 @@ const createGcObserver = once(
   }
 );
 
-// @ts-ignore
+// @ts-expect-error
 createGcObserver.defaultOptions = defaultOptions;
 
 export { createGcObserver };

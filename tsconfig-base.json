@@ -13,6 +13,5 @@
     "typeRoots": ["@types", "@types-extensions", "node_modules/@types"],
     "lib": ["ESNext"]
   },
-  "include": ["packages/**/src/*"],
   "exclude": ["**/ts-build-cache/**/*", "packages/**/dist/*"]
 }

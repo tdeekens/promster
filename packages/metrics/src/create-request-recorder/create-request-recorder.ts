@@ -19,8 +19,8 @@ type TRecordingOptions = {
 
 type TLegacyTiming = [number, number];
 export type TRequestRecorder = (
-  timing: Timing | TLegacyTiming,
-  recordingOptions: TRecordingOptions
+  _timing: Timing | TLegacyTiming,
+  _recordingOptions: TRecordingOptions
 ) => void;
 
 const defaultOptions: TOptionalPromsterOptions = {

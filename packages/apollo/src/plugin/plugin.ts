@@ -105,7 +105,7 @@ const createPlugin = (
       labels
     );
 
-    if (shouldSkipByRequest || shouldSkipMetricsByEnvironment) {
+    if (shouldSkipByRequest ?? shouldSkipMetricsByEnvironment) {
       return {};
     }
 

@@ -29,6 +29,7 @@ module.exports = {
       parserOptions: {
         sourceType: 'module',
         ecmaVersion: 2020,
+        project: ['./packages/*/tsconfig.json'],
       },
       extends: ['xo-typescript', 'xo', 'prettier', 'plugin:jest/recommended'],
       rules: {
