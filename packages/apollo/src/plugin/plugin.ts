@@ -1,7 +1,9 @@
 import {
   type ApolloServerPlugin,
+  type BaseContext,
   type GraphQLRequestContext,
-} from 'apollo-server-plugin-base';
+  type GraphQLRequest,
+} from '@apollo/server';
 import {
   type TOptionalPromsterOptions,
   type TDefaultedPromsterOptions,
@@ -46,8 +48,8 @@ const signalIsNotUp = () => {
 };
 
 type TSkipFunction = (
-  _req: GraphQLRequestContext['request'],
-  _res: GraphQLRequestContext['response'],
+  _req: GraphQLRequest,
+  _res: GraphQLRequestContext<BaseContext>['response'],
   _labels: TLabelValues
 ) => boolean;
 export type TPromsterOptions = {
@@ -85,7 +87,7 @@ const createPlugin = (
   }
 
   function getDefaultLabelsOrSkipMeasurement(
-    requestContext: GraphQLRequestContext
+    requestContext: GraphQLRequestContext<BaseContext>
   ): TLabelValues {
     const labels = Object.assign(
       {},
