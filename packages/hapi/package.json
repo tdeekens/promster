@@ -1,6 +1,6 @@
 {
   "name": "@promster/hapi",
-  "version": "9.0.0",
+  "version": "10.0.0",
   "description": "Hapi server integrations of promster",
   "main": "dist/promster-hapi.cjs.js",
   "typings": "dist/promster-hapi.cjs.d.ts",
@@ -36,8 +36,8 @@
     "prometheus"
   ],
   "dependencies": {
-    "@promster/metrics": "^10.0.0",
-    "@promster/types": "^4.0.0",
+    "@promster/metrics": "^11.0.0",
+    "@promster/types": "^5.0.0",
     "merge-options": "3.0.4",
     "semver": "7.5.4",
     "tslib": "2.6.2"
