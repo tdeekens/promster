@@ -48,8 +48,8 @@ const signalIsNotUp = () => {
 };
 
 type TSkipFunction = <
-  TRequest extends GraphQLRequest,
-  TResponse extends GraphQLRequestContext<BaseContext>['response'],
+  TRequest = GraphQLRequest,
+  TResponse = GraphQLRequestContext<BaseContext>['response'],
 >(
   _req: TRequest,
   _res: TResponse,
