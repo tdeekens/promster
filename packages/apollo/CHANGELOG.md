@@ -1,5 +1,11 @@
 # @promster/apollo
 
+## 3.0.1
+
+### Patch Changes
+
+- [#1104](https://github.com/tdeekens/promster/pull/1104) [`1b6f280`](https://github.com/tdeekens/promster/commit/1b6f280ee639c6c204a12cca1054e9d6fa5bc504) Thanks [@tdeekens](https://github.com/tdeekens)! - Fix types of skip function.
+
 ## 3.0.0
 
 ### Major Changes
