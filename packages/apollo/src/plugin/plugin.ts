@@ -49,10 +49,10 @@ const signalIsNotUp = () => {
 
 type TSkipFunction = <
   TRequest extends GraphQLRequest,
-  TReponse extends GraphQLRequestContext<BaseContext>['response'],
+  TResponse extends GraphQLRequestContext<BaseContext>['response'],
 >(
   _req: TRequest,
-  _res: TReponse,
+  _res: TResponse,
   _labels: TLabelValues
 ) => boolean;
 export type TPromsterOptions = {
