@@ -1,5 +1,62 @@
 # @promster/server
 
+## 9.0.0
+
+### Major Changes
+
+- [#1099](https://github.com/tdeekens/promster/pull/1099) [`c3fbd90`](https://github.com/tdeekens/promster/commit/c3fbd90808d2a9b244d1ca14f0ac6bfdf973dcda) Thanks [@tdeekens](https://github.com/tdeekens)! - Allow customization of individual metrics.
+
+  Previously we only allowed customizing a all histogram and percentile based metrics once with a `buckets` and `percentiles` option. This is too restrictive in cases in which you need to customize metrics individually.
+
+  As a result you can now pass `metricBuckets` and `metricPercentiles` as options. Both of which are a `Record<string, number[]>`. The key needs to match a an existing metric type.
+
+  This is a more elaborate example:
+
+  ```js
+  const middleware = createMiddleware({
+    app,
+    options: {
+      metricBuckets: {
+        httpRequestContentLengthInBytes: [
+          100000, 200000, 500000, 1000000, 1500000, 2000000, 3000000, 5000000,
+          10000000,
+        ],
+        httpRequestDurationInSeconds: [
+          0.05, 0.1, 0.3, 0.5, 0.8, 1, 1.5, 2, 3, 10,
+        ],
+      },
+      metricPercentiles: {
+        httpRequestDurationPerPercentileInSeconds: [0.5, 0.9, 0.95, 0.98, 0.99],
+        httpResponseContentLengthInBytes: [
+          100000, 200000, 500000, 1000000, 1500000, 2000000, 3000000, 5000000,
+          10000000,
+        ],
+      },
+    },
+  });
+  ```
+
+  If you used `buckets` or `percentiles` before you migrate the values into the structure above.
+
+### Patch Changes
+
+- [#1093](https://github.com/tdeekens/promster/pull/1093) [`ec70682`](https://github.com/tdeekens/promster/commit/ec70682c131d3e9abf9ad5e49d82f6a5168ad8a7) Thanks [@tdeekens](https://github.com/tdeekens)! - Re-export types from each package.
+
+  This is a convenience re-export where prior you had to use the `@promster/types` package as a standalone import you can now use the package you're using.
+
+  ```diff
+  -import { TPromsterOptions } from '@promster/types'
+  +import { TPromsterOptions } from '@promster/express'
+  ```
+
+- [#1098](https://github.com/tdeekens/promster/pull/1098) [`dae8f75`](https://github.com/tdeekens/promster/commit/dae8f756e532160bb977cf3a4e18aeedbb6e61a3) Thanks [@tdeekens](https://github.com/tdeekens)! - Update dependencies
+
+- [#1097](https://github.com/tdeekens/promster/pull/1097) [`04f37e7`](https://github.com/tdeekens/promster/commit/04f37e7fe6c47433ad4082579b1af129aca8b7af) Thanks [@tdeekens](https://github.com/tdeekens)! - Update dependencies
+
+- Updated dependencies [[`ec70682`](https://github.com/tdeekens/promster/commit/ec70682c131d3e9abf9ad5e49d82f6a5168ad8a7), [`dae8f75`](https://github.com/tdeekens/promster/commit/dae8f756e532160bb977cf3a4e18aeedbb6e61a3), [`c3fbd90`](https://github.com/tdeekens/promster/commit/c3fbd90808d2a9b244d1ca14f0ac6bfdf973dcda), [`3ce4835`](https://github.com/tdeekens/promster/commit/3ce4835adde92e5bce10398e8dfad759c9db4753), [`04f37e7`](https://github.com/tdeekens/promster/commit/04f37e7fe6c47433ad4082579b1af129aca8b7af)]:
+  - @promster/metrics@11.0.0
+  - @promster/types@5.0.0
+
 ## 8.0.0
 
 ### Major Changes
