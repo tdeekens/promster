@@ -46,9 +46,12 @@ const signalIsNotUp = () => {
   });
 };
 
-type TSkipFunction = (
-  _req: HttpRequest,
-  _res: HttpResponse,
+type TSkipFunction = <
+  TRequest extends HttpRequest,
+  TResponse extends HttpResponse,
+>(
+  _req: TRequest,
+  _res: TResponse,
   _labels: TLabelValues
 ) => boolean;
 type THandlerOptions = TDefaultedPromsterOptions & {

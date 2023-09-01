@@ -86,9 +86,12 @@ const getAreServerEventsSupported = (actualVersion: string) =>
 const getDoesResponseNeedInvocation = (actualVersion: string) =>
   Boolean(actualVersion && semver.satisfies(actualVersion, '< 17.0.0'));
 
-type TSkipFunction = (
-  _req: Request,
-  _res: ResponseObject,
+type TSkipFunction = <
+  TRequest extends Request,
+  TResponse extends ResponseObject,
+>(
+  _req: TRequest,
+  _res: TResponse,
   _labels: TLabelValues
 ) => boolean;
 export type TPromsterOptions = TOptionalPromsterOptions & {

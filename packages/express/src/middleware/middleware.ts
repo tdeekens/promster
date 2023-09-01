@@ -65,9 +65,9 @@ const signalIsNotUp = () => {
   });
 };
 
-type TSkipFunction = (
-  _req: Request,
-  _res: Response,
+type TSkipFunction = <TRequest extends Request, TResponse extends Response>(
+  _req: TRequest,
+  _res: TResponse,
   _labels: TLabelValues
 ) => boolean;
 export type TPromsterOptions = TOptionalPromsterOptions & {

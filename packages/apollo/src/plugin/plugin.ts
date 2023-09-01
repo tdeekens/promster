@@ -47,9 +47,12 @@ const signalIsNotUp = () => {
   });
 };
 
-type TSkipFunction = (
-  _req: GraphQLRequest,
-  _res: GraphQLRequestContext<BaseContext>['response'],
+type TSkipFunction = <
+  TRequest extends GraphQLRequest,
+  TResponse extends GraphQLRequestContext<BaseContext>['response'],
+>(
+  _req: TRequest,
+  _res: TResponse,
   _labels: TLabelValues
 ) => boolean;
 export type TPromsterOptions = {
