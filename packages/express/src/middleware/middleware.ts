@@ -65,7 +65,7 @@ const signalIsNotUp = () => {
   });
 };
 
-type TSkipFunction = <TRequest extends Request, TResponse extends Response>(
+type TSkipFunction = <TRequest = Request, TResponse = Response>(
   _req: TRequest,
   _res: TResponse,
   _labels: TLabelValues

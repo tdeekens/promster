@@ -53,10 +53,7 @@ const signalIsNotUp = () => {
   });
 };
 
-type TSkipFunction = <
-  TRequest extends FastifyRequest,
-  TResponse extends FastifyReply,
->(
+type TSkipFunction = <TRequest = FastifyRequest, TResponse = FastifyReply>(
   _req: TRequest,
   _res: TResponse,
   _labels: TLabelValues
