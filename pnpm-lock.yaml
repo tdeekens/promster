@@ -133,8 +133,8 @@ importers:
         specifier: 10.0.0
         version: 10.0.0(graphql@16.8.0)
       '@graphql-tools/utils':
-        specifier: 10.0.5
-        version: 10.0.5(graphql@16.8.0)
+        specifier: 10.0.6
+        version: 10.0.6(graphql@16.8.0)
       '@promster/server':
         specifier: workspace:*
         version: link:../server
@@ -2365,7 +2365,7 @@ packages:
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
-      '@graphql-tools/utils': 10.0.5(graphql@16.8.0)
+      '@graphql-tools/utils': 10.0.6(graphql@16.8.0)
       graphql: 16.8.0
       tslib: 2.6.2
     dev: true
@@ -2389,7 +2389,7 @@ packages:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
       '@graphql-tools/merge': 9.0.0(graphql@16.8.0)
-      '@graphql-tools/utils': 10.0.5(graphql@16.8.0)
+      '@graphql-tools/utils': 10.0.6(graphql@16.8.0)
       graphql: 16.8.0
       tslib: 2.6.2
       value-or-promise: 1.0.12
@@ -2418,8 +2418,8 @@ packages:
       tslib: 2.6.2
       value-or-promise: 1.0.12
 
-  /@graphql-tools/utils@10.0.5(graphql@16.8.0):
-    resolution: {integrity: sha512-ZTioQqg9z9eCG3j+KDy54k1gp6wRIsLqkx5yi163KVvXVkfjsrdErCyZjrEug21QnKE9piP4tyxMpMMOT1RuRw==}
+  /@graphql-tools/utils@10.0.6(graphql@16.8.0):
+    resolution: {integrity: sha512-hZMjl/BbX10iagovakgf3IiqArx8TPsotq5pwBld37uIX1JiZoSbgbCIFol7u55bh32o6cfDEiiJgfAD5fbeyQ==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
@@ -9913,6 +9913,7 @@ packages:
 
   /util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
+    requiresBuild: true
     dev: false
 
   /utils-merge@1.0.1:
