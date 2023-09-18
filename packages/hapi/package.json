@@ -48,6 +48,6 @@
     "@types/hapi__hapi": "20.0.13",
     "parse-prometheus-text-format": "1.1.1",
     "@promster/server": "workspace:*",
-    "@types/semver": "7.5.1"
+    "@types/semver": "7.5.2"
   }
 }
