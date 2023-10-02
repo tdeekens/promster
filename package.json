@@ -56,7 +56,7 @@
     "@babel/preset-typescript": "7.22.11",
     "@changesets/changelog-github": "0.4.8",
     "@changesets/cli": "2.26.2",
-    "@commitlint/cli": "17.7.1",
+    "@commitlint/cli": "17.7.2",
     "@commitlint/config-conventional": "17.7.0",
     "@manypkg/cli": "0.21.0",
     "@preconstruct/cli": "2.8.1",
