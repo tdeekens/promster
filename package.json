@@ -82,7 +82,7 @@
     "prettier": "3.0.3",
     "rimraf": "5.0.1",
     "ts-jest": "29.1.1",
-    "@tsconfig/node18": "18.2.1",
+    "@tsconfig/node18": "18.2.2",
     "typescript": "5.2.2"
   }
 }
