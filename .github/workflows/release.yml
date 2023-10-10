@@ -22,6 +22,13 @@ jobs:
           ref: main
           fetch-depth: 50
 
+      - name: Storing release version for changeset
+        id: release_version
+        run: echo "VALUE=$(./scripts/print-release-version.sh)" >> $GITHUB_OUTPUT
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+
       - name: Fetch all tags (for releases)
         run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
 
@@ -59,11 +66,14 @@ jobs:
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
-        uses: changesets/action@v1.4.5
+        uses: dotansimha/changesets-action@v1.5.2
         with:
           title: 'ci(changesets): version packages'
           commit: 'ci(changesets): version packages'
           publish: pnpm changeset publish
           version: pnpm changeset:version-and-format
+          createGithubReleases: aggregate
+          githubReleaseName: v${{ steps.release_version.outputs.value }}
+          githubTagName: v${{ steps.release_version.outputs.value }}
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
