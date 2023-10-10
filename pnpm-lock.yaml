@@ -117,10 +117,10 @@ importers:
         specifier: 4.9.4
         version: 4.9.4(graphql@16.8.1)
       '@promster/metrics':
-        specifier: ^11.0.0
+        specifier: ^12.0.0
         version: link:../metrics
       '@promster/types':
-        specifier: ^5.0.0
+        specifier: ^12.0.0
         version: link:../types
       merge-options:
         specifier: 3.0.4
@@ -154,10 +154,10 @@ importers:
   packages/express:
     dependencies:
       '@promster/metrics':
-        specifier: ^11.0.0
+        specifier: ^12.0.0
         version: link:../metrics
       '@promster/types':
-        specifier: ^5.0.0
+        specifier: ^12.0.0
         version: link:../types
       merge-options:
         specifier: 3.0.4
@@ -185,13 +185,13 @@ importers:
   packages/fastify:
     dependencies:
       '@promster/metrics':
-        specifier: ^11.0.0
+        specifier: ^12.0.0
         version: link:../metrics
       '@promster/server':
         specifier: workspace:*
         version: link:../server
       '@promster/types':
-        specifier: ^5.0.0
+        specifier: ^12.0.0
         version: link:../types
       fastify-plugin:
         specifier: ^4.4.0
@@ -210,10 +210,10 @@ importers:
   packages/hapi:
     dependencies:
       '@promster/metrics':
-        specifier: ^11.0.0
+        specifier: ^12.0.0
         version: link:../metrics
       '@promster/types':
-        specifier: ^5.0.0
+        specifier: ^12.0.0
         version: link:../types
       merge-options:
         specifier: 3.0.4
@@ -247,10 +247,10 @@ importers:
   packages/marblejs:
     dependencies:
       '@promster/metrics':
-        specifier: ^11.0.0
+        specifier: ^12.0.0
         version: link:../metrics
       '@promster/types':
-        specifier: ^5.0.0
+        specifier: ^12.0.0
         version: link:../types
       merge-options:
         specifier: 3.0.4
@@ -281,7 +281,7 @@ importers:
   packages/metrics:
     dependencies:
       '@promster/types':
-        specifier: ^5.0.0
+        specifier: ^12.0.0
         version: link:../types
       lodash.memoize:
         specifier: 4.1.2
@@ -322,10 +322,10 @@ importers:
   packages/server:
     dependencies:
       '@promster/metrics':
-        specifier: ^11.0.0
+        specifier: ^12.0.0
         version: link:../metrics
       '@promster/types':
-        specifier: ^5.0.0
+        specifier: ^12.0.0
         version: link:../types
       tslib:
         specifier: 2.6.2

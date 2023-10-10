@@ -1,5 +1,22 @@
 # @promster/fastify
 
+## 12.0.0
+
+### Major Changes
+
+- [#1123](https://github.com/tdeekens/promster/pull/1123) [`eab1f5c`](https://github.com/tdeekens/promster/commit/eab1f5c92e46e0855a5a340675bb7b837cc270e5) Thanks [@tdeekens](https://github.com/tdeekens)! - Drop support for node.js v16
+
+### Minor Changes
+
+- [#1121](https://github.com/tdeekens/promster/pull/1121) [`660af55`](https://github.com/tdeekens/promster/commit/660af55e8d6d15f08fbb26544fea546513184458) Thanks [@tdeekens](https://github.com/tdeekens)! - Add support for prom-client v15
+
+### Patch Changes
+
+- Updated dependencies [[`660af55`](https://github.com/tdeekens/promster/commit/660af55e8d6d15f08fbb26544fea546513184458), [`eab1f5c`](https://github.com/tdeekens/promster/commit/eab1f5c92e46e0855a5a340675bb7b837cc270e5)]:
+  - @promster/metrics@12.0.0
+  - @promster/types@12.0.0
+  - @promster/server@12.0.0
+
 ## 9.0.1
 
 ### Patch Changes
