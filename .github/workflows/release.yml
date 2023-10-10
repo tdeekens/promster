@@ -22,6 +22,14 @@ jobs:
           ref: main
           fetch-depth: 50
 
+      - name: Fetch all tags (for releases)
+        run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.4.0
+        with:
+          run_install: false
+
       - name: Storing release version for changeset
         id: release_version
         run: ./scripts/echo-release-version.sh
@@ -31,14 +39,6 @@ jobs:
 
       - name: Ouptut release version
         run: echo "The release version is ${{ steps.release_version.outputs.RELEASE_VERSION }}"
-
-      - name: Fetch all tags (for releases)
-        run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2.4.0
-        with:
-          run_install: false
 
       - name: Setup Node (uses version in .nvmrc)
         uses: actions/setup-node@v3
