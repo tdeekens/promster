@@ -24,10 +24,13 @@ jobs:
 
       - name: Storing release version for changeset
         id: release_version
-        run: echo "VALUE=$(./scripts/print-release-version.sh)" >> $GITHUB_OUTPUT
+        run: ./scripts/echo-release-version.sh
         shell: bash
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+
+      - name: Ouptut release version
+        run: echo "The release version is ${{ steps.release_version.outputs.RELEASE_VERSION }}"
 
       - name: Fetch all tags (for releases)
         run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
@@ -73,7 +76,7 @@ jobs:
           publish: pnpm changeset publish
           version: pnpm changeset:version-and-format
           createGithubReleases: aggregate
-          githubReleaseName: v${{ steps.release_version.outputs.value }}
-          githubTagName: v${{ steps.release_version.outputs.value }}
+          githubReleaseName: v${{ steps.release_version.outputs.RELEASE_VERSION }}
+          githubTagName: v${{ steps.release_version.outputs.RELEASE_VERSION }}
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
