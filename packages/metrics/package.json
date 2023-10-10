@@ -45,7 +45,7 @@
     "url-value-parser": "2.2.0"
   },
   "devDependencies": {
-    "prom-client": "14.2.0",
+    "prom-client": "15.0.0",
     "typescript": "5.2.2",
     "@types/node": "18.17.19",
     "@types/lodash.once": "4.1.7"
@@ -54,6 +54,6 @@
     "@sematext/gc-stats": "1.5.9"
   },
   "peerDependencies": {
-    "prom-client": "13.x.x || 14.x"
+    "prom-client": "13.x.x || 14.x || 15.x"
   }
 }
