@@ -170,8 +170,8 @@ importers:
         specifier: workspace:*
         version: link:../server
       '@types/express':
-        specifier: 4.17.18
-        version: 4.17.18
+        specifier: 4.17.19
+        version: 4.17.19
       express:
         specifier: 4.18.2
         version: 4.18.2
@@ -3567,6 +3567,16 @@ packages:
       '@types/express-serve-static-core': 4.17.36
       '@types/qs': 6.9.8
       '@types/serve-static': 1.15.2
+    dev: false
+
+  /@types/express@4.17.19:
+    resolution: {integrity: sha512-UtOfBtzN9OvpZPPbnnYunfjM7XCI4jyk1NvnFhTVz5krYAnW4o5DCoIekvms+8ApqhB4+9wSge1kBijdfTSmfg==}
+    dependencies:
+      '@types/body-parser': 1.19.2
+      '@types/express-serve-static-core': 4.17.36
+      '@types/qs': 6.9.8
+      '@types/serve-static': 1.15.2
+    dev: true
 
   /@types/graceful-fs@4.1.6:
     resolution: {integrity: sha512-Sig0SNORX9fdW+bQuTEovKj3uHcUL6LQKbCrrqb1X7J6/ReAbhCXRAhc+SMejhLELFj2QcyuxmUooZ4bt5ReSw==}
