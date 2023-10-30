@@ -63,7 +63,7 @@
     "@typescript-eslint/eslint-plugin": "6.5.0",
     "@typescript-eslint/parser": "6.5.0",
     "@types/node": "18.17.19",
-    "@types/semver": "7.5.3",
+    "@types/semver": "7.5.4",
     "check-node-version": "4.2.1",
     "codecov": "3.8.3",
     "cross-env": "7.0.3",
