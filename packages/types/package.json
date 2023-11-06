@@ -35,7 +35,7 @@
     "prometheus"
   ],
   "dependencies": {
-    "ts-essentials": "9.4.0"
+    "ts-essentials": "9.4.1"
   },
   "devDependencies": {
     "prom-client": "14.2.0"
