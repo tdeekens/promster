@@ -48,7 +48,7 @@
     "prom-client": "15.0.0",
     "typescript": "5.2.2",
     "@types/node": "18.18.8",
-    "@types/lodash.once": "4.1.8"
+    "@types/lodash.once": "4.1.9"
   },
   "optionalDependencies": {
     "@sematext/gc-stats": "1.5.9"
