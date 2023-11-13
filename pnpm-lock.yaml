@@ -307,8 +307,8 @@ importers:
         version: 1.5.9
     devDependencies:
       '@types/lodash.once':
-        specifier: 4.1.8
-        version: 4.1.8
+        specifier: 4.1.9
+        version: 4.1.9
       '@types/node':
         specifier: 18.18.8
         version: 18.18.8
@@ -3648,8 +3648,8 @@ packages:
       '@types/node': 18.18.8
     dev: false
 
-  /@types/lodash.once@4.1.8:
-    resolution: {integrity: sha512-kTRKTOMyz1ksmXWi+sHgliiqKY2KXcWfhNjcCPZgwPa++5w7QXqupjfrj006nBTlPOX6tBo5IhLUx19ezNd9Yg==}
+  /@types/lodash.once@4.1.9:
+    resolution: {integrity: sha512-nvZ7GYfyZB6CUmXL+7HSXg53rFpc49FsKuRmMiCIGhgJB/yyTip8uHk4mxGyVJOl87dXPlf3qy42WsjOcIrnmg==}
     dependencies:
       '@types/lodash': 4.14.197
     dev: true
