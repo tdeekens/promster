@@ -36,8 +36,8 @@ importers:
         specifier: 0.21.1
         version: 0.21.1
       '@preconstruct/cli':
-        specifier: 2.8.1
-        version: 2.8.1
+        specifier: 2.8.2
+        version: 2.8.2
       '@tsconfig/node18':
         specifier: 18.2.2
         version: 18.2.2
@@ -3249,8 +3249,8 @@ packages:
       config-chain: 1.1.13
     dev: false
 
-  /@preconstruct/cli@2.8.1:
-    resolution: {integrity: sha512-PX5w+au06iY/QaT+9RLmRlIfavRCRoMTC/krwtNrgPEnubR9e6P+QlywrKmwiEvkzbR9AEzGnRZL8uNRDDMzrQ==}
+  /@preconstruct/cli@2.8.2:
+    resolution: {integrity: sha512-/nra7Arq622kVCfvQi4nhrZN+0m1OVq0PAuUcMLKNUR8O/JHOmesultWpeTGB17HzYEx8qYWO11QaTF7oz1yAQ==}
     hasBin: true
     dependencies:
       '@babel/code-frame': 7.22.13
@@ -3265,6 +3265,7 @@ packages:
       '@rollup/plugin-replace': 2.4.2(rollup@2.79.1)
       builtin-modules: 3.3.0
       chalk: 4.1.2
+      ci-info: 3.8.0
       dataloader: 2.2.2
       detect-indent: 6.1.0
       enquirer: 2.4.1
@@ -3272,7 +3273,6 @@ packages:
       fast-deep-equal: 2.0.1
       fast-glob: 3.3.1
       fs-extra: 9.1.0
-      is-ci: 2.0.0
       is-reference: 1.2.1
       jest-worker: 26.6.2
       magic-string: 0.30.3
@@ -4875,10 +4875,6 @@ packages:
     requiresBuild: true
     dev: false
     optional: true
-
-  /ci-info@2.0.0:
-    resolution: {integrity: sha512-5tK7EtrZ0N+OLFMthtqOj4fI2Jeb88C4CAZPu25LDVUgXJ0A3Js4PMGqrn0JU1W0Mh1/Z8wZzYPxqUrXeBboCQ==}
-    dev: false
 
   /ci-info@3.8.0:
     resolution: {integrity: sha512-eXTggHWSooYhq49F2opQhuHWgzucfF2YgODK4e1566GQs5BIfP30B0oenwBJHfWxAs2fyPB1s7Mg949zLf61Yw==}
@@ -6757,13 +6753,6 @@ packages:
   /is-callable@1.2.7:
     resolution: {integrity: sha512-1BC0BVFhS/p0qtw6enp8e+8OD0UrK0oFLztSjNzhcKA3WDuJxxAPXzPuPtKkjEY9UUoEWlX/8fgKeu2S8i9JTA==}
     engines: {node: '>= 0.4'}
-    dev: false
-
-  /is-ci@2.0.0:
-    resolution: {integrity: sha512-YfJT7rkpQB0updsdHLGWrvhBJfcfzNNawYDNIyQXJz0IViGf75O8EBPKSdvw2rF+LGCsX4FZ8tcr3b19LcZq4w==}
-    hasBin: true
-    dependencies:
-      ci-info: 2.0.0
     dev: false
 
   /is-ci@3.0.1:
