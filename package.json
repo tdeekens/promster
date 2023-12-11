@@ -59,7 +59,7 @@
     "@commitlint/cli": "17.7.2",
     "@commitlint/config-conventional": "17.7.0",
     "@manypkg/cli": "0.21.1",
-    "@preconstruct/cli": "2.8.1",
+    "@preconstruct/cli": "2.8.2",
     "@typescript-eslint/eslint-plugin": "6.5.0",
     "@typescript-eslint/parser": "6.5.0",
     "@types/node": "18.19.3",
