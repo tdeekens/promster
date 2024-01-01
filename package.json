@@ -62,7 +62,7 @@
     "@preconstruct/cli": "2.8.2",
     "@typescript-eslint/eslint-plugin": "6.5.0",
     "@typescript-eslint/parser": "6.5.0",
-    "@types/node": "18.19.3",
+    "@types/node": "18.19.4",
     "@types/semver": "7.5.6",
     "check-node-version": "4.2.1",
     "codecov": "3.8.3",
