@@ -1,6 +1,6 @@
 {
   "name": "@promster/metrics",
-  "version": "12.0.0",
+  "version": "12.1.0",
   "description": "Metrics utilities used by all other server integrations",
   "main": "dist/promster-metrics.cjs.js",
   "typings": "dist/promster-metrics.cjs.d.ts",
@@ -36,7 +36,7 @@
     "prometheus"
   ],
   "dependencies": {
-    "@promster/types": "^12.0.0",
+    "@promster/types": "^12.1.0",
     "lodash.memoize": "4.1.2",
     "lodash.once": "4.1.1",
     "merge-options": "3.0.4",

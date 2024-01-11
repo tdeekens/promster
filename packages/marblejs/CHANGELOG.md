@@ -1,5 +1,17 @@
 # @promster/marblejs
 
+## 12.1.0
+
+### Minor Changes
+
+- [`6bc4617`](https://github.com/tdeekens/promster/commit/6bc4617236c86c8849f8d0ee64ace8916db907d6) Thanks [@tdeekens](https://github.com/tdeekens)! - Update dependencies and support prom-client v15.
+
+### Patch Changes
+
+- Updated dependencies [[`6bc4617`](https://github.com/tdeekens/promster/commit/6bc4617236c86c8849f8d0ee64ace8916db907d6)]:
+  - @promster/metrics@12.1.0
+  - @promster/types@12.1.0
+
 ## 12.0.0
 
 ### Major Changes
