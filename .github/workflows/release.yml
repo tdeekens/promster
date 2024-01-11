@@ -30,16 +30,6 @@ jobs:
         with:
           run_install: false
 
-      - name: Storing release version for changeset
-        id: release_version
-        run: ./scripts/echo-release-version.sh
-        shell: bash
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-
-      - name: Ouptut release version
-        run: echo "The release version is ${{ steps.release_version.outputs.RELEASE_VERSION }}"
-
       - name: Setup Node (uses version in .nvmrc)
         uses: actions/setup-node@v3
         with:
@@ -51,6 +41,16 @@ jobs:
           echo "pnpm version"
           pnpm version
           pnpm install
+
+      - name: Storing release version for changeset
+        id: release_version
+        run: ./scripts/echo-release-version.sh
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+
+      - name: Ouptut release version
+        run: echo "The release version is ${{ steps.release_version.outputs.RELEASE_VERSION }}"
 
       - name: Creating .npmrc
         run: |
