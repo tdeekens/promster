@@ -44,7 +44,7 @@ jobs:
         run: pnpm build
 
       - name: Test
-        if: startsWith(matrix.node-version , '21') != true
+        if: startsWith(matrix.node-version , '21')
         run: pnpm test:ci
 
       - name: Test (with coverage)
