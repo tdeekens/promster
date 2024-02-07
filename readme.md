@@ -310,7 +310,6 @@ Moreover, both `@promster/hapi` and `@promster/express` expose the request recor
 ```js
 // Note that a getter is exposed as the request recorder is only available after initialisation.
 const { getRequestRecorder, timing } = require('@promster/express');
-const fetch = request('node-fetch');
 
 const async fetchSomeData = () => {
   const recordRequest = getRequestRecorder();

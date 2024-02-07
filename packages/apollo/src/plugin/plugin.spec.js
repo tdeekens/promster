@@ -1,5 +1,4 @@
 const { ApolloServer, gql } = require('apollo-server');
-const fetch = require('node-fetch');
 const parsePrometheusTextFormat = require('parse-prometheus-text-format');
 const { createPlugin: createPromsterMetricsPlugin } = require('./plugin');
 const {
@@ -25,6 +24,12 @@ function throwErrorDirectiveTransformer(schema, directiveName = 'error') {
     },
   });
 }
+
+const metricsPort = '1337';
+const appPort = '3000';
+
+const metricsServerUrl = `http://localhost:${metricsPort}`;
+const appServerUrl = `http://localhost:${appPort}`;
 
 async function startServer() {
   const typeDefs = [
@@ -71,12 +76,12 @@ async function startServer() {
   });
 
   const prometheusMetricsServer = await createPrometheusMetricsServer({
-    port: 1337,
+    port: metricsPort,
     detectKubernetes: false,
   });
 
   await server.listen({
-    port: 3000,
+    port: appPort,
   });
 
   return {
@@ -100,21 +105,21 @@ async function startServer() {
 }
 
 let app;
-let closeServers;
+let closeServer;
 
 beforeAll(async () => {
   const startedServer = await startServer();
 
   app = startedServer.app;
-  closeServers = startedServer.close;
+  closeServer = startedServer.close;
 });
 
 afterAll(async () => {
-  await closeServers();
+  await closeServer();
 });
 
 it('should up metric', async () => {
-  const response = await fetch('http://0.0.0.0:1337');
+  const response = await fetch(metricsServerUrl);
   const rawMetrics = await response.text();
 
   const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
@@ -129,7 +134,7 @@ it('should up metric', async () => {
 });
 
 it('should expose garbage collection metrics', async () => {
-  const response = await fetch('http://0.0.0.0:1337');
+  const response = await fetch(metricsServerUrl);
   const rawMetrics = await response.text();
 
   const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
@@ -174,7 +179,7 @@ it('should expose garbage collection metrics', async () => {
 });
 
 it('should expose GraphQL metrics', async () => {
-  const response = await fetch('http://0.0.0.0:1337');
+  const response = await fetch(metricsServerUrl);
   const rawMetrics = await response.text();
 
   const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
@@ -201,7 +206,7 @@ it('should expose GraphQL metrics', async () => {
 });
 
 it('should record GraphQL metrics for successful requests', async () => {
-  await fetch('http://0.0.0.0:3000', {
+  await fetch(appServerUrl, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -217,7 +222,7 @@ it('should record GraphQL metrics for successful requests', async () => {
     }),
   });
 
-  const response = await fetch('http://0.0.0.0:1337');
+  const response = await fetch(metricsServerUrl);
   const rawMetrics = await response.text();
 
   const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
@@ -261,7 +266,7 @@ it('should record GraphQL metrics for successful requests', async () => {
 });
 
 it('should record GraphQL metrics for failed requests in validation phase', async () => {
-  await fetch('http://0.0.0.0:3000', {
+  await fetch(appServerUrl, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -277,7 +282,7 @@ it('should record GraphQL metrics for failed requests in validation phase', asyn
     }),
   });
 
-  const response = await fetch('http://0.0.0.0:1337');
+  const response = await fetch(metricsServerUrl);
   const rawMetrics = await response.text();
 
   const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
@@ -299,7 +304,7 @@ it('should record GraphQL metrics for failed requests in validation phase', asyn
 });
 
 it('should record GraphQL metrics for failed requests in execute phase', async () => {
-  await fetch('http://0.0.0.0:3000', {
+  await fetch(appServerUrl, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -315,7 +320,7 @@ it('should record GraphQL metrics for failed requests in execute phase', async (
     }),
   });
 
-  const response = await fetch('http://0.0.0.0:1337');
+  const response = await fetch(metricsServerUrl);
   const rawMetrics = await response.text();
 
   const parsedMetrics = parsePrometheusTextFormat(rawMetrics);

@@ -16,7 +16,7 @@
     "access": "public"
   },
   "engines": {
-    "node": ">=18",
+    "node": ">=20",
     "npm": ">=8"
   },
   "repository": {
@@ -47,7 +47,7 @@
   "devDependencies": {
     "prom-client": "15.0.0",
     "typescript": "5.3.3",
-    "@types/node": "18.19.8",
+    "@types/node": "20.11.6",
     "@types/lodash.once": "4.1.9"
   },
   "optionalDependencies": {

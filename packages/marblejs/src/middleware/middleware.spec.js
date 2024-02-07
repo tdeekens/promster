@@ -1,15 +1,20 @@
 const { httpListener, createServer, r } = require('@marblejs/http');
 const { mapTo } = require('rxjs/operators');
-const fetch = require('node-fetch');
 const parsePrometheusTextFormat = require('parse-prometheus-text-format');
 const {
   createServer: createPrometheusMetricsServer,
 } = require('@promster/server');
 const { createMiddleware } = require('./middleware');
 
+const metricsPort = '1341';
+const appPort = '3004';
+
+const metricsServerUrl = `http://localhost:${metricsPort}`;
+const appServerUrl = `http://localhost:${appPort}`;
+
 async function startServers() {
   const prometheusMetricsServer = await createPrometheusMetricsServer({
-    port: 1337,
+    port: metricsPort,
     detectKubernetes: false,
   });
 
@@ -25,8 +30,8 @@ async function startServers() {
   });
 
   const server = await createServer({
-    port: 3000,
-    hostname: '0.0.0.0',
+    port: appPort,
+    hostname: 'localhost',
     listener,
   });
 
@@ -50,20 +55,20 @@ async function startServers() {
   };
 }
 
-let closeServers;
+let closeServer;
 
 beforeAll(async () => {
   const startedServers = await startServers();
 
-  closeServers = startedServers.close;
+  closeServer = startedServers.close;
 });
 
 afterAll(async () => {
-  await closeServers();
+  await closeServer();
 });
 
 it('should up metric', async () => {
-  const response = await fetch('http://0.0.0.0:1337');
+  const response = await fetch(metricsServerUrl);
   const rawMetrics = await response.text();
 
   const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
@@ -78,7 +83,7 @@ it('should up metric', async () => {
 });
 
 it('should expose garbage collection metrics', async () => {
-  const response = await fetch('http://0.0.0.0:1337');
+  const response = await fetch(metricsServerUrl);
   const rawMetrics = await response.text();
 
   const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
@@ -123,8 +128,8 @@ it('should expose garbage collection metrics', async () => {
 });
 
 it.skip('should record http metrics', async () => {
-  await fetch('http://0.0.0.0:3000');
-  const response = await fetch('http://0.0.0.0:1337');
+  await fetch(appServerUrl);
+  const response = await fetch(metricsServerUrl);
   const rawMetrics = await response.text();
 
   const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
