@@ -9,8 +9,8 @@ const { createMiddleware } = require('./middleware');
 const metricsPort = '1341';
 const appPort = '3004';
 
-const metricsServerUrl = `http://0.0.0.0:${metricsPort}`;
-const appServerUrl = `http://0.0.0.0:${appPort}`;
+const metricsServerUrl = `http://localhost:${metricsPort}`;
+const appServerUrl = `http://localhost:${appPort}`;
 
 async function startServers() {
   const prometheusMetricsServer = await createPrometheusMetricsServer({
@@ -31,7 +31,7 @@ async function startServers() {
 
   const server = await createServer({
     port: appPort,
-    hostname: '0.0.0.0',
+    hostname: 'localhost',
     listener,
   });
 

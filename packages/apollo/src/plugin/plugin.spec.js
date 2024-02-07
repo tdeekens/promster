@@ -28,8 +28,8 @@ function throwErrorDirectiveTransformer(schema, directiveName = 'error') {
 const metricsPort = '1337';
 const appPort = '3000';
 
-const metricsServerUrl = `http://0.0.0.0:${metricsPort}`;
-const appServerUrl = `http://0.0.0.0:${appPort}`;
+const metricsServerUrl = `http://localhost:${metricsPort}`;
+const appServerUrl = `http://localhost:${appPort}`;
 
 async function startServer() {
   const typeDefs = [

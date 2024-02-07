@@ -4,7 +4,7 @@ const { createServer } = require('./server');
 
 const metricsPort = '1342';
 
-const metricsServerUrl = `http://0.0.0.0:${metricsPort}`;
+const metricsServerUrl = `http://localhost:${metricsPort}`;
 
 async function startServer() {
   const server = await createServer({

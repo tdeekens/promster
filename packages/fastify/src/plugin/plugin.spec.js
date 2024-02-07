@@ -8,8 +8,8 @@ const { plugin } = require('./plugin');
 const metricsPort = '1339';
 const appPort = '3002';
 
-const metricsServerUrl = `http://0.0.0.0:${metricsPort}`;
-const appServerUrl = `http://0.0.0.0:${appPort}`;
+const metricsServerUrl = `http://localhost:${metricsPort}`;
+const appServerUrl = `http://localhost:${appPort}`;
 
 async function startServers() {
   // eslint-disable-next-line new-cap
@@ -28,7 +28,7 @@ async function startServers() {
     await reply.send({ status: 'ok' });
   });
 
-  await fastify.listen(appPort, '0.0.0.0');
+  await fastify.listen(appPort, 'localhost');
 
   return {
     close: async () =>
