@@ -23,7 +23,7 @@
     "test:ci": "cross-env NODE_ENV=test npm test -- --no-watchman",
     "test:coverage": "cross-env NODE_ENV=test npm test -- --coverage",
     "test:watch": "cross-env NODE_ENV=test npm test -- --watch",
-    "test": "cross-env NODE_ENV=test jest --config .jestrc.test.json --forceExit --maxWorkers=1",
+    "test": "cross-env NODE_ENV=test jest --config .jestrc.test.json --forceExit --runInBand",
     "typecheck": "tsc --build"
   },
   "author": "Tobias Deekens <nerd@tdeekens.name>",

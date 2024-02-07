@@ -54,17 +54,17 @@ async function startServer() {
 }
 
 let app;
-let closeServers;
+let closeServer;
 
 beforeAll(async () => {
   const startedServer = await startServer();
 
   app = startedServer.app;
-  closeServers = startedServer.close;
+  closeServer = startedServer.close;
 });
 
 afterAll(async () => {
-  await closeServers();
+  await closeServer();
 });
 
 it('should expose Prometheus on locals', async () => {

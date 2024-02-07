@@ -49,16 +49,16 @@ async function startServers() {
   };
 }
 
-let closeServers;
+let closeServer;
 
 beforeAll(async () => {
   const startedServers = await startServers();
 
-  closeServers = startedServers.close;
+  closeServer = startedServers.close;
 });
 
 afterAll(async () => {
-  await closeServers();
+  await closeServer();
 });
 
 it('should up metric', async () => {
