@@ -3,12 +3,11 @@ const { createGcMetrics } = require('@promster/metrics');
 const { createServer } = require('./server');
 
 const metricsPort = '1342';
-
 const metricsServerUrl = `http://localhost:${metricsPort}`;
 
 async function startServer() {
   const server = await createServer({
-    port: metricsServerUrl,
+    port: metricsPort,
     detectKubernetes: false,
   });
 

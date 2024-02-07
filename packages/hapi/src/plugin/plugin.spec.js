@@ -10,14 +10,14 @@ const {
 } = require('./plugin');
 
 const metricsPort = '1340';
-const appPort = '3003';
+const appPort = '3011';
 
 const metricsServerUrl = `http://localhost:${metricsPort}`;
 const appServerUrl = `http://localhost:${appPort}`;
 
 async function startServers() {
   const server = new Hapi.Server({
-    port: appServerUrl,
+    port: appPort,
     debug: { request: ['error'] },
   });
 
