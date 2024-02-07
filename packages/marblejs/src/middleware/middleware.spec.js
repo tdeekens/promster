@@ -6,9 +6,15 @@ const {
 } = require('@promster/server');
 const { createMiddleware } = require('./middleware');
 
+const metricsPort = '1341';
+const appPort = '3004';
+
+const metricsServerUrl = `http://0.0.0.0:${metricsPort}`;
+const appServerUrl = `http://0.0.0.0:${appPort}`;
+
 async function startServers() {
   const prometheusMetricsServer = await createPrometheusMetricsServer({
-    port: 1337,
+    port: metricsPort,
     detectKubernetes: false,
   });
 
@@ -24,7 +30,7 @@ async function startServers() {
   });
 
   const server = await createServer({
-    port: 3000,
+    port: appPort,
     hostname: '0.0.0.0',
     listener,
   });
@@ -62,7 +68,7 @@ afterAll(async () => {
 });
 
 it('should up metric', async () => {
-  const response = await fetch('http://0.0.0.0:1337');
+  const response = await fetch(metricsServerUrl);
   const rawMetrics = await response.text();
 
   const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
@@ -77,7 +83,7 @@ it('should up metric', async () => {
 });
 
 it('should expose garbage collection metrics', async () => {
-  const response = await fetch('http://0.0.0.0:1337');
+  const response = await fetch(metricsServerUrl);
   const rawMetrics = await response.text();
 
   const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
@@ -122,8 +128,8 @@ it('should expose garbage collection metrics', async () => {
 });
 
 it.skip('should record http metrics', async () => {
-  await fetch('http://0.0.0.0:3000');
-  const response = await fetch('http://0.0.0.0:1337');
+  await fetch(appServerUrl);
+  const response = await fetch(metricsServerUrl);
   const rawMetrics = await response.text();
 
   const parsedMetrics = parsePrometheusTextFormat(rawMetrics);

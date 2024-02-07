@@ -9,14 +9,20 @@ const {
   getDoesResponseNeedInvocation,
 } = require('./plugin');
 
+const metricsPort = '1340';
+const appPort = '3003';
+
+const metricsServerUrl = `http://0.0.0.0:${metricsPort}`;
+const appServerUrl = `http://0.0.0.0:${appPort}`;
+
 async function startServers() {
   const server = new Hapi.Server({
-    port: 3000,
+    port: appServerUrl,
     debug: { request: ['error'] },
   });
 
   const prometheusMetricsServer = await createPrometheusMetricsServer({
-    port: 1337,
+    port: metricsPort,
     detectKubernetes: false,
   });
 
@@ -63,7 +69,7 @@ afterAll(async () => {
 });
 
 it('should up metric', async () => {
-  const response = await fetch('http://0.0.0.0:1337');
+  const response = await fetch(metricsServerUrl);
   const rawMetrics = await response.text();
 
   const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
@@ -78,7 +84,7 @@ it('should up metric', async () => {
 });
 
 it('should expose garbage collection metrics', async () => {
-  const response = await fetch('http://0.0.0.0:1337');
+  const response = await fetch(metricsServerUrl);
   const rawMetrics = await response.text();
 
   const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
@@ -123,7 +129,7 @@ it('should expose garbage collection metrics', async () => {
 });
 
 it('should expose http metrics', async () => {
-  const response = await fetch('http://0.0.0.0:1337');
+  const response = await fetch(metricsServerUrl);
   const rawMetrics = await response.text();
 
   const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
@@ -141,8 +147,8 @@ it('should expose http metrics', async () => {
 });
 
 it('should record http metrics', async () => {
-  await fetch('http://0.0.0.0:3000');
-  const response = await fetch('http://0.0.0.0:1337');
+  await fetch(appServerUrl);
+  const response = await fetch(metricsServerUrl);
   const rawMetrics = await response.text();
 
   const parsedMetrics = parsePrometheusTextFormat(rawMetrics);

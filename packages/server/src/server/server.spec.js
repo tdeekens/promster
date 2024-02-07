@@ -2,9 +2,13 @@ const parsePrometheusTextFormat = require('parse-prometheus-text-format');
 const { createGcMetrics } = require('@promster/metrics');
 const { createServer } = require('./server');
 
+const metricsPort = '1342';
+
+const metricsServerUrl = `http://0.0.0.0:${metricsPort}`;
+
 async function startServer() {
   const server = await createServer({
-    port: 1337,
+    port: metricsServerUrl,
     detectKubernetes: false,
   });
 
@@ -40,7 +44,7 @@ afterAll(async () => {
 });
 
 it('should up metric', async () => {
-  const response = await fetch('http://0.0.0.0:1337');
+  const response = await fetch(metricsServerUrl);
   const rawMetrics = await response.text();
 
   const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
@@ -55,7 +59,7 @@ it('should up metric', async () => {
 });
 
 it('should expose garbage collection metrics', async () => {
-  const response = await fetch('http://0.0.0.0:1337');
+  const response = await fetch(metricsServerUrl);
   const rawMetrics = await response.text();
 
   const parsedMetrics = parsePrometheusTextFormat(rawMetrics);

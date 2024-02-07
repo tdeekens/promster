@@ -25,6 +25,12 @@ function throwErrorDirectiveTransformer(schema, directiveName = 'error') {
   });
 }
 
+const metricsPort = '1337';
+const appPort = '3000';
+
+const metricsServerUrl = `http://0.0.0.0:${metricsPort}`;
+const appServerUrl = `http://0.0.0.0:${appPort}`;
+
 async function startServer() {
   const typeDefs = [
     gql`
@@ -70,12 +76,12 @@ async function startServer() {
   });
 
   const prometheusMetricsServer = await createPrometheusMetricsServer({
-    port: 1337,
+    port: metricsPort,
     detectKubernetes: false,
   });
 
   await server.listen({
-    port: 3000,
+    port: appPort,
   });
 
   return {
@@ -113,7 +119,7 @@ afterAll(async () => {
 });
 
 it('should up metric', async () => {
-  const response = await fetch('http://0.0.0.0:1337');
+  const response = await fetch(metricsServerUrl);
   const rawMetrics = await response.text();
 
   const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
@@ -128,7 +134,7 @@ it('should up metric', async () => {
 });
 
 it('should expose garbage collection metrics', async () => {
-  const response = await fetch('http://0.0.0.0:1337');
+  const response = await fetch(metricsServerUrl);
   const rawMetrics = await response.text();
 
   const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
@@ -173,7 +179,7 @@ it('should expose garbage collection metrics', async () => {
 });
 
 it('should expose GraphQL metrics', async () => {
-  const response = await fetch('http://0.0.0.0:1337');
+  const response = await fetch(metricsServerUrl);
   const rawMetrics = await response.text();
 
   const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
@@ -200,7 +206,7 @@ it('should expose GraphQL metrics', async () => {
 });
 
 it('should record GraphQL metrics for successful requests', async () => {
-  await fetch('http://0.0.0.0:3000', {
+  await fetch(appServerUrl, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -216,7 +222,7 @@ it('should record GraphQL metrics for successful requests', async () => {
     }),
   });
 
-  const response = await fetch('http://0.0.0.0:1337');
+  const response = await fetch(metricsServerUrl);
   const rawMetrics = await response.text();
 
   const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
@@ -260,7 +266,7 @@ it('should record GraphQL metrics for successful requests', async () => {
 });
 
 it('should record GraphQL metrics for failed requests in validation phase', async () => {
-  await fetch('http://0.0.0.0:3000', {
+  await fetch(appServerUrl, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -276,7 +282,7 @@ it('should record GraphQL metrics for failed requests in validation phase', asyn
     }),
   });
 
-  const response = await fetch('http://0.0.0.0:1337');
+  const response = await fetch(metricsServerUrl);
   const rawMetrics = await response.text();
 
   const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
@@ -298,7 +304,7 @@ it('should record GraphQL metrics for failed requests in validation phase', asyn
 });
 
 it('should record GraphQL metrics for failed requests in execute phase', async () => {
-  await fetch('http://0.0.0.0:3000', {
+  await fetch(appServerUrl, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -314,7 +320,7 @@ it('should record GraphQL metrics for failed requests in execute phase', async (
     }),
   });
 
-  const response = await fetch('http://0.0.0.0:1337');
+  const response = await fetch(metricsServerUrl);
   const rawMetrics = await response.text();
 
   const parsedMetrics = parsePrometheusTextFormat(rawMetrics);

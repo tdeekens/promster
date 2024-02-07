@@ -5,6 +5,12 @@ const {
 const Fastify = require('fastify');
 const { plugin } = require('./plugin');
 
+const metricsPort = '1339';
+const appPort = '3002';
+
+const metricsServerUrl = `http://0.0.0.0:${metricsPort}`;
+const appServerUrl = `http://0.0.0.0:${appPort}`;
+
 async function startServers() {
   // eslint-disable-next-line new-cap
   const fastify = Fastify({
@@ -12,7 +18,7 @@ async function startServers() {
   });
 
   const prometheusMetricsServer = await createPrometheusMetricsServer({
-    port: 1337,
+    port: metricsPort,
     detectKubernetes: false,
   });
 
@@ -22,7 +28,7 @@ async function startServers() {
     await reply.send({ status: 'ok' });
   });
 
-  await fastify.listen(3000, '0.0.0.0');
+  await fastify.listen(appPort, '0.0.0.0');
 
   return {
     close: async () =>
@@ -66,7 +72,7 @@ afterAll(async () => {
 });
 
 it('should up metric', async () => {
-  const response = await fetch('http://0.0.0.0:1337');
+  const response = await fetch(metricsServerUrl);
   const rawMetrics = await response.text();
 
   const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
@@ -81,7 +87,7 @@ it('should up metric', async () => {
 });
 
 it('should expose garbage collection metrics', async () => {
-  const response = await fetch('http://0.0.0.0:1337');
+  const response = await fetch(metricsServerUrl);
   const rawMetrics = await response.text();
 
   const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
@@ -126,7 +132,7 @@ it('should expose garbage collection metrics', async () => {
 });
 
 it('should expose http metrics', async () => {
-  const response = await fetch('http://0.0.0.0:1337');
+  const response = await fetch(metricsServerUrl);
   const rawMetrics = await response.text();
 
   const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
@@ -144,8 +150,8 @@ it('should expose http metrics', async () => {
 });
 
 it('should record http metrics', async () => {
-  await fetch('http://0.0.0.0:3000');
-  const response = await fetch('http://0.0.0.0:1337');
+  await fetch(appServerUrl);
+  const response = await fetch(metricsServerUrl);
   const rawMetrics = await response.text();
 
   const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
