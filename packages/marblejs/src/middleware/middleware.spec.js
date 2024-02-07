@@ -1,6 +1,5 @@
 const { httpListener, createServer, r } = require('@marblejs/http');
 const { mapTo } = require('rxjs/operators');
-const fetch = require('node-fetch');
 const parsePrometheusTextFormat = require('parse-prometheus-text-format');
 const {
   createServer: createPrometheusMetricsServer,

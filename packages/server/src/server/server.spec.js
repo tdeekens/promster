@@ -1,4 +1,3 @@
-const fetch = require('node-fetch');
 const parsePrometheusTextFormat = require('parse-prometheus-text-format');
 const { createGcMetrics } = require('@promster/metrics');
 const { createServer } = require('./server');

@@ -13,7 +13,7 @@
     "modules/**"
   ],
   "engines": {
-    "node": ">=18",
+    "node": ">=20",
     "npm": ">=8"
   },
   "publishConfig": {
@@ -47,7 +47,6 @@
     "@graphql-tools/utils": "10.0.13",
     "apollo-server": "3.13.0",
     "graphql": "16.8.1",
-    "node-fetch": "2.6.11",
     "parse-prometheus-text-format": "1.1.1",
     "@promster/server": "workspace:*"
   }

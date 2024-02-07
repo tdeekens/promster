@@ -1,5 +1,4 @@
 const { ApolloServer, gql } = require('apollo-server');
-const fetch = require('node-fetch');
 const parsePrometheusTextFormat = require('parse-prometheus-text-format');
 const { createPlugin: createPromsterMetricsPlugin } = require('./plugin');
 const {

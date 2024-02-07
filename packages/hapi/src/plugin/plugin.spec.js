@@ -1,5 +1,4 @@
 const Hapi = require('@hapi/hapi');
-const fetch = require('node-fetch');
 const parsePrometheusTextFormat = require('parse-prometheus-text-format');
 const {
   createServer: createPrometheusMetricsServer,

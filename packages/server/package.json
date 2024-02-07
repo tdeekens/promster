@@ -16,7 +16,7 @@
     "access": "public"
   },
   "engines": {
-    "node": ">=18",
+    "node": ">=20",
     "npm": ">=8"
   },
   "repository": {
@@ -41,6 +41,6 @@
     "tslib": "2.6.2"
   },
   "devDependencies": {
-    "@types/node": "18.19.8"
+    "@types/node": "20.11.6"
   }
 }

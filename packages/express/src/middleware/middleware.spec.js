@@ -1,5 +1,4 @@
 const express = require('express');
-const fetch = require('node-fetch');
 const parsePrometheusTextFormat = require('parse-prometheus-text-format');
 const { createMiddleware } = require('./middleware');
 const {
