@@ -39,7 +39,7 @@
     "@promster/metrics": "^12.1.0",
     "@promster/types": "^12.1.0",
     "merge-options": "3.0.4",
-    "rxjs": "^6.6.7",
+    "rxjs": "^7.8.1",
     "tslib": "2.6.2"
   },
   "devDependencies": {

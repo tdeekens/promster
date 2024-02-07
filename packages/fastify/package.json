@@ -38,12 +38,12 @@
   "dependencies": {
     "@promster/metrics": "^12.1.0",
     "@promster/types": "^12.1.0",
-    "fastify-plugin": "^4.4.0",
+    "fastify-plugin": "^4.5.1",
     "merge-options": "3.0.4",
     "parse-prometheus-text-format": "1.1.1",
     "@promster/server": "workspace:*"
   },
   "devDependencies": {
-    "fastify": "4.25.2"
+    "fastify": "4.26.0"
   }
 }
