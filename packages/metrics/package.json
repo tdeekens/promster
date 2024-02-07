@@ -45,9 +45,9 @@
     "url-value-parser": "2.2.0"
   },
   "devDependencies": {
-    "prom-client": "15.0.0",
+    "prom-client": "15.1.0",
     "typescript": "5.3.3",
-    "@types/node": "20.11.6",
+    "@types/node": "20.11.16",
     "@types/lodash.once": "4.1.9"
   },
   "optionalDependencies": {

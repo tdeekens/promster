@@ -38,7 +38,7 @@
     "ts-essentials": "9.4.1"
   },
   "devDependencies": {
-    "prom-client": "14.2.0"
+    "prom-client": "15.1.0"
   },
   "peerDependencies": {
     "prom-client": "13.x.x || 14.x || 15.x"

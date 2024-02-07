@@ -188,7 +188,7 @@ importers:
         specifier: ^12.1.0
         version: link:../types
       fastify-plugin:
-        specifier: ^4.4.0
+        specifier: ^4.5.1
         version: 4.5.1
       merge-options:
         specifier: 3.0.4
@@ -198,8 +198,8 @@ importers:
         version: 1.1.1
     devDependencies:
       fastify:
-        specifier: 4.25.2
-        version: 4.25.2
+        specifier: 4.26.0
+        version: 4.26.0
 
   packages/hapi:
     dependencies:
@@ -213,8 +213,8 @@ importers:
         specifier: 3.0.4
         version: 3.0.4
       semver:
-        specifier: 7.5.4
-        version: 7.5.4
+        specifier: 7.6.0
+        version: 7.6.0
       tslib:
         specifier: 2.6.2
         version: 2.6.2
@@ -250,18 +250,18 @@ importers:
         specifier: 3.0.4
         version: 3.0.4
       rxjs:
-        specifier: ^6.6.7
-        version: 6.6.7
+        specifier: ^7.8.1
+        version: 7.8.1
       tslib:
         specifier: 2.6.2
         version: 2.6.2
     devDependencies:
       '@marblejs/core':
         specifier: 4.1.0
-        version: 4.1.0(fp-ts@2.16.2)(rxjs@6.6.7)
+        version: 4.1.0(fp-ts@2.16.2)(rxjs@7.8.1)
       '@marblejs/http':
         specifier: 4.1.0
-        version: 4.1.0(@marblejs/core@4.1.0)(fp-ts@2.16.2)(rxjs@6.6.7)
+        version: 4.1.0(@marblejs/core@4.1.0)(fp-ts@2.16.2)(rxjs@7.8.1)
       '@promster/server':
         specifier: workspace:*
         version: link:../server
@@ -304,11 +304,11 @@ importers:
         specifier: 4.1.9
         version: 4.1.9
       '@types/node':
-        specifier: 20.11.6
-        version: 20.11.6
+        specifier: 20.11.16
+        version: 20.11.16
       prom-client:
-        specifier: 15.0.0
-        version: 15.0.0
+        specifier: 15.1.0
+        version: 15.1.0
       typescript:
         specifier: 5.3.3
         version: 5.3.3
@@ -326,8 +326,8 @@ importers:
         version: 2.6.2
     devDependencies:
       '@types/node':
-        specifier: 20.11.6
-        version: 20.11.6
+        specifier: 20.11.16
+        version: 20.11.16
 
   packages/types:
     dependencies:
@@ -336,8 +336,8 @@ importers:
         version: 9.4.1(typescript@5.3.3)
     devDependencies:
       prom-client:
-        specifier: 14.2.0
-        version: 14.2.0
+        specifier: 15.1.0
+        version: 15.1.0
 
 packages:
 
@@ -1948,7 +1948,7 @@ packages:
       outdent: 0.5.0
       prettier: 2.8.8
       resolve-from: 5.0.0
-      semver: 7.5.4
+      semver: 7.6.0
     dev: false
 
   /@changesets/assemble-release-plan@6.0.0:
@@ -1959,7 +1959,7 @@ packages:
       '@changesets/get-dependents-graph': 2.0.0
       '@changesets/types': 6.0.0
       '@manypkg/get-packages': 1.1.3
-      semver: 7.5.4
+      semver: 7.6.0
     dev: false
 
   /@changesets/changelog-git@0.2.0:
@@ -2041,7 +2041,7 @@ packages:
       '@manypkg/get-packages': 1.1.3
       chalk: 2.4.2
       fs-extra: 7.0.1
-      semver: 7.5.4
+      semver: 7.6.0
     dev: false
 
   /@changesets/get-github-info@0.6.0:
@@ -3165,7 +3165,7 @@ packages:
       nopt: 5.0.0
       npmlog: 5.0.1
       rimraf: 3.0.2
-      semver: 7.5.4
+      semver: 7.6.0
       tar: 6.1.15
     transitivePeerDependencies:
       - encoding
@@ -3173,7 +3173,7 @@ packages:
     dev: false
     optional: true
 
-  /@marblejs/core@4.1.0(fp-ts@2.16.2)(rxjs@6.6.7):
+  /@marblejs/core@4.1.0(fp-ts@2.16.2)(rxjs@7.8.1):
     resolution: {integrity: sha512-h32/PpqLdzA9L9LUGfsc1de6Rvn869AEG4oGOUB/6hA2ESAfND5BV2xRFEwlX82Sl8hovJQebtnYFpyEE1t+Pg==}
     engines: {node: '>= 8.0.0', npm: '>= 5.0.0', yarn: '>= 1.7.0'}
     peerDependencies:
@@ -3184,11 +3184,11 @@ packages:
       chalk: 3.0.0
       fp-ts: 2.16.2
       io-ts: 2.2.20(fp-ts@2.16.2)
-      rxjs: 6.6.7
+      rxjs: 7.8.1
       uuid: 7.0.3
     dev: true
 
-  /@marblejs/http@4.1.0(@marblejs/core@4.1.0)(fp-ts@2.16.2)(rxjs@6.6.7):
+  /@marblejs/http@4.1.0(@marblejs/core@4.1.0)(fp-ts@2.16.2)(rxjs@7.8.1):
     resolution: {integrity: sha512-2J2kGGJbijJiX6q3XQ/T1RMJJF24CxdtjZhj7FEWmZzcpov7FQMsZCMfC77L6S93YB0LW82scYZDC1EQctHGqQ==}
     engines: {node: '>= 8.0.0', npm: '>= 5.0.0', yarn: '>= 1.7.0'}
     peerDependencies:
@@ -3196,7 +3196,7 @@ packages:
       fp-ts: ^2.13.1
       rxjs: ^7.5.7
     dependencies:
-      '@marblejs/core': 4.1.0(fp-ts@2.16.2)(rxjs@6.6.7)
+      '@marblejs/core': 4.1.0(fp-ts@2.16.2)(rxjs@7.8.1)
       '@types/json-schema': 7.0.12
       '@types/qs': 6.9.8
       '@types/uuid': 7.0.6
@@ -3206,7 +3206,7 @@ packages:
       mime: 2.6.0
       path-to-regexp: 6.2.1
       qs: 6.11.2
-      rxjs: 6.6.7
+      rxjs: 7.8.1
       uuid: 7.0.3
     dev: true
 
@@ -3714,12 +3714,6 @@ packages:
     dependencies:
       undici-types: 5.26.5
 
-  /@types/node@20.11.6:
-    resolution: {integrity: sha512-+EOokTnksGVgip2PbYbr3xnR7kZigh4LbybAfBAw5BpnQ+FqBYUsvCEjYd70IXKlbohQ64mzEYmMtlWUY8q//Q==}
-    dependencies:
-      undici-types: 5.26.5
-    dev: true
-
   /@types/normalize-package-data@2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
     dev: false
@@ -3888,7 +3882,7 @@ packages:
       debug: 4.3.4
       globby: 11.1.0
       is-glob: 4.0.3
-      semver: 7.5.4
+      semver: 7.6.0
       tsutils: 3.21.0(typescript@5.3.3)
       typescript: 5.3.3
     transitivePeerDependencies:
@@ -3910,7 +3904,7 @@ packages:
       globby: 11.1.0
       is-glob: 4.0.3
       minimatch: 9.0.3
-      semver: 7.5.4
+      semver: 7.6.0
       ts-api-utils: 1.0.2(typescript@5.3.3)
       typescript: 5.3.3
     transitivePeerDependencies:
@@ -3931,7 +3925,7 @@ packages:
       '@typescript-eslint/typescript-estree': 5.62.0(typescript@5.3.3)
       eslint: 8.56.0
       eslint-scope: 5.1.1
-      semver: 7.5.4
+      semver: 7.6.0
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -3950,7 +3944,7 @@ packages:
       '@typescript-eslint/types': 6.21.0
       '@typescript-eslint/typescript-estree': 6.21.0(typescript@5.3.3)
       eslint: 8.56.0
-      semver: 7.5.4
+      semver: 7.6.0
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -5332,7 +5326,7 @@ packages:
       resolve: 1.22.4
       resolve-from: 5.0.0
       sass: 1.66.1
-      semver: 7.5.4
+      semver: 7.6.0
       yargs: 16.2.0
     transitivePeerDependencies:
       - supports-color
@@ -5976,8 +5970,8 @@ packages:
     resolution: {integrity: sha512-stRHYGeuqpEZTL1Ef0Ovr2ltazUT9g844X5z/zEBFLG8RYlpDiOCIG+ATvYEp+/zmc7sN29mcIMp8gvYplYPIQ==}
     dev: false
 
-  /fastify@4.25.2:
-    resolution: {integrity: sha512-SywRouGleDHvRh054onj+lEZnbC1sBCLkR0UY3oyJwjD4BdZJUrxBqfkfCaqn74pVCwBaRHGuL3nEWeHbHzAfw==}
+  /fastify@4.26.0:
+    resolution: {integrity: sha512-Fq/7ziWKc6pYLYLIlCRaqJqEVTIZ5tZYfcW/mDK2AQ9v/sqjGFpj0On0/7hU50kbPVjLO4de+larPA1WwPZSfw==}
     dependencies:
       '@fastify/ajv-compiler': 3.5.0
       '@fastify/error': 3.4.1
@@ -5986,14 +5980,14 @@ packages:
       avvio: 8.2.1
       fast-content-type-parse: 1.1.0
       fast-json-stringify: 5.8.0
-      find-my-way: 7.7.0
+      find-my-way: 8.1.0
       light-my-request: 5.11.0
       pino: 8.17.1
       process-warning: 3.0.0
       proxy-addr: 2.0.7
       rfdc: 1.3.0
       secure-json-parse: 2.7.0
-      semver: 7.5.4
+      semver: 7.6.0
       toad-cache: 3.3.0
     transitivePeerDependencies:
       - supports-color
@@ -6044,8 +6038,8 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /find-my-way@7.7.0:
-    resolution: {integrity: sha512-+SrHpvQ52Q6W9f3wJoJBbAQULJuNEEQwBvlvYwACDhBTLOTMiQ0HYWh4+vC3OivGP2ENcTI1oKlFA2OepJNjhQ==}
+  /find-my-way@8.1.0:
+    resolution: {integrity: sha512-41QwjCGcVTODUmLLqTMeoHeiozbMXYMAE1CKFiDyi9zVZ2Vjh0yz3MF0WQZoIb+cmzP/XlbFjlF2NtJmvZHznA==}
     engines: {node: '>=14'}
     dependencies:
       fast-deep-equal: 3.1.3
@@ -6945,7 +6939,7 @@ packages:
       '@babel/parser': 7.23.6
       '@istanbuljs/schema': 0.1.3
       istanbul-lib-coverage: 3.2.0
-      semver: 7.5.4
+      semver: 7.6.0
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -7356,7 +7350,7 @@ packages:
       jest-util: 29.7.0
       natural-compare: 1.4.0
       pretty-format: 29.7.0
-      semver: 7.5.4
+      semver: 7.6.0
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -7839,7 +7833,7 @@ packages:
     resolution: {integrity: sha512-hXdUTZYIVOt1Ex//jAQi+wTZZpUpwBj/0QsOzqegb3rGMMeJiSEu5xLHnYfBrRV4RH2+OCSOO95Is/7x1WJ4bw==}
     engines: {node: '>=10'}
     dependencies:
-      semver: 7.5.4
+      semver: 7.6.0
     dev: false
 
   /make-error@1.3.6:
@@ -8164,7 +8158,7 @@ packages:
     dependencies:
       hosted-git-info: 4.1.0
       is-core-module: 2.13.0
-      semver: 7.5.4
+      semver: 7.6.0
       validate-npm-package-license: 3.0.4
     dev: false
 
@@ -8363,7 +8357,7 @@ packages:
       got: 12.6.1
       registry-auth-token: 5.0.2
       registry-url: 6.0.1
-      semver: 7.5.4
+      semver: 7.6.0
     dev: false
 
   /parent-module@1.0.1:
@@ -8612,15 +8606,8 @@ packages:
     engines: {node: '>= 0.6.0'}
     dev: true
 
-  /prom-client@14.2.0:
-    resolution: {integrity: sha512-sF308EhTenb/pDRPakm+WgiN+VdM/T1RaHj1x+MvAuT8UiQP8JmOEbxVqtkbfR4LrvOg5n7ic01kRBDGXjYikA==}
-    engines: {node: '>=10'}
-    dependencies:
-      tdigest: 0.1.2
-    dev: true
-
-  /prom-client@15.0.0:
-    resolution: {integrity: sha512-UocpgIrKyA2TKLVZDSfm8rGkL13C19YrQBAiG3xo3aDFWcHedxRxI3z+cIcucoxpSO0h5lff5iv/SXoxyeopeA==}
+  /prom-client@15.1.0:
+    resolution: {integrity: sha512-cCD7jLTqyPdjEPBo/Xk4Iu8jxjuZgZJ3e/oET3L+ZwOuap/7Cw3dH/TJSsZKs1TQLZ2IHpIlRAKw82ef06kmMw==}
     engines: {node: ^16 || ^18 || >=20}
     dependencies:
       '@opentelemetry/api': 1.6.0
@@ -8995,11 +8982,10 @@ packages:
       queue-microtask: 1.2.3
     dev: false
 
-  /rxjs@6.6.7:
-    resolution: {integrity: sha512-hTdwr+7yYNIT5n4AMYp85KA6yw2Va0FLa3Rguvbpa4W3I5xynaBZo41cM3XM+4Q6fRMj3sBYIR1VAmZMXYJvRQ==}
-    engines: {npm: '>=2.0.0'}
+  /rxjs@7.8.1:
+    resolution: {integrity: sha512-AA3TVj+0A2iuIoQkWEK/tqFjBq2j+6PO6Y0zJcvzLAFhEFIO3HL0vls9hWLncZbAAbK0mar7oZ4V079I/qPMxg==}
     dependencies:
-      tslib: 1.14.1
+      tslib: 2.6.2
 
   /safe-array-concat@1.0.0:
     resolution: {integrity: sha512-9dVEFruWIsnie89yym+xWTAYASdpw3CJV7Li/6zBewGf9z2i1j31rP6jnY0pHEO4QZh6N0K11bFjWmdR8UGdPQ==}
@@ -9077,6 +9063,14 @@ packages:
 
   /semver@7.5.4:
     resolution: {integrity: sha512-1bCSESV6Pv+i21Hvpxp3Dx+pSD8lIPt8uVjRrxAUt/nbswYc+tK6Y2btiULjd4+fnq15PX+nqQDC7Oft7WkwcA==}
+    engines: {node: '>=10'}
+    hasBin: true
+    dependencies:
+      lru-cache: 6.0.0
+    dev: false
+
+  /semver@7.6.0:
+    resolution: {integrity: sha512-EnwXhrlwXMk9gKu5/flx5sv/an57AkRplG3hTK68W7FRDN+k+OWBj65M7719OkA82XLBxrcX0KSHj+X5COhOVg==}
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
@@ -9680,6 +9674,7 @@ packages:
 
   /tslib@1.14.1:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
+    dev: false
 
   /tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
