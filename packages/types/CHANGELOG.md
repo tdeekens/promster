@@ -1,5 +1,17 @@
 # @promster/types
 
+## 13.0.0
+
+### Major Changes
+
+- [#1175](https://github.com/tdeekens/promster/pull/1175) [`2da8d99`](https://github.com/tdeekens/promster/commit/2da8d99cc59e0223e89b985c6dddc9883e3f2f5c) Thanks [@tdeekens](https://github.com/tdeekens)! - Remove support for Node.js v18
+
+  We didn't adjust functionality to remove support but changed the `engines` requirement.
+
+### Patch Changes
+
+- [#1177](https://github.com/tdeekens/promster/pull/1177) [`0d8acff`](https://github.com/tdeekens/promster/commit/0d8acff62b395046023295068aa2849c5a9a55f9) Thanks [@tdeekens](https://github.com/tdeekens)! - Update dependencies
+
 ## 12.1.0
 
 ### Minor Changes
