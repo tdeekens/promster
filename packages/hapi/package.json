@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "@hapi/boom": "10.0.1",
-    "@hapi/hapi": "21.3.3",
+    "@hapi/hapi": "21.3.6",
     "@types/hapi__hapi": "20.0.13",
     "parse-prometheus-text-format": "1.1.1",
     "@promster/server": "workspace:*",
