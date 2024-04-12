@@ -117,10 +117,10 @@ importers:
         specifier: 4.10.2
         version: 4.10.2(graphql@16.8.1)
       '@promster/metrics':
-        specifier: ^13.0.0
+        specifier: ^14.0.0
         version: link:../metrics
       '@promster/types':
-        specifier: ^13.0.0
+        specifier: ^14.0.0
         version: link:../types
       merge-options:
         specifier: 3.0.4
@@ -151,10 +151,10 @@ importers:
   packages/express:
     dependencies:
       '@promster/metrics':
-        specifier: ^13.0.0
+        specifier: ^14.0.0
         version: link:../metrics
       '@promster/types':
-        specifier: ^13.0.0
+        specifier: ^14.0.0
         version: link:../types
       merge-options:
         specifier: 3.0.4
@@ -179,13 +179,13 @@ importers:
   packages/fastify:
     dependencies:
       '@promster/metrics':
-        specifier: ^13.0.0
+        specifier: ^14.0.0
         version: link:../metrics
       '@promster/server':
         specifier: workspace:*
         version: link:../server
       '@promster/types':
-        specifier: ^13.0.0
+        specifier: ^14.0.0
         version: link:../types
       fastify-plugin:
         specifier: ^4.5.1
@@ -204,10 +204,10 @@ importers:
   packages/hapi:
     dependencies:
       '@promster/metrics':
-        specifier: ^13.0.0
+        specifier: ^14.0.0
         version: link:../metrics
       '@promster/types':
-        specifier: ^13.0.0
+        specifier: ^14.0.0
         version: link:../types
       merge-options:
         specifier: 3.0.4
@@ -241,10 +241,10 @@ importers:
   packages/marblejs:
     dependencies:
       '@promster/metrics':
-        specifier: ^13.0.0
+        specifier: ^14.0.0
         version: link:../metrics
       '@promster/types':
-        specifier: ^13.0.0
+        specifier: ^14.0.0
         version: link:../types
       merge-options:
         specifier: 3.0.4
@@ -275,7 +275,7 @@ importers:
   packages/metrics:
     dependencies:
       '@promster/types':
-        specifier: ^13.0.0
+        specifier: ^14.0.0
         version: link:../types
       lodash.memoize:
         specifier: 4.1.2
@@ -288,7 +288,7 @@ importers:
         version: 3.0.4
       prometheus-gc-stats:
         specifier: 1.1.0
-        version: 1.1.0(prom-client@15.1.0)
+        version: 1.1.0(prom-client@15.1.1)
       tslib:
         specifier: 2.6.2
         version: 2.6.2
@@ -312,10 +312,10 @@ importers:
   packages/server:
     dependencies:
       '@promster/metrics':
-        specifier: ^13.0.0
+        specifier: ^14.0.0
         version: link:../metrics
       '@promster/types':
-        specifier: ^13.0.0
+        specifier: ^14.0.0
         version: link:../types
       tslib:
         specifier: 2.6.2
@@ -8520,14 +8520,14 @@ packages:
       '@opentelemetry/api': 1.7.0
       tdigest: 0.1.2
 
-  /prometheus-gc-stats@1.1.0(prom-client@15.1.0):
+  /prometheus-gc-stats@1.1.0(prom-client@15.1.1):
     resolution: {integrity: sha512-z2JefryWO0KzgejYHpc/i838P3LjERBzZdnUPYr8LbAOIZ+zkPDRTv1ryer2n09sliODvxea4JcLoYo0+yZApQ==}
     engines: {node: '>=10'}
     peerDependencies:
       prom-client: '>= 10 <= 15'
     dependencies:
       optional: 0.1.4
-      prom-client: 15.1.0
+      prom-client: 15.1.1
     optionalDependencies:
       '@sematext/gc-stats': 1.5.9
     transitivePeerDependencies:

@@ -1,6 +1,6 @@
 {
   "name": "@promster/apollo",
-  "version": "13.0.0",
+  "version": "14.0.0",
   "description": "Apollo server integrations of promster",
   "main": "dist/promster-apollo.cjs.js",
   "typings": "dist/promster-apollo.cjs.d.ts",
@@ -37,8 +37,8 @@
   ],
   "dependencies": {
     "@apollo/server": "4.10.2",
-    "@promster/metrics": "^13.0.0",
-    "@promster/types": "^13.0.0",
+    "@promster/metrics": "^14.0.0",
+    "@promster/types": "^14.0.0",
     "merge-options": "3.0.4",
     "tslib": "2.6.2"
   },

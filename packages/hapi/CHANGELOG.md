@@ -1,5 +1,13 @@
 # @promster/hapi
 
+## 14.0.0
+
+### Patch Changes
+
+- Updated dependencies [[`7668337`](https://github.com/tdeekens/promster/commit/766833787529d8a1ee603211240d31be6eaa939e)]:
+  - @promster/metrics@14.0.0
+  - @promster/types@14.0.0
+
 ## 13.0.0
 
 ### Major Changes

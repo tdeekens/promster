@@ -1,5 +1,19 @@
 # @promster/types
 
+## 14.0.0
+
+### Patch Changes
+
+- [#1210](https://github.com/tdeekens/promster/pull/1210) [`7668337`](https://github.com/tdeekens/promster/commit/766833787529d8a1ee603211240d31be6eaa939e) Thanks [@tdeekens](https://github.com/tdeekens)! - Replace `@sematext/gc-stats` with `prometheus-gc-stats`.
+
+  The latter is better supported and doesn't require any userland install. The module however does not allow to full configuration of metric names. Hence the metric names have changed:
+
+  We now expose:
+
+  1. nodejs_gc_runs_total: Counts the number of time GC is invoked
+  2. nodejs_gc_pause_seconds_total: Time spent in GC in seconds
+  3. nodejs_gc_reclaimed_bytes_total: The number of bytes GC has freed
+
 ## 13.0.0
 
 ### Major Changes
