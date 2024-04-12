@@ -286,19 +286,15 @@ importers:
       merge-options:
         specifier: 3.0.4
         version: 3.0.4
-      optional:
-        specifier: 0.1.4
-        version: 0.1.4
+      prometheus-gc-stats:
+        specifier: 1.1.0
+        version: 1.1.0(prom-client@15.1.0)
       tslib:
         specifier: 2.6.2
         version: 2.6.2
       url-value-parser:
         specifier: 2.2.0
         version: 2.2.0
-    optionalDependencies:
-      '@sematext/gc-stats':
-        specifier: 1.5.9
-        version: 1.5.9
     devDependencies:
       '@types/lodash.once':
         specifier: 4.1.9
@@ -3165,7 +3161,6 @@ packages:
   /@opentelemetry/api@1.7.0:
     resolution: {integrity: sha512-AdY5wvN0P2vXBi3b29hxZgSFvdhdxPB9+f0B6s//P9Q8nibRWeA3cHm8UmLpio9ABigkVHJ5NMPk+Mz8VCCyrw==}
     engines: {node: '>=8.0.0'}
-    dev: true
 
   /@pkgjs/parseargs@0.11.0:
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
@@ -4503,7 +4498,6 @@ packages:
 
   /bintrees@1.0.2:
     resolution: {integrity: sha512-VOMgTMwjAaUG580SXn3LacVgjurrbMme7ZZNYGSSV7mmtY6QQRh0Eg3pwIcntQ77DErK1L0NxkbetjcoXzVwKw==}
-    dev: true
 
   /body-parser@1.20.1:
     resolution: {integrity: sha512-jWi7abTbYwajOytWCQc37VulmWiRae5RyTpaCyDcS5/lMdtwSz5lOpDE67srw/HYe35f1z3fDQw+3txg7gNtWw==}
@@ -8525,7 +8519,21 @@ packages:
     dependencies:
       '@opentelemetry/api': 1.7.0
       tdigest: 0.1.2
-    dev: true
+
+  /prometheus-gc-stats@1.1.0(prom-client@15.1.0):
+    resolution: {integrity: sha512-z2JefryWO0KzgejYHpc/i838P3LjERBzZdnUPYr8LbAOIZ+zkPDRTv1ryer2n09sliODvxea4JcLoYo0+yZApQ==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      prom-client: '>= 10 <= 15'
+    dependencies:
+      optional: 0.1.4
+      prom-client: 15.1.0
+    optionalDependencies:
+      '@sematext/gc-stats': 1.5.9
+    transitivePeerDependencies:
+      - encoding
+      - supports-color
+    dev: false
 
   /prompts@2.4.2:
     resolution: {integrity: sha512-NxNv/kLguCA7p3jE8oL2aEBsrJWgAakBpgmgK6lpPWV+WuOmY6r2/zbAVnP+T8bQlA0nzHXSJSJW0Hq7ylaD2Q==}
@@ -9422,7 +9430,6 @@ packages:
     resolution: {integrity: sha512-+G0LLgjjo9BZX2MfdvPfH+MKLCrxlXSYec5DaPYP1fe6Iyhf0/fSmJ0bFiZ1F8BT6cGXl2LpltQptzjXKWEkKA==}
     dependencies:
       bintrees: 1.0.2
-    dev: true
 
   /teeny-request@7.1.1:
     resolution: {integrity: sha512-iwY6rkW5DDGq8hE2YgNQlKbptYpY5Nn2xecjQiNjOXWbKzPGUfmeUBCSQbbr306d7Z7U2N0TPl+/SwYRfua1Dg==}

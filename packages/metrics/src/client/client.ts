@@ -1,4 +1,5 @@
 import once from 'lodash.once';
+import type { PrometheusContentType } from 'prom-client';
 import * as Prometheus from 'prom-client';
 import { skipMetricsInEnvironment } from '../environment';
 
@@ -9,8 +10,9 @@ const defaultRegister = Prometheus.register;
 
 // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
 interface TClientOptions
-  extends Prometheus.DefaultMetricsCollectorConfiguration {
+  extends Prometheus.DefaultMetricsCollectorConfiguration<PrometheusContentType> {
   detectKubernetes?: boolean;
+  prefix?: string;
 }
 
 const configure = once((options: TClientOptions) => {

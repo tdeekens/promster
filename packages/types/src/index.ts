@@ -37,9 +37,6 @@ export type THttpMetrics = {
 };
 export type TGcMetrics = {
   up: Gauge[];
-  countOfGcs: Counter[];
-  durationOfGc: Counter[];
-  reclaimedInGc: Counter[];
 };
 export type TGraphQlMetrics = {
   graphQlParseDuration?: Histogram[];
