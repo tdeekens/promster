@@ -258,16 +258,16 @@ importers:
     devDependencies:
       '@marblejs/core':
         specifier: 4.1.0
-        version: 4.1.0(fp-ts@2.16.4)(rxjs@7.8.1)
+        version: 4.1.0(fp-ts@2.16.5)(rxjs@7.8.1)
       '@marblejs/http':
         specifier: 4.1.0
-        version: 4.1.0(@marblejs/core@4.1.0)(fp-ts@2.16.4)(rxjs@7.8.1)
+        version: 4.1.0(@marblejs/core@4.1.0)(fp-ts@2.16.5)(rxjs@7.8.1)
       '@promster/server':
         specifier: workspace:*
         version: link:../server
       fp-ts:
-        specifier: 2.16.4
-        version: 2.16.4
+        specifier: 2.16.5
+        version: 2.16.5
       parse-prometheus-text-format:
         specifier: 1.1.1
         version: 1.1.1
@@ -3094,7 +3094,7 @@ packages:
     dev: false
     optional: true
 
-  /@marblejs/core@4.1.0(fp-ts@2.16.4)(rxjs@7.8.1):
+  /@marblejs/core@4.1.0(fp-ts@2.16.5)(rxjs@7.8.1):
     resolution: {integrity: sha512-h32/PpqLdzA9L9LUGfsc1de6Rvn869AEG4oGOUB/6hA2ESAfND5BV2xRFEwlX82Sl8hovJQebtnYFpyEE1t+Pg==}
     engines: {node: '>= 8.0.0', npm: '>= 5.0.0', yarn: '>= 1.7.0'}
     peerDependencies:
@@ -3103,13 +3103,13 @@ packages:
     dependencies:
       '@types/uuid': 7.0.8
       chalk: 3.0.0
-      fp-ts: 2.16.4
-      io-ts: 2.2.21(fp-ts@2.16.4)
+      fp-ts: 2.16.5
+      io-ts: 2.2.21(fp-ts@2.16.5)
       rxjs: 7.8.1
       uuid: 7.0.3
     dev: true
 
-  /@marblejs/http@4.1.0(@marblejs/core@4.1.0)(fp-ts@2.16.4)(rxjs@7.8.1):
+  /@marblejs/http@4.1.0(@marblejs/core@4.1.0)(fp-ts@2.16.5)(rxjs@7.8.1):
     resolution: {integrity: sha512-2J2kGGJbijJiX6q3XQ/T1RMJJF24CxdtjZhj7FEWmZzcpov7FQMsZCMfC77L6S93YB0LW82scYZDC1EQctHGqQ==}
     engines: {node: '>= 8.0.0', npm: '>= 5.0.0', yarn: '>= 1.7.0'}
     peerDependencies:
@@ -3117,13 +3117,13 @@ packages:
       fp-ts: ^2.13.1
       rxjs: ^7.5.7
     dependencies:
-      '@marblejs/core': 4.1.0(fp-ts@2.16.4)(rxjs@7.8.1)
+      '@marblejs/core': 4.1.0(fp-ts@2.16.5)(rxjs@7.8.1)
       '@types/json-schema': 7.0.15
       '@types/qs': 6.9.11
       '@types/uuid': 7.0.8
       chalk: 3.0.0
       file-type: 8.1.0
-      fp-ts: 2.16.4
+      fp-ts: 2.16.5
       mime: 2.6.0
       path-to-regexp: 6.2.1
       qs: 6.11.2
@@ -6087,8 +6087,8 @@ packages:
     resolution: {integrity: sha512-buRG0fpBtRHSTCOASe6hD258tEubFoRLb4ZNA6NxMVHNw2gOcwHo9wyablzMzOA5z9xA9L1KNjk/Nt6MT9aYow==}
     engines: {node: '>= 0.6'}
 
-  /fp-ts@2.16.4:
-    resolution: {integrity: sha512-EkV/l6oHaf/w/DlVc5UiqLibqTV1S+idiDdcWQ+UjnLLflL9pZG28ebJfPLor8ifoL8NgEFDIo9fOvHyiSCrJQ==}
+  /fp-ts@2.16.5:
+    resolution: {integrity: sha512-N8T8PwMSeTKKtkm9lkj/zSTAnPC/aJIIrQhnHxxkL0KLsRCNUPANksJOlMXxcKKCo7H1ORP3No9EMD+fP0tsdA==}
     dev: true
 
   /fresh@0.5.2:
@@ -6613,12 +6613,12 @@ packages:
       side-channel: 1.0.5
     dev: false
 
-  /io-ts@2.2.21(fp-ts@2.16.4):
+  /io-ts@2.2.21(fp-ts@2.16.5):
     resolution: {integrity: sha512-zz2Z69v9ZIC3mMLYWIeoUcwWD6f+O7yP92FMVVaXEOSZH1jnVBmET/urd/uoarD1WGBY4rCj8TAyMPzsGNzMFQ==}
     peerDependencies:
       fp-ts: ^2.5.0
     dependencies:
-      fp-ts: 2.16.4
+      fp-ts: 2.16.5
     dev: true
 
   /ipaddr.js@1.9.1:
