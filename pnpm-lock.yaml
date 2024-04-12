@@ -288,7 +288,7 @@ importers:
         version: 3.0.4
       prometheus-gc-stats:
         specifier: 1.1.0
-        version: 1.1.0(prom-client@15.1.0)
+        version: 1.1.0(prom-client@15.1.1)
       tslib:
         specifier: 2.6.2
         version: 2.6.2
@@ -8520,14 +8520,14 @@ packages:
       '@opentelemetry/api': 1.7.0
       tdigest: 0.1.2
 
-  /prometheus-gc-stats@1.1.0(prom-client@15.1.0):
+  /prometheus-gc-stats@1.1.0(prom-client@15.1.1):
     resolution: {integrity: sha512-z2JefryWO0KzgejYHpc/i838P3LjERBzZdnUPYr8LbAOIZ+zkPDRTv1ryer2n09sliODvxea4JcLoYo0+yZApQ==}
     engines: {node: '>=10'}
     peerDependencies:
       prom-client: '>= 10 <= 15'
     dependencies:
       optional: 0.1.4
-      prom-client: 15.1.0
+      prom-client: 15.1.1
     optionalDependencies:
       '@sematext/gc-stats': 1.5.9
     transitivePeerDependencies:
