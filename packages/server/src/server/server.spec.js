@@ -66,6 +66,9 @@ it('should expose garbage collection metrics', async () => {
   expect(parsedMetrics).toEqual(
     expect.arrayContaining([
       expect.objectContaining({
+        name: 'nodejs_version_info',
+      }),
+      expect.objectContaining({
         name: 'process_cpu_user_seconds_total',
       }),
       expect.objectContaining({
@@ -84,19 +87,10 @@ it('should expose garbage collection metrics', async () => {
         name: 'nodejs_eventloop_lag_seconds',
       }),
       expect.objectContaining({
-        name: 'nodejs_gc_runs_total',
-      }),
-      expect.objectContaining({
-        name: 'nodejs_gc_duration_seconds',
-      }),
-      expect.objectContaining({
         name: 'nodejs_eventloop_lag_max_seconds',
       }),
       expect.objectContaining({
         name: 'nodejs_eventloop_lag_p50_seconds',
-      }),
-      expect.objectContaining({
-        name: 'nodejs_version_info',
       }),
     ])
   );

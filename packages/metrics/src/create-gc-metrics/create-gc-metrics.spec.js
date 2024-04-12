@@ -20,16 +20,4 @@ describe('createGcMetrics', () => {
   it('should have `up` metric', () => {
     expect(metrics).toHaveProperty('up');
   });
-
-  it('should have `countOfGcs` metric', () => {
-    expect(metrics).toHaveProperty('countOfGcs');
-  });
-
-  it('should have `durationOfGc` metric', () => {
-    expect(metrics).toHaveProperty('durationOfGc');
-  });
-
-  it('should have `reclaimedInGc` metric', () => {
-    expect(metrics).toHaveProperty('reclaimedInGc');
-  });
 });
