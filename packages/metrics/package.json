@@ -36,7 +36,7 @@
     "prometheus"
   ],
   "dependencies": {
-    "@promster/types": "^14.0.0",
+    "@promster/types": "workspace:*",
     "lodash.memoize": "4.1.2",
     "prometheus-gc-stats": "1.1.0",
     "lodash.once": "4.1.1",
