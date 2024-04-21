@@ -38,17 +38,17 @@
   "dependencies": {
     "@promster/types": "workspace:*",
     "lodash.memoize": "4.1.2",
-    "prometheus-gc-stats": "1.1.0",
     "lodash.once": "4.1.1",
     "merge-options": "3.0.4",
+    "prometheus-gc-stats": "1.1.0",
     "tslib": "2.6.2",
     "url-value-parser": "2.2.0"
   },
   "devDependencies": {
-    "prom-client": "15.1.1",
-    "typescript": "5.3.3",
+    "@types/lodash.once": "4.1.9",
     "@types/node": "20.11.30",
-    "@types/lodash.once": "4.1.9"
+    "prom-client": "15.1.1",
+    "typescript": "5.3.3"
   },
   "peerDependencies": {
     "prom-client": "13.x.x || 14.x || 15.x"

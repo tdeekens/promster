@@ -45,9 +45,9 @@
   "devDependencies": {
     "@graphql-tools/schema": "10.0.3",
     "@graphql-tools/utils": "10.1.2",
+    "@promster/server": "workspace:*",
     "apollo-server": "3.13.0",
     "graphql": "16.8.1",
-    "parse-prometheus-text-format": "1.1.1",
-    "@promster/server": "workspace:*"
+    "parse-prometheus-text-format": "1.1.1"
   }
 }
