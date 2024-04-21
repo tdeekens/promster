@@ -36,7 +36,7 @@
     "prometheus"
   ],
   "dependencies": {
-    "@apollo/server": "4.10.2",
+    "@apollo/server": "4.10.4",
     "@promster/metrics": "workspace:*",
     "@promster/types": "workspace:*",
     "merge-options": "3.0.4",
@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "@graphql-tools/schema": "10.0.3",
-    "@graphql-tools/utils": "10.1.2",
+    "@graphql-tools/utils": "10.1.3",
     "@promster/server": "workspace:*",
     "apollo-server": "3.13.0",
     "graphql": "16.8.1",

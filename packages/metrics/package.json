@@ -46,9 +46,9 @@
   },
   "devDependencies": {
     "@types/lodash.once": "4.1.9",
-    "@types/node": "20.11.30",
-    "prom-client": "15.1.1",
-    "typescript": "5.3.3"
+    "@types/node": "20.12.7",
+    "prom-client": "15.1.2",
+    "typescript": "5.4.5"
   },
   "peerDependencies": {
     "prom-client": "13.x.x || 14.x || 15.x"

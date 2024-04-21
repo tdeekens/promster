@@ -35,10 +35,10 @@
     "prometheus"
   ],
   "dependencies": {
-    "ts-essentials": "9.4.1"
+    "ts-essentials": "9.4.2"
   },
   "devDependencies": {
-    "prom-client": "15.1.1"
+    "prom-client": "15.1.2"
   },
   "peerDependencies": {
     "prom-client": "13.x.x || 14.x || 15.x"
