@@ -39,7 +39,7 @@
     "@promster/metrics": "workspace:*",
     "@promster/types": "workspace:*",
     "merge-options": "3.0.4",
-    "semver": "7.6.0",
+    "semver": "7.6.2",
     "tslib": "2.6.2"
   },
   "devDependencies": {
