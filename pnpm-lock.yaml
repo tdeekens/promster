@@ -126,8 +126,8 @@ importers:
         specifier: 3.0.4
         version: 3.0.4
       tslib:
-        specifier: 2.6.2
-        version: 2.6.2
+        specifier: 2.6.3
+        version: 2.6.3
     devDependencies:
       '@graphql-tools/schema':
         specifier: 10.0.4
@@ -160,8 +160,8 @@ importers:
         specifier: 3.0.4
         version: 3.0.4
       tslib:
-        specifier: 2.6.2
-        version: 2.6.2
+        specifier: 2.6.3
+        version: 2.6.3
     devDependencies:
       '@promster/server':
         specifier: workspace:*
@@ -216,8 +216,8 @@ importers:
         specifier: 7.6.2
         version: 7.6.2
       tslib:
-        specifier: 2.6.2
-        version: 2.6.2
+        specifier: 2.6.3
+        version: 2.6.3
     devDependencies:
       '@hapi/boom':
         specifier: 10.0.1
@@ -253,8 +253,8 @@ importers:
         specifier: ^7.8.1
         version: 7.8.1
       tslib:
-        specifier: 2.6.2
-        version: 2.6.2
+        specifier: 2.6.3
+        version: 2.6.3
     devDependencies:
       '@marblejs/core':
         specifier: 4.1.0
@@ -290,8 +290,8 @@ importers:
         specifier: 1.1.0
         version: 1.1.0(prom-client@15.1.2)
       tslib:
-        specifier: 2.6.2
-        version: 2.6.2
+        specifier: 2.6.3
+        version: 2.6.3
       url-value-parser:
         specifier: 2.2.0
         version: 2.2.0
@@ -318,8 +318,8 @@ importers:
         specifier: workspace:*
         version: link:../types
       tslib:
-        specifier: 2.6.2
-        version: 2.6.2
+        specifier: 2.6.3
+        version: 2.6.3
     devDependencies:
       '@types/node':
         specifier: 20.12.12
@@ -5118,8 +5118,8 @@ packages:
       esbuild:
         optional: true
 
-  tslib@2.6.2:
-    resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
+  tslib@2.6.3:
+    resolution: {integrity: sha512-xNvxJEOUiWPGhUuUdQgAJPKOOJfGnIyKySOc09XkKsgdUV/3E2zvwZYdejjmRgPCgcym1juLH3226yA7sEFJKQ==}
 
   tty-table@4.2.3:
     resolution: {integrity: sha512-Fs15mu0vGzCrj8fmJNP7Ynxt5J7praPXqFN0leZeZBXJwkMxv9cb2D454k1ltrtUSJbZ4yH4e0CynsHLxmUfFA==}
@@ -6865,19 +6865,19 @@ snapshots:
     dependencies:
       '@graphql-tools/utils': 8.9.0(graphql@16.8.1)
       graphql: 16.8.1
-      tslib: 2.6.2
+      tslib: 2.6.3
 
   '@graphql-tools/merge@8.4.2(graphql@16.8.1)':
     dependencies:
       '@graphql-tools/utils': 9.2.1(graphql@16.8.1)
       graphql: 16.8.1
-      tslib: 2.6.2
+      tslib: 2.6.3
 
   '@graphql-tools/merge@9.0.3(graphql@16.8.1)':
     dependencies:
       '@graphql-tools/utils': 10.2.1(graphql@16.8.1)
       graphql: 16.8.1
-      tslib: 2.6.2
+      tslib: 2.6.3
 
   '@graphql-tools/mock@8.7.20(graphql@16.8.1)':
     dependencies:
@@ -6885,14 +6885,14 @@ snapshots:
       '@graphql-tools/utils': 9.2.1(graphql@16.8.1)
       fast-json-stable-stringify: 2.1.0
       graphql: 16.8.1
-      tslib: 2.6.2
+      tslib: 2.6.3
 
   '@graphql-tools/schema@10.0.4(graphql@16.8.1)':
     dependencies:
       '@graphql-tools/merge': 9.0.3(graphql@16.8.1)
       '@graphql-tools/utils': 10.2.1(graphql@16.8.1)
       graphql: 16.8.1
-      tslib: 2.6.2
+      tslib: 2.6.3
       value-or-promise: 1.0.12
 
   '@graphql-tools/schema@8.5.1(graphql@16.8.1)':
@@ -6900,7 +6900,7 @@ snapshots:
       '@graphql-tools/merge': 8.3.1(graphql@16.8.1)
       '@graphql-tools/utils': 8.9.0(graphql@16.8.1)
       graphql: 16.8.1
-      tslib: 2.6.2
+      tslib: 2.6.3
       value-or-promise: 1.0.11
 
   '@graphql-tools/schema@9.0.19(graphql@16.8.1)':
@@ -6908,7 +6908,7 @@ snapshots:
       '@graphql-tools/merge': 8.4.2(graphql@16.8.1)
       '@graphql-tools/utils': 9.2.1(graphql@16.8.1)
       graphql: 16.8.1
-      tslib: 2.6.2
+      tslib: 2.6.3
       value-or-promise: 1.0.12
 
   '@graphql-tools/utils@10.2.1(graphql@16.8.1)':
@@ -6917,18 +6917,18 @@ snapshots:
       cross-inspect: 1.0.0
       dset: 3.1.3
       graphql: 16.8.1
-      tslib: 2.6.2
+      tslib: 2.6.3
 
   '@graphql-tools/utils@8.9.0(graphql@16.8.1)':
     dependencies:
       graphql: 16.8.1
-      tslib: 2.6.2
+      tslib: 2.6.3
 
   '@graphql-tools/utils@9.2.1(graphql@16.8.1)':
     dependencies:
       '@graphql-typed-document-node/core': 3.2.0(graphql@16.8.1)
       graphql: 16.8.1
-      tslib: 2.6.2
+      tslib: 2.6.3
 
   '@graphql-typed-document-node/core@3.2.0(graphql@16.8.1)':
     dependencies:
@@ -8590,7 +8590,7 @@ snapshots:
 
   cross-inspect@1.0.0:
     dependencies:
-      tslib: 2.6.2
+      tslib: 2.6.3
 
   cross-spawn@5.1.0:
     dependencies:
@@ -9454,7 +9454,7 @@ snapshots:
   graphql-tag@2.12.6(graphql@16.8.1):
     dependencies:
       graphql: 16.8.1
-      tslib: 2.6.2
+      tslib: 2.6.3
 
   graphql@16.8.1: {}
 
@@ -10954,7 +10954,7 @@ snapshots:
 
   rxjs@7.8.1:
     dependencies:
-      tslib: 2.6.2
+      tslib: 2.6.3
 
   safe-array-concat@1.1.2:
     dependencies:
@@ -11262,7 +11262,7 @@ snapshots:
   synckit@0.8.8:
     dependencies:
       '@pkgr/core': 0.1.1
-      tslib: 2.6.2
+      tslib: 2.6.3
 
   tar@6.2.1:
     dependencies:
@@ -11362,7 +11362,7 @@ snapshots:
       '@jest/types': 29.6.3
       babel-jest: 29.7.0(@babel/core@7.24.7)
 
-  tslib@2.6.2: {}
+  tslib@2.6.3: {}
 
   tty-table@4.2.3:
     dependencies:

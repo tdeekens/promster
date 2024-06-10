@@ -40,7 +40,7 @@
     "@promster/types": "workspace:*",
     "merge-options": "3.0.4",
     "rxjs": "^7.8.1",
-    "tslib": "2.6.2"
+    "tslib": "2.6.3"
   },
   "devDependencies": {
     "@marblejs/core": "4.1.0",
