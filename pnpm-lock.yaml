@@ -133,8 +133,8 @@ importers:
         specifier: 10.0.4
         version: 10.0.4(graphql@16.8.1)
       '@graphql-tools/utils':
-        specifier: 10.2.1
-        version: 10.2.1(graphql@16.8.1)
+        specifier: 10.2.2
+        version: 10.2.2(graphql@16.8.1)
       '@promster/server':
         specifier: workspace:*
         version: link:../server
@@ -1406,8 +1406,8 @@ packages:
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
 
-  '@graphql-tools/utils@10.2.1':
-    resolution: {integrity: sha512-U8OMdkkEt3Vp3uYHU2pMc6mwId7axVAcSSmcqJcUmWNPqY2pfee5O655ybTI2kNPWAe58Zu6gLu4Oi4QT4BgWA==}
+  '@graphql-tools/utils@10.2.2':
+    resolution: {integrity: sha512-ueoplzHIgFfxhFrF4Mf/niU/tYHuO6Uekm2nCYU72qpI+7Hn9dA2/o5XOBvFXDk27Lp5VSvQY5WfmRbqwVxaYQ==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
@@ -1521,6 +1521,7 @@ packages:
   '@humanwhocodes/config-array@0.11.14':
     resolution: {integrity: sha512-3T8LkOmg45BV5FICb15QQMsyUSWrQ8AygVfC7ZG32zOalnqrilm018ZVCw0eapXux8FtA33q8PSRSstjee3jSg==}
     engines: {node: '>=10.10.0'}
+    deprecated: Use @eslint/config-array instead
 
   '@humanwhocodes/module-importer@1.0.1':
     resolution: {integrity: sha512-bxveV4V8v5Yb4ncFTT3rPSgZBOpCkjfK0y4oVVVJwIuDVBRMDXrPyXRL988i5ap9m9bnyEEjWfm5WkBmtffLfA==}
@@ -1528,6 +1529,7 @@ packages:
 
   '@humanwhocodes/object-schema@2.0.3':
     resolution: {integrity: sha512-93zYdMES/c1D69yZiKDBj0V24vqNzB/koF26KPaagAfd3P/4gUlh3Dys5ogAK+Exi9QyzlD8x/08Zt7wIKcDcA==}
+    deprecated: Use @eslint/object-schema instead
 
   '@isaacs/cliui@8.0.2':
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
@@ -6875,7 +6877,7 @@ snapshots:
 
   '@graphql-tools/merge@9.0.3(graphql@16.8.1)':
     dependencies:
-      '@graphql-tools/utils': 10.2.1(graphql@16.8.1)
+      '@graphql-tools/utils': 10.2.2(graphql@16.8.1)
       graphql: 16.8.1
       tslib: 2.6.3
 
@@ -6890,7 +6892,7 @@ snapshots:
   '@graphql-tools/schema@10.0.4(graphql@16.8.1)':
     dependencies:
       '@graphql-tools/merge': 9.0.3(graphql@16.8.1)
-      '@graphql-tools/utils': 10.2.1(graphql@16.8.1)
+      '@graphql-tools/utils': 10.2.2(graphql@16.8.1)
       graphql: 16.8.1
       tslib: 2.6.3
       value-or-promise: 1.0.12
@@ -6911,7 +6913,7 @@ snapshots:
       tslib: 2.6.3
       value-or-promise: 1.0.12
 
-  '@graphql-tools/utils@10.2.1(graphql@16.8.1)':
+  '@graphql-tools/utils@10.2.2(graphql@16.8.1)':
     dependencies:
       '@graphql-typed-document-node/core': 3.2.0(graphql@16.8.1)
       cross-inspect: 1.0.0
