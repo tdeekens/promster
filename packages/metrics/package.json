@@ -46,7 +46,7 @@
   },
   "devDependencies": {
     "@types/lodash.once": "4.1.9",
-    "@types/node": "20.14.8",
+    "@types/node": "20.14.9",
     "prom-client": "15.1.2",
     "typescript": "5.4.5"
   },
