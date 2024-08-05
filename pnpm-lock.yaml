@@ -114,8 +114,8 @@ importers:
   packages/apollo:
     dependencies:
       '@apollo/server':
-        specifier: 4.10.4
-        version: 4.10.4(graphql@16.8.1)
+        specifier: 4.10.5
+        version: 4.10.5(graphql@16.8.1)
       '@promster/metrics':
         specifier: workspace:*
         version: link:../metrics
@@ -363,8 +363,8 @@ packages:
     peerDependencies:
       graphql: 14.x || 15.x || 16.x
 
-  '@apollo/server@4.10.4':
-    resolution: {integrity: sha512-HS12CUa1wq8f5zKXOKJRwRdESFp4por9AINecpcsEUV9jsCP/NqPILgx0hCOOFJuKxmnaL7070xO6l5xmOq4Fw==}
+  '@apollo/server@4.10.5':
+    resolution: {integrity: sha512-I+Oi1CnphXExSAAsZbclgRDN4k4CEMxyKRzYg3bir5N8OmydEhzXDlIGAOETP/TKblxR7HPXGvwn2cJKzbl46w==}
     engines: {node: '>=14.16.0'}
     peerDependencies:
       graphql: ^16.6.0
@@ -5149,7 +5149,7 @@ snapshots:
       '@apollo/utils.logger': 2.0.1
       graphql: 16.8.1
 
-  '@apollo/server@4.10.4(graphql@16.8.1)':
+  '@apollo/server@4.10.5(graphql@16.8.1)':
     dependencies:
       '@apollo/cache-control-types': 1.0.3(graphql@16.8.1)
       '@apollo/server-gateway-interface': 1.1.1(graphql@16.8.1)
@@ -5162,7 +5162,6 @@ snapshots:
       '@apollo/utils.usagereporting': 2.1.0(graphql@16.8.1)
       '@apollo/utils.withrequired': 2.0.1
       '@graphql-tools/schema': 9.0.19(graphql@16.8.1)
-      '@josephg/resolvable': 1.0.1
       '@types/express': 4.17.21
       '@types/express-serve-static-core': 4.19.0
       '@types/node-fetch': 2.6.11
