@@ -1,5 +1,15 @@
 # @promster/apollo
 
+## 14.0.1
+
+### Patch Changes
+
+- [#1217](https://github.com/tdeekens/promster/pull/1217) [`9d3f8b1`](https://github.com/tdeekens/promster/commit/9d3f8b14ba5b2aa4e6094d1cdf09ea049895f44d) Thanks [@tdeekens](https://github.com/tdeekens)! - Update all dependencies
+
+- Updated dependencies [[`9d3f8b1`](https://github.com/tdeekens/promster/commit/9d3f8b14ba5b2aa4e6094d1cdf09ea049895f44d)]:
+  - @promster/metrics@14.0.1
+  - @promster/types@14.0.1
+
 ## 14.0.0
 
 ### Patch Changes
@@ -139,7 +149,7 @@
   const prometheusMetricsMiddleware = createPrometheusMetricsMiddleware({
     options: {
       metricNames: {
-        up: ["service_name_up"],
+        up: ['service_name_up'],
       },
     },
   });
