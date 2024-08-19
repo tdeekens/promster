@@ -61,7 +61,7 @@
     "@manypkg/cli": "0.21.4",
     "@preconstruct/cli": "2.8.7",
     "@tsconfig/node18": "18.2.4",
-    "@types/node": "20.14.15",
+    "@types/node": "20.16.1",
     "@types/semver": "7.5.8",
     "@typescript-eslint/eslint-plugin": "7.7.1",
     "@typescript-eslint/parser": "7.7.1",
