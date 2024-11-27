@@ -42,8 +42,17 @@ jobs:
       - name: Test (with coverage)
         run: pnpm test:coverage
 
+      - name: Test (with report)
+        run: pnpm test:report
+
       - uses: codecov/codecov-action@v5
         with:
           fail_ci_if_error: true
           token: ${{ secrets.CODECOV_TOKEN }}
           verbose: true
+
+      - name: Upload test results to Codecov
+        if: ${{ !cancelled() }}
+        uses: codecov/test-results-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
