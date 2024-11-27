@@ -54,52 +54,54 @@ const createRequestRecorder = (
     const labels = sortLabels(recordingOptions.labels);
 
     if (!shouldSkipMetricsByEnvironment && durationS !== undefined) {
-      metrics.httpRequestDurationInSeconds?.forEach(
-        (httpRequestDurationInSecondsMetricType) => {
+      if (metrics.httpRequestDurationInSeconds) {
+        for (const httpRequestDurationInSecondsMetricType of metrics.httpRequestDurationInSeconds) {
           httpRequestDurationInSecondsMetricType.observe(labels, durationS);
         }
-      );
+      }
     }
 
     if (!shouldSkipMetricsByEnvironment && durationS !== undefined) {
-      metrics.httpRequestDurationPerPercentileInSeconds?.forEach(
-        (httpRequestDurationPerPercentileInSecondsMetricType) => {
+      if (metrics.httpRequestDurationPerPercentileInSeconds) {
+        for (const httpRequestDurationPerPercentileInSecondsMetricType of metrics.httpRequestDurationPerPercentileInSeconds) {
           httpRequestDurationPerPercentileInSecondsMetricType.observe(
             labels,
             durationS
           );
         }
-      );
+      }
     }
 
     if (!shouldSkipMetricsByEnvironment && durationS !== undefined) {
-      metrics.httpRequestsTotal?.forEach((httpRequestsTotalMetricType) => {
-        httpRequestsTotalMetricType.inc(labels);
-      });
+      if (metrics.httpRequestsTotal) {
+        for (const httpRequestsTotalMetricType of metrics.httpRequestsTotal) {
+          httpRequestsTotalMetricType.inc(labels);
+        }
+      }
     }
 
     if (recordingOptions.requestContentLength) {
-      metrics.httpRequestContentLengthInBytes?.forEach(
-        (httpRequestContentLengthInBytesMetricType) => {
+      if (metrics.httpRequestContentLengthInBytes) {
+        for (const httpRequestContentLengthInBytesMetricType of metrics.httpRequestContentLengthInBytes) {
           httpRequestContentLengthInBytesMetricType.observe(
             labels,
             // @ts-expect-error
             recordingOptions.requestContentLength
           );
         }
-      );
+      }
     }
 
     if (recordingOptions.responseContentLength) {
-      metrics.httpResponseContentLengthInBytes?.forEach(
-        (httpResponseContentLengthInBytesMetricType) => {
+      if (metrics.httpResponseContentLengthInBytes) {
+        for (const httpResponseContentLengthInBytesMetricType of metrics.httpResponseContentLengthInBytes) {
           httpResponseContentLengthInBytesMetricType.observe(
             labels,
             // @ts-expect-error
             recordingOptions.responseContentLength
           );
         }
-      );
+      }
     }
   };
 };

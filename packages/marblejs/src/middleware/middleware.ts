@@ -31,9 +31,9 @@ const signalIsUp = () => {
     return;
   }
 
-  upMetric.forEach((upMetricType) => {
+  for (const upMetricType of upMetric) {
     upMetricType.set(1);
-  });
+  }
 };
 
 const signalIsNotUp = () => {
@@ -41,9 +41,9 @@ const signalIsNotUp = () => {
     return;
   }
 
-  upMetric.forEach((upMetricType) => {
+  for (const upMetricType of upMetric) {
     upMetricType.set(0);
-  });
+  }
 };
 
 type TSkipFunction = <TRequest = HttpRequest, TResponse = HttpResponse>(
