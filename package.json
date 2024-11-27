@@ -27,7 +27,6 @@
     "npm": ">=10",
     "pnpm": ">=9"
   },
-  "type": "module",
   "bugs": {
     "url": "https://github.com/tdeekens/promster/issues"
   },
