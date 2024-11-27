@@ -4,5 +4,10 @@ export default defineConfig({
   test: {
     globals: true,
     include: ['packages/**/*.spec.ts', 'packages/**/*.spec.js'],
+    test: {
+      coverage: {
+        provider: 'istanbul',
+      },
+    },
   },
 });
