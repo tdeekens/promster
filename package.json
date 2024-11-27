@@ -13,11 +13,12 @@
     "biome:fix": "biome lint --write",
     "format": "biome format --write",
     "lint": "biome lint",
-    "prerelease": "cross-env NODE_ENV=production pnpm auth && pnpm build",
+    "prerelease": "pnpm auth && pnpm build",
     "release": "changeset publish",
     "setup": "husky install && preconstruct dev && manypkg check && check-node-version --package --print",
-    "test:coverage": "cross-env NODE_ENV=test npm test -- --coverage",
-    "test": "cross-env NODE_ENV=test vitest run",
+    "test:coverage": "vitest --coverage",
+    "test:report": "vitest --reporter=junit --outputFile=junit.xml",
+    "test": "vitest",
     "typecheck": "tsc --build"
   },
   "author": "Tobias Deekens <nerd@tdeekens.name>",
@@ -26,6 +27,7 @@
     "npm": ">=10",
     "pnpm": ">=9"
   },
+  "type": "module",
   "bugs": {
     "url": "https://github.com/tdeekens/promster/issues"
   },
@@ -59,7 +61,6 @@
     "@types/semver": "7.5.8",
     "@vitest/coverage-v8": "2.1.5",
     "check-node-version": "4.2.1",
-    "cross-env": "7.0.3",
     "husky": "9.0.11",
     "lint-staged": "15.2.10",
     "rimraf": "5.0.10",
