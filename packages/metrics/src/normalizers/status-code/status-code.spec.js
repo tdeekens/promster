@@ -1,5 +1,3 @@
-import { beforeEach, describe, expect, it } from 'vitest';
-
 const { normalizeStatusCode } = require('./status-code');
 
 describe('normalizeStatusCode', () => {

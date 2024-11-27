@@ -1,5 +1,3 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest';
-
 vi.mock('../client', () => ({
   defaultRegister: {
     metrics: vi.fn(async () => Promise.resolve('metrics')),

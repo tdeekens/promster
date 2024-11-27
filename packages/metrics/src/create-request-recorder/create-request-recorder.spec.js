@@ -1,5 +1,3 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest';
-
 const { createRequestRecorder } = require('./create-request-recorder');
 const { timing } = require('../timing');
 

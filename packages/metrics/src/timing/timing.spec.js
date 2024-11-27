@@ -1,5 +1,3 @@
-import { describe, expect, it } from 'vitest';
-
 const { default: timing, Timing } = require('./timing');
 
 describe('timing', () => {

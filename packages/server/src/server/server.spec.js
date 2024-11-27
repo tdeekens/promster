@@ -1,5 +1,3 @@
-import { afterAll, beforeAll, expect, it } from 'vitest';
-
 const parsePrometheusTextFormat = require('parse-prometheus-text-format');
 const { createGcMetrics } = require('@promster/metrics');
 const { createServer } = require('./server');
