@@ -1,14 +1,15 @@
-jest.mock('../client', () => ({
-  configure: jest.fn(),
+vi.mock('../client', () => ({
+  configure: vi.fn(),
   Prometheus: {
-    Gauge: jest.fn(),
-    Counter: jest.fn(),
-    Summary: jest.fn(),
-    Histogram: jest.fn(),
+    Gauge: vi.fn(),
+    Counter: vi.fn(),
+    Summary: vi.fn(),
+    Histogram: vi.fn(),
   },
 }));
 
-const { createGcMetrics } = require('./create-gc-metrics');
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { createGcMetrics } from './create-gc-metrics';
 
 describe('createGcMetrics', () => {
   let metrics;

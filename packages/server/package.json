@@ -41,6 +41,7 @@
     "tslib": "2.6.3"
   },
   "devDependencies": {
-    "@types/node": "20.16.13"
+    "@types/node": "20.16.13",
+    "parse-prometheus-text-format": "1.1.1"
   }
 }

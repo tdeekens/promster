@@ -1,31 +1,33 @@
-const { createRequestRecorder } = require('./create-request-recorder');
-const { timing } = require('../timing');
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { timing } from '../timing';
+
+import { createRequestRecorder } from './create-request-recorder';
 
 describe('createRequestRecorder', () => {
   const createHttpMetrics = () => ({
     httpRequestDurationInSeconds: [
       {
-        observe: jest.fn(),
+        observe: vi.fn(),
       },
     ],
     httpRequestDurationPerPercentileInSeconds: [
       {
-        observe: jest.fn(),
+        observe: vi.fn(),
       },
     ],
     httpRequestsTotal: [
       {
-        inc: jest.fn(),
+        inc: vi.fn(),
       },
     ],
     httpRequestContentLengthInBytes: [
       {
-        observe: jest.fn(),
+        observe: vi.fn(),
       },
     ],
     httpResponseContentLengthInBytes: [
       {
-        observe: jest.fn(),
+        observe: vi.fn(),
       },
     ],
   });

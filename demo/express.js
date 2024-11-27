@@ -1,8 +1,6 @@
-const express = require('express');
-const { createMiddleware, signalIsUp } = require('@promster/express');
-const {
-  createServer: createPrometheusMetricsServer,
-} = require('@promster/server');
+import { createMiddleware, signalIsUp } from '@promster/express';
+import { createServer as createPrometheusMetricsServer } from '@promster/server';
+import express from 'express';
 
 async function launchServer() {
   const app = express();

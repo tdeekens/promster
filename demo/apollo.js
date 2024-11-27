@@ -1,11 +1,9 @@
-const { ApolloServer, gql } = require('apollo-server');
-const {
-  createPlugin: createPromsterMetricsPlugin,
+import {
+  createPlugin as createPromsterMetricsPlugin,
   signalIsUp,
-} = require('@promster/apollo');
-const {
-  createServer: createPrometheusMetricsServer,
-} = require('@promster/server');
+} from '@promster/apollo';
+import { createServer as createPrometheusMetricsServer } from '@promster/server';
+import { ApolloServer, gql } from 'apollo-server';
 
 const typeDefs = gql`
   type Book {

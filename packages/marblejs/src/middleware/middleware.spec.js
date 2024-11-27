@@ -1,10 +1,10 @@
-const { httpListener, createServer, r } = require('@marblejs/http');
-const { mapTo } = require('rxjs/operators');
-const parsePrometheusTextFormat = require('parse-prometheus-text-format');
-const {
-  createServer: createPrometheusMetricsServer,
-} = require('@promster/server');
-const { createMiddleware } = require('./middleware');
+import { createServer, httpListener, r } from '@marblejs/http';
+import { afterAll, beforeAll, expect, it } from 'vitest';
+
+import { createServer as createPrometheusMetricsServer } from '@promster/server';
+import parsePrometheusTextFormat from 'parse-prometheus-text-format';
+import { mapTo } from 'rxjs/operators';
+import { createMiddleware } from './middleware';
 
 const metricsPort = '1341';
 const appPort = '3004';

@@ -1,6 +1,8 @@
-const parsePrometheusTextFormat = require('parse-prometheus-text-format');
-const { createGcMetrics } = require('@promster/metrics');
-const { createServer } = require('./server');
+import { createGcMetrics } from '@promster/metrics';
+import { afterAll, beforeAll, expect, it } from 'vitest';
+
+import parsePrometheusTextFormat from 'parse-prometheus-text-format';
+import { createServer } from './server';
 
 const metricsPort = '1342';
 const metricsServerUrl = `http://localhost:${metricsPort}`;

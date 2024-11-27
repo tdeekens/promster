@@ -1,4 +1,5 @@
-const { normalizeMethod } = require('./method');
+import { beforeEach, describe, expect, it } from 'vitest';
+import { normalizeMethod } from './method';
 
 describe('normalizeMethod', () => {
   const method = 'GET';

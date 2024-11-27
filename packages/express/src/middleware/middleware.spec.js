@@ -1,9 +1,9 @@
-const express = require('express');
-const parsePrometheusTextFormat = require('parse-prometheus-text-format');
-const { createMiddleware } = require('./middleware');
-const {
-  createServer: createPrometheusMetricsServer,
-} = require('@promster/server');
+import { createServer as createPrometheusMetricsServer } from '@promster/server';
+import { afterAll, beforeAll, expect, it } from 'vitest';
+
+import express from 'express';
+import parsePrometheusTextFormat from 'parse-prometheus-text-format';
+import { createMiddleware } from './middleware';
 
 const metricsPort = '1338';
 const appPort = '3001';

@@ -1,12 +1,14 @@
-jest.mock('../client', () => ({
+vi.mock('../client', () => ({
   defaultRegister: {
-    metrics: jest.fn(async () => Promise.resolve('metrics')),
+    metrics: vi.fn(async () => Promise.resolve('metrics')),
     contentType: 'application/test',
   },
 }));
 
-const { defaultRegister } = require('../client');
-const { getSummary, getContentType } = require('./summary');
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { defaultRegister } from '../client';
+
+import { getContentType, getSummary } from './summary';
 
 describe('getSummary', () => {
   let summary;
