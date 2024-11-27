@@ -1,3 +1,5 @@
+import { beforeEach, describe, expect, it } from 'vitest';
+
 const { normalizePath } = require('./path');
 
 describe('normalizePath', () => {

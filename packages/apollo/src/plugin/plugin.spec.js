@@ -1,3 +1,5 @@
+import { afterAll, beforeAll, expect, it } from 'vitest';
+
 const { ApolloServer, gql } = require('apollo-server');
 const parsePrometheusTextFormat = require('parse-prometheus-text-format');
 const { createPlugin: createPromsterMetricsPlugin } = require('./plugin');

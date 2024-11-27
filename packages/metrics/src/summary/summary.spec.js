@@ -1,6 +1,8 @@
-jest.mock('../client', () => ({
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
+vi.mock('../client', () => ({
   defaultRegister: {
-    metrics: jest.fn(async () => Promise.resolve('metrics')),
+    metrics: vi.fn(async () => Promise.resolve('metrics')),
     contentType: 'application/test',
   },
 }));

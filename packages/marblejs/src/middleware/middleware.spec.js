@@ -1,3 +1,5 @@
+import { afterAll, beforeAll, expect, it } from 'vitest';
+
 const { httpListener, createServer, r } = require('@marblejs/http');
 const { mapTo } = require('rxjs/operators');
 const parsePrometheusTextFormat = require('parse-prometheus-text-format');

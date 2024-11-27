@@ -1,3 +1,5 @@
+import { afterAll, beforeAll, describe, expect, it } from 'vitest';
+
 const Hapi = require('@hapi/hapi');
 const parsePrometheusTextFormat = require('parse-prometheus-text-format');
 const {

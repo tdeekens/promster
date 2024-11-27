@@ -1,3 +1,5 @@
+import { afterAll, beforeAll, expect, it } from 'vitest';
+
 const express = require('express');
 const parsePrometheusTextFormat = require('parse-prometheus-text-format');
 const { createMiddleware } = require('./middleware');

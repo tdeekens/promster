@@ -1,3 +1,5 @@
+import { afterAll, beforeAll, expect, it } from 'vitest';
+
 const parsePrometheusTextFormat = require('parse-prometheus-text-format');
 const {
   createServer: createPrometheusMetricsServer,

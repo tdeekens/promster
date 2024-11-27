@@ -1,3 +1,5 @@
+import { beforeEach, describe, expect, it } from 'vitest';
+
 const { endMeasurementFrom } = require('./end-measurement-from');
 
 describe('endMeasurementFrom', () => {
