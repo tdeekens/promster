@@ -1,29 +1,24 @@
-import {
-  type TOptionalPromsterOptions,
-  type THttpMetrics,
-  type TGcMetrics,
-  type TDefaultedPromsterOptions,
-  type TLabelValues,
+import type { TRequestRecorder } from '@promster/metrics';
+import type {
+  TDefaultedPromsterOptions,
+  TGcMetrics,
+  THttpMetrics,
+  TLabelValues,
+  TOptionalPromsterOptions,
 } from '@promster/types';
-import { type TRequestRecorder } from '@promster/metrics';
-import {
-  type Application,
-  type Request,
-  type Response,
-  type NextFunction,
-} from 'express';
+import type { Application, NextFunction, Request, Response } from 'express';
 
-import merge from 'merge-options';
 import {
   Prometheus,
-  createHttpMetrics,
   createGcMetrics,
-  createRequestRecorder,
   createGcObserver,
+  createHttpMetrics,
+  createRequestRecorder,
   defaultNormalizers,
   skipMetricsInEnvironment,
   timing,
 } from '@promster/metrics';
+import merge from 'merge-options';
 
 // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
 interface TApp extends Application {

@@ -1,6 +1,6 @@
-import { normalizeStatusCode } from './status-code';
-import { normalizePath } from './path';
 import { normalizeMethod } from './method';
+import { normalizePath } from './path';
+import { normalizeStatusCode } from './status-code';
 
 const defaultNormalizers = {
   normalizeStatusCode,

@@ -1,10 +1,7 @@
-import {
-  type TDefaultedPromsterOptions,
-  type TGcMetrics,
-} from '@promster/types';
+import type { TDefaultedPromsterOptions, TGcMetrics } from '@promster/types';
 
 import merge from 'merge-options';
-import { configure, Prometheus } from '../client';
+import { Prometheus, configure } from '../client';
 
 const asArray = (maybeArray: Readonly<string[] | string>) =>
   Array.isArray(maybeArray) ? maybeArray : [maybeArray];

@@ -1,15 +1,15 @@
-import {
-  type TOptionalPromsterOptions,
-  type TDefaultedPromsterOptions,
-  type TLabelValues,
-  type THttpMetrics,
+import type {
+  TDefaultedPromsterOptions,
+  THttpMetrics,
+  TLabelValues,
+  TOptionalPromsterOptions,
 } from '@promster/types';
-import { type Timing } from '../timing';
+import type { Timing } from '../timing';
 
 import merge from 'merge-options';
+import { endMeasurementFrom } from '../end-measurement-from';
 import { skipMetricsInEnvironment } from '../environment';
 import { sortLabels } from '../sort-labels';
-import { endMeasurementFrom } from '../end-measurement-from';
 
 type TRecordingOptions = {
   labels: TLabelValues;

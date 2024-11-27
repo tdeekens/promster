@@ -1,21 +1,21 @@
 import {
+  Prometheus,
+  defaultNormalizers,
+  defaultRegister,
+  getContentType,
+  getSummary,
+  timing,
+} from '@promster/metrics';
+import {
   type TPromsterOptions,
   createMiddleware,
   getRequestRecorder,
-  signalIsUp,
   signalIsNotUp,
+  signalIsUp,
 } from './middleware';
-import {
-  getSummary,
-  getContentType,
-  Prometheus,
-  defaultRegister,
-  defaultNormalizers,
-  timing,
-} from '@promster/metrics';
 
 export * from '@promster/types';
-export { type TPromsterOptions };
+export type { TPromsterOptions };
 
 export {
   createMiddleware,

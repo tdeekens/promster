@@ -1,7 +1,4 @@
-import {
-  type TOptionalPromsterOptions,
-  type TGcMetrics,
-} from '@promster/types';
+import type { TGcMetrics, TOptionalPromsterOptions } from '@promster/types';
 
 import once from 'lodash.once';
 // @ts-expect-error

@@ -1,33 +1,33 @@
-import {
-  type TOptionalPromsterOptions,
-  type TDefaultedPromsterOptions,
-  type THttpMetrics,
-  type TGcMetrics,
-  type TLabelValues,
-} from '@promster/types';
-import { type TRequestRecorder, type TPromsterTiming } from '@promster/metrics';
-import {
-  type Plugin,
-  type Request,
-  type ResponseObject,
-  type ResponseToolkit,
+import type { Boom } from '@hapi/boom';
+import type {
+  Plugin,
+  Request,
+  ResponseObject,
+  ResponseToolkit,
 } from '@hapi/hapi';
-import { type Boom } from '@hapi/boom';
+import type { TPromsterTiming, TRequestRecorder } from '@promster/metrics';
+import type {
+  TDefaultedPromsterOptions,
+  TGcMetrics,
+  THttpMetrics,
+  TLabelValues,
+  TOptionalPromsterOptions,
+} from '@promster/types';
 
-import semver from 'semver';
-import merge from 'merge-options';
-// @ts-expect-error
-import pkg from '../../package.json';
 import {
   Prometheus,
-  createHttpMetrics,
   createGcMetrics,
-  createRequestRecorder,
   createGcObserver,
+  createHttpMetrics,
+  createRequestRecorder,
   defaultNormalizers,
   skipMetricsInEnvironment,
   timing,
 } from '@promster/metrics';
+import merge from 'merge-options';
+import semver from 'semver';
+// @ts-expect-error
+import pkg from '../../package.json';
 
 // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
 interface TPromsterRequest extends Request {

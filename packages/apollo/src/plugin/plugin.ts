@@ -1,27 +1,27 @@
-import {
-  type ApolloServerPlugin,
-  type BaseContext,
-  type GraphQLRequestContext,
-  type GraphQLRequest,
+import type {
+  ApolloServerPlugin,
+  BaseContext,
+  GraphQLRequest,
+  GraphQLRequestContext,
 } from '@apollo/server';
-import {
-  type TOptionalPromsterOptions,
-  type TDefaultedPromsterOptions,
-  type TGcMetrics,
-  type TGraphQlMetrics,
-  type TLabelValues,
+import type { TRequestRecorder } from '@promster/metrics';
+import type {
+  TDefaultedPromsterOptions,
+  TGcMetrics,
+  TGraphQlMetrics,
+  TLabelValues,
+  TOptionalPromsterOptions,
 } from '@promster/types';
-import { type TRequestRecorder } from '@promster/metrics';
 
-import merge from 'merge-options';
 import {
   createGcMetrics,
-  createGraphQlMetrics,
   createGcObserver,
+  createGraphQlMetrics,
   defaultNormalizers,
   isRunningInKubernetes,
   timing,
 } from '@promster/metrics';
+import merge from 'merge-options';
 
 let recordRequest: TRequestRecorder;
 let upMetric: TGcMetrics['up'];

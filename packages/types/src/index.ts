@@ -1,10 +1,5 @@
-import { type DeepRequired } from 'ts-essentials';
-import {
-  type Gauge,
-  type Counter,
-  type Summary,
-  type Histogram,
-} from 'prom-client';
+import type { Counter, Gauge, Histogram, Summary } from 'prom-client';
+import type { DeepRequired } from 'ts-essentials';
 
 export type TLabelValues = Record<string, string | number>;
 

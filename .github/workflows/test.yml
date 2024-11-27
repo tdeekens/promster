@@ -33,12 +33,12 @@ jobs:
         run: pnpm install
 
       - name: Lint
-        run: pnpm lint
+        run: pnpm biome check
 
       - name: Spell check
         uses: streetsidesoftware/cspell-action@main
         with:
-          files: '**/*.{md,ts}'
+          files: "**/*.{md,ts}"
 
       - name: Build
         run: pnpm build

@@ -1,28 +1,24 @@
-import {
-  type TOptionalPromsterOptions,
-  type THttpMetrics,
-  type TGcMetrics,
-  type TDefaultedPromsterOptions,
-  type TLabelValues,
-} from '@promster/types';
-import { type TRequestRecorder, type TPromsterTiming } from '@promster/metrics';
-import {
-  type FastifyInstance,
-  type FastifyRequest,
-  type FastifyReply,
-} from 'fastify';
-import fastifyPlugin from 'fastify-plugin';
-import merge from 'merge-options';
+import type { TPromsterTiming, TRequestRecorder } from '@promster/metrics';
 import {
   Prometheus,
-  createHttpMetrics,
   createGcMetrics,
-  createRequestRecorder,
   createGcObserver,
+  createHttpMetrics,
+  createRequestRecorder,
   defaultNormalizers,
   skipMetricsInEnvironment,
   timing,
 } from '@promster/metrics';
+import type {
+  TDefaultedPromsterOptions,
+  TGcMetrics,
+  THttpMetrics,
+  TLabelValues,
+  TOptionalPromsterOptions,
+} from '@promster/types';
+import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
+import fastifyPlugin from 'fastify-plugin';
+import merge from 'merge-options';
 // @ts-expect-error
 import pkg from '../../package.json';
 
