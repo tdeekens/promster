@@ -1,28 +1,24 @@
-import {
-  type TOptionalPromsterOptions,
-  type THttpMetrics,
-  type TGcMetrics,
-  type TDefaultedPromsterOptions,
-  type TLabelValues,
-} from '@promster/types';
-import { type TRequestRecorder, type TPromsterTiming } from '@promster/metrics';
-import {
-  type FastifyInstance,
-  type FastifyRequest,
-  type FastifyReply,
-} from 'fastify';
-import fastifyPlugin from 'fastify-plugin';
-import merge from 'merge-options';
+import type { TPromsterTiming, TRequestRecorder } from '@promster/metrics';
 import {
   Prometheus,
-  createHttpMetrics,
   createGcMetrics,
-  createRequestRecorder,
   createGcObserver,
+  createHttpMetrics,
+  createRequestRecorder,
   defaultNormalizers,
   skipMetricsInEnvironment,
   timing,
 } from '@promster/metrics';
+import type {
+  TDefaultedPromsterOptions,
+  TGcMetrics,
+  THttpMetrics,
+  TLabelValues,
+  TOptionalPromsterOptions,
+} from '@promster/types';
+import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
+import fastifyPlugin from 'fastify-plugin';
+import merge from 'merge-options';
 // @ts-expect-error
 import pkg from '../../package.json';
 
@@ -38,9 +34,9 @@ const signalIsUp = () => {
     return;
   }
 
-  upMetric.forEach((upMetricType) => {
+  for (const upMetricType of upMetric) {
     upMetricType.set(1);
-  });
+  }
 };
 
 const signalIsNotUp = () => {
@@ -48,9 +44,9 @@ const signalIsNotUp = () => {
     return;
   }
 
-  upMetric.forEach((upMetricType) => {
+  for (const upMetricType of upMetric) {
     upMetricType.set(0);
-  });
+  }
 };
 
 type TSkipFunction = <TRequest = FastifyRequest, TResponse = FastifyReply>(
@@ -95,7 +91,6 @@ const createPlugin = async (
 
   fastify.decorate('Prometheus', Prometheus);
   fastify.decorate('recordRequest', recordRequest);
-  // eslint-disable-next-line @typescript-eslint/ban-types
   fastify.decorateRequest<TPromsterTiming | null>('__promsterTiming__', null);
 
   fastify.addHook('onRequest', async (request, _) => {
@@ -111,7 +106,6 @@ const createPlugin = async (
           req: request,
           res: reply,
         }),
-        // eslint-disable-next-line camelcase
         status_code: allDefaultedOptions.normalizeStatusCode(reply.statusCode, {
           req: request,
           res: reply,

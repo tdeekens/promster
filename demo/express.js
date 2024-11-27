@@ -14,7 +14,7 @@ async function launchServer() {
     detectKubernetes: false,
   });
 
-  app.get('/', (req, res) => {
+  app.get('/', (_req, res) => {
     res.send('I am the server!');
   });
 
@@ -25,7 +25,7 @@ async function launchServer() {
     signalIsUp();
   });
 
-  console.log(`Prometheus metrics available on http://localhost:8080`);
+  console.log('Prometheus metrics available on http://localhost:8080');
 }
 
 launchServer().catch(console.log);

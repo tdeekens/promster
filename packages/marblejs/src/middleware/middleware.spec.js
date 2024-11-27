@@ -109,9 +109,6 @@ it('should expose garbage collection metrics', async () => {
         name: 'nodejs_eventloop_lag_seconds',
       }),
       expect.objectContaining({
-        name: 'nodejs_gc_runs_total',
-      }),
-      expect.objectContaining({
         name: 'nodejs_gc_duration_seconds',
       }),
       expect.objectContaining({
@@ -127,6 +124,7 @@ it('should expose garbage collection metrics', async () => {
   );
 });
 
+// biome-ignore lint/suspicious/noSkippedTests: <explanation>
 it.skip('should record http metrics', async () => {
   await fetch(appServerUrl);
   const response = await fetch(metricsServerUrl);

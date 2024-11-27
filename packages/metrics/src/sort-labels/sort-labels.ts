@@ -1,4 +1,4 @@
-import { type TLabelValues } from '@promster/types';
+import type { TLabelValues } from '@promster/types';
 
 function sortLabels(unsortedLabels: TLabelValues): TLabelValues {
   return Object.keys(unsortedLabels)

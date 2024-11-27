@@ -1,12 +1,12 @@
 import {
-  createServer as createHttpServer,
   type IncomingMessage,
-  type ServerResponse,
   type Server,
-} from 'http';
+  type ServerResponse,
+  createServer as createHttpServer,
+} from 'node:http';
 import {
-  getSummary,
   getContentType,
+  getSummary,
   skipMetricsInEnvironment,
 } from '@promster/metrics';
 

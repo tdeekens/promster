@@ -1,3 +1,3 @@
-import { getSummary, getContentType } from './summary';
+import { getContentType, getSummary } from './summary';
 
 export { getSummary, getContentType };

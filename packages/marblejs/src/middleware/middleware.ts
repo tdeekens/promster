@@ -1,24 +1,24 @@
+import type { HttpRequest, HttpResponse } from '@marblejs/http';
+import type { TPromsterTiming, TRequestRecorder } from '@promster/metrics';
 import {
-  type TDefaultedPromsterOptions,
-  type TOptionalPromsterOptions,
-  type THttpMetrics,
-  type TGcMetrics,
-  type TLabelValues,
-} from '@promster/types';
-import { type TRequestRecorder, type TPromsterTiming } from '@promster/metrics';
-import merge from 'merge-options';
-import { type HttpRequest, type HttpResponse } from '@marblejs/http';
-import { fromEvent, type Observable } from 'rxjs';
-import { tap, map, take, mapTo } from 'rxjs/operators';
-import {
-  createHttpMetrics,
   createGcMetrics,
-  createRequestRecorder,
   createGcObserver,
+  createHttpMetrics,
+  createRequestRecorder,
   defaultNormalizers,
   skipMetricsInEnvironment,
   timing,
 } from '@promster/metrics';
+import type {
+  TDefaultedPromsterOptions,
+  TGcMetrics,
+  THttpMetrics,
+  TLabelValues,
+  TOptionalPromsterOptions,
+} from '@promster/types';
+import merge from 'merge-options';
+import { type Observable, fromEvent } from 'rxjs';
+import { map, mapTo, take, tap } from 'rxjs/operators';
 
 const extractPath = (req: HttpRequest): string => req.originalUrl || req.url;
 
@@ -31,9 +31,9 @@ const signalIsUp = () => {
     return;
   }
 
-  upMetric.forEach((upMetricType) => {
+  for (const upMetricType of upMetric) {
     upMetricType.set(1);
-  });
+  }
 };
 
 const signalIsNotUp = () => {
@@ -41,9 +41,9 @@ const signalIsNotUp = () => {
     return;
   }
 
-  upMetric.forEach((upMetricType) => {
+  for (const upMetricType of upMetric) {
     upMetricType.set(0);
-  });
+  }
 };
 
 type TSkipFunction = <TRequest = HttpRequest, TResponse = HttpResponse>(
@@ -78,7 +78,6 @@ const recordHandler =
           {},
           {
             method: opts.normalizeMethod(req.method, { res, req }),
-            // eslint-disable-next-line camelcase
             status_code: opts.normalizeStatusCode(res.statusCode, { res, req }),
             path: opts.normalizePath(extractPath(req), { res, req }),
           },

@@ -1,19 +1,19 @@
 import { Prometheus, defaultRegister } from './client';
-import { createHttpMetrics } from './create-http-metrics';
-import { createGraphQlMetrics } from './create-graphql-metrics';
 import { createGcMetrics } from './create-gc-metrics';
-import { getSummary, getContentType } from './summary';
-import { createRequestRecorder } from './create-request-recorder';
 import { createGcObserver } from './create-gc-observer';
+import { createGraphQlMetrics } from './create-graphql-metrics';
+import { createHttpMetrics } from './create-http-metrics';
+import { createRequestRecorder } from './create-request-recorder';
+import { endMeasurementFrom } from './end-measurement-from';
+import { isRunningInKubernetes, skipMetricsInEnvironment } from './environment';
 import {
   defaultNormalizers,
-  normalizeStatusCode,
-  normalizePath,
   normalizeMethod,
+  normalizePath,
+  normalizeStatusCode,
 } from './normalizers';
-import { isRunningInKubernetes, skipMetricsInEnvironment } from './environment';
-import { endMeasurementFrom } from './end-measurement-from';
 import { sortLabels } from './sort-labels';
+import { getContentType, getSummary } from './summary';
 import { timing } from './timing';
 
 export type { TRequestRecorder } from './create-request-recorder';

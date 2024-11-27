@@ -1,27 +1,27 @@
-import {
-  type ApolloServerPlugin,
-  type BaseContext,
-  type GraphQLRequestContext,
-  type GraphQLRequest,
+import type {
+  ApolloServerPlugin,
+  BaseContext,
+  GraphQLRequest,
+  GraphQLRequestContext,
 } from '@apollo/server';
-import {
-  type TOptionalPromsterOptions,
-  type TDefaultedPromsterOptions,
-  type TGcMetrics,
-  type TGraphQlMetrics,
-  type TLabelValues,
+import type { TRequestRecorder } from '@promster/metrics';
+import type {
+  TDefaultedPromsterOptions,
+  TGcMetrics,
+  TGraphQlMetrics,
+  TLabelValues,
+  TOptionalPromsterOptions,
 } from '@promster/types';
-import { type TRequestRecorder } from '@promster/metrics';
 
-import merge from 'merge-options';
 import {
   createGcMetrics,
-  createGraphQlMetrics,
   createGcObserver,
+  createGraphQlMetrics,
   defaultNormalizers,
   isRunningInKubernetes,
   timing,
 } from '@promster/metrics';
+import merge from 'merge-options';
 
 let recordRequest: TRequestRecorder;
 let upMetric: TGcMetrics['up'];
@@ -32,9 +32,9 @@ const signalIsUp = () => {
     return;
   }
 
-  upMetric.forEach((upMetricType) => {
+  for (const upMetricType of upMetric) {
     upMetricType.set(1);
-  });
+  }
 };
 
 const signalIsNotUp = () => {
@@ -42,9 +42,9 @@ const signalIsNotUp = () => {
     return;
   }
 
-  upMetric.forEach((upMetricType) => {
+  for (const upMetricType of upMetric) {
     upMetricType.set(0);
-  });
+  }
 };
 
 type TSkipFunction = <
@@ -95,7 +95,6 @@ const createPlugin = (
     const labels = Object.assign(
       {},
       {
-        // eslint-disable-next-line camelcase
         operation_name: requestContext.request.operationName,
       },
       allDefaultedOptions.getLabelValues?.(
@@ -143,15 +142,19 @@ const createPlugin = (
             );
 
             if (parseDurationSeconds !== undefined) {
-              graphQlMetrics.graphQlParseDuration?.forEach((metric) => {
-                metric.observe(labels, parseDurationSeconds);
-              });
+              if (graphQlMetrics.graphQlParseDuration) {
+                for (const metric of graphQlMetrics.graphQlParseDuration) {
+                  metric.observe(labels, parseDurationSeconds);
+                }
+              }
             }
 
             if (error) {
-              graphQlMetrics.graphQlErrorsTotal?.forEach((metric) => {
-                metric.inc(Object.assign({}, labels, { phase: 'parsing' }));
-              });
+              if (graphQlMetrics.graphQlErrorsTotal) {
+                for (const metric of graphQlMetrics.graphQlErrorsTotal) {
+                  metric.inc(Object.assign({}, labels, { phase: 'parsing' }));
+                }
+              }
             }
           };
         },
@@ -168,15 +171,21 @@ const createPlugin = (
             );
 
             if (validationDurationSeconds !== undefined) {
-              graphQlMetrics.graphQlValidationDuration?.forEach((metric) => {
-                metric.observe(labels, validationDurationSeconds);
-              });
+              if (graphQlMetrics.graphQlValidationDuration) {
+                for (const metric of graphQlMetrics.graphQlValidationDuration) {
+                  metric.observe(labels, validationDurationSeconds);
+                }
+              }
             }
 
             if (error) {
-              graphQlMetrics.graphQlErrorsTotal?.forEach((metric) => {
-                metric.inc(Object.assign({}, labels, { phase: 'validation' }));
-              });
+              if (graphQlMetrics.graphQlErrorsTotal) {
+                for (const metric of graphQlMetrics.graphQlErrorsTotal) {
+                  metric.inc(
+                    Object.assign({}, labels, { phase: 'validation' })
+                  );
+                }
+              }
             }
           };
         },
@@ -194,24 +203,25 @@ const createPlugin = (
                   executionRequestContext
                 );
                 const labels = Object.assign({}, defaultLabels, {
-                  // eslint-disable-next-line camelcase
                   field_name: info.fieldName,
                 });
 
                 if (fieldResolveDurationSeconds !== undefined) {
-                  graphQlMetrics.graphQlResolveFieldDuration?.forEach(
-                    (metric) => {
+                  if (graphQlMetrics.graphQlResolveFieldDuration) {
+                    for (const metric of graphQlMetrics.graphQlResolveFieldDuration) {
                       metric.observe(labels, fieldResolveDurationSeconds);
                     }
-                  );
+                  }
                 }
 
                 if (error) {
-                  graphQlMetrics.graphQlErrorsTotal?.forEach((metric) => {
-                    metric.inc(
-                      Object.assign({}, labels, { phase: 'execution' })
-                    );
-                  });
+                  if (graphQlMetrics.graphQlErrorsTotal) {
+                    for (const metric of graphQlMetrics.graphQlErrorsTotal) {
+                      metric.inc(
+                        Object.assign({}, labels, { phase: 'execution' })
+                      );
+                    }
+                  }
                 }
               };
             },
@@ -228,9 +238,11 @@ const createPlugin = (
           );
 
           if (requestDurationSeconds !== undefined) {
-            graphQlMetrics.graphQlRequestDuration?.forEach((metric) => {
-              metric.observe(labels, requestDurationSeconds);
-            });
+            if (graphQlMetrics.graphQlRequestDuration) {
+              for (const metric of graphQlMetrics.graphQlRequestDuration) {
+                metric.observe(labels, requestDurationSeconds);
+              }
+            }
           }
         },
       };

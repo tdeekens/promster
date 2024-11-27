@@ -12,7 +12,9 @@ class Timing {
     const startTime = this.#startTime;
     const endTime = this.#endTime;
 
-    if (!endTime || !startTime) return { seconds: undefined };
+    if (!endTime || !startTime) {
+      return { seconds: undefined };
+    }
 
     return { seconds: Number(endTime - startTime) / Number(Timing.NS_PER_SEC) };
   }

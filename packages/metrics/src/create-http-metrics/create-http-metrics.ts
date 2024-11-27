@@ -1,10 +1,7 @@
-import {
-  type TDefaultedPromsterOptions,
-  type THttpMetrics,
-} from '@promster/types';
+import type { TDefaultedPromsterOptions, THttpMetrics } from '@promster/types';
 
 import merge from 'merge-options';
-import { configure, Prometheus } from '../client';
+import { Prometheus, configure } from '../client';
 
 const defaultHttpRequestDurationPercentileInSeconds = [
   0.5, 0.9, 0.95, 0.98, 0.99,

@@ -10,10 +10,6 @@ jobs:
   install:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [20.x, 22.x]
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -26,27 +22,28 @@ jobs:
       - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version-file: '.nvmrc'
           cache: pnpm
 
       - name: Install
         run: pnpm install
 
       - name: Lint
-        run: pnpm lint
+        run: pnpm biome check
 
       - name: Spell check
         uses: streetsidesoftware/cspell-action@main
         with:
-          files: '**/*.{md,ts}'
+          files: "**/*.{md,ts}"
 
       - name: Build
         run: pnpm build
 
-      - name: Test
-        if: startsWith(matrix.node-version , '22')
-        run: pnpm test:ci
-
       - name: Test (with coverage)
-        if: startsWith(matrix.node-version, '20')
         run: pnpm test:ci:coverage
+
+      - uses: codecov/codecov-action@v5
+        with:
+          fail_ci_if_error: true
+          token: ${{ secrets.CODECOV_TOKEN }}
+          verbose: true

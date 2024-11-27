@@ -1,7 +1,4 @@
-import {
-  type TOptionalPromsterOptions,
-  type TGcMetrics,
-} from '@promster/types';
+import type { TGcMetrics, TOptionalPromsterOptions } from '@promster/types';
 
 import once from 'lodash.once';
 // @ts-expect-error
@@ -13,7 +10,7 @@ const defaultOptions = {
 };
 
 const createGcObserver = once(
-  (metrics: TGcMetrics, options: TOptionalPromsterOptions) => () => {
+  (_metrics: TGcMetrics, options: TOptionalPromsterOptions) => () => {
     const startGcStats = gcStats(defaultRegister, {
       prefix: options.metricPrefix,
     });

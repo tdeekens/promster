@@ -1,31 +1,25 @@
-import {
-  type TOptionalPromsterOptions,
-  type THttpMetrics,
-  type TGcMetrics,
-  type TDefaultedPromsterOptions,
-  type TLabelValues,
+import type { TRequestRecorder } from '@promster/metrics';
+import type {
+  TDefaultedPromsterOptions,
+  TGcMetrics,
+  THttpMetrics,
+  TLabelValues,
+  TOptionalPromsterOptions,
 } from '@promster/types';
-import { type TRequestRecorder } from '@promster/metrics';
-import {
-  type Application,
-  type Request,
-  type Response,
-  type NextFunction,
-} from 'express';
+import type { Application, NextFunction, Request, Response } from 'express';
 
-import merge from 'merge-options';
 import {
   Prometheus,
-  createHttpMetrics,
   createGcMetrics,
-  createRequestRecorder,
   createGcObserver,
+  createHttpMetrics,
+  createRequestRecorder,
   defaultNormalizers,
   skipMetricsInEnvironment,
   timing,
 } from '@promster/metrics';
+import merge from 'merge-options';
 
-// eslint-disable-next-line @typescript-eslint/consistent-type-definitions
 interface TApp extends Application {
   locals: Record<string, unknown>;
 }
@@ -36,7 +30,9 @@ type TLocaleTarget = {
   value: typeof Prometheus | TRequestRecorder;
 };
 const exposeOnLocals = ({ app, key, value }: TLocaleTarget) => {
-  if (app?.locals) app.locals[key] = value;
+  if (app?.locals) {
+    app.locals[key] = value;
+  }
 };
 
 const extractPath = (req: Request) => req.originalUrl || req.url;
@@ -50,9 +46,9 @@ const signalIsUp = () => {
     return;
   }
 
-  upMetric.forEach((upMetricType) => {
+  for (const upMetricType of upMetric) {
     upMetricType.set(1);
-  });
+  }
 };
 
 const signalIsNotUp = () => {
@@ -60,9 +56,9 @@ const signalIsNotUp = () => {
     return;
   }
 
-  upMetric.forEach((upMetricType) => {
+  for (const upMetricType of upMetric) {
     upMetricType.set(0);
-  });
+  }
 };
 
 type TSkipFunction = <TRequest = Request, TResponse = Response>(
@@ -120,7 +116,6 @@ const createMiddleware = (
             req: request,
             res: response,
           }),
-          // eslint-disable-next-line camelcase
           status_code: allDefaultedOptions.normalizeStatusCode(
             response.statusCode,
             { req: request, res: response }

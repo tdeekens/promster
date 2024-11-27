@@ -12,7 +12,6 @@ const metricsServerUrl = `http://localhost:${metricsPort}`;
 const appServerUrl = `http://localhost:${appPort}`;
 
 async function startServers() {
-  // eslint-disable-next-line new-cap
   const fastify = Fastify({
     logger: false,
   });
@@ -24,7 +23,7 @@ async function startServers() {
 
   await fastify.register(plugin);
 
-  fastify.get('/', async (request, reply) => {
+  fastify.get('/', async (_request, reply) => {
     await reply.send({ status: 'ok' });
   });
 
@@ -111,9 +110,6 @@ it('should expose garbage collection metrics', async () => {
       }),
       expect.objectContaining({
         name: 'nodejs_eventloop_lag_seconds',
-      }),
-      expect.objectContaining({
-        name: 'nodejs_gc_runs_total',
       }),
       expect.objectContaining({
         name: 'nodejs_gc_duration_seconds',

@@ -1,3 +1,3 @@
-import { Prometheus, defaultRegister, configure } from './client';
+import { Prometheus, configure, defaultRegister } from './client';
 
 export { Prometheus, defaultRegister, configure };
