@@ -76,18 +76,6 @@
       "bracketSpacing": true,
       "quoteStyle": "single"
     },
-    "globals": [
-      "vi",
-      "it",
-      "describe",
-      "expect",
-      "jest",
-      "before",
-      "beforeAll",
-      "beforeEach",
-      "after",
-      "afterAll",
-      "afterEach"
-    ]
+    "globals": []
   }
 }
