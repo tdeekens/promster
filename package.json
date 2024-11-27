@@ -16,11 +16,8 @@
     "prerelease": "cross-env NODE_ENV=production pnpm auth && pnpm build",
     "release": "changeset publish",
     "setup": "husky install && preconstruct dev && manypkg check && check-node-version --package --print",
-    "test:ci:coverage": "cross-env NODE_ENV=test npm test -- --no-watchman --coverage",
-    "test:ci": "cross-env NODE_ENV=test npm test -- --no-watchman",
     "test:coverage": "cross-env NODE_ENV=test npm test -- --coverage",
-    "test:watch": "cross-env NODE_ENV=test npm test -- --watch",
-    "test": "cross-env NODE_ENV=test vitest",
+    "test": "cross-env NODE_ENV=test vitest run",
     "typecheck": "tsc --build"
   },
   "author": "Tobias Deekens <nerd@tdeekens.name>",

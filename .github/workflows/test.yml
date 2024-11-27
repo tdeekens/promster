@@ -40,7 +40,7 @@ jobs:
         run: pnpm build
 
       - name: Test (with coverage)
-        run: pnpm test:ci:coverage
+        run: pnpm test:coverage
 
       - uses: codecov/codecov-action@v5
         with:
