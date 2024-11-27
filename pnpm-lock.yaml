@@ -47,6 +47,9 @@ importers:
       '@types/semver':
         specifier: 7.5.8
         version: 7.5.8
+      '@vitest/coverage-v8':
+        specifier: 2.1.5
+        version: 2.1.5(vitest@2.1.5(@types/node@20.16.13)(terser@5.30.3))
       check-node-version:
         specifier: 4.2.1
         version: 4.2.1
@@ -68,10 +71,6 @@ importers:
       vitest:
         specifier: 2.1.5
         version: 2.1.5(@types/node@20.16.13)(terser@5.30.3)
-    devDependencies:
-      '@vitest/coverage-v8':
-        specifier: 2.1.5
-        version: 2.1.5(vitest@2.1.5(@types/node@20.16.13)(terser@5.30.3))
 
   packages/apollo:
     dependencies:
