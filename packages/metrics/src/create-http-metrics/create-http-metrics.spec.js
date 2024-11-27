@@ -8,7 +8,7 @@ vi.mock('../client', () => ({
   },
 }));
 
-const { createHttpMetrics } = require('./create-http-metrics');
+import { createHttpMetrics } from './create-http-metrics';
 
 describe('createHttpMetrics', () => {
   let metrics;

@@ -1,4 +1,4 @@
-const { sortLabels } = require('./sort-labels');
+import { sortLabels } from './sort-labels';
 
 describe('sortLabels', () => {
   const unsorted = { b: 'c', a: 'b' };

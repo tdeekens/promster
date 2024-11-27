@@ -5,8 +5,8 @@ vi.mock('../client', () => ({
   },
 }));
 
-const { defaultRegister } = require('../client');
-const { getSummary, getContentType } = require('./summary');
+import { defaultRegister } from '../client';
+import { getContentType, getSummary } from './summary';
 
 describe('getSummary', () => {
   let summary;

@@ -1,9 +1,7 @@
-const parsePrometheusTextFormat = require('parse-prometheus-text-format');
-const {
-  createServer: createPrometheusMetricsServer,
-} = require('@promster/server');
-const Fastify = require('fastify');
-const { plugin } = require('./plugin');
+import { createServer as createPrometheusMetricsServer } from '@promster/server';
+import Fastify from 'fastify';
+import parsePrometheusTextFormat from 'parse-prometheus-text-format';
+import { plugin } from './plugin';
 
 const metricsPort = '1339';
 const appPort = '3002';

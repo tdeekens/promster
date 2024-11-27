@@ -1,13 +1,11 @@
-const Hapi = require('@hapi/hapi');
-const parsePrometheusTextFormat = require('parse-prometheus-text-format');
-const {
-  createServer: createPrometheusMetricsServer,
-} = require('@promster/server');
-const {
+import Hapi from '@hapi/hapi';
+import { createServer as createPrometheusMetricsServer } from '@promster/server';
+import parsePrometheusTextFormat from 'parse-prometheus-text-format';
+import {
   createPlugin,
   getAreServerEventsSupported,
   getDoesResponseNeedInvocation,
-} = require('./plugin');
+} from './plugin';
 
 const metricsPort = '1340';
 const appPort = '3011';

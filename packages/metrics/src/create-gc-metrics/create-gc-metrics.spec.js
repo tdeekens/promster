@@ -8,7 +8,7 @@ vi.mock('../client', () => ({
   },
 }));
 
-const { createGcMetrics } = require('./create-gc-metrics');
+import { createGcMetrics } from './create-gc-metrics';
 
 describe('createGcMetrics', () => {
   let metrics;

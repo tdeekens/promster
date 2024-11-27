@@ -1,4 +1,4 @@
-const { endMeasurementFrom } = require('./end-measurement-from');
+import { endMeasurementFrom } from './end-measurement-from';
 
 describe('endMeasurementFrom', () => {
   const start = [1, 2];

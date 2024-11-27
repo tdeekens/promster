@@ -1,4 +1,4 @@
-const { default: timing, Timing } = require('./timing');
+import { Timing, default as timing } from './timing';
 
 describe('timing', () => {
   it('should return an instance of Timing', () => {

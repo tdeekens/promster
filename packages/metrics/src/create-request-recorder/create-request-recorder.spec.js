@@ -1,5 +1,5 @@
-const { createRequestRecorder } = require('./create-request-recorder');
-const { timing } = require('../timing');
+import { timing } from '../timing';
+import { createRequestRecorder } from './create-request-recorder';
 
 describe('createRequestRecorder', () => {
   const createHttpMetrics = () => ({
