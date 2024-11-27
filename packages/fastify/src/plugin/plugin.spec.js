@@ -23,7 +23,7 @@ async function startServers() {
 
   await fastify.register(plugin);
 
-  fastify.get('/', async (request, reply) => {
+  fastify.get('/', async (_request, reply) => {
     await reply.send({ status: 'ok' });
   });
 

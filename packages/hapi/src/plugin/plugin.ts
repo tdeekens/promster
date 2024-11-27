@@ -200,7 +200,9 @@ const createPlugin = (
         }
 
         // @ts-expect-error - this is the older Hapi version
-        if (doesResponseNeedInvocation) response.continue();
+        if (doesResponseNeedInvocation) {
+          response.continue();
+        }
       };
 
       // NOTE: This version detection allows us to gracefully support both new and old Hapi APIs.

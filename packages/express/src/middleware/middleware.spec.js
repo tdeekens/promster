@@ -21,7 +21,7 @@ async function startServer() {
     detectKubernetes: false,
   });
 
-  app.get('/', (req, res) => {
+  app.get('/', (_req, res) => {
     res.send('I am the server!');
   });
 

@@ -3,7 +3,7 @@ import {
   type Server,
   type ServerResponse,
   createServer as createHttpServer,
-} from 'http';
+} from 'node:http';
 import {
   getContentType,
   getSummary,

@@ -10,7 +10,7 @@ const defaultOptions = {
 };
 
 const createGcObserver = once(
-  (metrics: TGcMetrics, options: TOptionalPromsterOptions) => () => {
+  (_metrics: TGcMetrics, options: TOptionalPromsterOptions) => () => {
     const startGcStats = gcStats(defaultRegister, {
       prefix: options.metricPrefix,
     });

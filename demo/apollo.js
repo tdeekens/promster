@@ -50,7 +50,7 @@ async function launchServer() {
   await server.listen().then(({ url }) => {
     console.log(`🚀  Apollo Server ready at ${url}`);
 
-    console.log(`Prometheus metrics available on http://localhost:8080`);
+    console.log('Prometheus metrics available on http://localhost:8080');
 
     signalIsUp();
   });

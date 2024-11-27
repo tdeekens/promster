@@ -127,7 +127,7 @@ it('should expose garbage collection metrics', async () => {
   );
 });
 
-it.skip('should record http metrics', async () => {
+it('should record http metrics', async () => {
   await fetch(appServerUrl);
   const response = await fetch(metricsServerUrl);
   const rawMetrics = await response.text();

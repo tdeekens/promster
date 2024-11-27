@@ -30,7 +30,9 @@ type TLocaleTarget = {
   value: typeof Prometheus | TRequestRecorder;
 };
 const exposeOnLocals = ({ app, key, value }: TLocaleTarget) => {
-  if (app?.locals) app.locals[key] = value;
+  if (app?.locals) {
+    app.locals[key] = value;
+  }
 };
 
 const extractPath = (req: Request) => req.originalUrl || req.url;
