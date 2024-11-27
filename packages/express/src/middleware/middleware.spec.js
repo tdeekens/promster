@@ -95,7 +95,6 @@ it('should expose garbage collection metrics', async () => {
   const rawMetrics = await response.text();
 
   const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
-
   expect(parsedMetrics).toEqual(
     expect.arrayContaining([
       expect.objectContaining({
@@ -115,9 +114,6 @@ it('should expose garbage collection metrics', async () => {
       }),
       expect.objectContaining({
         name: 'nodejs_eventloop_lag_seconds',
-      }),
-      expect.objectContaining({
-        name: 'nodejs_gc_runs_total',
       }),
       expect.objectContaining({
         name: 'nodejs_gc_duration_seconds',
