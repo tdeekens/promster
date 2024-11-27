@@ -7,6 +7,7 @@ export default defineConfig({
     test: {
       coverage: {
         provider: 'istanbul',
+        exclude: ['**/dist/**'],
       },
     },
   },

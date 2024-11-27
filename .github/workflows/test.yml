@@ -36,11 +36,11 @@ jobs:
         with:
           files: "**/*.{md,ts}"
 
-      - name: Build
-        run: pnpm build
-
       - name: Test (with coverage)
         run: pnpm test:coverage
+
+      - name: Build
+        run: pnpm build
 
       - uses: codecov/codecov-action@v5
         with:
