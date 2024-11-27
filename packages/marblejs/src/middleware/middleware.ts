@@ -78,7 +78,6 @@ const recordHandler =
           {},
           {
             method: opts.normalizeMethod(req.method, { res, req }),
-            // eslint-disable-next-line camelcase
             status_code: opts.normalizeStatusCode(res.statusCode, { res, req }),
             path: opts.normalizePath(extractPath(req), { res, req }),
           },

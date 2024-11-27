@@ -15,10 +15,9 @@
   · Marble.js
   · Fastify
   · Apollo
-  · Prettier
   · TypeScript
   · Jest
-  · ESLint
+  · Biome
   · Changesets
   · Prometheus
   🙏

@@ -29,7 +29,6 @@ import semver from 'semver';
 // @ts-expect-error
 import pkg from '../../package.json';
 
-// eslint-disable-next-line @typescript-eslint/consistent-type-definitions
 interface TPromsterRequest extends Request {
   plugins: {
     promster: {
@@ -167,7 +166,6 @@ const createPlugin = (
               req: request,
               res: response,
             }),
-            // eslint-disable-next-line camelcase
             status_code: allDefaultedOptions.normalizeStatusCode(
               extractStatusCode(request),
               {

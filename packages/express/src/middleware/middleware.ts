@@ -20,7 +20,6 @@ import {
 } from '@promster/metrics';
 import merge from 'merge-options';
 
-// eslint-disable-next-line @typescript-eslint/consistent-type-definitions
 interface TApp extends Application {
   locals: Record<string, unknown>;
 }
@@ -115,7 +114,6 @@ const createMiddleware = (
             req: request,
             res: response,
           }),
-          // eslint-disable-next-line camelcase
           status_code: allDefaultedOptions.normalizeStatusCode(
             response.statusCode,
             { req: request, res: response }

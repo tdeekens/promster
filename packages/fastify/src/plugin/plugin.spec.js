@@ -12,7 +12,6 @@ const metricsServerUrl = `http://localhost:${metricsPort}`;
 const appServerUrl = `http://localhost:${appPort}`;
 
 async function startServers() {
-  // eslint-disable-next-line new-cap
   const fastify = Fastify({
     logger: false,
   });

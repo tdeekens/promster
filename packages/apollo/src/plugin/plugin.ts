@@ -95,7 +95,6 @@ const createPlugin = (
     const labels = Object.assign(
       {},
       {
-        // eslint-disable-next-line camelcase
         operation_name: requestContext.request.operationName,
       },
       allDefaultedOptions.getLabelValues?.(
@@ -194,7 +193,6 @@ const createPlugin = (
                   executionRequestContext
                 );
                 const labels = Object.assign({}, defaultLabels, {
-                  // eslint-disable-next-line camelcase
                   field_name: info.fieldName,
                 });
 

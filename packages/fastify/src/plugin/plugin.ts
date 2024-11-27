@@ -91,7 +91,6 @@ const createPlugin = async (
 
   fastify.decorate('Prometheus', Prometheus);
   fastify.decorate('recordRequest', recordRequest);
-  // eslint-disable-next-line @typescript-eslint/ban-types
   fastify.decorateRequest<TPromsterTiming | null>('__promsterTiming__', null);
 
   fastify.addHook('onRequest', async (request, _) => {
@@ -107,7 +106,6 @@ const createPlugin = async (
           req: request,
           res: reply,
         }),
-        // eslint-disable-next-line camelcase
         status_code: allDefaultedOptions.normalizeStatusCode(reply.statusCode, {
           req: request,
           res: reply,
