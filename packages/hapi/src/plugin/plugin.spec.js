@@ -1,4 +1,6 @@
 import Hapi from '@hapi/hapi';
+import { afterAll, beforeAll, describe, expect, it } from 'vitest';
+
 import { createServer as createPrometheusMetricsServer } from '@promster/server';
 import parsePrometheusTextFormat from 'parse-prometheus-text-format';
 import {

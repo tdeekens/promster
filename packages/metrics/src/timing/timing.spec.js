@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import { Timing, default as timing } from './timing';
 
 describe('timing', () => {

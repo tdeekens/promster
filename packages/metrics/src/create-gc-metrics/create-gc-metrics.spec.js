@@ -8,6 +8,7 @@ vi.mock('../client', () => ({
   },
 }));
 
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { createGcMetrics } from './create-gc-metrics';
 
 describe('createGcMetrics', () => {

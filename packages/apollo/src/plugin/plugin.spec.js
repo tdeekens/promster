@@ -1,4 +1,6 @@
 import { makeExecutableSchema } from '@graphql-tools/schema';
+import { afterAll, beforeAll, expect, it } from 'vitest';
+
 import { MapperKind, getDirective, mapSchema } from '@graphql-tools/utils';
 import { createServer as createPrometheusMetricsServer } from '@promster/server';
 import { ApolloServer, gql } from 'apollo-server';

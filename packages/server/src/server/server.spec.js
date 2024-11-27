@@ -1,4 +1,6 @@
 import { createGcMetrics } from '@promster/metrics';
+import { afterAll, beforeAll, expect, it } from 'vitest';
+
 import parsePrometheusTextFormat from 'parse-prometheus-text-format';
 import { createServer } from './server';
 

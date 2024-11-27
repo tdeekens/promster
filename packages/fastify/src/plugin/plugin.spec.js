@@ -1,4 +1,6 @@
 import { createServer as createPrometheusMetricsServer } from '@promster/server';
+import { afterAll, beforeAll, expect, it } from 'vitest';
+
 import Fastify from 'fastify';
 import parsePrometheusTextFormat from 'parse-prometheus-text-format';
 import { plugin } from './plugin';

@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it } from 'vitest';
 import { sortLabels } from './sort-labels';
 
 describe('sortLabels', () => {

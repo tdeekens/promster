@@ -1,4 +1,6 @@
 import { createServer as createPrometheusMetricsServer } from '@promster/server';
+import { afterAll, beforeAll, expect, it } from 'vitest';
+
 import express from 'express';
 import parsePrometheusTextFormat from 'parse-prometheus-text-format';
 import { createMiddleware } from './middleware';
