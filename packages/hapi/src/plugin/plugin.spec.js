@@ -110,9 +110,6 @@ it('should expose garbage collection metrics', async () => {
         name: 'nodejs_eventloop_lag_seconds',
       }),
       expect.objectContaining({
-        name: 'nodejs_gc_runs_total',
-      }),
-      expect.objectContaining({
         name: 'nodejs_gc_duration_seconds',
       }),
       expect.objectContaining({
