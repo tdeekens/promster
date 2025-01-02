@@ -53,7 +53,7 @@
     "@changesets/cli": "2.27.11",
     "@commitlint/cli": "19.5.0",
     "@commitlint/config-conventional": "19.5.0",
-    "@manypkg/cli": "0.21.4",
+    "@manypkg/cli": "0.23.0",
     "@preconstruct/cli": "2.8.10",
     "@tsconfig/node18": "18.2.4",
     "@types/node": "20.16.13",
