@@ -48,8 +48,8 @@ importers:
         specifier: 7.5.8
         version: 7.5.8
       '@vitest/coverage-v8':
-        specifier: 2.1.8
-        version: 2.1.8(vitest@2.1.9(@types/node@20.16.13)(terser@5.30.3))
+        specifier: 2.1.9
+        version: 2.1.9(vitest@2.1.9(@types/node@20.16.13)(terser@5.30.3))
       check-node-version:
         specifier: 4.2.1
         version: 4.2.1
@@ -1853,11 +1853,11 @@ packages:
   '@types/uuid@7.0.8':
     resolution: {integrity: sha512-95N4tyM4B5u1sj2m8Tht09qWHju2ht413GBFz8CHtxp8aIiJUF6t51MsR7jC9OF4rRVf93AxE++WJe7+Puc1UA==}
 
-  '@vitest/coverage-v8@2.1.8':
-    resolution: {integrity: sha512-2Y7BPlKH18mAZYAW1tYByudlCYrQyl5RGvnnDYJKW5tCiO5qg3KSAy3XAxcxKz900a0ZXxWtKrMuZLe3lKBpJw==}
+  '@vitest/coverage-v8@2.1.9':
+    resolution: {integrity: sha512-Z2cOr0ksM00MpEfyVE8KXIYPEcBFxdbLSs56L8PO0QQMxt/6bDj45uQfxoc96v05KW3clk7vvgP0qfDit9DmfQ==}
     peerDependencies:
-      '@vitest/browser': 2.1.8
-      vitest: 2.1.8
+      '@vitest/browser': 2.1.9
+      vitest: 2.1.9
     peerDependenciesMeta:
       '@vitest/browser':
         optional: true
@@ -4458,8 +4458,8 @@ snapshots:
 
   '@babel/generator@7.26.5':
     dependencies:
-      '@babel/parser': 7.26.7
-      '@babel/types': 7.26.7
+      '@babel/parser': 7.26.8
+      '@babel/types': 7.26.8
       '@jridgewell/gen-mapping': 0.3.5
       '@jridgewell/trace-mapping': 0.3.25
       jsesc: 3.1.0
@@ -4529,7 +4529,7 @@ snapshots:
   '@babel/helper-member-expression-to-functions@7.25.9':
     dependencies:
       '@babel/traverse': 7.26.7
-      '@babel/types': 7.26.7
+      '@babel/types': 7.26.8
     transitivePeerDependencies:
       - supports-color
 
@@ -4558,7 +4558,7 @@ snapshots:
 
   '@babel/helper-optimise-call-expression@7.25.9':
     dependencies:
-      '@babel/types': 7.26.7
+      '@babel/types': 7.26.8
 
   '@babel/helper-plugin-utils@7.26.5': {}
 
@@ -4597,7 +4597,7 @@ snapshots:
     dependencies:
       '@babel/template': 7.25.9
       '@babel/traverse': 7.26.8
-      '@babel/types': 7.26.7
+      '@babel/types': 7.26.8
     transitivePeerDependencies:
       - supports-color
 
@@ -4615,7 +4615,7 @@ snapshots:
 
   '@babel/parser@7.26.7':
     dependencies:
-      '@babel/types': 7.26.7
+      '@babel/types': 7.26.8
 
   '@babel/parser@7.26.8':
     dependencies:
@@ -6238,7 +6238,7 @@ snapshots:
 
   '@types/uuid@7.0.8': {}
 
-  '@vitest/coverage-v8@2.1.8(vitest@2.1.9(@types/node@20.16.13)(terser@5.30.3))':
+  '@vitest/coverage-v8@2.1.9(vitest@2.1.9(@types/node@20.16.13)(terser@5.30.3))':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@bcoe/v8-coverage': 0.2.3
@@ -6298,7 +6298,7 @@ snapshots:
 
   '@vue/compiler-core@3.4.23':
     dependencies:
-      '@babel/parser': 7.26.7
+      '@babel/parser': 7.26.8
       '@vue/shared': 3.4.23
       entities: 4.5.0
       estree-walker: 2.0.2
@@ -6313,7 +6313,7 @@ snapshots:
 
   '@vue/compiler-sfc@3.4.23':
     dependencies:
-      '@babel/parser': 7.26.7
+      '@babel/parser': 7.26.8
       '@vue/compiler-core': 3.4.23
       '@vue/compiler-dom': 3.4.23
       '@vue/compiler-ssr': 3.4.23
@@ -7744,8 +7744,8 @@ snapshots:
 
   magicast@0.3.5:
     dependencies:
-      '@babel/parser': 7.26.7
-      '@babel/types': 7.26.7
+      '@babel/parser': 7.26.8
+      '@babel/types': 7.26.8
       source-map-js: 1.2.1
 
   make-dir@3.1.0:
