@@ -45,7 +45,7 @@
   ],
   "packageManager": "pnpm@9.15.9",
   "dependencies": {
-    "@babel/core": "7.26.9",
+    "@babel/core": "7.26.10",
     "@babel/preset-env": "7.26.9",
     "@babel/preset-typescript": "7.26.0",
     "@biomejs/biome": "1.9.4",
