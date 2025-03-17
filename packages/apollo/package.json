@@ -43,8 +43,8 @@
     "tslib": "2.6.3"
   },
   "devDependencies": {
-    "@graphql-tools/schema": "10.0.21",
-    "@graphql-tools/utils": "10.8.4",
+    "@graphql-tools/schema": "10.0.23",
+    "@graphql-tools/utils": "10.8.6",
     "@promster/server": "workspace:*",
     "apollo-server": "3.13.0",
     "graphql": "16.10.0",
