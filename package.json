@@ -54,7 +54,7 @@
     "@commitlint/cli": "19.7.1",
     "@commitlint/config-conventional": "19.7.1",
     "@manypkg/cli": "0.23.0",
-    "@preconstruct/cli": "2.8.10",
+    "@preconstruct/cli": "2.8.11",
     "@tsconfig/node18": "18.2.4",
     "@types/node": "20.16.13",
     "@types/semver": "7.5.8",
