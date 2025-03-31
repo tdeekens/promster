@@ -36,8 +36,8 @@ importers:
         specifier: 0.23.0
         version: 0.23.0
       '@preconstruct/cli':
-        specifier: 2.8.11
-        version: 2.8.11
+        specifier: 2.8.12
+        version: 2.8.12
       '@tsconfig/node18':
         specifier: 18.2.4
         version: 18.2.4
@@ -1575,8 +1575,8 @@ packages:
     resolution: {integrity: sha512-UA91GwWPhFExt3IizW6bOeY/pQ0BkuNwKjk9iQW9KqxluGCrg4VenZ0/L+2Y0+ZOtme72EVvg6v0zo3AMQRCeA==}
     engines: {node: '>=12'}
 
-  '@preconstruct/cli@2.8.11':
-    resolution: {integrity: sha512-E2t6oUt0canrRVh2033J36n84tdUIdxQu1/CTA8wXBNGyasFwGLwAj4AfZw/kADGyCimFWOVhXWC8Yqp2rtS3Q==}
+  '@preconstruct/cli@2.8.12':
+    resolution: {integrity: sha512-SMsMICUWROmu/vb4cmrk7EJUiWhgNjB3U3tM654K9bu9yECXqrPN473vliO7KPV3CSLhmtl3S4nfcMirEJmyZg==}
     hasBin: true
 
   '@preconstruct/hook@0.4.0':
@@ -5889,7 +5889,7 @@ snapshots:
       '@pnpm/network.ca-file': 1.0.2
       config-chain: 1.1.13
 
-  '@preconstruct/cli@2.8.11':
+  '@preconstruct/cli@2.8.12':
     dependencies:
       '@babel/code-frame': 7.26.2
       '@babel/core': 7.26.10
