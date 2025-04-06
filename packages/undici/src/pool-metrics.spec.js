@@ -7,7 +7,7 @@ import { afterAll, beforeAll, expect, it } from 'vitest';
 import { createPoolMetricsExporter, observedPools } from './pool-metrics';
 
 const metricsPort = '1343';
-const appPort = '3011';
+const appPort = '3022';
 
 const metricsServerUrl = `http://localhost:${metricsPort}`;
 const appServerUrl = `http://localhost:${appPort}`;
