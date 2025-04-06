@@ -6,7 +6,7 @@ import { MockAgent, Pool, request as undiciRequest } from 'undici';
 import { afterAll, beforeAll, expect, it } from 'vitest';
 import { createPoolMetricsExporter, observedPools } from './pool-metrics';
 
-const metricsPort = '1340';
+const metricsPort = '1343';
 const appPort = '3011';
 
 const metricsServerUrl = `http://localhost:${metricsPort}`;
