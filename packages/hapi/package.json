@@ -39,7 +39,7 @@
     "@promster/metrics": "workspace:*",
     "@promster/types": "workspace:*",
     "merge-options": "3.0.4",
-    "semver": "7.6.3",
+    "semver": "7.7.1",
     "tslib": "2.6.3"
   },
   "devDependencies": {
@@ -47,7 +47,7 @@
     "@hapi/hapi": "21.4.0",
     "@promster/server": "workspace:*",
     "@types/hapi__hapi": "21.0.0",
-    "@types/semver": "7.5.8",
+    "@types/semver": "7.7.0",
     "parse-prometheus-text-format": "1.1.1"
   }
 }
