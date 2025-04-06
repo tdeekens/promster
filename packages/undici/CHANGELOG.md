@@ -1,5 +1,17 @@
 # @promster/undici
 
+## 15.0.1
+
+### Patch Changes
+
+- [#1367](https://github.com/tdeekens/promster/pull/1367) [`bfe06cf`](https://github.com/tdeekens/promster/commit/bfe06cfa046a59319931cbdb1cf498add5f9a886) Thanks [@tdeekens](https://github.com/tdeekens)! - Fix to add api as documented
+
+- [#1365](https://github.com/tdeekens/promster/pull/1365) [`f1dcfa0`](https://github.com/tdeekens/promster/commit/f1dcfa04657d1ee5e3146c778703204db80478da) Thanks [@tdeekens](https://github.com/tdeekens)! - To allow pools upon exporter creation to be empty
+
+- Updated dependencies []:
+  - @promster/metrics@15.0.1
+  - @promster/types@15.0.1
+
 ## 15.0.0
 
 ### Major Changes

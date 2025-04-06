@@ -1,5 +1,13 @@
 # @promster/apollo
 
+## 15.0.1
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @promster/metrics@15.0.1
+  - @promster/types@15.0.1
+
 ## 15.0.0
 
 ### Patch Changes

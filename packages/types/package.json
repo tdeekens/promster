@@ -1,6 +1,6 @@
 {
   "name": "@promster/types",
-  "version": "15.0.0",
+  "version": "15.0.1",
   "description": "Shared types of promster",
   "main": "dist/promster-types.cjs.js",
   "typings": "dist/promster-types.cjs.d.ts",
