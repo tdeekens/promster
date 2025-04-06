@@ -295,6 +295,20 @@ import { addObservedPool } = from "@promster/undici";
 addObservedPool(origin, pool);
 ```
 
+To integrate this with an `undici` agent we can use the factory function
+
+```js
+const agent = new Agent({
+  factory(origin: string, opts: Pool.Options) {
+    const pool = new Pool(origin, opts);
+
+    addObservedUndiciPool(origin, pool);
+
+    return pool;
+  },
+});
+```
+
 ### `@promster/apollo`
 
 ```js

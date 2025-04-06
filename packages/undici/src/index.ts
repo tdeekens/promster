@@ -7,4 +7,8 @@ import {
   timing,
 } from '@promster/metrics';
 
-export { createPoolMetricsExporter, addObservedPool } from './pool-metrics';
+export {
+  createPoolMetricsExporter,
+  addObservedPool,
+  supportedPoolStats,
+} from './pool-metrics';

@@ -48,42 +48,54 @@ function addObservedPool(origin: string, pool: Pool): void {
   observedPools.add(origin, pool);
 }
 
+const supportedPoolStats = [
+  'connected',
+  'free',
+  'pending',
+  'queued',
+  'running',
+  'size',
+];
+
 function createPoolMetricsExporter(
   initialPools?: Record<string, Pool>,
   options?: TPoolsMetricsExporterOptions
 ): void {
-  const metricName = `${options?.metricPrefix ?? ''}nodejs_undici_pool_stats`;
+  const metricName = `${options?.metricPrefix ?? ''}nodejs_undici_pool`;
 
   if (initialPools) {
     observedPools.addMany(initialPools);
   }
 
-  const _poolStatsGauge = new Prometheus.Gauge({
-    name: metricName,
-    help: 'Statistics for Undici connection pools. See https://github.com/nodejs/undici/blob/main/docs/docs/api/PoolStats.md',
-    labelNames: ['origin', 'stat_name'],
-    registers: [defaultRegister],
-    collect() {
-      for (const [origin, pool] of observedPools) {
-        const stats = pool.stats;
+  for (const supportedStat of supportedPoolStats) {
+    const _poolStatsGauge = new Prometheus.Gauge({
+      name: `${metricName}_${supportedStat}`,
+      help: `Statistics for Undici connection pools ${supportedStat} stat. See https://github.com/nodejs/undici/blob/main/docs/docs/api/PoolStats.md`,
+      labelNames: ['origin'],
+      registers: [defaultRegister],
+      collect() {
+        for (const [origin, pool] of observedPools) {
+          const stats = pool.stats;
 
-        // If the pool has made no requests, it will not have stats
-        if (!stats) {
-          continue;
-        }
+          // If the pool has made no requests, it will not have stats
+          if (!stats) {
+            continue;
+          }
 
-        for (const [statName, value] of Object.entries(stats)) {
-          if (typeof value === 'number' && !Number.isNaN(value)) {
-            this.labels(origin, statName).set(value);
+          const statValue = stats[supportedStat];
+
+          if (typeof statValue === 'number' && !Number.isNaN(statValue)) {
+            this.labels(origin).set(statValue);
           }
         }
-      }
-    },
-  });
+      },
+    });
+  }
 }
 
 export {
   createPoolMetricsExporter,
+  supportedPoolStats,
   addObservedPool,
   type TPoolsMetricsExporterOptions,
 };
