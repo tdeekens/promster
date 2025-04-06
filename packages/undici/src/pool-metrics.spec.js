@@ -4,7 +4,7 @@ import express from 'express';
 import parsePrometheusTextFormat from 'parse-prometheus-text-format';
 import { MockAgent, Pool, request as undiciRequest } from 'undici';
 import { afterAll, beforeAll, expect, it } from 'vitest';
-import { createPoolsMetricsExporter } from './create-pools-metrics-exporter';
+import { createPoolsMetricsExporter, observedPools } from './pool-metrics';
 
 const metricsPort = '1340';
 const appPort = '3011';
@@ -111,7 +111,8 @@ it('should expose undici metrics of pools', async () => {
   poolB.stats.connected = 1;
   poolB.stats.free = 50;
 
-  createPoolsMetricsExporter({ poolA, poolB });
+  createPoolsMetricsExporter({ poolA });
+  observedPools.add('poolB', poolB);
 
   const requestToPoolA = await poolA.request({ path: '/', method: 'GET' });
   await requestToPoolA.body.dump();
