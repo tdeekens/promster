@@ -1,19 +1,18 @@
 {
-  "extends": "../../tsconfig.base.json",
+  "extends": "../../tsconfig-base.json",
   "compilerOptions": {
-    "rootDir": ".",
-    "outDir": "./dist",
-    "composite": true,
-    "declaration": true,
-    "sourceMap": true
+    "declarationDir": "./ts-build-cache/"
   },
-  "include": [
-    "./index.ts",
-    "./src/**/*"
-  ],
+  "include": ["./src/**/*"],
   "references": [
     {
+      "path": "../types"
+    },
+    {
       "path": "../metrics"
+    },
+    {
+      "path": "../server"
     }
   ]
 }
