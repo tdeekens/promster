@@ -1,6 +1,6 @@
 {
   "name": "@promster/undici",
-  "version": "15.0.1",
+  "version": "15.1.0",
   "description": "Undici server integrations of promster",
   "main": "dist/promster-undici.cjs.js",
   "typings": "dist/promster-undici.cjs.d.ts",

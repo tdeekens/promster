@@ -1,5 +1,17 @@
 # @promster/undici
 
+## 15.1.0
+
+### Minor Changes
+
+- [#1368](https://github.com/tdeekens/promster/pull/1368) [`a2a8df4`](https://github.com/tdeekens/promster/commit/a2a8df4ff2550d977253fac8f367c970d13b7a12) Thanks [@tdeekens](https://github.com/tdeekens)! - Change so that undici pool metrics are split by stat.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @promster/metrics@15.1.0
+  - @promster/types@15.1.0
+
 ## 15.0.1
 
 ### Patch Changes
