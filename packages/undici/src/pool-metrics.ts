@@ -45,12 +45,14 @@ export class ObservedPools {
 const observedPools = new ObservedPools();
 
 function createPoolMetricsExporter(
-  pools: Record<string, Pool>,
+  initialPools?: Record<string, Pool>,
   options?: TPoolsMetricsExporterOptions
 ): void {
   const metricName = `${options?.metricPrefix ?? ''}nodejs_undici_pool_stats`;
 
-  observedPools.addMany(pools);
+  if (initialPools) {
+    observedPools.addMany(initialPools);
+  }
 
   const _poolStatsGauge = new Prometheus.Gauge({
     name: metricName,
