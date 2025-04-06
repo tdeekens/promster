@@ -45,6 +45,7 @@
 | [`promster/marblejs`](/packages/marblejs) | [![marblejs Version][marblejs-icon]][marblejs-version] | [![marblejs Downloads][marblejs-downloads]][marblejs-downloads] |
 | [`promster/fastify`](/packages/fastify)   | [![fastify Version][fastify-icon]][fastify-version]    | [![fastify Downloads][fastify-downloads]][fastify-downloads]    |
 | [`promster/apollo`](/packages/apollo)     | [![apollo Version][apollo-icon]][apollo-version]       | [![apollo Downloads][apollo-downloads]][apollo-downloads]       |
+| [`promster/undici`](/packages/undici)     | [![hapi Version][undici-icon]][undici-version]         | [![undici Downloads][undici-downloads]][undici-downloads]       |
 | [`promster/server`](/packages/server)     | [![server Version][server-icon]][server-version]       | [![server Downloads][server-downloads]][server-downloads]       |
 | [`promster/metrics`](/packages/metrics)   | [![metrics Version][metrics-icon]][metrics-version]    | [![metrics Downloads][metrics-downloads]][metrics-downloads]    |
 
@@ -68,6 +69,9 @@
 [apollo-version]: https://www.npmjs.com/package/@promster/apollo
 [apollo-icon]: https://img.shields.io/npm/v/@promster/apollo.svg?style=flat-square
 [apollo-downloads]: https://img.shields.io/npm/dm/@promster/apollo.svg
+[undici-version]: https://www.npmjs.com/package/@promster/undici
+[undici-icon]: https://img.shields.io/npm/v/@promster/undici.svg?style=flat-square
+[undici-downloads]: https://img.shields.io/npm/dm/@promster/undici.svg
 [server-version]: https://www.npmjs.com/package/@promster/server
 [server-icon]: https://img.shields.io/npm/v/@promster/server.svg?style=flat-square
 [server-downloads]: https://img.shields.io/npm/dm/@promster/server.svg
@@ -185,8 +189,8 @@ const middleware = createMiddleware({
 ### `@promster/express`
 
 ```js
-const app = require('./your-express-app');
-const { createMiddleware } = require('@promster/express');
+import app from "./your-express-app";
+import { createMiddleware } from "@promster/express";
 
 // Note: This should be done BEFORE other routes
 // Pass 'app' as middleware parameter to additionally expose Prometheus under 'app.locals'
@@ -198,8 +202,8 @@ Passing the `app` into the `createMiddleware` call attaches the internal `prom-c
 ```js
 // Create an e.g. custom counter
 const counter = new app.locals.Prometheus.Counter({
-  name: 'metric_name',
-  help: 'metric_help',
+  name: "metric_name",
+  help: "metric_help",
 });
 
 // to later increment it
@@ -209,8 +213,8 @@ counter.inc();
 ### `@promster/fastify`
 
 ```js
-const app = require('./your-fastify-app');
-const { plugin: promsterPlugin } = require('@promster/fastify');
+import app from "./your-fastify-app";
+import { plugin as promsterPlugin } from "@promster/fastify";
 
 fastify.register(promsterPlugin);
 ```
@@ -220,8 +224,8 @@ Plugin attaches the internal `prom-client` to your Fastify instance. This may co
 ```js
 // Create an e.g. custom counter
 const counter = new fastify.Prometheus.Counter({
-  name: 'metric_name',
-  help: 'metric_help',
+  name: "metric_name",
+  help: "metric_help",
 });
 
 // to later increment it
@@ -231,8 +235,8 @@ counter.inc();
 ### `@promster/hapi`
 
 ```js
-const { createPlugin } = require('@promster/hapi');
-const app = require('./your-hapi-app');
+import { createPlugin } from "@promster/hapi";
+import app form "./your-hapi-app";
 
 app.register(createPlugin({ options }));
 ```
@@ -242,8 +246,8 @@ Here you do not have to pass in the `app` into the `createPlugin` call as the in
 ```js
 // Create an e.g. custom counter
 const counter = new app.Prometheus.Counter({
-  name: 'metric_name',
-  help: 'metric_help',
+  name: "metric_name",
+  help: "metric_help",
 });
 
 // to later increment it
@@ -253,32 +257,48 @@ counter.inc();
 ### `@promster/marblejs`
 
 ```js
-const promster = require('@promster/marblejs');
+import { createMiddleware, getContentType, getSummary } = from "@promster/marblejs";
 
 const middlewares = [
-  promster.createMiddleware(),
+  createMiddleware(),
   //...
 ];
 
 const serveMetrics$ = r
-  .matchPath('/metrics')
-  .matchType('GET')
+  .matchPath("/metrics")
+  .matchType("GET")
   .use(async (req$) =>
     req$.pipe(
       mapTo({
-        headers: { 'Content-Type': promster.getContentType() },
-        body: await promster.getSummary(),
+        headers: { "Content-Type": getContentType() },
+        body: await getSummary(),
       })
     )
   );
 ```
 
+### `@promster/undici`
+
+First you have create the pool metrics exporter
+
+```js
+import { createPoolMetricsExporter } = from "@promster/undici";
+
+createPoolMetricsExporter({ poolA, poolB });
+```
+
+You can then also always add additional pools
+
+```js
+import { addObservedPool } = from "@promster/undici";
+
+addObservedPool(origin, pool);
+```
+
 ### `@promster/apollo`
 
 ```js
-const {
-  createPlugin: createPromsterMetricsPlugin,
-} = require('@promster/apollo');
+import { createPlugin as createPromsterMetricsPlugin } from "@promster/apollo";
 
 const server = new ApolloServer({
   typeDefs,
@@ -308,7 +328,7 @@ Moreover, both `@promster/hapi` and `@promster/express` expose the request recor
 
 ```js
 // Note that a getter is exposed as the request recorder is only available after initialisation.
-const { getRequestRecorder, timing } = require('@promster/express');
+import { getRequestRecorder, timing } from '@promster/express';
 
 const async fetchSomeData = () => {
   const recordRequest = getRequestRecorder();
@@ -331,7 +351,7 @@ Lastly, both `@promster/hapi` and `@promster/express` expose setters for the `up
 In some cases you might want to expose the gathered metrics through an individual server. This is useful for instance to not have `GET /metrics` expose internal server and business metrics to the outside world. For this you can use `@promster/server`:
 
 ```js
-const { createServer } = require('@promster/server');
+import { createServer } form "@promster/server";
 
 // NOTE: The port defaults to `7788`.
 createServer({ port: 8888 }).then((server) =>
@@ -346,13 +366,13 @@ Options with their respective defaults are `port: 7788`, `hostname: '0.0.0.0'` a
 You can use the `express` or `hapi` package to expose the gathered metrics through your existing server. To do so just:
 
 ```js
-const app = require('./your-express-app');
-const { getSummary, getContentType } = require('@promster/express');
+import app from "./your-express-app";
+import { getSummary, getContentType } from "@promster/express";
 
-app.use('/metrics', async (req, res) => {
+app.use("/metrics", async (req, res) => {
   req.statusCode = 200;
 
-  res.setHeader('Content-Type', getContentType());
+  res.setHeader("Content-Type", getContentType());
   res.end(await getSummary());
 });
 ```
@@ -361,21 +381,21 @@ This may slightly depend on the server you are using but should be roughly the s
 
 The packages re-export most things from the `@promster/metrics` package including two other potentially useful exports in `Prometheus` (the actual client) and `defaultRegister` which is the default register of the client. After all you should never really have to install `@promster/metrics` as it is only and internally shared packages between the others.
 
-Additionally you can import the default normalizers via `const { defaultNormalizers } = require('@promster/express)` and use `normalizePath`, `normalizeStatusCode` and `normalizeMethod` from you `getLabelValues`. A more involved example with `getLabelValues` could look like:
+Additionally you can import the default normalizers via `import { defaultNormalizers } from '@promster/express'` and use `normalizePath`, `normalizeStatusCode` and `normalizeMethod` from you `getLabelValues`. A more involved example with `getLabelValues` could look like:
 
 ```js
 app.use(
   createMiddleware({
     app,
     options: {
-      labels: ['proxied_to'],
+      labels: ["proxied_to"],
       getLabelValues: (req, res) => {
-        if (res.proxyTo === 'someProxyTarget')
+        if (res.proxyTo === "someProxyTarget")
           return {
-            proxied_to: 'someProxyTarget',
-            path: '/',
+            proxied_to: "someProxyTarget",
+            path: "/",
           };
-        if (req.get('x-custom-header'))
+        if (req.get("x-custom-header"))
           return {
             path: null,
             proxied_to: null,
