@@ -44,6 +44,10 @@ export class ObservedPools {
 
 const observedPools = new ObservedPools();
 
+function addObservedPool(origin: string, pool: Pool): void {
+  observedPools.add(origin, pool);
+}
+
 function createPoolMetricsExporter(
   initialPools?: Record<string, Pool>,
   options?: TPoolsMetricsExporterOptions
@@ -80,6 +84,6 @@ function createPoolMetricsExporter(
 
 export {
   createPoolMetricsExporter,
-  observedPools,
+  addObservedPool,
   type TPoolsMetricsExporterOptions,
 };
