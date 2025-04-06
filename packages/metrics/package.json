@@ -41,7 +41,7 @@
     "lodash.once": "4.1.1",
     "merge-options": "3.0.4",
     "prometheus-gc-stats": "1.1.0",
-    "tslib": "2.6.3",
+    "tslib": "2.8.1",
     "url-value-parser": "2.2.0"
   },
   "devDependencies": {
