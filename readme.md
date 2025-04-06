@@ -279,10 +279,20 @@ const serveMetrics$ = r
 
 ### `@promster/undici`
 
-```js
-import { createPoolsMetricsExporter } = from "@promster/undici";
+First you have create the pool metrics exporter
 
-createPoolsMetricsExporter({ poolA, poolB });
+```js
+import { createPoolMetricsExporter } = from "@promster/undici";
+
+createPoolMetricsExporter({ poolA, poolB });
+```
+
+You can then also always add additional pools
+
+```js
+import { addObservedPool } = from "@promster/undici";
+
+addObservedPool(origin, pool);
 ```
 
 ### `@promster/apollo`

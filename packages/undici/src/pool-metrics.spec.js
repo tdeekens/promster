@@ -4,7 +4,7 @@ import express from 'express';
 import parsePrometheusTextFormat from 'parse-prometheus-text-format';
 import { MockAgent, Pool, request as undiciRequest } from 'undici';
 import { afterAll, beforeAll, expect, it } from 'vitest';
-import { createPoolsMetricsExporter, observedPools } from './pool-metrics';
+import { createPoolMetricsExporter, observedPools } from './pool-metrics';
 
 const metricsPort = '1340';
 const appPort = '3011';
@@ -111,8 +111,8 @@ it('should expose undici metrics of pools', async () => {
   poolB.stats.connected = 1;
   poolB.stats.free = 50;
 
-  createPoolsMetricsExporter({ poolA });
-  observedPools.add('poolB', poolB);
+  createPoolMetricsExporter({ [originA]: poolA });
+  observedPools.add(originB, poolB);
 
   const requestToPoolA = await poolA.request({ path: '/', method: 'GET' });
   await requestToPoolA.body.dump();
@@ -141,43 +141,43 @@ it('should expose undici metrics of pools', async () => {
     [
       {
         "labels": {
-          "pool": "poolA",
-          "stat": "size",
+          "origin": "http://localhost:9001",
+          "stat_name": "size",
         },
         "value": "100",
       },
       {
         "labels": {
-          "pool": "poolA",
-          "stat": "running",
+          "origin": "http://localhost:9001",
+          "stat_name": "running",
         },
         "value": "0",
       },
       {
         "labels": {
-          "pool": "poolA",
-          "stat": "free",
+          "origin": "http://localhost:9001",
+          "stat_name": "free",
         },
         "value": "100",
       },
       {
         "labels": {
-          "pool": "poolB",
-          "stat": "size",
+          "origin": "http://localhost:9002",
+          "stat_name": "size",
         },
         "value": "50",
       },
       {
         "labels": {
-          "pool": "poolB",
-          "stat": "connected",
+          "origin": "http://localhost:9002",
+          "stat_name": "connected",
         },
         "value": "1",
       },
       {
         "labels": {
-          "pool": "poolB",
-          "stat": "free",
+          "origin": "http://localhost:9002",
+          "stat_name": "free",
         },
         "value": "50",
       },
