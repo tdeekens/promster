@@ -1,6 +1,6 @@
 {
   "name": "@promster/server",
-  "version": "14.0.0",
+  "version": "15.0.0",
   "description": "Server exposing metrics under GET /metrics",
   "main": "dist/promster-server.cjs.js",
   "typings": "dist/promster-server.cjs.d.ts",
