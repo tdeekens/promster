@@ -10,6 +10,6 @@ import {
 export {
   createPoolMetricsExporter,
   addObservedPool,
-  createPoolInterceptor,
+  observedPoolFactory,
   supportedPoolStats,
 } from './pool-metrics';
