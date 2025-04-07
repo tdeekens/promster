@@ -26,6 +26,7 @@ import merge from 'merge-options';
 let recordRequest: TRequestRecorder;
 let upMetric: TGcMetrics['up'];
 
+// @ts-expect-error
 const getRequestRecorder = () => recordRequest;
 const signalIsUp = () => {
   if (!upMetric) {
