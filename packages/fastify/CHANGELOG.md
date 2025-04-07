@@ -1,5 +1,14 @@
 # @promster/fastify
 
+## 15.3.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @promster/metrics@15.3.0
+  - @promster/server@15.3.0
+  - @promster/types@15.3.0
+
 ## 15.2.0
 
 ### Patch Changes

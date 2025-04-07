@@ -1,5 +1,17 @@
 # @promster/undici
 
+## 15.3.0
+
+### Minor Changes
+
+- [#1374](https://github.com/tdeekens/promster/pull/1374) [`1159d19`](https://github.com/tdeekens/promster/commit/1159d19d8dffe279ee292f48356d861ce7e2387c) Thanks [@tdeekens](https://github.com/tdeekens)! - Add factory function for creating observed pools
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @promster/metrics@15.3.0
+  - @promster/types@15.3.0
+
 ## 15.2.0
 
 ### Minor Changes

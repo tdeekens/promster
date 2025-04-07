@@ -1,6 +1,6 @@
 {
   "name": "@promster/marblejs",
-  "version": "15.2.0",
+  "version": "15.3.0",
   "description": "MarbleJs server integrations of promster",
   "main": "dist/promster-marblejs.cjs.js",
   "typings": "dist/promster-marblejs.cjs.d.ts",
