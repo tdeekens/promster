@@ -300,7 +300,7 @@ To integrate this with an `undici` agent we can use the factory function
 ```js
 const agent = new Agent({
   factory(origin: string, opts: Pool.Options) {
-    return addObservedPool(origin, new Pool(origin, opts));
+    return observedPoolFactory(origin, opts);
   },
 });
 ```

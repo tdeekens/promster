@@ -7,14 +7,11 @@ import {
   Pool as UndiciPool,
 } from 'undici';
 
-// Define the stats we want to expose from undici Pool.stats
-// See: https://github.com/nodejs/undici/blob/main/docs/docs/api/PoolStats.md
-
 type TPoolsMetricsExporterOptions = {
   metricPrefix?: string;
 };
 
-export class ObservedPools {
+class ObservedPools {
   private pools: Map<string, TUndiciPool>;
 
   constructor(initialPools?: Record<string, TUndiciPool>) {
@@ -60,18 +57,15 @@ function addObservedPool(origin: string, pool: TUndiciPool) {
   return observedPools.add(origin, pool);
 }
 
-class Agent extends UndiciDispatcher {
-  constructor(opts?: TUndiciAgent.Options) {
-    opts.factory = (origin: string | URL, opts: object) => {
-      if (opts.connections === 1) {
-        return new Client(origin, opts);
-      }
-
-      return addObservedPool(origin, new UndiciPool(origin, opts));
-    };
-
-    super(opts);
+function observedPoolFactory(
+  origin: string,
+  options?: TUndiciAgent.Options
+): TUndiciPool {
+  if (options.connections === 1) {
+    return new UndiciClient(origin, options);
   }
+
+  return addObservedPool(origin, new UndiciPool(origin, options));
 }
 
 const supportedPoolStats = [
@@ -132,6 +126,6 @@ export {
   createPoolMetricsExporter,
   supportedPoolStats,
   addObservedPool,
-  Agent,
+  observedPoolFactory,
   type TPoolsMetricsExporterOptions,
 };
