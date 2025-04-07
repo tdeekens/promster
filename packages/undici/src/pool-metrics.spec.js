@@ -142,8 +142,6 @@ describe('pool metrics', () => {
 
     const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
 
-    console.log(parsedMetrics);
-
     const nodejsUndiciPoolStats = parsedMetrics.find(
       (metric) => metric.name === `nodejs_undici_pool_${statName}`
     ).metrics;
@@ -165,6 +163,25 @@ describe('pool metrics', () => {
 
     // Use array containment assertion
     expect(nodejsUndiciPoolStats).toEqual(expectedMetrics[statName]);
+  });
+
+  it('should expose the total number of pools', async () => {
+    const response = await fetch(metricsServerUrl);
+    const rawMetrics = await response.text();
+
+    const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
+    const observedPoolsCounter = parsedMetrics.find(
+      (metric) => metric.name === 'nodejs_undici_pools_total'
+    );
+
+    expect(observedPoolsCounter).toBeDefined();
+    expect(observedPoolsCounter.metrics).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          value: '2',
+        }),
+      ])
+    );
   });
 });
 
