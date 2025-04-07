@@ -37,6 +37,10 @@ export class ObservedPools {
     return this.pools.get(origin);
   }
 
+  get size(): number {
+    return this.pools.size;
+  }
+
   [Symbol.iterator](): IterableIterator<[string, Pool]> {
     return this.pools.entries();
   }
@@ -67,8 +71,17 @@ function createPoolMetricsExporter(
     observedPools.addMany(initialPools);
   }
 
+  new Prometheus.Gauge({
+    name: `${metricName}s_total`,
+    help: 'Number of Undici connection pools.',
+    registers: [defaultRegister],
+    collect() {
+      this.set(observedPools.size);
+    },
+  });
+
   for (const supportedStat of supportedPoolStats) {
-    const _poolStatsGauge = new Prometheus.Gauge({
+    new Prometheus.Gauge({
       name: `${metricName}_${supportedStat}`,
       help: `Statistics for Undici connection pools ${supportedStat} stat. See https://github.com/nodejs/undici/blob/main/docs/docs/api/PoolStats.md`,
       labelNames: ['origin'],
