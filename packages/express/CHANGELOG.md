@@ -1,5 +1,13 @@
 # @promster/express
 
+## 15.3.1
+
+### Patch Changes
+
+- Updated dependencies [[`a3b96f5`](https://github.com/tdeekens/promster/commit/a3b96f5c724530e9e48d778527cc5b1a8efdfede)]:
+  - @promster/metrics@15.3.1
+  - @promster/types@15.3.1
+
 ## 15.3.0
 
 ### Patch Changes
