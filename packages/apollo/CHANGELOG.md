@@ -1,5 +1,15 @@
 # @promster/apollo
 
+## 15.3.1
+
+### Patch Changes
+
+- [#1376](https://github.com/tdeekens/promster/pull/1376) [`a3b96f5`](https://github.com/tdeekens/promster/commit/a3b96f5c724530e9e48d778527cc5b1a8efdfede) Thanks [@tdeekens](https://github.com/tdeekens)! - Fixes types and type checking on CI
+
+- Updated dependencies [[`a3b96f5`](https://github.com/tdeekens/promster/commit/a3b96f5c724530e9e48d778527cc5b1a8efdfede)]:
+  - @promster/metrics@15.3.1
+  - @promster/types@15.3.1
+
 ## 15.3.0
 
 ### Patch Changes
