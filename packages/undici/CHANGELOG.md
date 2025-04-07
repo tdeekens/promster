@@ -1,5 +1,17 @@
 # @promster/undici
 
+## 15.2.0
+
+### Minor Changes
+
+- [#1372](https://github.com/tdeekens/promster/pull/1372) [`fb40b62`](https://github.com/tdeekens/promster/commit/fb40b62a63fe5f1d2f89ea0bcad51fd9e304f00c) Thanks [@tdeekens](https://github.com/tdeekens)! - feat(undici): add total number of pools gauge
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @promster/metrics@15.2.0
+  - @promster/types@15.2.0
+
 ## 15.1.0
 
 ### Minor Changes
