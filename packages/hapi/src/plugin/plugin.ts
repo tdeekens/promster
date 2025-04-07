@@ -199,8 +199,8 @@ const createPlugin = (
           });
         }
 
-        // @ts-expect-error - this is the older Hapi version
         if (doesResponseNeedInvocation) {
+          // @ts-expect-error - this is the older Hapi version
           response.continue();
         }
       };
@@ -221,7 +221,6 @@ const createPlugin = (
 
       // NOTE: The type of the server.decorate only supports a function signature,
       // even when the docs state that it can also be "other value" in the case of `server`.
-      // @ts-expect-error
       server.decorate('server', 'Prometheus', Prometheus);
       server.decorate('server', 'recordRequest', recordRequest);
 

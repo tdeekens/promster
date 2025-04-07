@@ -85,7 +85,6 @@ const createRequestRecorder = (
         for (const httpRequestContentLengthInBytesMetricType of metrics.httpRequestContentLengthInBytes) {
           httpRequestContentLengthInBytesMetricType.observe(
             labels,
-            // @ts-expect-error
             recordingOptions.requestContentLength
           );
         }
@@ -97,7 +96,6 @@ const createRequestRecorder = (
         for (const httpResponseContentLengthInBytesMetricType of metrics.httpResponseContentLengthInBytes) {
           httpResponseContentLengthInBytesMetricType.observe(
             labels,
-            // @ts-expect-error
             recordingOptions.responseContentLength
           );
         }

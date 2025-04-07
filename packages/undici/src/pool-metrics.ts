@@ -1,15 +1,16 @@
 import { Prometheus, defaultRegister } from '@promster/metrics';
 import {
   type Agent as TUndiciAgent,
+  type Dispatcher as TUndiciDispatcher,
   type Pool as TUndiciPool,
   Client as UndiciClient,
-  Dispatcher as UndiciDispatcher,
   Pool as UndiciPool,
 } from 'undici';
 
 type TPoolsMetricsExporterOptions = {
   metricPrefix?: string;
 };
+type TPoolStatsKeys = keyof TUndiciPool.PoolStats;
 
 class ObservedPools {
   private pools: Map<string, TUndiciPool>;
@@ -60,15 +61,15 @@ function addObservedPool(origin: string, pool: TUndiciPool) {
 function observedPoolFactory(
   origin: string,
   options?: TUndiciAgent.Options
-): TUndiciPool {
-  if (options.connections === 1) {
+): TUndiciDispatcher {
+  if (options?.connections === 1) {
     return new UndiciClient(origin, options);
   }
 
   return addObservedPool(origin, new UndiciPool(origin, options));
 }
 
-const supportedPoolStats = [
+const supportedPoolStats: readonly TPoolStatsKeys[] = [
   'connected',
   'free',
   'pending',
