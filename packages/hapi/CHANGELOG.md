@@ -1,5 +1,13 @@
 # @promster/hapi
 
+## 15.4.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @promster/metrics@15.4.0
+  - @promster/types@15.4.0
+
 ## 15.3.1
 
 ### Patch Changes
