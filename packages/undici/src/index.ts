@@ -13,3 +13,9 @@ export {
   observedPoolFactory,
   supportedPoolStats,
 } from './pool-metrics';
+
+export {
+  createAgentMetricsExporter,
+  addObservedAgent,
+  supportedAgentStats,
+} from './agent-metrics';
