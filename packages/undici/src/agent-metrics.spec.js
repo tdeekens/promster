@@ -6,13 +6,13 @@ import parsePrometheusTextFormat from 'parse-prometheus-text-format';
 import { MockAgent, Pool, request as undiciRequest } from 'undici';
 import { afterAll, beforeAll, describe, expect, it, test } from 'vitest';
 import {
-  addObservedPool,
-  createPoolMetricsExporter,
-  supportedPoolStats,
-} from './pool-metrics';
+  addObservedAgent,
+  createAgentMetricsExporter,
+  supportedAgentStats,
+} from './agent-metrics';
 
-const metricsPort = '1343';
-const appPort = '3022';
+const metricsPort = '1344';
+const appPort = '3023';
 
 const metricsServerUrl = `http://localhost:${metricsPort}`;
 const appServerUrl = `http://localhost:${appPort}`;
@@ -90,7 +90,7 @@ it('should up metric', async () => {
   );
 });
 
-describe('pool metrics', () => {
+describe('agent metrics', () => {
   let mockAgent;
 
   beforeAll(async () => {
@@ -100,24 +100,24 @@ describe('pool metrics', () => {
     const originA = 'http://localhost:9001';
     const originB = 'http://localhost:9002';
 
-    const poolA = mockAgent.get(originA);
-    const poolB = mockAgent.get(originB);
+    const agentA = mockAgent.get(originA);
+    const agentB = mockAgent.get(originB);
 
-    poolA
+    agentA
       .intercept({ path: '/', method: 'GET' })
       .reply(200, { message: 'ok-a' });
-    poolB
+    agentB
       .intercept({ path: '/', method: 'POST' })
       .reply(200, { message: 'ok-b' });
 
-    createPoolMetricsExporter({ [originA]: poolA });
-    addObservedPool(originB, poolB);
+    createAgentMetricsExporter([agentA]);
+    addObservedAgent(agentB);
 
-    const requestToPoolA = await poolA.request({ path: '/', method: 'GET' });
-    await requestToPoolA.body.dump();
+    const requestToAgentA = await agentA.request({ path: '/', method: 'GET' });
+    await requestToAgentA.body.dump();
 
-    const requestToPoolB = await poolB.request({ path: '/', method: 'POST' });
-    await requestToPoolB.body.dump();
+    const requestToAgentB = await agentB.request({ path: '/', method: 'POST' });
+    await requestToAgentB.body.dump();
   });
 
   afterAll(() => {
@@ -125,52 +125,43 @@ describe('pool metrics', () => {
     mockAgent.close();
   });
 
-  it.each(supportedPoolStats)('for undici pool %s metric', async (statName) => {
+  it.each(supportedAgentStats)(
+    'for undici agent %s metric',
+    async (statName) => {
+      const response = await fetch(metricsServerUrl);
+      const rawMetrics = await response.text();
+
+      const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
+
+      const nodejsUndiciAgentStats = parsedMetrics.find(
+        (metric) => metric.name === `nodejs_undici_agent_${statName}`
+      ).metrics;
+
+      const expectedMetrics = {
+        connected: [],
+        free: [],
+        pending: [],
+        queued: [],
+        running: [],
+        size: [],
+      };
+
+      // Use array containment assertion
+      expect(nodejsUndiciAgentStats).toEqual(expectedMetrics[statName]);
+    }
+  );
+
+  it('should expose the total number of agents', async () => {
     const response = await fetch(metricsServerUrl);
     const rawMetrics = await response.text();
 
     const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
-
-    const nodejsUndiciPoolStats = parsedMetrics.find(
-      (metric) => metric.name === `nodejs_undici_pool_${statName}`
-    ).metrics;
-
-    const expectedMetrics = {
-      connected: [
-        { value: '1', labels: { origin: 'http://localhost:9001' } },
-        { value: '1', labels: { origin: 'http://localhost:9002' } },
-      ],
-      free: [],
-      pending: [
-        { value: '0', labels: { origin: 'http://localhost:9001' } },
-        { value: '0', labels: { origin: 'http://localhost:9002' } },
-      ],
-      queued: [],
-      running: [
-        { value: '0', labels: { origin: 'http://localhost:9001' } },
-        { value: '0', labels: { origin: 'http://localhost:9002' } },
-      ],
-      size: [
-        { value: '0', labels: { origin: 'http://localhost:9001' } },
-        { value: '0', labels: { origin: 'http://localhost:9002' } },
-      ],
-    };
-
-    // Use array containment assertion
-    expect(nodejsUndiciPoolStats).toEqual(expectedMetrics[statName]);
-  });
-
-  it('should expose the total number of pools', async () => {
-    const response = await fetch(metricsServerUrl);
-    const rawMetrics = await response.text();
-
-    const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
-    const observedPoolsCounter = parsedMetrics.find(
-      (metric) => metric.name === 'nodejs_undici_pools_total'
+    const observedAgentsCounter = parsedMetrics.find(
+      (metric) => metric.name === 'nodejs_undici_agents_total'
     );
 
-    expect(observedPoolsCounter).toBeDefined();
-    expect(observedPoolsCounter.metrics).toEqual(
+    expect(observedAgentsCounter).toBeDefined();
+    expect(observedAgentsCounter.metrics).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
           value: '2',

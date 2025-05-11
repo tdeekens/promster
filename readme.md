@@ -279,7 +279,25 @@ const serveMetrics$ = r
 
 ### `@promster/undici`
 
-First you have create the pool metrics exporter
+Depending on the `undici` version used you have to use a pool metrics exporter or can use the agent metric exporter.
+
+### `undici` version `7.9.0` or later
+
+```js
+import { createAgentMetricsExporter } = from "@promster/undici";
+
+createAgentMetricsExporter({ agentA, agentB });
+```
+
+You can then also always add additional agents
+
+```js
+import { addObservedAgent } = from "@promster/undici";
+
+addObservedAgent(agent);
+```
+
+### `undici` version `7.9.0` or before
 
 ```js
 import { createPoolMetricsExporter } = from "@promster/undici";
