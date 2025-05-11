@@ -1,5 +1,17 @@
 # @promster/undici
 
+## 15.4.0
+
+### Minor Changes
+
+- [#1385](https://github.com/tdeekens/promster/pull/1385) [`b1fe3c3`](https://github.com/tdeekens/promster/commit/b1fe3c3e8ab5f178b4e9db6e608e377103aa5441) Thanks [@tdeekens](https://github.com/tdeekens)! - Adds support for Agent metrics in addition to exposting Pool metrics. Refer to readme for more information.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @promster/metrics@15.4.0
+  - @promster/types@15.4.0
+
 ## 15.3.1
 
 ### Patch Changes

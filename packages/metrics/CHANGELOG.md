@@ -1,5 +1,12 @@
 # @promster/metrics
 
+## 15.4.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @promster/types@15.4.0
+
 ## 15.3.1
 
 ### Patch Changes
