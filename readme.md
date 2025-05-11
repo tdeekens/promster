@@ -286,7 +286,7 @@ Depending on the `undici` version used you have to use a pool metrics exporter o
 ```js
 import { createAgentMetricsExporter } = from "@promster/undici";
 
-createAgentMetricsExporter({ agentA, agentB });
+createAgentMetricsExporter([ agentA, agentB ]);
 ```
 
 You can then also always add additional agents
