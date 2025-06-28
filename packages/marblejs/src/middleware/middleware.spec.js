@@ -123,7 +123,7 @@ it('should expose garbage collection metrics', async () => {
   );
 });
 
-// biome-ignore lint/suspicious/noSkippedTests: <explanation>
+// biome-ignore lint/suspicious/noSkippedTests: false positive
 it.skip('should record http metrics', async () => {
   await fetch(appServerUrl);
   const response = await fetch(metricsServerUrl);

@@ -1,10 +1,9 @@
-import { after } from 'node:test';
 import { createMiddleware as createExpressMetricsMiddleware } from '@promster/express';
 import { createServer as createPrometheusMetricsServer } from '@promster/server';
 import express from 'express';
 import parsePrometheusTextFormat from 'parse-prometheus-text-format';
-import { MockAgent, Pool, request as undiciRequest } from 'undici';
-import { afterAll, beforeAll, describe, expect, it, test } from 'vitest';
+import { MockAgent } from 'undici';
+import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import {
   addObservedAgent,
   createAgentMetricsExporter,

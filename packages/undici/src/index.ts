@@ -1,12 +1,3 @@
-import {
-  defaultNormalizers,
-  defaultRegister,
-  getContentType,
-  getSummary,
-  Prometheus,
-  timing,
-} from '@promster/metrics';
-
 export {
   addObservedAgent,
   createAgentMetricsExporter,

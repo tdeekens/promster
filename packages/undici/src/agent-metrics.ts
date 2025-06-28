@@ -1,9 +1,5 @@
 import { defaultRegister, Prometheus } from '@promster/metrics';
-import type {
-  Agent as TUndiciAgent,
-  Dispatcher as TUndiciDispatcher,
-  Pool as TUndiciPool,
-} from 'undici';
+import type { Agent as TUndiciAgent, Pool as TUndiciPool } from 'undici';
 
 type TAgentMetricsExporterOptions = {
   metricPrefix?: string;
