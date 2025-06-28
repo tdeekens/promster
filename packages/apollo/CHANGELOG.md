@@ -1,5 +1,15 @@
 # @promster/apollo
 
+## 15.4.1
+
+### Patch Changes
+
+- [#1402](https://github.com/tdeekens/promster/pull/1402) [`c4c493e`](https://github.com/tdeekens/promster/commit/c4c493eed874ab17c51edfb368a0fe642718b381) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency @biomejs/biome to v2
+
+- Updated dependencies [[`c4c493e`](https://github.com/tdeekens/promster/commit/c4c493eed874ab17c51edfb368a0fe642718b381)]:
+  - @promster/metrics@15.4.1
+  - @promster/types@15.4.1
+
 ## 15.4.0
 
 ### Patch Changes
