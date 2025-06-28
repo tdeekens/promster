@@ -1,4 +1,4 @@
-import { Prometheus, defaultRegister } from '@promster/metrics';
+import { defaultRegister, Prometheus } from '@promster/metrics';
 import type {
   Agent as TUndiciAgent,
   Dispatcher as TUndiciDispatcher,

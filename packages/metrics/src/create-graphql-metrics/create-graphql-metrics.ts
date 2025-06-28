@@ -4,7 +4,7 @@ import type {
 } from '@promster/types';
 
 import merge from 'merge-options';
-import { Prometheus, configure } from '../client';
+import { configure, Prometheus } from '../client';
 
 const defaultGraphQlPercentiles = [0.5, 0.9, 0.95, 0.98, 0.99];
 

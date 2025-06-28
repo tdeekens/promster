@@ -1,11 +1,11 @@
 import type { TPromsterTiming, TRequestRecorder } from '@promster/metrics';
 import {
-  Prometheus,
   createGcMetrics,
   createGcObserver,
   createHttpMetrics,
   createRequestRecorder,
   defaultNormalizers,
+  Prometheus,
   skipMetricsInEnvironment,
   timing,
 } from '@promster/metrics';

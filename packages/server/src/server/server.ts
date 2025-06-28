@@ -1,8 +1,8 @@
 import {
+  createServer as createHttpServer,
   type IncomingMessage,
   type Server,
   type ServerResponse,
-  createServer as createHttpServer,
 } from 'node:http';
 import {
   getContentType,

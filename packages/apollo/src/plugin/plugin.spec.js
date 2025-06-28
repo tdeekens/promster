@@ -1,10 +1,9 @@
 import { makeExecutableSchema } from '@graphql-tools/schema';
-import { afterAll, beforeAll, expect, it } from 'vitest';
-
-import { MapperKind, getDirective, mapSchema } from '@graphql-tools/utils';
+import { getDirective, MapperKind, mapSchema } from '@graphql-tools/utils';
 import { createServer as createPrometheusMetricsServer } from '@promster/server';
 import { ApolloServer, gql } from 'apollo-server';
 import parsePrometheusTextFormat from 'parse-prometheus-text-format';
+import { afterAll, beforeAll, expect, it } from 'vitest';
 import { createPlugin as createPromsterMetricsPlugin } from './plugin';
 
 function throwErrorDirectiveTransformer(schema, directiveName = 'error') {

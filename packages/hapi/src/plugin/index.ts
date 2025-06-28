@@ -1,9 +1,9 @@
 import {
-  type TPromsterOptions,
   createPlugin,
   getRequestRecorder,
   signalIsNotUp,
   signalIsUp,
+  type TPromsterOptions,
 } from './plugin';
 
 export {
