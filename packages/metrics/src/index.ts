@@ -1,4 +1,4 @@
-import { Prometheus, defaultRegister } from './client';
+import { defaultRegister, Prometheus } from './client';
 import { createGcMetrics } from './create-gc-metrics';
 import { createGcObserver } from './create-gc-observer';
 import { createGraphQlMetrics } from './create-graphql-metrics';

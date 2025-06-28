@@ -1,9 +1,9 @@
 import {
-  type TPromsterOptions,
   createMiddleware,
   getRequestRecorder,
   signalIsNotUp,
   signalIsUp,
+  type TPromsterOptions,
 } from './middleware';
 
 export {

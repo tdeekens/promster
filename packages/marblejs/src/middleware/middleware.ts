@@ -17,7 +17,7 @@ import type {
   TOptionalPromsterOptions,
 } from '@promster/types';
 import merge from 'merge-options';
-import { type Observable, fromEvent } from 'rxjs';
+import { fromEvent, type Observable } from 'rxjs';
 import { map, mapTo, take, tap } from 'rxjs/operators';
 
 const extractPath = (req: HttpRequest): string => req.originalUrl || req.url;

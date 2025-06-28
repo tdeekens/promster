@@ -1,19 +1,19 @@
 import type { Server } from '@hapi/hapi';
 
 import {
-  Prometheus,
   defaultNormalizers,
   defaultRegister,
   getContentType,
   getSummary,
+  Prometheus,
   timing,
 } from '@promster/metrics';
 import {
-  type TPromsterOptions,
   createPlugin,
   getRequestRecorder,
   signalIsNotUp,
   signalIsUp,
+  type TPromsterOptions,
 } from './plugin';
 
 const instrument = async (server: Server, options: TPromsterOptions) =>

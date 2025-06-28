@@ -1,16 +1,16 @@
 import {
-  Prometheus,
   defaultNormalizers,
   defaultRegister,
   getContentType,
   getSummary,
+  Prometheus,
   timing,
 } from '@promster/metrics';
 import {
-  type TPromsterOptions,
   createPlugin,
   signalIsNotUp,
   signalIsUp,
+  type TPromsterOptions,
 } from './plugin';
 
 export {

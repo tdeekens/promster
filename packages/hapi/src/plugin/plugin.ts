@@ -6,6 +6,16 @@ import type {
   ResponseToolkit,
 } from '@hapi/hapi';
 import type { TPromsterTiming, TRequestRecorder } from '@promster/metrics';
+import {
+  createGcMetrics,
+  createGcObserver,
+  createHttpMetrics,
+  createRequestRecorder,
+  defaultNormalizers,
+  Prometheus,
+  skipMetricsInEnvironment,
+  timing,
+} from '@promster/metrics';
 import type {
   TDefaultedPromsterOptions,
   TGcMetrics,
@@ -13,17 +23,6 @@ import type {
   TLabelValues,
   TOptionalPromsterOptions,
 } from '@promster/types';
-
-import {
-  Prometheus,
-  createGcMetrics,
-  createGcObserver,
-  createHttpMetrics,
-  createRequestRecorder,
-  defaultNormalizers,
-  skipMetricsInEnvironment,
-  timing,
-} from '@promster/metrics';
 import merge from 'merge-options';
 import semver from 'semver';
 // @ts-expect-error
@@ -94,11 +93,9 @@ export type TPromsterOptions = TOptionalPromsterOptions & {
   skip?: TSkipFunction;
 };
 const createPlugin = (
-  {
-    options: pluginOptions,
-  }: {
-    options?: TPromsterOptions;
-  } = { options: undefined }
+  { options: pluginOptions }: { options?: TPromsterOptions } = {
+    options: undefined,
+  }
 ) => {
   const allDefaultedOptions: TDefaultedPromsterOptions & {
     skip?: TSkipFunction;

@@ -1,21 +1,11 @@
-import {
-  Prometheus,
-  defaultNormalizers,
-  defaultRegister,
-  getContentType,
-  getSummary,
-  timing,
-} from '@promster/metrics';
-
 export {
-  createPoolMetricsExporter,
+  addObservedAgent,
+  createAgentMetricsExporter,
+  supportedAgentStats,
+} from './agent-metrics';
+export {
   addObservedPool,
+  createPoolMetricsExporter,
   observedPoolFactory,
   supportedPoolStats,
 } from './pool-metrics';
-
-export {
-  createAgentMetricsExporter,
-  addObservedAgent,
-  supportedAgentStats,
-} from './agent-metrics';

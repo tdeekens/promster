@@ -1,9 +1,8 @@
 import { createServer, httpListener, r } from '@marblejs/http';
-import { afterAll, beforeAll, expect, it } from 'vitest';
-
 import { createServer as createPrometheusMetricsServer } from '@promster/server';
 import parsePrometheusTextFormat from 'parse-prometheus-text-format';
 import { mapTo } from 'rxjs/operators';
+import { afterAll, beforeAll, expect, it } from 'vitest';
 import { createMiddleware } from './middleware';
 
 const metricsPort = '1341';
@@ -124,7 +123,7 @@ it('should expose garbage collection metrics', async () => {
   );
 });
 
-// biome-ignore lint/suspicious/noSkippedTests: <explanation>
+// biome-ignore lint/suspicious/noSkippedTests: false positive
 it.skip('should record http metrics', async () => {
   await fetch(appServerUrl);
   const response = await fetch(metricsServerUrl);

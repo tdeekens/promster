@@ -1,4 +1,14 @@
 import type { TRequestRecorder } from '@promster/metrics';
+import {
+  createGcMetrics,
+  createGcObserver,
+  createHttpMetrics,
+  createRequestRecorder,
+  defaultNormalizers,
+  Prometheus,
+  skipMetricsInEnvironment,
+  timing,
+} from '@promster/metrics';
 import type {
   TDefaultedPromsterOptions,
   TGcMetrics,
@@ -7,17 +17,6 @@ import type {
   TOptionalPromsterOptions,
 } from '@promster/types';
 import type { Application, NextFunction, Request, Response } from 'express';
-
-import {
-  Prometheus,
-  createGcMetrics,
-  createGcObserver,
-  createHttpMetrics,
-  createRequestRecorder,
-  defaultNormalizers,
-  skipMetricsInEnvironment,
-  timing,
-} from '@promster/metrics';
 import merge from 'merge-options';
 
 interface TApp extends Application {

@@ -5,14 +5,6 @@ import type {
   GraphQLRequestContext,
 } from '@apollo/server';
 import type { TRequestRecorder } from '@promster/metrics';
-import type {
-  TDefaultedPromsterOptions,
-  TGcMetrics,
-  TGraphQlMetrics,
-  TLabelValues,
-  TOptionalPromsterOptions,
-} from '@promster/types';
-
 import {
   createGcMetrics,
   createGcObserver,
@@ -21,6 +13,13 @@ import {
   isRunningInKubernetes,
   timing,
 } from '@promster/metrics';
+import type {
+  TDefaultedPromsterOptions,
+  TGcMetrics,
+  TGraphQlMetrics,
+  TLabelValues,
+  TOptionalPromsterOptions,
+} from '@promster/types';
 import merge from 'merge-options';
 
 let recordRequest: TRequestRecorder;
