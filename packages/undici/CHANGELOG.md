@@ -1,5 +1,13 @@
 # @promster/undici
 
+## 15.4.1
+
+### Patch Changes
+
+- Updated dependencies [[`c4c493e`](https://github.com/tdeekens/promster/commit/c4c493eed874ab17c51edfb368a0fe642718b381)]:
+  - @promster/metrics@15.4.1
+  - @promster/types@15.4.1
+
 ## 15.4.0
 
 ### Minor Changes

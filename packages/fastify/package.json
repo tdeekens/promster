@@ -1,6 +1,6 @@
 {
   "name": "@promster/fastify",
-  "version": "15.4.0",
+  "version": "15.4.1",
   "description": "Fastify server integrations of promster",
   "main": "dist/promster-fastify.cjs.js",
   "typings": "dist/promster-fastify.cjs.d.ts",
