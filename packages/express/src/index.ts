@@ -28,4 +28,4 @@ export {
   timing,
 };
 
-export * from '@promster/types';
+export type * from '@promster/types';
