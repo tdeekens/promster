@@ -36,7 +36,6 @@
     "prometheus"
   ],
   "dependencies": {
-    "@promster/types": "workspace:*",
     "lodash.memoize": "4.1.2",
     "lodash.once": "4.1.1",
     "merge-options": "3.0.4",
@@ -45,6 +44,7 @@
     "url-value-parser": "2.2.0"
   },
   "devDependencies": {
+    "@promster/types": "workspace:*",
     "@types/lodash.once": "4.1.9",
     "@types/node": "22.14.0",
     "prom-client": "15.1.3",

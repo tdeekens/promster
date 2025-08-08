@@ -2,4 +2,4 @@ import { createServer } from './server';
 
 export { createServer };
 
-export * from '@promster/types';
+export type * from '@promster/types';

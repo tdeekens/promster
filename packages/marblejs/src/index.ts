@@ -14,7 +14,7 @@ import {
   type TPromsterOptions,
 } from './middleware';
 
-export * from '@promster/types';
+export type * from '@promster/types';
 export type { TPromsterOptions };
 
 export {
