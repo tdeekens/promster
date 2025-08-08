@@ -77,9 +77,6 @@ importers:
       '@promster/metrics':
         specifier: workspace:*
         version: link:../metrics
-      '@promster/types':
-        specifier: workspace:*
-        version: link:../types
       merge-options:
         specifier: 3.0.4
         version: 3.0.4
@@ -96,6 +93,9 @@ importers:
       '@promster/server':
         specifier: workspace:*
         version: link:../server
+      '@promster/types':
+        specifier: workspace:*
+        version: link:../types
       apollo-server:
         specifier: 3.13.0
         version: 3.13.0(graphql@16.11.0)
@@ -111,9 +111,6 @@ importers:
       '@promster/metrics':
         specifier: workspace:*
         version: link:../metrics
-      '@promster/types':
-        specifier: workspace:*
-        version: link:../types
       merge-options:
         specifier: 3.0.4
         version: 3.0.4
@@ -124,6 +121,9 @@ importers:
       '@promster/server':
         specifier: workspace:*
         version: link:../server
+      '@promster/types':
+        specifier: workspace:*
+        version: link:../types
       '@types/express':
         specifier: 4.17.23
         version: 4.17.23
@@ -142,9 +142,6 @@ importers:
       '@promster/server':
         specifier: workspace:*
         version: link:../server
-      '@promster/types':
-        specifier: workspace:*
-        version: link:../types
       fastify-plugin:
         specifier: ^4.5.1
         version: 4.5.1
@@ -155,6 +152,9 @@ importers:
         specifier: 1.1.1
         version: 1.1.1
     devDependencies:
+      '@promster/types':
+        specifier: workspace:*
+        version: link:../types
       fastify:
         specifier: 4.29.1
         version: 4.29.1
@@ -164,9 +164,6 @@ importers:
       '@promster/metrics':
         specifier: workspace:*
         version: link:../metrics
-      '@promster/types':
-        specifier: workspace:*
-        version: link:../types
       merge-options:
         specifier: 3.0.4
         version: 3.0.4
@@ -186,6 +183,9 @@ importers:
       '@promster/server':
         specifier: workspace:*
         version: link:../server
+      '@promster/types':
+        specifier: workspace:*
+        version: link:../types
       '@types/hapi__hapi':
         specifier: 21.0.0
         version: 21.0.0
@@ -201,9 +201,6 @@ importers:
       '@promster/metrics':
         specifier: workspace:*
         version: link:../metrics
-      '@promster/types':
-        specifier: workspace:*
-        version: link:../types
       merge-options:
         specifier: 3.0.4
         version: 3.0.4
@@ -223,6 +220,9 @@ importers:
       '@promster/server':
         specifier: workspace:*
         version: link:../server
+      '@promster/types':
+        specifier: workspace:*
+        version: link:../types
       fp-ts:
         specifier: 2.16.10
         version: 2.16.10
@@ -232,9 +232,6 @@ importers:
 
   packages/metrics:
     dependencies:
-      '@promster/types':
-        specifier: workspace:*
-        version: link:../types
       lodash.memoize:
         specifier: 4.1.2
         version: 4.1.2
@@ -254,6 +251,9 @@ importers:
         specifier: 2.2.0
         version: 2.2.0
     devDependencies:
+      '@promster/types':
+        specifier: workspace:*
+        version: link:../types
       '@types/lodash.once':
         specifier: 4.1.9
         version: 4.1.9
@@ -272,13 +272,13 @@ importers:
       '@promster/metrics':
         specifier: workspace:*
         version: link:../metrics
-      '@promster/types':
-        specifier: workspace:*
-        version: link:../types
       tslib:
         specifier: 2.8.1
         version: 2.8.1
     devDependencies:
+      '@promster/types':
+        specifier: workspace:*
+        version: link:../types
       '@types/node':
         specifier: 22.14.0
         version: 22.14.0
@@ -301,9 +301,6 @@ importers:
       '@promster/metrics':
         specifier: workspace:*
         version: link:../metrics
-      '@promster/types':
-        specifier: workspace:*
-        version: link:../types
       merge-options:
         specifier: 3.0.4
         version: 3.0.4
@@ -317,6 +314,9 @@ importers:
       '@promster/server':
         specifier: workspace:*
         version: link:../server
+      '@promster/types':
+        specifier: workspace:*
+        version: link:../types
       '@types/node':
         specifier: 20.19.9
         version: 20.19.9
