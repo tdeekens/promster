@@ -178,8 +178,8 @@ importers:
         specifier: 10.0.1
         version: 10.0.1
       '@hapi/hapi':
-        specifier: 21.4.2
-        version: 21.4.2
+        specifier: 21.4.3
+        version: 21.4.3
       '@promster/server':
         specifier: workspace:*
         version: link:../server
@@ -1466,8 +1466,8 @@ packages:
   '@hapi/file@3.0.0':
     resolution: {integrity: sha512-w+lKW+yRrLhJu620jT3y+5g2mHqnKfepreykvdOcl9/6up8GrQQn+l3FRTsjHTKbkbfQFkuksHpdv2EcpKcJ4Q==}
 
-  '@hapi/hapi@21.4.2':
-    resolution: {integrity: sha512-wkjpjc80Hnl0cBfDAG+EtX876AGtpg9fpt6q9GXTnGyoW5C4+hBCem8MmBPuwlhlfJ9U9FYGm3Yf7nWp9+/NDQ==}
+  '@hapi/hapi@21.4.3':
+    resolution: {integrity: sha512-Q7g0ZY4gxU69wabFKH75qR0AFOdiOECj6vGqTHBSO5Lrwe6TwD8r9LkYQIbvtG8N423VDpdVsiZP8MnBwmD6Hw==}
     engines: {node: '>=14.15.0'}
 
   '@hapi/heavy@8.0.1':
@@ -1492,8 +1492,8 @@ packages:
   '@hapi/podium@5.0.2':
     resolution: {integrity: sha512-T7gf2JYHQQfEfewTQFbsaXoZxSvuXO/QBIGljucUQ/lmPnTTNAepoIKOakWNVWvo2fMEDjycu77r8k6dhreqHA==}
 
-  '@hapi/shot@6.0.1':
-    resolution: {integrity: sha512-s5ynMKZXYoDd3dqPw5YTvOR/vjHvMTxc388+0qL0jZZP1+uwXuUD32o9DuuuLsmTlyXCWi02BJl1pBpwRuUrNA==}
+  '@hapi/shot@6.0.2':
+    resolution: {integrity: sha512-WKK1ShfJTrL1oXC0skoIZQYzvLsyMDEF8lfcWuQBjpjCN29qivr9U36ld1z0nt6edvzv28etNMOqUF4klnHryw==}
 
   '@hapi/somever@4.1.1':
     resolution: {integrity: sha512-lt3QQiDDOVRatS0ionFDNrDIv4eXz58IibQaZQDOg4DqqdNme8oa0iPWcE0+hkq/KTeBCPtEOjDOBKBKwDumVg==}
@@ -1501,8 +1501,8 @@ packages:
   '@hapi/statehood@8.2.0':
     resolution: {integrity: sha512-63JlCVIrsmuunWsyc3OeuFO+gH6v56swLCl7OM1w09l/exQKPUxSUDF2Slkuw8k91nIzr0A2/aPvjLOWf9ksrg==}
 
-  '@hapi/subtext@8.1.0':
-    resolution: {integrity: sha512-PyaN4oSMtqPjjVxLny1k0iYg4+fwGusIhaom9B2StinBclHs7v46mIW706Y+Wo21lcgulGyXbQrmT/w4dus6ww==}
+  '@hapi/subtext@8.1.1':
+    resolution: {integrity: sha512-ex1Y2s/KuJktS8Ww0k6XJ5ysSKrzNym4i5pDVuCwlSgHHviHUsT1JNzE6FYhNU9TTHSNdyfue/t2m89bpkX9Jw==}
 
   '@hapi/teamwork@6.0.0':
     resolution: {integrity: sha512-05HumSy3LWfXpmJ9cr6HzwhAavrHkJ1ZRCmNE2qJMihdM5YcWreWPfyN0yKT2ZjCM92au3ZkuodjBxOibxM67A==}
@@ -5734,7 +5734,7 @@ snapshots:
 
   '@hapi/file@3.0.0': {}
 
-  '@hapi/hapi@21.4.2':
+  '@hapi/hapi@21.4.3':
     dependencies:
       '@hapi/accept': 6.0.3
       '@hapi/ammo': 6.0.1
@@ -5747,10 +5747,10 @@ snapshots:
       '@hapi/hoek': 11.0.7
       '@hapi/mimos': 7.0.1
       '@hapi/podium': 5.0.2
-      '@hapi/shot': 6.0.1
+      '@hapi/shot': 6.0.2
       '@hapi/somever': 4.1.1
       '@hapi/statehood': 8.2.0
-      '@hapi/subtext': 8.1.0
+      '@hapi/subtext': 8.1.1
       '@hapi/teamwork': 6.0.0
       '@hapi/topo': 6.0.2
       '@hapi/validate': 2.0.1
@@ -5795,7 +5795,7 @@ snapshots:
       '@hapi/teamwork': 6.0.0
       '@hapi/validate': 2.0.1
 
-  '@hapi/shot@6.0.1':
+  '@hapi/shot@6.0.2':
     dependencies:
       '@hapi/hoek': 11.0.7
       '@hapi/validate': 2.0.1
@@ -5815,7 +5815,7 @@ snapshots:
       '@hapi/iron': 7.0.1
       '@hapi/validate': 2.0.1
 
-  '@hapi/subtext@8.1.0':
+  '@hapi/subtext@8.1.1':
     dependencies:
       '@hapi/boom': 10.0.1
       '@hapi/bourne': 3.0.0
@@ -6258,7 +6258,7 @@ snapshots:
 
   '@types/hapi__hapi@21.0.0':
     dependencies:
-      '@hapi/hapi': 21.4.2
+      '@hapi/hapi': 21.4.3
 
   '@types/http-errors@2.0.4': {}
 
