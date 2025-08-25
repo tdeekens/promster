@@ -46,7 +46,7 @@
     "@marblejs/http": "4.1.0",
     "@promster/server": "workspace:*",
     "@promster/types": "workspace:*",
-    "fp-ts": "2.16.10",
+    "fp-ts": "2.16.11",
     "parse-prometheus-text-format": "1.1.1"
   }
 }
