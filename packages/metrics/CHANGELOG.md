@@ -1,5 +1,11 @@
 # @promster/metrics
 
+## 15.4.2
+
+### Patch Changes
+
+- [#1416](https://github.com/tdeekens/promster/pull/1416) [`fb030ba`](https://github.com/tdeekens/promster/commit/fb030ba588135da8d0f07938ccc823a608650a8d) Thanks [@M4R7iNP](https://github.com/M4R7iNP)! - Fix to be use `export type *`.
+
 ## 15.4.1
 
 ### Patch Changes
