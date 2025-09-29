@@ -43,7 +43,7 @@
     "metrics",
     "continousdelivery"
   ],
-  "packageManager": "pnpm@10.14.0",
+  "packageManager": "pnpm@10.17.1",
   "dependencies": {
     "@babel/core": "7.28.4",
     "@babel/preset-env": "7.28.3",
