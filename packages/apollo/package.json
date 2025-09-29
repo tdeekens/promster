@@ -36,7 +36,7 @@
     "prometheus"
   ],
   "dependencies": {
-    "@apollo/server": "4.10.5",
+    "@apollo/server": "4.12.2",
     "@promster/metrics": "workspace:*",
     "merge-options": "3.0.4",
     "tslib": "2.8.1"
