@@ -1,5 +1,16 @@
 # @promster/marblejs
 
+## 15.4.2
+
+### Patch Changes
+
+- [#1416](https://github.com/tdeekens/promster/pull/1416) [`fb030ba`](https://github.com/tdeekens/promster/commit/fb030ba588135da8d0f07938ccc823a608650a8d) Thanks [@M4R7iNP](https://github.com/M4R7iNP)! - Fix to be use `export type *`.
+
+- [#1437](https://github.com/tdeekens/promster/pull/1437) [`5a58e77`](https://github.com/tdeekens/promster/commit/5a58e77df01d1280d3b1b4d0b1266e0591813d71) Thanks [@tdeekens](https://github.com/tdeekens)! - Migrate to Trusted Publishing and update dependencies.
+
+- Updated dependencies [[`fb030ba`](https://github.com/tdeekens/promster/commit/fb030ba588135da8d0f07938ccc823a608650a8d), [`5a58e77`](https://github.com/tdeekens/promster/commit/5a58e77df01d1280d3b1b4d0b1266e0591813d71)]:
+  - @promster/metrics@15.4.2
+
 ## 15.4.1
 
 ### Patch Changes

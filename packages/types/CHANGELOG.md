@@ -1,5 +1,11 @@
 # @promster/types
 
+## 15.4.2
+
+### Patch Changes
+
+- [#1437](https://github.com/tdeekens/promster/pull/1437) [`5a58e77`](https://github.com/tdeekens/promster/commit/5a58e77df01d1280d3b1b4d0b1266e0591813d71) Thanks [@tdeekens](https://github.com/tdeekens)! - Migrate to Trusted Publishing and update dependencies.
+
 ## 15.4.1
 
 ## 15.4.0
