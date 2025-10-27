@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "@promster/types": "workspace:*",
-    "@types/node": "20.19.22",
+    "@types/node": "20.19.23",
     "prom-client": "15.1.3",
     "typescript": "5.8.3",
     "parse-prometheus-text-format": "1.1.1",
