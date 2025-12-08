@@ -44,7 +44,7 @@
     "@promster/server": "workspace:*",
     "@types/express": "4.17.25",
     "@promster/types": "workspace:*",
-    "express": "4.21.2",
+    "express": "4.22.1",
     "parse-prometheus-text-format": "1.1.1"
   }
 }

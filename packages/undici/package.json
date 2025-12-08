@@ -48,7 +48,7 @@
     "typescript": "5.8.3",
     "parse-prometheus-text-format": "1.1.1",
     "undici": "7.16.0",
-    "express": "4.21.2",
+    "express": "4.22.1",
     "@promster/server": "workspace:*",
     "@promster/express": "workspace:*"
   },
