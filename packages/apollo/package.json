@@ -42,7 +42,7 @@
     "tslib": "2.8.1"
   },
   "devDependencies": {
-    "@graphql-tools/schema": "10.0.30",
+    "@graphql-tools/schema": "10.0.31",
     "@graphql-tools/utils": "10.11.0",
     "@promster/server": "workspace:*",
     "@promster/types": "workspace:*",
