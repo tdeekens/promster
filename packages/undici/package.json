@@ -47,7 +47,7 @@
     "prom-client": "15.1.3",
     "typescript": "5.8.3",
     "parse-prometheus-text-format": "1.1.1",
-    "undici": "7.18.2",
+    "undici": "7.19.1",
     "express": "4.22.1",
     "@promster/server": "workspace:*",
     "@promster/express": "workspace:*"
