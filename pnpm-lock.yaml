@@ -143,8 +143,8 @@ importers:
         specifier: workspace:*
         version: link:../server
       fastify-plugin:
-        specifier: ^4.5.1
-        version: 4.5.1
+        specifier: ^5.1.0
+        version: 5.1.0
       merge-options:
         specifier: 3.0.4
         version: 3.0.4
@@ -2545,8 +2545,8 @@ packages:
   fast-uri@3.0.6:
     resolution: {integrity: sha512-Atfo14OibSv5wAp4VWNsFYE1AchQRTv9cBGWET4pZWHzYshFSS9NQI6I57rdKn9croWVMbYFbLhJ+yJvmZIIHw==}
 
-  fastify-plugin@4.5.1:
-    resolution: {integrity: sha512-stRHYGeuqpEZTL1Ef0Ovr2ltazUT9g844X5z/zEBFLG8RYlpDiOCIG+ATvYEp+/zmc7sN29mcIMp8gvYplYPIQ==}
+  fastify-plugin@5.1.0:
+    resolution: {integrity: sha512-FAIDA8eovSt5qcDgcBvDuX/v0Cjz0ohGhENZ/wpc3y+oZCY2afZ9Baqql3g/lC+OHRnciQol4ww7tuthOb9idw==}
 
   fastify@5.7.2:
     resolution: {integrity: sha512-dBJolW+hm6N/yJVf6J5E1BxOBNkuXNl405nrfeR8SpvGWG3aCC2XDHyiFBdow8Win1kj7sjawQc257JlYY6M/A==}
@@ -6899,7 +6899,7 @@ snapshots:
 
   fast-uri@3.0.6: {}
 
-  fastify-plugin@4.5.1: {}
+  fastify-plugin@5.1.0: {}
 
   fastify@5.7.2:
     dependencies:
