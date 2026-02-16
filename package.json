@@ -61,7 +61,7 @@
     "@vitest/coverage-v8": "4.0.18",
     "check-node-version": "4.2.1",
     "husky": "9.1.7",
-    "lint-staged": "15.5.2",
+    "lint-staged": "16.2.7",
     "rimraf": "6.0.1",
     "typescript": "5.9.3",
     "vitest": "4.0.18"
