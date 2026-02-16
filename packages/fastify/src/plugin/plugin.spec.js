@@ -26,7 +26,7 @@ async function startServers() {
     await reply.send({ status: 'ok' });
   });
 
-  await fastify.listen(appPort, 'localhost');
+  await fastify.listen({ port: appPort, host: 'localhost' });
 
   return {
     close: async () =>
