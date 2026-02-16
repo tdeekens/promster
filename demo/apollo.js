@@ -1,9 +1,11 @@
+import { ApolloServer } from '@apollo/server';
+import { startStandaloneServer } from '@apollo/server/standalone';
 import {
   createPlugin as createPromsterMetricsPlugin,
   signalIsUp,
 } from '@promster/apollo';
 import { createServer as createPrometheusMetricsServer } from '@promster/server';
-import { ApolloServer, gql } from 'apollo-server';
+import gql from 'graphql-tag';
 
 const typeDefs = gql`
   type Book {
@@ -45,13 +47,14 @@ async function launchServer() {
     plugins: [createPromsterMetricsPlugin()],
   });
 
-  await server.listen().then(({ url }) => {
-    console.log(`🚀  Apollo Server ready at ${url}`);
-
-    console.log('Prometheus metrics available on http://localhost:8080');
-
-    signalIsUp();
+  const { url } = await startStandaloneServer(server, {
+    listen: { port: 4000 },
   });
+
+  console.log(`🚀  Apollo Server ready at ${url}`);
+  console.log('Prometheus metrics available on http://localhost:8080');
+
+  signalIsUp();
 }
 
 launchServer().catch(console.log);

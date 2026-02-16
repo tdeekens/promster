@@ -1,7 +1,9 @@
+import { ApolloServer } from '@apollo/server';
+import { startStandaloneServer } from '@apollo/server/standalone';
 import { makeExecutableSchema } from '@graphql-tools/schema';
 import { getDirective, MapperKind, mapSchema } from '@graphql-tools/utils';
 import { createServer as createPrometheusMetricsServer } from '@promster/server';
-import { ApolloServer, gql } from 'apollo-server';
+import gql from 'graphql-tag';
 import parsePrometheusTextFormat from 'parse-prometheus-text-format';
 import { afterAll, beforeAll, expect, it } from 'vitest';
 import { createPlugin as createPromsterMetricsPlugin } from './plugin';
@@ -25,10 +27,9 @@ function throwErrorDirectiveTransformer(schema, directiveName = 'error') {
 }
 
 const metricsPort = '1337';
-const appPort = '3000';
+const appPort = 3000;
 
 const metricsServerUrl = `http://localhost:${metricsPort}`;
-const appServerUrl = `http://localhost:${appPort}`;
 
 async function startServer() {
   const typeDefs = [
@@ -79,8 +80,8 @@ async function startServer() {
     detectKubernetes: false,
   });
 
-  await server.listen({
-    port: appPort,
+  const { url } = await startStandaloneServer(server, {
+    listen: { port: appPort },
   });
 
   return {
@@ -91,25 +92,21 @@ async function startServer() {
           prometheusMetricsServer.close((err) => {
             if (err) {
               reject(err);
-
-              return;
             }
-
             resolve();
           });
         }),
       ]),
-    app,
+    url,
   };
 }
 
-let app;
+let serverUrl;
 let closeServer;
 
 beforeAll(async () => {
   const startedServer = await startServer();
-
-  app = startedServer.app;
+  serverUrl = startedServer.url;
   closeServer = startedServer.close;
 });
 
@@ -202,7 +199,7 @@ it('should expose GraphQL metrics', async () => {
 });
 
 it('should record GraphQL metrics for successful requests', async () => {
-  await fetch(appServerUrl, {
+  await fetch(serverUrl, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -262,7 +259,7 @@ it('should record GraphQL metrics for successful requests', async () => {
 });
 
 it('should record GraphQL metrics for failed requests in validation phase', async () => {
-  await fetch(appServerUrl, {
+  await fetch(serverUrl, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -300,7 +297,7 @@ it('should record GraphQL metrics for failed requests in validation phase', asyn
 });
 
 it('should record GraphQL metrics for failed requests in execute phase', async () => {
-  await fetch(appServerUrl, {
+  await fetch(serverUrl, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
