@@ -46,7 +46,7 @@
     "@graphql-tools/utils": "10.11.0",
     "@promster/server": "workspace:*",
     "@promster/types": "workspace:*",
-    "@apollo/server": "4.9.3",
+    "@apollo/server": "4.13.0",
     "graphql": "16.12.0",
     "graphql-tag": "2.12.6",
     "parse-prometheus-text-format": "1.1.1"
