@@ -22,7 +22,7 @@ jobs:
 
       - name: Checkout
         if: github.ref == 'refs/heads/main'
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           ref: main
           fetch-depth: 50
