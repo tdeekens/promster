@@ -141,7 +141,7 @@ const createPlugin = async (
 };
 
 const plugin = fastifyPlugin(createPlugin, {
-  fastify: '>= 1.6.0',
+  fastify: '>= 5.0.0',
   name: pkg.name,
 });
 
