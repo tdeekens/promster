@@ -1,5 +1,14 @@
 # @promster/express
 
+## 15.4.3
+
+### Patch Changes
+
+- [`5bada37`](https://github.com/tdeekens/promster/commit/5bada3712de65fbe71549337cee69560942cfa5f) Thanks [@tdeekens](https://github.com/tdeekens)! - Update all dependencies.
+
+- Updated dependencies [[`5bada37`](https://github.com/tdeekens/promster/commit/5bada3712de65fbe71549337cee69560942cfa5f)]:
+  - @promster/metrics@15.4.3
+
 ## 15.4.2
 
 ### Patch Changes
