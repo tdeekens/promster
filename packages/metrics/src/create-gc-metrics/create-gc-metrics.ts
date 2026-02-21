@@ -13,6 +13,7 @@ const defaultOptions = {
   metricNames: {
     up: ['nodejs_up'],
   },
+  gcCollectionInterval: 6000,
 };
 
 const getMetrics = (options: TDefaultedPromsterOptions) => ({
