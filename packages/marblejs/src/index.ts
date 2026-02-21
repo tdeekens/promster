@@ -6,6 +6,7 @@ import {
   Prometheus,
   timing,
 } from '@promster/metrics';
+
 import {
   createMiddleware,
   getRequestRecorder,

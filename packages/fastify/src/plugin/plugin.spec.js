@@ -2,6 +2,7 @@ import { createServer as createPrometheusMetricsServer } from '@promster/server'
 import Fastify from 'fastify';
 import parsePrometheusTextFormat from 'parse-prometheus-text-format';
 import { afterAll, beforeAll, expect, it } from 'vitest';
+
 import { plugin } from './plugin';
 
 const metricsPort = '1339';

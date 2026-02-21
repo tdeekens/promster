@@ -2,9 +2,22 @@
   "name": "@promster/marblejs",
   "version": "15.4.4",
   "description": "MarbleJs server integrations of promster",
-  "main": "dist/promster-marblejs.cjs.js",
-  "typings": "dist/promster-marblejs.cjs.d.ts",
-  "types": "dist/promster-marblejs.cjs.d.ts",
+  "keywords": [
+    "continousdelivery",
+    "metrics",
+    "prometheus"
+  ],
+  "homepage": "https://github.com/tdeekens/promster#readme",
+  "bugs": {
+    "url": "https://github.com/tdeekens/promster/issues"
+  },
+  "license": "MIT",
+  "author": "Lukas Sulik <l.nuzky@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tdeekens/promster.git",
+    "directory": "packages/marblejs"
+  },
   "files": [
     "readme.md",
     "package.json",
@@ -12,29 +25,12 @@
     "dist/**",
     "modules/**"
   ],
+  "main": "dist/promster-marblejs.cjs.js",
+  "types": "dist/promster-marblejs.cjs.d.ts",
+  "typings": "dist/promster-marblejs.cjs.d.ts",
   "publishConfig": {
     "access": "public"
   },
-  "engines": {
-    "node": ">=20",
-    "npm": ">=8"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/tdeekens/promster.git",
-    "directory": "packages/marblejs"
-  },
-  "author": "Lukas Sulik <l.nuzky@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/tdeekens/promster/issues"
-  },
-  "homepage": "https://github.com/tdeekens/promster#readme",
-  "keywords": [
-    "metrics",
-    "continousdelivery",
-    "prometheus"
-  ],
   "dependencies": {
     "@promster/metrics": "workspace:*",
     "merge-options": "3.0.4",
@@ -48,5 +44,9 @@
     "@promster/types": "workspace:*",
     "fp-ts": "2.16.11",
     "parse-prometheus-text-format": "1.1.1"
+  },
+  "engines": {
+    "node": ">=20",
+    "npm": ">=8"
   }
 }

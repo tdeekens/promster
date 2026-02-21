@@ -1,4 +1,5 @@
 import type { TOptionalPromsterOptions } from '@promster/types';
+
 import { isRunningInKubernetes } from './kubernetes';
 
 type TSkipMetricsInEnvironmentOptions = {

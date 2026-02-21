@@ -5,6 +5,7 @@ import type {
   TOptionalPromsterOptions,
 } from '@promster/types';
 import merge from 'merge-options';
+
 import { endMeasurementFrom } from '../end-measurement-from';
 import { skipMetricsInEnvironment } from '../environment';
 import { sortLabels } from '../sort-labels';

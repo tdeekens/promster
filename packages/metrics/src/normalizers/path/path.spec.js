@@ -1,4 +1,5 @@
 import { beforeEach, describe, expect, it } from 'vitest';
+
 import { normalizePath } from './path';
 
 describe('normalizePath', () => {

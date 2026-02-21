@@ -32,12 +32,15 @@ jobs:
         run: pnpm typecheck
 
       - name: Lint
-        run: pnpm biome check
+        run: pnpm lint
+
+      - name: Format check
+        run: pnpm format:check
 
       - name: Spell check
         uses: streetsidesoftware/cspell-action@main
         with:
-          files: "**/*.{md,ts}"
+          files: '**/*.{md,ts}'
 
       - name: Build
         run: pnpm build

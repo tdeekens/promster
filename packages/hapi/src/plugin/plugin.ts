@@ -25,6 +25,7 @@ import type {
 } from '@promster/types';
 import merge from 'merge-options';
 import semver from 'semver';
+
 // @ts-expect-error
 import pkg from '../../package.json';
 

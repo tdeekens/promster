@@ -4,6 +4,7 @@ import express from 'express';
 import parsePrometheusTextFormat from 'parse-prometheus-text-format';
 import { MockAgent } from 'undici';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
+
 import {
   addObservedAgent,
   createAgentMetricsExporter,
@@ -124,30 +125,31 @@ describe('agent metrics', () => {
     mockAgent.close();
   });
 
-  it.each(
-    supportedAgentStats
-  )('for undici agent %s metric', async (statName) => {
-    const response = await fetch(metricsServerUrl);
-    const rawMetrics = await response.text();
+  it.each(supportedAgentStats)(
+    'for undici agent %s metric',
+    async (statName) => {
+      const response = await fetch(metricsServerUrl);
+      const rawMetrics = await response.text();
 
-    const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
+      const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
 
-    const nodejsUndiciAgentStats = parsedMetrics.find(
-      (metric) => metric.name === `nodejs_undici_agent_${statName}`
-    ).metrics;
+      const nodejsUndiciAgentStats = parsedMetrics.find(
+        (metric) => metric.name === `nodejs_undici_agent_${statName}`
+      ).metrics;
 
-    const expectedMetrics = {
-      connected: [],
-      free: [],
-      pending: [],
-      queued: [],
-      running: [],
-      size: [],
-    };
+      const expectedMetrics = {
+        connected: [],
+        free: [],
+        pending: [],
+        queued: [],
+        running: [],
+        size: [],
+      };
 
-    // Use array containment assertion
-    expect(nodejsUndiciAgentStats).toEqual(expectedMetrics[statName]);
-  });
+      // Use array containment assertion
+      expect(nodejsUndiciAgentStats).toEqual(expectedMetrics[statName]);
+    }
+  );
 
   it('should expose the total number of agents', async () => {
     const response = await fetch(metricsServerUrl);

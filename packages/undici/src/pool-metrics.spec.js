@@ -4,6 +4,7 @@ import express from 'express';
 import parsePrometheusTextFormat from 'parse-prometheus-text-format';
 import { MockAgent } from 'undici';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
+
 import {
   addObservedPool,
   createPoolMetricsExporter,
