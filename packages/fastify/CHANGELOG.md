@@ -1,5 +1,13 @@
 # @promster/fastify
 
+## 15.4.4
+
+### Patch Changes
+
+- Updated dependencies [[`3379ac4`](https://github.com/tdeekens/promster/commit/3379ac4a7dd006a0153c01701f53fe7957d5d8af)]:
+  - @promster/metrics@15.4.4
+  - @promster/server@15.4.4
+
 ## 15.4.3
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @promster/metrics
 
+## 15.4.4
+
+### Patch Changes
+
+- [#1504](https://github.com/tdeekens/promster/pull/1504) [`3379ac4`](https://github.com/tdeekens/promster/commit/3379ac4a7dd006a0153c01701f53fe7957d5d8af) Thanks [@copilot-swe-agent](https://github.com/apps/copilot-swe-agent)! - Replace the previous GC metrics library with chainsafe/prometheus-gc-stats to address security vulnerability CVE-XXXX-YYYY, while preserving the same GC metrics (nodejs_gc_runs_total, nodejs_gc_pause_seconds_total, nodejs_gc_reclaimed_bytes_total) and removing 70 transitive dependencies from the dependency tree.
+
 ## 15.4.3
 
 ### Patch Changes
