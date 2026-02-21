@@ -1,8 +1,7 @@
 import type { TGcMetrics, TOptionalPromsterOptions } from '@promster/types';
 
+import { gcStats } from '@chainsafe/prometheus-gc-stats';
 import once from 'lodash.once';
-// @ts-expect-error
-import gcStats from 'prometheus-gc-stats';
 import { defaultRegister } from '../client/client';
 
 const defaultOptions = {
@@ -11,11 +10,10 @@ const defaultOptions = {
 
 const createGcObserver = once(
   (_metrics: TGcMetrics, options: TOptionalPromsterOptions) => () => {
-    const startGcStats = gcStats(defaultRegister, {
+    gcStats(defaultRegister, {
+      collectionInterval: 6000,
       prefix: options.metricPrefix,
     });
-
-    startGcStats();
   }
 );
 
