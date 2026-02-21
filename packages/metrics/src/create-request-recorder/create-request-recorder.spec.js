@@ -58,13 +58,13 @@ describe('createRequestRecorder', () => {
 
     it('should record on `httpRequestContentLengthInBytes`', () => {
       expect(
-        metrics.httpRequestContentLengthInBytes[0].observe
+        metrics.httpRequestContentLengthInBytes[0].observe,
       ).toHaveBeenCalledWith(recordingOptions.labels, 123);
     });
 
     it('should record on `httpResponseContentLengthInBytes`', () => {
       expect(
-        metrics.httpResponseContentLengthInBytes[0].observe
+        metrics.httpResponseContentLengthInBytes[0].observe,
       ).toHaveBeenCalledWith(recordingOptions.labels, 456);
     });
   });
@@ -77,13 +77,13 @@ describe('createRequestRecorder', () => {
 
     it('should not record on `httpRequestContentLengthInBytes`', () => {
       expect(
-        metrics.httpRequestContentLengthInBytes[0].observe
+        metrics.httpRequestContentLengthInBytes[0].observe,
       ).not.toHaveBeenCalled();
     });
 
     it('should not record on `httpResponseContentLengthInBytes`', () => {
       expect(
-        metrics.httpResponseContentLengthInBytes[0].observe
+        metrics.httpResponseContentLengthInBytes[0].observe,
       ).not.toHaveBeenCalled();
     });
   });
@@ -96,13 +96,13 @@ describe('createRequestRecorder', () => {
 
     it('should record on `httpRequestDurationInSeconds`', () => {
       expect(
-        metrics.httpRequestDurationInSeconds[0].observe
+        metrics.httpRequestDurationInSeconds[0].observe,
       ).toHaveBeenCalledWith(recordingOptions.labels, expect.anything());
     });
 
     it('should record on `httpRequestDurationPerPercentileInSeconds`', () => {
       expect(
-        metrics.httpRequestDurationInSeconds[0].observe
+        metrics.httpRequestDurationInSeconds[0].observe,
       ).toHaveBeenCalledWith(recordingOptions.labels, expect.anything());
     });
   });
@@ -115,13 +115,13 @@ describe('createRequestRecorder', () => {
 
     it('should record on `httpRequestDurationInSeconds`', () => {
       expect(
-        metrics.httpRequestDurationInSeconds[0].observe
+        metrics.httpRequestDurationInSeconds[0].observe,
       ).toHaveBeenCalledWith(recordingOptions.labels, expect.anything());
     });
 
     it('should record on `httpRequestDurationPerPercentileInSeconds`', () => {
       expect(
-        metrics.httpRequestDurationInSeconds[0].observe
+        metrics.httpRequestDurationInSeconds[0].observe,
       ).toHaveBeenCalledWith(recordingOptions.labels, expect.anything());
     });
   });
@@ -135,7 +135,7 @@ describe('createRequestRecorder', () => {
     });
     it('should record on `httpRequestsTotal`', () => {
       expect(metrics.httpRequestsTotal[0].inc).toHaveBeenCalledWith(
-        recordingOptions.labels
+        recordingOptions.labels,
       );
     });
   });

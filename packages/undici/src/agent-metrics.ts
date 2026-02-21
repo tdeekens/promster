@@ -62,7 +62,7 @@ const supportedAgentStats: readonly TAgentStatsKeys[] = [
 
 function createAgentMetricsExporter(
   initialAgents?: TUndiciAgent[],
-  options?: TAgentMetricsExporterOptions
+  options?: TAgentMetricsExporterOptions,
 ): void {
   const metricName = `${options?.metricPrefix ?? ''}nodejs_undici_agent`;
 

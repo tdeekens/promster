@@ -24,7 +24,7 @@ const defaultOptions: TServerOptions = {
 };
 
 const createServer = async (
-  options: Partial<TServerOptions>
+  options: Partial<TServerOptions>,
 ): Promise<Server> => {
   const defaultedOptions = {
     ...defaultOptions,
@@ -35,7 +35,7 @@ const createServer = async (
     async (_req: IncomingMessage, res: ServerResponse) => {
       res.writeHead(200, 'OK', { 'content-type': getContentType() });
       res.end(await getSummary());
-    }
+    },
   );
 
   return new Promise((resolve, reject) => {

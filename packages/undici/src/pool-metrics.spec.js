@@ -86,7 +86,7 @@ it('should up metric', async () => {
       expect.objectContaining({
         name: 'nodejs_up',
       }),
-    ])
+    ]),
   );
 });
 
@@ -132,7 +132,7 @@ describe('pool metrics', () => {
     const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
 
     const nodejsUndiciPoolStats = parsedMetrics.find(
-      (metric) => metric.name === `nodejs_undici_pool_${statName}`
+      (metric) => metric.name === `nodejs_undici_pool_${statName}`,
     ).metrics;
 
     const expectedMetrics = {
@@ -166,7 +166,7 @@ describe('pool metrics', () => {
 
     const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
     const observedPoolsCounter = parsedMetrics.find(
-      (metric) => metric.name === 'nodejs_undici_pools_total'
+      (metric) => metric.name === 'nodejs_undici_pools_total',
     );
 
     expect(observedPoolsCounter).toBeDefined();
@@ -175,7 +175,7 @@ describe('pool metrics', () => {
         expect.objectContaining({
           value: '2',
         }),
-      ])
+      ]),
     );
   });
 });
@@ -187,7 +187,7 @@ it('should record the http metrics of requests made', async () => {
 
   const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
   const httpRequestsTotal = parsedMetrics.find(
-    (metric) => metric.name === 'http_requests_total'
+    (metric) => metric.name === 'http_requests_total',
   ).metrics;
 
   expect(httpRequestsTotal).toMatchInlineSnapshot(`
@@ -204,7 +204,7 @@ it('should record the http metrics of requests made', async () => {
   `);
 
   const httpRequestDurationSeconds = parsedMetrics.find(
-    (metric) => metric.name === 'http_request_duration_seconds'
+    (metric) => metric.name === 'http_request_duration_seconds',
   ).metrics;
 
   expect(httpRequestDurationSeconds).toMatchInlineSnapshot(`

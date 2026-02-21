@@ -53,7 +53,7 @@ const signalIsNotUp = () => {
 type TSkipFunction = <TRequest = FastifyRequest, TResponse = FastifyReply>(
   _req: TRequest,
   _res: TResponse,
-  _labels: TLabelValues
+  _labels: TLabelValues,
 ) => boolean;
 
 export type TPromsterOptions = TOptionalPromsterOptions & {
@@ -61,7 +61,7 @@ export type TPromsterOptions = TOptionalPromsterOptions & {
 };
 const createPlugin = async (
   fastify: FastifyInstance,
-  options: TPromsterOptions
+  options: TPromsterOptions,
 ) => {
   const allDefaultedOptions: TDefaultedPromsterOptions & {
     skip?: TSkipFunction;
@@ -72,7 +72,7 @@ const createPlugin = async (
     // @ts-expect-error
     createGcObserver.defaultOptions,
     defaultNormalizers,
-    options
+    options,
   );
 
   const shouldSkipMetricsByEnvironment =
@@ -116,18 +116,18 @@ const createPlugin = async (
           res: reply,
         }),
       },
-      allDefaultedOptions.getLabelValues?.(request, reply)
+      allDefaultedOptions.getLabelValues?.(request, reply),
     );
 
     const requestContentLength = Number(request.headers['content-length'] ?? 0);
     const responseContentLength = Number(
-      reply.getHeader('content-length') ?? 0
+      reply.getHeader('content-length') ?? 0,
     );
 
     const shouldSkipByRequest = allDefaultedOptions.skip?.(
       request,
       reply,
-      labels
+      labels,
     );
 
     if (!shouldSkipByRequest && !shouldSkipMetricsByEnvironment) {

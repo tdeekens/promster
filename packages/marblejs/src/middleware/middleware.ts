@@ -49,7 +49,7 @@ const signalIsNotUp = () => {
 type TSkipFunction = <TRequest = HttpRequest, TResponse = HttpResponse>(
   _req: TRequest,
   _res: TResponse,
-  _labels: TLabelValues
+  _labels: TLabelValues,
 ) => boolean;
 type THandlerOptions = TDefaultedPromsterOptions & {
   skip?: TSkipFunction;
@@ -63,14 +63,14 @@ const recordHandler =
   (
     res: HttpResponse,
     shouldSkipMetricsByEnvironment: boolean,
-    opts: THandlerOptions
+    opts: THandlerOptions,
   ) =>
   (stamp: TStamp) =>
     fromEvent(res, 'finish')
       .pipe(
         take(1),
         mapTo(stamp.req),
-        map((req) => ({ req, res }))
+        map((req) => ({ req, res })),
       )
       .subscribe(() => {
         const { req, timing } = stamp;
@@ -81,13 +81,13 @@ const recordHandler =
             status_code: opts.normalizeStatusCode(res.statusCode, { res, req }),
             path: opts.normalizePath(extractPath(req), { res, req }),
           },
-          opts.getLabelValues?.(req, res)
+          opts.getLabelValues?.(req, res),
         );
 
         const shouldSkipByRequest = opts.skip?.(req, res, labels);
 
         const responseContentLength = Number(
-          res.getHeader('content-length') ?? 0
+          res.getHeader('content-length') ?? 0,
         );
         const requestContentLength = Number(req.headers['content-length'] ?? 0);
 
@@ -111,7 +111,7 @@ const createMiddleware = ({ options }: TPromsterOptions = {}) => {
     // @ts-expect-error
     createGcObserver.defaultOptions,
     defaultNormalizers,
-    options
+    options,
   );
 
   const httpMetrics: THttpMetrics = createHttpMetrics(allDefaultedOptions);
@@ -132,9 +132,9 @@ const createMiddleware = ({ options }: TPromsterOptions = {}) => {
     return req$.pipe(
       map((req) => ({ req, timing: timing.start() })),
       tap(
-        recordHandler(res, shouldSkipMetricsByEnvironment, allDefaultedOptions)
+        recordHandler(res, shouldSkipMetricsByEnvironment, allDefaultedOptions),
       ),
-      map(({ req }) => req)
+      map(({ req }) => req),
     );
   }
 

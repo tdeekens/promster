@@ -37,7 +37,7 @@ describe('createHttpMetrics', () => {
 
       it('should have `httpRequestDurationPerPercentileInSeconds` metric', () => {
         expect(metrics).toHaveProperty(
-          'httpRequestDurationPerPercentileInSeconds'
+          'httpRequestDurationPerPercentileInSeconds',
         );
       });
     });
@@ -61,7 +61,7 @@ describe('createHttpMetrics', () => {
     it('should not have `httpRequestDurationPerPercentileInSeconds` metric', () => {
       expect(metrics).toHaveProperty(
         'httpRequestDurationPerPercentileInSeconds',
-        undefined
+        undefined,
       );
     });
   });
@@ -73,7 +73,7 @@ describe('createHttpMetrics', () => {
 
     it('should have `httpRequestDurationPerPercentileInSeconds` metric', () => {
       expect(metrics).toHaveProperty(
-        'httpRequestDurationPerPercentileInSeconds'
+        'httpRequestDurationPerPercentileInSeconds',
       );
     });
 

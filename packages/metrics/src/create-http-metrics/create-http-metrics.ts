@@ -18,16 +18,16 @@ const asArray = (maybeArray: Readonly<string[] | string>) =>
   Array.isArray(maybeArray) ? maybeArray : [maybeArray];
 
 const shouldObserveHttpRequestsAsSummary = (
-  options: TDefaultedPromsterOptions
+  options: TDefaultedPromsterOptions,
 ) => options.metricTypes.includes('httpRequestsSummary');
 const shouldObserveHttpRequestsAsHistogram = (
-  options: TDefaultedPromsterOptions
+  options: TDefaultedPromsterOptions,
 ) => options.metricTypes.includes('httpRequestsHistogram');
 const shouldObserveHttpRequestsAsCounter = (
-  options: TDefaultedPromsterOptions
+  options: TDefaultedPromsterOptions,
 ) => options.metricTypes.includes('httpRequestsTotal');
 const shouldObserveHttpContentLengthAsHistogram = (
-  options: TDefaultedPromsterOptions
+  options: TDefaultedPromsterOptions,
 ) => options.metricTypes.includes('httpContentLengthHistogram');
 
 const defaultOptions = {
@@ -57,57 +57,57 @@ const defaultOptions = {
 
 const getMetrics = (options: TDefaultedPromsterOptions) => ({
   httpRequestContentLengthInBytes: shouldObserveHttpContentLengthAsHistogram(
-    options
+    options,
   )
     ? asArray(options.metricNames.httpRequestContentLengthInBytes).map(
         (nameOfHttpContentLengthMetric: string) =>
           new Prometheus.Histogram({
             name: `${options.metricPrefix}${nameOfHttpContentLengthMetric}`,
             help: 'The HTTP request content length in bytes.',
-            labelNames: defaultLabels.concat(options.labels).sort(),
+            labelNames: defaultLabels.concat(options.labels).toSorted(),
             buckets:
               options.metricBuckets?.httpRequestContentLengthInBytes ||
               defaultHttpContentLengthInBytes,
-          })
+          }),
       )
     : undefined,
 
   httpResponseContentLengthInBytes: shouldObserveHttpContentLengthAsHistogram(
-    options
+    options,
   )
     ? asArray(options.metricNames.httpResponseContentLengthInBytes).map(
         (nameOfHttpContentLengthMetric: string) =>
           new Prometheus.Histogram({
             name: `${options.metricPrefix}${nameOfHttpContentLengthMetric}`,
             help: 'The HTTP response content length in bytes.',
-            labelNames: defaultLabels.concat(options.labels).sort(),
+            labelNames: defaultLabels.concat(options.labels).toSorted(),
             buckets:
               options.metricBuckets?.httpResponseContentLengthInBytes ||
               defaultHttpContentLengthInBytes,
-          })
+          }),
       )
     : undefined,
 });
 
 const getHttpRequestLatencyMetricsInSeconds = (
-  options: TDefaultedPromsterOptions
+  options: TDefaultedPromsterOptions,
 ) => ({
   httpRequestDurationPerPercentileInSeconds: shouldObserveHttpRequestsAsSummary(
-    options
+    options,
   )
     ? asArray(
-        options.metricNames.httpRequestDurationPerPercentileInSeconds
+        options.metricNames.httpRequestDurationPerPercentileInSeconds,
       ).map(
         (nameOfHttpRequestDurationPerPercentileInSeconds: string) =>
           new Prometheus.Summary({
             name: `${options.metricPrefix}${nameOfHttpRequestDurationPerPercentileInSeconds}`,
             help: 'The HTTP request latencies in seconds.',
-            labelNames: defaultLabels.concat(options.labels).sort(),
+            labelNames: defaultLabels.concat(options.labels).toSorted(),
             percentiles:
               options.metricPercentiles
                 ?.httpRequestDurationPerPercentileInSeconds ||
               defaultHttpRequestDurationPercentileInSeconds,
-          })
+          }),
       )
     : undefined,
 
@@ -117,11 +117,11 @@ const getHttpRequestLatencyMetricsInSeconds = (
           new Prometheus.Histogram({
             name: `${options.metricPrefix}${nameOfHttpRequestDurationInSecondsMetric}`,
             help: 'The HTTP request latencies in seconds.',
-            labelNames: defaultLabels.concat(options.labels).sort(),
+            labelNames: defaultLabels.concat(options.labels).toSorted(),
             buckets:
               options.metricBuckets?.httpRequestDurationInSeconds ||
               defaultHttpRequestDurationInSeconds,
-          })
+          }),
       )
     : undefined,
 });
@@ -133,18 +133,18 @@ const getHttpRequestCounterMetric = (options: TDefaultedPromsterOptions) => ({
           new Prometheus.Counter({
             name: `${options.metricPrefix}${nameOfHttpRequestsTotalMetric}`,
             help: 'The total HTTP requests.',
-            labelNames: defaultLabels.concat(options.labels).sort(),
-          })
+            labelNames: defaultLabels.concat(options.labels).toSorted(),
+          }),
       )
     : undefined,
 });
 
 const createHttpMetrics = (
-  options: TDefaultedPromsterOptions
+  options: TDefaultedPromsterOptions,
 ): THttpMetrics => {
   const defaultedOptions: TDefaultedPromsterOptions = merge(
     defaultOptions,
-    options
+    options,
   );
 
   configure({
@@ -162,7 +162,7 @@ const createHttpMetrics = (
     {},
     metrics,
     httpRequestLatencyMetricsInSeconds,
-    httpRequestCounterMetric
+    httpRequestCounterMetric,
   );
 };
 

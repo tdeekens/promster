@@ -6,12 +6,14 @@
     "es2024": true
   },
   "categories": {
-    "correctness": "error"
+    "correctness": "error",
+    "suspicious": "warn"
   },
   "ignorePatterns": ["**/node_modules/", "**/coverage/", "**/dist/"],
   "rules": {
+    "eqeqeq": "error",
+    "no-console": "warn",
     "no-undef": "error",
-    "no-unused-vars": "error",
     "no-void": "error",
     "no-negated-condition": "error",
     "no-restricted-globals": ["error", "event", "atob", "btoa"],
@@ -22,24 +24,23 @@
     "no-empty": "error",
     "no-empty-function": "error",
     "no-array-constructor": "error",
-    "no-useless-template-literal": "error",
     "typescript/no-explicit-any": "off",
     "typescript/no-inferrable-types": "error",
-    "typescript/prefer-as-const": "error",
     "typescript/array-type": ["error", { "default": "array" }],
+    "typescript/prefer-for-of": "error",
     "typescript/prefer-enum-initializers": "error",
-    "unicorn/no-for-loop": "error",
+    "typescript/no-unnecessary-template-expression": "error",
     "unicorn/prefer-number-properties": "error",
     "react/self-closing-comp": "error",
     "react/jsx-no-useless-fragment": "error",
-    "react-hooks/exhaustive-deps": "warn",
+    "import/no-duplicates": "error",
     "jest/no-disabled-tests": "warn"
   },
   "overrides": [
     {
-      "files": ["*.test.ts", "*.test.js", "*.spec.ts", "*.spec.js"],
+      "files": ["demo/**"],
       "rules": {
-        "jest/no-disabled-tests": "warn"
+        "no-console": "off"
       }
     }
   ]

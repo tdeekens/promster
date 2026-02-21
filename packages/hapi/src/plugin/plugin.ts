@@ -88,7 +88,7 @@ const getDoesResponseNeedInvocation = (actualVersion: string) =>
 type TSkipFunction = <TRequest = Request, TResponse = ResponseObject>(
   _req: TRequest,
   _res: TResponse,
-  _labels: TLabelValues
+  _labels: TLabelValues,
 ) => boolean;
 export type TPromsterOptions = TOptionalPromsterOptions & {
   skip?: TSkipFunction;
@@ -96,7 +96,7 @@ export type TPromsterOptions = TOptionalPromsterOptions & {
 const createPlugin = (
   { options: pluginOptions }: { options?: TPromsterOptions } = {
     options: undefined,
-  }
+  },
 ) => {
   const allDefaultedOptions: TDefaultedPromsterOptions & {
     skip?: TSkipFunction;
@@ -107,7 +107,7 @@ const createPlugin = (
     // @ts-expect-error
     createGcObserver.defaultOptions,
     defaultNormalizers,
-    pluginOptions
+    pluginOptions,
   );
 
   const shouldSkipMetricsByEnvironment =
@@ -132,17 +132,17 @@ const createPlugin = (
     register(
       server,
       _registrationOptions,
-      onRegistrationFinished = () => null
+      onRegistrationFinished = () => null,
     ) {
       const areServerEventsSupported = getAreServerEventsSupported(
-        server.version
+        server.version,
       );
       const doesResponseNeedInvocation = getDoesResponseNeedInvocation(
-        server.version
+        server.version,
       );
       const onRequestHandler = (
         request: TPromsterRequest,
-        h: ResponseToolkit
+        h: ResponseToolkit,
       ) => {
         request.plugins.promster = { timing: timing.start() };
         // @ts-expect-error
@@ -151,7 +151,7 @@ const createPlugin = (
 
       const onResponseHandler = (
         request: TPromsterRequest,
-        response: ResponseObject
+        response: ResponseObject,
       ) => {
         const labels = Object.assign(
           {},
@@ -169,24 +169,24 @@ const createPlugin = (
               {
                 req: request,
                 res: response,
-              }
+              },
             ),
           },
-          allDefaultedOptions.getLabelValues?.(request, {})
+          allDefaultedOptions.getLabelValues?.(request, {}),
         );
 
         const requestContentLength = Number(
-          request?.headers?.['content-length'] ?? 0
+          request?.headers?.['content-length'] ?? 0,
         );
         const responseContentLength = Number(
           // @ts-expect-error
-          request?.response?.headers?.['content-length'] ?? 0
+          request?.response?.headers?.['content-length'] ?? 0,
         );
 
         const shouldSkipByRequest = allDefaultedOptions.skip?.(
           request,
           response,
-          labels
+          labels,
         );
 
         if (!shouldSkipByRequest && !shouldSkipMetricsByEnvironment) {
