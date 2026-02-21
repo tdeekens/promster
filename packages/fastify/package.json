@@ -1,6 +1,6 @@
 {
   "name": "@promster/fastify",
-  "version": "15.4.4",
+  "version": "15.4.5",
   "description": "Fastify server integrations of promster",
   "keywords": [
     "continousdelivery",

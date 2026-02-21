@@ -1,5 +1,12 @@
 # @promster/server
 
+## 15.4.5
+
+### Patch Changes
+
+- Updated dependencies [[`18ffe20`](https://github.com/tdeekens/promster/commit/18ffe203a1ea400a30a4f2b0c87661aa94df6097)]:
+  - @promster/metrics@15.4.5
+
 ## 15.4.4
 
 ### Patch Changes
