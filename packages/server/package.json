@@ -2,9 +2,22 @@
   "name": "@promster/server",
   "version": "15.4.4",
   "description": "Server exposing metrics under GET /metrics",
-  "main": "dist/promster-server.cjs.js",
-  "typings": "dist/promster-server.cjs.d.ts",
-  "types": "dist/promster-server.cjs.d.ts",
+  "keywords": [
+    "continousdelivery",
+    "metrics",
+    "prometheus"
+  ],
+  "homepage": "https://github.com/tdeekens/promster#readme",
+  "bugs": {
+    "url": "https://github.com/tdeekens/promster/issues"
+  },
+  "license": "MIT",
+  "author": "Tobias Deekens <nerd@tdeekens.name>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tdeekens/promster.git",
+    "directory": "packages/server"
+  },
   "files": [
     "readme.md",
     "package.json",
@@ -12,29 +25,12 @@
     "dist/**",
     "modules/**"
   ],
+  "main": "dist/promster-server.cjs.js",
+  "types": "dist/promster-server.cjs.d.ts",
+  "typings": "dist/promster-server.cjs.d.ts",
   "publishConfig": {
     "access": "public"
   },
-  "engines": {
-    "node": ">=20",
-    "npm": ">=8"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/tdeekens/promster.git",
-    "directory": "packages/server"
-  },
-  "author": "Tobias Deekens <nerd@tdeekens.name>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/tdeekens/promster/issues"
-  },
-  "homepage": "https://github.com/tdeekens/promster#readme",
-  "keywords": [
-    "metrics",
-    "continousdelivery",
-    "prometheus"
-  ],
   "dependencies": {
     "@promster/metrics": "workspace:*",
     "tslib": "2.8.1"
@@ -43,5 +39,9 @@
     "@promster/types": "workspace:*",
     "@types/node": "24.10.13",
     "parse-prometheus-text-format": "1.1.1"
+  },
+  "engines": {
+    "node": ">=20",
+    "npm": ">=8"
   }
 }

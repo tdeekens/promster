@@ -1,5 +1,4 @@
 import type { Server } from '@hapi/hapi';
-
 import {
   defaultNormalizers,
   defaultRegister,
@@ -8,6 +7,7 @@ import {
   Prometheus,
   timing,
 } from '@promster/metrics';
+
 import {
   createPlugin,
   getRequestRecorder,

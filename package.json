@@ -1,7 +1,19 @@
 {
-  "private": true,
   "name": "promster",
+  "private": true,
   "description": "Monorepository for promster and its projects e.g. metrics, hapi and express",
+  "keywords": [
+    "continousdelivery",
+    "devops",
+    "metrics",
+    "monitoring",
+    "prometheus"
+  ],
+  "homepage": "https://github.com/tdeekens/promster#readme",
+  "bugs": {
+    "url": "https://github.com/tdeekens/promster/issues"
+  },
+  "author": "Tobias Deekens <nerd@tdeekens.name>",
   "scripts": {
     "auth": "npm_config_registry=https://registry.npmjs.org npm whoami",
     "build:watch": "preconstruct watch",
@@ -9,10 +21,10 @@
     "changeset:version-and-format": "changeset version && pnpm format && pnpm install --no-frozen-lockfile",
     "changeset": "changeset",
     "clean": "manypkg exec rm -rf build dist tsconfig.tsbuildinfo ts-build-cache",
-    "biome:check": "biome check --write",
-    "biome:fix": "biome lint --write",
-    "format": "biome format --write",
-    "lint": "biome lint",
+    "format": "oxfmt --write",
+    "format:check": "oxfmt --check",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
     "prerelease": "pnpm auth && pnpm build",
     "release": "changeset publish",
     "setup": "husky install && preconstruct dev && manypkg check && check-node-version --package --print",
@@ -21,34 +33,10 @@
     "test": "vitest",
     "typecheck": "tsc --build"
   },
-  "author": "Tobias Deekens <nerd@tdeekens.name>",
-  "engines": {
-    "node": ">=22",
-    "npm": ">=10",
-    "pnpm": ">=9"
-  },
-  "bugs": {
-    "url": "https://github.com/tdeekens/promster/issues"
-  },
-  "homepage": "https://github.com/tdeekens/promster#readme",
-  "preconstruct": {
-    "packages": [
-      "packages/*"
-    ]
-  },
-  "keywords": [
-    "monitoring",
-    "devops",
-    "prometheus",
-    "metrics",
-    "continousdelivery"
-  ],
-  "packageManager": "pnpm@10.29.3",
   "dependencies": {
     "@babel/core": "7.29.0",
     "@babel/preset-env": "7.29.0",
     "@babel/preset-typescript": "7.28.5",
-    "@biomejs/biome": "2.4.1",
     "@changesets/changelog-github": "0.5.2",
     "@changesets/cli": "2.29.8",
     "@commitlint/cli": "20.4.1",
@@ -65,5 +53,20 @@
     "rimraf": "6.0.1",
     "typescript": "5.9.3",
     "vitest": "4.0.18"
+  },
+  "devDependencies": {
+    "oxfmt": "0.34.0",
+    "oxlint": "1.49.0"
+  },
+  "engines": {
+    "node": ">=22",
+    "npm": ">=10",
+    "pnpm": ">=9"
+  },
+  "packageManager": "pnpm@10.29.3",
+  "preconstruct": {
+    "packages": [
+      "packages/*"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 comment:
-  layout: "reach, diff, flags, files"
+  layout: 'reach, diff, flags, files'
   behavior: default
   require_changes: false
   require_base: no
@@ -14,5 +14,5 @@ coverage:
       default:
         target: 60%
 ignore:
-  - "packages/dist/**"
-  - "demo"
+  - 'packages/dist/**'
+  - 'demo'

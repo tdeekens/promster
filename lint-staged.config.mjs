@@ -1,5 +1,6 @@
 export default {
   '*': [
-    'biome check', // Format, sort imports, lint, and apply safe fixes
+    'oxlint --fix', // Lint and apply safe fixes
+    'oxfmt --write', // Format and sort imports
   ],
 };

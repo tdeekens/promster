@@ -189,8 +189,8 @@ const middleware = createMiddleware({
 ### `@promster/express`
 
 ```js
-import app from "./your-express-app";
-import { createMiddleware } from "@promster/express";
+import app from './your-express-app';
+import { createMiddleware } from '@promster/express';
 
 // Note: This should be done BEFORE other routes
 // Pass 'app' as middleware parameter to additionally expose Prometheus under 'app.locals'
@@ -202,8 +202,8 @@ Passing the `app` into the `createMiddleware` call attaches the internal `prom-c
 ```js
 // Create an e.g. custom counter
 const counter = new app.locals.Prometheus.Counter({
-  name: "metric_name",
-  help: "metric_help",
+  name: 'metric_name',
+  help: 'metric_help',
 });
 
 // to later increment it
@@ -213,8 +213,8 @@ counter.inc();
 ### `@promster/fastify`
 
 ```js
-import app from "./your-fastify-app";
-import { plugin as promsterPlugin } from "@promster/fastify";
+import app from './your-fastify-app';
+import { plugin as promsterPlugin } from '@promster/fastify';
 
 fastify.register(promsterPlugin);
 ```
@@ -224,8 +224,8 @@ Plugin attaches the internal `prom-client` to your Fastify instance. This may co
 ```js
 // Create an e.g. custom counter
 const counter = new fastify.Prometheus.Counter({
-  name: "metric_name",
-  help: "metric_help",
+  name: 'metric_name',
+  help: 'metric_help',
 });
 
 // to later increment it
@@ -246,8 +246,8 @@ Here you do not have to pass in the `app` into the `createPlugin` call as the in
 ```js
 // Create an e.g. custom counter
 const counter = new app.Prometheus.Counter({
-  name: "metric_name",
-  help: "metric_help",
+  name: 'metric_name',
+  help: 'metric_help',
 });
 
 // to later increment it
@@ -326,7 +326,7 @@ const agent = new Agent({
 ### `@promster/apollo`
 
 ```js
-import { createPlugin as createPromsterMetricsPlugin } from "@promster/apollo";
+import { createPlugin as createPromsterMetricsPlugin } from '@promster/apollo';
 
 const server = new ApolloServer({
   typeDefs,
@@ -394,13 +394,13 @@ Options with their respective defaults are `port: 7788`, `hostname: '0.0.0.0'` a
 You can use the `express` or `hapi` package to expose the gathered metrics through your existing server. To do so just:
 
 ```js
-import app from "./your-express-app";
-import { getSummary, getContentType } from "@promster/express";
+import app from './your-express-app';
+import { getSummary, getContentType } from '@promster/express';
 
-app.use("/metrics", async (req, res) => {
+app.use('/metrics', async (req, res) => {
   req.statusCode = 200;
 
-  res.setHeader("Content-Type", getContentType());
+  res.setHeader('Content-Type', getContentType());
   res.end(await getSummary());
 });
 ```
@@ -416,14 +416,14 @@ app.use(
   createMiddleware({
     app,
     options: {
-      labels: ["proxied_to"],
+      labels: ['proxied_to'],
       getLabelValues: (req, res) => {
-        if (res.proxyTo === "someProxyTarget")
+        if (res.proxyTo === 'someProxyTarget')
           return {
-            proxied_to: "someProxyTarget",
-            path: "/",
+            proxied_to: 'someProxyTarget',
+            path: '/',
           };
-        if (req.get("x-custom-header"))
+        if (req.get('x-custom-header'))
           return {
             path: null,
             proxied_to: null,

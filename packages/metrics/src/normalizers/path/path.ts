@@ -1,4 +1,5 @@
 import url from 'node:url';
+
 import UrlValueParser from 'url-value-parser';
 
 const urlValueParser = new UrlValueParser();

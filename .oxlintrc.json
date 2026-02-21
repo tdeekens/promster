@@ -1,0 +1,46 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["typescript", "unicorn", "react", "jest", "import"],
+  "env": {
+    "node": true,
+    "es2024": true
+  },
+  "categories": {
+    "correctness": "error"
+  },
+  "ignorePatterns": ["**/node_modules/", "**/coverage/", "**/dist/"],
+  "rules": {
+    "no-undef": "error",
+    "no-unused-vars": "error",
+    "no-void": "error",
+    "no-negated-condition": "error",
+    "no-restricted-globals": ["error", "event", "atob", "btoa"],
+    "curly": "error",
+    "no-lonely-if": "error",
+    "no-param-reassign": "error",
+    "default-param-last": "error",
+    "no-empty": "error",
+    "no-empty-function": "error",
+    "no-array-constructor": "error",
+    "no-useless-template-literal": "error",
+    "typescript/no-explicit-any": "off",
+    "typescript/no-inferrable-types": "error",
+    "typescript/prefer-as-const": "error",
+    "typescript/array-type": ["error", { "default": "array" }],
+    "typescript/prefer-enum-initializers": "error",
+    "unicorn/no-for-loop": "error",
+    "unicorn/prefer-number-properties": "error",
+    "react/self-closing-comp": "error",
+    "react/jsx-no-useless-fragment": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "jest/no-disabled-tests": "warn"
+  },
+  "overrides": [
+    {
+      "files": ["*.test.ts", "*.test.js", "*.spec.ts", "*.spec.js"],
+      "rules": {
+        "jest/no-disabled-tests": "warn"
+      }
+    }
+  ]
+}

@@ -9,6 +9,7 @@ vi.mock('../client', () => ({
 }));
 
 import { beforeEach, describe, expect, it, vi } from 'vitest';
+
 import { createHttpMetrics } from './create-http-metrics';
 
 describe('createHttpMetrics', () => {

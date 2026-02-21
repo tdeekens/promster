@@ -6,6 +6,7 @@ import { createServer as createPrometheusMetricsServer } from '@promster/server'
 import gql from 'graphql-tag';
 import parsePrometheusTextFormat from 'parse-prometheus-text-format';
 import { afterAll, beforeAll, expect, it } from 'vitest';
+
 import { createPlugin as createPromsterMetricsPlugin } from './plugin';
 
 function throwErrorDirectiveTransformer(schema, directiveName = 'error') {

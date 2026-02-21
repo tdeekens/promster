@@ -1,6 +1,7 @@
 import once from 'lodash.once';
 import type { PrometheusContentType } from 'prom-client';
 import * as Prometheus from 'prom-client';
+
 import { skipMetricsInEnvironment } from '../environment';
 
 // NOTE:
@@ -8,8 +9,7 @@ import { skipMetricsInEnvironment } from '../environment';
 //   We could create multiple registries with `new Prometheus.registry()`.
 const defaultRegister = Prometheus.register;
 
-interface TClientOptions
-  extends Prometheus.DefaultMetricsCollectorConfiguration<PrometheusContentType> {
+interface TClientOptions extends Prometheus.DefaultMetricsCollectorConfiguration<PrometheusContentType> {
   detectKubernetes?: boolean;
   prefix?: string;
 }

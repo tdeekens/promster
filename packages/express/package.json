@@ -2,9 +2,22 @@
   "name": "@promster/express",
   "version": "15.4.4",
   "description": "Express server integrations of promster",
-  "main": "dist/promster-express.cjs.js",
-  "typings": "dist/promster-express.cjs.d.ts",
-  "types": "dist/promster-express.cjs.d.ts",
+  "keywords": [
+    "continousdelivery",
+    "metrics",
+    "prometheus"
+  ],
+  "homepage": "https://github.com/tdeekens/promster#readme",
+  "bugs": {
+    "url": "https://github.com/tdeekens/promster/issues"
+  },
+  "license": "MIT",
+  "author": "Tobias Deekens <nerd@tdeekens.name>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tdeekens/promster.git",
+    "directory": "packages/express"
+  },
   "files": [
     "readme.md",
     "package.json",
@@ -12,29 +25,12 @@
     "dist/**",
     "modules/**"
   ],
-  "engines": {
-    "node": ">=20",
-    "npm": ">=8"
-  },
+  "main": "dist/promster-express.cjs.js",
+  "types": "dist/promster-express.cjs.d.ts",
+  "typings": "dist/promster-express.cjs.d.ts",
   "publishConfig": {
     "access": "public"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/tdeekens/promster.git",
-    "directory": "packages/express"
-  },
-  "author": "Tobias Deekens <nerd@tdeekens.name>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/tdeekens/promster/issues"
-  },
-  "homepage": "https://github.com/tdeekens/promster#readme",
-  "keywords": [
-    "metrics",
-    "continousdelivery",
-    "prometheus"
-  ],
   "dependencies": {
     "@promster/metrics": "workspace:*",
     "merge-options": "3.0.4",
@@ -42,9 +38,13 @@
   },
   "devDependencies": {
     "@promster/server": "workspace:*",
-    "@types/express": "5.0.6",
     "@promster/types": "workspace:*",
+    "@types/express": "5.0.6",
     "express": "5.2.1",
     "parse-prometheus-text-format": "1.1.1"
+  },
+  "engines": {
+    "node": ">=20",
+    "npm": ">=8"
   }
 }

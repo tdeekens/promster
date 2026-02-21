@@ -19,6 +19,7 @@ import type {
 import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 import fastifyPlugin from 'fastify-plugin';
 import merge from 'merge-options';
+
 // @ts-expect-error
 import pkg from '../../package.json';
 

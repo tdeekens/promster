@@ -2,9 +2,22 @@
   "name": "@promster/metrics",
   "version": "15.4.4",
   "description": "Metrics utilities used by all other server integrations",
-  "main": "dist/promster-metrics.cjs.js",
-  "typings": "dist/promster-metrics.cjs.d.ts",
-  "types": "dist/promster-metrics.cjs.d.ts",
+  "keywords": [
+    "continousdelivery",
+    "metrics",
+    "prometheus"
+  ],
+  "homepage": "https://github.com/tdeekens/promster#readme",
+  "bugs": {
+    "url": "https://github.com/tdeekens/promster/issues"
+  },
+  "license": "MIT",
+  "author": "Tobias Deekens <nerd@tdeekens.name>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tdeekens/promster.git",
+    "directory": "packages/metrics"
+  },
   "files": [
     "readme.md",
     "package.json",
@@ -12,34 +25,17 @@
     "dist/**",
     "modules/**"
   ],
+  "main": "dist/promster-metrics.cjs.js",
+  "types": "dist/promster-metrics.cjs.d.ts",
+  "typings": "dist/promster-metrics.cjs.d.ts",
   "publishConfig": {
     "access": "public"
   },
-  "engines": {
-    "node": ">=20",
-    "npm": ">=8"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/tdeekens/promster.git",
-    "directory": "packages/metrics"
-  },
-  "author": "Tobias Deekens <nerd@tdeekens.name>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/tdeekens/promster/issues"
-  },
-  "homepage": "https://github.com/tdeekens/promster#readme",
-  "keywords": [
-    "metrics",
-    "continousdelivery",
-    "prometheus"
-  ],
   "dependencies": {
+    "@chainsafe/prometheus-gc-stats": "1.0.2",
     "lodash.memoize": "4.1.2",
     "lodash.once": "4.1.1",
     "merge-options": "3.0.4",
-    "@chainsafe/prometheus-gc-stats": "1.0.2",
     "tslib": "2.8.1",
     "url-value-parser": "2.2.0"
   },
@@ -52,5 +48,9 @@
   },
   "peerDependencies": {
     "prom-client": "13.x.x || 14.x || 15.x"
+  },
+  "engines": {
+    "node": ">=20",
+    "npm": ">=8"
   }
 }

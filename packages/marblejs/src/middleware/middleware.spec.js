@@ -3,6 +3,7 @@ import { createServer as createPrometheusMetricsServer } from '@promster/server'
 import parsePrometheusTextFormat from 'parse-prometheus-text-format';
 import { mapTo } from 'rxjs/operators';
 import { afterAll, beforeAll, expect, it } from 'vitest';
+
 import { createMiddleware } from './middleware';
 
 const metricsPort = '1341';
@@ -38,6 +39,7 @@ async function startServers() {
 
   return {
     close: async () =>
+      // oxlint-disable-next-line unicorn/no-single-promise-in-promise-methods -- pre-existing, single-element Promise.all
       Promise.all([
         new Promise((resolve, reject) => {
           prometheusMetricsServer.close((err) => {
@@ -123,7 +125,7 @@ it('should expose garbage collection metrics', async () => {
   );
 });
 
-// biome-ignore lint/suspicious/noSkippedTests: false positive
+// oxlint-disable-next-line jest/no-disabled-tests -- false positive
 it.skip('should record http metrics', async () => {
   await fetch(appServerUrl);
   const response = await fetch(metricsServerUrl);

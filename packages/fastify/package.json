@@ -2,9 +2,22 @@
   "name": "@promster/fastify",
   "version": "15.4.4",
   "description": "Fastify server integrations of promster",
-  "main": "dist/promster-fastify.cjs.js",
-  "typings": "dist/promster-fastify.cjs.d.ts",
-  "types": "dist/promster-fastify.cjs.d.ts",
+  "keywords": [
+    "continousdelivery",
+    "metrics",
+    "prometheus"
+  ],
+  "homepage": "https://github.com/tdeekens/promster#readme",
+  "bugs": {
+    "url": "https://github.com/tdeekens/promster/issues"
+  },
+  "license": "MIT",
+  "author": "Tobias Deekens <nerd@tdeekens.name>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tdeekens/promster.git",
+    "directory": "packages/fastify"
+  },
   "files": [
     "readme.md",
     "package.json",
@@ -12,29 +25,12 @@
     "dist/**",
     "modules/**"
   ],
+  "main": "dist/promster-fastify.cjs.js",
+  "types": "dist/promster-fastify.cjs.d.ts",
+  "typings": "dist/promster-fastify.cjs.d.ts",
   "publishConfig": {
     "access": "public"
   },
-  "engines": {
-    "node": ">=20",
-    "npm": ">=8"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/tdeekens/promster.git",
-    "directory": "packages/fastify"
-  },
-  "author": "Tobias Deekens <nerd@tdeekens.name>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/tdeekens/promster/issues"
-  },
-  "homepage": "https://github.com/tdeekens/promster#readme",
-  "keywords": [
-    "metrics",
-    "continousdelivery",
-    "prometheus"
-  ],
   "dependencies": {
     "@promster/metrics": "workspace:*",
     "@promster/server": "workspace:*",
@@ -45,5 +41,9 @@
   "devDependencies": {
     "@promster/types": "workspace:*",
     "fastify": "5.7.4"
+  },
+  "engines": {
+    "node": ">=20",
+    "npm": ">=8"
   }
 }
