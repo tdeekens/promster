@@ -18,7 +18,8 @@
     "quantile",
     "camelcase",
     "sematext",
-    "chainsafe"
+    "chainsafe",
+    "oxlint"
   ],
   "ignorePaths": ["**/CHANGELOG.md"]
 }
