@@ -73,7 +73,7 @@ const recordHandler =
         map((req) => ({ req, res })),
       )
       .subscribe(() => {
-        const { req, timing } = stamp;
+        const { req, timing: requestTiming } = stamp;
         const labels = Object.assign(
           {},
           {
@@ -92,7 +92,7 @@ const recordHandler =
         const requestContentLength = Number(req.headers['content-length'] ?? 0);
 
         if (!shouldSkipByRequest && !shouldSkipMetricsByEnvironment) {
-          recordRequest(timing, {
+          recordRequest(requestTiming, {
             labels,
             requestContentLength,
             responseContentLength,

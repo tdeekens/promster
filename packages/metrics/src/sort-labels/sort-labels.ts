@@ -2,7 +2,7 @@ import type { TLabelValues } from '@promster/types';
 
 function sortLabels(unsortedLabels: TLabelValues): TLabelValues {
   return Object.keys(unsortedLabels)
-    .sort((a, b) => {
+    .toSorted((a, b) => {
       if (a < b) {
         return -1;
       }
