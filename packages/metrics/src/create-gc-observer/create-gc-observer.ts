@@ -1,21 +1,15 @@
 import type { TGcMetrics, TOptionalPromsterOptions } from '@promster/types';
 
 import once from 'lodash.once';
-// @ts-expect-error
-import gcStats from 'prometheus-gc-stats';
-import { defaultRegister } from '../client/client';
 
 const defaultOptions = {
   disableGcMetrics: false,
 };
 
 const createGcObserver = once(
-  (_metrics: TGcMetrics, options: TOptionalPromsterOptions) => () => {
-    const startGcStats = gcStats(defaultRegister, {
-      prefix: options.metricPrefix,
-    });
-
-    startGcStats();
+  (_metrics: TGcMetrics, _options: TOptionalPromsterOptions) => () => {
+    // GC metrics are now collected by prom-client's collectDefaultMetrics()
+    // which is invoked in the client module's configure function.
   }
 );
 
