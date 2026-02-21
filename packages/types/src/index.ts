@@ -20,6 +20,7 @@ export type TOptionalPromsterOptions = {
   metricBuckets?: Record<string, number[]>;
   metricPercentiles?: Record<string, number[]>;
   disableGcMetrics?: boolean;
+  gcCollectionInterval?: number;
 };
 export type TDefaultedPromsterOptions = DeepRequired<TOptionalPromsterOptions>;
 
