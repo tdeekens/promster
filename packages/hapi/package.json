@@ -1,6 +1,6 @@
 {
   "name": "@promster/hapi",
-  "version": "15.4.3",
+  "version": "15.4.4",
   "description": "Hapi server integrations of promster",
   "main": "dist/promster-hapi.cjs.js",
   "typings": "dist/promster-hapi.cjs.d.ts",
