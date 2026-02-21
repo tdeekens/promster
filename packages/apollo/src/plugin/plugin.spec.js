@@ -3,7 +3,7 @@ import { startStandaloneServer } from '@apollo/server/standalone';
 import { makeExecutableSchema } from '@graphql-tools/schema';
 import { getDirective, MapperKind, mapSchema } from '@graphql-tools/utils';
 import { createServer as createPrometheusMetricsServer } from '@promster/server';
-import gql from 'graphql-tag';
+import { gql } from 'graphql-tag';
 import parsePrometheusTextFormat from 'parse-prometheus-text-format';
 import { afterAll, beforeAll, expect, it } from 'vitest';
 

@@ -88,7 +88,7 @@ function createPoolMetricsExporter(
     observedPools.addMany(initialPools);
   }
 
-  new Prometheus.Gauge({
+  const _totalGauge = new Prometheus.Gauge({
     name: `${metricName}s_total`,
     help: 'Number of Undici connection pools.',
     registers: [defaultRegister],
@@ -98,7 +98,7 @@ function createPoolMetricsExporter(
   });
 
   for (const supportedStat of supportedPoolStats) {
-    new Prometheus.Gauge({
+    const _statGauge = new Prometheus.Gauge({
       name: `${metricName}_${supportedStat}`,
       help: `Statistics for Undici connection pools ${supportedStat} stat. See https://github.com/nodejs/undici/blob/main/docs/docs/api/PoolStats.md`,
       labelNames: ['origin'],

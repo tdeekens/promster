@@ -70,7 +70,7 @@ function createAgentMetricsExporter(
     observedAgents.addMany(initialAgents);
   }
 
-  new Prometheus.Gauge({
+  const _totalGauge = new Prometheus.Gauge({
     name: `${metricName}s_total`,
     help: 'Number of Undici agents.',
     registers: [defaultRegister],
@@ -80,7 +80,7 @@ function createAgentMetricsExporter(
   });
 
   for (const supportedStat of supportedAgentStats) {
-    new Prometheus.Gauge({
+    const _statGauge = new Prometheus.Gauge({
       name: `${metricName}_${supportedStat}`,
       help: `Statistics for Undici agents ${supportedStat} stat. See https://github.com/nodejs/undici/blob/main/docs/docs/api/Agent.md#agentstats`,
       labelNames: ['origin'],
