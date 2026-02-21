@@ -1,5 +1,14 @@
 # @promster/hapi
 
+## 15.4.5
+
+### Patch Changes
+
+- [#1508](https://github.com/tdeekens/promster/pull/1508) [`18ffe20`](https://github.com/tdeekens/promster/commit/18ffe203a1ea400a30a4f2b0c87661aa94df6097) Thanks [@tdeekens](https://github.com/tdeekens)! - Improve README and migrate to OXC tooling
+
+- Updated dependencies [[`18ffe20`](https://github.com/tdeekens/promster/commit/18ffe203a1ea400a30a4f2b0c87661aa94df6097)]:
+  - @promster/metrics@15.4.5
+
 ## 15.4.4
 
 ### Patch Changes

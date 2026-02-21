@@ -1,6 +1,6 @@
 {
   "name": "@promster/express",
-  "version": "15.4.4",
+  "version": "15.4.5",
   "description": "Express server integrations of promster",
   "keywords": [
     "continousdelivery",
