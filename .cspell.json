@@ -17,7 +17,8 @@
     "proxied",
     "quantile",
     "camelcase",
-    "sematext"
+    "sematext",
+    "chainsafe"
   ],
   "ignorePaths": ["**/CHANGELOG.md"]
 }
