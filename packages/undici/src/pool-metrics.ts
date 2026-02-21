@@ -60,7 +60,7 @@ function addObservedPool(origin: string, pool: TUndiciPool) {
 
 function observedPoolFactory(
   origin: string,
-  options?: TUndiciAgent.Options
+  options?: TUndiciAgent.Options,
 ): TUndiciDispatcher {
   if (options?.connections === 1) {
     return new UndiciClient(origin, options);
@@ -80,7 +80,7 @@ const supportedPoolStats: readonly TPoolStatsKeys[] = [
 
 function createPoolMetricsExporter(
   initialPools?: Record<string, TUndiciPool>,
-  options?: TPoolsMetricsExporterOptions
+  options?: TPoolsMetricsExporterOptions,
 ): void {
   const metricName = `${options?.metricPrefix ?? ''}nodejs_undici_pool`;
 

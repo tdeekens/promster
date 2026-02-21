@@ -126,7 +126,7 @@ it('should up metric', async () => {
       expect.objectContaining({
         name: 'nodejs_up',
       }),
-    ])
+    ]),
   );
 });
 
@@ -168,7 +168,7 @@ it('should expose garbage collection metrics', async () => {
       expect.objectContaining({
         name: 'nodejs_version_info',
       }),
-    ])
+    ]),
   );
 });
 
@@ -195,7 +195,7 @@ it('should expose GraphQL metrics', async () => {
       expect.objectContaining({
         name: 'graphql_parse_duration_seconds',
       }),
-    ])
+    ]),
   );
 });
 
@@ -221,7 +221,7 @@ it('should record GraphQL metrics for successful requests', async () => {
 
   const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
   const graphQlRequestDurationSeconds = parsedMetrics.find(
-    (metric) => metric.name === 'graphql_request_duration_seconds'
+    (metric) => metric.name === 'graphql_request_duration_seconds',
   ).metrics;
 
   expect(graphQlRequestDurationSeconds).toMatchInlineSnapshot(`
@@ -240,7 +240,7 @@ it('should record GraphQL metrics for successful requests', async () => {
   `);
 
   const graphQlResolveFieldDurationSeconds = parsedMetrics.find(
-    (metric) => metric.name === 'graphql_resolve_field_duration_seconds'
+    (metric) => metric.name === 'graphql_resolve_field_duration_seconds',
   ).metrics;
 
   expect(graphQlResolveFieldDurationSeconds).toMatchInlineSnapshot(`
@@ -281,7 +281,7 @@ it('should record GraphQL metrics for failed requests in validation phase', asyn
 
   const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
   const graphQlErrorsTotal = parsedMetrics.find(
-    (metric) => metric.name === 'graphql_errors_total'
+    (metric) => metric.name === 'graphql_errors_total',
   ).metrics;
 
   expect(graphQlErrorsTotal).toMatchInlineSnapshot(`
@@ -319,7 +319,7 @@ it('should record GraphQL metrics for failed requests in execute phase', async (
 
   const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
   const graphQlErrorsTotal = parsedMetrics.find(
-    (metric) => metric.name === 'graphql_errors_total'
+    (metric) => metric.name === 'graphql_errors_total',
   ).metrics;
 
   expect(graphQlErrorsTotal).toMatchInlineSnapshot(`

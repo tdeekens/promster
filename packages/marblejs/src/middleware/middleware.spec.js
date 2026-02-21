@@ -24,7 +24,7 @@ async function startServers() {
       r.pipe(
         r.matchPath('/'),
         r.matchType('GET'),
-        r.useEffect((req$) => req$.pipe(mapTo({ body: { status: 'ok' } })))
+        r.useEffect((req$) => req$.pipe(mapTo({ body: { status: 'ok' } }))),
       ),
     ],
   });
@@ -79,7 +79,7 @@ it('should up metric', async () => {
       expect.objectContaining({
         name: 'nodejs_up',
       }),
-    ])
+    ]),
   );
 });
 
@@ -121,7 +121,7 @@ it('should expose garbage collection metrics', async () => {
       expect.objectContaining({
         name: 'nodejs_version_info',
       }),
-    ])
+    ]),
   );
 });
 
@@ -133,7 +133,7 @@ it.skip('should record http metrics', async () => {
 
   const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
   const httpRequestsTotal = parsedMetrics.find(
-    (metric) => metric.name === 'http_requests_total'
+    (metric) => metric.name === 'http_requests_total',
   ).metrics;
 
   expect(httpRequestsTotal).toMatchInlineSnapshot(`
@@ -150,7 +150,7 @@ it.skip('should record http metrics', async () => {
   `);
 
   const httpRequestDurationSeconds = parsedMetrics.find(
-    (metric) => metric.name === 'http_request_duration_seconds'
+    (metric) => metric.name === 'http_request_duration_seconds',
   ).metrics;
 
   expect(httpRequestDurationSeconds).toMatchInlineSnapshot(`

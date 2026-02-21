@@ -20,7 +20,7 @@ type TRecordingOptions = {
 type TLegacyTiming = [number, number];
 export type TRequestRecorder = (
   _timing: Timing | TLegacyTiming,
-  _recordingOptions: TRecordingOptions
+  _recordingOptions: TRecordingOptions,
 ) => void;
 
 const defaultOptions: TOptionalPromsterOptions = {
@@ -33,19 +33,19 @@ function isTiming(timing: Timing | TLegacyTiming): timing is Timing {
 
 const createRequestRecorder = (
   metrics: THttpMetrics,
-  options: TOptionalPromsterOptions = defaultOptions
+  options: TOptionalPromsterOptions = defaultOptions,
 ): TRequestRecorder => {
   const defaultedRecorderOptions: TDefaultedPromsterOptions = merge(
     defaultOptions,
-    options
+    options,
   );
   const shouldSkipMetricsByEnvironment = skipMetricsInEnvironment(
-    defaultedRecorderOptions
+    defaultedRecorderOptions,
   );
 
   return (
     timing: Timing | TLegacyTiming,
-    recordingOptions: TRecordingOptions
+    recordingOptions: TRecordingOptions,
   ) => {
     const durationS = isTiming(timing)
       ? timing.end().value().seconds
@@ -66,7 +66,7 @@ const createRequestRecorder = (
         for (const httpRequestDurationPerPercentileInSecondsMetricType of metrics.httpRequestDurationPerPercentileInSeconds) {
           httpRequestDurationPerPercentileInSecondsMetricType.observe(
             labels,
-            durationS
+            durationS,
           );
         }
       }
@@ -85,7 +85,7 @@ const createRequestRecorder = (
         for (const httpRequestContentLengthInBytesMetricType of metrics.httpRequestContentLengthInBytes) {
           httpRequestContentLengthInBytesMetricType.observe(
             labels,
-            recordingOptions.requestContentLength
+            recordingOptions.requestContentLength,
           );
         }
       }
@@ -96,7 +96,7 @@ const createRequestRecorder = (
         for (const httpResponseContentLengthInBytesMetricType of metrics.httpResponseContentLengthInBytes) {
           httpResponseContentLengthInBytesMetricType.observe(
             labels,
-            recordingOptions.responseContentLength
+            recordingOptions.responseContentLength,
           );
         }
       }

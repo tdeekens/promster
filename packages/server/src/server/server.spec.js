@@ -55,7 +55,7 @@ it('should up metric', async () => {
       expect.objectContaining({
         name: 'nodejs_up',
       }),
-    ])
+    ]),
   );
 });
 
@@ -94,6 +94,6 @@ it('should expose garbage collection metrics', async () => {
       expect.objectContaining({
         name: 'nodejs_eventloop_lag_p50_seconds',
       }),
-    ])
+    ]),
   );
 });

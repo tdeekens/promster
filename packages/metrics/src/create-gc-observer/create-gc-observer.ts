@@ -14,7 +14,7 @@ const createGcObserver = once(
       collectionInterval: options.gcCollectionInterval,
       prefix: options.metricPrefix,
     });
-  }
+  },
 );
 
 // @ts-expect-error

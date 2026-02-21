@@ -13,19 +13,19 @@ const asArray = (maybeArray: Readonly<string[] | string>) =>
   Array.isArray(maybeArray) ? maybeArray : [maybeArray];
 
 const shouldObserveGraphQlParseDurationAsHistogram = (
-  options: TDefaultedPromsterOptions
+  options: TDefaultedPromsterOptions,
 ) => options.metricTypes.includes('graphQlParseDurationHistogram');
 const shouldObserveGraphQlValidationDurationAsHistogram = (
-  options: TDefaultedPromsterOptions
+  options: TDefaultedPromsterOptions,
 ) => options.metricTypes.includes('graphQlValidationDurationHistogram');
 const shouldObserveGraphQlResolveFieldDurationAsHistogram = (
-  options: TDefaultedPromsterOptions
+  options: TDefaultedPromsterOptions,
 ) => options.metricTypes.includes('graphQlResolveFieldDurationHistogram');
 const shouldObserveGraphQlRequestDurationAsHistogram = (
-  options: TDefaultedPromsterOptions
+  options: TDefaultedPromsterOptions,
 ) => options.metricTypes.includes('graphQlRequestDurationHistogram');
 const shouldObserveGraphQlErrorsTotalAsCounter = (
-  options: TDefaultedPromsterOptions
+  options: TDefaultedPromsterOptions,
 ) => options.metricTypes.includes('graphQlErrorsTotal');
 
 const defaultOptions = {
@@ -62,27 +62,27 @@ const getMetrics = (options: TDefaultedPromsterOptions) => ({
           new Prometheus.Histogram({
             name: `${options.metricPrefix}${nameOfGraphQlParseDuration}`,
             help: 'The GraphQL request parse time in seconds.',
-            labelNames: defaultLabels.concat(options.labels).sort(),
+            labelNames: defaultLabels.concat(options.labels).toSorted(),
             buckets:
               options.metricPercentiles?.graphQlParseDuration ||
               defaultGraphQlPercentiles,
-          })
+          }),
       )
     : undefined,
 
   graphQlValidationDuration: shouldObserveGraphQlValidationDurationAsHistogram(
-    options
+    options,
   )
     ? asArray(options.metricNames.graphQlValidationDuration).map(
         (nameOfGraphQlValidationDuration: string) =>
           new Prometheus.Histogram({
             name: `${options.metricPrefix}${nameOfGraphQlValidationDuration}`,
             help: 'The GraphQL request validation time in seconds.',
-            labelNames: defaultLabels.concat(options.labels).sort(),
+            labelNames: defaultLabels.concat(options.labels).toSorted(),
             buckets:
               options.metricPercentiles?.graphQlValidationDuration ||
               defaultGraphQlPercentiles,
-          })
+          }),
       )
     : undefined,
 
@@ -96,27 +96,27 @@ const getMetrics = (options: TDefaultedPromsterOptions) => ({
               labelNames: defaultLabels
                 .concat(['field_name'])
                 .concat(options.labels)
-                .sort(),
+                .toSorted(),
               buckets:
                 options.metricPercentiles?.graphQlResolveFieldDuration ||
                 defaultGraphQlPercentiles,
-            })
+            }),
         )
       : undefined,
 
   graphQlRequestDuration: shouldObserveGraphQlRequestDurationAsHistogram(
-    options
+    options,
   )
     ? asArray(options.metricNames.graphQlRequestDuration).map(
         (nameOfGraphQlRequestDuration: string) =>
           new Prometheus.Histogram({
             name: `${options.metricPrefix}${nameOfGraphQlRequestDuration}`,
             help: 'The GraphQL request duration time in seconds.',
-            labelNames: defaultLabels.concat(options.labels).sort(),
+            labelNames: defaultLabels.concat(options.labels).toSorted(),
             buckets:
               options.metricPercentiles?.graphQlRequestDuration ||
               defaultGraphQlPercentiles,
-          })
+          }),
       )
     : undefined,
 
@@ -129,18 +129,18 @@ const getMetrics = (options: TDefaultedPromsterOptions) => ({
             labelNames: defaultLabels
               .concat(['phase'])
               .concat(options.labels)
-              .sort(),
-          })
+              .toSorted(),
+          }),
       )
     : undefined,
 });
 
 const createGraphQlMetrics = (
-  options: TDefaultedPromsterOptions
+  options: TDefaultedPromsterOptions,
 ): TGraphQlMetrics => {
   const defaultedOptions: TDefaultedPromsterOptions = merge(
     defaultOptions,
-    options
+    options,
   );
 
   configure({

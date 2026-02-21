@@ -63,7 +63,7 @@ const signalIsNotUp = () => {
 type TSkipFunction = <TRequest = Request, TResponse = Response>(
   _req: TRequest,
   _res: TResponse,
-  _labels: TLabelValues
+  _labels: TLabelValues,
 ) => boolean;
 export type TPromsterOptions = TOptionalPromsterOptions & {
   skip?: TSkipFunction;
@@ -73,7 +73,7 @@ type TMiddlewareOptions = {
   options?: TPromsterOptions;
 };
 const createMiddleware = (
-  { app, options }: TMiddlewareOptions = { app: undefined, options: undefined }
+  { app, options }: TMiddlewareOptions = { app: undefined, options: undefined },
 ) => {
   const allDefaultedOptions: TDefaultedPromsterOptions & {
     skip?: TSkipFunction;
@@ -84,7 +84,7 @@ const createMiddleware = (
     // @ts-expect-error
     createGcObserver.defaultOptions,
     defaultNormalizers,
-    options
+    options,
   );
 
   const shouldSkipMetricsByEnvironment =
@@ -117,27 +117,27 @@ const createMiddleware = (
           }),
           status_code: allDefaultedOptions.normalizeStatusCode(
             response.statusCode,
-            { req: request, res: response }
+            { req: request, res: response },
           ),
           path: allDefaultedOptions.normalizePath(extractPath(request), {
             req: request,
             res: response,
           }),
         },
-        allDefaultedOptions.getLabelValues?.(request, response)
+        allDefaultedOptions.getLabelValues?.(request, response),
       );
 
       const shouldSkipByRequest = allDefaultedOptions.skip?.(
         request,
         response,
-        labels
+        labels,
       );
 
       const requestContentLength = Number(
-        request.headers['content-length'] ?? 0
+        request.headers['content-length'] ?? 0,
       );
       const responseContentLength = Number(
-        response.getHeader('content-length') ?? 0
+        response.getHeader('content-length') ?? 0,
       );
 
       if (!shouldSkipByRequest && !shouldSkipMetricsByEnvironment) {

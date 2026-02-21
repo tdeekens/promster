@@ -86,7 +86,7 @@ it('should up metric', async () => {
       expect.objectContaining({
         name: 'nodejs_up',
       }),
-    ])
+    ]),
   );
 });
 
@@ -134,7 +134,7 @@ describe('agent metrics', () => {
       const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
 
       const nodejsUndiciAgentStats = parsedMetrics.find(
-        (metric) => metric.name === `nodejs_undici_agent_${statName}`
+        (metric) => metric.name === `nodejs_undici_agent_${statName}`,
       ).metrics;
 
       const expectedMetrics = {
@@ -148,7 +148,7 @@ describe('agent metrics', () => {
 
       // Use array containment assertion
       expect(nodejsUndiciAgentStats).toEqual(expectedMetrics[statName]);
-    }
+    },
   );
 
   it('should expose the total number of agents', async () => {
@@ -157,7 +157,7 @@ describe('agent metrics', () => {
 
     const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
     const observedAgentsCounter = parsedMetrics.find(
-      (metric) => metric.name === 'nodejs_undici_agents_total'
+      (metric) => metric.name === 'nodejs_undici_agents_total',
     );
 
     expect(observedAgentsCounter).toBeDefined();
@@ -166,7 +166,7 @@ describe('agent metrics', () => {
         expect.objectContaining({
           value: '2',
         }),
-      ])
+      ]),
     );
   });
 });
@@ -178,7 +178,7 @@ it('should record the http metrics of requests made', async () => {
 
   const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
   const httpRequestsTotal = parsedMetrics.find(
-    (metric) => metric.name === 'http_requests_total'
+    (metric) => metric.name === 'http_requests_total',
   ).metrics;
 
   expect(httpRequestsTotal).toMatchInlineSnapshot(`
@@ -195,7 +195,7 @@ it('should record the http metrics of requests made', async () => {
   `);
 
   const httpRequestDurationSeconds = parsedMetrics.find(
-    (metric) => metric.name === 'http_request_duration_seconds'
+    (metric) => metric.name === 'http_request_duration_seconds',
   ).metrics;
 
   expect(httpRequestDurationSeconds).toMatchInlineSnapshot(`

@@ -22,14 +22,14 @@ const getMetrics = (options: TDefaultedPromsterOptions) => ({
       new Prometheus.Gauge({
         name: `${options.metricPrefix}${nameOfUpMetric}`,
         help: '1 = nodejs server is up, 0 = nodejs server is not up',
-      })
+      }),
   ),
 });
 
 const createGcMetrics = (options: TDefaultedPromsterOptions): TGcMetrics => {
   const defaultedOptions: TDefaultedPromsterOptions = merge(
     defaultOptions,
-    options
+    options,
   );
 
   configure({

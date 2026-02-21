@@ -22,6 +22,7 @@ import type {
 } from '@promster/types';
 import merge from 'merge-options';
 
+// oxlint-disable-next-line no-unassigned-vars -- exported getter pattern, value unused in this module
 let recordRequest: TRequestRecorder;
 let upMetric: TGcMetrics['up'];
 
@@ -53,14 +54,14 @@ type TSkipFunction = <
 >(
   _req: TRequest,
   _res: TResponse,
-  _labels: TLabelValues
+  _labels: TLabelValues,
 ) => boolean;
 export type TPromsterOptions = {
   options?: TOptionalPromsterOptions & { skip?: TSkipFunction };
 };
 
 const createPlugin = (
-  { options }: TPromsterOptions = { options: undefined }
+  { options }: TPromsterOptions = { options: undefined },
 ) => {
   const allDefaultedOptions: TDefaultedPromsterOptions & {
     skip?: TSkipFunction;
@@ -71,7 +72,7 @@ const createPlugin = (
     {
       labels: ['operation_name', 'field_name'],
     },
-    options
+    options,
   );
 
   const shouldSkipMetricsByEnvironment =
@@ -90,7 +91,7 @@ const createPlugin = (
   }
 
   function getDefaultLabelsOrSkipMeasurement(
-    requestContext: GraphQLRequestContext<BaseContext>
+    requestContext: GraphQLRequestContext<BaseContext>,
   ): TLabelValues {
     const labels = Object.assign(
       {},
@@ -99,14 +100,14 @@ const createPlugin = (
       },
       allDefaultedOptions.getLabelValues?.(
         requestContext.request,
-        requestContext.response
-      )
+        requestContext.response,
+      ),
     );
 
     const shouldSkipByRequest = allDefaultedOptions.skip?.(
       requestContext.request,
       requestContext.response,
-      labels
+      labels,
     );
 
     if (shouldSkipByRequest ?? shouldSkipMetricsByEnvironment) {
@@ -138,7 +139,7 @@ const createPlugin = (
             const { seconds: parseDurationSeconds } = parseTiming.end().value();
 
             const labels = getDefaultLabelsOrSkipMeasurement(
-              parsingRequestContext
+              parsingRequestContext,
             );
 
             if (parseDurationSeconds !== undefined) {
@@ -167,7 +168,7 @@ const createPlugin = (
               .end()
               .value();
             const labels = getDefaultLabelsOrSkipMeasurement(
-              validationRequestContext
+              validationRequestContext,
             );
 
             if (validationDurationSeconds !== undefined) {
@@ -182,7 +183,7 @@ const createPlugin = (
               if (graphQlMetrics.graphQlErrorsTotal) {
                 for (const metric of graphQlMetrics.graphQlErrorsTotal) {
                   metric.inc(
-                    Object.assign({}, labels, { phase: 'validation' })
+                    Object.assign({}, labels, { phase: 'validation' }),
                   );
                 }
               }
@@ -200,7 +201,7 @@ const createPlugin = (
                   fieldResolveTiming.end().value();
 
                 const defaultLabels = getDefaultLabelsOrSkipMeasurement(
-                  executionRequestContext
+                  executionRequestContext,
                 );
                 const labels = Object.assign({}, defaultLabels, {
                   field_name: info.fieldName,
@@ -218,7 +219,7 @@ const createPlugin = (
                   if (graphQlMetrics.graphQlErrorsTotal) {
                     for (const metric of graphQlMetrics.graphQlErrorsTotal) {
                       metric.inc(
-                        Object.assign({}, labels, { phase: 'execution' })
+                        Object.assign({}, labels, { phase: 'execution' }),
                       );
                     }
                   }
@@ -234,7 +235,7 @@ const createPlugin = (
             .value();
 
           const labels = getDefaultLabelsOrSkipMeasurement(
-            responseRequestContext
+            responseRequestContext,
           );
 
           if (requestDurationSeconds !== undefined) {
