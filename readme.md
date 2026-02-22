@@ -409,7 +409,7 @@ const fetchSomeData = async () => {
 
 ### Up/Down signals
 
-Both `@promster/hapi` and `@promster/express` expose setters for the `up` Prometheus gauge. Whenever the server finished booting and is ready you can call `signalIsUp()`. Given the server goes down again you can call `signalIsNotUp()` to set the gauge back to `0`. There is no standard hook in both Express and Hapi to tie this into automatically. Other tools to indicate service health such as `lightship` indicating Kubernetes Pod liveliness and readiness probes also offer setters to alter state.
+`@promster/express`, `@promster/hapi`, `@promster/fastify` and `@promster/marblejs` automatically set the `nodejs_up` Prometheus gauge to `1` when the middleware or plugin is created. The `@promster/apollo` package does the same via the `serverWillStart` lifecycle hook. All packages also expose `signalIsUp()` and `signalIsNotUp()` for manual control. For instance, you can call `signalIsNotUp()` during graceful shutdown to set the gauge back to `0`.
 
 ## ❯ Metrics Reference
 

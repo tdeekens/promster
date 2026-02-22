@@ -222,6 +222,8 @@ const createPlugin = (
       server.decorate('server', 'Prometheus', Prometheus);
       server.decorate('server', 'recordRequest', recordRequest);
 
+      signalIsUp();
+
       return onRegistrationFinished?.();
     },
   };

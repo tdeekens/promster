@@ -104,6 +104,8 @@ const createMiddleware = (
     observeGc();
   }
 
+  signalIsUp();
+
   return (request: Request, response: Response, next: NextFunction) => {
     const requestTiming = timing.start();
 

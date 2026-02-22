@@ -139,6 +139,8 @@ const createPlugin = async (
       });
     }
   });
+
+  signalIsUp();
 };
 
 const plugin = fastifyPlugin(createPlugin, {

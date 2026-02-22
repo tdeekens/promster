@@ -128,6 +128,8 @@ const createMiddleware = ({ options }: TPromsterOptions = {}) => {
     observeGc();
   }
 
+  signalIsUp();
+
   function middleware(req$: Observable<HttpRequest>, res: HttpResponse) {
     return req$.pipe(
       map((req) => ({ req, timing: timing.start() })),
