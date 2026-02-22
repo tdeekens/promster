@@ -1,5 +1,14 @@
 # @promster/hapi
 
+## 15.4.6
+
+### Patch Changes
+
+- [#1511](https://github.com/tdeekens/promster/pull/1511) [`9517f6a`](https://github.com/tdeekens/promster/commit/9517f6ad40610f573a5c8b7f0fd5375b8761c04a) Thanks [@tdeekens](https://github.com/tdeekens)! - Automatically call `signalIsUp()` on middleware/plugin creation so that the `nodejs_up` gauge is set to `1` without requiring manual invocation.
+
+- Updated dependencies []:
+  - @promster/metrics@15.4.6
+
 ## 15.4.5
 
 ### Patch Changes

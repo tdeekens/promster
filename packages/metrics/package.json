@@ -1,6 +1,6 @@
 {
   "name": "@promster/metrics",
-  "version": "15.4.5",
+  "version": "15.4.6",
   "description": "Metrics utilities used by all other server integrations",
   "keywords": [
     "continousdelivery",
