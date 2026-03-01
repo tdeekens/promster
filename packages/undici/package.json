@@ -41,7 +41,7 @@
     "@promster/express": "workspace:*",
     "@promster/server": "workspace:*",
     "@promster/types": "workspace:*",
-    "@types/node": "24.10.13",
+    "@types/node": "24.11.0",
     "express": "5.2.1",
     "parse-prometheus-text-format": "1.1.1",
     "prom-client": "15.1.3",
