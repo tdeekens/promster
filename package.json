@@ -63,7 +63,7 @@
     "npm": ">=10",
     "pnpm": ">=9"
   },
-  "packageManager": "pnpm@10.29.3",
+  "packageManager": "pnpm@10.30.3",
   "preconstruct": {
     "packages": [
       "packages/*"
