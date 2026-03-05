@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "@promster/types": "workspace:*",
-    "fastify": "5.7.4"
+    "fastify": "5.8.1"
   },
   "engines": {
     "node": ">=20",
