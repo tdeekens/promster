@@ -182,8 +182,8 @@ importers:
         specifier: 10.0.1
         version: 10.0.1
       '@hapi/hapi':
-        specifier: 21.4.6
-        version: 21.4.6
+        specifier: 21.4.7
+        version: 21.4.7
       '@promster/server':
         specifier: workspace:*
         version: link:../server
@@ -1372,8 +1372,8 @@ packages:
   '@hapi/formula@3.0.2':
     resolution: {integrity: sha512-hY5YPNXzw1He7s0iqkRQi+uMGh383CGdyyIGYtB+W5N3KHPXoqychklvHhKCC9M3Xtv0OCs/IHw+r4dcHtBYWw==}
 
-  '@hapi/hapi@21.4.6':
-    resolution: {integrity: sha512-T+DKEZrgZZeFJP0wIcmsU2Tr6TZ7LJExLV+qfFiQsBuqzZRxHwNQ9z4SshkFWocvlf3hIu9iyyB2X5bAdiH6tA==}
+  '@hapi/hapi@21.4.7':
+    resolution: {integrity: sha512-BNO7EgGdDPUaNGhkEiaW8xqk7IqzZNDljBPLcAZgyzpAKl72YR5sBlzfQG1ncrS7O1A7NPLHJkJJgd4YYHDHfg==}
     engines: {node: '>=14.15.0'}
 
   '@hapi/heavy@8.0.1':
@@ -5301,7 +5301,7 @@ snapshots:
 
   '@hapi/formula@3.0.2': {}
 
-  '@hapi/hapi@21.4.6':
+  '@hapi/hapi@21.4.7':
     dependencies:
       '@hapi/accept': 6.0.3
       '@hapi/ammo': 6.0.1
@@ -5903,7 +5903,7 @@ snapshots:
 
   '@types/hapi__hapi@21.0.0':
     dependencies:
-      '@hapi/hapi': 21.4.6
+      '@hapi/hapi': 21.4.7
 
   '@types/http-errors@2.0.4': {}
 
