@@ -1,5 +1,13 @@
 # @promster/metrics
 
+## 15.4.7
+
+### Patch Changes
+
+- [#1527](https://github.com/tdeekens/promster/pull/1527) [`9145a22`](https://github.com/tdeekens/promster/commit/9145a22ea0287a3d395d56fbc28b8372bfc4cb89) Thanks [@renovate](https://github.com/apps/renovate)! - fix(deps): update dependency typescript to v6
+
+- [#1529](https://github.com/tdeekens/promster/pull/1529) [`2ac07ae`](https://github.com/tdeekens/promster/commit/2ac07ae7a0ab69933fdff54a768fccda308aaa79) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update dependencies in monorepo
+
 ## 15.4.6
 
 ## 15.4.5
