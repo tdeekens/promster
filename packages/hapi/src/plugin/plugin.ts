@@ -26,7 +26,6 @@ import type {
 import merge from 'merge-options';
 import semver from 'semver';
 
-// @ts-expect-error
 import pkg from '../../package.json';
 
 interface TPromsterRequest extends Request {
