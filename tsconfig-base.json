@@ -5,11 +5,10 @@
     "emitDeclarationOnly": true,
     "target": "ESNext",
     "module": "CommonJS",
-    "moduleResolution": "Node",
-    "esModuleInterop": true,
-    "strictNullChecks": true,
+    "moduleResolution": "Bundler",
     "strict": true,
     "composite": true,
+    "types": ["node"],
     "typeRoots": ["@types", "@types-extensions", "node_modules/@types"],
     "lib": ["ESNext"]
   },
