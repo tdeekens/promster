@@ -37,22 +37,22 @@
     "@babel/core": "7.29.0",
     "@babel/preset-env": "7.29.2",
     "@babel/preset-typescript": "7.28.5",
-    "@changesets/changelog-github": "0.5.2",
-    "@changesets/cli": "2.29.8",
-    "@commitlint/cli": "20.4.2",
-    "@commitlint/config-conventional": "20.4.2",
+    "@changesets/changelog-github": "0.6.0",
+    "@changesets/cli": "2.30.0",
+    "@commitlint/cli": "20.5.0",
+    "@commitlint/config-conventional": "20.5.0",
     "@manypkg/cli": "0.25.1",
     "@preconstruct/cli": "2.8.12",
     "@tsconfig/node24": "24.0.4",
-    "@types/node": "24.11.0",
+    "@types/node": "24.12.0",
     "@types/semver": "7.7.1",
-    "@vitest/coverage-v8": "4.0.18",
+    "@vitest/coverage-v8": "4.1.1",
     "check-node-version": "4.2.1",
     "husky": "9.1.7",
-    "lint-staged": "16.2.7",
-    "rimraf": "6.0.1",
+    "lint-staged": "16.4.0",
+    "rimraf": "6.1.3",
     "typescript": "6.0.2",
-    "vitest": "4.0.18"
+    "vitest": "4.1.1"
   },
   "devDependencies": {
     "oxfmt": "0.42.0",
@@ -63,7 +63,7 @@
     "npm": ">=10",
     "pnpm": ">=9"
   },
-  "packageManager": "pnpm@10.30.3",
+  "packageManager": "pnpm@10.32.1+sha512.a706938f0e89ac1456b6563eab4edf1d1faf3368d1191fc5c59790e96dc918e4456ab2e67d613de1043d2e8c81f87303e6b40d4ffeca9df15ef1ad567348f2be",
   "preconstruct": {
     "packages": [
       "packages/*"
