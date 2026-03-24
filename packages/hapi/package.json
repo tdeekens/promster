@@ -42,9 +42,8 @@
     "@hapi/hapi": "21.4.7",
     "@promster/server": "workspace:*",
     "@promster/types": "workspace:*",
-    "@types/hapi__hapi": "21.0.0",
     "@types/semver": "7.7.1",
-    "joi": "18.0.2",
+    "joi": "18.1.1",
     "parse-prometheus-text-format": "1.1.1"
   },
   "engines": {
