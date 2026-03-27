@@ -76,8 +76,8 @@ importers:
   packages/apollo:
     dependencies:
       '@apollo/server':
-        specifier: 5.4.0
-        version: 5.4.0(graphql@16.13.2)
+        specifier: 5.5.0
+        version: 5.5.0(graphql@16.13.2)
       '@promster/metrics':
         specifier: workspace:*
         version: link:../metrics
@@ -356,8 +356,8 @@ packages:
     peerDependencies:
       graphql: 14.x || 15.x || 16.x
 
-  '@apollo/server@5.4.0':
-    resolution: {integrity: sha512-E0/2C5Rqp7bWCjaDh4NzYuEPDZ+dltTf2c0FI6GCKJA6GBetVferX3h1//1rS4+NxD36wrJsGGJK+xyT/M3ysg==}
+  '@apollo/server@5.5.0':
+    resolution: {integrity: sha512-vWtodBOK/SZwBTJzItECOmLfL8E8pn/IdvP7pnxN5g2tny9iW4+9sxdajE798wV1H2+PYp/rRcl/soSHIBKMPw==}
     engines: {node: '>=20'}
     peerDependencies:
       graphql: ^16.11.0
@@ -3029,10 +3029,6 @@ packages:
   long@4.0.0:
     resolution: {integrity: sha512-XsP+KhQif4bjX1kbuSiySJFNAehNxgLb6hPRGJ9QsUr8ajHkuXGdrHmFUTUUXhDwVX2R5bY4JNZEwbUiMhV+MA==}
 
-  lru-cache@11.1.0:
-    resolution: {integrity: sha512-QIXZUBJUx+2zHUdQujWejBkcD9+cs94tLn0+YL8UrCh+D5sCXZ4c7LaEH48pNwRY3MLDgqUFyhlCyjJPf1WP0A==}
-    engines: {node: 20 || >=22}
-
   lru-cache@11.2.7:
     resolution: {integrity: sha512-aY/R+aEsRelme17KGQa/1ZSIpLpNYYrhcrepKTZgE+W3WM16YMCaPwOHLHsmopZHELU0Ojin1lPVxKR0MihncA==}
     engines: {node: 20 || >=22}
@@ -3991,7 +3987,7 @@ snapshots:
       '@apollo/utils.logger': 3.0.0
       graphql: 16.13.2
 
-  '@apollo/server@5.4.0(graphql@16.13.2)':
+  '@apollo/server@5.5.0(graphql@16.13.2)':
     dependencies:
       '@apollo/cache-control-types': 1.0.3(graphql@16.13.2)
       '@apollo/server-gateway-interface': 2.0.0(graphql@16.13.2)
@@ -4011,7 +4007,7 @@ snapshots:
       finalhandler: 2.1.1
       graphql: 16.13.2
       loglevel: 1.9.2
-      lru-cache: 11.1.0
+      lru-cache: 11.2.7
       negotiator: 1.0.0
       uuid: 11.1.0
       whatwg-mimetype: 4.0.0
@@ -4038,7 +4034,7 @@ snapshots:
   '@apollo/utils.keyvaluecache@4.0.0':
     dependencies:
       '@apollo/utils.logger': 3.0.0
-      lru-cache: 11.1.0
+      lru-cache: 11.2.7
 
   '@apollo/utils.logger@3.0.0': {}
 
@@ -6901,8 +6897,6 @@ snapshots:
   loglevel@1.9.2: {}
 
   long@4.0.0: {}
-
-  lru-cache@11.1.0: {}
 
   lru-cache@11.2.7: {}
 
