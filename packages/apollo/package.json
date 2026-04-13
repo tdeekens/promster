@@ -39,8 +39,8 @@
   },
   "devDependencies": {
     "@apollo/server": "5.5.0",
-    "@graphql-tools/schema": "10.0.31",
-    "@graphql-tools/utils": "11.0.0",
+    "@graphql-tools/schema": "10.0.32",
+    "@graphql-tools/utils": "11.0.1",
     "@promster/server": "workspace:*",
     "@promster/types": "workspace:*",
     "graphql": "16.13.2",
