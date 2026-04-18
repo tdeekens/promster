@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "@promster/types": "workspace:*",
-    "@types/node": "24.12.0",
+    "@types/node": "24.12.2",
     "parse-prometheus-text-format": "1.1.1"
   },
   "engines": {
