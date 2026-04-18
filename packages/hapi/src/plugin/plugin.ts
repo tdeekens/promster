@@ -120,7 +120,10 @@ const createPlugin = (
   recordRequest = createRequestRecorder(httpMetrics, allDefaultedOptions);
   upMetric = gcMetrics?.up;
 
-  if (!shouldSkipMetricsByEnvironment) {
+  if (
+    !shouldSkipMetricsByEnvironment &&
+    !allDefaultedOptions.disableGcMetrics
+  ) {
     observeGc();
   }
 
