@@ -1,5 +1,11 @@
 # @promster/types
 
+## 15.5.0
+
+### Patch Changes
+
+- [#1541](https://github.com/tdeekens/promster/pull/1541) [`d0c1d6b`](https://github.com/tdeekens/promster/commit/d0c1d6bb8ceeb1f29a4a3fe30207a6a429d6eb35) Thanks [@tdeekens](https://github.com/tdeekens)! - Batch dependency maintenance: bump dev tooling (vitest, typescript, oxlint, oxfmt, changesets), `@types/node`, `undici`, pnpm to 10.33.0, and CI actions (`pnpm/action-setup` v6, `codecov/codecov-action` v6).
+
 ## 15.4.7
 
 ## 15.4.6

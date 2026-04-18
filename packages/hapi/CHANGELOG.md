@@ -1,5 +1,16 @@
 # @promster/hapi
 
+## 15.5.0
+
+### Patch Changes
+
+- [#1541](https://github.com/tdeekens/promster/pull/1541) [`d0c1d6b`](https://github.com/tdeekens/promster/commit/d0c1d6bb8ceeb1f29a4a3fe30207a6a429d6eb35) Thanks [@tdeekens](https://github.com/tdeekens)! - Batch dependency maintenance: bump dev tooling (vitest, typescript, oxlint, oxfmt, changesets), `@types/node`, `undici`, pnpm to 10.33.0, and CI actions (`pnpm/action-setup` v6, `codecov/codecov-action` v6).
+
+- [#1539](https://github.com/tdeekens/promster/pull/1539) [`71315ef`](https://github.com/tdeekens/promster/commit/71315ef39d9943dec15e9db75a1cbc97a2e2fdc2) Thanks [@adaxi](https://github.com/adaxi)! - Honor the diableGcMetrics option for hapi
+
+- Updated dependencies [[`d0c1d6b`](https://github.com/tdeekens/promster/commit/d0c1d6bb8ceeb1f29a4a3fe30207a6a429d6eb35)]:
+  - @promster/metrics@15.5.0
+
 ## 15.4.7
 
 ### Patch Changes
