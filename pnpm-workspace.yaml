@@ -1,7 +1,6 @@
 packages:
   - packages/*
-onlyBuiltDependencies:
-  - "@apollo/protobufjs"
-
-  - "@sematext/gc-stats"
-  - "esbuild"
+allowBuilds:
+  '@apollo/protobufjs': true
+  '@sematext/gc-stats': true
+  esbuild: true
