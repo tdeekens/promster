@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh issue *)",
+      "Bash(curl -s https://registry.npmjs.org/pnpm/10.33.0)",
+      "Bash(node -e \"let d='';process.stdin.on\\('data',c=>d+=c\\).on\\('end',\\(\\)=>{const j=JSON.parse\\(d\\);console.log\\(j.dist.integrity\\);}\\)\")",
+      "Bash(curl -sL https://registry.npmjs.org/pnpm/-/pnpm-10.33.0.tgz)",
+      "Bash(shasum -a 512)",
+      "Bash(awk '{print $1}')",
+      "Bash(pnpm install *)",
+      "Bash(pnpm build *)",
+      "Bash(pnpm typecheck *)",
+      "Bash(pnpm lint *)",
+      "Bash(pnpm format:check)",
+      "Bash(pnpm test *)",
+      "Bash(git checkout *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(pnpm exec *)",
+      "Bash(git reset *)",
+      "Bash(git commit *)",
+      "Bash(git push *)",
+      "WebFetch(domain:pnpm.io)"
+    ]
+  }
+}
