@@ -45,7 +45,7 @@ jobs:
       - name: Install dependencies
         run: |
           echo "pnpm version"
-          pnpm version
+          pnpm --version
           pnpm install
 
       - name: Storing release version for changeset
