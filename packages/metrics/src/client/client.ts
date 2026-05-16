@@ -1,4 +1,4 @@
-import once from 'lodash.once';
+import { once } from 'es-toolkit/function';
 import type { PrometheusContentType } from 'prom-client';
 import * as Prometheus from 'prom-client';
 
