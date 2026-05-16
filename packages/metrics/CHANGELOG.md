@@ -1,5 +1,11 @@
 # @promster/metrics
 
+## 15.5.1
+
+### Patch Changes
+
+- [#1552](https://github.com/tdeekens/promster/pull/1552) [`bace8d1`](https://github.com/tdeekens/promster/commit/bace8d1eb62f2734a8e606b805f52a2b19f5f4c3) Thanks [@tdeekens](https://github.com/tdeekens)! - Replace lodash with es-toolkit
+
 ## 15.5.0
 
 ### Patch Changes
