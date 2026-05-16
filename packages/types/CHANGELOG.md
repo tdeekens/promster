@@ -1,5 +1,7 @@
 # @promster/types
 
+## 15.5.1
+
 ## 15.5.0
 
 ### Patch Changes

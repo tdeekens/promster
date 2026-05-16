@@ -1,5 +1,12 @@
 # @promster/undici
 
+## 15.5.1
+
+### Patch Changes
+
+- Updated dependencies [[`bace8d1`](https://github.com/tdeekens/promster/commit/bace8d1eb62f2734a8e606b805f52a2b19f5f4c3)]:
+  - @promster/metrics@15.5.1
+
 ## 15.5.0
 
 ### Minor Changes
