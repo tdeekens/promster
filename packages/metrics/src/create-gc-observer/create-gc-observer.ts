@@ -1,6 +1,6 @@
 import { gcStats } from '@chainsafe/prometheus-gc-stats';
 import type { TDefaultedPromsterOptions, TGcMetrics } from '@promster/types';
-import once from 'lodash.once';
+import { once } from 'es-toolkit/function';
 
 import { defaultRegister } from '../client/client';
 
