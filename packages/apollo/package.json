@@ -32,13 +32,13 @@
     "access": "public"
   },
   "dependencies": {
-    "@apollo/server": "5.5.0",
+    "@apollo/server": "5.5.1",
     "@promster/metrics": "workspace:*",
     "merge-options": "3.0.4",
     "tslib": "2.8.1"
   },
   "devDependencies": {
-    "@apollo/server": "5.5.0",
+    "@apollo/server": "5.5.1",
     "@graphql-tools/schema": "10.0.33",
     "@graphql-tools/utils": "11.1.0",
     "@promster/server": "workspace:*",
