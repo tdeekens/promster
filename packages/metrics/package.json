@@ -22,12 +22,32 @@
     "readme.md",
     "package.json",
     "LICENSE",
-    "dist/**",
-    "modules/**"
+    "dist/**"
   ],
-  "main": "dist/promster-metrics.cjs.js",
-  "types": "dist/promster-metrics.cjs.d.ts",
-  "typings": "dist/promster-metrics.cjs.d.ts",
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.js",
+  "typesVersions": {
+    "*": {
+      ".": [
+        "dist/*.d.ts",
+        "dist/*.d.cts"
+      ]
+    }
+  },
+  "scripts": {
+    "build": "rimraf dist && tsup",
+    "check-types": "tsc --noEmit",
+    "test": "vitest --run",
+    "test:watch": "vitest",
+    "dev": "tsup --watch --clean=false"
+  },
   "publishConfig": {
     "access": "public"
   },
@@ -39,9 +59,11 @@
     "url-value-parser": "2.2.0"
   },
   "devDependencies": {
+    "@promster/tsconfig": "workspace:*",
     "@promster/types": "workspace:*",
     "@types/node": "24.12.2",
     "prom-client": "15.1.3",
+    "tsup": "8.5.1",
     "typescript": "6.0.3"
   },
   "peerDependencies": {
