@@ -24,14 +24,8 @@
     "LICENSE",
     "dist/**"
   ],
-  "sideEffects": false,
   "type": "module",
-  "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
-    }
-  },
+  "sideEffects": false,
   "main": "./dist/index.js",
   "typesVersions": {
     "*": {
@@ -41,15 +35,21 @@
       ]
     }
   },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "rimraf dist && tsup",
     "check-types": "tsc --noEmit",
     "test": "vitest --run",
     "test:watch": "vitest",
     "dev": "tsup --watch --clean=false"
-  },
-  "publishConfig": {
-    "access": "public"
   },
   "dependencies": {
     "@apollo/server": "5.5.1",
