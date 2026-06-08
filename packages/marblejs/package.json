@@ -1,6 +1,6 @@
 {
   "name": "@promster/marblejs",
-  "version": "15.5.1",
+  "version": "15.5.2",
   "description": "MarbleJs server integrations of promster",
   "keywords": [
     "continousdelivery",

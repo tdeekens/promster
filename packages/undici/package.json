@@ -1,6 +1,6 @@
 {
   "name": "@promster/undici",
-  "version": "15.5.1",
+  "version": "15.5.2",
   "description": "Undici server integrations of promster",
   "keywords": [
     "continousdelivery",

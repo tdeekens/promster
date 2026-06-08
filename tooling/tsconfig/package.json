@@ -1,6 +1,6 @@
 {
   "name": "@promster/tsconfig",
-  "version": "0.0.0",
+  "version": "15.5.2",
   "private": true,
   "license": "MIT",
   "dependencies": {
