@@ -22,12 +22,32 @@
     "readme.md",
     "package.json",
     "LICENSE",
-    "dist/**",
-    "modules/**"
+    "dist/**"
   ],
-  "main": "dist/promster-fastify.cjs.js",
-  "types": "dist/promster-fastify.cjs.d.ts",
-  "typings": "dist/promster-fastify.cjs.d.ts",
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.js",
+  "typesVersions": {
+    "*": {
+      ".": [
+        "dist/*.d.ts",
+        "dist/*.d.cts"
+      ]
+    }
+  },
+  "scripts": {
+    "build": "rimraf dist && tsup",
+    "check-types": "tsc --noEmit",
+    "test": "vitest --run",
+    "test:watch": "vitest",
+    "dev": "tsup --watch --clean=false"
+  },
   "publishConfig": {
     "access": "public"
   },
@@ -39,8 +59,10 @@
     "parse-prometheus-text-format": "1.1.1"
   },
   "devDependencies": {
+    "@promster/tsconfig": "workspace:*",
     "@promster/types": "workspace:*",
-    "fastify": "5.8.5"
+    "fastify": "5.8.5",
+    "tsup": "8.5.1"
   },
   "engines": {
     "node": ">=20",

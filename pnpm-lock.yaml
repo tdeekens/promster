@@ -100,6 +100,9 @@ importers:
       '@promster/server':
         specifier: workspace:*
         version: link:../server
+      '@promster/tsconfig':
+        specifier: workspace:*
+        version: link:../../tooling/tsconfig
       '@promster/types':
         specifier: workspace:*
         version: link:../types
@@ -112,6 +115,9 @@ importers:
       parse-prometheus-text-format:
         specifier: 1.1.1
         version: 1.1.1
+      tsup:
+        specifier: 8.5.1
+        version: 8.5.1(jiti@2.6.1)(postcss@8.5.10)(typescript@6.0.3)(yaml@2.8.3)
 
   packages/express:
     dependencies:
@@ -128,6 +134,9 @@ importers:
       '@promster/server':
         specifier: workspace:*
         version: link:../server
+      '@promster/tsconfig':
+        specifier: workspace:*
+        version: link:../../tooling/tsconfig
       '@promster/types':
         specifier: workspace:*
         version: link:../types
@@ -140,6 +149,9 @@ importers:
       parse-prometheus-text-format:
         specifier: 1.1.1
         version: 1.1.1
+      tsup:
+        specifier: 8.5.1
+        version: 8.5.1(jiti@2.6.1)(postcss@8.5.10)(typescript@6.0.3)(yaml@2.8.3)
 
   packages/fastify:
     dependencies:
@@ -159,12 +171,18 @@ importers:
         specifier: 1.1.1
         version: 1.1.1
     devDependencies:
+      '@promster/tsconfig':
+        specifier: workspace:*
+        version: link:../../tooling/tsconfig
       '@promster/types':
         specifier: workspace:*
         version: link:../types
       fastify:
         specifier: 5.8.5
         version: 5.8.5
+      tsup:
+        specifier: 8.5.1
+        version: 8.5.1(jiti@2.6.1)(postcss@8.5.10)(typescript@6.0.3)(yaml@2.8.3)
 
   packages/hapi:
     dependencies:
@@ -190,6 +208,9 @@ importers:
       '@promster/server':
         specifier: workspace:*
         version: link:../server
+      '@promster/tsconfig':
+        specifier: workspace:*
+        version: link:../../tooling/tsconfig
       '@promster/types':
         specifier: workspace:*
         version: link:../types
@@ -202,6 +223,9 @@ importers:
       parse-prometheus-text-format:
         specifier: 1.1.1
         version: 1.1.1
+      tsup:
+        specifier: 8.5.1
+        version: 8.5.1(jiti@2.6.1)(postcss@8.5.10)(typescript@6.0.3)(yaml@2.8.3)
 
   packages/marblejs:
     dependencies:
@@ -227,6 +251,9 @@ importers:
       '@promster/server':
         specifier: workspace:*
         version: link:../server
+      '@promster/tsconfig':
+        specifier: workspace:*
+        version: link:../../tooling/tsconfig
       '@promster/types':
         specifier: workspace:*
         version: link:../types
@@ -236,6 +263,9 @@ importers:
       parse-prometheus-text-format:
         specifier: 1.1.1
         version: 1.1.1
+      tsup:
+        specifier: 8.5.1
+        version: 8.5.1(jiti@2.6.1)(postcss@8.5.10)(typescript@6.0.3)(yaml@2.8.3)
 
   packages/metrics:
     dependencies:
@@ -283,6 +313,9 @@ importers:
         specifier: 2.8.1
         version: 2.8.1
     devDependencies:
+      '@promster/tsconfig':
+        specifier: workspace:*
+        version: link:../../tooling/tsconfig
       '@promster/types':
         specifier: workspace:*
         version: link:../types
@@ -292,6 +325,9 @@ importers:
       parse-prometheus-text-format:
         specifier: 1.1.1
         version: 1.1.1
+      tsup:
+        specifier: 8.5.1
+        version: 8.5.1(jiti@2.6.1)(postcss@8.5.10)(typescript@6.0.3)(yaml@2.8.3)
 
   packages/types:
     dependencies:
@@ -327,6 +363,9 @@ importers:
       '@promster/server':
         specifier: workspace:*
         version: link:../server
+      '@promster/tsconfig':
+        specifier: workspace:*
+        version: link:../../tooling/tsconfig
       '@promster/types':
         specifier: workspace:*
         version: link:../types
@@ -342,6 +381,9 @@ importers:
       prom-client:
         specifier: 15.1.3
         version: 15.1.3
+      tsup:
+        specifier: 8.5.1
+        version: 8.5.1(jiti@2.6.1)(postcss@8.5.10)(typescript@6.0.3)(yaml@2.8.3)
       typescript:
         specifier: 6.0.3
         version: 6.0.3

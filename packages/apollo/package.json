@@ -22,12 +22,32 @@
     "readme.md",
     "package.json",
     "LICENSE",
-    "dist/**",
-    "modules/**"
+    "dist/**"
   ],
-  "main": "dist/promster-apollo.cjs.js",
-  "types": "dist/promster-apollo.cjs.d.ts",
-  "typings": "dist/promster-apollo.cjs.d.ts",
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.js",
+  "typesVersions": {
+    "*": {
+      ".": [
+        "dist/*.d.ts",
+        "dist/*.d.cts"
+      ]
+    }
+  },
+  "scripts": {
+    "build": "rimraf dist && tsup",
+    "check-types": "tsc --noEmit",
+    "test": "vitest --run",
+    "test:watch": "vitest",
+    "dev": "tsup --watch --clean=false"
+  },
   "publishConfig": {
     "access": "public"
   },
@@ -42,10 +62,12 @@
     "@graphql-tools/schema": "10.0.33",
     "@graphql-tools/utils": "11.1.0",
     "@promster/server": "workspace:*",
+    "@promster/tsconfig": "workspace:*",
     "@promster/types": "workspace:*",
     "graphql": "16.13.2",
     "graphql-tag": "2.12.6",
-    "parse-prometheus-text-format": "1.1.1"
+    "parse-prometheus-text-format": "1.1.1",
+    "tsup": "8.5.1"
   },
   "engines": {
     "node": ">=20",
