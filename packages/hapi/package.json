@@ -1,6 +1,6 @@
 {
   "name": "@promster/hapi",
-  "version": "15.5.1",
+  "version": "15.5.2",
   "description": "Hapi server integrations of promster",
   "keywords": [
     "continousdelivery",

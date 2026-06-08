@@ -1,5 +1,24 @@
 # @promster/types
 
+## 15.5.2
+
+### Patch Changes
+
+- [#1562](https://github.com/tdeekens/promster/pull/1562) [`6734d9b`](https://github.com/tdeekens/promster/commit/6734d9bf6975b8d0c5d998004ec256e3dc6f3366) Thanks [@tdeekens](https://github.com/tdeekens)! - Migrate the bundler from tsup to tsdown
+
+  Each package now builds with tsdown via a shared `@promster/tsdown-config`
+  preset. Output is unchanged: dual ESM (`dist/index.js`) and CJS
+  (`dist/index.cjs`) with matching declaration files, so consumers are
+  unaffected.
+
+- [#1562](https://github.com/tdeekens/promster/pull/1562) [`6734d9b`](https://github.com/tdeekens/promster/commit/6734d9bf6975b8d0c5d998004ec256e3dc6f3366) Thanks [@tdeekens](https://github.com/tdeekens)! - Refactor build tooling to turborepo and tsup
+
+  Each package is now built with tsup and ships dual ESM and CJS output
+  through an `exports` map. The package entry points move from
+  `dist/promster-<name>.cjs.js` to `dist/index.js` (ESM) and
+  `dist/index.cjs` (CJS); consumers importing via the package name are
+  unaffected.
+
 ## 15.5.1
 
 ## 15.5.0
