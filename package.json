@@ -42,7 +42,7 @@
     "@commitlint/cli": "20.5.3",
     "@commitlint/config-conventional": "20.5.3",
     "@manypkg/cli": "0.25.1",
-    "@preconstruct/cli": "2.8.12",
+    "@preconstruct/cli": "2.8.13",
     "@tsconfig/node24": "24.0.4",
     "@types/node": "24.12.2",
     "@types/semver": "7.7.1",
