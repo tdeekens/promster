@@ -7,8 +7,8 @@
     "strict": true,
     "strictNullChecks": true,
     "types": ["node"],
-    "typeRoots": ["@types", "@types-extensions", "node_modules/@types"],
     "lib": ["ESNext"],
-    "noEmit": true
+    "noEmit": true,
+    "ignoreDeprecations": "6.0"
   }
 }
