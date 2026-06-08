@@ -1,18 +1,4 @@
 {
-  "extends": "../../tsconfig-base.json",
-  "compilerOptions": {
-    "declarationDir": "./ts-build-cache/"
-  },
-  "include": ["./src/**/*"],
-  "references": [
-    {
-      "path": "../types"
-    },
-    {
-      "path": "../metrics"
-    },
-    {
-      "path": "../server"
-    }
-  ]
+  "extends": "@promster/tsconfig/base.json",
+  "exclude": ["**/dist/*", "**/vitest.config.ts"]
 }

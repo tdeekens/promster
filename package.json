@@ -16,24 +16,27 @@
   "author": "Tobias Deekens <nerd@tdeekens.name>",
   "scripts": {
     "auth": "npm_config_registry=https://registry.npmjs.org npm whoami",
-    "build:watch": "preconstruct watch",
-    "build": "preconstruct build",
+    "build:watch": "turbo watch build",
+    "build": "turbo build",
+    "dev": "turbo dev",
     "changeset:version-and-format": "changeset version && pnpm format && pnpm install --no-frozen-lockfile",
     "changeset": "changeset",
-    "clean": "manypkg exec rm -rf build dist tsconfig.tsbuildinfo ts-build-cache",
+    "check-types": "turbo check-types",
+    "check-exports": "pnpm --filter \"./packages/*\" exec attw --pack .",
+    "clean": "manypkg exec rm -rf dist .turbo && rm -rf .turbo",
     "format": "oxfmt --write",
     "format:check": "oxfmt --check",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
     "prerelease": "pnpm auth && pnpm build",
     "release": "changeset publish",
-    "setup": "husky install && preconstruct dev && manypkg check && check-node-version --package --print",
-    "test:coverage": "vitest --coverage",
-    "test:report": "vitest --reporter=junit --outputFile=junit.xml",
-    "test": "vitest",
-    "typecheck": "tsc --build"
+    "setup": "husky install && manypkg check && check-node-version --package --print",
+    "test:coverage": "vitest run --coverage",
+    "test:report": "vitest run --reporter=junit --outputFile=junit.xml",
+    "test": "turbo test"
   },
-  "dependencies": {
+  "devDependencies": {
+    "@arethetypeswrong/cli": "0.18.3",
     "@babel/core": "7.29.7",
     "@babel/preset-env": "7.29.7",
     "@babel/preset-typescript": "7.29.7",
@@ -42,7 +45,6 @@
     "@commitlint/cli": "20.5.3",
     "@commitlint/config-conventional": "20.5.3",
     "@manypkg/cli": "0.25.1",
-    "@preconstruct/cli": "2.8.13",
     "@tsconfig/node24": "24.0.4",
     "@types/node": "24.12.2",
     "@types/semver": "7.7.1",
@@ -50,23 +52,16 @@
     "check-node-version": "4.2.1",
     "husky": "9.1.7",
     "lint-staged": "16.4.0",
-    "rimraf": "6.1.3",
+    "oxfmt": "0.45.0",
+    "oxlint": "1.60.0",
+    "turbo": "2.9.16",
     "typescript": "6.0.3",
     "vitest": "4.1.4"
-  },
-  "devDependencies": {
-    "oxfmt": "0.45.0",
-    "oxlint": "1.60.0"
   },
   "engines": {
     "node": ">=22",
     "npm": ">=11",
     "pnpm": ">=11"
   },
-  "packageManager": "pnpm@11.0.9+sha512.34ce82e6780233cf9cad8685029a8f81d2e06196c5a9bad98879f7424940c6817c4e4524fb7d38b8553ceed48b9758b8ebaf1abd3600c232c4c8cf7366086f38",
-  "preconstruct": {
-    "packages": [
-      "packages/*"
-    ]
-  }
+  "packageManager": "pnpm@11.0.9+sha512.34ce82e6780233cf9cad8685029a8f81d2e06196c5a9bad98879f7424940c6817c4e4524fb7d38b8553ceed48b9758b8ebaf1abd3600c232c4c8cf7366086f38"
 }

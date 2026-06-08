@@ -1,4 +1,4 @@
-name: Test and Build
+name: Quality
 
 on:
   push:
@@ -7,29 +7,16 @@ on:
   pull_request:
 
 jobs:
-  install:
+  lint:
+    name: Linting
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v6.0.8
-        with:
-          run_install: false
-
-      - name: Setup Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v6
-        with:
-          node-version-file: '.nvmrc'
-          cache: pnpm
-
-      - name: Install
-        run: pnpm install
-
-      - name: Typecheck
-        run: pnpm typecheck
+      - name: Setup
+        uses: ./.github/actions/ci
 
       - name: Lint
         run: pnpm lint
@@ -37,13 +24,49 @@ jobs:
       - name: Format check
         run: pnpm format:check
 
+  check-types:
+    name: Type checking
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup
+        uses: ./.github/actions/ci
+
+      - name: TypeScript
+        run: pnpm check-types
+
+  spell:
+    name: Spell checking
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
       - name: Spell check
         uses: streetsidesoftware/cspell-action@main
         with:
           files: '**/*.{md,ts}'
 
+  testing:
+    name: Testing
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup
+        uses: ./.github/actions/ci
+
       - name: Build
         run: pnpm build
+
+      - name: Check exports
+        run: pnpm check-exports
 
       - name: Test (with coverage)
         run: pnpm test:coverage

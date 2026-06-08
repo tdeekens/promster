@@ -1,14 +1,4 @@
 {
-  "extends": "../../tsconfig-base.json",
-  "compilerOptions": {
-    "emitDeclarationOnly": false,
-    "outDir": "dist",
-    "rootDir": "."
-  },
-  "include": ["./src/**/*"],
-  "references": [
-    {
-      "path": "../types"
-    }
-  ]
+  "extends": "@promster/tsconfig/base.json",
+  "exclude": ["**/dist/*", "**/vitest.config.ts"]
 }

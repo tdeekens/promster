@@ -22,14 +22,33 @@
     "readme.md",
     "package.json",
     "LICENSE",
-    "dist/**",
-    "modules/**"
+    "dist/**"
   ],
-  "main": "dist/promster-apollo.cjs.js",
-  "types": "dist/promster-apollo.cjs.d.ts",
-  "typings": "dist/promster-apollo.cjs.d.ts",
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
   "publishConfig": {
     "access": "public"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "check-types": "tsc --noEmit",
+    "test": "vitest --run",
+    "test:watch": "vitest",
+    "dev": "tsdown --watch"
   },
   "dependencies": {
     "@apollo/server": "5.5.1",
@@ -38,14 +57,16 @@
     "tslib": "2.8.1"
   },
   "devDependencies": {
-    "@apollo/server": "5.5.1",
     "@graphql-tools/schema": "10.0.33",
     "@graphql-tools/utils": "11.1.0",
     "@promster/server": "workspace:*",
+    "@promster/tsconfig": "workspace:*",
+    "@promster/tsdown-config": "workspace:*",
     "@promster/types": "workspace:*",
     "graphql": "16.13.2",
     "graphql-tag": "2.12.6",
-    "parse-prometheus-text-format": "1.1.1"
+    "parse-prometheus-text-format": "1.1.1",
+    "tsdown": "0.22.2"
   },
   "engines": {
     "node": ">=20",
