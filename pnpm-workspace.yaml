@@ -1,5 +1,6 @@
 packages:
   - packages/*
+  - tooling/*
 allowBuilds:
   '@apollo/protobufjs': true
   '@sematext/gc-stats': true

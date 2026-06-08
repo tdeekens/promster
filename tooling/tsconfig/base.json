@@ -1,0 +1,14 @@
+{
+  "extends": "@tsconfig/node24/tsconfig.json",
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "CommonJS",
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "strictNullChecks": true,
+    "types": ["node"],
+    "typeRoots": ["@types", "@types-extensions", "node_modules/@types"],
+    "lib": ["ESNext"],
+    "noEmit": true
+  }
+}
