@@ -18,9 +18,11 @@
     "auth": "npm_config_registry=https://registry.npmjs.org npm whoami",
     "build:watch": "turbo watch build",
     "build": "turbo build",
+    "dev": "turbo dev",
     "changeset:version-and-format": "changeset version && pnpm format && pnpm install --no-frozen-lockfile",
     "changeset": "changeset",
     "check-types": "turbo check-types",
+    "check-exports": "pnpm --filter \"./packages/*\" exec attw --pack .",
     "clean": "manypkg exec rm -rf dist .turbo && rm -rf .turbo",
     "format": "oxfmt --write",
     "format:check": "oxfmt --check",
@@ -34,6 +36,7 @@
     "test": "turbo test"
   },
   "devDependencies": {
+    "@arethetypeswrong/cli": "0.18.3",
     "@babel/core": "7.29.7",
     "@babel/preset-env": "7.29.7",
     "@babel/preset-typescript": "7.29.7",
