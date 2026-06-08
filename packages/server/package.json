@@ -44,11 +44,11 @@
     "access": "public"
   },
   "scripts": {
-    "build": "rimraf dist && tsup",
+    "build": "tsdown",
     "check-types": "tsc --noEmit",
     "test": "vitest --run",
     "test:watch": "vitest",
-    "dev": "tsup --watch --clean=false"
+    "dev": "tsdown --watch"
   },
   "dependencies": {
     "@promster/metrics": "workspace:*",
@@ -56,10 +56,11 @@
   },
   "devDependencies": {
     "@promster/tsconfig": "workspace:*",
+    "@promster/tsdown-config": "workspace:*",
     "@promster/types": "workspace:*",
     "@types/node": "24.12.2",
     "parse-prometheus-text-format": "1.1.1",
-    "tsup": "8.5.1"
+    "tsdown": "0.22.2"
   },
   "engines": {
     "node": ">=20",
