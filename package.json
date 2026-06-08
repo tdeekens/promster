@@ -34,9 +34,9 @@
     "typecheck": "tsc --build"
   },
   "dependencies": {
-    "@babel/core": "7.29.0",
-    "@babel/preset-env": "7.29.5",
-    "@babel/preset-typescript": "7.28.5",
+    "@babel/core": "7.29.7",
+    "@babel/preset-env": "7.29.7",
+    "@babel/preset-typescript": "7.29.7",
     "@changesets/changelog-github": "0.7.0",
     "@changesets/cli": "2.31.0",
     "@commitlint/cli": "20.5.3",
