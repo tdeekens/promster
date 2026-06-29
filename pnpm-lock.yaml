@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       '@arethetypeswrong/cli':
-        specifier: 0.18.3
-        version: 0.18.3
+        specifier: 0.18.4
+        version: 0.18.4
       '@babel/core':
         specifier: 7.29.7
         version: 7.29.7
@@ -116,7 +116,7 @@ importers:
         version: 1.1.1
       tsdown:
         specifier: 0.22.2
-        version: 0.22.2(@arethetypeswrong/core@0.18.3)(typescript@6.0.3)
+        version: 0.22.2(@arethetypeswrong/core@0.18.4)(typescript@6.0.3)
 
   packages/express:
     dependencies:
@@ -153,7 +153,7 @@ importers:
         version: 1.1.1
       tsdown:
         specifier: 0.22.2
-        version: 0.22.2(@arethetypeswrong/core@0.18.3)(typescript@6.0.3)
+        version: 0.22.2(@arethetypeswrong/core@0.18.4)(typescript@6.0.3)
 
   packages/fastify:
     dependencies:
@@ -187,7 +187,7 @@ importers:
         version: 5.8.5
       tsdown:
         specifier: 0.22.2
-        version: 0.22.2(@arethetypeswrong/core@0.18.3)(typescript@6.0.3)
+        version: 0.22.2(@arethetypeswrong/core@0.18.4)(typescript@6.0.3)
 
   packages/hapi:
     dependencies:
@@ -233,7 +233,7 @@ importers:
         version: 1.1.1
       tsdown:
         specifier: 0.22.2
-        version: 0.22.2(@arethetypeswrong/core@0.18.3)(typescript@6.0.3)
+        version: 0.22.2(@arethetypeswrong/core@0.18.4)(typescript@6.0.3)
 
   packages/marblejs:
     dependencies:
@@ -276,7 +276,7 @@ importers:
         version: 1.1.1
       tsdown:
         specifier: 0.22.2
-        version: 0.22.2(@arethetypeswrong/core@0.18.3)(typescript@6.0.3)
+        version: 0.22.2(@arethetypeswrong/core@0.18.4)(typescript@6.0.3)
 
   packages/metrics:
     dependencies:
@@ -313,7 +313,7 @@ importers:
         version: 15.1.3
       tsdown:
         specifier: 0.22.2
-        version: 0.22.2(@arethetypeswrong/core@0.18.3)(typescript@6.0.3)
+        version: 0.22.2(@arethetypeswrong/core@0.18.4)(typescript@6.0.3)
       typescript:
         specifier: 6.0.3
         version: 6.0.3
@@ -344,7 +344,7 @@ importers:
         version: 1.1.1
       tsdown:
         specifier: 0.22.2
-        version: 0.22.2(@arethetypeswrong/core@0.18.3)(typescript@6.0.3)
+        version: 0.22.2(@arethetypeswrong/core@0.18.4)(typescript@6.0.3)
 
   packages/types:
     dependencies:
@@ -363,7 +363,7 @@ importers:
         version: 15.1.3
       tsdown:
         specifier: 0.22.2
-        version: 0.22.2(@arethetypeswrong/core@0.18.3)(typescript@6.0.3)
+        version: 0.22.2(@arethetypeswrong/core@0.18.4)(typescript@6.0.3)
 
   packages/undici:
     dependencies:
@@ -406,7 +406,7 @@ importers:
         version: 15.1.3
       tsdown:
         specifier: 0.22.2
-        version: 0.22.2(@arethetypeswrong/core@0.18.3)(typescript@6.0.3)
+        version: 0.22.2(@arethetypeswrong/core@0.18.4)(typescript@6.0.3)
       typescript:
         specifier: 6.0.3
         version: 6.0.3
@@ -428,7 +428,7 @@ importers:
     dependencies:
       tsdown:
         specifier: 0.22.2
-        version: 0.22.2(@arethetypeswrong/core@0.18.3)(typescript@6.0.3)
+        version: 0.22.2(@arethetypeswrong/core@0.18.4)(typescript@6.0.3)
     devDependencies:
       typescript:
         specifier: 6.0.3
@@ -522,13 +522,13 @@ packages:
     resolution: {integrity: sha512-aaxeavfJ+RHboh7c2ofO5HHtQobGX4AgUujXP4CXpREHp9fQ9jPi6K9T1jrAKe7HIipoP0OJ1gd6JamSkFIpvA==}
     engines: {node: '>=16'}
 
-  '@arethetypeswrong/cli@0.18.3':
-    resolution: {integrity: sha512-GeAlc+lUD4gKHD/LDQNvQY30FfQ+xAXg2inbQKUjFZgTOdI5ygEweaOnGHGBPSKXSLGQC7VLhpXu9zMnYk/4sQ==}
+  '@arethetypeswrong/cli@0.18.4':
+    resolution: {integrity: sha512-kNWo6LTzGAuLYPpJ7Sgo63whSUeeSuKMlYx6IBgzs4ONEG807gW4hSSENvpeCHzO2H2wIzG5EFl0OKBbqGBAyA==}
     engines: {node: '>=20'}
     hasBin: true
 
-  '@arethetypeswrong/core@0.18.3':
-    resolution: {integrity: sha512-sWBB/tdIktaT5xMq0Dz6CJyqcf6oMNdmiKiuPU1lWoJLTL6gjRSsksBuSgqot21hylkklBQY1wiSu+PkZhW7sw==}
+  '@arethetypeswrong/core@0.18.4':
+    resolution: {integrity: sha512-M5F0ePyN6h2Z6XxRiyIPqjGbltotXLjR0CKA0uKspsDu0QmgTNYvRb4RSQPMUs2ZXZHCCYpbaZbFbYOXLxCjUA==}
     engines: {node: '>=20'}
 
   '@babel/code-frame@7.29.7':
@@ -2758,6 +2758,7 @@ packages:
   git-raw-commits@5.0.1:
     resolution: {integrity: sha512-Y+csSm2GD/PCSh6Isd/WiMjNAydu0VBiG9J7EdQsNA5P9uXvLayqjmTsNlK5Gs9IhblFZqOU0yid5Il5JPoLiQ==}
     engines: {node: '>=18'}
+    deprecated: Deprecated and no longer maintained. Use @conventional-changelog/git-client instead.
     hasBin: true
 
   glob-parent@5.1.2:
@@ -4202,9 +4203,9 @@ snapshots:
 
   '@apollo/utils.withrequired@3.0.0': {}
 
-  '@arethetypeswrong/cli@0.18.3':
+  '@arethetypeswrong/cli@0.18.4':
     dependencies:
-      '@arethetypeswrong/core': 0.18.3
+      '@arethetypeswrong/core': 0.18.4
       chalk: 4.1.2
       cli-table3: 0.6.5
       commander: 10.0.1
@@ -4212,7 +4213,7 @@ snapshots:
       marked-terminal: 7.3.0(marked@9.1.6)
       semver: 7.7.4
 
-  '@arethetypeswrong/core@0.18.3':
+  '@arethetypeswrong/core@0.18.4':
     dependencies:
       '@andrewbranch/untar.js': 1.0.3
       '@loaderkit/resolve': 1.0.6
@@ -7654,7 +7655,7 @@ snapshots:
     optionalDependencies:
       typescript: 6.0.3
 
-  tsdown@0.22.2(@arethetypeswrong/core@0.18.3)(typescript@6.0.3):
+  tsdown@0.22.2(@arethetypeswrong/core@0.18.4)(typescript@6.0.3):
     dependencies:
       ansis: 4.3.1
       cac: 7.0.0
@@ -7672,7 +7673,7 @@ snapshots:
       tree-kill: 1.2.2
       unconfig-core: 7.5.0
     optionalDependencies:
-      '@arethetypeswrong/core': 0.18.3
+      '@arethetypeswrong/core': 0.18.4
       typescript: 6.0.3
     transitivePeerDependencies:
       - '@ts-macro/tsc'
@@ -7755,7 +7756,7 @@ snapshots:
       picomatch: 4.0.4
       postcss: 8.5.10
       rolldown: 1.0.0-rc.15
-      tinyglobby: 0.2.16
+      tinyglobby: 0.2.17
     optionalDependencies:
       '@types/node': 24.12.2
       fsevents: 2.3.3
