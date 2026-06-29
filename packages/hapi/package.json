@@ -64,7 +64,7 @@
     "@promster/tsdown-config": "workspace:*",
     "@promster/types": "workspace:*",
     "@types/semver": "7.7.1",
-    "joi": "18.2.1",
+    "joi": "18.2.3",
     "parse-prometheus-text-format": "1.1.1",
     "tsdown": "0.22.2"
   },
