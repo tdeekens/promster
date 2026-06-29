@@ -64,7 +64,7 @@
     "@promster/tsdown-config": "workspace:*",
     "@promster/types": "workspace:*",
     "graphql": "16.13.2",
-    "graphql-tag": "2.12.6",
+    "graphql-tag": "2.12.7",
     "parse-prometheus-text-format": "1.1.1",
     "tsdown": "0.22.2"
   },
