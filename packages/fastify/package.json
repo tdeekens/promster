@@ -62,7 +62,7 @@
     "@promster/tsdown-config": "workspace:*",
     "@promster/types": "workspace:*",
     "fastify": "5.8.5",
-    "tsdown": "0.22.2"
+    "tsdown": "0.22.4"
   },
   "engines": {
     "node": ">=20",
