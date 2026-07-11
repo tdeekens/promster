@@ -54,7 +54,7 @@
     "lint-staged": "16.4.0",
     "oxfmt": "0.45.0",
     "oxlint": "1.60.0",
-    "turbo": "2.10.0",
+    "turbo": "2.10.4",
     "typescript": "7.0.2",
     "vitest": "4.1.9"
   },
