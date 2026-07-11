@@ -45,3 +45,6 @@ tsconfig.tsbuildinfo
 junit.xml
 
 .turbo
+
+# Claude Code per-developer local settings (not shared)
+.claude/settings.local.json
