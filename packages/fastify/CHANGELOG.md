@@ -1,5 +1,25 @@
 # @promster/fastify
 
+## 15.6.0
+
+### Minor Changes
+
+- [#1581](https://github.com/tdeekens/promster/pull/1581) [`27773f8`](https://github.com/tdeekens/promster/commit/27773f860af864d762048562d78aea7128f40cf6) Thanks [@tdeekens](https://github.com/tdeekens)! - Add `createHistogram`, `createCounter`, `createGauge` and `createSummary` helpers for registering custom metrics idempotently.
+
+  All metrics share `prom-client`'s global registry, so registering a metric whose name already exists throws (`A metric with the name <name> has already been registered.`). This happens when a metric-defining module is evaluated more than once, for example when a bundler or package manager ships duplicate physical copies of a package. The new helpers return the already registered metric instead of re-creating it. promster's own built-in HTTP, GraphQL and GC metrics now use these helpers too, so they no longer crash under the same conditions.
+
+### Patch Changes
+
+- [#1581](https://github.com/tdeekens/promster/pull/1581) [`27773f8`](https://github.com/tdeekens/promster/commit/27773f860af864d762048562d78aea7128f40cf6) Thanks [@tdeekens](https://github.com/tdeekens)! - Update dependencies
+
+- [#1576](https://github.com/tdeekens/promster/pull/1576) [`27fe810`](https://github.com/tdeekens/promster/commit/27fe810d9cfda3cb2ca0535abff17217f5b4f0db) Thanks [@renovate](https://github.com/apps/renovate)! - Update to TypeScript v7
+
+- [#1583](https://github.com/tdeekens/promster/pull/1583) [`773bc5c`](https://github.com/tdeekens/promster/commit/773bc5cf8b77b1f2d3837356235942cf20eea9cd) Thanks [@tdeekens](https://github.com/tdeekens)! - chore(deps): update dependencies from dependency dashboard
+
+- Updated dependencies [[`27773f8`](https://github.com/tdeekens/promster/commit/27773f860af864d762048562d78aea7128f40cf6), [`27773f8`](https://github.com/tdeekens/promster/commit/27773f860af864d762048562d78aea7128f40cf6), [`27fe810`](https://github.com/tdeekens/promster/commit/27fe810d9cfda3cb2ca0535abff17217f5b4f0db), [`773bc5c`](https://github.com/tdeekens/promster/commit/773bc5cf8b77b1f2d3837356235942cf20eea9cd)]:
+  - @promster/metrics@15.6.0
+  - @promster/server@15.6.0
+
 ## 15.5.2
 
 ### Patch Changes
