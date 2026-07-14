@@ -3,6 +3,12 @@ import { createGcMetrics } from './create-gc-metrics';
 import { createGcObserver } from './create-gc-observer';
 import { createGraphQlMetrics } from './create-graphql-metrics';
 import { createHttpMetrics } from './create-http-metrics';
+import {
+  createCounter,
+  createGauge,
+  createHistogram,
+  createSummary,
+} from './create-metric';
 import { createRequestRecorder } from './create-request-recorder';
 import { endMeasurementFrom } from './end-measurement-from';
 import { isRunningInKubernetes, skipMetricsInEnvironment } from './environment';
@@ -25,6 +31,10 @@ export {
   createHttpMetrics,
   createGraphQlMetrics,
   createGcMetrics,
+  createHistogram,
+  createCounter,
+  createGauge,
+  createSummary,
   getSummary,
   getContentType,
   createRequestRecorder,

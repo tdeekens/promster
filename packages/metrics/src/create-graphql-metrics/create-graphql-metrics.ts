@@ -4,7 +4,8 @@ import type {
 } from '@promster/types';
 import merge from 'merge-options';
 
-import { configure, Prometheus } from '../client';
+import { configure } from '../client';
+import { createCounter, createHistogram } from '../create-metric';
 
 const defaultGraphQlPercentiles = [0.5, 0.9, 0.95, 0.98, 0.99];
 
@@ -59,7 +60,7 @@ const getMetrics = (options: TDefaultedPromsterOptions) => ({
   graphQlParseDuration: shouldObserveGraphQlParseDurationAsHistogram(options)
     ? asArray(options.metricNames.graphQlParseDuration).map(
         (nameOfGraphQlParseDuration: string) =>
-          new Prometheus.Histogram({
+          createHistogram({
             name: `${options.metricPrefix}${nameOfGraphQlParseDuration}`,
             help: 'The GraphQL request parse time in seconds.',
             labelNames: defaultLabels.concat(options.labels).toSorted(),
@@ -75,7 +76,7 @@ const getMetrics = (options: TDefaultedPromsterOptions) => ({
   )
     ? asArray(options.metricNames.graphQlValidationDuration).map(
         (nameOfGraphQlValidationDuration: string) =>
-          new Prometheus.Histogram({
+          createHistogram({
             name: `${options.metricPrefix}${nameOfGraphQlValidationDuration}`,
             help: 'The GraphQL request validation time in seconds.',
             labelNames: defaultLabels.concat(options.labels).toSorted(),
@@ -90,7 +91,7 @@ const getMetrics = (options: TDefaultedPromsterOptions) => ({
     shouldObserveGraphQlResolveFieldDurationAsHistogram(options)
       ? asArray(options.metricNames.graphQlResolveFieldDuration).map(
           (nameOfGraphQlResolveFieldDuration: string) =>
-            new Prometheus.Histogram({
+            createHistogram({
               name: `${options.metricPrefix}${nameOfGraphQlResolveFieldDuration}`,
               help: 'The GraphQL field resolving time in seconds.',
               labelNames: defaultLabels
@@ -109,7 +110,7 @@ const getMetrics = (options: TDefaultedPromsterOptions) => ({
   )
     ? asArray(options.metricNames.graphQlRequestDuration).map(
         (nameOfGraphQlRequestDuration: string) =>
-          new Prometheus.Histogram({
+          createHistogram({
             name: `${options.metricPrefix}${nameOfGraphQlRequestDuration}`,
             help: 'The GraphQL request duration time in seconds.',
             labelNames: defaultLabels.concat(options.labels).toSorted(),
@@ -123,7 +124,7 @@ const getMetrics = (options: TDefaultedPromsterOptions) => ({
   graphQlErrorsTotal: shouldObserveGraphQlErrorsTotalAsCounter(options)
     ? asArray(options.metricNames.graphQlErrorsTotal).map(
         (nameOfGraphQlErrorsCount: string) =>
-          new Prometheus.Counter({
+          createCounter({
             name: `${options.metricPrefix}${nameOfGraphQlErrorsCount}`,
             help: 'Count of errors while parsing, validating, or executing a GraphQL operation.',
             labelNames: defaultLabels

@@ -1,5 +1,8 @@
 vi.mock('../client', () => ({
   configure: vi.fn(),
+  defaultRegister: {
+    getSingleMetric: vi.fn(),
+  },
   Prometheus: {
     Gauge: vi.fn(),
     Counter: vi.fn(),
