@@ -306,6 +306,33 @@ This may slightly depend on the server you are using but should be roughly the s
 
 The packages re-export most things from the `@promster/metrics` package including two other potentially useful exports in `Prometheus` (the actual client) and `defaultRegister` which is the default register of the client. After all you should never really have to install `@promster/metrics` as it is only an internally shared package between the others.
 
+### Registering custom metrics
+
+All metrics (both the built-in ones and any you add) live on `prom-client`'s single global registry. Registering a metric whose name already exists throws `A metric with the name <name> has already been registered.`. This can happen when a metric-defining module is evaluated more than once, for instance when a bundler or package manager ships duplicate physical copies of a package.
+
+To register custom metrics safely, use the `createHistogram`, `createCounter`, `createGauge` and `createSummary` helpers. They return the already registered metric instead of throwing on a second registration (the first registration wins):
+
+```js
+import { createHistogram, createCounter } from '@promster/express';
+
+export const cacheHits = createCounter({
+  name: 'my_service_cache_hits_total',
+  help: 'Number of cache hits',
+  labelNames: ['cache'],
+});
+
+export const externalRequestDuration = createHistogram({
+  name: 'my_service_external_request_duration_seconds',
+  help: 'External request latency in seconds',
+  labelNames: ['host', 'status_code'],
+  buckets: [0.05, 0.1, 0.3, 0.5, 1, 2, 5],
+});
+
+cacheHits.inc({ cache: 'products' });
+```
+
+The same helpers are available from `@promster/hapi`, `@promster/fastify`, `@promster/apollo` and `@promster/marblejs`. Custom metrics appear in the `/metrics` output alongside the built-in ones. If you prefer full control you can still construct metrics directly via the re-exported `Prometheus` client, but those constructors throw on duplicate registration.
+
 ## ❯ Configuration
 
 When creating either the Express middleware or Hapi plugin the following options can be passed.

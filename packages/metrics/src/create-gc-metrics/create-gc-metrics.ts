@@ -1,7 +1,8 @@
 import type { TDefaultedPromsterOptions, TGcMetrics } from '@promster/types';
 import merge from 'merge-options';
 
-import { configure, Prometheus } from '../client';
+import { configure } from '../client';
+import { createGauge } from '../create-metric';
 
 const asArray = (maybeArray: Readonly<string[] | string>) =>
   Array.isArray(maybeArray) ? maybeArray : [maybeArray];
@@ -17,12 +18,11 @@ const defaultOptions = {
 };
 
 const getMetrics = (options: TDefaultedPromsterOptions) => ({
-  up: asArray(options.metricNames.up).map(
-    (nameOfUpMetric: string) =>
-      new Prometheus.Gauge({
-        name: `${options.metricPrefix}${nameOfUpMetric}`,
-        help: '1 = nodejs server is up, 0 = nodejs server is not up',
-      }),
+  up: asArray(options.metricNames.up).map((nameOfUpMetric: string) =>
+    createGauge({
+      name: `${options.metricPrefix}${nameOfUpMetric}`,
+      help: '1 = nodejs server is up, 0 = nodejs server is not up',
+    }),
   ),
 });
 

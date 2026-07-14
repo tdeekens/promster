@@ -1,4 +1,8 @@
 import {
+  createCounter,
+  createGauge,
+  createHistogram,
+  createSummary,
   defaultNormalizers,
   defaultRegister,
   getContentType,
@@ -27,6 +31,10 @@ export {
   getContentType,
   Prometheus,
   defaultRegister,
+  createHistogram,
+  createCounter,
+  createGauge,
+  createSummary,
   defaultNormalizers,
   timing,
 };
