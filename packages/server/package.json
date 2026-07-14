@@ -58,9 +58,9 @@
     "@promster/tsconfig": "workspace:*",
     "@promster/tsdown-config": "workspace:*",
     "@promster/types": "workspace:*",
-    "@types/node": "24.12.2",
+    "@types/node": "24.13.3",
     "parse-prometheus-text-format": "1.1.1",
-    "tsdown": "0.22.4"
+    "tsdown": "0.22.7"
   },
   "engines": {
     "node": ">=20",

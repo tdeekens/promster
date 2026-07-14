@@ -53,7 +53,7 @@
   "dependencies": {
     "@promster/metrics": "workspace:*",
     "merge-options": "3.0.4",
-    "semver": "7.7.4",
+    "semver": "7.8.5",
     "tslib": "2.8.1"
   },
   "devDependencies": {
@@ -66,7 +66,7 @@
     "@types/semver": "7.7.1",
     "joi": "18.2.3",
     "parse-prometheus-text-format": "1.1.1",
-    "tsdown": "0.22.4"
+    "tsdown": "0.22.7"
   },
   "engines": {
     "node": ">=20",
