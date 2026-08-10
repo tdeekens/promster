@@ -60,7 +60,7 @@
     "@promster/types": "workspace:*",
     "@types/node": "24.13.3",
     "parse-prometheus-text-format": "1.1.1",
-    "tsdown": "0.22.7"
+    "tsdown": "0.22.14"
   },
   "engines": {
     "node": ">=20",
