@@ -226,8 +226,8 @@ importers:
         specifier: 7.7.1
         version: 7.7.1
       joi:
-        specifier: 18.2.3
-        version: 18.2.3
+        specifier: 18.2.5
+        version: 18.2.5
       parse-prometheus-text-format:
         specifier: 1.1.1
         version: 1.1.1
@@ -3097,8 +3097,8 @@ packages:
   jju@1.4.0:
     resolution: {integrity: sha512-8wb9Yw966OSxApiCt0K3yNJL8pnNeIv+OEq2YMidz4FKP6nonSRoOXc80iXY4JaN2FC11B9qsNmDsm+ZOfMROA==}
 
-  joi@18.2.3:
-    resolution: {integrity: sha512-N5A3KTWQpPWT4ExxxPlUx7WmykGXRzhNidWhV41d6Abu9YfI2NyWCJuxdPnslJCPWtbRpSVOWSnSS6GakLM/Rg==}
+  joi@18.2.5:
+    resolution: {integrity: sha512-+gEA7rLfaNWx9JzawWPrPetSZwT16NUqHtECDgjyAJreXcs4TM7tx2Pa+VVJJK0YHM83ybrVdaT6UekHH50FJQ==}
     engines: {node: '>= 20'}
 
   js-tokens@10.0.0:
@@ -6864,7 +6864,7 @@ snapshots:
 
   jju@1.4.0: {}
 
-  joi@18.2.3:
+  joi@18.2.5:
     dependencies:
       '@hapi/address': 5.1.1
       '@hapi/formula': 3.0.2
