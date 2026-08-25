@@ -4,7 +4,7 @@
   "private": true,
   "license": "MIT",
   "dependencies": {
-    "@tsconfig/node24": "24.0.4"
+    "@tsconfig/node24": "24.0.5"
   },
   "devDependencies": {
     "typescript": "7.0.2"
