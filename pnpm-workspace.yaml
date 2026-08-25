@@ -8,5 +8,4 @@ packages:
 minimumReleaseAge: 0
 allowBuilds:
   '@apollo/protobufjs': true
-  '@sematext/gc-stats': true
   esbuild: true
