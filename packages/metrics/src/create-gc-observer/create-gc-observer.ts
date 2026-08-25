@@ -14,12 +14,18 @@ const defaultOptions = {
 //   double count every garbage collection into the same counters. The inner
 //   `once` returns the same teardown to every caller rather than starting
 //   another profiler.
+//
+//   Both layers of `once` mean the options of the first call win, `signal`
+//   included. Registering promster twice in a process with different signals
+//   leaves the second one inert, the same way a second `metricPrefix` or
+//   `gcCollectionInterval` is already ignored today.
 const createGcObserver = once(
   (_metrics: TGcMetrics, options: TDefaultedPromsterOptions) =>
     once((): TStopGcStats =>
       startGcStats({
         collectionInterval: options.gcCollectionInterval,
         prefix: options.metricPrefix,
+        signal: options.signal,
       }),
     ),
 );
