@@ -16,5 +16,5 @@ Three fixes come with it:
   Existing call sites that ignore the return value are unaffected.
 - Calling `observeGc()` twice no longer throws on duplicate metric
   registration, and no longer starts a second profiler.
-- The collection interval is unref'd, so it no longer keeps an otherwise
-  finished process alive.
+- The collection interval no longer holds the event loop open, so it cannot
+  keep an otherwise finished process alive.

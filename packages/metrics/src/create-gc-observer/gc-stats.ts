@@ -5,7 +5,7 @@ import { createCounter } from '../create-metric';
 
 // NOTE:
 //   Vendored from `@chainsafe/prometheus-gc-stats@1.0.2`, MIT licensed,
-//   Copyright (c) 2016 Simen Bekkhus. See the licence notice in
+//   Copyright (c) 2016 Simen Bekkhus. See the license notice in
 //   `./gc-stats.LICENSE`.
 //
 //   The upstream package declares its own `prom-client` peer dependency,
