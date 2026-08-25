@@ -53,7 +53,7 @@
   "dependencies": {
     "@promster/metrics": "workspace:*",
     "@promster/server": "workspace:*",
-    "fastify-plugin": "^5.1.0",
+    "fastify-plugin": "^6.0.0",
     "merge-options": "3.0.4",
     "parse-prometheus-text-format": "1.1.1"
   },
