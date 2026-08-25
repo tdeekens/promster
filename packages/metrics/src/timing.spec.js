@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { Timing, default as timing } from './timing';
+import { Timing, timing } from './timing';
 
 describe('timing', () => {
   it('should return an instance of Timing', () => {

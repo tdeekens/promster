@@ -9,10 +9,10 @@ import type {
   SummaryConfiguration,
 } from 'prom-client';
 
-import { defaultRegister, Prometheus } from '../client';
+import { defaultRegister, Prometheus } from './client';
 
 // NOTE:
-//   All metrics share the `prom-client` global registry (see `../client`).
+//   All metrics share the `prom-client` global registry (see `./client`).
 //   Registering a metric whose name already exists throws. This happens when
 //   a metric-defining module is evaluated more than once, for instance when a
 //   bundler or package manager ships duplicate physical copies of a package.

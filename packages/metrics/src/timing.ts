@@ -39,5 +39,4 @@ const timing = {
   },
 };
 
-export default timing;
-export { Timing };
+export { timing, Timing };

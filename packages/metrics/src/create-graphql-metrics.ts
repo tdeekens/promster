@@ -4,8 +4,8 @@ import type {
 } from '@promster/types';
 import merge from 'merge-options';
 
-import { configure } from '../client';
-import { createCounter, createHistogram } from '../create-metric';
+import { configure } from './client';
+import { createCounter, createHistogram } from './create-metric';
 
 const defaultGraphQlPercentiles = [0.5, 0.9, 0.95, 0.98, 0.99];
 

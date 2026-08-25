@@ -1,4 +1,4 @@
-vi.mock('../client', () => ({
+vi.mock('./client', () => ({
   configure: vi.fn(),
   defaultRegister: {
     getSingleMetric: vi.fn(),

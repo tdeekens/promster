@@ -1,12 +1,8 @@
 import type { TDefaultedPromsterOptions, THttpMetrics } from '@promster/types';
 import merge from 'merge-options';
 
-import { configure } from '../client';
-import {
-  createCounter,
-  createHistogram,
-  createSummary,
-} from '../create-metric';
+import { configure } from './client';
+import { createCounter, createHistogram, createSummary } from './create-metric';
 
 const defaultHttpRequestDurationPercentileInSeconds = [
   0.5, 0.9, 0.95, 0.98, 0.99,

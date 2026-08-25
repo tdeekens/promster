@@ -2,7 +2,7 @@ import { once } from 'es-toolkit/function';
 import type { PrometheusContentType } from 'prom-client';
 import * as Prometheus from 'prom-client';
 
-import { skipMetricsInEnvironment } from '../environment';
+import { skipMetricsInEnvironment } from './environment';
 
 // NOTE:
 //   This is the `globalRegistry` provided by the `prom-client`

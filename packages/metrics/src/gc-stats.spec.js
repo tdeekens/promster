@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { defaultRegister } from '../client';
+import { defaultRegister } from './client';
 import { startGcStats } from './gc-stats';
 
 const metricNames = [

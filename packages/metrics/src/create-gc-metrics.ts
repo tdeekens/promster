@@ -1,8 +1,8 @@
 import type { TDefaultedPromsterOptions, TGcMetrics } from '@promster/types';
 import merge from 'merge-options';
 
-import { configure } from '../client';
-import { createGauge } from '../create-metric';
+import { configure } from './client';
+import { createGauge } from './create-metric';
 
 const asArray = (maybeArray: Readonly<string[] | string>) =>
   Array.isArray(maybeArray) ? maybeArray : [maybeArray];

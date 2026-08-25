@@ -1,4 +1,4 @@
-vi.mock('../client', () => ({
+vi.mock('./client', () => ({
   defaultRegister: {
     metrics: vi.fn(async () => Promise.resolve('metrics')),
     contentType: 'application/test',
@@ -7,7 +7,7 @@ vi.mock('../client', () => ({
 
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { defaultRegister } from '../client';
+import { defaultRegister } from './client';
 import { getContentType, getSummary } from './summary';
 
 describe('getSummary', () => {

@@ -1,7 +1,7 @@
 import { GCProfiler } from 'node:v8';
 import type { GCProfilerResult } from 'node:v8';
 
-import { createCounter } from '../create-metric';
+import { createCounter } from './create-metric';
 
 // NOTE:
 //   Vendored from `@chainsafe/prometheus-gc-stats@1.0.2`, MIT licensed,
@@ -18,7 +18,7 @@ import { createCounter } from '../create-metric';
 //     - Counters are registered through `createCounter` rather than
 //       `new Counter(...)`, so a duplicate physical copy of this package
 //       reuses the already registered metric instead of throwing. This is the
-//       same reasoning as the rest of `../create-metric`.
+//       same reasoning as the rest of `./create-metric`.
 //     - The registry argument is gone. Every caller passed the default
 //       register, which is what `createCounter` writes to anyway.
 //
