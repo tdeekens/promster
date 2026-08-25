@@ -52,8 +52,8 @@
     "check-node-version": "4.2.1",
     "husky": "9.1.7",
     "lint-staged": "17.3.0",
-    "oxfmt": "0.59.0",
-    "oxlint": "1.74.0",
+    "oxfmt": "0.65.0",
+    "oxlint": "1.80.0",
     "turbo": "2.10.12",
     "typescript": "7.0.2",
     "vitest": "4.1.11"
