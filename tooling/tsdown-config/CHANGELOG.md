@@ -1,5 +1,7 @@
 # @promster/tsdown-config
 
+## 15.7.0
+
 ## 15.6.0
 
 ### Patch Changes

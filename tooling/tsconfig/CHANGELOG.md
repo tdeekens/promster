@@ -1,5 +1,11 @@
 # @promster/tsconfig
 
+## 15.7.0
+
+### Patch Changes
+
+- [#1598](https://github.com/tdeekens/promster/pull/1598) [`94c6183`](https://github.com/tdeekens/promster/commit/94c6183e40aa0602aeb683de3758b4e4840b9128) Thanks [@tdeekens](https://github.com/tdeekens)! - chore(deps): batch low-risk dependency updates
+
 ## 15.6.0
 
 ### Patch Changes
