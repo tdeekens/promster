@@ -93,7 +93,7 @@ const createPlugin = async (
   fastify.decorate('recordRequest', recordRequest);
   fastify.decorateRequest<TPromsterTiming | null>('__promsterTiming__', null);
 
-  fastify.addHook('onRequest', async (request, _) => {
+  fastify.addHook('onRequest', async (request) => {
     // @ts-expect-error
     request.__promsterTiming__ = timing.start();
   });
