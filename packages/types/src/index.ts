@@ -24,22 +24,29 @@ export type TOptionalPromsterOptions = {
 };
 export type TDefaultedPromsterOptions = DeepRequired<TOptionalPromsterOptions>;
 
+// NOTE:
+//   The label name type is spelled out as `<string>` rather than left to the
+//   default. `prom-client` defaults it to `string`, so today both spellings
+//   mean the same thing, but its successor `@prometheus-io/client` defaults it
+//   to `NoLabelNameType`, which is `never`. Under that default a bare
+//   `Counter` is a metric that accepts no labels at all, which would silently
+//   break every consumer calling `.inc({ method: 'GET' })` on these.
 export type THttpMetrics = {
-  httpRequestDurationPerPercentileInSeconds?: Summary[];
-  httpRequestDurationInSeconds?: Histogram[];
-  httpRequestsTotal?: Counter[];
-  httpRequestContentLengthInBytes?: Histogram[];
-  httpResponseContentLengthInBytes?: Histogram[];
+  httpRequestDurationPerPercentileInSeconds?: Summary<string>[];
+  httpRequestDurationInSeconds?: Histogram<string>[];
+  httpRequestsTotal?: Counter<string>[];
+  httpRequestContentLengthInBytes?: Histogram<string>[];
+  httpResponseContentLengthInBytes?: Histogram<string>[];
 };
 export type TGcMetrics = {
-  up: Gauge[];
+  up: Gauge<string>[];
 };
 export type TGraphQlMetrics = {
-  graphQlParseDuration?: Histogram[];
-  graphQlValidationDuration?: Histogram[];
-  graphQlResolveFieldDuration?: Histogram[];
-  graphQlRequestDuration?: Histogram[];
-  graphQlErrorsTotal?: Counter[];
+  graphQlParseDuration?: Histogram<string>[];
+  graphQlValidationDuration?: Histogram<string>[];
+  graphQlResolveFieldDuration?: Histogram<string>[];
+  graphQlRequestDuration?: Histogram<string>[];
+  graphQlErrorsTotal?: Counter<string>[];
 };
 
 export type TValueOf<T> = T[keyof T];
