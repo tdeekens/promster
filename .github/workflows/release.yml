@@ -37,8 +37,6 @@ jobs:
         id: release_version
         run: ./scripts/echo-release-version.sh
         shell: bash
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
       - name: Ouptut release version
         run: echo "The release version is ${{ steps.release_version.outputs.RELEASE_VERSION }}"
@@ -48,14 +46,24 @@ jobs:
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
-        uses: dotansimha/changesets-action@v1.5.2
+        uses: changesets/action@v2
         with:
-          title: 'ci(changesets): version packages'
-          commit: 'ci(changesets): version packages'
-          publish: pnpm changeset publish
-          version: pnpm changeset:version-and-format
-          createGithubReleases: aggregate
-          githubReleaseName: v${{ steps.release_version.outputs.RELEASE_VERSION }}
-          githubTagName: v${{ steps.release_version.outputs.RELEASE_VERSION }}
+          github-token: ${{ secrets.GH_TOKEN }}
+          pr-title: 'ci(changesets): version packages'
+          commit-message: 'ci(changesets): version packages'
+          publish-script: pnpm changeset publish
+          version-script: pnpm changeset:version-and-format
+          # One aggregate release per version is created below instead of one
+          # GitHub release per package. Per-package git tags keep being pushed,
+          # which is what this repository has always produced alongside the
+          # aggregate v<version> tag.
+          create-github-releases: false
+
+      - name: Creating aggregate GitHub release
+        if: steps.changesets.outputs.published == 'true'
+        run: ./scripts/create-aggregate-release.sh
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          VERSION: ${{ steps.release_version.outputs.RELEASE_VERSION }}
+          PUBLISHED_PACKAGES: ${{ steps.changesets.outputs.published-packages }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_REPO: ${{ github.repository }}

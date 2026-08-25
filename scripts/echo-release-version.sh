@@ -1,25 +1,27 @@
 #!/usr/bin/env bash
 
-set -e
+set -euo pipefail
 
-echo "Running 'changeset version' to know the new release version"
+release_plan=$(mktemp)
+trap 'rm -f "$release_plan"' EXIT
 
-pnpm changeset version &>/dev/null
+echo "Running 'changeset status' to know the next release version"
 
-echo "Running 'git status' to see the worktree changes"
+pnpm changeset status --output="$release_plan"
 
-git status
+# All @promster/* packages release in lockstep through the "fixed" group in
+# .changeset/config.json, so any one of them carries the release version. With no
+# pending changesets the release plan holds no releases and the version already on
+# disk is the one the release will carry.
+release_version=$(node -e '
+  const { readFileSync } = require("node:fs");
 
-echo "Determining the version from the package.json of a package"
-release_version=$(node -e "console.log(require('./packages/metrics/package.json').version)")
+  const plan = JSON.parse(readFileSync(process.argv[1], "utf8"));
+  const release = plan.releases.find(({ name }) => name === "@promster/metrics");
 
-echo "Version for release is $release_version"
+  console.log(release?.newVersion ?? require("./packages/metrics/package.json").version);
+' "$release_plan")
 
-echo "Running 'git reset' and exporting to GITHUB_OUTPUT"
+echo "Release version is $release_version"
 
-git reset --hard &>/dev/null
-
-echo "RELEASE_VERSION=$release_version" >> $GITHUB_OUTPUT
-
-echo "GITHUB_OUTPUT is:"
-echo $GITHUB_OUTPUT
+echo "RELEASE_VERSION=$release_version" >>"$GITHUB_OUTPUT"
