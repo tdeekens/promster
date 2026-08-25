@@ -28,14 +28,29 @@ import { createCounter } from '../create-metric';
 type TGcStatsOptions = {
   collectionInterval: number;
   prefix?: string;
+  signal?: AbortSignal;
 };
 
 type TStopGcStats = () => void;
 
+const noop: TStopGcStats = () => {
+  // NOTE:
+  //   Nothing was ever started, so there is nothing to tear down.
+};
+
 const startGcStats = ({
   collectionInterval,
   prefix = '',
+  signal,
 }: TGcStatsOptions): TStopGcStats => {
+  // NOTE:
+  //   An already aborted signal means collection is over before it began.
+  //   Returning early avoids registering metrics that would never be filled
+  //   and avoids leaving a profiler running with nothing to stop it.
+  if (signal?.aborted) {
+    return noop;
+  }
+
   const labelNames = ['gctype'];
 
   const gcCount = createCounter({
@@ -97,10 +112,21 @@ const startGcStats = ({
   //   process that is otherwise done from exiting.
   interval.unref();
 
-  return () => {
+  // NOTE:
+  //   Safe to call more than once, which matters because the caller may stop
+  //   collection directly while an abort is also wired up. `clearInterval`
+  //   and `GCProfiler#stop` both tolerate repeat calls, and dropping the
+  //   listener keeps a long lived signal from retaining this closure.
+  const stop: TStopGcStats = () => {
+    signal?.removeEventListener('abort', stop);
+
     clearInterval(interval);
     profiler.stop();
   };
+
+  signal?.addEventListener('abort', stop, { once: true });
+
+  return stop;
 };
 
 export type { TGcStatsOptions, TStopGcStats };
