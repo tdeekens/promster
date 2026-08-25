@@ -17,9 +17,10 @@
     "proxied",
     "quantile",
     "camelcase",
-    "sematext",
     "chainsafe",
-    "oxlint"
+    "oxlint",
+    "bekkhus",
+    "simen"
   ],
   "ignorePaths": ["**/CHANGELOG.md"]
 }
