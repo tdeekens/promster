@@ -1,5 +1,53 @@
 # @promster/metrics
 
+## 15.7.0
+
+### Minor Changes
+
+- [#1606](https://github.com/tdeekens/promster/pull/1606) [`a23b5a5`](https://github.com/tdeekens/promster/commit/a23b5a57aecaa00d861e789c566a207dea77cbdf) Thanks [@tdeekens](https://github.com/tdeekens)! - Collect garbage collection metrics without `@chainsafe/prometheus-gc-stats`
+  
+  The collector is now carried in the package itself, which removes a runtime
+  dependency and the `prom-client` peer range it imposed. Metric names, help
+  texts and the `gctype` label are unchanged, so dashboards and alerts keep
+  working.
+  
+  Three fixes come with it:
+  
+  - `observeGc()` returns a teardown that stops collection. The underlying
+    teardown existed but was discarded, so collection could never be stopped.
+    Existing call sites that ignore the return value are unaffected.
+  - Calling `observeGc()` twice no longer throws on duplicate metric
+    registration, and no longer starts a second profiler.
+  - The collection interval no longer holds the event loop open, so it cannot
+    keep an otherwise finished process alive.
+
+- [#1606](https://github.com/tdeekens/promster/pull/1606) [`a23b5a5`](https://github.com/tdeekens/promster/commit/a23b5a57aecaa00d861e789c566a207dea77cbdf) Thanks [@tdeekens](https://github.com/tdeekens)! - Accept an `AbortSignal` to stop garbage collection metrics
+  
+  Every package that takes promster options now accepts a `signal`, so collection
+  can be tied to a server's shutdown rather than running for the lifetime of the
+  process:
+  
+  ```js
+  const controller = new AbortController();
+  
+  promsterMiddleware({ options: { signal: controller.signal } });
+  
+  process.once('SIGTERM', () => controller.abort());
+  ```
+  
+  The option is unset by default and the behavior without it is unchanged. A
+  signal that is already aborted keeps collection from starting at all. Metrics
+  already collected stay in the registry; only further collection stops.
+
+### Patch Changes
+
+- [#1608](https://github.com/tdeekens/promster/pull/1608) [`26244d6`](https://github.com/tdeekens/promster/commit/26244d6129c1ff9d53937f4f5ad94395493448af) Thanks [@tdeekens](https://github.com/tdeekens)! - refactor: remove barrel files that only re-exported a single module
+  
+  Internal restructuring only. The bundled output of every package is
+  unchanged, so there is nothing to adopt for consumers.
+
+- [#1598](https://github.com/tdeekens/promster/pull/1598) [`94c6183`](https://github.com/tdeekens/promster/commit/94c6183e40aa0602aeb683de3758b4e4840b9128) Thanks [@tdeekens](https://github.com/tdeekens)! - chore(deps): batch low-risk dependency updates
+
 ## 15.6.0
 
 ### Minor Changes

@@ -1,5 +1,13 @@
 # @promster/undici
 
+## 15.7.0
+
+### Patch Changes
+
+- [#1598](https://github.com/tdeekens/promster/pull/1598) [`94c6183`](https://github.com/tdeekens/promster/commit/94c6183e40aa0602aeb683de3758b4e4840b9128) Thanks [@tdeekens](https://github.com/tdeekens)! - chore(deps): batch low-risk dependency updates
+- Updated dependencies [[`26244d6`](https://github.com/tdeekens/promster/commit/26244d6129c1ff9d53937f4f5ad94395493448af), [`a23b5a5`](https://github.com/tdeekens/promster/commit/a23b5a57aecaa00d861e789c566a207dea77cbdf), [`94c6183`](https://github.com/tdeekens/promster/commit/94c6183e40aa0602aeb683de3758b4e4840b9128), [`a23b5a5`](https://github.com/tdeekens/promster/commit/a23b5a57aecaa00d861e789c566a207dea77cbdf)]:
+  - @promster/metrics@15.7.0
+
 ## 15.6.0
 
 ### Patch Changes

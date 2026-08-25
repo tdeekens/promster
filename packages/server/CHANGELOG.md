@@ -1,5 +1,16 @@
 # @promster/server
 
+## 15.7.0
+
+### Patch Changes
+
+- [#1608](https://github.com/tdeekens/promster/pull/1608) [`26244d6`](https://github.com/tdeekens/promster/commit/26244d6129c1ff9d53937f4f5ad94395493448af) Thanks [@tdeekens](https://github.com/tdeekens)! - refactor: remove barrel files that only re-exported a single module
+  
+  Internal restructuring only. The bundled output of every package is
+  unchanged, so there is nothing to adopt for consumers.
+- Updated dependencies [[`26244d6`](https://github.com/tdeekens/promster/commit/26244d6129c1ff9d53937f4f5ad94395493448af), [`a23b5a5`](https://github.com/tdeekens/promster/commit/a23b5a57aecaa00d861e789c566a207dea77cbdf), [`94c6183`](https://github.com/tdeekens/promster/commit/94c6183e40aa0602aeb683de3758b4e4840b9128), [`a23b5a5`](https://github.com/tdeekens/promster/commit/a23b5a57aecaa00d861e789c566a207dea77cbdf)]:
+  - @promster/metrics@15.7.0
+
 ## 15.6.0
 
 ### Patch Changes
