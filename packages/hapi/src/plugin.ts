@@ -26,7 +26,7 @@ import type {
 import merge from 'merge-options';
 import semver from 'semver';
 
-import pkg from '../../package.json';
+import pkg from '../package.json';
 
 interface TPromsterRequest extends Request {
   plugins: {

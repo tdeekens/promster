@@ -20,7 +20,7 @@ import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 import fastifyPlugin from 'fastify-plugin';
 import merge from 'merge-options';
 
-import pkg from '../../package.json';
+import pkg from '../package.json';
 
 let recordRequest: TRequestRecorder;
 let upMetric: TGcMetrics['up'];
