@@ -21,6 +21,12 @@ export type TOptionalPromsterOptions = {
   metricPercentiles?: Record<string, number[]>;
   disableGcMetrics?: boolean;
   gcCollectionInterval?: number;
+  // NOTE:
+  //   Aborting stops garbage collection metrics from being collected. There
+  //   is no default, so leaving this unset keeps collection running for the
+  //   lifetime of the process, which is the behavior every release so far
+  //   has had.
+  signal?: AbortSignal;
 };
 export type TDefaultedPromsterOptions = DeepRequired<TOptionalPromsterOptions>;
 

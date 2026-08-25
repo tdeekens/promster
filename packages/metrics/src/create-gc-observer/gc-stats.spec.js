@@ -77,4 +77,49 @@ describe('gc-stats', () => {
     expect(stop).toBeTypeOf('function');
     expect(() => stop()).not.toThrow();
   });
+
+  describe('given an abort signal', () => {
+    it('should not register any metrics when it is already aborted', () => {
+      start({ collectionInterval: 6000, signal: AbortSignal.abort() });
+
+      for (const name of metricNames) {
+        expect(defaultRegister.getSingleMetric(name)).toBeUndefined();
+      }
+    });
+
+    it('should stop collecting when it is aborted', () => {
+      const controller = new AbortController();
+
+      start({ collectionInterval: 6000, signal: controller.signal });
+
+      expect(() => controller.abort()).not.toThrow();
+    });
+
+    it('should drop its abort listener once stopped directly', () => {
+      const controller = new AbortController();
+      const stop = start({
+        collectionInterval: 6000,
+        signal: controller.signal,
+      });
+
+      stop();
+
+      // NOTE:
+      //   Aborting afterwards must not reach the already detached teardown,
+      //   otherwise a long lived signal keeps the closure alive for good.
+      expect(() => controller.abort()).not.toThrow();
+    });
+
+    it('should tolerate both the teardown and an abort', () => {
+      const controller = new AbortController();
+      const stop = start({
+        collectionInterval: 6000,
+        signal: controller.signal,
+      });
+
+      controller.abort();
+
+      expect(() => stop()).not.toThrow();
+    });
+  });
 });
