@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { endMeasurementFrom } from './end-measurement-from';
+import { endMeasurementFrom } from '../src/end-measurement-from';
 
 describe('endMeasurementFrom', () => {
   const start = [1, 2];

@@ -1,4 +1,4 @@
-vi.mock('./client', () => ({
+vi.mock('../src/client', () => ({
   configure: vi.fn(),
   defaultRegister: {
     getSingleMetric: vi.fn(),
@@ -13,7 +13,7 @@ vi.mock('./client', () => ({
 
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { createGcMetrics } from './create-gc-metrics';
+import { createGcMetrics } from '../src/create-gc-metrics';
 
 describe('createGcMetrics', () => {
   let metrics;

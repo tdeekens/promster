@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { sortLabels } from './sort-labels';
+import { sortLabels } from '../src/sort-labels';
 
 describe('sortLabels', () => {
   const unsorted = { b: 'c', a: 'b' };

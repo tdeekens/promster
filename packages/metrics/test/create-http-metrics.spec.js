@@ -1,4 +1,4 @@
-vi.mock('./client', () => ({
+vi.mock('../src/client', () => ({
   configure: vi.fn(),
   defaultRegister: {
     getSingleMetric: vi.fn(),
@@ -13,7 +13,7 @@ vi.mock('./client', () => ({
 
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { createHttpMetrics } from './create-http-metrics';
+import { createHttpMetrics } from '../src/create-http-metrics';
 
 describe('createHttpMetrics', () => {
   let metrics;

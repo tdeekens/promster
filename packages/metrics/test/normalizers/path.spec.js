@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { normalizePath } from './path';
+import { normalizePath } from '../../src/normalizers/path';
 
 describe('normalizePath', () => {
   let normalizedPath;
