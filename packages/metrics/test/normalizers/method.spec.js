@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { normalizeMethod } from './method';
+import { normalizeMethod } from '../../src/normalizers/method';
 
 describe('normalizeMethod', () => {
   const method = 'GET';

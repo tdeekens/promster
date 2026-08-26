@@ -1,12 +1,12 @@
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { defaultRegister } from './client';
+import { defaultRegister } from '../src/client';
 import {
   createCounter,
   createGauge,
   createHistogram,
   createSummary,
-} from './create-metric';
+} from '../src/create-metric';
 
 const testMetricNames = [
   'promster_test_histogram_seconds',

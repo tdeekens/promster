@@ -1,19 +1,24 @@
+import Hapi from '@hapi/hapi';
 import { createServer as createPrometheusMetricsServer } from '@promster/server';
-import Fastify from 'fastify';
 import parsePrometheusTextFormat from 'parse-prometheus-text-format';
-import { afterAll, beforeAll, expect, it } from 'vitest';
+import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 
-import { plugin } from './plugin';
+import {
+  createPlugin,
+  getAreServerEventsSupported,
+  getDoesResponseNeedInvocation,
+} from '../src/plugin';
 
-const metricsPort = '1339';
-const appPort = '3002';
+const metricsPort = '1340';
+const appPort = '3011';
 
 const metricsServerUrl = `http://localhost:${metricsPort}`;
 const appServerUrl = `http://localhost:${appPort}`;
 
 async function startServers() {
-  const fastify = Fastify({
-    logger: false,
+  const server = new Hapi.Server({
+    port: appPort,
+    debug: { request: ['error'] },
   });
 
   const prometheusMetricsServer = await createPrometheusMetricsServer({
@@ -21,28 +26,21 @@ async function startServers() {
     detectKubernetes: false,
   });
 
-  await fastify.register(plugin);
+  await server.register(createPlugin());
 
-  fastify.get('/', async (_request, reply) => {
-    await reply.send({ status: 'ok' });
+  server.route({
+    method: 'GET',
+    path: '/',
+    config: { auth: false },
+    handler: () => ({ status: 'ok' }),
   });
 
-  await fastify.listen({ port: appPort, host: 'localhost' });
+  await server.start();
 
   return {
     close: async () =>
       Promise.all([
-        new Promise((resolve, reject) => {
-          fastify.close((err) => {
-            if (err) {
-              reject(err);
-
-              return;
-            }
-
-            resolve();
-          });
-        }),
+        server.stop(),
         new Promise((resolve, reject) => {
           prometheusMetricsServer.close((err) => {
             if (err) {
@@ -61,9 +59,9 @@ async function startServers() {
 let closeServer;
 
 beforeAll(async () => {
-  const startedServer = await startServers();
+  const startedServers = await startServers();
 
-  closeServer = startedServer.close;
+  closeServer = startedServers.close;
 });
 
 afterAll(async () => {
@@ -191,4 +189,36 @@ it('should record http metrics', async () => {
       },
     ]
   `);
+});
+
+describe('getAreServerEventsSupported', () => {
+  describe('when server supports events', () => {
+    it('should return `true`', () => {
+      expect(getAreServerEventsSupported('17.0.0')).toBe(true);
+      expect(getAreServerEventsSupported('17.1.0')).toBe(true);
+      expect(getAreServerEventsSupported('18.0.0')).toBe(true);
+    });
+  });
+
+  describe('when server does not support events', () => {
+    it('should return `false`', () => {
+      expect(getAreServerEventsSupported('16.0.0')).toBe(false);
+      expect(getAreServerEventsSupported('15.4.0')).toBe(false);
+    });
+  });
+});
+
+describe('getDoesResponseNeedInvocation', () => {
+  describe('when server needs reply continue invocation', () => {
+    it('should return `true`', () => {
+      expect(getDoesResponseNeedInvocation('16.0.0')).toBe(true);
+      expect(getDoesResponseNeedInvocation('15.1.0')).toBe(true);
+    });
+  });
+
+  describe('when server does not need reply continue invocation', () => {
+    it('should return `false`', () => {
+      expect(getDoesResponseNeedInvocation('17.0.0')).toBe(false);
+    });
+  });
 });

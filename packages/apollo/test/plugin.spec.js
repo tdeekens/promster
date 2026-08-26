@@ -7,7 +7,7 @@ import { gql } from 'graphql-tag';
 import parsePrometheusTextFormat from 'parse-prometheus-text-format';
 import { afterAll, beforeAll, expect, it } from 'vitest';
 
-import { createPlugin as createPromsterMetricsPlugin } from './plugin';
+import { createPlugin as createPromsterMetricsPlugin } from '../src/plugin';
 
 function throwErrorDirectiveTransformer(schema, directiveName = 'error') {
   return mapSchema(schema, {

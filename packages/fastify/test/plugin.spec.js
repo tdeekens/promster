@@ -1,46 +1,48 @@
-import { createServer, httpListener, r } from '@marblejs/http';
 import { createServer as createPrometheusMetricsServer } from '@promster/server';
+import Fastify from 'fastify';
 import parsePrometheusTextFormat from 'parse-prometheus-text-format';
-import { mapTo } from 'rxjs/operators';
 import { afterAll, beforeAll, expect, it } from 'vitest';
 
-import { createMiddleware } from './middleware';
+import { plugin } from '../src/plugin';
 
-const metricsPort = '1341';
-const appPort = '3004';
+const metricsPort = '1339';
+const appPort = '3002';
 
 const metricsServerUrl = `http://localhost:${metricsPort}`;
 const appServerUrl = `http://localhost:${appPort}`;
 
 async function startServers() {
+  const fastify = Fastify({
+    logger: false,
+  });
+
   const prometheusMetricsServer = await createPrometheusMetricsServer({
     port: metricsPort,
     detectKubernetes: false,
   });
 
-  const listener = httpListener({
-    middlewares: [createMiddleware()],
-    effects: [
-      r.pipe(
-        r.matchPath('/'),
-        r.matchType('GET'),
-        r.useEffect((req$) => req$.pipe(mapTo({ body: { status: 'ok' } }))),
-      ),
-    ],
+  await fastify.register(plugin);
+
+  fastify.get('/', async (_request, reply) => {
+    await reply.send({ status: 'ok' });
   });
 
-  const server = await createServer({
-    port: appPort,
-    hostname: 'localhost',
-    listener,
-  });
-
-  await server();
+  await fastify.listen({ port: appPort, host: 'localhost' });
 
   return {
     close: async () =>
-      // oxlint-disable-next-line unicorn/no-single-promise-in-promise-methods -- pre-existing, single-element Promise.all
       Promise.all([
+        new Promise((resolve, reject) => {
+          fastify.close((err) => {
+            if (err) {
+              reject(err);
+
+              return;
+            }
+
+            resolve();
+          });
+        }),
         new Promise((resolve, reject) => {
           prometheusMetricsServer.close((err) => {
             if (err) {
@@ -59,9 +61,9 @@ async function startServers() {
 let closeServer;
 
 beforeAll(async () => {
-  const startedServers = await startServers();
+  const startedServer = await startServers();
 
-  closeServer = startedServers.close;
+  closeServer = startedServer.close;
 });
 
 afterAll(async () => {
@@ -125,8 +127,25 @@ it('should expose garbage collection metrics', async () => {
   );
 });
 
-// oxlint-disable-next-line jest/no-disabled-tests -- false positive
-it.skip('should record http metrics', async () => {
+it('should expose http metrics', async () => {
+  const response = await fetch(metricsServerUrl);
+  const rawMetrics = await response.text();
+
+  const parsedMetrics = parsePrometheusTextFormat(rawMetrics);
+
+  expect(parsedMetrics).toEqual(
+    expect.arrayContaining([
+      expect.objectContaining({
+        name: 'http_requests_total',
+      }),
+      expect.objectContaining({
+        name: 'http_request_duration_seconds',
+      }),
+    ]),
+  );
+});
+
+it('should record http metrics', async () => {
   await fetch(appServerUrl);
   const response = await fetch(metricsServerUrl);
   const rawMetrics = await response.text();
@@ -137,9 +156,9 @@ it.skip('should record http metrics', async () => {
   ).metrics;
 
   expect(httpRequestsTotal).toMatchInlineSnapshot(`
-    Array [
-      Object {
-        "labels": Object {
+    [
+      {
+        "labels": {
           "method": "get",
           "path": "/",
           "status_code": "200",
@@ -154,9 +173,9 @@ it.skip('should record http metrics', async () => {
   ).metrics;
 
   expect(httpRequestDurationSeconds).toMatchInlineSnapshot(`
-    Array [
-      Object {
-        "buckets": Object {
+    [
+      {
+        "buckets": {
           "+Inf": "1",
           "0.05": "1",
           "0.1": "1",

@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { createRequestRecorder } from './create-request-recorder';
-import { timing } from './timing';
+import { createRequestRecorder } from '../src/create-request-recorder';
+import { timing } from '../src/timing';
 
 describe('createRequestRecorder', () => {
   const createHttpMetrics = () => ({

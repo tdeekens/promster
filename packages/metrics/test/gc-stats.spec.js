@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { defaultRegister } from './client';
-import { startGcStats } from './gc-stats';
+import { defaultRegister } from '../src/client';
+import { startGcStats } from '../src/gc-stats';
 
 const metricNames = [
   'nodejs_gc_runs_total',
