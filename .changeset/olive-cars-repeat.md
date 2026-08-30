@@ -12,6 +12,10 @@
 
 Replace the deprecated `prom-client` peer dependency with `@prometheus-io/client`
 
+**Requires Node.js 22 or newer, and replacing `prom-client` with
+`@prometheus-io/client` in your own dependencies.** Both are breaking, and both
+are unavoidable on this release. Details below.
+
 `prom-client` is deprecated in favour of `@prometheus-io/client`. They are the
 same project: `siimon/prom-client` moved to the Prometheus organization and
 continues there as `prometheus/client_js`.
@@ -51,12 +55,14 @@ If you reach the client through promster instead of importing it directly, for
 example via `app.locals.Prometheus` on Express or the Hapi and Fastify
 equivalents, nothing changes.
 
-## Other breaking changes
+## Node.js 22 is now the minimum
 
-- **Node.js 22 is now the minimum.** `@prometheus-io/client` supports
-  `^22 || ^24 || >=26`, and the `engines` field of every package moves from
-  `>=20` to `>=22` to match. Node 20 reached end of life in April 2026.
-- **The peer range is now `>=0.16.1 <1`.** The new client is still pre-1.0.
+`@prometheus-io/client` supports `^22 || ^24 || >=26`, so the `engines` field
+of every package moves from `>=20` to `>=22` rather than promising a runtime
+its own peer refuses. Node 20 reached end of life in April 2026.
+
+The peer range for the client itself is `>=0.16.1 <1`, since it is still
+pre-1.0.
 
 ## What does not change
 
