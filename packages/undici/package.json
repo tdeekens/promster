@@ -71,7 +71,7 @@
     "undici": "8.10.0"
   },
   "peerDependencies": {
-    "@prometheus-io/client": ">=0.16.1 <1",
+    "@prometheus-io/client": "^0.16.1",
     "undici": "7.x.x || 8.x"
   },
   "engines": {

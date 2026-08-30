@@ -61,8 +61,10 @@ equivalents, nothing changes.
 of every package moves from `>=20` to `>=22` rather than promising a runtime
 its own peer refuses. Node 20 reached end of life in April 2026.
 
-The peer range for the client itself is `>=0.16.1 <1`, since it is still
-pre-1.0.
+The peer range for the client itself is `^0.16.1`, which resolves to
+`>=0.16.1 <0.17.0`. The client is still pre-1.0, where minor releases are
+allowed to break, so the range is deliberately narrow. Expect it to be widened
+by a promster release each time a new minor lands rather than in advance.
 
 ## What does not change
 

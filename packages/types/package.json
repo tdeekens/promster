@@ -60,7 +60,7 @@
     "tsdown": "0.22.14"
   },
   "peerDependencies": {
-    "@prometheus-io/client": ">=0.16.1 <1"
+    "@prometheus-io/client": "^0.16.1"
   },
   "engines": {
     "node": ">=22",
