@@ -100,15 +100,15 @@ a standalone `server` for exposing metrics, and shared `types`.
 
 Depending on the preferred integration use:
 
-`yarn add @promster/express` or `npm i @promster/express --save`
+`pnpm add @promster/express` or `npm i @promster/express --save`
 
 or
 
-`yarn add @promster/hapi` or `npm i @promster/hapi --save`
+`pnpm add @promster/hapi` or `npm i @promster/hapi --save`
 
 Please additionally make sure you have `@prometheus-io/client` installed. It is a peer dependency of `@promster` as some projects might already have an existing client installed, which otherwise would result in different default registries.
 
-`yarn add @prometheus-io/client` or `npm i @prometheus-io/client --save`
+`pnpm add @prometheus-io/client` or `npm i @prometheus-io/client --save`
 
 > **Upgrading from `prom-client`?** `@prometheus-io/client` is the same project, renamed after `siimon/prom-client` moved to the Prometheus organization, and `prom-client` is deprecated in its favour. Remove `prom-client` when you add the new package. Keeping both installed is not an error, but the two have **separate global registries**: metrics you register against `prom-client` will not appear in what `@promster` exposes.
 
