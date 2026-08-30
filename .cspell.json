@@ -20,7 +20,8 @@
     "chainsafe",
     "oxlint",
     "bekkhus",
-    "simen"
+    "simen",
+    "siimon"
   ],
   "ignorePaths": ["**/CHANGELOG.md"]
 }
