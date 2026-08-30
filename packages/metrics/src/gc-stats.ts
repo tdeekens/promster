@@ -9,10 +9,11 @@ import { createCounter } from './create-metric';
 //   `./gc-stats.LICENSE`.
 //
 //   The upstream package declares its own `prom-client` peer dependency,
-//   which pins promster's peer range to whatever it accepts, and it is a
+//   which pinned promster's peer range to whatever it accepts, and it is a
 //   68 line wrapper over `node:v8` that has seen two releases. Carrying it
-//   here drops a runtime dependency and hands promster back control over the
-//   `prom-client` peer.
+//   here dropped a runtime dependency and handed promster back control over
+//   its client peer, which is what later allowed the move to
+//   `@prometheus-io/client`.
 //
 //   Two deliberate changes against the original:
 //     - Counters are registered through `createCounter` rather than

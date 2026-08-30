@@ -7,20 +7,21 @@ import type {
   HistogramConfiguration,
   Summary,
   SummaryConfiguration,
-} from 'prom-client';
+} from '@prometheus-io/client';
 
 import { defaultRegister, Prometheus } from './client';
 
 // NOTE:
-//   All metrics share the `prom-client` global registry (see `./client`).
-//   Registering a metric whose name already exists throws. This happens when
-//   a metric-defining module is evaluated more than once, for instance when a
-//   bundler or package manager ships duplicate physical copies of a package.
-//   These helpers make registration idempotent: an already registered metric
-//   of the same name and type is returned instead of re-created. The first
-//   registration wins, so a later differing configuration is ignored. A name
-//   already taken by a different metric type falls through to `prom-client`,
-//   which rejects it with the clear "already registered" error.
+//   All metrics share the `@prometheus-io/client` global registry (see
+//   `./client`). Registering a metric whose name already exists throws. This
+//   happens when a metric-defining module is evaluated more than once, for
+//   instance when a bundler or package manager ships duplicate physical
+//   copies of a package. These helpers make registration idempotent: an
+//   already registered metric of the same name and type is returned instead
+//   of re-created. The first registration wins, so a later differing
+//   configuration is ignored. A name already taken by a different metric type
+//   falls through to the client, which rejects it with the clear "already
+//   registered" error.
 
 const createHistogram = (
   configuration: HistogramConfiguration<string>,
