@@ -1,5 +1,7 @@
 # @promster/tsconfig
 
+## 16.0.0
+
 ## 15.7.0
 
 ### Patch Changes
