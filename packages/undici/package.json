@@ -57,6 +57,7 @@
     "tslib": "2.8.1"
   },
   "devDependencies": {
+    "@prometheus-io/client": "0.16.1",
     "@promster/express": "workspace:*",
     "@promster/server": "workspace:*",
     "@promster/tsconfig": "workspace:*",
@@ -65,17 +66,16 @@
     "@types/node": "24.13.3",
     "express": "5.2.1",
     "parse-prometheus-text-format": "1.1.1",
-    "prom-client": "15.1.3",
     "tsdown": "0.22.14",
     "typescript": "7.0.2",
     "undici": "8.10.0"
   },
   "peerDependencies": {
-    "prom-client": "13.x.x || 14.x || 15.x",
+    "@prometheus-io/client": "^0.16.1",
     "undici": "7.x.x || 8.x"
   },
   "engines": {
-    "node": ">=20",
+    "node": ">=22",
     "pnpm": ">=11"
   }
 }

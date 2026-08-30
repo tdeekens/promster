@@ -106,9 +106,11 @@ or
 
 `yarn add @promster/hapi` or `npm i @promster/hapi --save`
 
-Please additionally make sure you have `prom-client` installed. It is a peer dependency of `@promster` as some projects might already have an existing `prom-client` installed, which otherwise would result in different default registries.
+Please additionally make sure you have `@prometheus-io/client` installed. It is a peer dependency of `@promster` as some projects might already have an existing client installed, which otherwise would result in different default registries.
 
-`yarn add prom-client` or `npm i prom-client --save`
+`yarn add @prometheus-io/client` or `npm i @prometheus-io/client --save`
+
+> **Upgrading from `prom-client`?** `@prometheus-io/client` is the same project, renamed after `siimon/prom-client` moved to the Prometheus organization, and `prom-client` is deprecated in its favour. Remove `prom-client` when you add the new package. Keeping both installed is not an error, but the two have **separate global registries**: metrics you register against `prom-client` will not appear in what `@promster` exposes.
 
 ## ❯ Getting Started
 
@@ -127,7 +129,7 @@ import { createMiddleware } from '@promster/express';
 app.use(createMiddleware({ app, options }));
 ```
 
-Passing the `app` into the `createMiddleware` call attaches the internal `prom-client` to your Express app's locals. This may come in handy as later you can:
+Passing the `app` into the `createMiddleware` call attaches the internal `@prometheus-io/client` to your Express app's locals. This may come in handy as later you can:
 
 ```js
 // Create an e.g. custom counter
@@ -149,7 +151,7 @@ import { plugin as promsterPlugin } from '@promster/fastify';
 fastify.register(promsterPlugin);
 ```
 
-The plugin attaches the internal `prom-client` to your Fastify instance. This may come in handy as later you can:
+The plugin attaches the internal `@prometheus-io/client` to your Fastify instance. This may come in handy as later you can:
 
 ```js
 // Create an e.g. custom counter
@@ -171,7 +173,7 @@ import app from './your-hapi-app';
 app.register(createPlugin({ options }));
 ```
 
-Here you do not have to pass in the `app` into the `createPlugin` call as the internal `prom-client` will be exposed onto Hapi as in:
+Here you do not have to pass in the `app` into the `createPlugin` call as the internal `@prometheus-io/client` will be exposed onto Hapi as in:
 
 ```js
 // Create an e.g. custom counter
@@ -308,7 +310,7 @@ The packages re-export most things from the `@promster/metrics` package includin
 
 ### Registering custom metrics
 
-All metrics (both the built-in ones and any you add) live on `prom-client`'s single global registry. Registering a metric whose name already exists throws `A metric with the name <name> has already been registered.`. This can happen when a metric-defining module is evaluated more than once, for instance when a bundler or package manager ships duplicate physical copies of a package.
+All metrics (both the built-in ones and any you add) live on `@prometheus-io/client`'s single global registry. Registering a metric whose name already exists throws `A metric with the name <name> has already been registered.`. This can happen when a metric-defining module is evaluated more than once, for instance when a bundler or package manager ships duplicate physical copies of a package.
 
 To register custom metrics safely, use the `createHistogram`, `createCounter`, `createGauge` and `createSummary` helpers. They return the already registered metric instead of throwing on a second registration (the first registration wins):
 
@@ -342,7 +344,7 @@ When creating either the Express middleware or Hapi plugin the following options
 | Option                | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `labels`              | An `Array<String>` of custom labels to be configured both on all metrics mentioned above                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| `metricPrefix`        | A prefix applied to all metrics. The prom-client's default metrics and the request metrics                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| `metricPrefix`        | A prefix applied to all metrics. The client's default metrics and the request metrics                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | `metricTypes`         | An `Array<String>` containing one of `histogram`, `summary` or both                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | `metricNames`         | An object containing custom names for one or all metrics with keys of `up`, `countOfGcs`, `durationOfGc`, `reclaimedInGc`, `httpRequestDurationPerPercentileInSeconds`, `httpRequestDurationInSeconds`. Note that each value can be an `Array<String>` so `httpRequestDurationInSeconds: ['deprecated_name', 'next_name']` which helps when migrating metrics without having gaps in their intake. In such a case `deprecated_name` would be removed after e.g. Recording Rules and dashboards have been adjusted to use `next_name`. During the transition each metric will be captured/recorded twice. |
 | `getLabelValues`      | A function receiving `req` and `res` on each request. It has to return an object with keys of the configured `labels` above and the respective values                                                                                                                                                                                                                                                                                                                                                                                                                                                    |

@@ -1,4 +1,4 @@
-import type { Counter, Gauge, Histogram, Summary } from 'prom-client';
+import type { Counter, Gauge, Histogram, Summary } from '@prometheus-io/client';
 import type { DeepRequired } from 'ts-essentials';
 
 export type TLabelValues = Record<string, string | number>;
@@ -32,11 +32,10 @@ export type TDefaultedPromsterOptions = DeepRequired<TOptionalPromsterOptions>;
 
 // NOTE:
 //   The label name type is spelled out as `<string>` rather than left to the
-//   default. `prom-client` defaults it to `string`, so today both spellings
-//   mean the same thing, but its successor `@prometheus-io/client` defaults it
-//   to `NoLabelNameType`, which is `never`. Under that default a bare
-//   `Counter` is a metric that accepts no labels at all, which would silently
-//   break every consumer calling `.inc({ method: 'GET' })` on these.
+//   default. `@prometheus-io/client` defaults it to `NoLabelNameType`, which
+//   is `never`, and a bare `Counter` under that default is a metric that
+//   accepts no labels at all. Leaving it implicit would silently break every
+//   consumer calling `.inc({ method: 'GET' })` on these.
 export type THttpMetrics = {
   httpRequestDurationPerPercentileInSeconds?: Summary<string>[];
   httpRequestDurationInSeconds?: Histogram<string>[];
