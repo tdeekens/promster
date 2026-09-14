@@ -37,8 +37,8 @@
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "0.18.5",
-    "@babel/core": "8.0.1",
-    "@babel/preset-env": "8.0.2",
+    "@babel/core": "8.0.5",
+    "@babel/preset-env": "8.0.5",
     "@babel/preset-typescript": "8.0.1",
     "@changesets/changelog-github": "1.0.1",
     "@changesets/cli": "3.0.2",
