@@ -72,11 +72,11 @@ jobs:
       - name: Build
         run: pnpm build
 
-      - name: Prune pipeline cache
-        run: node scripts/prune-pipeline-cache.mjs
-
       - name: Check exports
         run: pnpm check-exports
+
+      - name: Prune pipeline cache
+        run: node scripts/prune-pipeline-cache.mjs
 
       - name: Test (with coverage)
         run: pnpm test:coverage

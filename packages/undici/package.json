@@ -47,6 +47,7 @@
   "scripts": {
     "build": "tsdown",
     "check-types": "tsc --noEmit",
+    "check-exports": "attw --pack .",
     "test": "vitest --run",
     "test:watch": "vitest",
     "dev": "tsdown --watch"
