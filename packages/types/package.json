@@ -57,7 +57,7 @@
     "@prometheus-io/client": "0.16.1",
     "@promster/tsconfig": "workspace:*",
     "@promster/tsdown-config": "workspace:*",
-    "tsdown": "0.22.14"
+    "tsdown": "0.23.0"
   },
   "peerDependencies": {
     "@prometheus-io/client": "^0.16.1"
