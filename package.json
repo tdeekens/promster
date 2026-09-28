@@ -51,10 +51,10 @@
     "@vitest/coverage-v8": "4.1.11",
     "check-node-version": "4.2.1",
     "husky": "9.1.7",
-    "lint-staged": "17.4.1",
+    "lint-staged": "17.6.0",
     "oxfmt": "0.65.0",
-    "oxlint": "1.80.0",
-    "turbo": "2.10.12",
+    "oxlint": "1.86.0",
+    "turbo": "2.11.5",
     "typescript": "7.0.2",
     "vitest": "4.1.11"
   },
