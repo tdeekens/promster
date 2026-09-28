@@ -26,7 +26,7 @@ import type {
 import merge from 'merge-options';
 import semver from 'semver';
 
-import pkg from '../package.json';
+import { name as pkgName, version as pkgVersion } from '../package.json';
 
 interface TPromsterRequest extends Request {
   plugins: {
@@ -128,8 +128,8 @@ const createPlugin = (
   }
 
   const plugin: Plugin<unknown> = {
-    name: pkg.name,
-    version: pkg.version,
+    name: pkgName,
+    version: pkgVersion,
     // @ts-expect-error
     register(
       server,
@@ -231,7 +231,7 @@ const createPlugin = (
   };
   // @ts-expect-error
   plugin.register.attributes = {
-    pkg,
+    pkg: { name: pkgName, version: pkgVersion },
   };
 
   return plugin;
