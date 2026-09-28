@@ -34,9 +34,14 @@ jobs:
 
       - name: Setup
         uses: ./.github/actions/ci
+        with:
+          pipeline-cache: true
 
       - name: TypeScript
         run: pnpm check-types
+
+      - name: Prune pipeline cache
+        run: node scripts/prune-pipeline-cache.mjs
 
   spell:
     name: Spell checking
@@ -61,9 +66,14 @@ jobs:
 
       - name: Setup
         uses: ./.github/actions/ci
+        with:
+          pipeline-cache: true
 
       - name: Build
         run: pnpm build
+
+      - name: Prune pipeline cache
+        run: node scripts/prune-pipeline-cache.mjs
 
       - name: Check exports
         run: pnpm check-exports
