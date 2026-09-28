@@ -63,6 +63,7 @@
     "@promster/tsconfig": "workspace:*",
     "@promster/tsdown-config": "workspace:*",
     "@promster/types": "workspace:*",
+    "@promster/vitest-config": "workspace:*",
     "@types/semver": "catalog:",
     "joi": "18.2.9",
     "parse-prometheus-text-format": "catalog:",

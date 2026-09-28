@@ -60,6 +60,7 @@
     "@promster/tsconfig": "workspace:*",
     "@promster/tsdown-config": "workspace:*",
     "@promster/types": "workspace:*",
+    "@promster/vitest-config": "workspace:*",
     "@types/express": "5.0.6",
     "express": "catalog:",
     "parse-prometheus-text-format": "catalog:",

@@ -63,6 +63,7 @@
     "@promster/tsconfig": "workspace:*",
     "@promster/tsdown-config": "workspace:*",
     "@promster/types": "workspace:*",
+    "@promster/vitest-config": "workspace:*",
     "fp-ts": "2.16.11",
     "parse-prometheus-text-format": "catalog:",
     "tsdown": "catalog:"

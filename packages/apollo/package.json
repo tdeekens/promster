@@ -63,6 +63,7 @@
     "@promster/tsconfig": "workspace:*",
     "@promster/tsdown-config": "workspace:*",
     "@promster/types": "workspace:*",
+    "@promster/vitest-config": "workspace:*",
     "graphql": "16.14.2",
     "graphql-tag": "2.12.7",
     "parse-prometheus-text-format": "catalog:",

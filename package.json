@@ -16,12 +16,11 @@
   "author": "Tobias Deekens <nerd@tdeekens.name>",
   "scripts": {
     "auth": "npm_config_registry=https://registry.npmjs.org npm whoami",
-    "build:watch": "turbo watch build",
-    "build": "turbo build",
-    "dev": "turbo dev",
+    "build": "pnpm pipeline build --full",
+    "dev": "pnpm -r --parallel dev",
     "changeset:version-and-format": "changeset version && pnpm format && pnpm install --no-frozen-lockfile",
     "changeset": "changeset",
-    "check-types": "turbo check-types",
+    "check-types": "pnpm pipeline check-types --full",
     "check-exports": "pnpm --filter \"./packages/*\" exec attw --pack .",
     "clean": "manypkg exec rm -rf dist .turbo && rm -rf .turbo",
     "format": "oxfmt --write",
@@ -33,7 +32,7 @@
     "setup": "husky install && manypkg check && check-node-version --package --print",
     "test:coverage": "vitest run --coverage",
     "test:report": "vitest run --reporter=junit --outputFile=junit.xml",
-    "test": "turbo test"
+    "test": "pnpm pipeline test --full"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "0.18.5",
@@ -54,9 +53,8 @@
     "lint-staged": "17.6.0",
     "oxfmt": "0.71.0",
     "oxlint": "1.86.0",
-    "turbo": "2.11.5",
     "typescript": "catalog:",
-    "vitest": "5.0.2"
+    "vitest": "catalog:"
   },
   "devEngines": {
     "runtime": {
@@ -68,7 +66,7 @@
   "engines": {
     "node": ">=22",
     "npm": ">=11",
-    "pnpm": ">=12"
+    "pnpm": ">=12.4"
   },
   "packageManager": "pnpm@12.6.0"
 }
