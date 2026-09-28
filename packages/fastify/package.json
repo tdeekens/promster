@@ -61,6 +61,7 @@
     "@promster/tsconfig": "workspace:*",
     "@promster/tsdown-config": "workspace:*",
     "@promster/types": "workspace:*",
+    "@promster/vitest-config": "workspace:*",
     "fastify": "5.12.5",
     "tsdown": "catalog:"
   },

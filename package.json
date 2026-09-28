@@ -54,7 +54,7 @@
     "oxfmt": "0.71.0",
     "oxlint": "1.86.0",
     "typescript": "catalog:",
-    "vitest": "5.0.2"
+    "vitest": "catalog:"
   },
   "devEngines": {
     "runtime": {

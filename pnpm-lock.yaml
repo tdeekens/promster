@@ -219,6 +219,9 @@ catalogs:
     typescript:
       specifier: 7.0.2
       version: 7.0.2
+    vitest:
+      specifier: 5.0.2
+      version: 5.0.2
 
 importers:
 
@@ -282,7 +285,7 @@ importers:
         specifier: 'catalog:'
         version: 7.0.2
       vitest:
-        specifier: 5.0.2
+        specifier: 'catalog:'
         version: 5.0.2(@opentelemetry/api@1.9.1)(@types/node@24.19.0)(@vitest/coverage-v8@5.0.2)(vite@8.3.1(@types/node@24.19.0)(jiti@2.6.1)(yaml@2.9.1))
 
   packages/apollo:
@@ -318,6 +321,9 @@ importers:
       '@promster/types':
         specifier: workspace:*
         version: link:../types
+      '@promster/vitest-config':
+        specifier: workspace:*
+        version: link:../../tooling/vitest-config
       graphql:
         specifier: 16.14.2
         version: 16.14.2
@@ -355,6 +361,9 @@ importers:
       '@promster/types':
         specifier: workspace:*
         version: link:../types
+      '@promster/vitest-config':
+        specifier: workspace:*
+        version: link:../../tooling/vitest-config
       '@types/express':
         specifier: 5.0.6
         version: 5.0.6
@@ -395,6 +404,9 @@ importers:
       '@promster/types':
         specifier: workspace:*
         version: link:../types
+      '@promster/vitest-config':
+        specifier: workspace:*
+        version: link:../../tooling/vitest-config
       fastify:
         specifier: 5.12.5
         version: 5.12.5
@@ -435,6 +447,9 @@ importers:
       '@promster/types':
         specifier: workspace:*
         version: link:../types
+      '@promster/vitest-config':
+        specifier: workspace:*
+        version: link:../../tooling/vitest-config
       '@types/semver':
         specifier: 'catalog:'
         version: 7.8.0
@@ -481,6 +496,9 @@ importers:
       '@promster/types':
         specifier: workspace:*
         version: link:../types
+      '@promster/vitest-config':
+        specifier: workspace:*
+        version: link:../../tooling/vitest-config
       fp-ts:
         specifier: 2.16.11
         version: 2.16.11
@@ -518,6 +536,9 @@ importers:
       '@promster/types':
         specifier: workspace:*
         version: link:../types
+      '@promster/vitest-config':
+        specifier: workspace:*
+        version: link:../../tooling/vitest-config
       '@types/node':
         specifier: 'catalog:'
         version: 24.19.0
@@ -546,6 +567,9 @@ importers:
       '@promster/types':
         specifier: workspace:*
         version: link:../types
+      '@promster/vitest-config':
+        specifier: workspace:*
+        version: link:../../tooling/vitest-config
       '@types/node':
         specifier: 'catalog:'
         version: 24.19.0
@@ -605,6 +629,9 @@ importers:
       '@promster/types':
         specifier: workspace:*
         version: link:../types
+      '@promster/vitest-config':
+        specifier: workspace:*
+        version: link:../../tooling/vitest-config
       '@types/node':
         specifier: 'catalog:'
         version: 24.19.0
@@ -643,6 +670,12 @@ importers:
       typescript:
         specifier: 'catalog:'
         version: 7.0.2
+
+  tooling/vitest-config:
+    dependencies:
+      vitest:
+        specifier: 'catalog:'
+        version: 5.0.2(@opentelemetry/api@1.9.1)(@types/node@24.19.0)(@vitest/coverage-v8@5.0.2)(vite@8.3.1(@types/node@24.19.0)(jiti@2.6.1)(yaml@2.9.1))
 
 packages:
 

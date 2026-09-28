@@ -1,0 +1,13 @@
+{
+  "name": "@promster/vitest-config",
+  "version": "16.0.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": "./index.ts"
+  },
+  "dependencies": {
+    "vitest": "catalog:"
+  }
+}
