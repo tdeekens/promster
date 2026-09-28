@@ -53,21 +53,21 @@
   },
   "dependencies": {
     "@promster/metrics": "workspace:*",
-    "merge-options": "3.0.4",
-    "tslib": "2.8.1"
+    "merge-options": "catalog:",
+    "tslib": "catalog:"
   },
   "devDependencies": {
-    "@prometheus-io/client": "0.16.1",
+    "@prometheus-io/client": "catalog:",
     "@promster/express": "workspace:*",
     "@promster/server": "workspace:*",
     "@promster/tsconfig": "workspace:*",
     "@promster/tsdown-config": "workspace:*",
     "@promster/types": "workspace:*",
-    "@types/node": "24.19.0",
-    "express": "5.2.1",
-    "parse-prometheus-text-format": "1.1.1",
-    "tsdown": "0.22.14",
-    "typescript": "7.0.2",
+    "@types/node": "catalog:",
+    "express": "catalog:",
+    "parse-prometheus-text-format": "catalog:",
+    "tsdown": "catalog:",
+    "typescript": "catalog:",
     "undici": "8.11.2"
   },
   "peerDependencies": {

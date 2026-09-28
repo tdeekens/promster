@@ -1,11 +1,76 @@
 packages:
   - packages/*
   - tooling/*
-# pnpm >=11 enables a minimum-release-age install cooldown by default,
-# which makes `pnpm install --frozen-lockfile` (CI) fail whenever the
-# lockfile references a package published within the cooldown window.
-# Set to 0 to opt out so freshly published dependency bumps install in CI.
-minimumReleaseAge: 0
+# Refuse versions published less than one day ago (in minutes) to
+# reduce exposure to compromised releases. Renovate waits the same
+# time (see .renovaterc.json) so its lockfile updates do not fail.
+minimumReleaseAge: 1440
+# TEMPORARY: exact versions locked before the cooldown was enabled.
+# Remove once all are a day old (after 2026-09-29T14:35Z).
+minimumReleaseAgeExclude:
+  - '@oxfmt/binding-android-arm-eabi@0.71.0'
+  - '@oxfmt/binding-android-arm64@0.71.0'
+  - '@oxfmt/binding-darwin-arm64@0.71.0'
+  - '@oxfmt/binding-darwin-x64@0.71.0'
+  - '@oxfmt/binding-freebsd-x64@0.71.0'
+  - '@oxfmt/binding-linux-arm-gnueabihf@0.71.0'
+  - '@oxfmt/binding-linux-arm-musleabihf@0.71.0'
+  - '@oxfmt/binding-linux-arm64-gnu@0.71.0'
+  - '@oxfmt/binding-linux-arm64-musl@0.71.0'
+  - '@oxfmt/binding-linux-ppc64-gnu@0.71.0'
+  - '@oxfmt/binding-linux-riscv64-gnu@0.71.0'
+  - '@oxfmt/binding-linux-riscv64-musl@0.71.0'
+  - '@oxfmt/binding-linux-s390x-gnu@0.71.0'
+  - '@oxfmt/binding-linux-x64-gnu@0.71.0'
+  - '@oxfmt/binding-linux-x64-musl@0.71.0'
+  - '@oxfmt/binding-openharmony-arm64@0.71.0'
+  - '@oxfmt/binding-win32-arm64-msvc@0.71.0'
+  - '@oxfmt/binding-win32-ia32-msvc@0.71.0'
+  - '@oxfmt/binding-win32-x64-msvc@0.71.0'
+  - '@oxlint/binding-android-arm-eabi@1.86.0'
+  - '@oxlint/binding-android-arm64@1.86.0'
+  - '@oxlint/binding-darwin-arm64@1.86.0'
+  - '@oxlint/binding-darwin-x64@1.86.0'
+  - '@oxlint/binding-freebsd-x64@1.86.0'
+  - '@oxlint/binding-linux-arm-gnueabihf@1.86.0'
+  - '@oxlint/binding-linux-arm-musleabihf@1.86.0'
+  - '@oxlint/binding-linux-arm64-gnu@1.86.0'
+  - '@oxlint/binding-linux-arm64-musl@1.86.0'
+  - '@oxlint/binding-linux-ppc64-gnu@1.86.0'
+  - '@oxlint/binding-linux-riscv64-gnu@1.86.0'
+  - '@oxlint/binding-linux-riscv64-musl@1.86.0'
+  - '@oxlint/binding-linux-s390x-gnu@1.86.0'
+  - '@oxlint/binding-linux-x64-gnu@1.86.0'
+  - '@oxlint/binding-linux-x64-musl@1.86.0'
+  - '@oxlint/binding-openharmony-arm64@1.86.0'
+  - '@oxlint/binding-win32-arm64-msvc@1.86.0'
+  - '@oxlint/binding-win32-ia32-msvc@1.86.0'
+  - '@oxlint/binding-win32-x64-msvc@1.86.0'
+  - '@turbo/darwin-64@2.11.5'
+  - '@turbo/darwin-arm64@2.11.5'
+  - '@turbo/linux-64@2.11.5'
+  - '@turbo/linux-arm64@2.11.5'
+  - '@turbo/windows-64@2.11.5'
+  - '@turbo/windows-arm64@2.11.5'
+  - 'browserslist@4.29.2'
+  - 'caniuse-lite@1.0.30001813'
+  - 'oxfmt@0.71.0'
+  - 'oxlint@1.86.0'
+  - 'turbo@2.11.5'
 allowBuilds:
   '@apollo/protobufjs': true
   esbuild: true
+# Remove duplicate dependency versions on every install.
+autoDedupe: true
+# Versions shared by more than one workspace package.
+catalog:
+  '@prometheus-io/client': 0.16.1
+  '@tsconfig/node24': 24.0.5
+  '@types/node': 24.19.0
+  '@types/semver': 7.8.0
+  express: 5.2.1
+  merge-options: 3.0.4
+  parse-prometheus-text-format: 1.1.1
+  tsdown: 0.23.0
+  tslib: 2.8.1
+  typescript: 7.0.2

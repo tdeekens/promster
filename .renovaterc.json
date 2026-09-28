@@ -1,5 +1,7 @@
 {
   "extends": ["config:recommended", "group:monorepos", "schedule:weekly"],
+  "minimumReleaseAge": "1 day",
+  "internalChecksFilter": "strict",
   "lockFileMaintenance": {
     "enabled": true
   },
