@@ -46,17 +46,10 @@ minimumReleaseAgeExclude:
   - '@oxlint/binding-win32-arm64-msvc@1.86.0'
   - '@oxlint/binding-win32-ia32-msvc@1.86.0'
   - '@oxlint/binding-win32-x64-msvc@1.86.0'
-  - '@turbo/darwin-64@2.11.5'
-  - '@turbo/darwin-arm64@2.11.5'
-  - '@turbo/linux-64@2.11.5'
-  - '@turbo/linux-arm64@2.11.5'
-  - '@turbo/windows-64@2.11.5'
-  - '@turbo/windows-arm64@2.11.5'
   - 'browserslist@4.29.2'
   - 'caniuse-lite@1.0.30001813'
   - 'oxfmt@0.71.0'
   - 'oxlint@1.86.0'
-  - 'turbo@2.11.5'
 allowBuilds:
   '@apollo/protobufjs': true
   esbuild: true
