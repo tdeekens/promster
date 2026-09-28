@@ -54,10 +54,10 @@
     "ts-essentials": "10.2.1"
   },
   "devDependencies": {
-    "@prometheus-io/client": "0.16.1",
+    "@prometheus-io/client": "catalog:",
     "@promster/tsconfig": "workspace:*",
     "@promster/tsdown-config": "workspace:*",
-    "tsdown": "0.23.0"
+    "tsdown": "catalog:"
   },
   "peerDependencies": {
     "@prometheus-io/client": "^0.16.1"

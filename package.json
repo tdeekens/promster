@@ -45,9 +45,9 @@
     "@commitlint/cli": "21.2.3",
     "@commitlint/config-conventional": "21.2.3",
     "@manypkg/cli": "0.25.1",
-    "@tsconfig/node24": "24.0.5",
-    "@types/node": "24.19.0",
-    "@types/semver": "7.8.0",
+    "@tsconfig/node24": "catalog:",
+    "@types/node": "catalog:",
+    "@types/semver": "catalog:",
     "@vitest/coverage-v8": "5.0.2",
     "check-node-version": "4.2.1",
     "husky": "9.1.7",
@@ -55,7 +55,7 @@
     "oxfmt": "0.71.0",
     "oxlint": "1.86.0",
     "turbo": "2.11.5",
-    "typescript": "7.0.2",
+    "typescript": "catalog:",
     "vitest": "5.0.2"
   },
   "devEngines": {
@@ -68,7 +68,7 @@
   "engines": {
     "node": ">=22",
     "npm": ">=11",
-    "pnpm": ">=11"
+    "pnpm": ">=12"
   },
-  "packageManager": "pnpm@11.24.0"
+  "packageManager": "pnpm@12.6.0"
 }

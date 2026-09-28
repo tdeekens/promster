@@ -52,9 +52,9 @@
   },
   "dependencies": {
     "@promster/metrics": "workspace:*",
-    "merge-options": "3.0.4",
+    "merge-options": "catalog:",
     "semver": "7.8.5",
-    "tslib": "2.8.1"
+    "tslib": "catalog:"
   },
   "devDependencies": {
     "@hapi/boom": "10.0.1",
@@ -63,10 +63,10 @@
     "@promster/tsconfig": "workspace:*",
     "@promster/tsdown-config": "workspace:*",
     "@promster/types": "workspace:*",
-    "@types/semver": "7.8.0",
+    "@types/semver": "catalog:",
     "joi": "18.2.9",
-    "parse-prometheus-text-format": "1.1.1",
-    "tsdown": "0.23.0"
+    "parse-prometheus-text-format": "catalog:",
+    "tsdown": "catalog:"
   },
   "engines": {
     "node": ">=22",

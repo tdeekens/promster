@@ -54,15 +54,15 @@
     "@promster/metrics": "workspace:*",
     "@promster/server": "workspace:*",
     "fastify-plugin": "^6.0.0",
-    "merge-options": "3.0.4",
-    "parse-prometheus-text-format": "1.1.1"
+    "merge-options": "catalog:",
+    "parse-prometheus-text-format": "catalog:"
   },
   "devDependencies": {
     "@promster/tsconfig": "workspace:*",
     "@promster/tsdown-config": "workspace:*",
     "@promster/types": "workspace:*",
     "fastify": "5.12.5",
-    "tsdown": "0.23.0"
+    "tsdown": "catalog:"
   },
   "engines": {
     "node": ">=22",

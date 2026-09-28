@@ -53,8 +53,8 @@
   "dependencies": {
     "@apollo/server": "5.5.1",
     "@promster/metrics": "workspace:*",
-    "merge-options": "3.0.4",
-    "tslib": "2.8.1"
+    "merge-options": "catalog:",
+    "tslib": "catalog:"
   },
   "devDependencies": {
     "@graphql-tools/schema": "10.1.1",
@@ -65,8 +65,8 @@
     "@promster/types": "workspace:*",
     "graphql": "16.14.2",
     "graphql-tag": "2.12.7",
-    "parse-prometheus-text-format": "1.1.1",
-    "tsdown": "0.23.0"
+    "parse-prometheus-text-format": "catalog:",
+    "tsdown": "catalog:"
   },
   "engines": {
     "node": ">=22",

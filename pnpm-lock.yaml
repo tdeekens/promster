@@ -1,8 +1,224 @@
+---
+lockfileVersion: '9.0'
+
+importers:
+
+  .:
+    configDependencies: {}
+    packageManagerDependencies:
+      '@pnpm/exe':
+        specifier: 12.6.0
+        version: 12.6.0
+      pnpm:
+        specifier: 12.6.0
+        version: 12.6.0
+
+packages:
+
+  '@pnpm/exe.android-arm64@12.6.0':
+    resolution: {integrity: sha512-kviIHft9h02q+7N2In7tSL9T/HRUSGwYmU74YPtsWU5ee7vgqPyC0JT6RRX6miW+NxX1CvHgQxg69qq1qTLJYQ==}
+    cpu: [arm64]
+    os: [android]
+
+  '@pnpm/exe.android-x64@12.6.0':
+    resolution: {integrity: sha512-CT8aJKLq2mtZFE71pr4E5Z2xHL8uGnRGr+NclDqsXlVF4SVcQ2QAs14mWi0C8gjT4hbmi+Q0lJRRIkMAWfjjng==}
+    cpu: [x64]
+    os: [android]
+
+  '@pnpm/exe.darwin-arm64@12.6.0':
+    resolution: {integrity: sha512-rafpVkjzugKBMxSvGQd5wK1x5eOTkD/+lcJIFHeQhvd+BJ8kDisOOvwhQDrpGd4vd2Fx+hhW0P2Ptt638OlhFg==}
+    cpu: [arm64]
+    os: [darwin]
+
+  '@pnpm/exe.darwin-x64@12.6.0':
+    resolution: {integrity: sha512-72Jpuv1m24gI8zUNcaylYpBWEhBzz1VPhnDIU2GYM2eRP+KsOqVLwV78i+JrihI39zY2NNXmaN4eAKX1inpaDQ==}
+    cpu: [x64]
+    os: [darwin]
+
+  '@pnpm/exe.freebsd-x64@12.6.0':
+    resolution: {integrity: sha512-LON4QgNy1w/XF4uySZIyC/5hEB0oGdelXsY9tSKqstER+2j2X2oHz67skD11RRd/HWFRtMr64shQZ4I9ZoZ0zg==}
+    cpu: [x64]
+    os: [freebsd]
+
+  '@pnpm/exe.linux-arm64-musl@12.6.0':
+    resolution: {integrity: sha512-BdDpX+DeaMUc5x6WNcE6FkmFy36NwrBbBvwsZU737Zt3u1fTY+iKFPchjEQNCM4rT6q6xvF2oN3ZwExGsJCkxQ==}
+    cpu: [arm64]
+    os: [linux]
+    libc: [musl]
+
+  '@pnpm/exe.linux-arm64@12.6.0':
+    resolution: {integrity: sha512-8h2sNoIhHDpHDYqZZCh9PXr6krqW10btb0GHVGuw710muDHlFAHMtUG2ogmaHge6zJG1xgY4Y7mwX5g/LWvrYg==}
+    cpu: [arm64]
+    os: [linux]
+    libc: [glibc]
+
+  '@pnpm/exe.linux-ppc64@12.6.0':
+    resolution: {integrity: sha512-ld6xgcEhFCFrsVsJhbmdmR714PnsEspO/Ij8w0/D7OSiz2hYGu3fZd5tKRxOI5m6H6Gl0/RRFAPncTHbsgXVjQ==}
+    cpu: [ppc64]
+    os: [linux]
+    libc: [glibc]
+
+  '@pnpm/exe.linux-riscv64@12.6.0':
+    resolution: {integrity: sha512-HIbImydoC3J8NFt+8MXfhTCf5rO6NjCMyinSAHac0VmV8uCHw+kbQkyAzxV84rzz9ZOzmBOnj0b1N461UIYGsw==}
+    cpu: [riscv64]
+    os: [linux]
+    libc: [glibc]
+
+  '@pnpm/exe.linux-s390x@12.6.0':
+    resolution: {integrity: sha512-DjSqT7+BZ/lWcDHwNMuzsRVfyxUimh+D54Xw4tSWbdVVQhtWtNMUyI93LVnwCmsoEpar2gC3SFeAgywx37svKQ==}
+    cpu: [s390x]
+    os: [linux]
+    libc: [glibc]
+
+  '@pnpm/exe.linux-x64-musl@12.6.0':
+    resolution: {integrity: sha512-31lKeGPmRE6xfV6I3VjaEGVFRei14pl/zgoFDK4w+UkbJqOuNl2Ht3O1GuqNIg3Gl14qTEb4kZRAYFHXifDx9A==}
+    cpu: [x64]
+    os: [linux]
+    libc: [musl]
+
+  '@pnpm/exe.linux-x64@12.6.0':
+    resolution: {integrity: sha512-qFWBneHJAJ73W4whtbaFOL1M/7DBC6ILHXuxc7ZPtEhfPuT1zeZiGrmKHoMAfJA+mcm6xhOFljqVTUS+00Jabw==}
+    cpu: [x64]
+    os: [linux]
+    libc: [glibc]
+
+  '@pnpm/exe.win32-arm64@12.6.0':
+    resolution: {integrity: sha512-OhfefXEEykZlslSUhR8PPRe6MVPV3Oink/dVfIecE5velpc7j80cZYsHlaDrtRDcm3TPwQHkaRW1SJ1efX9oFg==}
+    cpu: [arm64]
+    os: [win32]
+
+  '@pnpm/exe.win32-x64@12.6.0':
+    resolution: {integrity: sha512-L2tuyrD2+Imgxs3VK/ST/2L3xD6vDP0ktJQxM0TaGw7TbAQEMq+RMc8iK6Ew7Id579uzjJe8jSfJID2ZGsOHCA==}
+    cpu: [x64]
+    os: [win32]
+
+  '@pnpm/exe@12.6.0':
+    resolution: {integrity: sha512-CkNetlJZugjKp9vPvWqCm5ahORU6FfO46BlOqqSCKLJ+W6QcRgM0qmmPTvlgrXVvkAiH+9hE+mMp/wSaqcU5Aw==}
+    engines: {node: '>=18.*'}
+    hasBin: true
+
+  pnpm@12.6.0:
+    resolution: {integrity: sha512-PvaPlRyxEawgS0paFvCy3fDaVqluBBPoHYVdnwtV75JnFHCQKOHNAMQFwsX7e56OxNxGd3yAXQNzwvL/AP0g7A==}
+    engines: {node: '>=18.*'}
+    hasBin: true
+
+snapshots:
+
+  '@pnpm/exe.android-arm64@12.6.0':
+    optional: true
+
+  '@pnpm/exe.android-x64@12.6.0':
+    optional: true
+
+  '@pnpm/exe.darwin-arm64@12.6.0':
+    optional: true
+
+  '@pnpm/exe.darwin-x64@12.6.0':
+    optional: true
+
+  '@pnpm/exe.freebsd-x64@12.6.0':
+    optional: true
+
+  '@pnpm/exe.linux-arm64-musl@12.6.0':
+    optional: true
+
+  '@pnpm/exe.linux-arm64@12.6.0':
+    optional: true
+
+  '@pnpm/exe.linux-ppc64@12.6.0':
+    optional: true
+
+  '@pnpm/exe.linux-riscv64@12.6.0':
+    optional: true
+
+  '@pnpm/exe.linux-s390x@12.6.0':
+    optional: true
+
+  '@pnpm/exe.linux-x64-musl@12.6.0':
+    optional: true
+
+  '@pnpm/exe.linux-x64@12.6.0':
+    optional: true
+
+  '@pnpm/exe.win32-arm64@12.6.0':
+    optional: true
+
+  '@pnpm/exe.win32-x64@12.6.0':
+    optional: true
+
+  '@pnpm/exe@12.6.0':
+    optionalDependencies:
+      '@pnpm/exe.android-arm64': 12.6.0
+      '@pnpm/exe.android-x64': 12.6.0
+      '@pnpm/exe.darwin-arm64': 12.6.0
+      '@pnpm/exe.darwin-x64': 12.6.0
+      '@pnpm/exe.freebsd-x64': 12.6.0
+      '@pnpm/exe.linux-arm64': 12.6.0
+      '@pnpm/exe.linux-arm64-musl': 12.6.0
+      '@pnpm/exe.linux-ppc64': 12.6.0
+      '@pnpm/exe.linux-riscv64': 12.6.0
+      '@pnpm/exe.linux-s390x': 12.6.0
+      '@pnpm/exe.linux-x64': 12.6.0
+      '@pnpm/exe.linux-x64-musl': 12.6.0
+      '@pnpm/exe.win32-arm64': 12.6.0
+      '@pnpm/exe.win32-x64': 12.6.0
+
+  pnpm@12.6.0:
+    optionalDependencies:
+      '@pnpm/exe.android-arm64': 12.6.0
+      '@pnpm/exe.android-x64': 12.6.0
+      '@pnpm/exe.darwin-arm64': 12.6.0
+      '@pnpm/exe.darwin-x64': 12.6.0
+      '@pnpm/exe.freebsd-x64': 12.6.0
+      '@pnpm/exe.linux-arm64': 12.6.0
+      '@pnpm/exe.linux-arm64-musl': 12.6.0
+      '@pnpm/exe.linux-ppc64': 12.6.0
+      '@pnpm/exe.linux-riscv64': 12.6.0
+      '@pnpm/exe.linux-s390x': 12.6.0
+      '@pnpm/exe.linux-x64': 12.6.0
+      '@pnpm/exe.linux-x64-musl': 12.6.0
+      '@pnpm/exe.win32-arm64': 12.6.0
+      '@pnpm/exe.win32-x64': 12.6.0
+
+---
 lockfileVersion: '9.0'
 
 settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
+
+catalogs:
+  default:
+    '@prometheus-io/client':
+      specifier: 0.16.1
+      version: 0.16.1
+    '@tsconfig/node24':
+      specifier: 24.0.5
+      version: 24.0.5
+    '@types/node':
+      specifier: 24.19.0
+      version: 24.19.0
+    '@types/semver':
+      specifier: 7.8.0
+      version: 7.8.0
+    express:
+      specifier: 5.2.1
+      version: 5.2.1
+    merge-options:
+      specifier: 3.0.4
+      version: 3.0.4
+    parse-prometheus-text-format:
+      specifier: 1.1.1
+      version: 1.1.1
+    tsdown:
+      specifier: 0.23.0
+      version: 0.23.0
+    tslib:
+      specifier: 2.8.1
+      version: 2.8.1
+    typescript:
+      specifier: 7.0.2
+      version: 7.0.2
 
 importers:
 
@@ -36,13 +252,13 @@ importers:
         specifier: 0.25.1
         version: 0.25.1
       '@tsconfig/node24':
-        specifier: 24.0.5
+        specifier: 'catalog:'
         version: 24.0.5
       '@types/node':
-        specifier: 24.19.0
+        specifier: 'catalog:'
         version: 24.19.0
       '@types/semver':
-        specifier: 7.8.0
+        specifier: 'catalog:'
         version: 7.8.0
       '@vitest/coverage-v8':
         specifier: 5.0.2
@@ -66,7 +282,7 @@ importers:
         specifier: 2.11.5
         version: 2.11.5
       typescript:
-        specifier: 7.0.2
+        specifier: 'catalog:'
         version: 7.0.2
       vitest:
         specifier: 5.0.2
@@ -81,10 +297,10 @@ importers:
         specifier: workspace:*
         version: link:../metrics
       merge-options:
-        specifier: 3.0.4
+        specifier: 'catalog:'
         version: 3.0.4
       tslib:
-        specifier: 2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@graphql-tools/schema':
@@ -112,10 +328,10 @@ importers:
         specifier: 2.12.7
         version: 2.12.7(graphql@16.14.2)
       parse-prometheus-text-format:
-        specifier: 1.1.1
+        specifier: 'catalog:'
         version: 1.1.1
       tsdown:
-        specifier: 0.23.0
+        specifier: 'catalog:'
         version: 0.23.0(@arethetypeswrong/core@0.18.5)(typescript@7.0.2)
 
   packages/express:
@@ -124,10 +340,10 @@ importers:
         specifier: workspace:*
         version: link:../metrics
       merge-options:
-        specifier: 3.0.4
+        specifier: 'catalog:'
         version: 3.0.4
       tslib:
-        specifier: 2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@promster/server':
@@ -146,13 +362,13 @@ importers:
         specifier: 5.0.6
         version: 5.0.6
       express:
-        specifier: 5.2.1
+        specifier: 'catalog:'
         version: 5.2.1(supports-color@7.2.0)
       parse-prometheus-text-format:
-        specifier: 1.1.1
+        specifier: 'catalog:'
         version: 1.1.1
       tsdown:
-        specifier: 0.23.0
+        specifier: 'catalog:'
         version: 0.23.0(@arethetypeswrong/core@0.18.5)(typescript@7.0.2)
 
   packages/fastify:
@@ -167,10 +383,10 @@ importers:
         specifier: ^6.0.0
         version: 6.0.0
       merge-options:
-        specifier: 3.0.4
+        specifier: 'catalog:'
         version: 3.0.4
       parse-prometheus-text-format:
-        specifier: 1.1.1
+        specifier: 'catalog:'
         version: 1.1.1
     devDependencies:
       '@promster/tsconfig':
@@ -186,7 +402,7 @@ importers:
         specifier: 5.12.5
         version: 5.12.5
       tsdown:
-        specifier: 0.23.0
+        specifier: 'catalog:'
         version: 0.23.0(@arethetypeswrong/core@0.18.5)(typescript@7.0.2)
 
   packages/hapi:
@@ -195,13 +411,13 @@ importers:
         specifier: workspace:*
         version: link:../metrics
       merge-options:
-        specifier: 3.0.4
+        specifier: 'catalog:'
         version: 3.0.4
       semver:
         specifier: 7.8.5
         version: 7.8.5
       tslib:
-        specifier: 2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@hapi/boom':
@@ -223,16 +439,16 @@ importers:
         specifier: workspace:*
         version: link:../types
       '@types/semver':
-        specifier: 7.8.0
+        specifier: 'catalog:'
         version: 7.8.0
       joi:
         specifier: 18.2.9
         version: 18.2.9
       parse-prometheus-text-format:
-        specifier: 1.1.1
+        specifier: 'catalog:'
         version: 1.1.1
       tsdown:
-        specifier: 0.23.0
+        specifier: 'catalog:'
         version: 0.23.0(@arethetypeswrong/core@0.18.5)(typescript@7.0.2)
 
   packages/marblejs:
@@ -241,13 +457,13 @@ importers:
         specifier: workspace:*
         version: link:../metrics
       merge-options:
-        specifier: 3.0.4
+        specifier: 'catalog:'
         version: 3.0.4
       rxjs:
         specifier: ^7.8.1
         version: 7.8.2
       tslib:
-        specifier: 2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@marblejs/core':
@@ -272,10 +488,10 @@ importers:
         specifier: 2.16.11
         version: 2.16.11
       parse-prometheus-text-format:
-        specifier: 1.1.1
+        specifier: 'catalog:'
         version: 1.1.1
       tsdown:
-        specifier: 0.23.0
+        specifier: 'catalog:'
         version: 0.23.0(@arethetypeswrong/core@0.18.5)(typescript@7.0.2)
 
   packages/metrics:
@@ -284,17 +500,17 @@ importers:
         specifier: 1.52.0
         version: 1.52.0
       merge-options:
-        specifier: 3.0.4
+        specifier: 'catalog:'
         version: 3.0.4
       tslib:
-        specifier: 2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
       url-value-parser:
         specifier: 2.2.0
         version: 2.2.0
     devDependencies:
       '@prometheus-io/client':
-        specifier: 0.16.1
+        specifier: 'catalog:'
         version: 0.16.1
       '@promster/tsconfig':
         specifier: workspace:*
@@ -306,13 +522,13 @@ importers:
         specifier: workspace:*
         version: link:../types
       '@types/node':
-        specifier: 24.19.0
+        specifier: 'catalog:'
         version: 24.19.0
       tsdown:
-        specifier: 0.23.0
+        specifier: 'catalog:'
         version: 0.23.0(@arethetypeswrong/core@0.18.5)(typescript@7.0.2)
       typescript:
-        specifier: 7.0.2
+        specifier: 'catalog:'
         version: 7.0.2
 
   packages/server:
@@ -321,7 +537,7 @@ importers:
         specifier: workspace:*
         version: link:../metrics
       tslib:
-        specifier: 2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@promster/tsconfig':
@@ -334,13 +550,13 @@ importers:
         specifier: workspace:*
         version: link:../types
       '@types/node':
-        specifier: 24.19.0
+        specifier: 'catalog:'
         version: 24.19.0
       parse-prometheus-text-format:
-        specifier: 1.1.1
+        specifier: 'catalog:'
         version: 1.1.1
       tsdown:
-        specifier: 0.23.0
+        specifier: 'catalog:'
         version: 0.23.0(@arethetypeswrong/core@0.18.5)(typescript@7.0.2)
 
   packages/types:
@@ -350,7 +566,7 @@ importers:
         version: 10.2.1(typescript@7.0.2)
     devDependencies:
       '@prometheus-io/client':
-        specifier: 0.16.1
+        specifier: 'catalog:'
         version: 0.16.1
       '@promster/tsconfig':
         specifier: workspace:*
@@ -359,7 +575,7 @@ importers:
         specifier: workspace:*
         version: link:../../tooling/tsdown-config
       tsdown:
-        specifier: 0.23.0
+        specifier: 'catalog:'
         version: 0.23.0(@arethetypeswrong/core@0.18.5)(typescript@7.0.2)
 
   packages/undici:
@@ -368,14 +584,14 @@ importers:
         specifier: workspace:*
         version: link:../metrics
       merge-options:
-        specifier: 3.0.4
+        specifier: 'catalog:'
         version: 3.0.4
       tslib:
-        specifier: 2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@prometheus-io/client':
-        specifier: 0.16.1
+        specifier: 'catalog:'
         version: 0.16.1
       '@promster/express':
         specifier: workspace:*
@@ -393,19 +609,19 @@ importers:
         specifier: workspace:*
         version: link:../types
       '@types/node':
-        specifier: 24.19.0
+        specifier: 'catalog:'
         version: 24.19.0
       express:
-        specifier: 5.2.1
+        specifier: 'catalog:'
         version: 5.2.1(supports-color@7.2.0)
       parse-prometheus-text-format:
-        specifier: 1.1.1
+        specifier: 'catalog:'
         version: 1.1.1
       tsdown:
-        specifier: 0.23.0
+        specifier: 'catalog:'
         version: 0.23.0(@arethetypeswrong/core@0.18.5)(typescript@7.0.2)
       typescript:
-        specifier: 7.0.2
+        specifier: 'catalog:'
         version: 7.0.2
       undici:
         specifier: 8.11.2
@@ -414,21 +630,21 @@ importers:
   tooling/tsconfig:
     dependencies:
       '@tsconfig/node24':
-        specifier: 24.0.5
+        specifier: 'catalog:'
         version: 24.0.5
     devDependencies:
       typescript:
-        specifier: 7.0.2
+        specifier: 'catalog:'
         version: 7.0.2
 
   tooling/tsdown-config:
     dependencies:
       tsdown:
-        specifier: 0.23.0
+        specifier: 'catalog:'
         version: 0.23.0(@arethetypeswrong/core@0.18.5)(typescript@7.0.2)
     devDependencies:
       typescript:
-        specifier: 7.0.2
+        specifier: 'catalog:'
         version: 7.0.2
 
 packages:
