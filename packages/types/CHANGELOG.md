@@ -1,5 +1,11 @@
 # @promster/types
 
+## 16.0.1
+
+### Patch Changes
+
+- [#1630](https://github.com/tdeekens/promster/pull/1630) [`638f953`](https://github.com/tdeekens/promster/commit/638f953c6f83900a69355a5236b8e8ca0b1aa4b5) Thanks [@tdeekens](https://github.com/tdeekens)! - chore(deps): batch medium-risk dependency updates
+
 ## 16.0.0
 
 ### Major Changes
