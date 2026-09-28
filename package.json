@@ -21,7 +21,7 @@
     "changeset:version-and-format": "changeset version && pnpm format && pnpm install --no-frozen-lockfile",
     "changeset": "changeset",
     "check-types": "pnpm pipeline check-types --full",
-    "check-exports": "pnpm --filter \"./packages/*\" exec attw --pack .",
+    "check-exports": "pnpm pipeline check-exports --full",
     "clean": "manypkg exec rm -rf dist .turbo && rm -rf .turbo",
     "format": "oxfmt --write",
     "format:check": "oxfmt --check",

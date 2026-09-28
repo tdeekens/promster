@@ -77,10 +77,14 @@ tasks:
   check-types:
     dependsOn: ['^build']
     outputs: []
+  check-exports:
+    dependsOn: ['build']
+    outputs: []
   test:
     dependsOn: ['^build']
     outputs: []
 pipelines:
   build: [build]
   check-types: [check-types]
+  check-exports: [check-exports]
   test: [test]
