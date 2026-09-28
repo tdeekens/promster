@@ -1,11 +1,10 @@
 packages:
   - packages/*
   - tooling/*
-# pnpm >=11 enables a minimum-release-age install cooldown by default,
-# which makes `pnpm install --frozen-lockfile` (CI) fail whenever the
-# lockfile references a package published within the cooldown window.
-# Set to 0 to opt out so freshly published dependency bumps install in CI.
-minimumReleaseAge: 0
+# Refuse versions published less than one day ago (in minutes) to
+# reduce exposure to compromised releases. Renovate waits the same
+# time (see .renovaterc.json) so its lockfile updates do not fail.
+minimumReleaseAge: 1440
 allowBuilds:
   '@apollo/protobufjs': true
   esbuild: true
