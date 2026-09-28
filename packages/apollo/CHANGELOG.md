@@ -1,5 +1,15 @@
 # @promster/apollo
 
+## 16.0.1
+
+### Patch Changes
+
+- [#1626](https://github.com/tdeekens/promster/pull/1626) [`71b5ac9`](https://github.com/tdeekens/promster/commit/71b5ac983e9b544d868f11dd2d26da341e899baa) Thanks [@tdeekens](https://github.com/tdeekens)! - chore(deps): batch low-risk dependency updates
+
+- [#1630](https://github.com/tdeekens/promster/pull/1630) [`638f953`](https://github.com/tdeekens/promster/commit/638f953c6f83900a69355a5236b8e8ca0b1aa4b5) Thanks [@tdeekens](https://github.com/tdeekens)! - chore(deps): batch medium-risk dependency updates
+- Updated dependencies [[`71b5ac9`](https://github.com/tdeekens/promster/commit/71b5ac983e9b544d868f11dd2d26da341e899baa), [`638f953`](https://github.com/tdeekens/promster/commit/638f953c6f83900a69355a5236b8e8ca0b1aa4b5)]:
+  - @promster/metrics@16.0.1
+
 ## 16.0.0
 
 ### Major Changes
