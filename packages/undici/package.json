@@ -68,7 +68,7 @@
     "parse-prometheus-text-format": "1.1.1",
     "tsdown": "0.22.14",
     "typescript": "7.0.2",
-    "undici": "8.10.0"
+    "undici": "8.11.2"
   },
   "peerDependencies": {
     "@prometheus-io/client": "^0.16.1",
