@@ -10,3 +10,15 @@ allowBuilds:
   esbuild: true
 # Remove duplicate dependency versions on every install.
 autoDedupe: true
+# Versions shared by more than one workspace package.
+catalog:
+  '@prometheus-io/client': 0.16.1
+  '@tsconfig/node24': 24.0.5
+  '@types/node': 24.19.0
+  '@types/semver': 7.8.0
+  express: 5.2.1
+  merge-options: 3.0.4
+  parse-prometheus-text-format: 1.1.1
+  tsdown: 0.23.0
+  tslib: 2.8.1
+  typescript: 7.0.2

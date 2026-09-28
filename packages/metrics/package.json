@@ -52,18 +52,18 @@
   },
   "dependencies": {
     "es-toolkit": "1.52.0",
-    "merge-options": "3.0.4",
-    "tslib": "2.8.1",
+    "merge-options": "catalog:",
+    "tslib": "catalog:",
     "url-value-parser": "2.2.0"
   },
   "devDependencies": {
-    "@prometheus-io/client": "0.16.1",
+    "@prometheus-io/client": "catalog:",
     "@promster/tsconfig": "workspace:*",
     "@promster/tsdown-config": "workspace:*",
     "@promster/types": "workspace:*",
-    "@types/node": "24.19.0",
-    "tsdown": "0.23.0",
-    "typescript": "7.0.2"
+    "@types/node": "catalog:",
+    "tsdown": "catalog:",
+    "typescript": "catalog:"
   },
   "peerDependencies": {
     "@prometheus-io/client": "^0.16.1"

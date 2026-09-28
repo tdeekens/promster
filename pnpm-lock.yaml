@@ -187,6 +187,39 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+catalogs:
+  default:
+    '@prometheus-io/client':
+      specifier: 0.16.1
+      version: 0.16.1
+    '@tsconfig/node24':
+      specifier: 24.0.5
+      version: 24.0.5
+    '@types/node':
+      specifier: 24.19.0
+      version: 24.19.0
+    '@types/semver':
+      specifier: 7.8.0
+      version: 7.8.0
+    express:
+      specifier: 5.2.1
+      version: 5.2.1
+    merge-options:
+      specifier: 3.0.4
+      version: 3.0.4
+    parse-prometheus-text-format:
+      specifier: 1.1.1
+      version: 1.1.1
+    tsdown:
+      specifier: 0.23.0
+      version: 0.23.0
+    tslib:
+      specifier: 2.8.1
+      version: 2.8.1
+    typescript:
+      specifier: 7.0.2
+      version: 7.0.2
+
 importers:
 
   .:
@@ -219,13 +252,13 @@ importers:
         specifier: 0.25.1
         version: 0.25.1
       '@tsconfig/node24':
-        specifier: 24.0.5
+        specifier: 'catalog:'
         version: 24.0.5
       '@types/node':
-        specifier: 24.19.0
+        specifier: 'catalog:'
         version: 24.19.0
       '@types/semver':
-        specifier: 7.8.0
+        specifier: 'catalog:'
         version: 7.8.0
       '@vitest/coverage-v8':
         specifier: 5.0.2
@@ -249,7 +282,7 @@ importers:
         specifier: 2.11.5
         version: 2.11.5
       typescript:
-        specifier: 7.0.2
+        specifier: 'catalog:'
         version: 7.0.2
       vitest:
         specifier: 5.0.2
@@ -264,10 +297,10 @@ importers:
         specifier: workspace:*
         version: link:../metrics
       merge-options:
-        specifier: 3.0.4
+        specifier: 'catalog:'
         version: 3.0.4
       tslib:
-        specifier: 2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@graphql-tools/schema':
@@ -295,10 +328,10 @@ importers:
         specifier: 2.12.7
         version: 2.12.7(graphql@16.14.2)
       parse-prometheus-text-format:
-        specifier: 1.1.1
+        specifier: 'catalog:'
         version: 1.1.1
       tsdown:
-        specifier: 0.23.0
+        specifier: 'catalog:'
         version: 0.23.0(@arethetypeswrong/core@0.18.5)(typescript@7.0.2)
 
   packages/express:
@@ -307,10 +340,10 @@ importers:
         specifier: workspace:*
         version: link:../metrics
       merge-options:
-        specifier: 3.0.4
+        specifier: 'catalog:'
         version: 3.0.4
       tslib:
-        specifier: 2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@promster/server':
@@ -329,13 +362,13 @@ importers:
         specifier: 5.0.6
         version: 5.0.6
       express:
-        specifier: 5.2.1
+        specifier: 'catalog:'
         version: 5.2.1(supports-color@7.2.0)
       parse-prometheus-text-format:
-        specifier: 1.1.1
+        specifier: 'catalog:'
         version: 1.1.1
       tsdown:
-        specifier: 0.23.0
+        specifier: 'catalog:'
         version: 0.23.0(@arethetypeswrong/core@0.18.5)(typescript@7.0.2)
 
   packages/fastify:
@@ -350,10 +383,10 @@ importers:
         specifier: ^6.0.0
         version: 6.0.0
       merge-options:
-        specifier: 3.0.4
+        specifier: 'catalog:'
         version: 3.0.4
       parse-prometheus-text-format:
-        specifier: 1.1.1
+        specifier: 'catalog:'
         version: 1.1.1
     devDependencies:
       '@promster/tsconfig':
@@ -369,7 +402,7 @@ importers:
         specifier: 5.12.5
         version: 5.12.5
       tsdown:
-        specifier: 0.23.0
+        specifier: 'catalog:'
         version: 0.23.0(@arethetypeswrong/core@0.18.5)(typescript@7.0.2)
 
   packages/hapi:
@@ -378,13 +411,13 @@ importers:
         specifier: workspace:*
         version: link:../metrics
       merge-options:
-        specifier: 3.0.4
+        specifier: 'catalog:'
         version: 3.0.4
       semver:
         specifier: 7.8.5
         version: 7.8.5
       tslib:
-        specifier: 2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@hapi/boom':
@@ -406,16 +439,16 @@ importers:
         specifier: workspace:*
         version: link:../types
       '@types/semver':
-        specifier: 7.8.0
+        specifier: 'catalog:'
         version: 7.8.0
       joi:
         specifier: 18.2.9
         version: 18.2.9
       parse-prometheus-text-format:
-        specifier: 1.1.1
+        specifier: 'catalog:'
         version: 1.1.1
       tsdown:
-        specifier: 0.23.0
+        specifier: 'catalog:'
         version: 0.23.0(@arethetypeswrong/core@0.18.5)(typescript@7.0.2)
 
   packages/marblejs:
@@ -424,13 +457,13 @@ importers:
         specifier: workspace:*
         version: link:../metrics
       merge-options:
-        specifier: 3.0.4
+        specifier: 'catalog:'
         version: 3.0.4
       rxjs:
         specifier: ^7.8.1
         version: 7.8.2
       tslib:
-        specifier: 2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@marblejs/core':
@@ -455,10 +488,10 @@ importers:
         specifier: 2.16.11
         version: 2.16.11
       parse-prometheus-text-format:
-        specifier: 1.1.1
+        specifier: 'catalog:'
         version: 1.1.1
       tsdown:
-        specifier: 0.23.0
+        specifier: 'catalog:'
         version: 0.23.0(@arethetypeswrong/core@0.18.5)(typescript@7.0.2)
 
   packages/metrics:
@@ -467,17 +500,17 @@ importers:
         specifier: 1.52.0
         version: 1.52.0
       merge-options:
-        specifier: 3.0.4
+        specifier: 'catalog:'
         version: 3.0.4
       tslib:
-        specifier: 2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
       url-value-parser:
         specifier: 2.2.0
         version: 2.2.0
     devDependencies:
       '@prometheus-io/client':
-        specifier: 0.16.1
+        specifier: 'catalog:'
         version: 0.16.1
       '@promster/tsconfig':
         specifier: workspace:*
@@ -489,13 +522,13 @@ importers:
         specifier: workspace:*
         version: link:../types
       '@types/node':
-        specifier: 24.19.0
+        specifier: 'catalog:'
         version: 24.19.0
       tsdown:
-        specifier: 0.23.0
+        specifier: 'catalog:'
         version: 0.23.0(@arethetypeswrong/core@0.18.5)(typescript@7.0.2)
       typescript:
-        specifier: 7.0.2
+        specifier: 'catalog:'
         version: 7.0.2
 
   packages/server:
@@ -504,7 +537,7 @@ importers:
         specifier: workspace:*
         version: link:../metrics
       tslib:
-        specifier: 2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@promster/tsconfig':
@@ -517,13 +550,13 @@ importers:
         specifier: workspace:*
         version: link:../types
       '@types/node':
-        specifier: 24.19.0
+        specifier: 'catalog:'
         version: 24.19.0
       parse-prometheus-text-format:
-        specifier: 1.1.1
+        specifier: 'catalog:'
         version: 1.1.1
       tsdown:
-        specifier: 0.23.0
+        specifier: 'catalog:'
         version: 0.23.0(@arethetypeswrong/core@0.18.5)(typescript@7.0.2)
 
   packages/types:
@@ -533,7 +566,7 @@ importers:
         version: 10.2.1(typescript@7.0.2)
     devDependencies:
       '@prometheus-io/client':
-        specifier: 0.16.1
+        specifier: 'catalog:'
         version: 0.16.1
       '@promster/tsconfig':
         specifier: workspace:*
@@ -542,7 +575,7 @@ importers:
         specifier: workspace:*
         version: link:../../tooling/tsdown-config
       tsdown:
-        specifier: 0.23.0
+        specifier: 'catalog:'
         version: 0.23.0(@arethetypeswrong/core@0.18.5)(typescript@7.0.2)
 
   packages/undici:
@@ -551,14 +584,14 @@ importers:
         specifier: workspace:*
         version: link:../metrics
       merge-options:
-        specifier: 3.0.4
+        specifier: 'catalog:'
         version: 3.0.4
       tslib:
-        specifier: 2.8.1
+        specifier: 'catalog:'
         version: 2.8.1
     devDependencies:
       '@prometheus-io/client':
-        specifier: 0.16.1
+        specifier: 'catalog:'
         version: 0.16.1
       '@promster/express':
         specifier: workspace:*
@@ -576,19 +609,19 @@ importers:
         specifier: workspace:*
         version: link:../types
       '@types/node':
-        specifier: 24.19.0
+        specifier: 'catalog:'
         version: 24.19.0
       express:
-        specifier: 5.2.1
+        specifier: 'catalog:'
         version: 5.2.1(supports-color@7.2.0)
       parse-prometheus-text-format:
-        specifier: 1.1.1
+        specifier: 'catalog:'
         version: 1.1.1
       tsdown:
-        specifier: 0.23.0
+        specifier: 'catalog:'
         version: 0.23.0(@arethetypeswrong/core@0.18.5)(typescript@7.0.2)
       typescript:
-        specifier: 7.0.2
+        specifier: 'catalog:'
         version: 7.0.2
       undici:
         specifier: 8.11.2
@@ -597,21 +630,21 @@ importers:
   tooling/tsconfig:
     dependencies:
       '@tsconfig/node24':
-        specifier: 24.0.5
+        specifier: 'catalog:'
         version: 24.0.5
     devDependencies:
       typescript:
-        specifier: 7.0.2
+        specifier: 'catalog:'
         version: 7.0.2
 
   tooling/tsdown-config:
     dependencies:
       tsdown:
-        specifier: 0.23.0
+        specifier: 'catalog:'
         version: 0.23.0(@arethetypeswrong/core@0.18.5)(typescript@7.0.2)
     devDependencies:
       typescript:
-        specifier: 7.0.2
+        specifier: 'catalog:'
         version: 7.0.2
 
 packages:
