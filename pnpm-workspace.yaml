@@ -74,3 +74,19 @@ catalog:
   tsdown: 0.23.0
   tslib: 2.8.1
   typescript: 7.0.2
+# Workspace tasks run by `pnpm pipeline`. A task is only cached when it
+# declares `outputs`, and a missing `dependsOn` means no dependencies.
+tasks:
+  build:
+    dependsOn: ['^build']
+    outputs: ['dist/**']
+  check-types:
+    dependsOn: ['^build']
+    outputs: []
+  test:
+    dependsOn: ['^build']
+    outputs: []
+pipelines:
+  build: [build]
+  check-types: [check-types]
+  test: [test]
