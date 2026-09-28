@@ -9,3 +9,5 @@ minimumReleaseAge: 0
 allowBuilds:
   '@apollo/protobufjs': true
   esbuild: true
+# Remove duplicate dependency versions on every install.
+autoDedupe: true
