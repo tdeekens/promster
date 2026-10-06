@@ -14,7 +14,7 @@ autoDedupe: true
 catalog:
   '@prometheus-io/client': 0.16.1
   '@tsconfig/node24': 24.0.5
-  '@types/node': 24.19.0
+  '@types/node': 24.19.1
   '@types/semver': 7.8.0
   express: 5.2.1
   merge-options: 3.0.4
