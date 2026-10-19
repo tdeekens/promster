@@ -63,7 +63,7 @@
     "@promster/tsdown-config": "workspace:*",
     "@promster/types": "workspace:*",
     "@promster/vitest-config": "workspace:*",
-    "fastify": "5.12.5",
+    "fastify": "5.12.7",
     "tsdown": "catalog:"
   },
   "engines": {
