@@ -1,5 +1,13 @@
 # @promster/fastify
 
+## 16.0.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @promster/metrics@16.0.2
+  - @promster/server@16.0.2
+
 ## 16.0.1
 
 ### Patch Changes
