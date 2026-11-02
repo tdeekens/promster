@@ -1,5 +1,13 @@
 # @promster/apollo
 
+## 16.0.2
+
+### Patch Changes
+
+- [#1635](https://github.com/tdeekens/promster/pull/1635) [`a238017`](https://github.com/tdeekens/promster/commit/a23801718f7ca85fccd72b2d6112742398b5d0ff) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): update graphql-tools monorepo
+- Updated dependencies []:
+  - @promster/metrics@16.0.2
+
 ## 16.0.1
 
 ### Patch Changes
