@@ -70,7 +70,7 @@
     "parse-prometheus-text-format": "catalog:",
     "tsdown": "catalog:",
     "typescript": "catalog:",
-    "undici": "8.11.2"
+    "undici": "8.12.2"
   },
   "peerDependencies": {
     "@prometheus-io/client": "^0.16.1",
