@@ -27,19 +27,22 @@ catalog:
 # declares `outputs`, and a missing `dependsOn` means no dependencies.
 tasks:
   build:
-    dependsOn: ['^build']
-    outputs: ['dist/**']
+    dependsOn: [ '^build' ]
+    outputs: [ 'dist/**' ]
   check-types:
-    dependsOn: ['^build']
+    dependsOn: [ '^build' ]
     outputs: []
   check-exports:
-    dependsOn: ['build']
+    dependsOn: [ 'build' ]
     outputs: []
   test:
-    dependsOn: ['^build']
+    dependsOn: [ '^build' ]
     outputs: []
 pipelines:
-  build: [build]
-  check-types: [check-types]
-  check-exports: [check-exports]
-  test: [test]
+  build: [ build ]
+  check-types: [ check-types ]
+  check-exports: [ check-exports ]
+  test: [ test ]
+minimumReleaseAgeExclude:
+  # Renovate security update: undici@8.12.2
+  - undici@8.12.2
