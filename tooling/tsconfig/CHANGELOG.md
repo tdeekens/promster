@@ -1,5 +1,13 @@
 # @promster/tsconfig
 
+## 16.0.2
+
+### Patch Changes
+
+- [#1649](https://github.com/tdeekens/promster/pull/1649) [`6920e32`](https://github.com/tdeekens/promster/commit/6920e321f489b7e2aa08093688d7653da108dd33) Thanks [@tdeekens](https://github.com/tdeekens)! - Update dependencies
+
+- [#1646](https://github.com/tdeekens/promster/pull/1646) [`88c2289`](https://github.com/tdeekens/promster/commit/88c2289c081b73de13a138d9f80f4258c62bb2c3) Thanks [@renovate](https://github.com/apps/renovate)! - chore(deps): replace dependency @tsconfig/node24 with @tsconfig/node26
+
 ## 16.0.1
 
 No changes in this release.
