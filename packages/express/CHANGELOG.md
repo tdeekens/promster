@@ -1,5 +1,13 @@
 # @promster/express
 
+## 16.0.2
+
+### Patch Changes
+
+- [#1649](https://github.com/tdeekens/promster/pull/1649) [`6920e32`](https://github.com/tdeekens/promster/commit/6920e321f489b7e2aa08093688d7653da108dd33) Thanks [@tdeekens](https://github.com/tdeekens)! - Update dependencies
+- Updated dependencies [[`6920e32`](https://github.com/tdeekens/promster/commit/6920e321f489b7e2aa08093688d7653da108dd33), [`16825a9`](https://github.com/tdeekens/promster/commit/16825a99ad06e7258106ac95800be0bb7ef04dd1)]:
+  - @promster/metrics@16.0.2
+
 ## 16.0.1
 
 ### Patch Changes
