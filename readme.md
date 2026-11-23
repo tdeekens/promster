@@ -121,8 +121,9 @@ Promster has to be set up with your server -- either as an Express middleware, a
 ### Express
 
 ```js
-import app from './your-express-app';
 import { createMiddleware } from '@promster/express';
+
+import app from './your-express-app';
 
 // Note: This should be done BEFORE other routes
 // Pass 'app' as middleware parameter to additionally expose Prometheus under 'app.locals'
@@ -145,8 +146,9 @@ counter.inc();
 ### Fastify
 
 ```js
-import app from './your-fastify-app';
 import { plugin as promsterPlugin } from '@promster/fastify';
+
+import app from './your-fastify-app';
 
 fastify.register(promsterPlugin);
 ```
@@ -168,6 +170,7 @@ counter.inc();
 
 ```js
 import { createPlugin } from '@promster/hapi';
+
 import app from './your-hapi-app';
 
 app.register(createPlugin({ options }));
@@ -293,8 +296,9 @@ Options with their respective defaults are `port: 7788`, `hostname: '0.0.0.0'` a
 You can use the `express` or `hapi` package to expose the gathered metrics through your existing server. To do so just:
 
 ```js
-import app from './your-express-app';
 import { getSummary, getContentType } from '@promster/express';
+
+import app from './your-express-app';
 
 app.use('/metrics', async (req, res) => {
   req.statusCode = 200;
