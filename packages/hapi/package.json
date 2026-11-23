@@ -54,19 +54,19 @@
   "dependencies": {
     "@promster/metrics": "workspace:*",
     "merge-options": "catalog:",
-    "semver": "7.8.5",
+    "semver": "7.8.6",
     "tslib": "catalog:"
   },
   "devDependencies": {
     "@hapi/boom": "10.0.1",
-    "@hapi/hapi": "21.4.10",
+    "@hapi/hapi": "21.4.13",
     "@promster/server": "workspace:*",
     "@promster/tsconfig": "workspace:*",
     "@promster/tsdown-config": "workspace:*",
     "@promster/types": "workspace:*",
     "@promster/vitest-config": "workspace:*",
     "@types/semver": "catalog:",
-    "joi": "18.3.1",
+    "joi": "18.3.2",
     "parse-prometheus-text-format": "catalog:",
     "tsdown": "catalog:"
   },

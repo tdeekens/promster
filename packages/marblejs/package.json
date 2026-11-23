@@ -54,7 +54,7 @@
   "dependencies": {
     "@promster/metrics": "workspace:*",
     "merge-options": "catalog:",
-    "rxjs": "^7.8.1",
+    "rxjs": "^7.8.2",
     "tslib": "catalog:"
   },
   "devDependencies": {

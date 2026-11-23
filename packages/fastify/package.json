@@ -54,7 +54,7 @@
   "dependencies": {
     "@promster/metrics": "workspace:*",
     "@promster/server": "workspace:*",
-    "fastify-plugin": "^6.0.0",
+    "fastify-plugin": "^6.0.1",
     "merge-options": "catalog:",
     "parse-prometheus-text-format": "catalog:"
   },
@@ -63,7 +63,7 @@
     "@promster/tsdown-config": "workspace:*",
     "@promster/types": "workspace:*",
     "@promster/vitest-config": "workspace:*",
-    "fastify": "5.12.7",
+    "fastify": "5.12.8",
     "tsdown": "catalog:"
   },
   "engines": {
