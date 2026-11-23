@@ -44,7 +44,7 @@
     "@commitlint/cli": "21.2.4",
     "@commitlint/config-conventional": "21.2.4",
     "@manypkg/cli": "0.25.1",
-    "@tsconfig/node24": "catalog:",
+    "@tsconfig/node26": "catalog:",
     "@types/node": "catalog:",
     "@types/semver": "catalog:",
     "@vitest/coverage-v8": "5.0.2",
