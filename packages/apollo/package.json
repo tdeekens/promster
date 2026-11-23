@@ -71,7 +71,7 @@
     "tsdown": "catalog:"
   },
   "engines": {
-    "node": ">=22",
+    "node": ">=26",
     "npm": ">=8"
   }
 }

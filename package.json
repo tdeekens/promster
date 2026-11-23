@@ -59,12 +59,12 @@
   "devEngines": {
     "runtime": {
       "name": "node",
-      "version": "26.13",
+      "version": "26.13.1",
       "onFail": "warn"
     }
   },
   "engines": {
-    "node": ">=22",
+    "node": ">=26",
     "npm": ">=11",
     "pnpm": ">=12.4"
   },

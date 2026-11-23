@@ -64,7 +64,7 @@
     "@prometheus-io/client": "^0.16.1"
   },
   "engines": {
-    "node": ">=22",
+    "node": ">=26",
     "npm": ">=8"
   }
 }
