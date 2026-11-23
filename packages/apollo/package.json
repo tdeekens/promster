@@ -52,14 +52,14 @@
     "dev": "tsdown --watch"
   },
   "dependencies": {
-    "@apollo/server": "5.5.1",
+    "@apollo/server": "5.5.2",
     "@promster/metrics": "workspace:*",
     "merge-options": "catalog:",
     "tslib": "catalog:"
   },
   "devDependencies": {
-    "@graphql-tools/schema": "10.1.3",
-    "@graphql-tools/utils": "12.0.3",
+    "@graphql-tools/schema": "11.0.9",
+    "@graphql-tools/utils": "13.2.2",
     "@promster/server": "workspace:*",
     "@promster/tsconfig": "workspace:*",
     "@promster/tsdown-config": "workspace:*",

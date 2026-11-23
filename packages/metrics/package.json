@@ -52,7 +52,7 @@
     "dev": "tsdown --watch"
   },
   "dependencies": {
-    "es-toolkit": "1.52.0",
+    "es-toolkit": "1.53.2",
     "merge-options": "catalog:",
     "tslib": "catalog:",
     "url-value-parser": "2.2.0"
