@@ -70,7 +70,7 @@
     "tsdown": "catalog:"
   },
   "engines": {
-    "node": ">=26",
+    "node": ">=22",
     "npm": ">=8"
   }
 }
