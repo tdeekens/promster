@@ -46,3 +46,5 @@ pipelines:
 minimumReleaseAgeExclude:
   # Renovate security update: joi@18.3.1
   - joi@18.3.1
+  # Renovate security update: undici@8.12.2
+  - undici@8.12.2
