@@ -4,7 +4,7 @@
   "private": true,
   "license": "MIT",
   "dependencies": {
-    "@tsconfig/node24": "catalog:"
+    "@tsconfig/node26": "catalog:"
   },
   "devDependencies": {
     "typescript": "catalog:"

@@ -192,9 +192,9 @@ catalogs:
     '@prometheus-io/client':
       specifier: 0.16.1
       version: 0.16.1
-    '@tsconfig/node24':
-      specifier: 24.0.6
-      version: 24.0.6
+    '@tsconfig/node26':
+      specifier: 26.0.0
+      version: 26.0.0
     '@types/node':
       specifier: 24.19.2
       version: 24.19.2
@@ -254,9 +254,9 @@ importers:
       '@manypkg/cli':
         specifier: 0.25.1
         version: 0.25.1
-      '@tsconfig/node24':
+      '@tsconfig/node26':
         specifier: 'catalog:'
-        version: 24.0.6
+        version: 26.0.0
       '@types/node':
         specifier: 'catalog:'
         version: 24.19.2
@@ -653,9 +653,9 @@ importers:
 
   tooling/tsconfig:
     dependencies:
-      '@tsconfig/node24':
+      '@tsconfig/node26':
         specifier: 'catalog:'
-        version: 24.0.6
+        version: 26.0.0
     devDependencies:
       typescript:
         specifier: 'catalog:'
@@ -2077,8 +2077,8 @@ packages:
   '@standard-schema/spec@1.1.0':
     resolution: {integrity: sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w==}
 
-  '@tsconfig/node24@24.0.6':
-    resolution: {integrity: sha512-/SK4JuydRQLGSCq7+hbiQ8fdAVR4Suv5EcBvkIAG3zo3GbXQvGoSclz4olL12Ar4OpH8gwGYJ67P4wwQqBRxKw==}
+  '@tsconfig/node26@26.0.0':
+    resolution: {integrity: sha512-AlW882moMu/JzvTVjdGqJEsrqD5nSWHiFD7Aeuw6Rb58S4Aig+09mDUFFlXJx/y6/y77NwGYLlqhWxvolcC0sw==}
 
   '@types/body-parser@1.19.6':
     resolution: {integrity: sha512-HLFeCYgz89uk22N5Qg3dvGvsv46B8GLvKKo1zKG4NybA8U2DiEO3w9lqGg29t/tfLRJpJ6iQxnVw4OnB7MoM9g==}
@@ -3923,18 +3923,22 @@ packages:
   yuku-ast@0.19.0:
     resolution: {integrity: sha512-PyCsiScaelhxBGzL8dyeJkLqvRZycoh78R31Vrt/WqYrm0hMFoKwIw/X7Dx5mBKLWAMlV9I9HEyBOHnj2gZVyw==}
     engines: {node: '>=14.18.0'}
+    deprecated: 'Yuku is now one package with one core. Use "yuku" instead: https://yuku.fyi/javascript/. Existing installs keep working but get no more fixes.'
 
   yuku-codegen@0.19.0:
     resolution: {integrity: sha512-uymAKHjDuaP4BEpkXC/BSLz4DUEF5oArZ5AuD3888nb2miChjWSgpPdojEJxm3pjpXkgUaCRJQyNAbnMN33wHg==}
     engines: {node: '>=14.18.0'}
+    deprecated: 'Yuku is now one package with one core. Use "yuku" instead: https://yuku.fyi/javascript/. Existing installs keep working but get no more fixes.'
 
   yuku-core@0.19.0:
     resolution: {integrity: sha512-kYK9e1XdfirNhkipzW0wmMcSWcVF/CWnuugodfVYRCUwvoBefweL9HzB96OiKEhsx78V5WbUxbJqlizMX869Qg==}
     engines: {node: '>=14.18.0'}
+    deprecated: 'Yuku is now one package with one core. Use "yuku" instead: https://yuku.fyi/javascript/. Existing installs keep working but get no more fixes.'
 
   yuku-parser@0.19.0:
     resolution: {integrity: sha512-XrBh9ZiQK5mJVRxZBAvD6LwRyAYrK3MFtH3+onyuxFL5hFD44EC3QOmIC1FjTj6H2MMwq46/NAI+NZxLZPZgxg==}
     engines: {node: '>=14.18.0'}
+    deprecated: 'Yuku is now one package with one core. Use "yuku" instead: https://yuku.fyi/javascript/. Existing installs keep working but get no more fixes.'
 
 snapshots:
 
@@ -5432,7 +5436,7 @@ snapshots:
 
   '@standard-schema/spec@1.1.0': {}
 
-  '@tsconfig/node24@24.0.6': {}
+  '@tsconfig/node26@26.0.0': {}
 
   '@types/body-parser@1.19.6':
     dependencies:
